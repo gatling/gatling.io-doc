@@ -1,4 +1,10 @@
+/public
+
+
 /node_modules/
 /resources/
 /go.sum
 /content
+
+/package.json
+/package-lock.json
