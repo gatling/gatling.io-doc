@@ -2,10 +2,13 @@ main:
   - name: OSS
     url: /oss/
     weight: 10
-  - name: Cloud
+  - name: Self Hosted
+    url: /self-hosted
     weight: 20
+  - name: Cloud
     identifier: cloud
     url: /cloud/
+    weight: 30
 
 oss-reference:
   - identifier: category-1
