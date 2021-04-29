@@ -1,2 +1,4 @@
-node_modules/
-resources/
+/node_modules/
+/resources/
+/go.sum
+/content
