@@ -1,0 +1,62 @@
+name: Publish
+
+defaults:
+  run:
+    shell: bash # Every steps will have a /usr/bin/bash --noprofile --norc -e -o pipefail
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  repository_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.8.0
+        with:
+          access_token: ${{ github.token }}
+
+      - name: Checkout current project
+        uses: actions/checkout@v2
+        with:
+          path: gatling-io-doc
+
+      - name: Generate site
+        run: |
+          docker run \
+            --volume "$(pwd)":/src \
+            --workdir "/src" \
+            --user "$(id -u):$(id -g)" \
+            --entrypoint "/src/entrypoint.sh" \
+            klakegg/hugo:0.82.1-ext-alpine \
+            publish
+        working-directory:  gatling-io-doc
+
+      - name: Checkout deploy project
+        env:
+          REMOTE_REPOSITORY: ${{ secrets.REMOTE_REPOSITORY }}
+          REMOTE_BRANCH: ${{ secrets.REMOTE_BRANCH }}
+        run: git clone "$REMOTE_REPOSITORY" --branch "$REMOTE_BRANCH" remote
+
+      - name: Copy site files
+        run: |
+          rm -Rf remote/docs || true
+          cp -r gatling-io-doc/public remote/docs
+
+      - name: Push changes
+        env:
+          REMOTE_USERNAME: ${{ secrets.REMOTE_USERNAME }}
+          REMOTE_EMAIL: ${{ secrets.REMOTE_EMAIL }}
+          REMOTE_BRANCH: ${{ secrets.REMOTE_BRANCH }}
+        run: |
+          git config user.name "$REMOTE_USERNAME"
+          git config user.email "$REMOTE_EMAIL"
+          git add docs
+          git commit --message "Push docs from gatling-ci"
+          git push origin "HEAD:$REMOTE_BRANCH"
+        working-directory: remote
