@@ -11,4 +11,4 @@ services:
      - /src/resources
      - /src/node_modules
     working_dir: /src
-    entrypoint: /src/entrypoint.sh
+    entrypoint: /src/bin/entrypoint.sh

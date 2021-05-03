@@ -28,5 +28,5 @@ docker-compose up
 ### Local
 
 ```console
-./entrypoint.sh
+./bin/entrypoint.sh
 ```
