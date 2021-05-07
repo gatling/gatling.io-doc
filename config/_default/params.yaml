@@ -53,3 +53,7 @@ options:
   darkMode: true
   bootStrapJs: false
   breadCrumb: false
+
+analytics:
+  globalTrackingId: "G-B5J9F14X56"
+  tagManagerTrackingId: "GTM-MJX8KRG"
