@@ -92,6 +92,13 @@ fetch_doc () {
   cp -r "$MYTMPDIR/$repo/$remote_dir"/* "$local_dir"
 }
 
+
+drop_search_index() {
+  local local_dir="$1"
+
+  rm "content/$local_dir/search.md" || true
+}
+
 hugo_structure() {
   local repo="$1"
   local branch="$2"
@@ -99,6 +106,7 @@ hugo_structure() {
   local local_dir="$4"
 
   fetch_doc "$repo" "$branch" "$remote_dir" "content/$local_dir"
+  drop_search_index $local_dir
   build_indexes "$repo" "$branch" "$remote_dir" "$local_dir"
 }
 
@@ -112,6 +120,8 @@ hugo_structure_version() {
 
   if [[ -n $latest ]]; then
     fetch_doc "$repo" "$branch" "$remote_dir" "content/$local_dir"
+    drop_search_index $local_dir
+
     mkdir -p "content/$local_dir/reference/$version"
     cp -r "content/$local_dir/reference/current"/* "content/$local_dir/reference/$version"
   else
@@ -131,16 +141,25 @@ prepare () {
   
     mkdir ./content || true
 
-    #                       # repository          # branch             # remote            # local
-    hugo_structure          "frontline-cloud-doc" "hugo-main"          "content"           "cloud"
-    #                                                                                                      # version  # latest
-    hugo_structure_version  "frontline-doc"       "hugo-main"          "content"           "self-hosted"   "1.14"     true
-    hugo_structure_version  "frontline-doc"       "hugo-main"          "content"           "self-hosted"   "1.13"
-    # hugo_structure_version  "gatling"             "misc-96-doc-hugo"  "src/docs/content"  "oss"           "3.6"      true
+    #                       # repository          # branch               # remote            # local
+    hugo_structure          "frontline-cloud-doc" "development"          "content"           "cloud"
+    #                                                                                                        # version  # latest
+    hugo_structure_version  "frontline-doc"       "development"          "content"           "self-hosted"   "1.14"     true
+    hugo_structure_version  "frontline-doc"       "development"          "content"           "self-hosted"   "1.13"
+    hugo_structure_version  "gatling"             "misc-96-doc-hugo"     "src/docs/content"  "oss"           "3.6"      true
+    hugo_structure_version  "gatling"             "misc-96-doc-hugo-3.4" "src/docs/content"  "oss"           "3.4"
+    hugo_structure_version  "gatling"             "misc-96-doc-hugo-3.3" "src/docs/content"  "oss"           "3.3"
+
+    cp template/search.md content/search.md
 
   else
     echo "=====> skip prepare"
   fi
+}
+
+optimize() {
+  echo "=====> optimize phase"
+  node bin/optimize_search_index.js public/search/index.json utf8
 }
 
 POSITIONAL=()
@@ -206,6 +225,7 @@ case "$COMMAND" in
     fi
     prepare
     hugo "${HUGO_OPTS[@]}"
+    optimize
     ;;
   clean)
     clean
