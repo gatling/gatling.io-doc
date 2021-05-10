@@ -22,7 +22,10 @@ const indexOptions = {
     store: [
       'title',
       'description',
-      'href'
+      'href',
+      'section',
+      'version',
+      'latest'
     ]
   },
 }
