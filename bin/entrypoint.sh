@@ -160,10 +160,27 @@ hugo_structure_version() {
   build_indexes_version "$repo" "$branch" "$remote_dir" "$local_dir" "$version" "$latest"
 }
 
+install_dependencies() {
+  echo "=======> installation phase"
+  if ! command -v envsubst &> /dev/null; then
+    echo "=========> installing gettext"
+    apk add gettext
+  fi
+
+  if ! command -v yq &> /dev/null; then
+    echo "=========> installing yq"
+    wget https://github.com/mikefarah/yq/releases/download/v4.8.0/yq_linux_amd64.tar.gz -O - |\
+  tar xz && mv yq_linux_amd64 /usr/bin/yq
+  fi
+}
+
 prepare () {
   if [[ "$PREPARE" = true ]]; then
     clean
+
     echo "=====> prepare phase"
+    install_dependencies
+
     hugo mod get -u
     hugo mod npm pack
   
