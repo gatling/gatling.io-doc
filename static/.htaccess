@@ -1,0 +1,39 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /docs
+
+## 301 /docs/$version/(jmq|mqtt)/? -> /docs/gatling/reference/$version/(jmq|mqtt)/
+RewriteRule ^(current|[0-9.]+)/jms/?$ /docs/gatling/reference/$1/jms/ [L,R=301]
+RewriteRule ^(current|[0-9.]+)/mqtt/?$ /docs/gatling/reference/$1/mqtt/ [L,R=301]
+
+## 301 /docs/$version/$tutorial/? -> /docs/gatling/tutorials/$tutorial
+RewriteRule ^(current|[0-9.]+)/installation/?$ /docs/gatling/tutorials/installation/ [L,R=301]
+RewriteRule ^(current|[0-9.]+)/quickstart/?$ /docs/gatling/tutorials/quickstart/ [L,R=301]
+RewriteRule ^(current|[0-9.]+)/advanced_tutorial/?$ /docs/gatling/tutorials/advanced/ [L,R=301]
+RewriteRule ^(current|[0-9.]+)/realtime_monitoring/?$ /docs/gatling/tutorials/realtime_monitoring/ [L,R=301]
+
+## 301 /docs/$version/http/http_${page}/ -> /docs/gatling/reference/$version/http/${page}
+RewriteRule ^(current|[0-9.]+)/http/http_protocol/?$ /docs/gatling/reference/$1/http/protocol/ [L,R=301]
+RewriteRule ^(current|[0-9.]+)/http/http_request/?$ /docs/gatling/reference/$1/http/request/ [L,R=301]
+RewriteRule ^(current|[0-9.]+)/http/http_check/?$ /docs/gatling/reference/$1/http/check/ [L,R=301]
+RewriteRule ^(current|[0-9.]+)/http/http_ssl/?$ /docs/gatling/reference/$1/http/ssl/ [L,R=301]
+RewriteRule ^(current|[0-9.]+)/http/http_helpers/?$ /docs/gatling/reference/$1/http/helpers/ [L,R=301]
+
+## 301 /docs/$version/cookbook/? -> /docs/gatling/guides/
+RewriteRule ^(current|[0-9.]+)/cookbook/?$ /docs/gatling/guides/ [L,R=301]
+RewriteCond %{REQUEST_URI} !(.*)/$
+RewriteRule ^(current|[0-9.]+)/cookbook/(.*) /docs/gatling/guides/$2/ [L,R=301]
+RewriteRule ^(current|[0-9.]+)/cookbook/(.*) /docs/gatling/guides/$2 [L,R=301]
+
+## 301 /docs/$version/migration_guides/$migration -> /docs/gatling/reference/$version/migration/$migration
+RewriteRule ^(current|[0-9.]+)/migration_guides/?$ /docs/gatling/reference/$1/migration/ [L,R=301]
+RewriteCond %{REQUEST_URI} !(.*)/$
+RewriteRule ^(current|[0-9.]+)/migration_guides/(.*)$ /docs/gatling/reference/$1/migration/$2/ [L,R=301]
+RewriteRule ^(current|[0-9.]+)/migration_guides/(.*)$ /docs/gatling/reference/$1/migration/$2 [L,R=301]
+
+## Everything else
+RewriteRule ^(current|[0-9.]+)/?$ /docs/gatling/reference/$1/ [L,R=301]
+RewriteCond %{REQUEST_URI} !(.*)/$
+RewriteRule ^(current|[0-9.]+)/(.*) /docs/gatling/reference/$1/$2/ [L,R=301]
+RewriteRule ^(current|[0-9.]+)/(.*) /docs/gatling/reference/$1/$2 [L,R=301]
+</IfModule>
