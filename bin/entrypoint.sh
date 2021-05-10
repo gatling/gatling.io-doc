@@ -161,17 +161,12 @@ hugo_structure_version() {
 }
 
 install_dependencies() {
-  echo "=======> installation phase"
-  if ! command -v envsubst &> /dev/null; then
-    echo "=========> installing gettext"
-    apk add gettext
-  fi
+  # envsubst
+  apk add gettext
 
-  if ! command -v yq &> /dev/null; then
-    echo "=========> installing yq"
-    wget https://github.com/mikefarah/yq/releases/download/v4.8.0/yq_linux_amd64.tar.gz -O - |\
-  tar xz && mv yq_linux_amd64 /usr/bin/yq
-  fi
+  # yq
+  wget https://github.com/mikefarah/yq/releases/download/v4.8.0/yq_linux_amd64.tar.gz -O - |\
+    tar xz && mv yq_linux_amd64 /usr/bin/yq
 }
 
 prepare () {
@@ -179,7 +174,10 @@ prepare () {
     clean
 
     echo "=====> prepare phase"
-    install_dependencies
+
+    if [[ "$DOCKER_COMPOSITION" = true ]]; then
+      install_dependencies
+    fi
 
     hugo mod get -u
     hugo mod npm pack

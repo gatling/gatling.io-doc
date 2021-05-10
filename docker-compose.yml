@@ -11,4 +11,6 @@ services:
      - /src/resources
      - /src/node_modules
     working_dir: /src
+    environment:
+      - DOCKER_COMPOSITION=true
     entrypoint: /src/bin/entrypoint.sh
