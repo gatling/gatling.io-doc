@@ -13,7 +13,6 @@ facebookPublisher: "GatlingTool"
 ogLocale: "en_US"
 
 ## JSON-LD
-schemaType: "Organization"
 schemaName: "Gatling Corp"
 schemaLogo: "gatling-logo.png"
 schemaTwitter: "https://twitter.com/GatlingTool"
@@ -35,7 +34,6 @@ portraitPhotoWidths: [800, 700, 600, 500]
 lqipWidth: "20x"
 
 # Footer
-footer: "Powered by <a href=\"https://gohugo.io/\">Hugo</a>, and <a href=\"https://getdoks.org/\">Doks</a>"
 
 # Alert
 alert: false
