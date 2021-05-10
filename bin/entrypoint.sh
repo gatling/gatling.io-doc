@@ -49,14 +49,35 @@ clean () {
     ./resources 
 }
 
+merge_and_delete_temp() {
+  local temp_path="$1"
+  local merge_path="$2"
+
+  if [[ -f "$merge_path" ]]; then
+    content=$(yq ea 'select(di == 0) | select(fi == 0) * select(fi == 1)' "$merge_path" "$temp_path")
+    cat << EOF > "$merge_path"
+---
+$content
+---
+EOF
+  else
+    cp "$temp_path" "$merge_path"
+  fi
+  rm "$temp_path"
+}
+
 build_indexes() {
   local repo="$1"
   local branch="$2"
   local remote_dir="$3"
   local local_dir="$4"
 
+  unversionned_section_index="content/$local_dir/_index.md"
+  unversionned_section_index_temp=$(mktemp)
+
   REPOSITORY="$repo" BRANCH="$branch" REMOTE_DIR="$remote_dir" LOCAL_DIR="$local_dir" \
-    envsubst '${REPOSITORY} ${BRANCH} ${REMOTE_DIR} ${LOCAL_DIR}' < "template/indexes/unversionned-section-index.md" > "content/$local_dir/_index.md"
+    envsubst '${REPOSITORY} ${BRANCH} ${REMOTE_DIR} ${LOCAL_DIR}' < "template/indexes/unversionned-section-index.md" > "$unversionned_section_index_temp"
+  merge_and_delete_temp "$unversionned_section_index_temp" "$unversionned_section_index"
 }
 
 build_indexes_version() {
@@ -67,14 +88,23 @@ build_indexes_version() {
   local version="$5"
   local latest="$6"
 
+  cp "template/indexes/versioned-reference-index.md" "content/$local_dir/reference/_index.md"
+
+  versionned_reference_section_index="content/$local_dir/reference/$version/_index.md"
+  versioned_reference_section_index_temp=$(mktemp)
 
   cp "template/indexes/versioned-reference-index.md" "content/$local_dir/reference/_index.md"
   REPOSITORY="$repo" BRANCH="$branch" REMOTE_DIR="$remote_dir" LOCAL_DIR="$local_dir" VERSION="$version" LATEST="${latest:-false}" \
-    envsubst '${REPOSITORY} ${BRANCH} ${REMOTE_DIR} ${LOCAL_DIR} ${VERSION} ${LATEST}' < "template/indexes/versioned-reference-section-index.md" > "content/$local_dir/reference/$version/_index.md"
+    envsubst '${REPOSITORY} ${BRANCH} ${REMOTE_DIR} ${LOCAL_DIR} ${VERSION} ${LATEST}' < "template/indexes/versioned-reference-section-index.md" > "$versioned_reference_section_index_temp"
+
+  merge_and_delete_temp "$versioned_reference_section_index_temp" "$versionned_reference_section_index"
 
   if [[ -n $latest ]]; then
+    unversionned_section_index_temp=$(mktemp)
     REPOSITORY="$repo" BRANCH="$branch" REMOTE_DIR="$remote_dir" LOCAL_DIR="$local_dir" \
-      envsubst '${REPOSITORY} ${BRANCH} ${REMOTE_DIR} ${LOCAL_DIR}' < "template/indexes/unversionned-section-index.md" > "content/$local_dir/_index.md"
+      envsubst '${REPOSITORY} ${BRANCH} ${REMOTE_DIR} ${LOCAL_DIR}' < "template/indexes/unversionned-section-index.md" > "$unversionned_section_index_temp"
+    merge_and_delete_temp $unversionned_section_index_temp "content/$local_dir/_index.md"
+
     cp "content/$local_dir/reference/$version/_index.md" "content/$local_dir/reference/current/_index.md"
   fi
 }
