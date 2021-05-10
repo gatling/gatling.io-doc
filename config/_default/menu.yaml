@@ -3,11 +3,11 @@ main:
     url: /oss/
     weight: 10
   - name: Self Hosted
-    url: /self-hosted
+    url: /enterprise/self-hosted
     weight: 20
   - name: Cloud
     identifier: cloud
-    url: /cloud/
+    url: /enterprise/cloud/
     weight: 30
 
 social:

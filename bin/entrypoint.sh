@@ -189,10 +189,10 @@ prepare () {
     mkdir ./content || true
 
     #                       # repository          # branch               # remote            # local
-    hugo_structure          "frontline-cloud-doc" "development"          "content"           "cloud"
+    hugo_structure          "frontline-cloud-doc" "development"          "content"           "enterprise/cloud"
     #                                                                                                        # version  # latest
-    hugo_structure_version  "frontline-doc"       "development"          "content"           "self-hosted"   "1.14"     true
-    hugo_structure_version  "frontline-doc"       "development"          "content"           "self-hosted"   "1.13"
+    hugo_structure_version  "frontline-doc"       "development"          "content"           "enterprise/self-hosted"   "1.14"     true
+    hugo_structure_version  "frontline-doc"       "development"          "content"           "enterprise/self-hosted"   "1.13"
     hugo_structure_version  "gatling"             "misc-96-doc-hugo"     "src/docs/content"  "oss"           "3.6"      true
     hugo_structure_version  "gatling"             "misc-96-doc-hugo-3.4" "src/docs/content"  "oss"           "3.4"
     hugo_structure_version  "gatling"             "misc-96-doc-hugo-3.3" "src/docs/content"  "oss"           "3.3"
