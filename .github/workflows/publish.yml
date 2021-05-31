@@ -9,12 +9,11 @@ on:
   push:
     branches:
       - main
-  repository_dispatch:
 
 jobs:
   publish:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 60 # way to much, but can timeout nonetheless
     steps:
       - name: Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.8.0
@@ -23,40 +22,27 @@ jobs:
 
       - name: Checkout current project
         uses: actions/checkout@v2
-        with:
-          path: gatling-io-doc
 
       - name: Generate site
         run: |
           docker run \
             --volume "$(pwd)":/src \
             --workdir "/src" \
-            --user "$(id -u):$(id -g)" \
-            --entrypoint "/src/entrypoint.sh" \
-            klakegg/hugo:0.82.1-ext-alpine \
+            --entrypoint "/src/bin/entrypoint.sh" \
+            --env DOCKER=true \
+            klakegg/hugo:0.83.1-ext-alpine \
             publish
-        working-directory: gatling-io-doc
 
-      - name: Checkout deploy project
+      # Note: locally and with optical fiber, the whole step takes roughly 1'30
+      # On GitHub Actions, we need more than 30' for the same things!!!
+      - name: Mirror site
         env:
-          REMOTE_REPOSITORY: ${{ secrets.REMOTE_REPOSITORY }}
-          REMOTE_BRANCH: ${{ secrets.REMOTE_BRANCH }}
-        run: git clone "$REMOTE_REPOSITORY" --branch "$REMOTE_BRANCH" remote
-
-      - name: Copy site files
+          CLEVERCLOUD_USERNAME: ${{ secrets.CLEVERCLOUD_USERNAME }}
+          SSHPASS: ${{ secrets.CLEVERCLOUD_PASSWORD }}
+          CLEVERCLOUD_BUCKET: ${{ secrets.CLEVERCLOUD_BUCKET }}
+        working-directory: ./public
         run: |
-          rm -Rf remote/docs || true
-          cp -r gatling-io-doc/public remote/docs
-
-      - name: Push changes
-        env:
-          REMOTE_USERNAME: ${{ secrets.REMOTE_USERNAME }}
-          REMOTE_EMAIL: ${{ secrets.REMOTE_EMAIL }}
-          REMOTE_BRANCH: ${{ secrets.REMOTE_BRANCH }}
-        run: |
-          git config user.name "$REMOTE_USERNAME"
-          git config user.email "$REMOTE_EMAIL"
-          git add docs
-          git commit --message "Push docs from gatling-ci"
-          git push origin "HEAD:$REMOTE_BRANCH"
-        working-directory: remote
+          sshpass -e sftp -o StrictHostKeyChecking=no "${CLEVERCLOUD_USERNAME}@${CLEVERCLOUD_BUCKET}" << EOT
+          put -r . /
+          exit
+          EOT

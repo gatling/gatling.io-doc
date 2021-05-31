@@ -1,4 +1,4 @@
-baseurl: /
+baseurl: /docs
 
 theme: "github.com/gatling/gatling.io-doc-theme"
 

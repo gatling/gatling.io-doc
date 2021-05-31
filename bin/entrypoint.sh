@@ -182,7 +182,7 @@ prepare () {
 
     echo "=====> prepare phase"
 
-    if [[ "$DOCKER_COMPOSITION" = true ]]; then
+    if [[ "$DOCKER" = true ]]; then
       install_dependencies
     fi
 
