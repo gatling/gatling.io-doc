@@ -54,11 +54,15 @@ merge_and_delete_temp() {
   local merge_path="$2"
 
   if [[ -f "$merge_path" ]]; then
-    content=$(yq ea 'select(di == 0) | select(fi == 0) * select(fi == 1)' "$merge_path" "$temp_path")
+    mkdir splitdir
+    csplit --silent --elide-empty-files --prefix splitdir/part $merge_path '/^---$/' '{1}'
+    frontmatter=$(yq ea 'select(di == 0) | select(fi == 0) * select(fi == 1)' "splitdir/part00" "$temp_path")
+    content=$(cat splitdir/part01)
+    rm -R splitdir
     cat << EOF > "$merge_path"
 ---
+$frontmatter
 $content
----
 EOF
   else
     cp "$temp_path" "$merge_path"
@@ -167,6 +171,9 @@ install_dependencies() {
   # yq
   wget https://github.com/mikefarah/yq/releases/download/v4.8.0/yq_linux_amd64.tar.gz -O - |\
     tar xz && mv yq_linux_amd64 /usr/bin/yq
+
+  # csplit
+  apk add coreutils
 }
 
 prepare () {
