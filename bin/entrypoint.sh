@@ -174,6 +174,9 @@ install_dependencies() {
 
   # csplit
   apk add coreutils
+
+  # global node modules
+  npm install -g postcss postcss-cli @fullhuman/postcss-purgecss purgecss-whitelister
 }
 
 prepare () {
