@@ -30,19 +30,13 @@ jobs:
             --workdir "/src" \
             --entrypoint "/src/bin/entrypoint.sh" \
             --env DOCKER=true \
-            klakegg/hugo:0.83.1-ext-alpine \
+            klakegg/hugo:0.85.0-ext-alpine \
             publish
+          tar czvf gatlingio.tgz public/
 
-      # Note: locally and with optical fiber, the whole step takes roughly 1'30
-      # On GitHub Actions, we need more than 30' for the same things!!!
-      - name: Mirror site
-        env:
-          CLEVERCLOUD_USERNAME: ${{ secrets.CLEVERCLOUD_USERNAME }}
-          SSHPASS: ${{ secrets.CLEVERCLOUD_PASSWORD }}
-          CLEVERCLOUD_BUCKET: ${{ secrets.CLEVERCLOUD_BUCKET }}
-        working-directory: ./public
-        run: |
-          sshpass -e sftp -o StrictHostKeyChecking=no "${CLEVERCLOUD_USERNAME}@${CLEVERCLOUD_BUCKET}" << EOT
-          put -r . /
-          exit
-          EOT
+      - name: Upload archive
+        uses: actions/upload-artifact@v2
+        with:
+          name: gatlingio-${{ github.workflow }}-${{ github.run_number }}
+          path: gatlingio.tgz
+          retention-days: 1
