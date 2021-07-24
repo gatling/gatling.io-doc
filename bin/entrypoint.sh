@@ -176,7 +176,7 @@ install_dependencies() {
   apk add coreutils
 
   # global node modules
-  npm install -g postcss postcss-cli @fullhuman/postcss-purgecss purgecss-whitelister
+  npm install -g postcss postcss-cli @fullhuman/postcss-purgecss purgecss-whitelister flexsearch lodash
 }
 
 prepare () {
