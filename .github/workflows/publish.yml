@@ -30,10 +30,11 @@ jobs:
             --env DOCKER=true \
             klakegg/hugo:0.85.0-ext-alpine \
             publish
+          tar czvf gatlingio.tgz public/
 
       - name: Upload archive
         uses: actions/upload-artifact@v2
         with:
-          name: gatlingio-${{ github.workflow }}-${{ env.GITHUB_RUN_NUMBER }}
-          path: public/
+          name: gatlingio-${{ github.workflow }}-${{ github.run_number }}
+          path: gatlingio.tgz
           retention-days: 1
