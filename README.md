@@ -9,12 +9,10 @@ For documentation modification, please refer to the documentation product reposi
 | Product | Repo | Path in repo | Documentation HTML |
 | ------- | ---- | ------------ | ------------------ |
 | Gatling OSS | [gatling/gatling](https://github.com/gatling/gatling) | [`src/docs/content/`](https://github.com/gatling/gatling/tree/master/src/sphinx) | [:link:](https://gatling.io/docs/gatling/) |
-| Gatling Enterprise Self-Hosted | [gatling/frontline-doc](https://github.com/gatling/frontline-doc) | [`content/`](https://github.com/gatling/frontline-doc/tree/main/content) | [:link:](https://gatling.io/docs/enterprise/self-hosted/) |
-| Gatling Enterprise Cloud | [gatling/frontline-cloud-doc](https://github.com/gatling/frontline-cloud-doc) | [`content/`](https://github.com/gatling/frontline-cloud-doc/tree/main/content) | [:link:](https://gatling.io/docs/enterprise/cloud/) |
 
 ## Development
 
-Either way, once launched, you can visit at [http://localhost:1313/docs](http://localhost:1313/docs)
+Either way, once launched, you can visit at [http://localhost:1313](http://localhost:1313)
 
 ### Docker-compose
 

@@ -1,4 +1,5 @@
 deployment:
   targets:
     name: prod
+    cloudFrontDistributionID: HUGO_DEPLOYMENT_CLOUDFRONT_DISTRIBUTION_ID
     URL: s3://HUGO_DEPLOYMENT_BUCKET

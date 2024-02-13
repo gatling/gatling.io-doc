@@ -10,8 +10,8 @@ const indexOptions = {
   tokenize: "strict",
   doc: {
     id: "id",
-    field: ["title", "description", "content", "section", "version", "latest"],
-    store: ["title", "description", "href", "section", "version", "latest"],
+    field: ["title", "description", "content", "section"],
+    store: ["title", "description", "href", "section"],
   },
 };
 

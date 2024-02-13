@@ -26,7 +26,7 @@ EOF
 PORT=1313
 ENVIRONMENT=production
 COMMAND="server"
-WITHDRAFTS=2
+WITHDRAFTS=
 BASEURL=""
 PREPARE=true
 
@@ -64,100 +64,42 @@ merge_and_delete_temp() {
   rm "$temp_path"
 }
 
-build_indexes() {
-  local repo="$1"
-  local branch="$2"
-  local remote_dir="$3"
-  local local_dir="$4"
-
-  unversioned_section_index="content/$local_dir/_index.md"
-  unversioned_section_index_temp=$(mktemp)
-
-  REPOSITORY="$repo" BRANCH="$branch" REMOTE_DIR="$remote_dir" LOCAL_DIR="$local_dir" SECTION_TYPE="$section_type" \
-    envsubst '${REPOSITORY} ${BRANCH} ${REMOTE_DIR} ${LOCAL_DIR} ${SECTION_TYPE}' < "template/indexes/unversioned-section-index.md" > "$unversioned_section_index_temp"
-  merge_and_delete_temp "$unversioned_section_index_temp" "$unversioned_section_index"
-}
-
-build_indexes_version() {
-  local repo="$1"
-  local branch="$2"
-  local remote_dir="$3"
-  local local_dir="$4"
-  local version="$5"
-  local latest="$6"
-
-  cp "template/indexes/versioned-reference-index.md" "content/$local_dir/reference/_index.md"
-
-  versioned_reference_section_index="content/$local_dir/reference/$version/_index.md"
-  versioned_reference_section_index_temp=$(mktemp)
-
-  cp "template/indexes/versioned-reference-index.md" "content/$local_dir/reference/_index.md"
-  REPOSITORY="$repo" BRANCH="$branch" REMOTE_DIR="$remote_dir" LOCAL_DIR="$local_dir" VERSION="$version" LATEST="${latest:-false}" \
-    envsubst '${REPOSITORY} ${BRANCH} ${REMOTE_DIR} ${LOCAL_DIR} ${VERSION} ${LATEST}' < "template/indexes/versioned-reference-section-index.md" > "$versioned_reference_section_index_temp"
-
-  merge_and_delete_temp "$versioned_reference_section_index_temp" "$versioned_reference_section_index"
-
-  if [[ -n $latest ]]; then
-    unversioned_section_index_temp=$(mktemp)
-    REPOSITORY="$repo" BRANCH="$branch" REMOTE_DIR="$remote_dir" LOCAL_DIR="$local_dir" SECTION_TYPE="$section_type" \
-      envsubst '${REPOSITORY} ${BRANCH} ${REMOTE_DIR} ${LOCAL_DIR} ${SECTION_TYPE}' < "template/indexes/unversioned-section-index.md" > "$unversioned_section_index_temp"
-    merge_and_delete_temp $unversioned_section_index_temp "content/$local_dir/_index.md"
-
-    cp "content/$local_dir/reference/$version/_index.md" "content/$local_dir/reference/current/_index.md"
-    sed -i '/sitemap_exclude/d' "content/$local_dir/reference/current/_index.md"
-  fi
-}
-
-fetch_doc () {
-  local repo="$1"
+fetch_doc() {
+  local repository="$1"
   local branch="$2"
   local remote_dir="$3"
   local local_dir="$4"
 
   rm -rf "$local_dir"
   mkdir -p "$local_dir"
-  rm -rf "$MYTMPDIR/$repo" || true
-  git clone "https://github.com/gatling/$repo.git" --depth 1 --branch "$2" "$MYTMPDIR/$repo"
-  cp -r "$MYTMPDIR/$repo/$remote_dir"/* "$local_dir"
+  rm -rf "${MYTMPDIR:?}/$repository"
+  git clone "https://github.com/gatling/$repository.git" --depth 1 --branch "$branch" "$MYTMPDIR/$repository"
+  cp -r "$MYTMPDIR/$repository/$remote_dir"/* "$local_dir"
 }
 
-drop_search_index() {
-  local local_dir="$1"
+add_repository_url() {
+  local repository="$1"
+  local branch="$2"
+  local remote_dir="$3"
+  local local_dir="$4"
 
-  rm "content/$local_dir/search.md" || true
+  main_index="$local_dir/_index.md"
+  main_index_tmp=$(mktemp)
+
+  # shellcheck disable=SC2016
+  REPOSITORY="$repository" BRANCH="$branch" REMOTE_DIR="$remote_dir" \
+    envsubst '${REPOSITORY} ${BRANCH} ${REMOTE_DIR}' < "templates/repository_url.md" > "$main_index_tmp"
+  merge_and_delete_temp "$main_index_tmp" "$main_index"
 }
 
 hugo_structure() {
-  local repo="$1"
+  local repository="$1"
   local branch="$2"
   local remote_dir="$3"
   local local_dir="$4"
-  local section_type="$5"
 
-  fetch_doc "$repo" "$branch" "$remote_dir" "content/$local_dir"
-  drop_search_index $local_dir
-  build_indexes "$repo" "$branch" "$remote_dir" "$local_dir"
-}
-
-hugo_structure_version() {
-  local repo="$1"
-  local branch="$2"
-  local remote_dir="$3"
-  local local_dir="$4"
-  local section_type="$5"
-  local version="$6"
-  local latest="$7"
-
-  if [[ -n $latest ]]; then
-    fetch_doc "$repo" "$branch" "$remote_dir" "content/$local_dir"
-    drop_search_index $local_dir
-
-    mkdir -p "content/$local_dir/reference/$version"
-    cp -r "content/$local_dir/reference/current"/* "content/$local_dir/reference/$version"
-  else
-    fetch_doc "$repo" "$branch" "$remote_dir/reference/current" "content/$local_dir/reference/$version"
-  fi
-  build_indexes_version "$repo" "$branch" "$remote_dir" "$local_dir" "$version" "$latest"
+  fetch_doc "$repository" "$branch" "$remote_dir" "$local_dir"
+  add_repository_url "$repository" "$branch" "$remote_dir" "$local_dir"
 }
 
 install_dependencies() {
@@ -165,7 +107,7 @@ install_dependencies() {
   apk add gettext
 
   # yq
-  wget https://github.com/mikefarah/yq/releases/download/v4.28.2/yq_linux_amd64.tar.gz -O - |\
+  wget https://github.com/mikefarah/yq/releases/download/v4.40.7/yq_linux_amd64.tar.gz -O - |\
     tar xz && mv yq_linux_amd64 /usr/bin/yq
 
   # global node modules
@@ -187,28 +129,8 @@ prepare () {
   
     npm install
   
-    mkdir ./content || true
-
-    #                       # repository           # branch  # remote            # local                   # section
-    hugo_structure          "frontline-cloud-doc"  "main"    "content"           "enterprise/cloud"        "cloud"
-    #                                                                                                                     # version  # latest
-    hugo_structure_version  "frontline-doc"        "main"    "content"           "enterprise/self-hosted"  "self-hosted"  "1.19"     true
-    hugo_structure_version  "frontline-doc"        "1.18"    "content"           "enterprise/self-hosted"  "self-hosted"  "1.18"
-    hugo_structure_version  "frontline-doc"        "1.17"    "content"           "enterprise/self-hosted"  "self-hosted"  "1.17"
-    hugo_structure_version  "frontline-doc"        "1.16"    "content"           "enterprise/self-hosted"  "self-hosted"  "1.16"
-    hugo_structure_version  "frontline-doc"        "1.15"    "content"           "enterprise/self-hosted"  "self-hosted"  "1.15"
-    hugo_structure_version  "frontline-doc"        "1.14"    "content"           "enterprise/self-hosted"  "self-hosted"  "1.14"
-    hugo_structure_version  "frontline-doc"        "1.13"    "content"           "enterprise/self-hosted"  "self-hosted"  "1.13"
-    hugo_structure_version  "gatling"              "3.10"    "src/docs/content"  "gatling"                 "gatling"      "3.10"     true
-    hugo_structure_version  "gatling"              "3.9"     "src/docs/content"  "gatling"                 "gatling"      "3.9"
-    hugo_structure_version  "gatling"              "3.8"     "src/docs/content"  "gatling"                 "gatling"      "3.8"
-    hugo_structure_version  "gatling"              "3.7"     "src/docs/content"  "gatling"                 "gatling"      "3.7"
-    hugo_structure_version  "gatling"              "3.6"     "src/docs/content"  "gatling"                 "gatling"      "3.6"
-    hugo_structure_version  "gatling"              "3.5"     "src/docs/content"  "gatling"                 "gatling"      "3.5"
-    hugo_structure_version  "gatling"              "3.4"     "src/docs/content"  "gatling"                 "gatling"      "3.4"
-    hugo_structure_version  "gatling"              "3.3"     "src/docs/content"  "gatling"                 "gatling"      "3.3"
-
-    cp template/search.md content/search.md
+    #               # repository  # branch  # remote            # local
+    hugo_structure  "gatling"     "3.10"    "src/docs/content"  "content"
 
   else
     echo "=====> skip prepare"
@@ -267,20 +189,20 @@ fi
 
 HUGO_OPTS=()
 HUGO_OPTS+=(--environment "$ENVIRONMENT")
+if [[ "$WITHDRAFTS" = "true" ]]; then
+  HUGO_OPTS+=(--buildDrafts)
+fi
 
 case "$COMMAND" in
   server)
-    if [[ $WITHDRAFTS = 2 || "$WITHDRAFTS" = true ]]; then
-      HUGO_OPTS+=(--buildDrafts)
-    fi
     prepare
     HUGO_OPTS+=(--port "$PORT")
     hugo server "${HUGO_OPTS[@]}"
     ;;
+  prepare)
+    prepare
+    ;;
   generate)
-    if [[ "$WITHDRAFTS" = "true" ]]; then
-      HUGO_OPTS+=(--buildDrafts)
-    fi
     prepare
     hugo "${HUGO_OPTS[@]}"
     optimize

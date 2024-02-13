@@ -22,6 +22,9 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: prod
+      url: https://docs.gatling.io
     timeout-minutes: 10
     steps:
       - name: Checkout current project
@@ -30,7 +33,7 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: '0.120.2'
+          hugo-version: '0.122.0'
           extended: true
 
       - name: Setup Node
@@ -51,23 +54,5 @@ jobs:
       - name: Deploy
         run: |
           sed -i 's/HUGO_DEPLOYMENT_BUCKET/${{ secrets.HUGO_DEPLOYMENT_BUCKET }}/' config/production/config.yaml
-          hugo deploy
-
-  publish:
-    needs: deploy
-    if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    environment:
-      name: prod
-      url: https://gatling.io/docs
-    timeout-minutes: 10
-    steps:
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          aws-region: eu-west-3
-          role-to-assume: ${{ secrets.AWS_ROLE_PROD_DOC }}
-
-      - name: Publish
-        run: |
-          aws ssm start-associations-once --association-id "${{ secrets.AWS_SSM_ASSOCIATION_MEP_WEBSITE_DOC_PROD }}"
+          sed -i 's/HUGO_DEPLOYMENT_CLOUDFRONT_DISTRIBUTION_ID/${{ secrets.HUGO_DEPLOYMENT_CLOUDFRONT_DISTRIBUTION_ID }}/' config/production/config.yaml
+          hugo deploy --maxDeletes -1 --invalidateCDN

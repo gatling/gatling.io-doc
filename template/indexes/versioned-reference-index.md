@@ -1,4 +1,0 @@
----
-title: Reference
-versioning: true
----
