@@ -1,0 +1,776 @@
+{
+  "data": [
+    {
+      "key": "/gatling",
+      "value": "/"
+    },
+    {
+      "key": "/gatling/tutorials",
+      "value": "/tutorials/"
+    },
+    {
+      "key": "/gatling/tutorials/installation",
+      "value": "/reference/install/oss/"
+    },
+    {
+      "key": "/gatling/tutorials/quickstart",
+      "value": "/tutorials/recorder/"
+    },
+    {
+      "key": "/gatling/tutorials/advanced",
+      "value": "/tutorials/advanced/"
+    },
+    {
+      "key": "/gatling/reference/current",
+      "value": "/reference/"
+    },
+    {
+      "key": "/gatling/reference/current/whats_new",
+      "value": "/release-notes/oss/whats-new/"
+    },
+    {
+      "key": "/gatling/reference/current/whats_new/3.0",
+      "value": "/release-notes/oss/whats-new/3.0/"
+    },
+    {
+      "key": "/gatling/reference/current/whats_new/3.1",
+      "value": "/release-notes/oss/whats-new/3.1/"
+    },
+    {
+      "key": "/gatling/reference/current/whats_new/3.2",
+      "value": "/release-notes/oss/whats-new/3.2/"
+    },
+    {
+      "key": "/gatling/reference/current/whats_new/3.3",
+      "value": "/release-notes/oss/whats-new/3.3/"
+    },
+    {
+      "key": "/gatling/reference/current/whats_new/3.4",
+      "value": "/release-notes/oss/whats-new/3.4/"
+    },
+    {
+      "key": "/gatling/reference/current/whats_new/3.5",
+      "value": "/release-notes/oss/whats-new/3.5/"
+    },
+    {
+      "key": "/gatling/reference/current/whats_new/3.6",
+      "value": "/release-notes/oss/whats-new/3.6/"
+    },
+    {
+      "key": "/gatling/reference/current/whats_new/3.7",
+      "value": "/release-notes/oss/whats-new/3.7/"
+    },
+    {
+      "key": "/gatling/reference/current/whats_new/3.8",
+      "value": "/release-notes/oss/whats-new/3.8/"
+    },
+    {
+      "key": "/gatling/reference/current/whats_new/3.9",
+      "value": "/release-notes/oss/whats-new/3.9/"
+    },
+    {
+      "key": "/gatling/reference/current/whats_new/3.10",
+      "value": "/release-notes/oss/whats-new/3.10/"
+    },
+    {
+      "key": "/gatling/reference/current/core",
+      "value": "/reference/script/core/"
+    },
+    {
+      "key": "/gatling/reference/current/core/concepts",
+      "value": "/reference/glossary/"
+    },
+    {
+      "key": "/gatling/reference/current/core/simulation",
+      "value": "/reference/script/core/simulation/"
+    },
+    {
+      "key": "/gatling/reference/current/core/injection",
+      "value": "/reference/script/core/injection/"
+    },
+    {
+      "key": "/gatling/reference/current/core/scenario",
+      "value": "/reference/script/core/scenario/"
+    },
+    {
+      "key": "/gatling/reference/current/core/session",
+      "value": "/reference/script/core/session/"
+    },
+    {
+      "key": "/gatling/reference/current/core/session/session_api",
+      "value": "/reference/script/core/session/api/"
+    },
+    {
+      "key": "/gatling/reference/current/core/session/el",
+      "value": "/reference/script/core/session/el/"
+    },
+    {
+      "key": "/gatling/reference/current/core/session/function",
+      "value": "/reference/script/core/session/functions/"
+    },
+    {
+      "key": "/gatling/reference/current/core/session/feeder",
+      "value": "/reference/script/core/session/feeders/"
+    },
+    {
+      "key": "/gatling/reference/current/core/session//validation",
+      "value": "/reference/script/core/session/validation/"
+    },
+    {
+      "key": "/gatling/reference/current/core/check",
+      "value": "/reference/script/core/checks/"
+    },
+    {
+      "key": "/gatling/reference/current/core/assertions",
+      "value": "/reference/script/core/assertions/"
+    },
+    {
+      "key": "/gatling/reference/current/core/configuration",
+      "value": "/reference/script/core/configuration/"
+    },
+    {
+      "key": "/gatling/reference/current/core/operations",
+      "value": "/reference/script/core/operations/"
+    },
+    {
+      "key": "/gatling/reference/current/stats",
+      "value": "/reference/stats/"
+    },
+    {
+      "key": "/gatling/reference/current/stats/timings",
+      "value": "/reference/stats/timings/"
+    },
+    {
+      "key": "/gatling/reference/current/stats/reports",
+      "value": "/reference/stats/oss/"
+    },
+    {
+      "key": "/gatling/reference/current/http",
+      "value": "/reference/script/protocols/http/"
+    },
+    {
+      "key": "/gatling/reference/current/http/protocol",
+      "value": "/reference/script/protocols/http/protocol/"
+    },
+    {
+      "key": "/gatling/reference/current/http/request",
+      "value": "/reference/script/protocols/http/request/"
+    },
+    {
+      "key": "/gatling/reference/current/http/check",
+      "value": "/reference/script/protocols/http/checks/"
+    },
+    {
+      "key": "/gatling/reference/current/http/tls",
+      "value": "/reference/script/protocols/http/tls/"
+    },
+    {
+      "key": "/gatling/reference/current/http/helpers",
+      "value": "/reference/script/protocols/http/helpers/"
+    },
+    {
+      "key": "/gatling/reference/current/http/recorder",
+      "value": "/reference/script/protocols/http/recorder/"
+    },
+    {
+      "key": "/gatling/reference/current/http/polling",
+      "value": "/reference/script/protocols/http/polling/"
+    },
+    {
+      "key": "/gatling/reference/current/http/websocket",
+      "value": "/reference/script/protocols/websocket/"
+    },
+    {
+      "key": "/gatling/reference/current/http/sse",
+      "value": "/reference/script/protocols/sse/"
+    },
+    {
+      "key": "/gatling/reference/current/grpc",
+      "value": "/reference/script/protocols/grpc/"
+    },
+    {
+      "key": "/gatling/reference/current/grpc/setup",
+      "value": "/reference/script/protocols/setup/"
+    },
+    {
+      "key": "/gatling/reference/current/grpc/protocol",
+      "value": "/reference/script/protocols/grpc/protocol/"
+    },
+    {
+      "key": "/gatling/reference/current/grpc/methods",
+      "value": "/reference/script/protocols/grpc/methods/"
+    },
+    {
+      "key": "/gatling/reference/current/grpc/messages",
+      "value": "/reference/script/protocols/grpc/messages/"
+    },
+    {
+      "key": "/gatling/reference/current/grpc/checks",
+      "value": "/reference/script/protocols/grpc/checks/"
+    },
+    {
+      "key": "/gatling/reference/current/jms",
+      "value": "/reference/script/protocols/jms/"
+    },
+    {
+      "key": "/gatling/reference/current/mqtt",
+      "value": "/reference/script/protocols/mqtt/"
+    },
+    {
+      "key": "/gatling/reference/current/extensions",
+      "value": "/reference/extensions/"
+    },
+    {
+      "key": "/gatling/reference/current/extensions/maven_plugin",
+      "value": "/reference/extensions/build-tools/maven-plugin/"
+    },
+    {
+      "key": "/gatling/reference/current/extensions/gradle_plugin",
+      "value": "/reference/extensions/build-tools/gradle-plugin/"
+    },
+    {
+      "key": "/gatling/reference/current/extensions/sbt_plugin",
+      "value": "/reference/extensions/build-tools/sbt-plugin/"
+    },
+    {
+      "key": "/gatling/reference/current/extensions/jenkins_plugin",
+      "value": "/reference/extensions/ci-cd/jenkins/oss/"
+    },
+    {
+      "key": "/gatling/reference/current/extensions/bamboo_plugin",
+      "value": "/reference/extensions/ci-cd/bamboo/"
+    },
+    {
+      "key": "/gatling/reference/current/extensions/teamcity_plugin",
+      "value": "/reference/extensions/ci-cd/teamcity/"
+    },
+    {
+      "key": "/gatling/reference/current/extensions/functional_specs",
+      "value": "/guides/functional-specs/"
+    },
+    {
+      "key": "/gatling/reference/current/extensions/third_parties",
+      "value": "/reference/extensions/third-parties/"
+    },
+    {
+      "key": "/gatling/reference/current/upgrading",
+      "value": "/release-notes/oss/upgrading/"
+    },
+    {
+      "key": "/gatling/reference/current/upgrading/3.9-to-3.10",
+      "value": "/release-notes/oss/upgrading/3.9-to-3.10/"
+    },
+    {
+      "key": "/gatling/reference/current/upgrading/3.8-to-3.9",
+      "value": "/release-notes/oss/upgrading/3.8-to-3.9/"
+    },
+    {
+      "key": "/gatling/reference/current/upgrading/3.7-to-3.8",
+      "value": "/release-notes/oss/upgrading/3.7-to-3.8/"
+    },
+    {
+      "key": "/gatling/reference/current/upgrading/3.6-to-3.7",
+      "value": "/release-notes/oss/upgrading/3.6-to-3.7/"
+    },
+    {
+      "key": "/gatling/reference/current/upgrading/3.4-to-3.5",
+      "value": "/release-notes/oss/upgrading/3.4-to-3.5/"
+    },
+    {
+      "key": "/gatling/reference/current/upgrading/3.3-to-3.4",
+      "value": "/release-notes/oss/upgrading/3.3-to-3.4/"
+    },
+    {
+      "key": "/gatling/reference/current/upgrading/2.3-to-3.0",
+      "value": "/release-notes/oss/upgrading/2.3-to-3.0/"
+    },
+    {
+      "key": "/gatling/reference/current/project",
+      "value": "/project/"
+    },
+    {
+      "key": "/gatling/reference/current/project/contributors",
+      "value": "/project/contributors/"
+    },
+    {
+      "key": "/gatling/reference/current/project/faq",
+      "value": "/tutorials/faq/"
+    },
+    {
+      "key": "/gatling/reference/current/project/issue_tracking",
+      "value": "/project/issue-tracking/"
+    },
+    {
+      "key": "/gatling/reference/current/project/licenses",
+      "value": "/project/licenses/"
+    },
+    {
+      "key": "/gatling/reference/current/project/licenses/project-licenses",
+      "value": "/project/licenses/project-licenses/"
+    },
+    {
+      "key": "/gatling/reference/current/project/licenses/highcharts",
+      "value": "/project/licenses/highcharts/"
+    },
+    {
+      "key": "/gatling/reference/current/project/licenses/enterprise-component",
+      "value": "/project/licenses/enterprise-component/"
+    },
+    {
+      "key": "/gatling/guides",
+      "value": "/guides/"
+    },
+    {
+      "key": "/gatling/guides/debugging",
+      "value": "/guides/debugging/"
+    },
+    {
+      "key": "/gatling/guides/passing_parameters",
+      "value": "/guides/passing-parameters/"
+    },
+    {
+      "key": "/gatling/guides/grouping_feeder",
+      "value": "/guides/grouping-feeder/"
+    },
+    {
+      "key": "/gatling/guides/scaling_out",
+      "value": "404"
+    },
+    {
+      "key": "/gatling/guides/realtime_monitoring",
+      "value": "404"
+    },
+    {
+      "key": "/gatling/guides/dynatrace",
+      "value": "/guides/dynatrace/"
+    },
+    {
+      "key": "/enterprise/self-hosted",
+      "value": "/"
+    },
+    {
+      "key": "/enterprise/self-hosted/reference/current",
+      "value": "/reference/execute/self-hosted/"
+    },
+    {
+      "key": "/enterprise/self-hosted/reference/current/installation",
+      "value": "/reference/install/self-hosted/"
+    },
+    {
+      "key": "/enterprise/self-hosted/reference/current/installation/introduction",
+      "value": "/reference/install/self-hosted/introduction/"
+    },
+    {
+      "key": "/enterprise/self-hosted/reference/current/installation/manual",
+      "value": "/reference/install/self-hosted/manual/"
+    },
+    {
+      "key": "/enterprise/self-hosted/reference/current/installation/marketplaces",
+      "value": "/reference/install/self-hosted/marketplaces/"
+    },
+    {
+      "key": "/enterprise/self-hosted/reference/current/installation/ansible",
+      "value": "/reference/install/self-hosted/ansible/"
+    },
+    {
+      "key": "/enterprise/self-hosted/reference/current/installation/docker",
+      "value": "/reference/install/self-hosted/docker/"
+    },
+    {
+      "key": "/enterprise/self-hosted/reference/current/installation/kubernetes",
+      "value": "/reference/install/self-hosted/kubernetes/"
+    },
+    {
+      "key": "/enterprise/self-hosted/reference/current/installation/configuration",
+      "value": "/reference/install/self-hosted/configuration/"
+    },
+    {
+      "key": "/enterprise/self-hosted/reference/current/installation/injectors",
+      "value": "/reference/install/self-hosted/deploying-injectors/"
+    },
+    {
+      "key": "/enterprise/self-hosted/reference/current/user",
+      "value": "/reference/execute/self-hosted/user/"
+    },
+    {
+      "key": "/enterprise/self-hosted/reference/current/user/login",
+      "value": "/reference/execute/self-hosted/user/login/"
+    },
+    {
+      "key": "/enterprise/self-hosted/reference/current/user/overview",
+      "value": "/reference/execute/self-hosted/user/overview/"
+    },
+    {
+      "key": "/enterprise/self-hosted/reference/current/user/profile",
+      "value": "/reference/execute/self-hosted/user/profile/"
+    },
+    {
+      "key": "/enterprise/self-hosted/reference/current/user/binary",
+      "value": "/reference/execute/self-hosted/user/binary/"
+    },
+    {
+      "key": "/enterprise/self-hosted/reference/current/user/repositories",
+      "value": "/reference/execute/self-hosted/user/repositories/"
+    },
+    {
+      "key": "/enterprise/self-hosted/reference/current/user/simulations",
+      "value": "/reference/execute/self-hosted/user/simulations/"
+    },
+    {
+      "key": "/enterprise/self-hosted/reference/current/user/trends",
+      "value": "/reference/stats/trends/self-hosted/"
+    },
+    {
+      "key": "/enterprise/self-hosted/reference/current/user/reports",
+      "value": "/reference/stats/reports/self-hosted/"
+    },
+    {
+      "key": "/enterprise/self-hosted/reference/current/user/api",
+      "value": "/reference/execute/self-hosted/user/api/"
+    },
+    {
+      "key": "/enterprise/self-hosted/reference/current/user/about",
+      "value": "/reference/execute/self-hosted/user/about/"
+    },
+    {
+      "key": "/enterprise/self-hosted/reference/current/user/help",
+      "value": "/reference/execute/self-hosted/user/help/"
+    },
+    {
+      "key": "/enterprise/self-hosted/reference/current/admin",
+      "value": "/reference/execute/self-hosted/admin/"
+    },
+    {
+      "key": "/enterprise/self-hosted/reference/current/admin/users",
+      "value": "/reference/execute/self-hosted/admin/users/"
+    },
+    {
+      "key": "/enterprise/self-hosted/reference/current/admin/teams",
+      "value": "/reference/execute/self-hosted/admin/teams/"
+    },
+    {
+      "key": "/enterprise/self-hosted/reference/current/admin/api-tokens",
+      "value": "/reference/execute/self-hosted/admin/api-tokens/"
+    },
+    {
+      "key": "/enterprise/self-hosted/reference/current/admin/private-keys",
+      "value": "/reference/execute/self-hosted/admin/private-keys/"
+    },
+    {
+      "key": "/enterprise/self-hosted/reference/current/pools",
+      "value": "/reference/install/self-hosted/configuring-injectors/"
+    },
+    {
+      "key": "/enterprise/self-hosted/reference/current/pools/pools",
+      "value": "/reference/install/self-hosted/configuring-injectors/pools/"
+    },
+    {
+      "key": "/enterprise/self-hosted/reference/current/pools/on-premises",
+      "value": "/reference/install/self-hosted/configuring-injectors/on-premises/"
+    },
+    {
+      "key": "/enterprise/self-hosted/reference/current/pools/aws",
+      "value": "/reference/install/self-hosted/configuring-injectors/aws/"
+    },
+    {
+      "key": "/enterprise/self-hosted/reference/current/pools/azure",
+      "value": "/reference/install/self-hosted/configuring-injectors/azure/"
+    },
+    {
+      "key": "/enterprise/self-hosted/reference/current/pools/gce",
+      "value": "/reference/install/self-hosted/configuring-injectors/gce/"
+    },
+    {
+      "key": "/enterprise/self-hosted/reference/current/pools/openstack",
+      "value": "/reference/install/self-hosted/configuring-injectors/kubernetes/"
+    },
+    {
+      "key": "/enterprise/self-hosted/reference/current/pools/kubernetes",
+      "value": "/reference/install/self-hosted/configuring-injectors/kubernetes/"
+    },
+    {
+      "key": "/enterprise/self-hosted/reference/current/plugins",
+      "value": "/reference/extensions/"
+    },
+    {
+      "key": "/enterprise/self-hosted/reference/current/plugins/github_actions",
+      "value": "/reference/extensions/ci-cd/github-actions/"
+    },
+    {
+      "key": "/enterprise/self-hosted/reference/current/plugins/gitlab_ci",
+      "value": "/reference/extensions/ci-cd/gitlab-ci/"
+    },
+    {
+      "key": "/enterprise/self-hosted/reference/current/plugins/jenkins",
+      "value": "/reference/extensions/ci-cd/jenkins/enterprise/"
+    },
+    {
+      "key": "/enterprise/self-hosted/reference/current/plugins/azure_devops",
+      "value": "/reference/extensions/ci-cd/azure-devops/"
+    },
+    {
+      "key": "/enterprise/self-hosted/reference/current/plugins/teamcity",
+      "value": "/reference/extensions/ci-cd/teamcity/"
+    },
+    {
+      "key": "/enterprise/self-hosted/reference/current/plugins/bamboo",
+      "value": "/reference/extensions/ci-cd/bamboo/"
+    },
+    {
+      "key": "/enterprise/self-hosted/reference/current/plugins/script",
+      "value": "/reference/extensions/ci-cd/other/"
+    },
+    {
+      "key": "/enterprise/self-hosted/reference/current/plugins/grafana",
+      "value": "/reference/extensions/grafana/"
+    },
+    {
+      "key": "/enterprise/self-hosted/reference/current/release",
+      "value": "/release-notes/self-hosted/"
+    },
+    {
+      "key": "/enterprise/self-hosted/reference/current/release/release-notes",
+      "value": "/release-notes/self-hosted/"
+    },
+    {
+      "key": "/enterprise/self-hosted/reference/current/release/highlight-1-19",
+      "value": "/release-notes/self-hosted/1.19/"
+    },
+    {
+      "key": "/enterprise/self-hosted/reference/current/release/highlight-1-18",
+      "value": "/release-notes/self-hosted/1.18/"
+    },
+    {
+      "key": "/enterprise/self-hosted/reference/current/release/highlight-1-17",
+      "value": "/release-notes/self-hosted/1.17/"
+    },
+    {
+      "key": "/enterprise/self-hosted/reference/current/release/highlight-1-16",
+      "value": "/release-notes/self-hosted/1.16/"
+    },
+    {
+      "key": "/enterprise/self-hosted/reference/current/release/highlight-1-15",
+      "value": "/release-notes/self-hosted/1.15/"
+    },
+    {
+      "key": "/enterprise/self-hosted/reference/current/release/highlight-1-14",
+      "value": "/release-notes/self-hosted/1.14/"
+    },
+    {
+      "key": "/enterprise/self-hosted/reference/current/release/highlight-1-13",
+      "value": "/release-notes/self-hosted/1.13/"
+    },
+    {
+      "key": "/enterprise/self-hosted/reference/current/release/highlight-1-12",
+      "value": "/release-notes/self-hosted/1.12/"
+    },
+    {
+      "key": "/enterprise/cloud",
+      "value": "/"
+    },
+    {
+      "key": "/enterprise/cloud/tutorials",
+      "value": "/tutorials/"
+    },
+    {
+      "key": "/enterprise/cloud/tutorials/getting-started",
+      "value": "/tutorials/quickstart/"
+    },
+    {
+      "key": "/enterprise/cloud/tutorials/no-code",
+      "value": "/tutorials/quickstart/"
+    },
+    {
+      "key": "/enterprise/cloud/reference",
+      "value": "/reference/execute/cloud/"
+    },
+    {
+      "key": "/enterprise/cloud/reference/user",
+      "value": "/reference/execute/cloud/user/"
+    },
+    {
+      "key": "/enterprise/cloud/reference/user/login",
+      "value": "/reference/execute/cloud/user/login/"
+    },
+    {
+      "key": "/enterprise/cloud/reference/user/overview",
+      "value": "/reference/execute/cloud/user/overview/"
+    },
+    {
+      "key": "/enterprise/cloud/reference/user/profile",
+      "value": "/reference/execute/cloud/user/profile/"
+    },
+    {
+      "key": "/enterprise/cloud/reference/user/package_gen",
+      "value": "/reference/execute/cloud/user/package-gen/"
+    },
+    {
+      "key": "/enterprise/cloud/reference/user/package_conf",
+      "value": "/reference/execute/cloud/user/package-conf/"
+    },
+    {
+      "key": "/enterprise/cloud/reference/user/simulations",
+      "value": "/reference/execute/cloud/user/simulations/"
+    },
+    {
+      "key": "/enterprise/cloud/reference/user/dedicated_ips",
+      "value": "/reference/execute/cloud/user/dedicated-ips/"
+    },
+    {
+      "key": "/enterprise/cloud/reference/user/trends",
+      "value": "/reference/stats/trends/cloud/"
+    },
+    {
+      "key": "/enterprise/cloud/reference/user/reports",
+      "value": "/reference/stats/reports/cloud/"
+    },
+    {
+      "key": "/enterprise/cloud/reference/user/organizations",
+      "value": "/reference/execute/cloud/user/organizations/"
+    },
+    {
+      "key": "/enterprise/cloud/reference/user/api",
+      "value": "/reference/execute/cloud/user/api/"
+    },
+    {
+      "key": "/enterprise/cloud/reference/user/about",
+      "value": "/reference/execute/cloud/user/about/"
+    },
+    {
+      "key": "/enterprise/cloud/reference/user/help",
+      "value": "/reference/execute/cloud/user/help/"
+    },
+    {
+      "key": "/enterprise/cloud/reference/admin",
+      "value": "/reference/execute/cloud/admin/"
+    },
+    {
+      "key": "/enterprise/cloud/reference/admin/users",
+      "value": "/reference/execute/cloud/admin/users/"
+    },
+    {
+      "key": "/enterprise/cloud/reference/admin/teams",
+      "value": "/reference/execute/cloud/admin/teams/"
+    },
+    {
+      "key": "/enterprise/cloud/reference/admin/private_locations",
+      "value": "/reference/install/cloud/"
+    },
+    {
+      "key": "/enterprise/cloud/reference/admin/private_locations/introduction",
+      "value": "/reference/install/cloud/introduction/"
+    },
+    {
+      "key": "/enterprise/cloud/reference/admin/private_locations/aws",
+      "value": "/reference/install/cloud/aws/"
+    },
+    {
+      "key": "/enterprise/cloud/reference/admin/private_locations/aws/installation",
+      "value": "/reference/install/cloud/aws/installation/"
+    },
+    {
+      "key": "/enterprise/cloud/reference/admin/private_locations/aws/configuration",
+      "value": "/reference/install/cloud/aws/configuration/"
+    },
+    {
+      "key": "/enterprise/cloud/reference/admin/private_locations/azure",
+      "value": "/reference/install/cloud/azure/"
+    },
+    {
+      "key": "/enterprise/cloud/reference/admin/private_locations/azure/installation",
+      "value": "/reference/install/cloud/azure/installation/"
+    },
+    {
+      "key": "/enterprise/cloud/reference/admin/private_locations/azure/configuration",
+      "value": "/reference/install/cloud/azure/configuration/"
+    },
+    {
+      "key": "/enterprise/cloud/reference/admin/private_locations/gcp",
+      "value": "/reference/install/cloud/gcp/"
+    },
+    {
+      "key": "/enterprise/cloud/reference/admin/private_locations/gcp/installation",
+      "value": "/reference/install/cloud/gcp/installation/"
+    },
+    {
+      "key": "/enterprise/cloud/reference/admin/private_locations/gcp/configuration",
+      "value": "/reference/install/cloud/gcp/configuration/"
+    },
+    {
+      "key": "/enterprise/cloud/reference/admin/private_locations/kubernetes",
+      "value": "/reference/install/cloud/kubernetes/"
+    },
+    {
+      "key": "/enterprise/cloud/reference/admin/private_locations/kuberntes/installation",
+      "value": "/reference/install/cloud/kubernetes/installation/"
+    },
+    {
+      "key": "/enterprise/cloud/reference/admin/private_locations/kuberntes/configuration",
+      "value": "/reference/install/cloud/kubernetes/configuration/"
+    },
+    {
+      "key": "/enterprise/cloud/reference/admin/private_locations/dedicated",
+      "value": "/reference/install/cloud/dedicated/"
+    },
+    {
+      "key": "/enterprise/cloud/reference/admin/private_locations/dedicated/installation",
+      "value": "/reference/install/cloud/dedicated/installation/"
+    },
+    {
+      "key": "/enterprise/cloud/reference/admin/private_locations/dedicated/configuration",
+      "value": "/reference/install/cloud/dedicated/configuration/"
+    },
+    {
+      "key": "/enterprise/cloud/reference/admin/private_locations/private_packages",
+      "value": "/reference/install/cloud/private-packages/"
+    },
+    {
+      "key": "/enterprise/cloud/reference/admin/notifications",
+      "value": "/reference/execute/cloud/admin/notifications/"
+    },
+    {
+      "key": "/enterprise/cloud/reference/admin/api_tokens",
+      "value": "/reference/execute/cloud/admin/api-tokens/"
+    },
+    {
+      "key": "/enterprise/cloud/reference/admin/custom_sso",
+      "value": "/reference/execute/cloud/admin/custom-sso/"
+    },
+    {
+      "key": "/enterprise/cloud/reference/plugins",
+      "value": "/reference/extensions/"
+    },
+    {
+      "key": "/enterprise/cloud/reference/plugins/github_actions",
+      "value": "/reference/extensions/ci-cd/github-actions/"
+    },
+    {
+      "key": "/enterprise/cloud/reference/plugins/gitlab_ci",
+      "value": "/reference/extensions/ci-cd/gitlab-ci/"
+    },
+    {
+      "key": "/enterprise/cloud/reference/plugins/jenkins",
+      "value": "/reference/extensions/ci-cd/jenkins/enterprise/"
+    },
+    {
+      "key": "/enterprise/cloud/reference/plugins/azure_devops",
+      "value": "/reference/extensions/ci-cd/azure-devops/"
+    },
+    {
+      "key": "/enterprise/cloud/reference/plugins/teamcity",
+      "value": "/reference/extensions/ci-cd/teamcity/"
+    },
+    {
+      "key": "/enterprise/cloud/reference/plugins/bamboo",
+      "value": "/reference/extensions/ci-cd/bamboo/"
+    },
+    {
+      "key": "/enterprise/cloud/reference/plugins/script",
+      "value": "/reference/extensions/ci-cd/other/"
+    },
+    {
+      "key": "/enterprise/cloud/reference/plugins/grafana",
+      "value": "/reference/extensions/grafana/"
+    }
+  ]
+}
