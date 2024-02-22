@@ -1,6 +1,6 @@
 services:
   hugo:
-    image: floryn90/hugo:0.122.0-ext-alpine
+    image: floryn90/hugo:0.123.1-ext-alpine
     ports:
      - 1313:1313
     volumes:
