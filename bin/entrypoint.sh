@@ -131,7 +131,7 @@ prepare () {
     npm install
   
     #               # repository  # branch  # remote            # local
-    hugo_structure  "gatling"     "3.10"    "src/docs/content"  "content"
+    hugo_structure  "gatling"     "main"    "src/docs/content"  "content"
 
   else
     echo "=====> skip prepare"
