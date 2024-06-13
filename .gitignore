@@ -1,6 +1,7 @@
-/public
-
 /.hugo_build.lock
-/node_modules/
-/resources/
 /content
+/node_modules
+/public
+/resources
+/self-hosted-legacy-tmp
+/static/self-hosted-legacy

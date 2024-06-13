@@ -12,7 +12,8 @@ Available commands:
   help                         show this help
   prepare                      only prepare repository (do not serve or generate)
   generate                     generate the site (into /public by default)
-  server                       serve your current site (default to localhost:1313)
+  server                       serve your current site (defaults to http://localhost:1313)
+  self-hosted-legacy-server    serve (defaults to http://localhost:1313/self-hosted-legacy)
 
 Flags:
   -p, --port int               port on which the server will listen (default 1313)
@@ -27,7 +28,6 @@ PORT=1313
 ENVIRONMENT=production
 COMMAND="server"
 WITHDRAFTS=
-BASEURL=""
 PREPARE=true
 
 dir=$(cd -P -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)
@@ -40,7 +40,7 @@ if [ -z "$DEBUG" ]; then
   trap 'rm -rf -- "$MYTMPDIR"' EXIT
 fi
 
-clean () {
+clean() {
   echo "=====> cleaning phase"
   rm -Rf \
     ./content/* \
@@ -138,6 +138,23 @@ prepare () {
   fi
 }
 
+self_hosted_legacy() {
+  tmp_dir=self-hosted-legacy-tmp
+  destination=static/self-hosted-legacy
+
+  mkdir -p static
+  rm -rf "$destination"
+
+  hugo \
+    --contentDir self-hosted-legacy \
+    --cleanDestinationDir \
+    --destination "$tmp_dir" \
+    --environment self-hosted-legacy \
+    "$@"
+
+  mv "$tmp_dir" "$destination"
+}
+
 POSITIONAL=()
 while [[ $# -gt 0 ]]
 do
@@ -190,8 +207,12 @@ if [[ "$WITHDRAFTS" = "true" ]]; then
 fi
 
 case "$COMMAND" in
+  self-hosted-legacy-server)
+    self_hosted_legacy --baseURL "http://localhost:$PORT/self-hosted-legacy" server
+    ;;
   server)
     prepare
+    self_hosted_legacy --baseURL "http://localhost:$PORT/self-hosted-legacy"
     HUGO_OPTS+=(--port "$PORT")
     hugo server "${HUGO_OPTS[@]}"
     ;;
@@ -200,6 +221,7 @@ case "$COMMAND" in
     ;;
   generate)
     prepare
+    self_hosted_legacy
     hugo "${HUGO_OPTS[@]}"
     ;;
   clean)
