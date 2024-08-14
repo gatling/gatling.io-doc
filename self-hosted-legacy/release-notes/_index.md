@@ -4,6 +4,7 @@ seotitle: What's New in Gatling Enterprise Self-Hosted
 description: Find out about latest Gatling Enterprise Self-Hosted versions and the new features
 lead: What's new in the latest releases
 ordering:
+  - 1.22.md
   - 1.21.md
   - 1.20.md
   - 1.19.md
