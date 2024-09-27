@@ -83,7 +83,7 @@ From here, you will follow a 4 steps process: Connect -> Select -> Configure -> 
 
     After your account is linked, you will be able to browse your repositories. When using an organization repository, click on **All repositories** on the top right.
 
-3. On the **Configure** step, as we already made a `azure-pipelines.yml` file, the step will be skipped and you will be asked to review its content directly.
+3. On the **Configure** step, as we already made a `azure-pipelines.legacy.yml` file, the step will be skipped and you will be asked to review its content directly.
 
 4. On the **Review** step, create three variables by clicking **New variable** on the top right, then:
 
