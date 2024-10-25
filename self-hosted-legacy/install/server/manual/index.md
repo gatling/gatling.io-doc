@@ -447,6 +447,8 @@ oidc {
     # lastname: "family_name" <9>
     # email: "email" <10>
   }
+  # default role when user connects for the first time: none, viewer, tester, testAdmin and systemAdmin
+  # defaultRole = viewer <11>
 }
 ```
 
@@ -464,6 +466,9 @@ Fill the following fields if you want to enable OpenID authentication on Gatling
 * <10> JmesPath for email attribute in scoped user profile
 
 There's no default value for those attributes, they must all be defined in the configuration file.
+
+* <11> defaultRole for the role a user logging in for the first time will have (the default value is `viewer` for backward compatibility)
+
 
 ```hocon
 grafana {
@@ -505,6 +510,7 @@ Gatling Enterprise is able to use OpenID connect to manage its users. The OpenID
 Configuration is described above under _oidc_.
 
 By default, all registered users can connect as a global viewer and need an administrator to configure their permissions.
+You can change the default role by modifying the corresponding `defaultRole` attribute.
 
 ##### Sample OpenID configuration on Azure
 
@@ -525,11 +531,12 @@ oidc {
   scopes = ["email", "profile"]
   jwksRefreshFrequency = 1440
   mapping {
-    username: "email"
-    firstname: "given_name"
-    lastname: "family_name"
-    email: "email"
+    username = "email"
+    firstname = "given_name"
+    lastname = "family_name"
+    email = "email"
   }
+  defaultRole = viewer
 }
 ```
 
@@ -554,11 +561,12 @@ oidc {
   scopes = ["email", "profile"]
   jwksRefreshFrequency = 1440
   mapping {
-    username: "email"
-    firstname: "given_name"
-    lastname: "family_name"
-    email: "email"
+    username = "email"
+    firstname = "given_name"
+    lastname = "family_name"
+    email = "email"
   }
+  defaultRole = viewer
 }
 ```
 
