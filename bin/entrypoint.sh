@@ -43,64 +43,12 @@ fi
 clean() {
   echo "=====> cleaning phase"
   rm -Rf \
-    ./content/* \
     ./package.json \
     ./package-lock.json \
     ./go.sum \
     ./node_modules \
     ./public \
     ./resources 
-}
-
-merge_and_delete_temp() {
-  local temp_path="$1"
-  local merge_path="$2"
-
-  if [[ -f "$merge_path" ]]; then
-    yq ea --front-matter=process "select(di == 0) | select(fi == 0) * select(fi == 1)" "$merge_path" "$temp_path" > tmpfile && \
-      mv tmpfile "$merge_path"
-  else
-    cp "$temp_path" "$merge_path"
-  fi
-  rm "$temp_path"
-}
-
-fetch_doc() {
-  local repository="$1"
-  local branch="$2"
-  local remote_dir="$3"
-  local local_dir="$4"
-
-  rm -rf "$local_dir"
-  mkdir -p "$local_dir"
-  rm -rf "${MYTMPDIR:?}/$repository"
-  git clone "https://github.com/gatling/$repository.git" --depth 1 --branch "$branch" "$MYTMPDIR/$repository"
-  cp -r "$MYTMPDIR/$repository/$remote_dir"/* "$local_dir"
-}
-
-add_repository_url() {
-  local repository="$1"
-  local branch="$2"
-  local remote_dir="$3"
-  local local_dir="$4"
-
-  main_index="$local_dir/_index.md"
-  main_index_tmp=$(mktemp)
-
-  # shellcheck disable=SC2016
-  REPOSITORY="$repository" BRANCH="$branch" REMOTE_DIR="$remote_dir" \
-    envsubst '${REPOSITORY} ${BRANCH} ${REMOTE_DIR}' < "templates/repository_url.md" > "$main_index_tmp"
-  merge_and_delete_temp "$main_index_tmp" "$main_index"
-}
-
-hugo_structure() {
-  local repository="$1"
-  local branch="$2"
-  local remote_dir="$3"
-  local local_dir="$4"
-
-  fetch_doc "$repository" "$branch" "$remote_dir" "$local_dir"
-  add_repository_url "$repository" "$branch" "$remote_dir" "$local_dir"
 }
 
 install_dependencies() {
@@ -129,10 +77,6 @@ prepare () {
     hugo mod npm pack
   
     npm install
-  
-    #               # repository  # branch  # remote            # local
-    hugo_structure  "gatling"     "main"    "src/docs/content"  "content"
-
   else
     echo "=====> skip prepare"
   fi
