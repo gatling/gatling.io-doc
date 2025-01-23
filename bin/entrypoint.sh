@@ -51,27 +51,11 @@ clean() {
     ./resources 
 }
 
-install_dependencies() {
-  # envsubst
-  apk add gettext
-
-  # yq
-  wget https://github.com/mikefarah/yq/releases/download/v4.40.7/yq_linux_amd64.tar.gz -O - |\
-    tar xz && mv yq_linux_amd64 /usr/bin/yq
-
-  # global node modules
-  npm install -g postcss postcss-cli @fullhuman/postcss-purgecss purgecss-whitelister flexsearch lodash
-}
-
 prepare () {
   if [[ "$PREPARE" = true ]]; then
     clean
 
     echo "=====> prepare phase"
-
-    if [[ "$DOCKER" = true ]]; then
-      install_dependencies
-    fi
 
     hugo mod get -u
     hugo mod npm pack
