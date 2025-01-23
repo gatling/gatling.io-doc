@@ -26,6 +26,7 @@ import static io.gatling.javaapi.jdbc.JdbcDsl.*;
 import io.gatling.javaapi.redis.*;
 import static io.gatling.javaapi.redis.RedisDsl.*;
 
+@SuppressWarnings("unchecked")
 class FeederSampleJava {
 
   {
