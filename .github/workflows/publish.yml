@@ -1,9 +1,5 @@
 name: Publish
 
-defaults:
-  run:
-    shell: bash # Every steps will have a /usr/bin/bash --noprofile --norc -e -o pipefail
-
 on:
   workflow_dispatch:
 
@@ -15,6 +11,10 @@ permissions:
   actions: write
   contents: read
   id-token: write
+
+defaults:
+  run:
+    shell: bash # Every steps will have a /usr/bin/bash --noprofile --norc -e -o pipefail
 
 jobs:
   deploy:
