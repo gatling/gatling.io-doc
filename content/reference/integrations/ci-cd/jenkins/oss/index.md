@@ -7,7 +7,6 @@ lead: Open-source Jenkins CI plugin for Gatling
 aliases:
   - /reference/extensions/ci-cd/jenkins/oss
 date: 2021-04-20T18:30:56+02:00
-lastmod: 2022-12-14T21:30:56+02:00
 ---
 
 Thanks to this plugin, you can track a Gatling simulation launched by the Maven plugin in Jenkins.

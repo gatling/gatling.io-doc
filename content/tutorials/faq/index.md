@@ -4,7 +4,6 @@ title: Gatling frequently asked questions (FAQ)
 description: Common questions and answers
 lead: Common questions and answers
 date: 2021-04-20T18:30:56+02:00
-lastmod: 2021-04-20T18:30:56+02:00
 ---
 
 Below are answers to some of the questions we receive regularly from Gatling and Gatling Enterprise users.

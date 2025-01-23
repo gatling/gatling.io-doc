@@ -5,7 +5,6 @@ seotitle: Users administration in Gatling Enterprise Self-Hosted
 description: Learn how to administrate users and their permissions in Gatling Enterprise Self-Hosted.
 lead: Administrate your organization's users and their permissions in Gatling Enterprise Self-Hosted.
 date: 2021-03-10T08:47:07-05:00
-lastmod: 2021-08-16T17:55:36+02:00
 ---
 
 ## Managing Users

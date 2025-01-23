@@ -4,7 +4,6 @@ seotitle: Gatling HTTP protocol reference - Recorder
 description: How to use the Recorder and its proxy and HAR modes to capture HTTP traffic from your browser and turn it into a Gatling load test.
 lead: Learn how to configure your Recorder and run it, either as an HTTP proxy or a HAR converter
 date: 2021-04-20T18:30:56+02:00
-lastmod: 2022-12-14T21:30:56+02:00
 ---
 
 The Gatling Recorder helps you to quickly generate scenarios, by either acting as a HTTP proxy between the browser and the HTTP server or converting HAR (Http ARchive) files.

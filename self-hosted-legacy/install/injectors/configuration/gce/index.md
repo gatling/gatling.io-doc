@@ -4,7 +4,6 @@ seotitle: GCE injectors with Gatling Enterprise Self-Hosted
 description: Learn how to configure GCE injectors for Gatling Enterprise.
 lead: Learn how to configure GCE injectors for Gatling Enterprise.
 date: 2021-03-26T09:40:40+01:00
-lastmod: 2022-03-10T09:18:38+00:00
 ---
 
 Like the AWS pool, a GCE pool is a reference to the GCP account you want to use to spawn injectors to run the simulation.

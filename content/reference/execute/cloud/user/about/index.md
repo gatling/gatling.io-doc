@@ -4,7 +4,6 @@ seotitle: About Gatling Enterprise
 description: Find the Gatling Enterprise version and the supported Gatling versions.
 lead: Find the Gatling Enterprise version and the supported Gatling versions.
 date: 2021-03-10T14:29:59+00:00
-lastmod: 2024-12-19T09:18:30+00:00
 ---
 ## Access the About modal
 

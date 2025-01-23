@@ -3,7 +3,6 @@ title: Timings
 description: Description of the different metrics reported in Gatling's HTML reports.
 lead: "Learn about all the recorded metrics: active users, response times and counts."
 date: 2021-04-20T18:30:56+02:00
-lastmod: 2022-12-14T21:30:56+02:00
 ---
 
 As Gatling runs and executes requests, several timings are recorded, which make up the basis of all forms of reporting in Gatling: console, HTML reports, etc...

@@ -5,7 +5,6 @@ seotitle: Licenses for all Gatling projects
 description: Gatling is licensed under the Apache License v2.0 and other specific licenses.
 lead: Gatling is licensed under the Apache License v2.0 and other specific licenses.
 date: 2021-04-20T18:30:56+02:00
-lastmod: 2023-01-18T09:00:00+02:00
 ---
 
 ## Developer motivations

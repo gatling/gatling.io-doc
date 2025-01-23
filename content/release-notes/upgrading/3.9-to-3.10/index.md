@@ -4,7 +4,6 @@ seotitle: Gatling upgrade from 3.9 to 3.10
 description: Gatling upgrade guide from version 3.9 to 3.10.
 lead: ""
 date: 2023-12-14T23:00:00+02:00
-lastmod: 2023-12-14T23:00:00+02:00
 ---
 
 ## Java 11 Baseline

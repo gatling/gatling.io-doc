@@ -10,7 +10,6 @@ badge:
 aliases:
   - /reference/extensions/ci-cd/github-actions
 date: 2022-01-04T15:00:00+00:00
-lastmod: 2023-10-11T10:10:00+00:00
 ---
 
 ## Purpose of this GitHub Action

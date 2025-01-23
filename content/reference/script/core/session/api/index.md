@@ -4,7 +4,6 @@ seotitle: Gatling session scripting reference - session API
 description: How to store and fetch data programmatically for your virtual users' Session, typically when using functions.
 lead: Programmatically handle virtual users' data
 date: 2021-04-20T18:30:56+02:00
-lastmod: 2022-12-14T21:30:56+02:00
 ---
 
 ## Concept

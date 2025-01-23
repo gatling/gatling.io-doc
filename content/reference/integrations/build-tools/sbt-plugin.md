@@ -7,7 +7,6 @@ lead: The sbt plugin allows you to run Gatling tests from the command line, with
 aliases:
   - /reference/extensions/build-tools/sbt-plugin
 date: 2021-04-20T18:30:56+02:00
-lastmod: 2023-07-26T13:50:00+00:00
 ---
 
 This sbt plugin integrates Gatling with sbt, allowing to use Gatling as a testing framework. It can also be used to

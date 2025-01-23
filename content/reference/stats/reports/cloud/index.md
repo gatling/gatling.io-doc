@@ -6,7 +6,6 @@ badge:
   type: enterprise
   label: Enterprise
 date: 2021-03-10T14:29:43+00:00
-lastmod: 2023-10-12T09:41:48+00:00
 ---
 
 Click on the {{< icon chart-area >}} icon in the [simulations table]({{< ref "/reference/execute/cloud/user/simulations#managing-simulations" >}}) or in the [runs table]({{< ref "../trends#simulation-runs" >}}) to access the reports.

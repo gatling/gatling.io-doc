@@ -5,7 +5,6 @@ seotitle: Gatling contributors Hall of Fame
 description: Some amazing people have greatly contributed to Gatling and helped make it a great project!
 lead: Gatling contributors on GitHub
 date: 2021-04-20T18:30:56+02:00
-lastmod: 2021-04-20T18:30:56+02:00
 ---
 
 Some amazing people have greatly contributed to Gatling and helped make it a great project!

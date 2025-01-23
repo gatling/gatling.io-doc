@@ -5,7 +5,6 @@ seotitle: Install GCP locations in Gatling Enterprise Cloud
 description: How to install a Gatling Control Plane on GCP using Compute Engine, to set up your Private Locations and run load generators in your own GCP network.
 lead: Run a Control Plane on GCP using Compute Engine, to set up your Private Locations and run load generators in your own GCP network.
 date: 2023-09-03T16:00:00+00:00
-lastmod: 2023-09-03T16:00:00+00:00
 ---
 
 {{<alert tip >}}

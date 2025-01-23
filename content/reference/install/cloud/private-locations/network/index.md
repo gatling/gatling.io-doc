@@ -4,7 +4,6 @@ menutitle: Network
 description: Learn how to configure network configuration your Control Plane and Private Locations
 lead: Network Configuration
 date: 2021-11-07T14:29:04+00:00
-lastmod: 2023-04-03T12:00:00+00:00
 ---
 
 This guide provides clear instructions for configuring network access for both the Control Plane and Private Locations.

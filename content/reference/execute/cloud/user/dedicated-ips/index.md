@@ -5,7 +5,6 @@ seotitle: Use dedicated IP addresses in Gatling Enterprise Cloud
 description: Request and use dedicated IP addresses for your load generator locations in Gatling Enterprise Cloud.
 lead: Dedicated IP addresses for your locations.
 date: 2021-03-10T14:29:04+00:00
-lastmod: 2021-08-05T13:13:30+00:00
 ---
 
 Dedicated IP Addresses allow you to have control over the load generators' IP addresses.

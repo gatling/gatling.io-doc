@@ -3,7 +3,6 @@ title: Introduction
 seotitle: Introduction to Gatling Enterprise Self-Hosted installation
 description: Gatling Enterprise architecture overview and conventions.
 date: 2021-03-26T16:01:21+01:00
-lastmod: 2022-03-17T16:37:43+00:00
 ---
 
 ## Audience and goals

@@ -4,7 +4,6 @@ seotitle: Pools configuration with Gatling Enterprise Self-Hosted
 description: Learn how to deploy all kinds of injectors with Gatling Enterprise Self-Hosted.
 lead: Learn how to deploy all kinds of injectors with Gatling Enterprise Self-Hosted.
 date: 2021-03-26T09:28:01+01:00
-lastmod: 2021-08-16T17:55:36+02:00
 ---
 
 Pools are the configuration of your injectors.

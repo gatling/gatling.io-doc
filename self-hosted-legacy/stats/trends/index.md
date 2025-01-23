@@ -3,7 +3,6 @@ title: Trends
 description: Learn how to compare test results.
 lead: Compare test results.
 date: 2021-03-10T09:29:43-05:00
-lastmod: 2021-08-16T17:55:36+02:00
 ---
 
 ## Run / Trends

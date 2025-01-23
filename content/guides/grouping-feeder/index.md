@@ -4,7 +4,6 @@ seotitle: Grouping records in a Gatling Feeder
 description: Group different records from a Gatling Feeder.
 lead: Group different records from a Gatling Feeder.
 date: 2021-04-20T18:30:56+02:00
-lastmod: 2021-04-20T18:30:56+02:00
 ---
 
 ## Use Case

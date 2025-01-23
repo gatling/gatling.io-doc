@@ -4,7 +4,6 @@ seotitle: Kubernetes injectors with Gatling Enterprise Self-Hosted
 description: Learn how to configure Kubernetes injectors for Gatling Enterprise.
 lead: Learn how to configure Kubernetes injectors for Gatling Enterprise.
 date: 2021-03-26T09:41:20+01:00
-lastmod: 2023-04-03T12:00:00+00:00
 ---
 
 A Kubernetes/OpenShift Pool is a reference to your Kubernetes infrastructure.

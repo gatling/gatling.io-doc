@@ -4,7 +4,6 @@ seotitle: Gatling upgrade from 3.4 to 3.5
 description: Gatling upgrade guide from version 3.4 to 3.5
 lead: ""
 date: 2021-04-20T18:30:56+02:00
-lastmod: 2021-04-20T18:30:56+02:00
 ---
 
 ## Scala 2.13

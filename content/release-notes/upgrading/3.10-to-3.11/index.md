@@ -4,7 +4,6 @@ seotitle: Gatling upgrade from 3.10 to 3.11
 description: Gatling upgrade guide from version 3.10 to 3.11.
 lead: ""
 date: 2024-04-08T23:00:00+02:00
-lastmod: 2024-04-08T23:00:00+02:00
 ---
 
 ## Dropping the old `${}` Gatling Expression Language

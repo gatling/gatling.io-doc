@@ -4,7 +4,6 @@ seotitle: Manually install Gatling Enterprise Self-Hosted
 description: Manually install or upgrade Gatling Enterprise, and learn how to configure it.
 lead: Manually install or upgrade Gatling Enterprise, and learn how to configure it.
 date: 2021-03-26T16:08:33+01:00
-lastmod: 2023-10-12T08:40:37+00:00
 ---
 
 ## Upgrading from a previous version

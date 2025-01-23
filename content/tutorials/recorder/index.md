@@ -6,7 +6,6 @@ aliases:
 description: "Learn the basics about Gatling: installing, using the Recorder to generate a basic raw test and how to execute it."
 lead: Learn Gatling concepts and use the Recorder to create a runnable Gatling simulation.
 date: 2021-04-20T18:30:56+02:00
-lastmod: 2022-12-14T21:30:56+02:00
 ---
 
 ## Introduction

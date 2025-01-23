@@ -3,7 +3,6 @@ title: Gatling Enterprise Component License
 description: License used to publish specific Gatling Enterprise components. These components can be used free of charge outside Gatling Enterprise with certain limitations.
 lead: License used to publish specific Gatling Enterprise components. These components can be used free of charge outside Gatling Enterprise with certain limitations.
 date: 2023-01-18T09:00:00+02:00
-lastmod: 2023-01-23T14:00:00+02:00
 ---
 
 ## GATLING ENTERPRISE COMPONENT LICENSE

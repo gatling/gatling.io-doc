@@ -5,7 +5,6 @@ seotitle: Debugging guide for Gatling scripts
 description: Debug Gatling scripts by printing session values or with logback.
 lead: Debug Gatling scripts by printing session values or with logback.
 date: 2021-04-20T18:30:56+02:00
-lastmod: 2021-04-20T18:30:56+02:00
 ---
 
 ## Printing Session Values

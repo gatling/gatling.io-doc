@@ -5,7 +5,6 @@ seotitle: Configure API Tokens in Gatling Enterprise Cloud
 description: Learn how to administrate API tokens to authenticate your requests to the Gatling Enterprise Cloud public API.
 lead: Create API Tokens to authenticate your requests to the Gatling Enterprise Cloud public API.
 date: 2021-03-10T13:47:16+00:00
-lastmod: 2021-08-05T13:13:30+00:00
 ---
 
 API Tokens administration is accessible in the navigation bar.

@@ -3,7 +3,6 @@ title: Login
 seotitle: Logging in to Gatling Enterprise Cloud
 description: Learn how to connect to Gatling Enterprise Cloud with a login/password, or with Google, GitHub, etc.
 date: 2021-03-10T14:29:04+00:00
-lastmod: 2021-08-05T13:13:30+00:00
 ---
 
 Thanks so much for trying Gatling Enterprise Cloud. To access the cloud visit [https://cloud.gatling.io/](https://cloud.gatling.io/) to log in.

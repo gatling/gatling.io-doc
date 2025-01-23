@@ -4,7 +4,6 @@ seotitle: AWS EC2 injectors with Gatling Enterprise Self-Hosted
 description: Learn how to configure AWS EC2 pools for Gatling Enterprise.
 lead: Learn how to configure AWS EC2 pools for Gatling Enterprise.
 date: 2021-03-26T09:40:35+01:00
-lastmod: 2021-08-16T17:55:36+02:00
 ---
 
 An AWS Pool is a reference to the AWS account you want to use to spawn injectors to run the simulation.

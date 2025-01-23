@@ -5,7 +5,6 @@ seotitle: Configure a custom SSO with Gatling Enterprise Cloud
 description: Learn how to set up a custom Single Sign-On (SSO) system for your organization.
 lead: A custom Single Sign-On (SSO) configuration allows your users to sign into Gatling Enterprise Cloud using your organization's authentication system.
 date: 2022-03-01T14:00:00+00:00
-lastmod: 2022-03-01T14:00:00+00:00
 ---
 
 Configuring a custom Single Sign-On (SSO) solution is only available on the [enterprise plan](https://gatling.io/pricing/) and must be requested through our [support portal](https://gatlingcorp.atlassian.net/servicedesk/customer/portal/8).

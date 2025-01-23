@@ -10,7 +10,6 @@ badge:
 aliases:
   - /reference/extensions/ci-cd/azure-devops
 date: 2023-11-09T15:25:27+0000
-lastmod: 2024-10-01T13:00:00+0000
 ---
 
 We do not currently provide an official Azure Pipelines extension.

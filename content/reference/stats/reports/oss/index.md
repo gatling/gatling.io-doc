@@ -3,7 +3,6 @@ title: Open-Source
 description: Description of the different charts and tables available in the HTML reports Gatling generates at the end of each test, in particular throughput and response time distribution.
 lead: Analyze your reports thanks to the indicators, active users and requests / responses over time, and distribution
 date: 2021-04-20T18:30:56+02:00
-lastmod: 2022-12-14T21:30:56+02:00
 ---
 
 ## Overview

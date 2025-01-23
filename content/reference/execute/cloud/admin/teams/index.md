@@ -5,7 +5,6 @@ seotitle: Teams administration in Gatling Enterprise Cloud
 description: Learn how to administrate teams in Gatling Enterprise Cloud.
 lead: Administrate your organization's teams in Gatling Enterprise Cloud.
 date: 2021-03-10T13:47:03+00:00
-lastmod: 2021-08-05T13:13:30+00:00
 ---
 
 ## Managing Teams

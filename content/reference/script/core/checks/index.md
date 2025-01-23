@@ -4,7 +4,6 @@ seotitle: Gatling checks scripting reference
 description: How to use generic checks available on most protocols supported in Gatling, such as regex, JsonPath, JMESPath or XPath to validate your response payloads and capture elements in there, so you can reuse them later.
 lead: Checks can be used to validate your request and extract elements which can be reused later
 date: 2021-04-20T18:30:56+02:00
-lastmod: 2022-12-14T21:30:56+02:00
 ---
 
 This page describes generic checks that can in theory be supported in all official protocols supported in Gatling.

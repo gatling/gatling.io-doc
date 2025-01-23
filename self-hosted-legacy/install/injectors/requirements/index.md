@@ -4,7 +4,6 @@ seotitle: Requirements for injectors with Gatling Enterprise Self-Hosted
 description: Requirements for Gatling Enterprise injectors.
 lead: Find generic information about Gatling Enterprise injectors, and specific information about each supported cloud provider.
 date: 2021-03-26T17:41:00+01:00
-lastmod: 2021-08-16T17:55:36+02:00
 ---
 
 Gatling Enterprise enable users to configure either on demand or on-premises pools.

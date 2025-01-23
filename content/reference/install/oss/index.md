@@ -5,7 +5,6 @@ seotitle: Gatling installation with the bundle, build tool, or package manager
 description: "How to install Gatling: prerequisites, different available distributions including the bundle, Maven, Gradle, sbt, and npm. Also IDE integration for IntelliJ idea and Visual Studio Code (VSCode)."
 lead: "Learn how to install Gatling for Java, Kotlin, Scala, JavaScript, or TypeScript. Install Gatling with the Maven, sbt, or Gradle build tool or a JavaScript package manager."
 date: 2021-04-20T18:58:06+02:00
-lastmod: 2022-12-14T21:30:56+02:00
 ---
 
 ## Introduction

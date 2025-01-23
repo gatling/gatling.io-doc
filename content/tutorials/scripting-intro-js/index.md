@@ -4,7 +4,6 @@ title: Create your first JavaScript-based simulation
 description: "Get started with Gatling and JavaScript: install, write your first load test, and execute it."
 lead: Learn how to get started with Gatling and create a Gatling simulation with JavaScript.
 date: 2023-12-16T18:30:56+02:00
-lastmod: 2023-12-16T21:30:56+02:00
 ---
 
 {{< alert warning >}}

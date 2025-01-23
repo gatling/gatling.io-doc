@@ -5,7 +5,6 @@ seotitle: Reference glossary of Gatling concepts
 description: Learn the main Gatling concepts such as Virtual Users, Sessions, Scenarios, Injection Profiles and Simulations.
 lead: Learn more about virtual users, scenarios, simulations, sessions, feeders, checks, assertions, reports
 date: 2021-04-20T18:30:56+02:00
-lastmod: 2022-12-14T21:30:56+02:00
 ---
 
 ## Domain-Specific Language (DSL) {#dsl}

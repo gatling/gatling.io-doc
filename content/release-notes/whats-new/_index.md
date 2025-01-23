@@ -2,7 +2,6 @@
 title: What's new in Gatling
 description: Find out about latest gatling versions and the new features.
 lead: What's new in the latest releases.
-lastmod: 2024-11-13T09:58:00+02:00
 ordering:
   - 3.13.md
   - 3.12.md

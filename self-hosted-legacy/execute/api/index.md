@@ -4,7 +4,6 @@ seotitle: Gatling Enterprise Self-Hosted public APIs
 description: Learn how to use the Gatling Enterprise Self-Hosted public APIs with its Swagger (OpenAPI) documentation.
 lead: Usage of the Gatling Enterprise Self-Hosted public API
 date: 2021-03-08T13:50:24+01:00
-lastmod: 2021-08-16T17:55:36+02:00
 ---
 
 The Gatling Enterprise API server also exposes a public API that you can use to trigger runs or fetch run results and metrics.

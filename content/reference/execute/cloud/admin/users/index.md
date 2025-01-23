@@ -5,7 +5,6 @@ seotitle: User management in Gatling Enterprise
 description: Learn how to manage users and their permissions in Gatling Enterprise.
 lead: Manage your organization's users and their permissions in Gatling Enterprise.
 date: 2021-03-10T13:47:07+00:00
-lastmod: 2024-12-18T09:40:00+00:00
 ---
 
 ## Manage users and permissions {#managing-users}

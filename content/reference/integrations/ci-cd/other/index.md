@@ -8,7 +8,6 @@ badge:
   type: enterprise
   label: Enterprise
 date: 2021-03-08T12:50:17+00:00
-lastmod: 2023-02-17T14:00:00+00:00
 ---
 
 We provide dedicated support for a number of CI tools: [GitHub Actions]({{< ref "github-actions" >}}), [Gitlab CI]({{< ref "gitlab-ci" >}}), [Jenkins]({{< ref "jenkins" >}}), [Teamcity]({{< ref "teamcity" >}}), [Bamboo]({{< ref "github-actions" >}}). However, we also document here how to run your simulations on Gatling Enterprise from any other CI products, using either one of the supported build tools or our CI shell script. Note that we also provide dedicated instructions to use our CI shell script [with Azure DevOps Pipelines]({{< ref "./azure-devops" >}})

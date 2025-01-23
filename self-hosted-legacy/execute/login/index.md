@@ -3,7 +3,6 @@ title: Login
 seotitle: Logging in to Gatling Enterprise Self-Hosted
 description: Learn how to connect to Gatling Enterprise Self-Hosted.
 date: 2021-03-10T09:29:04-05:00
-lastmod: 2021-11-23T11:30:00+02:00
 ---
 
 Logging in is necessary to use Gatling Enterprise. Gatling Enterprise is accessible by default on port 10542.

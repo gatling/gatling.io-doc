@@ -4,7 +4,6 @@ title: User profile
 seotitle: User profile in Gatling Enterprise Self-Hosted
 description: Learn how to access your Gatling Enterprise Self-Hosted user profile and leave an organization.
 date: 2021-03-10T09:29:23-05:00
-lastmod: 2021-08-16T17:55:36+02:00
 ---
 
 ## Accessing your profile

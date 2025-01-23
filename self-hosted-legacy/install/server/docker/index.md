@@ -4,7 +4,6 @@ seotitle: Docker installation guide for Gatling Enterprise Self-Hosted
 description: Learn how to install Gatling Enterprise with Docker.
 lead: Learn how to install Gatling Enterprise with Docker.
 date: 2021-03-26T17:31:42+01:00
-lastmod: 2023-03-07T16:42:03+00:00
 ---
 
 Running Gatling Enterprise with [Docker](https://docs.docker.com/engine/) is the recommended solution to get started quickly, as it requires the minimal amount of setup and is the easiest way to upgrade to newer versions.

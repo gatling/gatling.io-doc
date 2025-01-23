@@ -5,7 +5,6 @@ seotitle: Maven Plugin for Gatling and Gatling Enterprise
 description: How to use the Maven plugin for Gatling to run tests and deploy them to Gatling Enterprise.
 lead: The Maven plugin allows you to run Gatling tests from the command line, without the bundle, as well as to package your simulations for Gatling Enterprise
 date: 2021-04-20T18:30:56+02:00
-lastmod: 2023-07-26T13:50:00+00:00
 ---
 
 Using this plugin, Gatling can be launched when building your project, for example with your favorite Continuous Integration (CI) solution.

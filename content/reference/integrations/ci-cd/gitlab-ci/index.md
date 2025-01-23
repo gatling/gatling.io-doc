@@ -10,7 +10,6 @@ badge:
 aliases:
   - /reference/extensions/ci-cd/gitlab-ci
 date: 2023-02-17T14:00:00+00:00
-lastmod: 2023-10-11T10:10:00+00:00
 ---
 
 ## The Gatling Enterprise Docker runner

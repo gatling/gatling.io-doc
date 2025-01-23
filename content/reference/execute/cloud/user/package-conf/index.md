@@ -6,7 +6,6 @@ lead: Configure and upload your package to Gatling Enterprise Cloud.
 date: 2021-03-10T14:29:36+00:00
 aliases:
 - artifact_conf
-lastmod: 2021-08-05T13:13:30+00:00
 ---
 
 ## Managing

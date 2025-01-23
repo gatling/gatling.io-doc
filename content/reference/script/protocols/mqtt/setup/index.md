@@ -4,7 +4,6 @@ seotitle: Gatling MQTT protocol reference - project setup
 description: How to set up your project to use the Gatling MQTT protocol.
 lead: Learn about how to set up your project to use the Gatling MQTT protocol.
 date: 2024-02-07T14:18:28+00:00
-lastmod: 2024-02-07T14:18:28+00:00
 ---
 
 {{< alert warning >}}

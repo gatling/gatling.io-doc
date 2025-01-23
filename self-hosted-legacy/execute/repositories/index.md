@@ -5,7 +5,6 @@ seotitle: Configure repositories in Gatling Enterprise Self-Hosted
 description: Configure repositories so that Gatling Enterprise Self-Hosted can fetch your Gatling simulations.
 lead: Configure repositories so that Gatling Enterprise Self-Hosted can fetch your Gatling simulations.
 date: 2021-03-25T18:25:43+01:00
-lastmod: 2022-06-23T16:23:51+00:00
 ---
 
 {{< alert tip >}}

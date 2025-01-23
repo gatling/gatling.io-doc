@@ -4,7 +4,6 @@ seotitle: Gatling Postman reference
 description: Learn how to use your Postman collections in Gatling load tests.
 lead: Use your Postman collections in Gatling load tests
 date: 2024-11-15T10:35:00+02:00
-lastmod: 2024-11-15T10:35:00+02:00
 badge:
   type: enterprise
   label: Enterprise

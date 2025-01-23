@@ -4,7 +4,6 @@ seotitle: Gatling Enterprise Self-Hosted help
 description: Learn how to access the documentation and plugins from Gatling Enterprise Self-Hosted.
 lead: Access the documentation and plugins from Gatling Enterprise Self-Hosted.
 date: 2021-03-10T09:29:53-05:00
-lastmod: 2021-08-16T17:55:36+02:00
 ---
 
 ## Documentation

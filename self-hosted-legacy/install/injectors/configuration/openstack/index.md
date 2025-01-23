@@ -4,7 +4,6 @@ seotitle: OpenStack injectors with Gatling Enterprise Self-Hosted
 description: Learn how to configure OpenStack injectors for Gatling Enterprise.
 lead: Learn how to configure OpenStack injectors for Gatling Enterprise.
 date: 2021-03-26T09:41:12+01:00
-lastmod: 2021-08-16T17:55:36+02:00
 ---
 
 Like the others pools, an OpenStack Pool is a reference to the OpenStack account you want to use to spawn injectors to run the simulation. We only support Keystone version 3.

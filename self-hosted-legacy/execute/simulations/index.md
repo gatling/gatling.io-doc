@@ -4,7 +4,6 @@ seotitle: Configure simulations in Gatling Enterprise Self-Hosted
 description: Learn how to configure and navigate through simulations in Gatling Enterprise Self-Hosted.
 lead: Navigate through simulations.
 date: 2021-03-10T09:29:43-05:00
-lastmod: 2023-03-09T17:00:00+00:00
 ---
 
 ## Managing Simulations

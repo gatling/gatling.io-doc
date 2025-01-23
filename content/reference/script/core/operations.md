@@ -4,7 +4,6 @@ seotitle: Gatling operations reference
 description: How to tweak the TCP stack of your computer for more performance.
 lead: Learn how to tune the OS for more performance, configure the open files limit, the kernel and the network
 date: 2021-04-20T18:30:56+02:00
-lastmod: 2022-12-14T21:30:56+02:00
 ---
 
 ## IPv4 vs IPv6

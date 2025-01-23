@@ -6,7 +6,7 @@ disableKinds:
   - "taxonomy"
 disableHugoGeneratorInject: true
 enableEmoji: true
-enableGitInfo: false
+enableGitInfo: true
 enableRobotsTXT: true
 languageCode: en-US
 paginate: 7
@@ -86,7 +86,7 @@ security:
   exec:
     allow:
       - ^babel$
+      - ^git$
       - ^go$
       - ^npx$
       - ^postcss$
-

@@ -5,7 +5,6 @@ seotitle: Jenkins Plugin for Gatling Enterprise
 description: Learn how to configure the Gatling Enterprise Jenkins plugin and run your simulations.
 lead: Run your Gatling Enterprise simulations from your Jenkins CI.
 date: 2021-03-08T12:50:14+00:00
-lastmod: 2023-10-11T10:10:00+00:00
 ---
 
 ## Purpose of this plugin

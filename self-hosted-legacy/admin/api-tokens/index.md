@@ -5,7 +5,6 @@ seotitle: Configure API Tokens in Gatling Enterprise Self-Hosted
 description: Learn how to administrate API tokens to authenticate your requests to the Gatling Enterprise Self-Hosted public API.
 lead: Create API tokens to authenticate your requests to the Gatling Enterprise Self-Hosted public API.
 date: 2021-03-10T08:47:16-05:00
-lastmod: 2021-08-16T17:55:36+02:00
 ---
 
 ## Managing API Tokens

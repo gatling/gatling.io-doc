@@ -4,7 +4,6 @@ seotitle: Gatling Enterprise Self-Hosted usage overview
 description: Learn how to navigate in Gatling Enterprise Self-Hosted.
 lead: Learn how to navigate in Gatling Enterprise Self-Hosted.
 date: 2021-03-10T09:29:04-05:00
-lastmod: 2021-11-23T12:00:00+02:00
 ---
 
 Once you are logged in, you can navigate using the Gatling Enterprise navigation bar on the left side.

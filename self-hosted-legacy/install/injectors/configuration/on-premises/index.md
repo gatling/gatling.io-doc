@@ -4,7 +4,6 @@ seotitle: On-premises injectors with Gatling Enterprise Self-Hosted
 description: Learn how to configure dedicated on-premises pools and hosts for Gatling Enterprise.
 lead: Learn how to configure dedicated on-premises pools and hosts for Gatling Enterprise.
 date: 2021-03-26T09:40:55+01:00
-lastmod: 2021-08-16T17:55:36+02:00
 ---
 
 Here you can create an on-premises pool which represents existing machines.

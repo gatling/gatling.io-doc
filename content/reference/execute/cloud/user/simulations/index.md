@@ -4,7 +4,6 @@ seotitle: Configure simulations in Gatling Enterprise Cloud
 description: Learn how to configure and navigate through simulations in Gatling Enterprise Cloud.
 lead: Navigate through simulations.
 date: 2021-03-10T14:29:43+00:00
-lastmod: 2021-08-05T13:13:30+00:00
 ---
 
 ## Managing Simulations
