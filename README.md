@@ -1,16 +1,12 @@
-# gatling.io - documentation section
+# Gatling documentation
 
-This repository aims to aggregate the documentation from our different products.
+## Prerequisites
 
-No modification should be needed from our dear customers in this repository.
+You need [Go](https://golang.org/doc/install) and [Hugo](https://gohugo.io/getting-started/installing/) installed.
 
-For documentation modification, please refer to the documentation product repository
+Make sure to install the **extended** version of Hugo.
 
-| Product | Repo | Path in repo | Documentation HTML |
-| ------- | ---- | ------------ | ------------------ |
-| Gatling OSS | [gatling/gatling](https://github.com/gatling/gatling) | [`src/docs/content/`](https://github.com/gatling/gatling/tree/master/src/sphinx) | [:link:](https://gatling.io/docs/gatling/) |
-
-## Development
+## Installation
 
 Either way, once launched, you can visit at [http://localhost:1313](http://localhost:1313)
 
@@ -27,3 +23,52 @@ docker-compose up
 ```console
 ./bin/entrypoint.sh
 ```
+
+Or manually:
+
+```console
+hugo mod get -u
+hugo mod npm pack
+npm install
+hugo server
+```
+
+## Troubleshooting
+
+### Invalid version: unknown revision
+
+In case of issue such as:
+
+```
+go: github.com/gatling/gatling.io-doc-theme@v0.0.0-20240222160400-c0fbf7866574: invalid version: unknown revision c0fbf7866574
+```
+
+In the file `go.mod`, in the last line (with the `require` keyword), replace the hash with `main`:
+
+```diff
+ module github.com/gatling/gatling
+
+ go 1.21
+
+-require github.com/gatling/gatling.io-doc-theme v0.0.0-20240220083005-6f637476df1d // indirect
++require github.com/gatling/gatling.io-doc-theme main // indirect
+```
+
+Then, run `hugo mod get -u`.
+
+### Template for shortcode "img" not found
+
+In case of issue such as:
+
+```
+failed to extract shortcode: template for shortcode "img" not found
+```
+
+Run `hugo mod clean`.
+
+### Update Hugo
+
+If you continue to encounter errors, check your installation of Hugo is up-to-date and that you are using the
+**extended** edition.
+
+Check the [official documentation](https://gohugo.io/installation/) for all the details.
