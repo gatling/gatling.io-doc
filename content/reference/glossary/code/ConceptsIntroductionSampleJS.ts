@@ -14,6 +14,19 @@
  * limitations under the License.
  */
 
+import {
+  SetUpFunction,
+  atOnceUsers,
+  nothingFor,
+  pause,
+  rampUsers,
+  scenario,
+  simulation
+} from "@gatling.io/core";
+import { http } from "@gatling.io/http";
+
+const setUp = null as unknown as SetUpFunction;
+
 //#dsl-bad
 for (let i = 0; i < 5; i++) {
   http("Access Github").get("https://github.com");

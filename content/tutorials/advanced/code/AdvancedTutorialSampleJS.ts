@@ -14,6 +14,23 @@
  * limitations under the License.
  */
 
+import {
+  ChainBuilder,
+  SetUpFunction,
+  atOnceUsers,
+  css,
+  csv,
+  exec,
+  rampUsers,
+  repeat,
+  scenario,
+  tryMax,
+} from "@gatling.io/core";
+import { http, status } from "@gatling.io/http";
+
+const setUp = null as unknown as SetUpFunction;
+
+() => {
 //#isolate-processes
 const search =
   // let's give proper names, as they are displayed in the reports
@@ -31,6 +48,11 @@ const browse = undefined; // TODO
 
 const edit = undefined; // TODO
 //#isolate-processes
+}
+
+const search = null as unknown as ChainBuilder
+const browse = null as unknown as ChainBuilder
+const edit = null as unknown as ChainBuilder
 
 //#processes
 const scn = scenario("Scenario Name")
@@ -43,6 +65,7 @@ const users = scenario("Users")
 const admins = scenario("Admins")
   .exec(search, browse, edit);
 //#populations
+
 
 const httpProtocol = http;
 
@@ -57,6 +80,7 @@ setUp(
 ).protocols(httpProtocol);
 //#setup-users-and-admins
 
+() => {
 //#feeder
 const feeder = csv("search.csv").random(); // 1, 2
 
@@ -76,8 +100,11 @@ const search = exec(http("Home")
     .get("#{computerUrl}")) // 6
   .pause(1);
 //#feeder
+}
 
+() => {
 //#loop-simple
+// @ts-ignore
 const gotoPage = (page) =>
   exec(http("Page " + page)
     .get("/computers?p=" + page))
@@ -92,7 +119,9 @@ const browse =
     gotoPage(4)
   );
 //#loop-simple
+}
 
+() => {
 //#loop-for
 const browse =
   repeat(5, "n").on( // 1
@@ -100,7 +129,9 @@ const browse =
       .pause(1)
   );
 //#loop-for
+}
 
+() => {
 //#check
 const edit =
   exec(http("Form").get("/computers/new"))
@@ -113,6 +144,7 @@ const edit =
       ))
     );
 //#check
+}
 
 //#tryMax-exitHereIfFailed
 const tryMaxEdit = tryMax(2).on( // 1

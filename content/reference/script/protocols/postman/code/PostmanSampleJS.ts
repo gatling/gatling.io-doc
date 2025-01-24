@@ -42,6 +42,8 @@ collection.folder("My Folder");
 collection.folder("My Folder").request("My Request");
 //#folder
 
+const collectionOrFolder = collection.folder("");
+
 //#scenario
 collectionOrFolder.scenario("My Scenario");
 // Add pauses between requests (duration in seconds):

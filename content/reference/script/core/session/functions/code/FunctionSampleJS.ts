@@ -14,13 +14,17 @@
  * limitations under the License.
  */
 
-//#define-the-protocol-class
-export default simulation((setUp) => {
+import { exec } from "@gatling.io/core";
+import { http } from "@gatling.io/http";
 
-  // Add the HttpProtocolBuilder:
-  const httpProtocol =
-    http.baseUrl("https://computer-database.gatling.io")
-      // set the "accept" header to a value suited for the expected response
-      .acceptHeader("text/html");
-});
-//#define-the-protocol-class
+//#function-sample
+// inline usage with a lambda
+exec(http("name")
+  // @ts-ignore
+  .get((session) => "/foo/" + session.get("param").toLocaleLowerCase()));
+
+// passing a reference to a function
+const f =
+    (session) => "/foo/" + session.get("param").toLocaleLowerCase();
+exec(http("name").get(f));
+//#function-sample

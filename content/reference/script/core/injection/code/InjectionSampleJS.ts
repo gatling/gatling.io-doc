@@ -14,6 +14,23 @@
  * limitations under the License.
  */
 
+import {
+  SetUpFunction,
+  atOnceUsers,
+  constantConcurrentUsers,
+  constantUsersPerSec,
+  incrementConcurrentUsers,
+  incrementUsersPerSec,
+  nothingFor,
+  rampConcurrentUsers,
+  rampUsers,
+  rampUsersPerSec,
+  scenario,
+  stressPeakUsers
+} from "@gatling.io/core";
+import { http } from "@gatling.io/http";
+
+const setUp = null as unknown as SetUpFunction;
 
 const httpProtocol = http;
 const scn = scenario("scenario");

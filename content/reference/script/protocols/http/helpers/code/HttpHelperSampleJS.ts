@@ -14,6 +14,17 @@
  * limitations under the License.
  */
 
+import { exec } from "@gatling.io/core";
+import {
+  Cookie,
+  CookieKey,
+  addCookie,
+  flushCookieJar,
+  flushHttpCache,
+  flushSessionCookies,
+  getCookieValue
+} from "@gatling.io/http";
+
 //#addCookie
 exec(addCookie(Cookie("name", "value")));
 //#addCookie

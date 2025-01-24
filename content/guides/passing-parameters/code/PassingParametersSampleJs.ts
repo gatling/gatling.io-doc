@@ -1,3 +1,8 @@
+import { SetUpFunction, rampUsers, scenario } from "@gatling.io/core";
+
+const scn = scenario("scenario");
+const setUp = null as unknown as SetUpFunction;
+
 //#injection-from-options
 import { getParameter } from "@gatling.io/core";
 

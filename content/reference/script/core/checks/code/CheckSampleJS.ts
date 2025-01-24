@@ -14,6 +14,25 @@
  * limitations under the License.
  */
 
+import {
+  ElFileBody,
+  RawFileBody,
+  bodyBytes,
+  bodyLength,
+  bodyString,
+  css,
+  form,
+  jmesPath,
+  jsonPath,
+  md5,
+  regex,
+  responseTimeInMillis,
+  sha1,
+  substring,
+  xpath
+} from "@gatling.io/core";
+import { http, status } from "@gatling.io/http";
+
 //#status-is-200
 http("Gatling").get("https://gatling.io")
   .check(status().is(200))
@@ -41,7 +60,7 @@ http("").get("")
 
 //#bodyBytes
 .check(
-  bodyBytes().is("{\"foo\": \"bar\"}".getBytes(StandardCharsets.UTF_8)),
+  bodyBytes().is([123,34,102,111,111,34,58,32,34,98,97,114,34,125]), // Bytes array
   bodyBytes().is(RawFileBody("expected.json"))
 )
 //#bodyBytes
@@ -351,14 +370,18 @@ NOT SUPPORTED
         const prefix = session.get("prefix");
         if (actual == null) {
           throw Error("Value is missing");
-        } else if (!actual.startsWith(prefix)) {
-          throw Error("Value " + actual + " should start with " + prefix);
+        } else {
+          // @ts-ignore
+          if (!actual.startsWith(prefix)) {
+            throw Error("Value " + actual + " should start with " + prefix);
+          }
         }
         return actual;
       })
 )
 //#validator
 
+http("").get("")
 //#name
 .check(
   jmesPath("foo").name("My custom error message")

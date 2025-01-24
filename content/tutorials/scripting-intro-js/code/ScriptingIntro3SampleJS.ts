@@ -14,20 +14,19 @@
  * limitations under the License.
  */
 
-//#pollerName
-poll().pollerName("myCustomName");
-//#pollerName
+import { scenario, simulation } from "@gatling.io/core";
+import { http } from "@gatling.io/http";
 
-//#pollerStart
-exec(
-  poll()
-    .every(10)
-    .exec(http("name").get("url"))
-);
-//#pollerStart
+//#write-the-scenario
+export default simulation((setUp) => {
 
-//#pollerStop
-exec(
-  poll().stop()
-);
-//#pollerStop
+  const httpProtocol =
+    http.baseUrl("https://computer-database.gatling.io")
+      // set the "accept" header to a value suited for the expected response
+      .acceptHeader("text/html");
+
+  // Add the ScenarioBuilder:
+  const myScenario = scenario("My Scenario")
+    .exec(http("Request 1").get("/computers/"));
+});
+//#write-the-scenario

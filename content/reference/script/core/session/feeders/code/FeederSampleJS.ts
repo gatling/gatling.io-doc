@@ -14,6 +14,20 @@
  * limitations under the License.
  */
 
+import {
+  FeederBuilder,
+  arrayFeeder,
+  csv,
+  feed,
+  jsonFile,
+  jsonUrl,
+  separatedValues,
+  ssv,
+  tsv
+} from "@gatling.io/core";
+
+const feeder = null as unknown as FeederBuilder<string>;
+
 /*
 //#random-mail-generator
 The `feeder(Iterator)` method is currently not supported by Gatling JS.

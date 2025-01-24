@@ -14,13 +14,23 @@
  * limitations under the License.
  */
 
-//#function-sample
-// inline usage with a lambda
-exec(http("name")
-  .get((session) => "/foo/" + session.get("param").toLocaleLowerCase()));
+import { exec } from "@gatling.io/core";
+import { http, poll } from "@gatling.io/http";
 
-// passing a reference to a function
-const f =
-    (session) => "/foo/" + session.get("param").toLocaleLowerCase();
-exec(http("name").get(f));
-//#function-sample
+//#pollerName
+poll().pollerName("myCustomName");
+//#pollerName
+
+//#pollerStart
+exec(
+  poll()
+    .every(10)
+    .exec(http("name").get("url"))
+);
+//#pollerStart
+
+//#pollerStop
+exec(
+  poll().stop()
+);
+//#pollerStop

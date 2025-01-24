@@ -14,16 +14,16 @@
  * limitations under the License.
  */
 
-//#write-the-scenario
+import { simulation } from "@gatling.io/core";
+import { http } from "@gatling.io/http";
+
+//#define-the-protocol-class
 export default simulation((setUp) => {
 
+  // Add the HttpProtocolBuilder:
   const httpProtocol =
     http.baseUrl("https://computer-database.gatling.io")
       // set the "accept" header to a value suited for the expected response
       .acceptHeader("text/html");
-
-  // Add the ScenarioBuilder:
-  const myScenario = scenario("My Scenario")
-    .exec(http("Request 1").get("/computers/"));
 });
-//#write-the-scenario
+//#define-the-protocol-class

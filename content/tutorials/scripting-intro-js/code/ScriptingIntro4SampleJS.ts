@@ -14,6 +14,9 @@
  * limitations under the License.
  */
 
+import { constantUsersPerSec, scenario, simulation } from "@gatling.io/core";
+import { http } from "@gatling.io/http";
+
 //#define-the-injection-profile
 export default simulation((setUp) => {
 

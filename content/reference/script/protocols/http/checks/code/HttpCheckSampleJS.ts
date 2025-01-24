@@ -14,6 +14,15 @@
  * limitations under the License.
  */
 
+import {
+  currentLocation,
+  currentLocationRegex,
+  header,
+  headerRegex,
+  http,
+  status
+} from "@gatling.io/http";
+
 http("").get("")
 
 //#status

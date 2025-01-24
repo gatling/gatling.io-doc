@@ -32,8 +32,8 @@ npx gatling run users=500 ramp=3600
 
 You can resolve these options directly in your code with the `getParameter` function:
 
-{{< include-code "injection-from-options" js >}}
+{{< include-code "injection-from-options" ts >}}
 
 We also provide a `getEnvironmentVariable` function to read environment variables:
 
-{{< include-code "injection-from-env-vars" js >}}
+{{< include-code "injection-from-env-vars" ts >}}

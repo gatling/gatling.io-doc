@@ -75,13 +75,13 @@ To set up the test file use the following procedure:
 1. In your IDE create the `myfirstsimulation.gatling.js` file in the `javascript/src/` folder.
 2. Copy the following import statements and past them in the `myfirstsimulation.gatling.js` file.
 
-{{< include-code "ScriptingIntro1Sample#setup-the-file" js >}}
+{{< include-code "ScriptingIntro1Sample#setup-the-file" ts >}}
 
 #### Define the `Simulation` function 
 
 The `simulation` function takes the `setUp` function as an argument, which is used to write a script. To add the `simulation` function, after the import statements, add: 
 
-{{< include-code "ScriptingIntro1Sample#extend-the-simulation-function" js >}}
+{{< include-code "ScriptingIntro1Sample#extend-the-simulation-function" ts >}}
 
 #### Define an HTTP protocol
 
@@ -90,13 +90,13 @@ Inside the `simulation` function, define an HTTP protocol. Learn about all of th
 this example, the `baseUrl` property is hardcoded as the Gatling computer database test site, and the `acceptHeader` and
 `contentTypeHeader` properties are set to `application/json`. Add the HTTP protocol: 
 
-{{< include-code "ScriptingIntro2Sample#define-the-protocol-class" js >}}
+{{< include-code "ScriptingIntro2Sample#define-the-protocol-class" ts >}}
 
 #### Write the scenario
 
 The next step is to describe the user journey. For a web application, this usually consists of a user arriving at the application and then a series of interactions with the application. The following scenario mocks a user arriving on the home page of the [Gatling sample application](https://computer-database.gatling.io). Add the scenario:
 
-{{< include-code "ScriptingIntro3Sample#write-the-scenario" js >}}
+{{< include-code "ScriptingIntro3Sample#write-the-scenario" ts >}}
 
 See the [Documentation]({{< ref "/reference/script/core/scenario" >}}) for the available scenario
 components. 
@@ -107,7 +107,7 @@ The final component of a Gatling simulation is the injection profile. In your si
 
 The following example adds 2 users per second for 60 seconds and each user executes the scenario we defined in [Write the Scenario]({{< ref="#write-the-scenario" >}}). See the [Documentation]({{< ref "/reference/script/core/injection" >}}) for all of the injection profile options. 
 
-{{< include-code "ScriptingIntro4Sample#define-the-injection-profile" js >}}
+{{< include-code "ScriptingIntro4Sample#define-the-injection-profile" ts >}}
 
 Congrats! You have written your first Gatling simulation. The next step is to learn how to run the simulation. 
 
@@ -115,7 +115,7 @@ Congrats! You have written your first Gatling simulation. The next step is to le
 
 Now, you should have a completed simulation that looks like the following: 
 
-{{< include-code "ComputerDatabaseSimulation#full-example" js >}}
+{{< include-code "ComputerDatabaseSimulation#full-example" ts >}}
 
 ### Package and upload your simulation to Gatling Enterprise { #package }
 

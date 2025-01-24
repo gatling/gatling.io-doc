@@ -14,6 +14,21 @@
  * limitations under the License.
  */
 
+import {
+  SetUpFunction,
+  atOnceUsers,
+  details,
+  forAll,
+  global,
+  scenario,
+  simulation,
+} from "@gatling.io/core";
+
+const scn = scenario("scenario");
+const injectionProfile = atOnceUsers(1);
+
+const setUp = null as unknown as SetUpFunction;
+
 //#setUp
 setUp(scn.injectOpen(injectionProfile))
   .assertions(

@@ -1,4 +1,12 @@
 {
   "name": "gatling.io-doc",
-  "version": "0.0.0"
+  "version": "0.0.0",
+  "scripts": {
+    "test-ts-samples": "tsc --project tsconfig-code-samples.json"
+  },
+  "devDependencies": {
+    "@gatling.io/core": "3.13.300",
+    "@gatling.io/http": "3.13.300",
+    "@gatling.io/postman": "3.13.300"
+  }
 }

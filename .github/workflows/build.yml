@@ -35,17 +35,20 @@ jobs:
       - name: Build JVM code samples
         run: sbt "all headerCheckAll scalafmtSbtCheck" "test"
 
-      - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v3
-        with:
-          hugo-version: '0.135.0'
-          extended: true
-
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
 
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: '0.135.0'
+          extended: true
+
       - name: Generate site
         run: ./bin/entrypoint.sh generate
+
+      - name: Build TypeScript code samples
+        run: npm run test-ts-samples

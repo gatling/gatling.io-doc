@@ -114,21 +114,21 @@ export default simulation((setUp) => { // 2
 
 Add the following import statement in your simulation file:
 
-{{< include-code "imports" js >}}
+{{< include-code "imports" ts >}}
 
 ### Import collections
 
 You can import a collection file, exported from Postman, from the project resources (by default, from the `resources` folder):
 
-{{< include-code "fromResource" js >}}
+{{< include-code "fromResource" ts >}}
 
 You can inject a Postman environment:
 
-{{< include-code "environment" js >}}
+{{< include-code "environment" ts >}}
 
 You can also inject global variables:
 
-{{< include-code "globals" js >}}
+{{< include-code "globals" ts >}}
 
 Variables used in your Postman collection will be substituted with values from the collection, environment, and global
 variables, according to [Postman's variable scopes](https://learning.postman.com/docs/sending-requests/variables/variables/#variable-scopes).
@@ -139,16 +139,16 @@ the Gatling simulation execution.
 
 If the Postman collection is organized with folders, you can navigate with the `folder` function: 
 
-{{< include-code "folder" js >}}
+{{< include-code "folder" ts >}}
 
 You can generate individual Gatling HTTP requests from Postman requests:
 
-{{< include-code "request" js >}}
+{{< include-code "request" ts >}}
 
 You can generate an entire Gatling scenario, which will execute all requests defined in the current Postman folder (or
 collection root) one after the other:
 
-{{< include-code "scenario" js >}}
+{{< include-code "scenario" ts >}}
 
 By default, only requests defined directly at the current level are included. Use the `recursive` option if you want to
 include all requests defined in sub-folders (at any depth).

@@ -14,6 +14,46 @@
  * limitations under the License.
  */
 
+import {
+  asLongAs,
+  asLongAsDuring,
+  crashLoadGenerator,
+  crashLoadGeneratorIf,
+  doIf,
+  doIfEquals,
+  doIfEqualsOrElse,
+  doIfOrElse,
+  doWhile,
+  doWhileDuring,
+  doSwitch,
+  doSwitchOrElse,
+  dummy,
+  during,
+  exitBlockOnFail,
+  exitHere,
+  exitHereIf,
+  exitHereIfFailed,
+  foreach,
+  forever,
+  group,
+  onCase,
+  pace,
+  pause,
+  percent,
+  exec,
+  randomSwitch,
+  randomSwitchOrElse,
+  rendezVous,
+  repeat,
+  roundRobinSwitch,
+  scenario,
+  stopLoadGenerator,
+  stopLoadGeneratorIf,
+  tryMax,
+  uniformRandomSwitch
+} from "@gatling.io/core";
+import { http } from "@gatling.io/http";
+
 //#bootstrapping
 const scn = scenario("Scenario");
 //#bootstrapping

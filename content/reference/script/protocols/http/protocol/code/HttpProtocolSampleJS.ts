@@ -14,30 +14,44 @@
  * limitations under the License.
  */
 
-//#bootstrapping
-const httpProtocol = http.baseUrl("https://gatling.io");
+import {
+  AllowList,
+  DenyList,
+  SetUpFunction,
+  atOnceUsers,
+  scenario
+} from "@gatling.io/core";
+import { Proxy, http } from "@gatling.io/http";
 
-const scn = scenario("Scenario"); // etc...
+const setUp = null as unknown as SetUpFunction;
 
-setUp(scn.injectOpen(atOnceUsers(1)).protocols(httpProtocol));
-//#bootstrapping
+const bootstrapping = () => {
+  //#bootstrapping
+  const httpProtocol = http.baseUrl("https://gatling.io");
 
-//#baseUrl
-const httpProtocol = http.baseUrl("https://gatling.io");
+  const scn = scenario("Scenario"); // etc...
 
-const scn = scenario("Scenario")
-  // will make a request to "https://gatling.io/docs/"
-  .exec(
-    http("Relative").get("/doc/")
-  )
-  // will make a request to "https://github.com/gatling/gatling"
-  .exec(
-    http("Absolute").get("https://github.com/gatling/gatling")
-  );
+  setUp(scn.injectOpen(atOnceUsers(1)).protocols(httpProtocol));
+  //#bootstrapping
+};
 
-setUp(scn.injectOpen(atOnceUsers(1)).protocols(httpProtocol));
-//#baseUrl
+const baseUrl = () => {
+  //#baseUrl
+  const httpProtocol = http.baseUrl("https://gatling.io");
 
+  const scn = scenario("Scenario")
+    // will make a request to "https://gatling.io/docs/"
+    .exec(
+      http("Relative").get("/doc/")
+    )
+    // will make a request to "https://github.com/gatling/gatling"
+    .exec(
+      http("Absolute").get("https://github.com/gatling/gatling")
+    );
+
+  setUp(scn.injectOpen(atOnceUsers(1)).protocols(httpProtocol));
+  //#baseUrl
+};
 
 //#baseUrls
 http.baseUrls(

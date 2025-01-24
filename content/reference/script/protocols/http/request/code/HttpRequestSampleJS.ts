@@ -14,6 +14,18 @@
  * limitations under the License.
  */
 
+import {
+  ByteArrayBody,
+  ElFileBody,
+  PebbleFileBody,
+  PebbleStringBody,
+  RawFileBody,
+  Session,
+  StringBody,
+  scenario
+} from "@gatling.io/core";
+import { StringBodyPart, http, status } from "@gatling.io/http";
+
 //#requestName
 // with a static value
 http("requestName").get("https://gatling.io");
@@ -74,7 +86,6 @@ http("Issues").get("https://github.com/gatling/gatling/issues")
   .queryParam("state", (session) => session.get("stateValue"));
 //#queryParam
 
-
 //#multivaluedQueryParam
 http("name").get("/")
   // with static values
@@ -89,17 +100,19 @@ http("name").get("/")
   .multivaluedQueryParam("param", (session) => ["value1", "value2"]);
 //#multivaluedQueryParam
 
-//#queryParam-multiple
-// queryParamSeq isn't implemented in Gatling JS, use queryParamMap:
+const queryParamMultiple = () => {
+  //#queryParam-multiple
+  // queryParamSeq isn't implemented in Gatling JS, use queryParamMap:
 
-const params = {
-  "key1": "value1",
-  "key2": "value2"
-};
+  const params = {
+    "key1": "value1",
+    "key2": "value2"
+  };
 
-http("name").get("/")
-  .queryParamMap(params);
-//#queryParam-multiple
+  http("name").get("/")
+    .queryParamMap(params);
+  //#queryParam-multiple
+}
 
 //#headers
 // Extracting a map of headers allows you to reuse these in several requests
@@ -241,6 +254,15 @@ http("name").post("/")
   .body(PebbleFileBody((session) => session.get("templatePath")));
 //#PebbleFileBody
 
+const base64 = {
+  encode: (a: any) => ({
+    charCodeAt: (b: any): never => {
+      throw Error("Not implemented")
+    },
+    length: 0
+  })
+};
+
 //#ByteArrayBody
 // with a static value
 http("name").post("/")
@@ -300,17 +322,19 @@ http("name").post("/")
   .multivaluedFormParam("param", (session) => ["value1", "value2"]);
 //#multivaluedFormParam
 
-//#formParam-multiple
-// formParamSeq isn't implemented in Gatling JS, use formParamMap:
+const formParamMultiple = () => {
+  //#formParam-multiple
+  // formParamSeq isn't implemented in Gatling JS, use formParamMap:
 
-const params = {
-  "key1": "value1",
-  "key2": "value2"
+  const params = {
+    "key1": "value1",
+    "key2": "value2"
+  };
+
+  http("name").post("/")
+    .formParamMap(params);
+  //#formParam-multiple
 };
-
-http("name").post("/")
-  .formParamMap(params);
-//#formParam-multiple
 
 //#formFull
 http("name").post("/")

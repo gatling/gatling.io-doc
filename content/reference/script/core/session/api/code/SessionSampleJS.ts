@@ -14,6 +14,10 @@
  * limitations under the License.
  */
 
+import { Session, exec } from "@gatling.io/core";
+
+const session = null as unknown as Session;
+
 //#sessions-are-immutable
 // wrong usage: result from Session#set is discarded
 exec((session) => {
@@ -28,18 +32,20 @@ exec((session) => {
 });
 //#sessions-are-immutable
 
-//#set
-// set one single attribute
-const newSession1 = session.set("key", "whateverValue");
-// set multiple attributes
-const newSession2 = session.setAll({ "key": "value" });
-// remove one single attribute
-const newSession3 = session.remove("key");
-// remove multiple attributes
-const newSession4 = session.removeAll("key1", "key2");
-// remove all non Gatling internal attributes
-const newSession5 = session.reset();
-//#set
+const set = () => {
+  //#set
+  // set one single attribute
+  const newSession1 = session.set("key", "whateverValue");
+  // set multiple attributes
+  const newSession2 = session.setAll({ "key": "value" });
+  // remove one single attribute
+  const newSession3 = session.remove("key");
+  // remove multiple attributes
+  const newSession4 = session.removeAll("key1", "key2");
+  // remove all non Gatling internal attributes
+  const newSession5 = session.reset();
+  //#set
+};
 
 //#get
 // check if an attribute is stored in the session
@@ -58,13 +64,15 @@ const scenario = session.scenario();
 const groups = session.groups();
 //#properties
 
-//#state
-// return true if the virtual user has experienced a failure before this point
-const failed = session.isFailed();
-// reset the state to success
-// so that interrupt mechanisms such as exitHereIfFailed don't trigger
-const newSession1 = session.markAsSucceeded();
-// force the state to failure
-// so that interrupt mechanisms such as exitHereIfFailed do trigger
-const newSession2 = session.markAsFailed();
-//#state
+const state = () => {
+  //#state
+  // return true if the virtual user has experienced a failure before this point
+  const failed = session.isFailed();
+  // reset the state to success
+  // so that interrupt mechanisms such as exitHereIfFailed don't trigger
+  const newSession1 = session.markAsSucceeded();
+  // force the state to failure
+  // so that interrupt mechanisms such as exitHereIfFailed do trigger
+  const newSession2 = session.markAsFailed();
+  //#state
+};

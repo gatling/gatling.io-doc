@@ -14,6 +14,16 @@
  * limitations under the License.
  */
 
+import {
+  atOnceUsers,
+  constantUsersPerSec,
+  global,
+  holdFor,
+  jumpToRps,
+  rampUsers,
+  reachRps
+} from "@gatling.io/core";
+
 //#imports
 // required for Gatling core structure DSL
 import { scenario, simulation } from "@gatling.io/core";
@@ -25,6 +35,7 @@ import { http } from "@gatling.io/http";
 const httpProtocol = http;
 const httpProtocol1 = http;
 const httpProtocol2 = http;
+const scn = scenario("scenario")
 
 //#setUp
 export default simulation((setUp) => {
@@ -36,6 +47,7 @@ export default simulation((setUp) => {
 });
 //#setUp
 
+simulation((setUp) => {
 //#setUp-multiple
 const scn1 = scenario("scn1"); // etc...
 const scn2 = scenario("scn2"); // etc...
@@ -78,11 +90,11 @@ setUp(scn.injectOpen(atOnceUsers(1)))
   // make pauses follow a uniform distribution
   // where the mean is the value specified in the `pause(duration)` element.
   .uniformPauses(0.5)
-  .uniformPauses(Duration.ofSeconds(2))
+  .uniformPauses({ amount: 2, unit: "seconds" })
   // make pauses follow a normal distribution
   // where the mean is the value specified in the `pause(duration)` element.
   // and the standard deviation is the duration configured here.
-  .normalPausesWithStdDevDuration(Duration.ofSeconds(2))
+  .normalPausesWithStdDevDuration({ amount: 2, unit: "seconds" })
   // make pauses follow a normal distribution
   // where the mean is the value specified in the `pause(duration)` element.
   // and the standard deviation is a percentage of the mean.
@@ -105,12 +117,12 @@ setUp(
 
 //#throttling
 // throttling profile configured globally
-setUp(scn.injectOpen(constantUsersPerSec(100).during(Duration.ofMinutes(30))))
+setUp(scn.injectOpen(constantUsersPerSec(100).during({ amount: 30, unit: "minutes" })))
   .throttle(
     reachRps(100).in(10),
-    holdFor(Duration.ofMinutes(1)),
+    holdFor({ amount: 1, unit: "minutes" }),
     jumpToRps(50),
-    holdFor(Duration.ofHours(2))
+    holdFor({ amount: 120, unit: "minutes" })
   );
 
 // different throttling profiles configured globally
@@ -138,3 +150,4 @@ NOT SUPPORTED
 NOT SUPPORTED
 //#deployment-info
 */
+});
