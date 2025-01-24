@@ -1,8 +1,8 @@
 services:
   hugo:
-    image: floryn90/hugo:0.135.0-ext-alpine
+    image: floryn90/hugo:0.142.0-ext-alpine
     ports:
-     - 1313:1313
+     - "1313:1313"
     user: root:root
     volumes:
      - .:/src
