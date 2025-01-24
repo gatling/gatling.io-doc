@@ -1,6 +1,7 @@
+import de.heikoseeberger.sbtheader.FileType
 import sbt._
+import sbt.io.ExtensionFilter
 import sbt.Keys._
-
 import _root_.io.gatling.build.license.ApacheV2License
 
 kotlinVersion := "2.1.0"
@@ -13,6 +14,11 @@ enablePlugins(GatlingCompilerSettingsPlugin)
 
 enablePlugins(AutomateHeaderPlugin)
 headerLicense := ApacheV2License
+headerMappings ++= Map(
+  FileType("kt") -> HeaderCommentStyle.cStyleBlockComment,
+  FileType("ts") -> HeaderCommentStyle.cStyleBlockComment
+)
+headerSources / includeFilter := new ExtensionFilter("java", "scala", "kt", "ts")
 
 Compile / javacOptions ++= Seq("-encoding", "utf8")
 Test / javacOptions ++= Seq("-encoding", "utf8")

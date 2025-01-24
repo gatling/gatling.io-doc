@@ -47,8 +47,11 @@ jobs:
           hugo-version: '0.135.0'
           extended: true
 
-      - name: Generate site
-        run: ./bin/entrypoint.sh generate
+      - name: Prepare project
+        run: ./bin/entrypoint.sh prepare
 
       - name: Build TypeScript code samples
         run: npm run test-ts-samples
+
+      - name: Generate documentation
+        run: ./bin/entrypoint.sh --noprepare generate

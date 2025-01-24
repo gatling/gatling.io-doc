@@ -27,20 +27,39 @@ jobs:
       - name: Checkout current project
         uses: actions/checkout@v4
 
+      - name: Setup JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '21'
+          # no cache
+
+      - name: Setup sbt
+        uses: sbt/setup-sbt@v1
+
+      - name: Build JVM code samples
+        run: sbt "all headerCheckAll scalafmtSbtCheck" "test"
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          # no cache
+
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
         with:
           hugo-version: '0.135.0'
           extended: true
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
+      - name: Prepare project
+        run: ./bin/entrypoint.sh prepare
 
-      - name: Generate site
-        run: ./bin/entrypoint.sh generate
+      - name: Build TypeScript code samples
+        run: npm run test-ts-samples
+
+      - name: Generate documentation
+        run: ./bin/entrypoint.sh --noprepare generate
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
