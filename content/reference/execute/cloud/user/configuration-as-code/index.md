@@ -31,7 +31,7 @@ To deploy your Gatling project on Gatling Enterprise Cloud, follow these steps:
    - [Gatling Plugin with Maven]({{< ref "reference/integrations/build-tools/maven-plugin/#prerequisites" >}})
    - [Gatling Plugin with Gradle]({{< ref "reference/integrations/build-tools/gradle-plugin/#prerequisites" >}})
    - [Gatling Plugin with sbt]({{< ref "reference/integrations/build-tools/sbt-plugin/#prerequisites" >}})
-   - [JavaScript or TypeScript zith npm]({{< ref "reference/integrations/build-tools/js-cli/#running-your-simulations-on-gatling-enterprise-cloud" >}})
+   - [JavaScript or TypeScript with npm]({{< ref "reference/integrations/build-tools/js-cli/#running-your-simulations-on-gatling-enterprise-cloud" >}})
 2. Use the following command for deployment:
     - [Maven]({{< ref "reference/integrations/build-tools/maven-plugin/#deploying-on-gatling-enterprise-cloud" >}}): `mvn gatling:enterpriseDeploy`
     - [Gradle]({{< ref "reference/integrations/build-tools/gradle-plugin/#deploying-on-gatling-enterprise-cloud" >}}): `gradle gatlingEnterpriseDeploy`
