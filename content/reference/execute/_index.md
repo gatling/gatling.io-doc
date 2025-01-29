@@ -6,4 +6,5 @@ badge:
   label: Enterprise
 ordering:
   - cloud
+  - local
 ---
