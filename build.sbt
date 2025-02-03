@@ -4,7 +4,7 @@ import sbt.io.ExtensionFilter
 import sbt.Keys._
 import _root_.io.gatling.build.license.ApacheV2License
 
-kotlinVersion := "2.1.0"
+kotlinVersion := "2.1.10"
 scalaVersion := "2.13.16"
 
 enablePlugins(GatlingAutomatedScalafmtPlugin)
