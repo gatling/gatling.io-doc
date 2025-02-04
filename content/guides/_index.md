@@ -10,4 +10,5 @@ ordering:
   - dynatrace
   - aws-secrets-manager
   - config-as-code
+  - basic-auth
 ---
