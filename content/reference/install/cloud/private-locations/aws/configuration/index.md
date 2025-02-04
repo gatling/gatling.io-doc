@@ -84,7 +84,9 @@ control-plane {
       # spot = true
       # Subnets
       subnets = ["subnet-a", "subnet-b"]
-      # Elastic IP addresses (optional)
+      # Automatically associate a public IPv4 (optional, default true)
+      # auto-associate-public-ipv4 = true
+      # Elastic IP addresses (optional, not compatible with auto-associate-public-ipv4)
       # You will only be able to deploy a number of load generators up to the number of Elastic IP addresses you have configured.
       # elastic-ips = ["203.0.113.3", "203.0.113.4"]
       # Profile name (optional)
