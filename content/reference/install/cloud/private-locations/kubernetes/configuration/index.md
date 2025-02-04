@@ -169,6 +169,7 @@ Here is an example of a basic JSON job definition:
         "namespace": "gatling"
       },
       "spec": {
+        //"serviceAccountName": "location-service-account",
         "containers": [
           {
             "env": [
@@ -187,12 +188,26 @@ Here is an example of a basic JSON job definition:
                 "memory": "512Mi",
                 "cpu": "4"
               }
-            }
+            },
+            //"volumeMounts": [
+            //{
+            //"mountPath": "/data",
+            //"name": "location-volume"
+            //}
+            //]
           }
         ],
         "securityContext": {
           "sysctls": []
-        }
+        },
+        //"volumes": [
+        //  {
+        //  "name": "location-volume",
+        //  "persistentVolumeClaim": {
+        //    "claimName": "persistent-volume-claim"
+        //  }
+        // }
+        //]
       }
     },
     "ttlSecondsAfterFinished": 60
