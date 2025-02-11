@@ -70,7 +70,7 @@ Please check the official [IntelliJ documentation](https://www.jetbrains.com/hel
 
 Here are the mandatory steps:
 
-1. Click on `Add Configuration` or `Edit Configurations` on the left of the `Run` and `Debug` buttons at the right of the top bar.
+1. Click on `Add Configuration` or `Edit Configurations` to the left of the `Run` and `Debug` buttons on the right side of the top bar.
 2. Click on the `+` sign and add a new `Maven` configuration
 3. Enter `gatling:test -Dgatling.sameProcess=true` in the `Command line` field
 4. Click on `Modify` Java Options, select `Add JVM options` and enter `--add-opens=java.base/java.lang=ALL-UNNAMED`
