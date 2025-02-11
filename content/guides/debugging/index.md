@@ -62,7 +62,7 @@ Requires at least:
 
 {{< /alert >}}
 
-When launching Gatling from maven or gradle, you can attach a debugger so you can execute step-by-step.
+When launching Gatling from Maven or Gradle, you can attach a debugger so you can execute step-by-step.
 
 ### Maven with IntelliJ IDEA
 
