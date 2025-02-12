@@ -201,6 +201,7 @@ Here is an example of a basic JSON job definition:
         "securityContext": {
           "sysctls": []
         },
+        "restartPolicy": "Never"
         //"volumes": [
         //  {
         //  "name": "location-volume",
