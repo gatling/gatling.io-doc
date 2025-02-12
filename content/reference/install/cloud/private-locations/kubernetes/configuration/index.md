@@ -197,6 +197,7 @@ Here is an example of a basic JSON job definition:
             //]
           }
         ],
+       //"imagePullSecrets": [ { "name": "registry-key" } ],
         "securityContext": {
           "sysctls": []
         },
