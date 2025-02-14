@@ -209,14 +209,14 @@ gatling.enterprise.package {
       stopCriteria = [
         {
           type = "meanCpu",
-          timeframeInSeconds = 10,
+          timeFrameInSeconds = 10,
           threshold = {
             maxPercentage = 90
           }
         },
         {
           type = "globalResponseTime",
-          timeframeInSeconds = 10,
+          timeFrameInSeconds = 10,
           threshold = {
             maxMilliseconds = 90,
             percentile = 50
@@ -224,7 +224,7 @@ gatling.enterprise.package {
         },
         {
           type = "globalErrorRatio",
-          timeframeInSeconds = 10,
+          timeFrameInSeconds = 10,
           threshold = {
             maxPercentage = 90
           }
@@ -275,7 +275,7 @@ Environment variables prefix with `SENSITIVE_` will not be displayed on dashboar
 
 `stopCriteria` *(optional)*
 - `type`: `meanCpu`, `globalResponseTime` or `globalErrorRatio`
-- `timeframeInSeconds`: the timeframe during which the threshold must be reached to stop the simulation.
+- `timeFrameInSeconds`: the timeframe during which the threshold must be reached to stop the simulation.
 - `threshold`, if `globalResponseTime`:
   - `percentile`: defines the percentile from which you want to check the response time.
   - `maxMilliseconds`: the max response time, in milliseconds. Run stops if exceeded.
@@ -322,14 +322,14 @@ gatling.enterprise.package {
       stopCriteria = [
         {
           type = "meanCpu",
-          timeframeInSeconds = 10,
+          timeFrameInSeconds = 10,
           threshold = {
             maxPercentage = 90
           }
         },
         {
           type = "globalResponseTime",
-          timeframeInSeconds = 10,
+          timeFrameInSeconds = 10,
           threshold = {
             maxMilliseconds = 90,
             percentile = 50
@@ -337,7 +337,7 @@ gatling.enterprise.package {
         },
         {
           type = "globalErrorRatio",
-          timeframeInSeconds = 10,
+          timeFrameInSeconds = 10,
           threshold = {
             maxPercentage = 90
           }
@@ -368,7 +368,7 @@ gatling.enterprise.package {
       stopCriteria = [
         {
           type = "meanCpu",
-          timeframeInSeconds = 15,
+          timeFrameInSeconds = 15,
           threshold = {
             maxPercentage = 95
           }
@@ -407,7 +407,7 @@ For **`com.example.SimulationB`** in the example, its properties are combined wi
   stopCriteria = [
     {
       type = "meanCpu",
-      timeframeInSeconds = 15,
+      timeFrameInSeconds = 15,
       threshold = {
         maxPercentage = 95
       }
