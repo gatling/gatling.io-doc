@@ -364,20 +364,17 @@ NOT SUPPORTED
 //#validator
 .check(
   jmesPath("foo")
+    .ofDouble()
     .validate(
-      "MyCustomValidator",
+      "is +/- 1.0",
       (actual, session) => {
-        const prefix = session.get("prefix");
-        if (actual == null) {
-          throw Error("Value is missing");
-        } else {
-          // @ts-ignore
-          if (!actual.startsWith(prefix)) {
-            throw Error("Value " + actual + " should start with " + prefix);
-          }
-        }
-        return actual;
-      })
+      const expected: number = session.get("expected");
+      if (Math.abs(actual - expected) > 0.1) {
+        throw Error("Value is not within 0.1 margin");
+      }
+      return actual;
+    }
+  )
 )
 //#validator
 

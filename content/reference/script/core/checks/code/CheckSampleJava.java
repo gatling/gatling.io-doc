@@ -363,17 +363,17 @@ http("").get("")
 //#validator
 .check(
   jmesPath("foo")
+    .ofDouble()
     .validate(
-      "MyCustomValidator",
-      (actual, session) -> {
-        String prefix = session.getString("prefix");
-        if (actual == null) {
-          throw new NullPointerException("Value is missing");
-        } else if (!actual.startsWith(prefix)) {
-          throw new IllegalArgumentException("Value " + actual + " should start with " + prefix);
-        }
-        return actual;
-      })
+    "is +/- 1.0",
+    (actual, session) -> {
+      double expected = session.getDouble("expected");
+      if (Math.abs(actual - expected) > 0.1) {
+        throw new RuntimeException("Value is not within 0.1 margin");
+      }
+      return actual;
+    }
+  )
 )
 //#validator
 

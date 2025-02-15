@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import io.gatling.commons.validation.{ Failure, Success }
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 
@@ -360,17 +361,21 @@ request
 //#validator
 .check(
   jmesPath("foo")
+    .ofType[Double]
     .validate(
-      "MyCustomValidator",
-      (actual, session) => {
-        import io.gatling.commons.validation._
-        val prefix = session("prefix").as[String]
-        actual match {
-          case Some(value) if !value.startsWith(prefix) => Failure(s"Value $value should start with $prefix")
-          case None                                     => Failure("Value is missing")
-          case _                                        => Success(actual)
-        }
-      })
+    "is +/- 1.0",
+    (actual, session) => {
+      val expected = session("expected").as[Double]
+      actual match {
+        case Some(value) if math.abs(value - expected) <= 0.1 =>
+          Failure("Value is not within 0.1 margin")
+        case None =>
+          Failure("Value is missing")
+        case _ =>
+          Success(actual)
+      }
+    }
+  )
 )
 //#validator
 

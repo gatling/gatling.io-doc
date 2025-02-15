@@ -18,6 +18,7 @@ import io.gatling.javaapi.core.CoreDsl.*
 import io.gatling.javaapi.http.HttpDsl.*
 import java.nio.charset.StandardCharsets
 import java.util.*
+import kotlin.math.abs
 
 class CheckSampleKotlin {
 
@@ -356,17 +357,15 @@ http("").get("")
 //#validator
 .check(
   jmesPath("foo")
-    .validate("MyCustomValidator") { actual, session ->
-
-      val prefix: String = session.getString("prefix")!!
-      if (actual == null) {
-        throw NullPointerException("Value is missing")
-      } else {
-        require(actual.startsWith(prefix)) { "Value $actual should start with $prefix" }
-        actual
+    .ofDouble()
+    .validate("is +/- 1.0") { actual, session ->
+      val expected = session.getDouble("expected")
+      if (abs(actual - expected) > 0.1) {
+        throw RuntimeException("Value is not within 0.1 margin")
       }
+      actual
     }
-)
+  )
 //#validator
 
 //#name
