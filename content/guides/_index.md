@@ -9,6 +9,7 @@ ordering:
   - grouping-feeder
   - dynatrace
   - aws-secrets-manager
+  - aws-s3-bucket-feeders
   - config-as-code
   - basic-auth
 ---
