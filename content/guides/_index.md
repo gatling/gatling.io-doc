@@ -11,4 +11,5 @@ ordering:
   - aws-secrets-manager
   - config-as-code
   - basic-auth
+  - o-auth
 ---
