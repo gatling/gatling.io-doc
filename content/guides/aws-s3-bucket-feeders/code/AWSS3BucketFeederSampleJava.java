@@ -16,6 +16,7 @@
 
 //#aws-s3-bucket-feeders
 import io.gatling.javaapi.core.*;
+import static io.gatling.javaapi.core.CoreDsl.*;
 
 import java.io.File;
 import java.io.FileOutputStream;
