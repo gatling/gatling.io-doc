@@ -17,127 +17,64 @@
 //#aws-s3-bucket-feeders
 import io.gatling.javaapi.core.*;
 
-import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.NoSuchElementException;
+import java.nio.file.Paths;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import software.amazon.awssdk.core.sync.ResponseTransformer;
+import io.gatling.javaapi.core.FeederBuilder;
+import io.gatling.javaapi.core.Simulation;
+import io.gatling.javaapi.http.HttpProtocolBuilder;
+import software.amazon.awssdk.core.ResponseBytes;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.GetObjectRequest;
+import software.amazon.awssdk.services.s3.model.GetObjectResponse;
 
 public class AWSS3BucketFeederSampleJava extends Simulation {
-    Iterator<Map<String, Object>> feeder;
+
+    private final String bucketName = "<bucket-name>";
+    private final String objectKey = "<feeder-file-object-key>";
+    private final String tempFileName = "<temp-feeder-file-name>"; // ex: feederFile.csv, feederFile.json
+    private final String currentAbsolutePath = Paths.get("").toAbsolutePath().toString();
+    private final String tempFileAbsolutePath = String.format("%s/%s", this.currentAbsolutePath, tempFileName);
+
     {
-        String bucket = "<s3-bucket-name>";
-        String key = "<feeder-file-name>";
-        String fileType = "<csv-or-json>"; // "csv" or "json"
+        S3Client s3 = S3Client.create();
 
-        this.feeder = "json".equalsIgnoreCase(fileType) ? readJsonFromS3(bucket, key) : readCsvFromS3(bucket, key);
-    }
+        try {
+            // Create a request to get the object
+            GetObjectRequest getObjectRequest = GetObjectRequest.builder()
+                    .bucket(this.bucketName)
+                    .key(this.objectKey)
+                    .build();
 
-    // Custom iterator implementation for circular behavior
-    private static class CircularIterator<T> implements Iterator<T>, Iterable<T> {
-        private final List<T> items;
-        private int currentIndex = 0;
+            // Fetch the object bytes
+            ResponseBytes<GetObjectResponse> objectBytes = s3.getObjectAsBytes(getObjectRequest);
 
-        public CircularIterator(List<T> items) {
-            if (items == null || items.isEmpty()) {
-                throw new IllegalArgumentException("List cannot be null or empty");
-            }
-            this.items = items;
-        }
+            File tempFile = Paths.get(this.tempFileName).toFile();
+            tempFile.deleteOnExit();
 
-        @Override
-        public boolean hasNext() {
-            return !items.isEmpty();
-        }
-
-        @Override
-        public T next() {
-            if (items.isEmpty()) {
-                throw new NoSuchElementException("No elements in the iterator");
-            }
-            T item = items.get(currentIndex);
-            currentIndex = (currentIndex + 1) % items.size(); // Circular logic
-            return item;
-        }
-
-        @Override
-        public Iterator<T> iterator() {
-            return this;
-        }
-    }
-
-    private Iterator<Map<String, Object>> readJsonFromS3(String bucket, String key) {
-        try (
-                S3Client s3 = S3Client.create();
-                InputStream inputStream = s3.getObject(
-                        GetObjectRequest.builder().bucket(bucket).key(key).build(),
-                        ResponseTransformer.toInputStream())) {
-
-            ObjectMapper objectMapper = new ObjectMapper();
-            List<Map<String, Object>> rows = objectMapper.readValue(inputStream, new TypeReference<>() {
-            });
-
-            if (rows.isEmpty()) {
-                throw new RuntimeException("JSON file is empty: " + key);
+            // Write to the temp file
+            try (FileOutputStream fos = new FileOutputStream(tempFile)) {
+                fos.write(objectBytes.asByteArray());
             }
 
-            return new CircularIterator<>(rows);
+            System.out.println("File saved to: " + tempFile.getAbsolutePath());
         } catch (IOException e) {
-            throw new RuntimeException("Failed to parse JSON from S3: " + key, e);
+            e.printStackTrace();
+        } finally {
+            s3.close();
         }
     }
 
-    private Iterator<Map<String, Object>> readCsvFromS3(String bucket, String key) {
-        List<Map<String, Object>> rows = new ArrayList<>();
+    /*
+     * - Since the feeder file is created at runtime, we use absolute file paths in
+     * order to be able to load the feeder files AFTER Gatling starts.
+     *
+     * - Use the feeder method that corresponds to the feeder file type: csv,
+     * json..etc
+     */
 
-        try (
-                S3Client s3 = S3Client.create();
-                InputStream inputStream = s3.getObject(
-                        GetObjectRequest.builder().bucket(bucket).key(key).build(),
-                        ResponseTransformer.toInputStream());
-                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
-
-            String headerLine = reader.readLine();
-            if (headerLine == null) {
-                throw new RuntimeException("CSV file is empty: " + key);
-            }
-            String[] headers = headerLine.split(",");
-
-            reader.lines().forEach(line -> {
-                String[] fields = line.split(",");
-                if (fields.length < headers.length) {
-                    System.err.println("Skipping malformed CSV line: " + line);
-                    return;
-                }
-
-                Map<String, Object> map = new HashMap<>();
-                for (int i = 0; i < headers.length; i++) {
-                    map.put(headers[i].trim(), fields[i].trim());
-                }
-                rows.add(map);
-            });
-
-        } catch (IOException e) {
-            throw new RuntimeException("Error reading CSV from S3: " + key, e);
-        }
-
-        if (rows.isEmpty()) {
-            throw new RuntimeException("CSV file contains no data: " + key);
-        }
-
-        return new CircularIterator<>(rows);
-    }
+    private final FeederBuilder<String> feeder = csv(this.tempFileAbsolutePath).circular();
 
 }

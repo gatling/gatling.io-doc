@@ -8,7 +8,7 @@ lead: Learn how to use AWS S3 buckets to store and fetch simulation feeder data.
 
 ## Introduction
 
-When working with very large feeder files, storing them locally in your repository is not ideal. Instead, you can store them in an S3 bucket and access the feeder data directly from your Gatling script. This guide explains how to correctly retrieve data from feeders stored in an S3 bucket.
+When working with large feeder files or files containing sensitive data, storing them locally in your repository is not ideal. Instead, you can store them in an S3 bucket and access the feeder data directly from your Gatling script. This guide explains how to correctly retrieve data from feeders stored in an S3 bucket.
 
 ## Prerequisites
 
@@ -73,11 +73,10 @@ Install the AWS SDK into your Java project using either Maven or Gradle:
 
 **Notes:**
 
-- The example below utilises a custom **circular** iterator to retrieve data from feeders. You can customise the fetching behaviour to suit your specific needs.
-- The example below demonstrates feeders for **CSV** and **JSON** file types. You can create custom feeders for any file type required.
+- The example below retrieves the feeder file from the S3 bucket, temporarily stores it in the project's root directory, and deletes it once the simulation is completed.
 
 {{< include-code "aws-s3-bucket-feeders" java >}}
 
 ## Test your S3 feeder
 
-You can invoke the `feed(feeder)` method on the `feeder` variable defined above and verify that the data is correctly retrieved by checking the corresponding session variables.
+Pass the `feeder` object to your scenario and ensure that the feeder data is retrieved correctly, following the required behavior.
