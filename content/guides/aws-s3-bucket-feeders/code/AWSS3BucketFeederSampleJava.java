@@ -59,14 +59,8 @@ public class AWSS3BucketFeederSampleJava extends Simulation {
         }
     }
 
-    /*
-     * - Since the feeder file is created at runtime, we use absolute file paths in
-     * order to be able to load the feeder files AFTER Gatling starts.
-     *
-     * - Use the feeder method that corresponds to the feeder file type: csv,
-     * json..etc
-     */
-
+    // Use the feeder method that corresponds to the feeder file type: csv,
+    // json..etc
     FeederBuilder<String> feeder = csv(feederFile.toFile().getAbsolutePath()).random();
 
 }
