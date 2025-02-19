@@ -18,15 +18,14 @@
 import io.gatling.javaapi.core.*;
 import static io.gatling.javaapi.core.CoreDsl.*;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.Paths;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 
 import io.gatling.javaapi.core.FeederBuilder;
-import io.gatling.javaapi.core.Simulation;
-import io.gatling.javaapi.http.HttpProtocolBuilder;
-import software.amazon.awssdk.core.ResponseBytes;
+
+import software.amazon.awssdk.core.ResponseInputStream;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.GetObjectRequest;
 import software.amazon.awssdk.services.s3.model.GetObjectResponse;
@@ -35,36 +34,28 @@ public class AWSS3BucketFeederSampleJava extends Simulation {
 
     private final String bucketName = "<bucket-name>";
     private final String objectKey = "<feeder-file-object-key>";
-    private final String tempFileName = "<temp-feeder-file-name>"; // ex: feederFile.csv, feederFile.json
-    private final String currentAbsolutePath = Paths.get("").toAbsolutePath().toString();
-    private final String tempFileAbsolutePath = String.format("%s/%s", this.currentAbsolutePath, tempFileName);
+    private final Path feederFile = loadFeeder();
 
-    {
-        S3Client s3 = S3Client.create();
-
-        try {
+    private Path loadFeeder() {
+        try (S3Client s3 = S3Client.create()) {
             // Create a request to get the object
             GetObjectRequest getObjectRequest = GetObjectRequest.builder()
                     .bucket(this.bucketName)
                     .key(this.objectKey)
                     .build();
 
-            // Fetch the object bytes
-            ResponseBytes<GetObjectResponse> objectBytes = s3.getObjectAsBytes(getObjectRequest);
+            Path tempFeederFile = Files.createTempFile("hello", ".file");
+            tempFeederFile.toFile().deleteOnExit();
 
-            File tempFile = Paths.get(this.tempFileName).toFile();
-            tempFile.deleteOnExit();
-
-            // Write to the temp file
-            try (FileOutputStream fos = new FileOutputStream(tempFile)) {
-                fos.write(objectBytes.asByteArray());
+            try (ResponseInputStream<GetObjectResponse> inputStream = s3.getObject(getObjectRequest)) {
+                // Write to the temp file
+                Files.copy(inputStream, tempFeederFile, StandardCopyOption.REPLACE_EXISTING);
             }
 
-            System.out.println("File saved to: " + tempFile.getAbsolutePath());
+            return tempFeederFile;
+
         } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            s3.close();
+            throw new RuntimeException(e);
         }
     }
 
@@ -76,6 +67,6 @@ public class AWSS3BucketFeederSampleJava extends Simulation {
      * json..etc
      */
 
-    private final FeederBuilder<String> feeder = csv(this.tempFileAbsolutePath).circular();
+    FeederBuilder<String> feeder = csv(feederFile.toFile().getAbsolutePath()).random();
 
 }
