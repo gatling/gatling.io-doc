@@ -1,10 +1,10 @@
 ---
-menutitle: Third party plugins
-title: Third party plugins for Gatling
+menutitle: Third-party plugins
+title: Third-party plugins for Gatling
 aliases:
   - /reference/extensions/third-parties
-description: Active, lagging and inactive third party plugins to use non-officially supported protocols, such as Kafka, AMQP, Cassandra and JDBC.
-lead: Third party plugins allow working with non-officially supported protocols
+description: Active, lagging, and inactive third-party plugins to use non-officially supported protocols, such as Kafka, AMQP, Cassandra and JDBC.
+lead: Third-party plugins allow working with non-officially supported protocols
 date: 2021-04-20T18:30:56+02:00
 ---
 
@@ -23,7 +23,7 @@ If you run into an issue, please contact their respective owners.
 * [Ftp plugin (Gatling 3.13)](https://github.com/fherbreteau/gatling-ftp) by François Herbreteau
 * [JDBC plugin (Gatling 3.11)](https://github.com/galax-io/gatling-jdbc-plugin) by jigarkhwar
 * [Kafka plugin (Gatling 3.10)](https://github.com/Amerousful/gatling-kafka) by Amerousful (Bairov Pavel)
-* [Kafka plugin (Gatling 3.11)](https://github.com/galax-io/gatling-kafka-plugin) by jigarkhwar
+* [Kafka plugin (Gatling 3.11)](https://github.com/galax-io/gatling-kafka-plugin) by jigarkhwar [Gatling blog starter guide](https://gatling.io/blog/kafka-load-test)
 
 ### Inactive
 
