@@ -25,9 +25,10 @@ This way, you'll be able to easily reuse some parts and build complex behaviors 
 
 In our scenario we have three separated processes:
 
-  * search: search models by name
-  * browse: browse the list of models
-  * edit: edit a given model
+- search: search products by name
+- browse: browse the list of products
+- addToCart: add a given product to cart
+- checkout: checkout cart
 
 Here, we're storing those chains into attributes in the same class, but you could as well store them in constants (static final fields in Java, object attributes in Scala and Kotlin, move them into a different class, etc.
 
@@ -44,8 +45,8 @@ Let's increase the number of users.
 
 Let's define two populations of users:
 
-* *regular* users: they can search and browse computer models.
-* *admin* users: they can search, browse and also edit computer models.
+- _browsing_ visitors: they can search and browse products.
+- _purchasing_ customers: they can search, browse, add products to cart and checkout.
 
 Translating into a scenario this gives:
 
@@ -55,7 +56,7 @@ To increase the number of simulated users, all you have to do is to change the c
 
 {{< include-code "setup-users" >}}
 
-Here we set only 10 users, because we don't want to flood our test web application. *Please*, be kind and don't crash our server! ;-)
+Here we set only 10 users, because we don't want to flood our test web application. _Please_, be kind and don't crash our server! ;-)
 
 If you want to simulate 3000 users, you might not want them to start at the same time.
 Indeed, real users are more likely to connect to your web application gradually.
@@ -70,7 +71,7 @@ In our scenario let's have 10 regular users and 2 admins, and ramp them over 10 
 ## Step 3: Use dynamic data with Feeders and Checks
 
 We have set our simulation to run a bunch of users, but they all search for the same model.
-Wouldn't it be nice if every user could search a different model name?
+Wouldn't it be nice if every user could search a different product name?
 
 We need dynamic data so that all users don't play exactly the same scenario, and so that we don't end up with a behavior completely different from the live system (due to caching, JIT etc.).
 This is where Feeders will be useful.
@@ -78,14 +79,14 @@ This is where Feeders will be useful.
 Feeders are data sources containing all the values you want to use in your scenarios.
 There are several types of Feeders, the most simple being the CSV Feeder: this is the one we will use in our test.
 
-First let's create a file named *search.csv* and place it in the `user-files` folder.
+First let's create a file named _search.csv_ and place it in the `user-files` folder.
 
 This file contains the following lines:
 
 ```text
-searchCriterion,searchComputerName
-Macbook,MacBook Pro
-eee,ASUS Eee PC 1005PE
+searchCriterion,searchProductName
+Bag,Pink Throwback Hip Bag
+Bottle,Black Earthen Bottle
 ```
 
 Let's then declare a feeder and use it to feed our users with the above data:
@@ -94,23 +95,22 @@ Let's then declare a feeder and use it to feed our users with the above data:
 
 Explanations:
 
-1. First we create a Feeder from a csv file with the following columns: *searchCriterion*, *searchComputerName*.
-2. As the default Feeder strategy is *queue*, we will use the *random* strategy for this test to avoid feeder starvation.
+1. First we create a Feeder from a csv file with the following columns: _searchCriterion_, _searchProductName_.
+2. As the default Feeder strategy is _queue_, we will use the _random_ strategy for this test to avoid feeder starvation.
 3. Every time a user reaches the feed step, it picks a random record from the Feeder.
-   This user has two new Session attributes named *searchCriterion*, *searchComputerName*.
+   This user has two new Session attributes named _searchCriterion_, _searchProductName_.
 4. We use Session data through [Gatling Expression Language]({{< ref "/reference/script/core/session/el" >}}) to parameterize the search.
-5. We use a [CSS selector check]({{< ref "/reference/script/core/checks#css" >}}) (also parameterized with Gatling Expression Language to capture a part of the HTML response, here a hyperlink, and save it in the user Session under the name *computerUrl*.
-6. We use the previously saved hyperlink to get a specific page.
+5. We use a [jmesPath selector check]({{< ref "/reference/script/core/checks#jmespath" >}}) to extract the name of the first element under the _products_ key in the response. We then verify whether its value matches the expected _searchProductName_ using `isEL`.
 
 {{< alert tip >}}
-For more details regarding *Feeders*, please check out the [Feeder reference page]({{< ref "/reference/script/core/session/feeders" >}}).
+For more details regarding _Feeders_, please check out the [Feeder reference page]({{< ref "/reference/script/core/session/feeders" >}}).
 
-For more details regarding *HTTP Checks*, please check out the [Checks reference page]({{< ref "/reference/script/protocols/http/checks" >}}).
+For more details regarding _HTTP Checks_, please check out the [Checks reference page]({{< ref "/reference/script/protocols/http/checks" >}}).
 {{< /alert >}}
 
 ## Step 4: Looping
 
-In the *browse* process we have a lot of repetition when iterating through the pages.
+In the _browse_ process we have a lot of repetition when iterating through the pages.
 We have four times the same request with a different query param value. Can we change this to not violate the DRY principle?
 
 First we will extract the repeated `exec` block to a function.
@@ -135,9 +135,9 @@ For more details regarding loops, please check out the [Loops reference page]({{
 
 ## Step 5: Check and failure management
 
-Up until now we have only used `check` to extract some data from the html response and store it in the session.
-But `check` is also handy to check properties of the response.
-By default Gatling checks if the http response status is *20x* or *304*.
+Up until now we have only used `check` to extract some data from the json response and validate against expected responses.
+But `check` is also handy to check other properties of the response.
+By default Gatling checks if the http response status is _20x_ or _304_.
 
 To demonstrate failure management we will introduce a `check` on a condition that fails randomly:
 
@@ -147,7 +147,7 @@ Explanations:
 
 1. First we import `ThreadLocalRandom`, to generate random values.
 2. We do a check on a condition that's been customized with a lambda.
-   It will be evaluated every time a user executes the request and randomly return *200* or *201*.
+   It will be evaluated every time a user executes the request and randomly return _200_ or _201_.
    As response status is 200, the check will fail randomly.
 
 To handle this random failure we use the `tryMax` and `exitHereIfFailed` constructs as follow:
