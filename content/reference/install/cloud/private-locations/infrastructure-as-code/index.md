@@ -1,6 +1,6 @@
 ---
 title: Infrastructure-as-code for Gatling Private Locations & Packages
-seotitle: Automate Gatling Private Locations & Packages deployment with infrastructure-as-code 
+seotitle: Gatling Private Locations & Packages Infrastructure-as-Code
 description: Learn how to automate your Gatling Private Locations & Packages deployment.
 date: 2021-11-07T14:29:04+00:00
 ---
