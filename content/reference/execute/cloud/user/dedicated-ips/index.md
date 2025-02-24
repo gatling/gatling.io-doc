@@ -3,12 +3,11 @@ menutitle: Dedicated IPs
 title: Dedicated IP addresses
 seotitle: Use dedicated IP addresses in Gatling Enterprise Cloud
 description: Request and use dedicated IP addresses for your load generator locations in Gatling Enterprise Cloud.
-lead: Dedicated IP addresses for your locations.
+lead: Dedicated IP addresses for your Gatling Enterprise cloud locations.
 date: 2021-03-10T14:29:04+00:00
 ---
 
-Dedicated IP Addresses allow you to have control over the load generators' IP addresses.
-This is useful, for example, if your target system performs some sort of IP address filtering.
+Dedicated IP addresses in Gatling Enterprise are static IPv4 addresses that can be provisioned in the region(s) of your choice. Once provisioned for your organization, these addresses can be assigned to your simulations, ensuring all load generation traffic originates from consistent, dedicated IPs. During test execution, Gatling Enterprise automatically allocates one of your unused dedicated IPs—provided it matches both the location and availability of your load generators—so you can maintain precise control over whitelisting, firewall configurations, and traffic analysis.
 
 {{< img src="dedicated-ips.png" alt="Dedicated IPs" caption="Dedicated IPs" >}}
 
@@ -33,8 +32,14 @@ The Dedicated IP addresses table shows your available dedicated IP addresses. Ea
 
 ## Usage
 
-You can enable the use of dedicated IP addresses when [configuring simulation locations]({{< ref "simulations#step-2-locations-configuration" >}}).
+### User Interface
+To enable dedicated IP addresses, simply activate the `Use Dedicated IPs` option while [configuring simulation locations]({{< ref "simulations#step-2-locations-configuration" >}}).
 
-When starting a run of a simulation configured to use dedicated IP addresses,
-if you have enough dedicated IP addresses available to satisfy the size of the configured locations,
-they will be reserved for the run duration.  If you don’t have enough dedicated IP addresses available, the run won't start.
+When starting a simulation run with dedicated IP addresses:
+
+- Gatling Enterprise checks whether you have enough available dedicated IP addresses to cover all configured locations.
+- If enough IPs are available, they are reserved for the duration of the run.
+- If insufficient IPs are available, the run cannot start.
+
+### Config-as-code
+You can also enable dedicated IP addresses programmatically through [config-as-code]({{< ref "configuration-as-code" >}}). Simply set the `useDedicatedIps` property to `true` in your [simulation configuration]({{< ref "configuration-as-code/#simulation-config" >}}). This instructs Gatling Enterprise to automatically assign your dedicated IPs to all load generators for that simulation.
