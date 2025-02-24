@@ -163,7 +163,7 @@ gatling.enterprise.package {
 }
 ```
 
-### Simulation configurations {#simulation-config}
+### Simulation configuration {#simulation-config}
 
 As we mention in the [Default Behavior]({{< ref "#default-behavior" >}}) section, a [Simulation]({{< ref "/reference/execute/cloud/user/simulations/" >}}) includes more than just a simulation.
 
