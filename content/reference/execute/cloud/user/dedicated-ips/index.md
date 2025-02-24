@@ -33,7 +33,7 @@ The Dedicated IP addresses table shows your available dedicated IP addresses. Ea
 ## Usage
 
 ### User Interface
-To enable dedicated IP addresses, simply activate the `Use Dedicated IPs` option while [configuring simulation locations]({{< ref "simulations#step-2-locations-configuration" >}}).
+To enable dedicated IP addresses, activate the `Use Dedicated IPs` option while [configuring simulation locations]({{< ref "simulations#step-2-locations-configuration" >}}).
 
 When starting a simulation run with dedicated IP addresses:
 
