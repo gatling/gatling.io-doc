@@ -8,7 +8,7 @@ date: 2023-03-04T16:00:00+00:00
 ---
 
 {{<alert tip >}}
-Simplify and speed up installation and configuration with Gatling's pre-built [Terraform modules]({{< ref "#terraform" >}}).
+Accelerate deployment and simplify configuration with Gatling's pre-built [infrastructure-as-code configurations]({{< ref "infrastructure-as-code/#azure" >}}).
 {{</alert>}}
 
 First of all, you should have followed [introduction]({{< ref "../introduction/" >}}) instructions to configure Gatling Cloud for receiving a new control plane. Please check this section first.
@@ -269,7 +269,3 @@ Your control plane restarts, using the latest image published on Docker Hub.
 {{< img src="azure-cp-update-image.png" alt="Update control plane instance installed on Azure Container App" >}}
 
 If you did not use the tag `latest`, you will have to [create a new revision](https://learn.microsoft.com/en-us/azure/container-apps/revisions-manage?tabs=bash#updating-your-container-app) and specify the control plane image you want to deploy.
-
-## Deploy infrastructure using Terraform {#terraform}
-
-Gatling provides Terraform modules to set up Azure infrastructure for Private Locations. One module specifies the load generator location(s), and the second module deploys the control plane. To use the Terraform module, visit our dedicated [GitHub repository](https://github.com/gatling/gatling-enterprise-control-plane-deployment/tree/main/terraform/examples/AZURE-private-location)

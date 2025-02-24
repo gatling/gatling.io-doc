@@ -18,7 +18,7 @@ See `jvm-options` configuration below.
 If you don't, the JVM will use a max heap size of 1/4th of the physical memory.
 
 {{<alert tip >}}
-Simplify and speed up configuration and deployment with Gatling's pre-built [Terraform modules]({{< ref "#terraform" >}}).
+Accelerate deployment and simplify configuration with Gatling's pre-built [infrastructure-as-code configurations]({{< ref "infrastructure-as-code/#azure" >}}).
 {{</alert>}}
 
 ## Permissions
@@ -51,9 +51,9 @@ So when using a custom image, make sure following are available:
 - [curl](https://curl.se/download.html) a command line tool and library for transferring data with URLs
 - [Java runtime environment](https://openjdk.org/install/): OpenJDK 64bits LTS versions: 11, 17 or 21 (see [Gatling prerequisites]({{< ref "../../../oss#java-version" >}}))
 
-{{< alert tip >}}
-Learn how to tune the OS for more performance, configure the open files limit, the kernel and the network [here]({{< ref "../../../../script/core/operations#os-tuning" >}}).
-{{< /alert >}}
+{{<alert tip >}}
+Accelerate deployment and simplify configuration with Gatling's pre-built [infrastructure-as-code configurations]({{< ref "infrastructure-as-code/" >}}).
+{{</alert>}}
 
 ## Control plane configuration file
 
@@ -149,7 +149,3 @@ The table below outlines the supported Java versions for certified Gatling image
 {{< alert info >}}
 For the `javascript` engine, only the latest Java version is supported, which corresponds to the GraalVM version used to run Gatling with JavaScript.
 {{< /alert >}}
-
-## Configure instances using Terraform {#terraform}
-
-Gatling provides Terraform modules to set up Azure infrastructure for Private Locations. One module specifies the load generator location(s), and the second module deploys the control plane. To use the Terraform module, visit our dedicated [GitHub repository](https://github.com/gatling/gatling-enterprise-control-plane-deployment/tree/main/terraform/examples/AZURE-private-location)
