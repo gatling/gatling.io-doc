@@ -214,11 +214,11 @@ To use the infrastructure-as-code configurations to setup your AWS Private Packa
 
 To use the infrastructure-as-code configurations to setup your Azure Private Package infrastructure, visit our dedicated [page]({{< ref "infrastructure-as-code/#azure" >}}).
 
-#### GCP Cloud Storage {#configure-private-packages-with-terraform-gcp}
+#### GCP Cloud Storage
 
 To use the infrastructure-as-code configurations to setup your GCP Private Package infrastructure, visit our dedicated [page]({{< ref "infrastructure-as-code/#gcp" >}}).
 
-#### Helm chart for Kubernetes {#configure-private-packages-with-helm-chart}
+#### Helm chart for Kubernetes
 
 To use the infrastructure-as-code configurations to setup your Kubernetes Private Package infrastructure, visit our dedicated [page]({{< ref "infrastructure-as-code/#kubernetes" >}}).
 
