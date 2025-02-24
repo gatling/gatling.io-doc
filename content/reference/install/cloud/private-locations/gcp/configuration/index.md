@@ -20,7 +20,7 @@ See `jvm-options` configuration below.
 If you don't, the JVM will use a max heap size of 1/4th of the physical memory.
 
 {{<alert tip >}}
-Simplify and speed up configuration and deployment with Gatling's pre-built [Terraform modules]({{< ref "#terraform" >}}).
+Accelerate deployment and simplify configuration with Gatling's pre-built [infrastructure-as-code configurations]({{< ref "infrastructure-as-code/#gcp" >}}).
 {{</alert>}}
 
 ## Permissions
@@ -192,7 +192,3 @@ See limits of concurrent connections with Cloud NAT on [Cloud NAT port reservati
 make sure to provide enough static IP addresses based on the load you need to generate.
 
 {{< img src="cloud-nat-static-ip.png" alt="Static IP configuration" >}}
-
-## Configure instances using Terraform {#terraform}
-
-Gatling provides Terraform modules to set up GCP infrastructure for Private Locations. One module specifies the load generator location(s), and the second module deploys the control plane. To use the Terraform module, visit our dedicated [GitHub repository](https://github.com/gatling/gatling-enterprise-control-plane-deployment/tree/main/terraform/examples/GCP-private-location)

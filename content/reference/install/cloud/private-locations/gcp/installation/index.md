@@ -8,7 +8,7 @@ date: 2023-09-03T16:00:00+00:00
 ---
 
 {{<alert tip >}}
-Simplify and speed up installation and configuration with Gatling's pre-built [Terraform modules]({{< ref "#terraform" >}}).
+Accelerate deployment and simplify configuration with Gatling's pre-built [infrastructure-as-code configurations]({{< ref "infrastructure-as-code/#gcp" >}}).
 {{</alert>}}
 
 GCP [Compute Engine](https://cloud.google.com/compute/docs) is a computing and hosting service that lets you create and run virtual machines on Google infrastructure.
@@ -228,7 +228,3 @@ You can examine these logs directly within containers by executing the command: 
 
 If the instance is stopped, it can be maintained in an operational state by setting debug.keep-load-generator-alive to true in the location configuration. 
 **However, remember to delete it manually when no longer needed.**
-
-## Deploy infrastructure using Terraform {#terraform}
-
-Gatling provides Terraform modules to set up GCP infrastructure for Private Locations. One module specifies the load generator location(s), and the second module deploys the control plane. To use the Terraform module, visit our dedicated [GitHub repository](https://github.com/gatling/gatling-enterprise-control-plane-deployment/tree/main/terraform/examples/GCP-private-location)
