@@ -20,7 +20,7 @@ we recommend that you isolate the load generators on their dedicated nodes, usin
 See `tolerations` configuration below.
 
 {{<alert tip >}}
-Simplify and speed up configuration and deployment with Gatling's pre-built [Helm chart]({{< ref "#helm" >}}).
+Accelerate deployment and simplify configuration with Gatling's pre-built [Helm chart]({{< ref "infrastructure-as-code/#kubernetes" >}}).
 {{</alert>}}
 
 ## Permissions
@@ -234,7 +234,3 @@ Here is an example of a basic JSON job definition:
 This job definition is based on the Kubernetes Job API schema.
 For more details on the available properties and their configurations, please refer to the [Kubernetes Job API schema](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#job-v1-batch).
 {{< /alert >}}
-
-## Deploy resources using Helm {#helm}
-
-Gatling provides Helm chart to set up Kubernetes resources for Private Locations, visit our dedicated [GitHub repository](https://github.com/gatling/gatling-enterprise-control-plane-deployment/tree/main/helm-chart)
