@@ -257,6 +257,10 @@ gatling.enterprise.package {
 Locations weights sum must be equal to 100
 {{< /alert >}}
 
+`useDedicatedIps` (optional) : A Boolean property, defaulting to `false`. When this property is not specified:
+- If the simulation is not deployed yet, it defaults to `false`.
+- If the simulation is already deployed, the existing dedicated IP configuration for the simulation takes precedence.
+
 `parameters` *(optional)* :
 
 - `ignoreDefaults` *(optional)* : Ignore or not [Default Load Generator Parameters]({{< ref "/reference/install/cloud/private-locations/introduction" >}}) *(default: false, or existing)*
