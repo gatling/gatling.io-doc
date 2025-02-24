@@ -163,7 +163,7 @@ gatling.enterprise.package {
 }
 ```
 
-### Simulation configurations
+### Simulation configuration {#simulation-config}
 
 As we mention in the [Default Behavior]({{< ref "#default-behavior" >}}) section, a [Simulation]({{< ref "/reference/execute/cloud/user/simulations/" >}}) includes more than just a simulation.
 
@@ -256,6 +256,10 @@ gatling.enterprise.package {
 {{< alert warning >}}
 Locations weights sum must be equal to 100
 {{< /alert >}}
+
+`useDedicatedIps` (optional) : A Boolean property controlling whether to use dedicated IPs.
+- For a new simulation (i.e., first deployment): If useDedicatedIps is omitted, it defaults to false.
+- For an already deployed simulation: If useDedicatedIps is omitted, the existing dedicated IP configuration remains unchanged.
 
 `parameters` *(optional)* :
 
