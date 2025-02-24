@@ -36,7 +36,7 @@ Those instances will send stats through the API as well.
 
 ## Control plane
 
-### Token
+### Token {#cp-token}
 
 Access the private locations section by clicking on the Private locations in the navigation bar (only visible if the feature is activated on your organization).
 
