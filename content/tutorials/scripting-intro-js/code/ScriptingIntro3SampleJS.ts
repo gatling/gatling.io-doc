@@ -19,14 +19,14 @@ import { http } from "@gatling.io/http";
 
 //#write-the-scenario
 export default simulation((setUp) => {
-
-  const httpProtocol =
-    http.baseUrl("https://computer-database.gatling.io")
-      // set the "accept" header to a value suited for the expected response
-      .acceptHeader("text/html");
+  const httpProtocol = http
+    .baseUrl("https://ecomm.gatling.io")
+    // set the "accept" header to a value suited for the expected response
+    .acceptHeader("application/json");
 
   // Add the ScenarioBuilder:
-  const myScenario = scenario("My Scenario")
-    .exec(http("Request 1").get("/computers/"));
+  const myScenario = scenario("My Scenario").exec(
+    http("Request 1").get("/products/")
+  );
 });
 //#write-the-scenario
