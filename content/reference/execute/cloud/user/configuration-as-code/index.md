@@ -257,9 +257,9 @@ gatling.enterprise.package {
 Locations weights sum must be equal to 100
 {{< /alert >}}
 
-`useDedicatedIps` (optional) : A Boolean property, defaulting to `false`. When this property is not specified:
-- If the simulation is not deployed yet, it defaults to `false`.
-- If the simulation is already deployed, the existing dedicated IP configuration for the simulation takes precedence.
+`useDedicatedIps` (optional) : A Boolean property controlling whether to use dedicated IPs.
+- For a new simulation (i.e., first deployment): If useDedicatedIps is omitted, it defaults to false.
+- For an already deployed simulation: If useDedicatedIps is omitted, the existing dedicated IP configuration remains unchanged.
 
 `parameters` *(optional)* :
 
