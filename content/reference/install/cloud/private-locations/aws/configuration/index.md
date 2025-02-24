@@ -17,7 +17,7 @@ The follow recommendations help you to select the best instances and tune them f
 - You might want to tune the `Xmx` JVM options to half of the physical memory. See `jvm-options` configuration below. If you don't, the JVM will use a max heap size of 1/4th of the physical memory.
 
 {{<alert tip >}}
-Simplify and speed up configuration and deployment with Gatling's pre-built [Terraform modules]({{< ref "#terraform" >}}).
+Accelerate deployment and simplify configuration with Gatling's pre-built [infrastructure-as-code configurations]({{< ref "infrastructure-as-code/#aws" >}}).
 {{</alert>}}
 
 ## Permissions
@@ -150,7 +150,3 @@ The table below outlines the supported Java versions for certified Gatling image
 {{< alert info >}}
 For the `javascript` engine, only the latest Java version is supported, which corresponds to the GraalVM version used to run Gatling with JavaScript.
 {{< /alert >}}
-
-## Configure instances using Terraform {#terraform}
-
-Gatling provides Terraform modules to set up AWS infrastructure for Private Locations. One module specifies the load generator location(s), and the second module deploys the control plane. To use the Terraform module, visit our dedicated [GitHub repository](https://github.com/gatling/gatling-enterprise-control-plane-deployment/tree/main/terraform/examples/AWS-private-location)
