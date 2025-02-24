@@ -8,7 +8,7 @@ date: 2021-11-07T14:29:04+00:00
 This guide provides several infrastructure-as-code options for AWS, Azure, and GCP, as well as a Kubernetes Helm chart for Private Locations & Packages deployment. By leveraging the configurations & charts from [gatling/gatling-enterprise-control-plane-deployment](https://github.com/gatling/gatling-enterprise-control-plane-deployment), you can quickly spin up Private Locations & Packages.
 
 ## Prerequisites
-- Control Plane Token: You must have a valid organization with Private Locations activated, and a [control plane token]({{< ref "introduction/#cp-token" >}}) stored in your cloud provider's native secret manager (AWS Secrets Manager, Azure Vault, GCP Secret Manager, and Kurbenetes Secrets).
+- Control Plane Token: You must have a valid organization with Private Locations activated and store your [control plane token]({{< ref "introduction/#cp-token" >}}) in a supported secret manager, such as AWS Secrets Manager, Azure Key Vault, GCP Secret Manager, or Kubernetes Secrets.
 - Deployment environment: A cloud account or a Kubernetes cluster with the necessary administrative permissions.
 - IaC Tools: Depending on your chosen provider and approach, install the relevant tools (e.g., Terraform, Cloud Provider CLI, Helm, Kubectl, etc.).
 
