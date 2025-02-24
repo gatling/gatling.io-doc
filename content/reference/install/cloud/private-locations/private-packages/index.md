@@ -80,6 +80,10 @@ This configuration includes the following parameters:
 
 #### AWS S3
 
+{{<alert tip >}}
+Accelerate deployment and simplify configuration with Gatling's pre-built [infrastructure-as-code configurations]({{< ref "infrastructure-as-code/#aws" >}}).
+{{</alert>}}
+
 {{< alert warning >}}
 Control plane with private repository needs AWS permissions `s3:PutObject`, `s3:DeleteObject` and `s3:GetObject` on the bucket.
 
@@ -105,11 +109,36 @@ This configuration includes the following parameters:
 - **bucket**: The name of the bucket where packages are uploaded to on AWS S3.
 - **path:** The path of a folder in AWS S3 bucket. (optional)
 
-{{<alert tip>}}
-Simplify and speed up your AWS installation and configuration with Gatling's pre-built [Terraform modules]({{< ref "#configure-private-packages-with-terraform-aws" >}})
+#### Azure Blob Storage
+
+{{<alert tip >}}
+Accelerate deployment and simplify configuration with Gatling's pre-built [infrastructure-as-code configurations]({{< ref "infrastructure-as-code/#azure" >}}).
 {{</alert>}}
 
+{{< alert warning >}}
+Control plane with private repository needs to be associate with Azure storage account role `Storage Blob Data Contributor`.
+For more information, check [Authenticate to Azure and authorize access to blob data](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-java?tabs=powershell%2Cmanaged-identity%2Croles-azure-portal%2Csign-in-azure-cli#authenticate-to-azure-and-authorize-access-to-blob-data)
+
+To download a private package, the location requires outbound connection access to `https://<storage-account>>.blob.core.windows.net/<container>`
+{{< /alert >}}
+
+```bash
+control-plane {
+  repository {
+    # Azure Blob Storage configuration
+    type = "azure"
+    storage-account = "storage-account-name"
+    container = "container-name"
+    path = "folder/to/upload" # (optional, default: root)
+  }
+}
+```
+
 #### GCP Cloud Storage
+
+{{<alert tip >}}
+Accelerate deployment and simplify configuration with Gatling's pre-built [infrastructure-as-code configurations]({{< ref "infrastructure-as-code/#gcp" >}}).
+{{</alert>}}
 
 {{< alert warning >}}
 Control plane with private repository needs GCP service account role with permissions `storage.objects.create`, 
@@ -136,32 +165,11 @@ This configuration includes the following parameters:
 - **bucket**: The name of the bucket where packages are uploaded to on GCP Cloud Storage.
 - **path:** The path of a folder in Cloud Storage bucket. (optional)
 
-#### Azure Blob Storage
-
-{{< alert warning >}}
-Control plane with private repository needs to be associate with Azure storage account role `Storage Blob Data Contributor`.
-For more information, check [Authenticate to Azure and authorize access to blob data](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-java?tabs=powershell%2Cmanaged-identity%2Croles-azure-portal%2Csign-in-azure-cli#authenticate-to-azure-and-authorize-access-to-blob-data)
-
-To download a private package, the location requires outbound connection access to `https://<storage-account>>.blob.core.windows.net/<container>`
-{{< /alert >}}
-
-```bash
-control-plane {
-  repository {
-    # Azure Blob Storage configuration
-    type = "azure"
-    storage-account = "storage-account-name"
-    container = "container-name"
-    path = "folder/to/upload" # (optional, default: root)
-  }
-}
-```
-
-{{<alert tip>}}
-Simplify and speed up your Azure installation and configuration with Gatling's pre-built [Terraform modules]({{< ref "#configure-private-packages-with-terraform-azure" >}})
-{{</alert>}}
-
 #### Filesystem Storage
+
+{{<alert tip >}}
+Accelerate deployment and simplify configuration with Gatling's pre-built [infrastructure-as-code configurations]({{< ref "infrastructure-as-code" >}}).
+{{</alert>}}
 
 {{< alert warning >}}
 To download a private package, the location requires outbound connection access to configured `download-base-url`.
@@ -194,30 +202,25 @@ This configuration includes the following parameters:
 - **directory**: The directory where the simulations will be stored.
 - **location.download-base-url**: The access URL for the control-plane. This URL will be provided to the load-generators so that they can download your simulations. 
 
+### Configure Private Packages with Infrastructure-as-code
 
-### Configure Private Packages with Terraform
+Gatling provides infrastructure-as-code configurations to set up your infrastructure for Private Locations with Private Packages.
 
-Gatling provides Terraform modules to set up your infrastructure for Private Locations with Private Packages. There are three required modules for a successful setup:
+#### AWS S3
 
-- specify the load generator location(s),
-- specify the private package,
-- deploy the control plane.
+To use the infrastructure-as-code configurations to setup your AWS Private Package infrastructure, visit our dedicated [page]({{< ref "infrastructure-as-code/#aws" >}}).
 
-#### AWS S3 {#configure-private-packages-with-terraform-aws}
+#### Azure Blob Storage
 
-To use the Terraform module to setup your AWS Private Package infrastructure, visit our dedicated [GitHub repository](https://github.com/gatling/gatling-enterprise-control-plane-deployment/blob/main/terraform/examples/AWS-private-package).
-
-#### Azure Blob Storage {#configure-private-packages-with-terraform-azure}
-
-To use the Terraform module to setup your Azure Private Package infrastructure, visit our dedicated [GitHub repository](https://github.com/gatling/gatling-enterprise-control-plane-deployment/blob/main/terraform/examples/AZURE-private-package).
+To use the infrastructure-as-code configurations to setup your Azure Private Package infrastructure, visit our dedicated [page]({{< ref "infrastructure-as-code/#azure" >}}).
 
 #### GCP Cloud Storage {#configure-private-packages-with-terraform-gcp}
 
-To use the Terraform module to setup your GCP Private Package infrastructure, visit our dedicated [GitHub repository](https://github.com/gatling/gatling-enterprise-control-plane-deployment/blob/main/terraform/examples/GCP-private-package).
+To use the infrastructure-as-code configurations to setup your GCP Private Package infrastructure, visit our dedicated [page]({{< ref "infrastructure-as-code/#gcp" >}}).
 
 #### Helm chart for Kubernetes {#configure-private-packages-with-helm-chart}
 
-To use the Helm chart to setup your Private Package infrastructure, visit our dedicated [GitHub repository](https://github.com/gatling/gatling-enterprise-control-plane-deployment/tree/main/helm-chart).
+To use the infrastructure-as-code configurations to setup your Kubernetes Private Package infrastructure, visit our dedicated [page]({{< ref "infrastructure-as-code/#kubernetes" >}}).
 
 ### Upload Private Packages using HTTPS {#enableHttps}
 
