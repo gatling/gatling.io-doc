@@ -11,5 +11,5 @@ ordering:
   - kubernetes
   - dedicated
   - private-packages
+  - infrastructure-as-code
 ---
-
