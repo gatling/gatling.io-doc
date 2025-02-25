@@ -207,6 +207,13 @@ However, you can target a different filename in `.gatling` by using the followin
 npx gatling enterprise-deploy --package-descriptor-filename="<file name>"
 ```
 
+#### Private packages
+
+To create, update and upload private packages, you need to specify `--control-plane-url` option on the `enterprise-deploy` command:
+```shell
+npx gatling enterprise-deploy --control-plane-url <your control plane URL>
+```
+
 You can check out other options with `npx gatling enterprise-deploy --help`.
 
 {{< alert info >}}
