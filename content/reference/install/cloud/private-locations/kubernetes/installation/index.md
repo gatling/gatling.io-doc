@@ -23,6 +23,8 @@ The config map includes the load generator's start script, so these scripts don'
 
 Finally, the control plane initiates a batch job, with the number of instances configured for the simulation run, and mounts the appropriate config map on each pod.
 
+{{< snippet "snippets/snippet-01.md" >}}
+
 ### Roles
 For each namespace configured for a private location, the control plane needs the following roles:
 
