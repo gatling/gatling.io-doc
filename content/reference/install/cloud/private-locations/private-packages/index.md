@@ -275,6 +275,7 @@ To create a private package, use Gatling Plugin deployment commands with control
 - [Maven plugin]({{< ref "/reference/integrations/build-tools/maven-plugin#private-packages" >}})
 - [Gradle plugin]({{< ref "/reference/integrations/build-tools/gradle-plugin#private-packages" >}})
 - [sbt plugin]({{< ref "/reference/integrations/build-tools/sbt-plugin#private-packages" >}})
+- [JavaScript CLI]({{< ref "/reference/integrations/build-tools/js-cli#private-packages" >}})
 
 ### Delete a private package
 
