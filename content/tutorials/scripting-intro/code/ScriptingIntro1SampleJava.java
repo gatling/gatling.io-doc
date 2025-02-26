@@ -15,7 +15,7 @@
  */
 
 //#setup-the-file
-package computerdatabase;
+package ecomm;
 
 import static io.gatling.javaapi.core.CoreDsl.*;
 import static io.gatling.javaapi.http.HttpDsl.*;
@@ -26,7 +26,7 @@ import io.gatling.javaapi.http.*;
 
 class ScriptingIntro1SampleJava {
   //#extend-the-simulation-class
-  public class ComputerDatabaseSimulation extends Simulation {
+  public class EcommSimulation extends Simulation {
 
   }
   //#extend-the-simulation-class
