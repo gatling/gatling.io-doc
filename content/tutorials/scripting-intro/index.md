@@ -127,6 +127,31 @@ Now, you should have a completed simulation that looks like the following:
 
 ### Run the Simulation on Gatling Enterprise Cloud
 
+You can package, deploy, and run your simulation using one of two approaches, depending on whether you prefer a manual or automated process.
+
+#### Simple Manual Use Case
+
+1. Manually generate the package by executing the following command locally on your developer’s workstation:
+
+   {{< platform-toggle >}}
+   Linux/MacOS: ./mvnw gatling:enterprisePackage
+   Windows: mvnw.cmd gatling:enterprisePackage
+   {{</ platform-toggle >}}
+
+2. The above command will create a packaged **jar** file in your project's **target** directory.
+
+3. From your Gatling Enterprise console, go to **Packages**. Create a new package specifying its name, team that owns it, select your packaged jar file for upload then click **Save**.
+
+4. Go to **Simulations** > **Create a simulation** > **Test as code**. Under **Select a package**, choose the newly created package, then click **Create**
+
+5. Configure your simulation parameters:
+   - Simulation name
+   - Under **Select your package and simulation** > **Simulation**, select your simulation class.
+   - Under **Configure your locations**, choose the _Managed_ type and select a location based on your preference.
+   - Click **Save and launch**
+
+#### Advanced Use Case with Automated Deployments (Configuration-as-Code)
+
 Gatling Enterprise Cloud is a feature-rich SaaS platform that is designed for teams and organizations to get the most
 out of load testing. With the trial account, you created in the [Prerequisites section]({{< ref "#install-gatling" >}}), you can upload and run your test with advanced configuration, reporting, and collaboration features.
 
