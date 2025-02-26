@@ -34,6 +34,7 @@ Run comparison works by comparing a single performance metric across selected ru
 - Response time 50th percentile,
 - Response time 90th percentile,
 - Response time 99th percentile,
+- Response time 95th percentile,
 - Response time 99.9th percentile,
 - Response time 99.99th percentile,
 - Response time maximum,
