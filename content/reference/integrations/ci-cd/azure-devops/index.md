@@ -4,9 +4,6 @@ title: Integrating Azure DevOps Pipelines
 seotitle: Integrating Azure DevOps Pipelines with Gatling Enterprise
 description: Learn how to use the CI script with Azure DevOps Pipelines to run your simulations.
 lead: Run your Gatling Enterprise simulations from Azure DevOps Pipelines.
-badge:
-  type: enterprise
-  label: Enterprise
 aliases:
   - /reference/extensions/ci-cd/azure-devops
 date: 2023-11-09T15:25:27+0000

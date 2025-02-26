@@ -4,9 +4,6 @@ title: TeamCity Plugin
 seotitle: TeamCity Plugin for Gatling Enterprise
 description: Learn how to configure the Gatling Enterprise TeamCity plugin and run your simulations.
 lead: Run your Gatling Enterprise simulations from your TeamCity CI.
-badge:
-  type: enterprise
-  label: Enterprise
 aliases:
   - /reference/extensions/ci-cd/teamcity
 date: 2021-03-08T12:50:20+00:00

@@ -4,9 +4,6 @@ title: Gitlab CI/CD integration
 seotitle: Gitlab CI/CD integration for Gatling Enterprise
 description: Learn how to configure GitLab CI/CD to run your simulations on Gatling Enterprise.
 lead: Run your Gatling Enterprise simulations from GitLab CI/CD.
-badge:
-  type: enterprise
-  label: Enterprise
 aliases:
   - /reference/extensions/ci-cd/gitlab-ci
 date: 2023-02-17T14:00:00+00:00

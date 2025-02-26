@@ -4,9 +4,6 @@ title: Bamboo Plugin
 seotitle: Bamboo Plugin for Gatling Enterprise
 description: Learn how to configure the Gatling Enterprise Bamboo plugin and run your simulations.
 lead: Run your Gatling Enterprise simulations from your Bamboo CI.
-badge:
-  type: enterprise
-  label: Enterprise
 aliases:
   - /reference/extensions/ci-cd/bamboo
 date: 2021-03-08T12:49:49+00:00

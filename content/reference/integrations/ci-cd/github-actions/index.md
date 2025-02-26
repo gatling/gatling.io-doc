@@ -4,9 +4,6 @@ title: GitHub Actions integration
 seotitle: GitHub Actions integration for Gatling Enterprise
 description: Learn how to configure the Gatling Enterprise GitHub Action and run your simulations.
 lead: Run your Gatling Enterprise simulations from GitHub Actions.
-badge:
-  type: enterprise
-  label: Enterprise
 aliases:
   - /reference/extensions/ci-cd/github-actions
 date: 2022-01-04T15:00:00+00:00
