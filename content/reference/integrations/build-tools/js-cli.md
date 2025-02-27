@@ -234,7 +234,7 @@ By default, the Gatling plugin prompts the user to choose a simulation to start 
 However, users can also specify the simulation name directly to bypass the prompt using the following command:
 
 ```shell
-npx gatling enterprise-start --enterprise-simulation="<simulation name>" --control-plane-url <your control plane URL>
+npx gatling enterprise-start --enterprise-simulation="<simulation name>"
 ````
 
 Replace `<simulation name>` with the desired name of the simulation you want to start.
@@ -246,8 +246,9 @@ It's also possible to disable interactions by using the `--non-interactive` opti
 
 Here are additional options for this command:
 
-- `--wait-for-run-end`: Enables the command to wait until the run finishes and fail if there are assertion failures.
-- `--run-title=<title>`: Allows setting a title for your run reports.
-- `--run-description=<description>`:  Allows setting a description for your run reports summary.
+- `--wait-for-run-end`: Waits for the run to finish. The command will exit with an error status if any assertions fail.
+- `--run-title <title>`: Sets a custom title for the run reports.
+- `--run-description <description>`: Sets a custom description for the run summary.
+- `--control-plane-url <URL>`: Specifies a control plane URL (essential for Private Packages).
 
 You can check out other options with `npx gatling enterprise-start --help`.
