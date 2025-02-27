@@ -22,13 +22,12 @@ import io.gatling.javaapi.http.*;
 
 class ScriptingIntro2SampleJava {
   //#define-the-protocol-class
-  public class ComputerDatabaseSimulation extends Simulation {
+  public class EcommSimulation extends Simulation {
 
     // Add the HttpProtocolBuilder:
-    HttpProtocolBuilder httpProtocol =
-      http.baseUrl("https://computer-database.gatling.io")
+    HttpProtocolBuilder httpProtocol = http.baseUrl("https://ecomm.gatling.io")
         // set the "accept" header to a value suited for the expected response
-        .acceptHeader("text/html");
+        .acceptHeader("application/json");
   }
   //#define-the-protocol-class
 }

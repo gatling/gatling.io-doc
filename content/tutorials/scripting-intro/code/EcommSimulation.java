@@ -15,7 +15,7 @@
  */
 
 //#full-example
-package computerdatabase;
+package ecomm;
 
 import static io.gatling.javaapi.core.CoreDsl.*;
 import static io.gatling.javaapi.http.HttpDsl.*;
@@ -23,21 +23,18 @@ import static io.gatling.javaapi.http.HttpDsl.*;
 import io.gatling.javaapi.core.*;
 import io.gatling.javaapi.http.*;
 
-public class ComputerDatabaseSimulation extends Simulation {
+public class EcommSimulation extends Simulation {
 
-  HttpProtocolBuilder httpProtocol =
-    http.baseUrl("https://computer-database.gatling.io")
-      .acceptHeader("application/json")
-      .contentTypeHeader("application/json");
+  HttpProtocolBuilder httpProtocol = http.baseUrl("https://ecomm.gatling.io")
+      .acceptHeader("application/json");
 
   ScenarioBuilder myFirstScenario = scenario("My First Scenario")
-    .exec(http("Request 1")
-      .get("/computers/"));
+      .exec(http("Request 1")
+          .get("/products/"));
 
   {
     setUp(
-      myFirstScenario.injectOpen(constantUsersPerSec(2).during(60))
-    ).protocols(httpProtocol);
+        myFirstScenario.injectOpen(constantUsersPerSec(2).during(60))).protocols(httpProtocol);
   }
 }
 //#full-example

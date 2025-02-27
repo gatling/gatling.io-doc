@@ -22,16 +22,15 @@ import io.gatling.javaapi.http.*;
 
 class ScriptingIntro3SampleJava {
   //#write-the-scenario
-  public class ComputerDatabaseSimulation extends Simulation {
+  public class EcommSimulation extends Simulation {
 
-    HttpProtocolBuilder httpProtocol =
-      http.baseUrl("https://computer-database.gatling.io")
-          // set the "accept" header to a value suited for the expected response
-          .acceptHeader("text/html");
+    HttpProtocolBuilder httpProtocol = http.baseUrl("https://ecomm.gatling.io")
+        // set the "accept" header to a value suited for the expected response
+        .acceptHeader("application/json");
 
     // Add the ScenarioBuilder:
     ScenarioBuilder myScenario = scenario("My Scenario")
-      .exec(http("Request 1").get("/computers/"));
+        .exec(http("Request 1").get("/products/"));
   }
   //#write-the-scenario
 }
