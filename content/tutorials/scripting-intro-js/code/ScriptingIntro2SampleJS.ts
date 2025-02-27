@@ -19,11 +19,10 @@ import { http } from "@gatling.io/http";
 
 //#define-the-protocol-class
 export default simulation((setUp) => {
-
   // Add the HttpProtocolBuilder:
-  const httpProtocol =
-    http.baseUrl("https://computer-database.gatling.io")
-      // set the "accept" header to a value suited for the expected response
-      .acceptHeader("text/html");
+  const httpProtocol = http
+    .baseUrl("https://ecomm.gatling.io")
+    // set the "accept" header to a value suited for the expected response
+    .acceptHeader("application/json");
 });
 //#define-the-protocol-class

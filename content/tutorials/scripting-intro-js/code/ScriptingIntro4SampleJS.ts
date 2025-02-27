@@ -19,19 +19,18 @@ import { http } from "@gatling.io/http";
 
 //#define-the-injection-profile
 export default simulation((setUp) => {
+  const httpProtocol = http
+    .baseUrl("https://ecomm.gatling.io")
+    // set the "accept" header to a value suited for the expected response
+    .acceptHeader("application/json");
 
-  const httpProtocol =
-    http.baseUrl("https://computer-database.gatling.io")
-      // set the "accept" header to a value suited for the expected response
-      .acceptHeader("text/html");
-
-  const myScenario = scenario("My Scenario")
-    .exec(
-      http("Request 1").get("/computers/"));
+  const myScenario = scenario("My Scenario").exec(
+    http("Request 1").get("/products/")
+  );
 
   // Add the setUp block:
-  setUp(
-    myScenario.injectOpen(constantUsersPerSec(2).during(60))
-  ).protocols(httpProtocol);
+  setUp(myScenario.injectOpen(constantUsersPerSec(2).during(60))).protocols(
+    httpProtocol
+  );
 });
 //#define-the-injection-profile
