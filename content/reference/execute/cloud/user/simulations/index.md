@@ -84,6 +84,7 @@ Gatling Enterprise managed locations are available in the following regions:
 - AP Pacific (Mumbai)
 - AP SouthEast (Sydney)
 - Europe (Dublin)
+- Europe (London)
 - Europe (Paris)
 - SA East (São Paulo)
 - US East (N. Virginia)
