@@ -234,7 +234,7 @@ By default, the Gatling plugin prompts the user to choose a simulation to start 
 However, users can also specify the simulation name directly to bypass the prompt using the following command:
 
 ```shell
-npx gatling enterprise-start --enterprise-simulation="<simulation name>"
+npx gatling enterprise-start --enterprise-simulation="<simulation name>" --control-plane-url <your control plane URL>
 ````
 
 Replace `<simulation name>` with the desired name of the simulation you want to start.
