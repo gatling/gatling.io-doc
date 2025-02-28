@@ -17,4 +17,5 @@ ordering:
   - generate-test-data
   - docker-app
   - llm-api
+  - mqtt
 ---
