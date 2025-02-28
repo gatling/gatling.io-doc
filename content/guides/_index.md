@@ -15,4 +15,5 @@ ordering:
   - postman
   - grpc
   - generate-test-data
+  - docker-app
 ---
