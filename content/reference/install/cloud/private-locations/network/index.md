@@ -42,10 +42,26 @@ control-plane {
   token = "cpt_example_c7oze5djp3u14a5xqjanh..." 
   # Enterprise Cloud Network Configuration
   enterprise-cloud {
-    # Forward Proxy URL
-    url = "http://private-control-plane-forward-proxy/gatling"
+    proxy {
+      # Forward Proxy URL
+      forward {
+        url = "http://private-control-plane-forward-proxy/gatling"
+      }
+      # Uncomment if you need to trust custom certificates
+      # truststore {
+      #   # absolute path to a file containing the certificates in PEM format (can contains multiple concatenated PEM certificates) 
+      #   path = "/path/to/truststore.pem" 
+      # }
+      
+      # Uncomment for mutual authentication
+      # keystore {
+      #   # absolute path to a file containing the key and its certificate in PKCS12 format
+      #   path = "/path/to/keystore.p12"
+      #   # optional password if needed to open the keystore
+      #   # password = "p@ssw0rd"
+      # }
+    }
   }
-  locations = [] 
 }
 ```
 
@@ -62,8 +78,25 @@ control-plane {
   token = "cpt_example_c7oze5djp3u14a5xqjanh..." 
   # Control Plane Enterprise Cloud Network Configuration
   enterprise-cloud {
-    # Forward Proxy URL
-    url = "http://private-control-plane-forward-proxy/gatling"
+    proxy {
+      # Forward Proxy URL
+      forward {
+        url = "http://private-control-plane-forward-proxy/gatling"
+      }
+      # Uncomment if you need to trust custom certificates
+      # truststore {
+      #   # absolute path to a file containing the certificates in PEM format (can contains multiple concatenated PEM certificates) 
+      #   path = "/path/to/truststore.pem" 
+      # }
+      
+      # Uncomment for mutual authentication
+      # keystore {
+      #   # absolute path to a file containing the key and its certificate in PKCS12 format
+      #   path = "/path/to/keystore.p12"
+      #   # optional password if needed to open the keystore
+      #   # password = "p@ssw0rd"
+      # }
+    }
   }
   # Private Locations
   locations = [
@@ -82,7 +115,25 @@ control-plane {
 If you prefer separate proxies, define a substitution for the private locations and reference it in their configuration.
 ```bash
 location-enterprise-cloud = {
-  url = "https://location-forward-proxy/gatling"
+  proxy {
+    # Forward Proxy URL
+    forward {
+      url = "http://location-forward-proxy/gatling"
+    }
+    # Uncomment if you need to trust custom certificates
+    # truststore {
+    #   # absolute path to a file containing the certificates in PEM format (can contains multiple concatenated PEM certificates) 
+    #   path = "/path/to/truststore.pem" 
+    # }
+    
+    # Uncomment for mutual authentication
+    # keystore {
+    #   # absolute path to a file containing the key and its certificate in PKCS12 format
+    #   path = "/path/to/keystore.p12"
+    #   # optional password if needed to open the keystore
+    #   # password = "p@ssw0rd"
+    # }
+  }
 }
 
 control-plane {
@@ -90,8 +141,25 @@ control-plane {
   token = "cpt_example_c7oze5djp3u14a5xqjanh..." 
   # Control Plane Enterprise Cloud Network Configuration
   enterprise-cloud {
-    # Forward Proxy URL
-    url = "http://private-control-plane-forward-proxy/gatling"
+    proxy {
+      # Forward Proxy URL
+      forward {
+        url = "http://private-control-plane-forward-proxy/gatling"
+      }
+      # Uncomment if you need to trust custom certificates
+      # truststore {
+      #   # absolute path to a file containing the certificates in PEM format (can contains multiple concatenated PEM certificates) 
+      #   path = "/path/to/truststore.pem" 
+      # }
+      
+      # Uncomment for mutual authentication
+      # keystore {
+      #   # absolute path to a file containing the key and its certificate in PKCS12 format
+      #   path = "/path/to/keystore.p12"
+      #   # optional password if needed to open the keystore
+      #   # password = "p@ssw0rd"
+      # }
+    }
   }
   # Private Locations
   locations = [
@@ -113,6 +181,11 @@ control-plane {
 
 ### Key Notes
 
-* **Host Header Rewriting**: Ensure all configured forward proxies rewrite the host header to api.gatling.io. This is a mandatory requirement for proper communication.
-* **Configuration Simplification**: Take advantage of HOCON substitutions to reuse and simplify configuration settings, minimizing redundancy and reducing maintenance effort.
-* **Proxy Separation**: Decide whether to use a single proxy for both the Control Plane and Private Locations or separate proxies for each, based on your infrastructure needs.
+* **Host Header Rewriting**: Ensure all configured forward proxies rewrite the host header to `api.gatling.io`. This is a
+    mandatory requirement for proper communication.
+* **Configuration Simplification**: Take advantage of HOCON substitutions to reuse and simplify configuration settings,
+    minimizing redundancy and reducing maintenance effort.
+* **Proxy Separation**: Decide whether to use a single proxy for both the Control Plane and Private Locations or
+    separate proxies for each, based on your infrastructure needs.
+* **File Access**: Ensure that truststore and keystore are accessible when using them. Mind that they may be located at
+    different places for **Control plane** and **Load generators** depending on the way you mount volumes and/or generated the images.
