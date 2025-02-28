@@ -18,4 +18,5 @@ ordering:
   - docker-app
   - llm-api
   - mqtt
+  - kafka
 ---
