@@ -19,4 +19,5 @@ ordering:
   - llm-api
   - mqtt
   - kafka
+  - sqs
 ---
