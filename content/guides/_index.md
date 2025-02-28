@@ -20,4 +20,8 @@ ordering:
   - mqtt
   - kafka
   - sqs
+  - enterprise-reports
+  - mean-and-sd
+  - migrate-gradle
+  - migrate-maven
 ---
