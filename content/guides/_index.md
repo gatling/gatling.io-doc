@@ -16,4 +16,5 @@ ordering:
   - grpc
   - generate-test-data
   - docker-app
+  - llm-api
 ---
