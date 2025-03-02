@@ -5,6 +5,8 @@ seotitle: How to test applications with basic authentication with Gatling
 description: Create a Gatling simulation that uses basic authentication.
 lead: Add basic authentication using a csv feeder to your Gatling simulation.
 date: 2025-02-12T6:30:56+02:00
+aliases:
+    - /guides/basic-auth
 
 ---
 
@@ -19,7 +21,7 @@ Basic authentication requires sending credentials (username and password) in the
 
 ## Step 1: Create the credentials feeder
 
-Feeders are data collections used in your load test. Learn about feeder types and usage in the [feeder reference documentation]({{< ref "../reference/script/core/session/feeders" >}}). For this guide, use a `.csv` feeder file. 
+Feeders are data collections used in your load test. Learn about feeder types and usage in the [feeder reference documentation]({{< ref "../../reference/script/core/session/feeders" >}}). For this guide, use a `.csv` feeder file. 
 
 1. Create a file named `credentials.csv` in the `resources` folder of your Gatling project.
 2. Add the following data to the newly created `credentials.csv` file. 

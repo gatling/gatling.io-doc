@@ -3,6 +3,8 @@ title: AWS Secrets Manager
 seotitle: Easily Access and Manage AWS Secret Values with Gatling
 description: Learn how to retrieve and access your AWS Secrets Manager values directly within your Gatling scripts for improved security and efficiency during load testing.
 lead: Integrate AWS Secrets Manager with your Gatling scripts to securely retrieve and manage secret values after the initialization stage of your load generators.
+aliases:
+  - /guides/aws-secrets-manager
 ---
 
 ## Use Case

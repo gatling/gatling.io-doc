@@ -4,24 +4,10 @@ seotitle: Gatling practical guides
 description: Detailed and practical advice
 lead: Detailed and practical advice
 ordering:
-  - debugging
-  - passing-parameters
-  - grouping-feeder
-  - dynatrace
-  - aws-secrets-manager
-  - aws-s3-bucket-feeders
-  - config-as-code
-  - basic-auth
-  - postman
-  - grpc
-  - generate-test-data
-  - docker-app
-  - llm-api
-  - mqtt
-  - kafka
-  - sqs
-  - enterprise-reports
+  - complex-usecases
+  - analysis
+  - custom-config
+  - test-creation
+  - optimize-scripts
   - mean-and-sd
-  - migrate-gradle
-  - migrate-maven
 ---

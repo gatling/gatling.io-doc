@@ -3,6 +3,8 @@ title: Configuration-as-code
 seotitle: Configure and deploy tests to Gatling Enterprise Cloud in your CI chain
 description: Learn how to configure and deploy tests to Gatling Enterprise Cloud using a package descriptor conf file.
 lead: Learn how to configure and deploy tests to Gatling Enterprise Cloud using a package descriptor conf file.
+aliases:
+  - /guides/config-as-code
 ---
 
 This guide helps you to configure your packages and simulations in your local developer environment, 
