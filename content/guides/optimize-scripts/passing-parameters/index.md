@@ -5,6 +5,8 @@ seotitle: Passing parameters to a Gatling simulation
 description: Use Java system properties to pass parameters to a Gatling Simulation.
 lead: Use Java system properties to pass parameters to a Gatling Simulation.
 date: 2021-04-20T18:30:56+02:00
+aliases:
+  - /guides/passing-parameters
 ---
 
 You might want to pass parameters from the command line to the Simulation, for example the number of users, the duration of the ramp, etc.

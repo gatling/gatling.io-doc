@@ -4,6 +4,8 @@ seotitle: Easily Fetch Data from S3 Feeders with Gatling
 menutitle: AWS S3 Feeders
 description: Store your feeder files in S3 and access them from your Gatling scripts.
 lead: Learn how to use AWS S3 buckets to store and fetch simulation feeder data.
+aliases:
+  - /guides/aws-s3-bucket-feeders
 ---
 
 ## Introduction
