@@ -1,9 +1,9 @@
 ---
 title: Load testing AWS SQS with Gatling
-menutitle: AWS SQS
-seotitle: tbd
-description: tbd
-lead: tbd
+menutitle: How to test AWS SQS
+seotitle: Learn how to load test AWS SQS with Gatling
+description: Learn how to load test AWS SQS with Gatling
+lead: Learn how to load test AWS SQS with Gatling
 date: 2025-02-28T09:30:56+02:00
 ---
 
@@ -24,7 +24,7 @@ You can then plug into Gatling's native JMS support.
 The first thing you have to do is add the amazon-sqs-java-messaging-lib jar to your classpath.
 For example, here are the maven coordinates you'd have to add to your pom.xml.
 
-```java
+```xml
 <dependency>
  <groupId>com.amazonaws</groupId>
  <artifactId>amazon-sqs-java-messaging-lib</artifactId>
@@ -33,7 +33,7 @@ For example, here are the maven coordinates you'd have to add to your pom.xml.
 ```
 We also recommend that you upgrade the version of AWS Java SDK as the one that's being pulled transitively is a bit old:
 
-```java
+```xml
 <dependency>
  <groupId>com.amazonaws</groupId>
  <artifactId>aws-java-sdk-sqs</artifactId>

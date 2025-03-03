@@ -1,9 +1,9 @@
 ---
 title: Using SSE to load test an LLM API  
-menutitle: Load test an LLM API
-seotitle: tbd
-description: tbd
-lead: tbd
+menutitle: How to load test with server sent events
+seotitle: Using server sent events to load test an LLM API
+description: Learn how to use server sent events to load test an LLM API
+lead: Learn how to use server sent events to load test an LLM API
 date: 2025-02-27T09:30:56+02:00
 ---
 

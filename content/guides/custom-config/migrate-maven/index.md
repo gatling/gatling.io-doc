@@ -1,9 +1,9 @@
 ---
 title: Migrate to the Maven build tool
-menutitle: Load test an LLM API
-seotitle: tbd
-description: tbd
-lead: tbd
+menutitle: Migrate to Maven
+seotitle: Learn how to migrate to the Maven build tool.
+description: Learn how to migrate to the Maven build tool.
+lead: Learn how to migrate to the Maven build tool.
 date: 2025-02-27T09:30:56+02:00
 ---
 

@@ -1,9 +1,9 @@
 ---
-title: Kafka
+title: Load test a Kafka server
 menutitle: Load test a Kafka server
-seotitle: tbd
-description: tbd
-lead: tbd
+seotitle: Learn how to Load test a Kafka server with Gatling
+description: Learn how to Load test a Kafka server with Gatling
+lead: Learn how to Load test a Kafka server with Gatling
 date: 2025-02-28T09:30:56+02:00
 ---
 

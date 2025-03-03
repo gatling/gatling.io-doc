@@ -1,9 +1,9 @@
 ---
-title: MQTT
-menutitle: Load test an LLM API
-seotitle: tbd
-description: tbd
-lead: tbd
+title: Testing MQTT
+title: How to test the MQTT protocol
+seotitle: Learn how to test the MQTT protocol with Gatling
+description: Learn how to test the MQTT protocol with Gatling
+lead: Learn how to test the MQTT protocol with Gatling
 date: 2025-02-27T09:30:56+02:00
 ---
 

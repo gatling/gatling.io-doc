@@ -9,5 +9,5 @@ ordering:
   - custom-config
   - test-creation
   - optimize-scripts
-  - mean-and-sd
+  #- mean-and-sd
 ---
