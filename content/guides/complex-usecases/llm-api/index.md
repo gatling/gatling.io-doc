@@ -10,6 +10,10 @@ date: 2025-02-27T09:30:56+02:00
 ## Introduction
 Write an introduction
 
+
+
+<div style="position: relative; overflow: hidden; max-width: 100%; padding-bottom: 56.25%; margin: 0px;"><iframe width="560" height="315" src="https://www.youtube.com/embed/dK9_73FHj8w?si=6VCZCP4aM2wZznE3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; border: none;"></iframe></div>
+
 ## Step 1: Setting up the project
 
 First, ensure you have Gatling installed and set up. If you don't have Gatling installed, you can download it on the documentation and [clone this project](https://github.com/gatling/devrel-projects) from Github and open the `articles/load-test-llm-sse` folder.

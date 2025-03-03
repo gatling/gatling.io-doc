@@ -9,6 +9,10 @@ date: 2025-02-27T09:30:56+02:00
 
 ## Introduction (write this)
 
+
+
+{{< img src="MQTT-graphic.webp" >}}
+
 ## Configuring Gatling for Performance Testing
 
 In the rest of this article, we’ll go over setting up Gatling for performance evaluation of an MQTT broker in an IoT system.
@@ -85,6 +89,8 @@ We can now upload the simulation to Gatling Enterprise and execute a load test w
 Remember that the MQTT protocol differs from the HTTP protocol commonly evaluated in Gatling and other performance test tools. HTTP is a request-response protocol where a client waits for a response from the server. The MQTT protocol, on the other hand, is a publish-subscribe protocol that doesn’t block threads waiting for a response. Thus, Gatling does not record response times unless a check is configured to block and await a message response.
 
 Relevant metrics to monitor for MQTT testing, such as TCP connections, can be found in the Connections tab of the Gatling Enterprise test execution page.
+
+{{< img src="MQTT-graphic2.webp" >}}
 
 ## Conclusion
 

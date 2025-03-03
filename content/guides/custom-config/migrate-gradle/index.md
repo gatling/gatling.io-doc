@@ -1,14 +1,14 @@
 ---
 title: Migrate to the Gradle build tool
 menutitle: Migate to Gradle
-seotitle: tbd
-description: tbd
-lead: tbd
+seotitle: Learn how to migrate to the Gradle build tool
+description: Learn how to migrate to the Gradle build tool
+lead: Learn how to migrate to the Gradle build tool
 date: 2025-02-28T09:30:56+02:00
 ---
 
 {{< alert info>}}
-The following guide helps you migrate from the Gatling bundle versions 3.9.5 and earlier to the Gradle build tool. It is not useful for Gatling versions >3.10  
+The following guide helps you migrate from the Gatling bundle versions 3.9.5 and earlier to the Gradle build tool. It is not useful for Gatling versions >3.10.   
 {{< /alert >}}
 
 ## Introduction
@@ -89,7 +89,7 @@ The demo projects on GitHub use the latest version of Gatling. If your version i
 
 To configure a specific version of Gatling, modify the build.gradle file.
 
-```java
+```xml
 plugins {
     id 'java'
     // The following line allows to load io.gatling.gradle plugin and directly apply it
@@ -116,7 +116,7 @@ plugins {
 
 To configure a specific version of Gatling, modify the build.gradle file.
 
-```scala
+```xml
 plugins {
     id 'scala'
     // The following line allows to load io.gatling.gradle plugin and directly apply it

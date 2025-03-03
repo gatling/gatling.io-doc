@@ -5,6 +5,7 @@ seotitle: Learn how to load test AWS SQS with Gatling
 description: Learn how to load test AWS SQS with Gatling
 lead: Learn how to load test AWS SQS with Gatling
 date: 2025-02-28T09:30:56+02:00
+private: true
 ---
 
 ## Introduction (write this) <!--add links-->

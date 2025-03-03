@@ -72,7 +72,7 @@ Note that demo projects on GitHub use the latest version of Gatling. If your ver
 (optional) Copy the recorder configuration file `recorder.conf` from ``/conf`` in the Gatling bundle to `src/test/resources/` in your Maven project.
 Open `pom.xml` in the Maven project and modify it to compile with your version of Java:
 
-```java
+```xml
 <!-- use the following if you're compiling with JDK 8-->
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
@@ -82,7 +82,7 @@ Open `pom.xml` in the Maven project and modify it to compile with your version o
 
 Or to configure the Gatling version:
 
-```java
+```xml
 <version>3.9.5</version>
 ```
 
