@@ -9,10 +9,7 @@ date: 2025-02-28T10:30:56+02:00
 
 ## Introduction
 
-<!--sync with the new blog post-->
-The number of production services that are deployed and running in containerization platforms such as Docker has grown dramatically in recent years. With this radical shift in the deployment architecture, the need for robust load testing of applications and services while running in containers is crucial.
-
-<!--fix header formatting (caps, structure)-->
+The number of production services that are deployed and running in containerization platforms such as Docker has grown in recent years. With this shift in the deployment architecture, the need for load testing of applications and services while running in containers is crucial. This guide demostrates how to load test a simple containerized application. 
 
 ## Load testing Docker containers in practice
 
@@ -174,4 +171,4 @@ The requirement for performance testing of applications running in Docker contai
 
 Gatling enables you to create load-testing scripts that are capable of simulating high levels of traffic against applications running in containers. Our comprehensive documentation has everything you need to get started right away.
 
-There are many advantages to containerizing applications, but ensuring that your application still performs optimally whilst running inside these platforms is critical to ensure that the demands of your customers and users are met.
+There are many advantages to containerizing applications, but ensuring that your application still performs optimally while running inside these platforms is critical to ensure that the demands of your customers and users are met.

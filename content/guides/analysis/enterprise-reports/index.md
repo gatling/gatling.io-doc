@@ -10,7 +10,7 @@ badge:
   label: Enterprise
 ---
 
-## Introduction (write this)
+## Introduction
 
 Gatling Enterprise has many reporting features that make analyzing a single load test or a time series of tests faster and easier. Our reporting is designed for collaboration across your organization. The following guide gives you an overview of each reporting feature and how to use it to improve your testing. 
 
@@ -109,7 +109,7 @@ On its own, it’s a great way to visualize the users arriving in your test. In 
 
 Here, you can find information about the transport layer of your simulation. This tab is full of tons of data including connection open and closing rates, information about the TCP connections, and the TLS handshakes:
 
--0 TCP Connections: used as the transport layer of the HTTP/1.1 and HTTP/2 protocols, this metric represents the time it takes for a server to acknowledge new clients so they can start sending data.
+- 0 TCP Connections: used as the transport layer of the HTTP/1.1 and HTTP/2 protocols, this metric represents the time it takes for a server to acknowledge new clients so they can start sending data.
 - TLS Handshake: if using HTTPS, we also measure the time it takes for the server and client to perform a verification handshake after opening the connection.
 
 {{< img src="connections-tab.webp" >}}

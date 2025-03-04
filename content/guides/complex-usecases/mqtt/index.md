@@ -9,7 +9,9 @@ date: 2025-02-27T09:30:56+02:00
 
 ## Introduction 
 
-MQTT is a lightweight, publish-subscribe, network protocol that runs between machines. It provides a message queue and is particularly suited for remote locations and IoT devices. For example, MQTT is used in chemical plants to communicate between control rooms and specific sensors in the production process. Gatling has a dedicated MQTT SDK, which allows you to load test the MQTT protcol in your applications. 
+MQTT is a lightweight, publish-subscribe, network protocol that runs between machines. It provides a message queue and is particularly suited for remote locations and IoT devices. For example, MQTT is used in chemical plants to communicate between control rooms and specific sensors in the production process. Gatling has a dedicated MQTT DSL, which allows you to load test the MQTT protcol in your applications. 
+
+The Gatling MQTT DSL lets you create code-based load tests for your sevices that use the MQTT protocol. This guide provides an introduction to testing MQTT with Gatling. The DSL is additionally described in the [reference documentation]({{< ref="/reference/script/protocols/mqtt/setup" >}}). 
 
 This guide helps you set up and test an MQTT broker.  
 
