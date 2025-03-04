@@ -64,7 +64,7 @@ public class AdvancedTutorialSampleJava {
     
     public static final HttpRequestActionBuilder login =
       http("Login")
-          .post("/login")
+          .post("/login");
 
     public static final HttpRequestActionBuilder loginPage =
       http("LoginPage").get(pageUrl + "/login").check(status().in(200, 304));
