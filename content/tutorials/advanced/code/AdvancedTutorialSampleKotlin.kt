@@ -27,6 +27,9 @@ class AdvancedTutorialSampleKotlin {
 //#homepage-endpoint
 // TODO
 //#homepage-endpoint
+//#authenticate-group
+// TODO
+//#authenticate-group
 
   object Step1 : Simulation() {
 

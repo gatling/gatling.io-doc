@@ -37,6 +37,9 @@ const setUp = null as unknown as SetUpFunction;
 //#homepage-endpoint
 // TODO
 //#homepage-endpoint
+//#authenticate-group
+// TODO
+//#authenticate-group
 
 
 () => {

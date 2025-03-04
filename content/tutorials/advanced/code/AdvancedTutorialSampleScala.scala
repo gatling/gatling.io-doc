@@ -29,6 +29,9 @@ class AdvancedTutorialSampleScala extends Simulation {
 //#homepage-endpoint
 // TODO
 //#homepage-endpoint
+//#authenticate-group
+// TODO
+//#authenticate-group
 
 //#isolate-processes
 val search =

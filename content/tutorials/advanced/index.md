@@ -82,8 +82,8 @@ We need to define the individual requests that we need to call throughout the us
 
 #### I. API Endpoints
 
-We first define the API endpoints, i.e. the backend API calls and place them in a file under the `endpoints/` directory.\
-Now let's take a closer look at the following definition of the `login` endpoint in the API endpoints file.
+We first define the API endpoints, i.e. the backend API calls and place them in a file under the `/endpoints` directory.\
+Now let's take a closer look at the following definition of the `login` endpoint in the API endpoints file:
 
 {{< include-code "login-endpoint" >}}
 
@@ -98,9 +98,9 @@ Now let's take a closer look at the following definition of the `login` endpoint
 
 #### II. Web Endpoints
 
-If the user journeys involve frontend calls that retrieve data (html, resources..etc) from the load-tested application server, then we need to define endpoints for these calls as well. Therefore we create another "web endpoints" file under the `endpoints/` directory.
+If the user journeys involve frontend calls that retrieve data (html, resources..etc) from the load-tested application server, then we need to define endpoints for these calls as well. Therefore we create another "web endpoints" file under the `/endpoints` directory.
 
-Now let's take a look at the following definition of the `homePage` endpoint.
+Now let's take a look at the following definition of the `homePage` endpoint:
 
 {{< include-code "homepage-endpoint" >}}
 
@@ -108,3 +108,33 @@ Now let's take a look at the following definition of the `homePage` endpoint.
 2. We define a check to ensure we receive a response with status code corresponding to either 200 or 304.
 
 ### Next, we define the groups
+
+Groups serve as a collection of multiple http requests, providing a clear logical separation for different parts of the user journey. Defining groups enables us to filter by them in the Gatling Enterprise reports, providing a more precise analysis of various processes within the load-tested application.
+
+We will define the groups in a file under the `groups/` directory.
+
+Let's take a look at the following `authenticate` group definition:
+
+{{< include-code "authenticate-group" >}}
+
+1. We define a group under the name `authenticate`.
+2. This group will encompass the following two requests in the user journey: a `GET` request to retrieve the login page html and a `POST` request to the login endpoint.
+3. We use a feeder that injects dynamic data into our simulation. Here is how it works:
+
+   - We first create a json file `users_dev.json` in the directory `/resources/data`.
+
+     ```json
+     [
+       {
+         "username": "admin",
+         "password": "gatling"
+       },
+       {
+         "username": "admin1",
+         "password": "gatling1"
+       }
+     ]
+     ```
+
+   - We define `usersFeeder` that loads the json file using `jsonFile()` with the `circular()` strategy. More on feeder strategies [here](https://docs.gatling.io/reference/script/core/session/feeders/#strategies)
+   - We call the `feed(usersFeeder)` in the `authenticate` ChainBuilder to pass dynamic `username` and `password` values to the `login` endpoint that we defined [earlier](http://localhost:1313/tutorials/advanced/#i-api-endpoints).
