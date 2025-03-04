@@ -15,7 +15,7 @@ This guide helps you set up and test an MQTT broker.
 
 {{< img src="MQTT-graphic.webp" >}}
 
-## Configuring Gatling for Performance Testing
+## Configuring Gatling for performance testing
 
 In the rest of this article, we’ll go over setting up Gatling for performance evaluation of an MQTT broker in an IoT system.
 
