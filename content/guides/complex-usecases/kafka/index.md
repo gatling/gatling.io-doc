@@ -207,7 +207,7 @@ kafkaProducer.injectOpen(incrementUsersPerSec(1000)
 
 ## Execute the test
 
-We recommend running your test locally to debug and ensure it works. To do so, run the Engine class or use Maven or Gradle. You can find the details in the [Maven]({{< ref="/reference/integrations/build-tools/maven-plugin>}}) and [Gradle]({{< ref="/reference/integrations/build-tools/gradle-plugin>}}) documentation, respectively. 
+We recommend running your test locally to debug and ensure it works. To do so, run the Engine class or use Maven or Gradle. You can find the details in the [Maven]({{< ref="/reference/integrations/build-tools/maven-plugin" >}}) and [Gradle]({{< ref="/reference/integrations/build-tools/gradle-plugin" >}}) documentation, respectively. 
 
 The next step is to use Gatling Enterprise to take advantage of key features such as: 
 
