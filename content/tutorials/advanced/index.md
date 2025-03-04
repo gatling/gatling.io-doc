@@ -7,161 +7,104 @@ date: 2021-04-20T18:30:56+02:00
 ---
 
 In this tutorial, we assume that you have already gone through the
-[Introduction to the Recorder]({{< ref "recorder" >}}) section and that you have a basic simulation to work with.
-We will apply a series of refactorings to introduce more advanced concepts and
+introductory guides and that you have a basic understanding of how a simulation works.\
+We will build a realistic load test for a relevant real-world scenario and introduce more advanced concepts and
 [Domain Specific Language](https://en.wikipedia.org/wiki/Domain-specific_language) constructs.
 
 {{< alert tip >}}
 The files for this tutorial can be found
-[on GitHub](https://github.com/gatling/gatling/tree/main/gatling-samples/src/main/).
+[on GitHub](https://github.com/karimatwa/ecommerce-demo-gatling-tests/tree/main).
 {{< /alert >}}
 
-## Step 1: Isolate processes
+{{< alert tip >}}
+It is strongly recommended to review the introductory guides first, as this tutorial introduces more advanced concepts:
 
-Presently our Simulation is one big monolithic scenario.
+- [Create a simulation with Java](https://docs.gatling.io/tutorials/scripting-intro/)
+- [Create a simulation with JavaScript](https://docs.gatling.io/tutorials/scripting-intro-js/)
+- [Introduction to the Recorder](https://docs.gatling.io/tutorials/recorder/)
 
-So first let us split it into composable business processes.
-This way, you'll be able to easily reuse some parts and build complex behaviors without sacrificing maintenance.
+Additionally, it is important to have a basic understanding of a virtual user's session. Kindly consult the [Session documentation](https://docs.gatling.io/reference/script/core/session/), particularly the **Feeders** and **Expression Language** sections.
+{{< /alert >}}
 
-In our scenario we have three separated processes:
+## Load-tested application
 
-- search: search products by name
-- browse: browse the list of products
-- addToCart: add a given product to cart
-- checkout: checkout cart
+In this guide, we will be implementing a script to load test an e-commerce platform: [https://ecomm.gatling.io](https://ecomm.gatling.io). We encourage you to experiment with the platform to get familiar with its available actions.
 
-Here, we're storing those chains into attributes in the same class, but you could as well store them in constants (static final fields in Java, object attributes in Scala and Kotlin, move them into a different class, etc.
+## Identify the relevant scenario(s) to your use case
 
-{{< include-code "isolate-processes" >}}
+The first step that we need to do before starting to write our script is identifying the relevant user journeys. Always remember that
+the end goal is to simulate **real-world traffic** on your application, so **taking the time to determine the typical user journeys on your application is crucial.**
 
-We can now rewrite our scenario using these reusable business processes:
+This can be done in several ways:
 
-{{< include-code "processes" >}}
+- Checking your Product Analytics tool (Amplitude, Firebase)
+- Checking your APM tool (Dynatrace, Datadog)
+- Asking the product-owner
 
-## Step 2: Configure virtual users
+For our e-commerce platform, we identified the following exact user journey:
 
-So, this is great, we can load test our server with... one user!
-Let's increase the number of users.
+1. User lands on the homepage
+2. User logs in
+3. User lands again on the homepage (as an authenticated user)
+4. User adds a product to cart
+5. User buys (checkout)
 
-Let's define two populations of users:
+## Writing the script
 
-- _browsing_ visitors: they can search and browse products.
-- _purchasing_ customers: they can search, browse, add products to cart and checkout.
+### Project structure
 
-Translating into a scenario this gives:
-
-{{< include-code "populations" >}}
-
-To increase the number of simulated users, all you have to do is to change the configuration of the simulation as follows:
-
-{{< include-code "setup-users" >}}
-
-Here we set only 10 users, because we don't want to flood our test web application. _Please_, be kind and don't crash our server! ;-)
-
-If you want to simulate 3000 users, you might not want them to start at the same time.
-Indeed, real users are more likely to connect to your web application gradually.
-
-Gatling provides `rampUsers` to implement this behavior.
-The value of the ramp indicates the duration over which the users will be linearly started.
-
-In our scenario let's have 10 regular users and 2 admins, and ramp them over 10 seconds so we don't hammer the server:
-
-{{< include-code "setup-users-and-admins" >}}
-
-## Step 3: Use dynamic data with Feeders and Checks
-
-We have set our simulation to run a bunch of users, but they all search for the same model.
-Wouldn't it be nice if every user could search a different product name?
-
-We need dynamic data so that all users don't play exactly the same scenario, and so that we don't end up with a behavior completely different from the live system (due to caching, JIT etc.).
-This is where Feeders will be useful.
-
-Feeders are data sources containing all the values you want to use in your scenarios.
-There are several types of Feeders, the most simple being the CSV Feeder: this is the one we will use in our test.
-
-First let's create a file named _search.csv_ and place it in the `user-files` folder.
-
-This file contains the following lines:
-
-```text
-searchCriterion,searchProductName
-Bag,Pink Throwback Hip Bag
-Bottle,Black Earthen Bottle
+```console
+.
+├── .gatling/
+└── src/
+    ├── java/
+        ├── example/
+            ├── endpoints/
+                ├── APIendpoints.java
+                └── WebEndpoints.java
+            ├── groups/
+                ├── ScenarioGroups.java
+            ├── utils/
+                ├── Config.java
+                └── Keys.java
+                └── TargetEnvResolver.java
+            ├── resources/
+                ├── bodies/
+                ├── data/
+            ├── AdvancedSimulation.java
 ```
 
-Let's then declare a feeder and use it to feed our users with the above data:
+The structure and components will become clearer as we progress through the tutorial.
 
-{{< include-code "feeder" >}}
+### First, we define the endpoints
 
-Explanations:
+We need to define the individual requests that we need to call throughout the user journeys.
 
-1. First we create a Feeder from a csv file with the following columns: _searchCriterion_, _searchProductName_.
-2. As the default Feeder strategy is _queue_, we will use the _random_ strategy for this test to avoid feeder starvation.
-3. Every time a user reaches the feed step, it picks a random record from the Feeder.
-   This user has two new Session attributes named _searchCriterion_, _searchProductName_.
-4. We use Session data through [Gatling Expression Language]({{< ref "/reference/script/core/session/el" >}}) to parameterize the search.
-5. We use a [jmesPath selector check]({{< ref "/reference/script/core/checks#jmespath" >}}) to extract the name of the first element under the _products_ key in the response. We then verify whether its value matches the expected _searchProductName_ using `isEL`.
+#### I. API Endpoints
 
-{{< alert tip >}}
-For more details regarding _Feeders_, please check out the [Feeder reference page]({{< ref "/reference/script/core/session/feeders" >}}).
+We first define the API endpoints, i.e. the backend API calls and place them in a file under the `endpoints/` directory.\
+Now let's take a closer look at the following definition of the `login` endpoint in the API endpoints file.
 
-For more details regarding _HTTP Checks_, please check out the [Checks reference page]({{< ref "/reference/script/protocols/http/checks" >}}).
-{{< /alert >}}
+{{< include-code "login-endpoint" >}}
 
-## Step 4: Looping
+1. We use an http request action builder class to build a POST http request.
+2. We use `.asFormUrlEncoded()`to set the content-type header.
+3. We use `.formParam("username", "#{username}")` to set the form parameters of the POST request. More on `formParam` [here](https://docs.gatling.io/reference/script/protocols/http/request/#formparam).
+   - We use the [Gatling Expression Language](https://docs.gatling.io/reference/script/core/session/el/) to retrieve the username's value from the virtual user's session. We will set this value later on in this guide using a [Feeder](https://docs.gatling.io/reference/script/core/session/feeders/).
+4. We use `.check()` for the following:
+   - Check that we receive a 200 status code in the response.
+   - Retrieve the `accessToken` from the response body and **save it** to the user session under the name `AccessToken`.
+   - More on Checks and `jmesPath` [here](https://docs.gatling.io/reference/script/core/checks/)
 
-In the _browse_ process we have a lot of repetition when iterating through the pages.
-We have four times the same request with a different query param value. Can we change this to not violate the DRY principle?
+#### II. Web Endpoints
 
-First we will extract the repeated `exec` block to a function.
-Indeed, `Simulation`'s are plain classes, so we can use all the power of the language if needed:
+If the user journeys involve frontend calls that retrieve data (html, resources..etc) from the load-tested application server, then we need to define endpoints for these calls as well. Therefore we create another "web endpoints" file under the `endpoints/` directory.
 
-{{< include-code "loop-simple" >}}
+Now let's take a look at the following definition of the `homePage` endpoint.
 
-We can now call this function and pass the desired page number.
-But we still have repetitions, it's time to introduce another builtin structure:
+{{< include-code "homepage-endpoint" >}}
 
-{{< include-code "loop-for" >}}
+1. We define an http GET request for the `pageUrl`
+2. We define a check to ensure we receive a response with status code corresponding to either 200 or 304.
 
-Explanations:
-
-1. The `repeat` builtin is a loop resolved at **runtime**.
-   It takes the number of repetitions and, optionally, the name of the counter that's stored in the user's Session.
-2. As we set the counter name we can use it in Gatling EL and access the nth page.
-
-{{< alert tip >}}
-For more details regarding loops, please check out the [Loops reference page]({{< ref "/reference/script/core/scenario#loop-statements" >}}).
-{{< /alert >}}
-
-## Step 5: Check and failure management
-
-Up until now we have only used `check` to extract some data from the json response and validate against expected responses.
-But `check` is also handy to check other properties of the response.
-By default Gatling checks if the http response status is _20x_ or _304_.
-
-To demonstrate failure management we will introduce a `check` on a condition that fails randomly:
-
-{{< include-code "check" >}}
-
-Explanations:
-
-1. First we import `ThreadLocalRandom`, to generate random values.
-2. We do a check on a condition that's been customized with a lambda.
-   It will be evaluated every time a user executes the request and randomly return _200_ or _201_.
-   As response status is 200, the check will fail randomly.
-
-To handle this random failure we use the `tryMax` and `exitHereIfFailed` constructs as follow:
-
-{{< include-code "tryMax-exitHereIfFailed" >}}
-
-Explanations:
-
-1. `tryMax` tries a given block up to n times.
-   Here we try a maximum of two times.
-2. If all tries fail, the user exits the whole scenario due to `exitHereIfFailed`.
-
-{{< alert tip >}}
-For more details regarding conditional blocks, please check out the [Conditional Statements reference page]({{< ref "/reference/script/core/scenario#conditional-statements" >}}).
-{{< /alert >}}
-
-That's all Folks!
+### Next, we define the groups

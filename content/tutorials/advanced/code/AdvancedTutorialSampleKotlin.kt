@@ -20,6 +20,14 @@ import io.gatling.javaapi.http.HttpDsl.*
 
 class AdvancedTutorialSampleKotlin {
 
+//#login-endpoint
+// TODO
+//#login-endpoint
+
+//#homepage-endpoint
+// TODO
+//#homepage-endpoint
+
   object Step1 : Simulation() {
 
 //#isolate-processes

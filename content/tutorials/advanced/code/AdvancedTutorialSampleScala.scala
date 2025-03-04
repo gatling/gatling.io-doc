@@ -22,6 +22,14 @@ import scala.concurrent.duration._
 class AdvancedTutorialSampleScala extends Simulation {
   val httpProtocol = http
 
+//#login-endpoint
+// TODO
+//#login-endpoint
+
+//#homepage-endpoint
+// TODO
+//#homepage-endpoint
+
 //#isolate-processes
 val search =
   // let's give proper names, as they are displayed in the reports

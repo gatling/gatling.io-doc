@@ -30,6 +30,15 @@ import { http, status } from "@gatling.io/http";
 
 const setUp = null as unknown as SetUpFunction;
 
+//#login-endpoint
+// TODO
+//#login-endpoint
+
+//#homepage-endpoint
+// TODO
+//#homepage-endpoint
+
+
 () => {
 //#isolate-processes
 const search =

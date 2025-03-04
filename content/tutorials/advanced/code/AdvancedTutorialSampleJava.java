@@ -19,12 +19,45 @@ import io.gatling.javaapi.core.FeederBuilder;
 import io.gatling.javaapi.core.ScenarioBuilder;
 import io.gatling.javaapi.core.Simulation;
 import io.gatling.javaapi.http.HttpProtocolBuilder;
+import io.gatling.javaapi.http.HttpRequestActionBuilder;
 
 import static io.gatling.javaapi.core.CoreDsl.*;
 import static io.gatling.javaapi.http.HttpDsl.http;
 import static io.gatling.javaapi.http.HttpDsl.status;
 
 public class AdvancedTutorialSampleJava {
+  public static final String pageUrl = "https://ecomm.gatling.io";
+  //#login-endpoint
+  public static final class APIendpoints {
+
+  public static final String ACCESS_TOKEN = "AccessToken";
+  public static final HttpRequestActionBuilder login =
+      http("Login")
+          .post("/login")
+          .asFormUrlEncoded() // Short for header("Content-Type",
+          // "application/x-www-form-urlencoded")
+          .formParam("username", "#{username}")
+          .formParam("password", "#{password}")
+          .check(status().is(200))
+          .check(jmesPath("accessToken").saveAs(ACCESS_TOKEN));
+
+  }
+  //#login-endpoint
+
+  //#homepage-endpoint
+  public static class WebEndpoints {
+    // Define the home page request with response status validation
+    // Reference: https://docs.gatling.io/reference/script/protocols/http/request/#checks
+    public static final HttpRequestActionBuilder homePage =
+        http("HomePage")
+            .get(pageUrl)
+            .check(status().in(200, 304)); // Accept both OK (200) and Not Modified (304) statuses
+  }
+  //#homepage-endpoint
+
+
+
+
 
   public static final class Step1 extends Simulation {
 //#isolate-processes
