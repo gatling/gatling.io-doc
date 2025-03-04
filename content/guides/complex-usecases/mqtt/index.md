@@ -1,5 +1,5 @@
 ---
-title: Testing MQTT
+menutitle: Testing MQTT
 title: How to test the MQTT protocol
 seotitle: Learn how to test the MQTT protocol with Gatling
 description: Learn how to test the MQTT protocol with Gatling
