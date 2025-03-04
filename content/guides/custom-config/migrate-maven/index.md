@@ -9,6 +9,10 @@ date: 2025-02-27T09:30:56+02:00
 
 ## Introduction
 
+{{< alert info>}}
+The following guide helps you migrate from the Gatling bundle versions 3.9.5 and earlier to the Gradle build tool. It is not useful for Gatling versions >3.10.   
+{{< /alert >}}
+
 The Gatling bundle is an all-in-one project to get started quickly with Gatling. This bundle includes all the files and dependencies needed to run Gatling without having to configure dependencies manually. Its benefits include:
 
 - Simple installation
@@ -129,7 +133,5 @@ mvn gatling:test
 ```
 Assuming your test ran successfully, you are finished! To learn more about using Maven and Gatling, we offer multiple resources:
 
-- The Gatling Documentation contains additional information for configuring tests using the Maven plugin.
-- The Community Forum is a great place to ask questions and help other users master Gatling load tests.
-- Our Customer Success team (customersuccess@gatling.io) is also available to assist you in adopting Maven or any other Gatling-supported tools and plugins.
-- The Maven plugin also works seamlessly with Gatling Enterprise. Gatling Enterprise offers a variety of features to enhance testing, collaboration, and security. Explore Gatling and Maven today with our free trial.
+- The [Gatling Maven plugin documentation]({{< ref"/reference/integrations/build-tools/maven-plugin" >}}) contains additional information for configuring tests using the Maven plugin.
+- [The Gatling Community Forum](https://community.gatling.io/) is a great place to ask questions about using Maven and Gatling.  
