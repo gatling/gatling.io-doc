@@ -23,7 +23,7 @@ Hardcoded or repetitive data in performance testing can lead to skewed results, 
 - Test for edge cases and diverse scenarios.
 - Avoid caching issues that may arise with static data.
 
-What is DataFaker?
+### What is DataFaker?
 
 [DataFaker](https://www.datafaker.net/) is a library designed to generate realistic fake data for a variety of use cases. From names and addresses to emails and random numbers, DataFaker provides everything needed to populate your Gatling tests with dynamic data.
 
@@ -34,7 +34,6 @@ What is DataFaker?
 First, ensure you have Gatling installed and set up. If you haven't already, download it from the official documentation.
 
 Now [clone this project](https://github.com/gatling/devrel-projects). Inside the `articles/datafaker` folder, you will find an API folder (our application) and a Gatling folder (our simulation).
-
 
 ### Explanation of project
 

@@ -144,8 +144,5 @@ gradle gatlingRun
 ```
 If your test ran successfully, you have successfully migrated! You can learn more about using Gradle with Gatling from the following resources:
 
-<!-- add links-->
-- The Gatling Documentation has more details on test configuration with the Gradle plugin.
-- The Community Forum is a free resource for asking questions and helping other community members learn to load tests with Gatling.
-- The Gatling Customer Success team (customersuccess@gatling.io) is available to customers for assistance in using Gradle or any other Gatling-supported tools and plugins.
-- The Gradle plugin works with Gatling Enterprise. Gatling Enterprise offers a variety of features to elevate your testing, collaboration, and security. Try Gatling and Gradle today with our free trial.
+- The [Gatling Gradle plugin documentation]({{< ref"/reference/integrations/build-tools/gradle-plugin" >}}) contains additional information for configuring tests using the Gradle plugin.
+- [The Gatling Community Forum](https://community.gatling.io/) is a great place to ask questions about using Maven and Gatling.  
