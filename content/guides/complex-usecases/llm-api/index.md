@@ -9,7 +9,7 @@ date: 2025-02-27T09:30:56+02:00
 
 ## Introduction 
 
-Server-Sent Events is a server push technology, which allows clients to receive updates from a server using an HTTP connection. It instructs servers how to initiate data transmission to clients after the initial client connection is established.
+Server-sent events is a server push technology, which allows clients to receive updates from a server using an HTTP connection. It instructs servers how to initiate data transmission to clients after the initial client connection is established.
 
 Gatling allows you to to test server-sent events as an extension of the HTTP DSL. 
 

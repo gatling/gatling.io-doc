@@ -7,9 +7,7 @@ lead: Learn how to Load test a Kafka server with Gatling
 date: 2025-02-28T09:30:56+02:00
 ---
 
-## Introduction (write this)
-
-### How to test your Kafka server with Gatling (revise)
+## How to test your Kafka server with Gatling 
 
 The project is configured to work with sbt. It can also be ported to other build tools like Maven or Gradle. The rest of this guide shows Java code examples compatible with the Maven and Gradle plugins. 
 
@@ -143,7 +141,7 @@ You now need to define your load testing objective. 
 
 Do you want to simulate production volumes? To understand your cluster’s limits? 
 
-If your cluster is not yet in production and you are in an early stage of development, we recommend you do a capacity test <!--add link-->. This type of test will allow you to check the overall behavior of your application.
+If your cluster is not yet in production and you are in an early stage of development, we recommend you do a capacity test. This type of test will allow you to check the overall behavior of your application.
 
 ```java
 {
@@ -207,11 +205,11 @@ kafkaProducer.injectOpen(incrementUsersPerSec(1000)
 }
 ```
 
-## Execute the test <!-- add links in this section-->
+## Execute the test
 
-We recommend running your test locally to debug and ensure it works. To do so, run the Engine class or use Maven or Gradle. You can find the details in the Maven and Gradle documentation, respectively. 
+We recommend running your test locally to debug and ensure it works. To do so, run the Engine class or use Maven or Gradle. You can find the details in the [Maven]({{< ref="/reference/integrations/build-tools/maven-plugin>}}) and [Gradle]({{< ref="/reference/integrations/build-tools/gradle-plugin>}}) documentation, respectively. 
 
-The next step is to use Gatling Enterprise Cloud to take advantage of key features such as: 
+The next step is to use Gatling Enterprise to take advantage of key features such as: 
 
 - distributed load testing to inject heavy traffic,  
 - advanced reporting,
@@ -222,7 +220,7 @@ To do this, use your Gatling Enterprise account and follow the documentation for
 
 {{< img src="kafka-gatling-enterprise.webp" >}}
 
-{{< alert info >}} <!--add links-->
+{{< alert info >}}
 If your Kafka broker cannot be accessed from the Internet, you have two options:
 
 - [Private Locations]({{< ref="/reference/install/private-locations/introduction" >}}) – If your target environment is private (closed to the Internet).

@@ -6,6 +6,10 @@ lead: Learn how to load test gRPC with Gatling
 date: 2025-02-28T8:30:56+02:00
 ---
 
+## Introduction
+
+The Gatling gRPC DSL lets you create code-based load tests for your sevices that use the gRPC protocol. This guide provides an introduction to testing gRPC with Gatling. The DSL is additionally described in the [reference documentation]({{< ref="/reference/script/protocols/grpc/setup" >}}). 
+
 ## Setting up our environment
 
 First, ensure you have Gatling installed and set up. If you haven't already, download it from the official documentation. Now [clone the project from GitHub](https://github.com/gatling/gatling-grpc-demo) and open the `GreetingSimulation` on your IDE.
