@@ -33,7 +33,7 @@ In this guide, we will be implementing a script to load test an e-commerce platf
 ## Identify the relevant scenario(s) to your use case
 
 The first step that we need to do before starting to write our script is identifying the relevant user journeys. Always remember that
-the end goal is to simulate **real-world traffic** on your application, so **taking the time to determine the typical user journeys on your application is crucial.**
+the end goal is to simulate **real-world traffic**, so **taking the time to determine the typical user journeys on your application is crucial.**
 
 This can be done in several ways:
 
@@ -41,7 +41,7 @@ This can be done in several ways:
 - Checking your APM tool (Dynatrace, Datadog)
 - Asking the product-owner
 
-For our e-commerce platform, we identified the following exact user journey:
+For our e-commerce platform, we identified the following user journey:
 
 1. User lands on the homepage
 2. User logs in
