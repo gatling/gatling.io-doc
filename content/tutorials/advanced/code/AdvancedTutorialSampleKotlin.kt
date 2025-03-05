@@ -41,6 +41,12 @@ class AdvancedTutorialSampleKotlin {
 //#scenario-2
 // TODO
 //#scenario-2
+//#injection-profile-switch
+// TODO
+//#injection-profile-switch
+//#assertions
+// TODO
+//#assertions
 
   object Step1 : Simulation() {
 

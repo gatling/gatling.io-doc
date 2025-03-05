@@ -43,6 +43,12 @@ class AdvancedTutorialSampleScala extends Simulation {
 //#scenario-2
 // TODO
 //#scenario-2
+//#injection-profile-switch
+// TODO
+//#injection-profile-switch
+//#assertions
+// TODO
+//#assertions
 
 //#isolate-processes
 val search =

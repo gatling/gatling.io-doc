@@ -174,3 +174,23 @@ Now let's define our scenarios! We will define two scenarios that showcase diffe
 - In a similar manner, we define our second scenario:
 
   {{< include-code "scenario-1" >}}
+
+### Define injection profiles
+
+We've defined our scenarios, i.e. the flows that the virtual user will go through. Now, we need to define how will these virtual users arrive into the load-tested application, i.e. **the injection profile**. Defining the injection profile is based on the type of load that you are looking to simulate on your application.
+In our script, we define the following injection profiles according to the desired load test type:
+
+- Capacity
+- Soak
+- Stress
+- Breakpoint
+- Ramp-hold
+- Smoke
+
+{{< include-code "injection-profile-switch" >}}
+
+### Define assertions
+
+Now, we need to define assertions—the benchmarks that determine whether the test is considered successful or failed.
+
+{{< include-code "assertions" >}}

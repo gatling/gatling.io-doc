@@ -17,7 +17,9 @@
 import io.gatling.javaapi.core.ChainBuilder;
 import io.gatling.javaapi.core.FeederBuilder;
 import io.gatling.javaapi.core.ScenarioBuilder;
+import io.gatling.javaapi.core.PopulationBuilder;
 import io.gatling.javaapi.core.Simulation;
+import io.gatling.javaapi.core.Assertion;
 import io.gatling.javaapi.http.HttpProtocolBuilder;
 import io.gatling.javaapi.http.HttpRequestActionBuilder;
 
@@ -25,9 +27,16 @@ import static io.gatling.javaapi.core.CoreDsl.*;
 import static io.gatling.javaapi.http.HttpDsl.http;
 import static io.gatling.javaapi.http.HttpDsl.status;
 
+import java.util.List;
+
 public class AdvancedTutorialSampleJava {
   public static final String pageUrl = "https://ecomm.gatling.io";
   public static final String ACCESS_TOKEN = "AccessToken";
+  public static final String testType = "AccessToken";
+  public static final int vu = 10;
+  public static final int duration = 10;
+  public static final int ramp_duration = 10;
+
   public static final ChainBuilder homeAnonymous =
       group("homeAnonymous")
           .on(exec(http("").get("/")));
@@ -185,6 +194,55 @@ public class AdvancedTutorialSampleJava {
                             buy)))
         .exitHereIfFailed();
     //#scenario-2
+
+    //#injection-profile-switch
+    // Define different load injection profiles
+    // Reference: https://docs.gatling.io/reference/script/core/injection/
+    static final PopulationBuilder injectionProfile(ScenarioBuilder scn) {
+      switch (testType) {
+        case "capacity":
+            return scn.injectOpen(
+                incrementUsersPerSec(vu)
+                    .times(4)
+                    .eachLevelLasting(duration)
+                    .separatedByRampsLasting(4)
+                    .startingFrom(10));
+        case "soak": return scn.injectOpen(constantUsersPerSec(vu).during(duration));
+        case "stress": return scn.injectOpen(stressPeakUsers(vu).during(duration));
+        case "breakpoint": return scn.injectOpen(rampUsers(vu).during(duration));
+        case "ramp-hold": return
+            scn.injectOpen(
+                rampUsersPerSec(0).to(vu).during(ramp_duration),
+                constantUsersPerSec(vu).during(duration));
+        case "smoke": return scn.injectOpen(atOnceUsers(1));
+        default: return scn.injectOpen(atOnceUsers(vu));
+      }
+    }
+    //#injection-profile-switch
+
+    //#assertions
+    // Define assertions for different test types
+    // Reference: https://docs.gatling.io/reference/script/core/assertions/
+    static final List<Assertion> assertions =
+        List.of(
+            global().responseTime().percentile(90.0).lt(500),
+            global().failedRequests().percent().lt(5.0));
+
+    static final List<Assertion> getAssertions() {
+      switch (testType) {
+        case "capacity": return assertions;
+        case "soak": return assertions;
+        case "stress": return assertions;
+        case "breakpoint": return assertions;
+        case "ramp-hold": return assertions;
+        case "smoke": return List.of(global().failedRequests().count().lt(1L));
+        default: return assertions;
+      }
+    }
+    //#assertions
+
+
+
     }
 
 }

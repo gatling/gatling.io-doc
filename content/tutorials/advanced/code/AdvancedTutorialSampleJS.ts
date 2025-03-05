@@ -51,6 +51,12 @@ const setUp = null as unknown as SetUpFunction;
 //#scenario-2
 // TODO
 //#scenario-2
+//#injection-profile-switch
+// TODO
+//#injection-profile-switch
+//#assertions
+// TODO
+//#assertions
 
 () => {
   //#isolate-processes
