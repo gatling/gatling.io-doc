@@ -23,13 +23,24 @@ class AdvancedTutorialSampleKotlin {
 //#login-endpoint
 // TODO
 //#login-endpoint
-
+//#with-authentication-headers-wrapper
+// TODO
+//#with-authentication-headers-wrapper
 //#homepage-endpoint
 // TODO
 //#homepage-endpoint
 //#authenticate-group
 // TODO
 //#authenticate-group
+//#http-protocol-builder
+// TODO
+//#http-protocol-builder
+//#scenario-1
+// TODO
+//#scenario-1
+//#scenario-2
+// TODO
+//#scenario-2
 
   object Step1 : Simulation() {
 

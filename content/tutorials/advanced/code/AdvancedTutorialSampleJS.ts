@@ -33,51 +33,54 @@ const setUp = null as unknown as SetUpFunction;
 //#login-endpoint
 // TODO
 //#login-endpoint
-
+//#with-authentication-headers-wrapper
+// TODO
+//#with-authentication-headers-wrapper
 //#homepage-endpoint
 // TODO
 //#homepage-endpoint
 //#authenticate-group
 // TODO
 //#authenticate-group
-
+//#http-protocol-builder
+// TODO
+//#http-protocol-builder
+//#scenario-1
+// TODO
+//#scenario-1
+//#scenario-2
+// TODO
+//#scenario-2
 
 () => {
-//#isolate-processes
-const search =
-  // let's give proper names, as they are displayed in the reports
-  exec(http("Home")
-    .get("/"))
-    .pause(7)
-    .exec(http("Search")
-      .get("/computers?f=macbook"))
-    .pause(2)
-    .exec(http("Select")
-      .get("/computers/6"))
-    .pause(3);
+  //#isolate-processes
+  const search =
+    // let's give proper names, as they are displayed in the reports
+    exec(http("Home").get("/"))
+      .pause(7)
+      .exec(http("Search").get("/computers?f=macbook"))
+      .pause(2)
+      .exec(http("Select").get("/computers/6"))
+      .pause(3);
 
-const browse = undefined; // TODO
+  const browse = undefined; // TODO
 
-const edit = undefined; // TODO
-//#isolate-processes
-}
+  const edit = undefined; // TODO
+  //#isolate-processes
+};
 
-const search = null as unknown as ChainBuilder
-const browse = null as unknown as ChainBuilder
-const edit = null as unknown as ChainBuilder
+const search = null as unknown as ChainBuilder;
+const browse = null as unknown as ChainBuilder;
+const edit = null as unknown as ChainBuilder;
 
 //#processes
-const scn = scenario("Scenario Name")
-  .exec(search, browse, edit);
+const scn = scenario("Scenario Name").exec(search, browse, edit);
 //#processes
 
 //#populations
-const users = scenario("Users")
-  .exec(search, browse);
-const admins = scenario("Admins")
-  .exec(search, browse, edit);
+const users = scenario("Users").exec(search, browse);
+const admins = scenario("Admins").exec(search, browse, edit);
 //#populations
-
 
 const httpProtocol = http;
 
@@ -93,73 +96,75 @@ setUp(
 //#setup-users-and-admins
 
 () => {
-//#feeder
-const feeder = csv("search.csv").random(); // 1, 2
+  //#feeder
+  const feeder = csv("search.csv").random(); // 1, 2
 
-const search = exec(http("Home")
-  .get("/"))
-  .pause(1)
-  .feed(feeder) // 3
-  .exec(http("Search")
-    .get("/computers?f=#{searchCriterion}") // 4
-    .check(
-      css("a:contains('#{searchComputerName}')", "href")
-        .saveAs("computerUrl") // 5
+  const search = exec(http("Home").get("/"))
+    .pause(1)
+    .feed(feeder) // 3
+    .exec(
+      http("Search")
+        .get("/computers?f=#{searchCriterion}") // 4
+        .check(
+          css("a:contains('#{searchComputerName}')", "href").saveAs(
+            "computerUrl"
+          ) // 5
+        )
     )
-  )
-  .pause(1)
-  .exec(http("Select")
-    .get("#{computerUrl}")) // 6
-  .pause(1);
-//#feeder
-}
+    .pause(1)
+    .exec(http("Select").get("#{computerUrl}")) // 6
+    .pause(1);
+  //#feeder
+};
 
 () => {
-//#loop-simple
-// @ts-ignore
-const gotoPage = (page) =>
-  exec(http("Page " + page)
-    .get("/computers?p=" + page))
-    .pause(1);
+  //#loop-simple
+  // @ts-ignore
+  const gotoPage = (page) =>
+    exec(http("Page " + page).get("/computers?p=" + page)).pause(1);
 
-const browse =
-  exec(
+  const browse = exec(
     gotoPage(0),
     gotoPage(1),
     gotoPage(2),
     gotoPage(3),
     gotoPage(4)
   );
-//#loop-simple
-}
+  //#loop-simple
+};
 
 () => {
-//#loop-for
-const browse =
-  repeat(5, "n").on( // 1
+  //#loop-for
+  const browse = repeat(5, "n").on(
+    // 1
     exec(http("Page #{n}").get("/computers?p=#{n}")) // 2
       .pause(1)
   );
-//#loop-for
-}
+  //#loop-for
+};
 
 () => {
-//#check
-const edit =
-  exec(http("Form").get("/computers/new"))
+  //#check
+  const edit = exec(http("Form").get("/computers/new"))
     .pause(1)
-    .exec(http("Post")
-      .post("/computers")
-      .formParam("name", "computer xyz")
-      .check(status().is((session) =>
-        200 + Math.floor(Math.random() * 2) // 2
-      ))
+    .exec(
+      http("Post")
+        .post("/computers")
+        .formParam("name", "computer xyz")
+        .check(
+          status().is(
+            (session) => 200 + Math.floor(Math.random() * 2) // 2
+          )
+        )
     );
-//#check
-}
+  //#check
+};
 
 //#tryMax-exitHereIfFailed
-const tryMaxEdit = tryMax(2).on( // 1
-  exec(edit)
-).exitHereIfFailed(); // 2
+const tryMaxEdit = tryMax(2)
+  .on(
+    // 1
+    exec(edit)
+  )
+  .exitHereIfFailed(); // 2
 //#tryMax-exitHereIfFailed

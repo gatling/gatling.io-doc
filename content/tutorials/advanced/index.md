@@ -96,6 +96,17 @@ Now let's take a closer look at the following definition of the `login` endpoint
    - Retrieve the `accessToken` from the response body and **save it** to the user session under the name `AccessToken`.
    - More on Checks and `jmesPath` [here](https://docs.gatling.io/reference/script/core/checks/)
 
+Let's add one more thing to our API endpoints file.
+
+{{< include-code "with-authentication-headers-wrapper" >}}
+
+The method above takes an `HttpProtocolBuilder` object and conditionally adds the `Authorization` header to requests:
+
+- If the virtual user's session contains the `ACCESS_TOKEN` key, set `Authorization` header to corresponding value.
+- Else, set `Authorization` to an empty string.
+
+This method will be used later on in our Simulation class. It will eliminate the need to set the `Authorization` header individually for each request.
+
 #### II. Web Endpoints
 
 If the user journeys involve frontend calls that retrieve data (html, resources..etc) from the load-tested application server, then we need to define endpoints for these calls as well. Therefore we create another "web endpoints" file under the `/endpoints` directory.
@@ -136,5 +147,30 @@ Let's take a look at the following `authenticate` group definition:
      ]
      ```
 
-   - We define `usersFeeder` that loads the json file using `jsonFile()` with the `circular()` strategy. More on feeder strategies [here](https://docs.gatling.io/reference/script/core/session/feeders/#strategies)
+   - We define `usersFeeder` that loads the json file using `jsonFile()` with the `circular()` strategy. More on feeder strategies [here](https://docs.gatling.io/reference/script/core/session/feeders/#strategies).
    - We call the `feed(usersFeeder)` in the `authenticate` ChainBuilder to pass dynamic `username` and `password` values to the `login` endpoint that we defined [earlier](http://localhost:1313/tutorials/advanced/#i-api-endpoints).
+
+### Next, let's create our Simulation class
+
+We first define our http protocol builder
+
+{{< include-code "http-protocol-builder" >}}
+
+- We use the `withAuthenticationHeader` wrapper method (created [earlier](http://localhost:1313/tutorials/advanced/#i-api-endpoints)) to conditionally add `Authorization` header to the requests.
+- We set `accept` and `user-agent` headers.
+
+Now let's define our scenarios! We will define two scenarios that showcase different user behaviors.
+
+- In our first scenario, we account for regional differences in user behavior commonly observed in e-commerce. To reflect this, we define two distinct user journeys based on the market: one for the French market and another for the US market:
+
+  {{< include-code "scenario-1" >}}
+
+  Let's take a closer look:
+
+  - We wrap our scenario in an `exitBlockOnFail()` block to ensure that the virtual user exits the scenario whenever a request or check fails. This mimics real-world behavior, as users would be unable to proceed if they encounter blockers in the flow. Read more [here](https://docs.gatling.io/reference/script/core/scenario/#exitblockonfail).
+
+  - We use `randomSwitch()` to distribute traffic between two flows based on predefined percentages: 70% for the French **(fr)** market and 30% for the US **(us)** market. - The `randomSwitch()` will assign virtual users to the two flows according to the defined probabilities in `percent()`. - Within each `percent()` block, we define the desired behavior. - More on `randomSwitch()` [here](https://docs.gatling.io/reference/script/core/scenario/#randomswitch).
+
+- In a similar manner, we define our second scenario:
+
+  {{< include-code "scenario-1" >}}

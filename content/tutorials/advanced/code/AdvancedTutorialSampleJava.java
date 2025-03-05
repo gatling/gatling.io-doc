@@ -27,6 +27,22 @@ import static io.gatling.javaapi.http.HttpDsl.status;
 
 public class AdvancedTutorialSampleJava {
   public static final String pageUrl = "https://ecomm.gatling.io";
+  public static final String ACCESS_TOKEN = "AccessToken";
+  public static final ChainBuilder homeAnonymous =
+      group("homeAnonymous")
+          .on(exec(http("").get("/")));
+  public static final ChainBuilder authenticate =
+  group("homeAnonymous")
+      .on(exec(http("").get("/")));
+  public static final ChainBuilder homeAuthenticated =
+  group("homeAnonymous")
+      .on(exec(http("").get("/")));
+  public static final ChainBuilder addToCart =
+  group("homeAnonymous")
+      .on(exec(http("").get("/")));
+  public static final ChainBuilder buy =
+  group("homeAnonymous")
+      .on(exec(http("").get("/")));
   //#login-endpoint
   public static final class APIendpoints {
 
@@ -44,8 +60,18 @@ public class AdvancedTutorialSampleJava {
   }
   //#login-endpoint
 
+  //#with-authentication-headers-wrapper
+  public static final HttpProtocolBuilder withAuthenticationHeader(
+      HttpProtocolBuilder protocolBuilder) {
+    return protocolBuilder.header(
+        "Authorization",
+        session -> session.contains(ACCESS_TOKEN) ? session.getString(ACCESS_TOKEN) : "");
+  }
+  //#with-authentication-headers-wrapper
+
   //#homepage-endpoint
   public static class WebEndpoints {
+    public static final String pageUrl = "https://ecomm.gatling.io";
     // Define the home page request with response status validation
     // Reference: https://docs.gatling.io/reference/script/protocols/http/request/#checks
     public static final HttpRequestActionBuilder homePage =
@@ -82,124 +108,83 @@ public class AdvancedTutorialSampleJava {
   
     }
 
+    public static class AdvancedSimulation {
+      //#http-protocol-builder
+      static final HttpProtocolBuilder httpProtocolWithAuthentication =
+      withAuthenticationHeader(
+          http.baseUrl("https://api-ecomm.gatling.io")
+              .acceptHeader("application/json")
+              .userAgentHeader(
+                  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/119.0"));
+      //#http-protocol-builder
 
+  //#scenario-1
+  // Define scenario 1 with a random traffic distribution
+  // Reference: https://docs.gatling.io/reference/script/core/scenario/#randomswitch
+  static final ScenarioBuilder scn1 =
+    scenario("Scenario 1")
+        .exitBlockOnFail()
+        .on(
+            randomSwitch()
+                .on(
+                    percent(70)
+                        .then(
+                            group("fr")
+                                .on(
+                                    homeAnonymous,
+                                    pause(1, 15),
+                                    authenticate,
+                                    homeAuthenticated,
+                                    pause(1, 15),
+                                    addToCart,
+                                    pause(1, 15),
+                                    buy)),
+                    percent(30)
+                        .then(
+                            group("us")
+                                .on(
+                                    homeAnonymous,
+                                    pause(1, 15),
+                                    authenticate,
+                                    homeAuthenticated,
+                                    pause(1, 15),
+                                    addToCart,
+                                    pause(1, 15),
+                                    buy))))
+        .exitHereIfFailed();
+    //#scenario-1
+    
+    //#scenario-2
+    // Define scenario 2 with a uniform traffic distribution
+    // Reference: https://docs.gatling.io/reference/script/core/scenario/#uniformrandomswitch
+    static final ScenarioBuilder scn2 =
+    scenario("Scenario 2")
+        .exitBlockOnFail()
+        .on(
+            uniformRandomSwitch()
+                .on(
+                    group("fr")
+                        .on(
+                            homeAnonymous,
+                            pause(1, 15),
+                            authenticate,
+                            homeAuthenticated,
+                            pause(1, 15),
+                            addToCart,
+                            pause(1, 15),
+                            buy),
+                    group("us")
+                        .on(
+                            homeAnonymous,
+                            pause(1, 15),
+                            authenticate,
+                            homeAuthenticated,
+                            pause(1, 15),
+                            addToCart,
+                            pause(1, 15),
+                            buy)))
+        .exitHereIfFailed();
+    //#scenario-2
+    }
 
-
-
-  public static final class Step1 extends Simulation {
-//#isolate-processes
-ChainBuilder search =
-  // let's give proper names, as they are displayed in the reports
-  exec(http("List all products")
-    .get("/products"))
-    .pause(7)
-    .exec(http("Search")
-      .get("/products?search=Gatling"))
-   .pause(3);
-
-ChainBuilder browse = null; // TODO
-
-ChainBuilder addToCart = null; // TODO
-
-ChainBuilder checkout = null; // TODO
-//#isolate-processes
-
-//#processes
-ScenarioBuilder scn = scenario("Scenario Name")
-  .exec(search, browse, addToCart, checkout);
-//#processes
-
-//#populations
-ScenarioBuilder browsingUsers = scenario("Browsing Users")
-  .exec(search, browse);
-ScenarioBuilder purchasingUsers = scenario("Purchasing Users")
-  .exec(search, browse, addToCart, checkout);
-//#populations
-
-    HttpProtocolBuilder httpProtocol = http;
-
-//#setup-users
-{
-  setUp(browsingUsers.injectOpen(atOnceUsers(10)).protocols(httpProtocol));
-}
-//#setup-users
-
-//#setup-users-and-admins
-{
-  setUp(
-    browsingUsers.injectOpen(rampUsers(10).during(10)),
-    purchasingUsers.injectOpen(rampUsers(2).during(10))
-  ).protocols(httpProtocol);
-}
-//#setup-users-and-admins
-  }
-
-//#feeder
-FeederBuilder.Batchable<String> feeder =
-  csv("search.csv").random(); // 1, 2
-
-ChainBuilder search = exec(http("List all products")
-  .get("/products"))
-  .pause(1)
-  .feed(feeder) // 3
-  .exec(http("Search")
-    .get("/products?search=#{searchCriterion}") // 4
-    .check(
-      jmesPath("products[0].name").isEL("#{searchProductName}")
-    )
-  );
-//#feeder
-
-  public static final class BrowseLoopSimple {
-
-//#loop-simple
-private static ChainBuilder gotoPage(int page) {
-  return exec(http("Page " + page)
-    .get("/products?page=" + page))
-    .pause(1);
-}
-
-ChainBuilder browse =
-  exec(
-    gotoPage(0),
-    gotoPage(1),
-    gotoPage(2),
-    gotoPage(3)
-  );
-//#loop-simple
-  }
-
-  public static final class BrowseLoopFor {
-
-//#loop-for
-ChainBuilder browse =
-  repeat(4, "n").on( // 1
-    exec(http("Page #{n}").get("/products?page=#{n}")) // 2
-      .pause(1)
-  );
-//#loop-for
-  }
-
-  public static final class CheckAndTryMax {
-//#check
-ChainBuilder search = exec(http("List all products")
-  .get("/products"))
-  .pause(1)
-  .exec(http("Search")
-    .get("/products?search=Bag") // 4
-    .check(
-      jmesPath("products[0].name").is("Pink Throwback Hip Bag")
-    )
-    .check(status().is(session ->
-        200 + java.util.concurrent.ThreadLocalRandom.current().nextInt(2) // 2
-      ))
-  );
-//#check
-
-//#tryMax-exitHereIfFailed
-ChainBuilder tryMaxEdit = tryMax(2).on( // 1
-  exec(search)
-).exitHereIfFailed(); // 2
-//#tryMax-exitHereIfFailed
-  }
 }
