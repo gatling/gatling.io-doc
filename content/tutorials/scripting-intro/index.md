@@ -167,12 +167,21 @@ To deploy and run your simulation on Gatling Enterprise Cloud, use the following
    Windows: set GATLING_ENTERPRISE_API_TOKEN=<your-API-token>
    {{</ platform-toggle >}}
 
-3. Run the following command in your terminal to deploy and start your simulation:
+3. Run one of the following two commands according to your needs:
 
-   {{< platform-toggle >}}
-   Linux/MacOS: ./mvnw gatling:enterpriseStart
-   Windows: mvnw.cmd gatling:enterpriseStart
-   {{</ platform-toggle >}}
+   - To deploy your package **and** start the simulation, run:
+
+     {{< platform-toggle >}}
+     Linux/MacOS: ./mvnw gatling:enterpriseStart -Dgatling.enterprise.simulationName="<simulation name>"
+     Windows: mvnw.cmd gatling:enterpriseStart -Dgatling.enterprise.simulationName="<simulation name>"
+     {{</ platform-toggle >}}
+
+   - To deploy your package without starting a run:
+
+     {{< platform-toggle >}}
+     Linux/MacOS: ./mvnw gatling:enterpriseDeploy
+     Windows: mvnw.cmd gatling:enterpriseDeploy
+     {{</ platform-toggle >}}
 
 Watch the Simulation deploy automatically and generate real-time reports.
 
