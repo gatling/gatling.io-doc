@@ -57,6 +57,9 @@ const setUp = null as unknown as SetUpFunction;
 //#assertions
 // TODO
 //#assertions
+//#setup-block
+// TODO
+//#setup-block
 
 () => {
   //#isolate-processes

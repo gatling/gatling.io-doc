@@ -49,6 +49,9 @@ class AdvancedTutorialSampleScala extends Simulation {
 //#assertions
 // TODO
 //#assertions
+//#setup-block
+// TODO
+//#setup-block
 
 //#isolate-processes
 val search =

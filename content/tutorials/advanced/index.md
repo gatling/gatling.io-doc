@@ -194,3 +194,9 @@ In our script, we define the following injection profiles according to the desir
 Now, we need to define assertions—the benchmarks that determine whether the test is considered successful or failed.
 
 {{< include-code "assertions" >}}
+
+### Add the setUp block
+
+Finally, we define the setup block. This configuration will execute both scenarios **simultaneously**. Based on the test type specified in the system properties, it will apply the corresponding injection profile and assertions.
+
+{{< include-code "setup-block" >}}

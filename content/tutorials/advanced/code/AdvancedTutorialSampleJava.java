@@ -241,6 +241,15 @@ public class AdvancedTutorialSampleJava {
     }
     //#assertions
 
+    //#setup-block
+    // Set up the simulation with scenarios, load profiles, and assertions
+    {
+      setUp(injectionProfile(scn1), injectionProfile(scn2))
+          .assertions(getAssertions())
+          .protocols(httpProtocolWithAuthentication);
+    }
+    //#setup-block
+
 
 
     }

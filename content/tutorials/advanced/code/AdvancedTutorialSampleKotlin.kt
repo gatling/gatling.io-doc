@@ -47,6 +47,9 @@ class AdvancedTutorialSampleKotlin {
 //#assertions
 // TODO
 //#assertions
+//#setup-block
+// TODO
+//#setup-block
 
   object Step1 : Simulation() {
 
