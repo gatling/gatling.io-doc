@@ -189,3 +189,8 @@ control-plane {
     separate proxies for each, based on your infrastructure needs.
 * **File Access**: Ensure that truststore and keystore are accessible when using them. Mind that they may be located at
     different places for **Control plane** and **Load generators** depending on the way you mount volumes and/or generated the images.
+* **Full access** to the api.gateway.io domain: Don't expect to be able to cherry-pick allowed routes, headers, payloads,
+    etc. This is an internal API, subject to change any time without prior notice.
+* Ensure enough **payload size**:
+  * upload: **5MB** from your network to Gatling API.
+  * download: **5GB** from Gatling API to your network.
