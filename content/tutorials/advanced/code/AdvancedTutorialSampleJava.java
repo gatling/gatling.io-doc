@@ -117,7 +117,7 @@ public class AdvancedTutorialSampleJava {
   
     }
 
-    public static class AdvancedSimulation {
+    public static class AdvancedSimulation extends Simulation {
       //#http-protocol-builder
       static final HttpProtocolBuilder httpProtocolWithAuthentication =
       withAuthenticationHeader(
