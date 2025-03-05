@@ -54,8 +54,6 @@ public class AdvancedTutorialSampleJava {
       .on(exec(http("").get("/")));
   //#login-endpoint
   public static final class APIendpoints {
-
-  public static final String ACCESS_TOKEN = "AccessToken";
   public static final HttpRequestActionBuilder login =
       http("Login")
           .post("/login")
@@ -64,7 +62,7 @@ public class AdvancedTutorialSampleJava {
           .formParam("username", "#{username}")
           .formParam("password", "#{password}")
           .check(status().is(200))
-          .check(jmesPath("accessToken").saveAs(ACCESS_TOKEN));
+          .check(jmesPath("accessToken").saveAs("AccessToken"));
 
   }
   //#login-endpoint
@@ -74,7 +72,7 @@ public class AdvancedTutorialSampleJava {
       HttpProtocolBuilder protocolBuilder) {
     return protocolBuilder.header(
         "Authorization",
-        session -> session.contains(ACCESS_TOKEN) ? session.getString(ACCESS_TOKEN) : "");
+        session -> session.contains("AccessToken") ? session.getString("AccessToken") : "");
   }
   //#with-authentication-headers-wrapper
 
@@ -118,14 +116,23 @@ public class AdvancedTutorialSampleJava {
     }
 
     public static class AdvancedSimulation extends Simulation {
-      //#http-protocol-builder
+      //#http-protocol-builder-simple
+      static final HttpProtocolBuilder httpProtocol =
+          http.baseUrl("https://api-ecomm.gatling.io")
+              .acceptHeader("application/json")
+              .userAgentHeader(
+                  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/119.0");
+      //#http-protocol-builder-simple
+
+
+      //#http-protocol-builder-with-headers
       static final HttpProtocolBuilder httpProtocolWithAuthentication =
       withAuthenticationHeader(
           http.baseUrl("https://api-ecomm.gatling.io")
               .acceptHeader("application/json")
               .userAgentHeader(
                   "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/119.0"));
-      //#http-protocol-builder
+      //#http-protocol-builder-with-headers
 
   //#scenario-1
   // Define scenario 1 with a random traffic distribution
@@ -199,24 +206,24 @@ public class AdvancedTutorialSampleJava {
     // Define different load injection profiles
     // Reference: https://docs.gatling.io/reference/script/core/injection/
     static final PopulationBuilder injectionProfile(ScenarioBuilder scn) {
-      switch (testType) {
-        case "capacity":
-            return scn.injectOpen(
+      return switch (testType) {
+        case "capacity" ->
+            scn.injectOpen(
                 incrementUsersPerSec(vu)
                     .times(4)
                     .eachLevelLasting(duration)
                     .separatedByRampsLasting(4)
                     .startingFrom(10));
-        case "soak": return scn.injectOpen(constantUsersPerSec(vu).during(duration));
-        case "stress": return scn.injectOpen(stressPeakUsers(vu).during(duration));
-        case "breakpoint": return scn.injectOpen(rampUsers(vu).during(duration));
-        case "ramp-hold": return
+        case "soak" -> scn.injectOpen(constantUsersPerSec(vu).during(duration));
+        case "stress" -> scn.injectOpen(stressPeakUsers(vu).during(duration));
+        case "breakpoint" -> scn.injectOpen(rampUsers(vu).during(duration));
+        case "ramp-hold" ->
             scn.injectOpen(
                 rampUsersPerSec(0).to(vu).during(ramp_duration),
                 constantUsersPerSec(vu).during(duration));
-        case "smoke": return scn.injectOpen(atOnceUsers(1));
-        default: return scn.injectOpen(atOnceUsers(vu));
-      }
+        case "smoke" -> scn.injectOpen(atOnceUsers(1));
+        default -> scn.injectOpen(atOnceUsers(vu));
+      };
     }
     //#injection-profile-switch
 
@@ -224,21 +231,17 @@ public class AdvancedTutorialSampleJava {
     // Define assertions for different test types
     // Reference: https://docs.gatling.io/reference/script/core/assertions/
     static final List<Assertion> assertions =
-        List.of(
-            global().responseTime().percentile(90.0).lt(500),
-            global().failedRequests().percent().lt(5.0));
+      List.of(
+          global().responseTime().percentile(90.0).lt(500),
+          global().failedRequests().percent().lt(5.0));
 
-    static final List<Assertion> getAssertions() {
-      switch (testType) {
-        case "capacity": return assertions;
-        case "soak": return assertions;
-        case "stress": return assertions;
-        case "breakpoint": return assertions;
-        case "ramp-hold": return assertions;
-        case "smoke": return List.of(global().failedRequests().count().lt(1L));
-        default: return assertions;
-      }
-    }
+  static final List<Assertion> getAssertions() {
+    return switch (testType) {
+      case "capacity", "soak", "stress", "breakpoint", "ramp-hold" -> assertions;
+      case "smoke" -> List.of(global().failedRequests().count().lt(1L));
+      default -> assertions;
+    };
+  }
     //#assertions
 
     //#setup-block

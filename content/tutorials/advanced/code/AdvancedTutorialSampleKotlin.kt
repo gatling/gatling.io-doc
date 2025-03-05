@@ -32,9 +32,12 @@ class AdvancedTutorialSampleKotlin {
 //#authenticate-group
 // TODO
 //#authenticate-group
-//#http-protocol-builder
+//#http-protocol-builder-simple
 // TODO
-//#http-protocol-builder
+//#http-protocol-builder-simple
+//#http-protocol-builder-with-headers
+// TODO
+//#http-protocol-builder-with-headers
 //#scenario-1
 // TODO
 //#scenario-1
