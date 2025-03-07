@@ -15,11 +15,7 @@
  */
 
 //#setup-the-file
-import {
-  scenario,
-  simulation,
-  constantUsersPerSec
-} from "@gatling.io/core";
+import { simulation, atOnceUsers, global, scenario, getParameter } from "@gatling.io/core";
 import { http } from "@gatling.io/http";
 //#setup-the-file
 
