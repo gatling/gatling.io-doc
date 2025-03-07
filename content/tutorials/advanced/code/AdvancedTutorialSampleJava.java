@@ -209,20 +209,20 @@ public class AdvancedTutorialSampleJava {
       return switch (testType) {
         case "capacity" ->
             scn.injectOpen(
-                incrementUsersPerSec(vu)
+                incrementUsersPerSec(1)
                     .times(4)
-                    .eachLevelLasting(duration)
+                    .eachLevelLasting(10)
                     .separatedByRampsLasting(4)
                     .startingFrom(10));
-        case "soak" -> scn.injectOpen(constantUsersPerSec(vu).during(duration));
-        case "stress" -> scn.injectOpen(stressPeakUsers(vu).during(duration));
-        case "breakpoint" -> scn.injectOpen(rampUsers(vu).during(duration));
+        case "soak" -> scn.injectOpen(constantUsersPerSec(1).during(180));
+        case "stress" -> scn.injectOpen(stressPeakUsers(200).during(20));
+        case "breakpoint" -> scn.injectOpen(rampUsers(300).during(120));
         case "ramp-hold" ->
             scn.injectOpen(
-                rampUsersPerSec(0).to(vu).during(ramp_duration),
-                constantUsersPerSec(vu).during(duration));
+                rampUsersPerSec(0).to(20).during(30),
+                constantUsersPerSec(20).during(60));
         case "smoke" -> scn.injectOpen(atOnceUsers(1));
-        default -> scn.injectOpen(atOnceUsers(vu));
+        default -> scn.injectOpen(atOnceUsers(1));
       };
     }
     //#injection-profile-switch
