@@ -100,7 +100,7 @@ We first define the API endpoints, i.e. the backend API calls and place them in 
 Now let's take a closer look at the following definition of the `login` endpoint in the API endpoints file:
 
 <a id="login-endpoint-snippet"></a>
-{{< include-code "login-endpoint" >}}
+{{< include-code "login-endpoint" java ts >}}
 
 1. We use an http request action builder class to build a POST http request.
 2. We use `.asFormUrlEncoded()`to set the content-type header to `application/x-www-form-urlencoded`.
@@ -117,7 +117,7 @@ If the user journeys involve frontend calls that retrieve data (html, resources.
 
 Now let's take a look at the following definition of the `homePage` endpoint:
 
-{{< include-code "homepage-endpoint" >}}
+{{< include-code "homepage-endpoint" java ts >}}
 
 1. We define an http GET request for the `pageUrl`
 2. We define a check to ensure we receive a response with status code corresponding to either 200 or 304.
@@ -130,7 +130,7 @@ We will define the groups in a file under the `groups/` directory.
 
 Let's take a look at the following `authenticate` group definition:
 
-{{< include-code "authenticate-group" >}}
+{{< include-code "authenticate-group" java ts >}}
 
 1. We define a group under the name `authenticate`.
 2. This group will encompass the following two requests in the user journey: a `GET` request to retrieve the login page html and a `POST` request to the login endpoint.
@@ -162,7 +162,7 @@ Now let's define our scenarios! We will define two scenarios that showcase diffe
 
 - In our first scenario, we account for regional differences in user behavior commonly observed in e-commerce. To reflect this, we define two distinct user journeys based on the market: one for the French market and another for the US market:
 
-  {{< include-code "scenario-1" >}}
+  {{< include-code "scenario-1" java ts >}}
 
   Let's take a closer look:
 
@@ -172,19 +172,19 @@ Now let's define our scenarios! We will define two scenarios that showcase diffe
 
 - In a similar manner, we define our second scenario:
 
-  {{< include-code "scenario-2" >}}
+  {{< include-code "scenario-2" java ts >}}
 
 ### HTTP protocol
 
 Now, let's define our http protocol builder.
 
-{{< include-code "http-protocol-builder-simple" >}}
+{{< include-code "http-protocol-builder-simple" java ts >}}
 
 - We set the base url, `accept` and `user-agent` headers.
 
 For the `Authorization` header, we will have to set it per each API request that requires authentication, a bit of a headache no? To address this, we can use the following wrapper method:
 
-{{< include-code "with-authentication-headers-wrapper" >}}
+{{< include-code "with-authentication-headers-wrapper" java ts >}}
 
 The method above takes an `HttpProtocolBuilder` object and conditionally adds the `Authorization` header to the requests:
 
@@ -193,7 +193,7 @@ The method above takes an `HttpProtocolBuilder` object and conditionally adds th
 
 This will eliminate the need to set the `Authorization` header individually for each request. Now we can define our http protocol builder like the following:
 
-{{< include-code "http-protocol-builder-with-headers" >}}
+{{< include-code "http-protocol-builder-with-headers" java ts >}}
 
 ### Injection profiles
 
@@ -216,7 +216,7 @@ In our script, we define the following injection profiles according to the desir
   {{< /alert >}}
 
 <a id="injection-profile-snippet"></a>
-{{< include-code "injection-profile-switch" >}}
+{{< include-code "injection-profile-switch" java ts >}}
 
 For more information on defining injection profiles using the Gatling DSL, refer to this [section](https://docs.gatling.io/reference/script/core/injection/#open-model).
 
@@ -224,13 +224,13 @@ For more information on defining injection profiles using the Gatling DSL, refer
 
 Now, we need to define assertions—the benchmarks that determine whether the test is considered successful or failed.
 
-{{< include-code "assertions" >}}
+{{< include-code "assertions" java ts >}}
 
 ### Add setUp block
 
 Finally, we define the setup block. This configuration will execute both scenarios **simultaneously**. Based on the test type specified in the system properties, it will apply the corresponding injection profile and assertions.
 
-{{< include-code "setup-block" >}}
+{{< include-code "setup-block" java ts >}}
 
 There also is the possibility to execute scenarios sequentially. For more information, please refer to this [section](https://docs.gatling.io/reference/script/core/injection/#sequential-scenarios).
 
@@ -242,7 +242,7 @@ One last step would be adding some utility files to have a better organisation o
 
 Responsible for defining and retrieving all the necessary system properties and environment variables. Let's take a look at the following system properties:
 
-{{< include-code "config" >}}
+{{< include-code "config" java ts >}}
 
 - We define the `testType` system property that we use later on in the switch case of the `injectionProfile` [method](https://docs.gatling.io/tutorials/advanced/#injection-profile-snippet).
 - We define the `targetEnv` system property to specify the target application environment for the load simulation.
@@ -253,11 +253,11 @@ We leverage system properties and environment variables to create dynamic tests 
 
 Here, we define the session variable keys. Let's take a look at the following key definition:
 
-{{< include-code "keys" >}}
+{{< include-code "keys" java ts  >}}
 
 Now for the login endpoint, instead of doing `.saveAs("AccessToken")` [here](https://docs.gatling.io/tutorials/advanced/#login-endpoint-snippet), we can do the following:
 
-{{< include-code "keys-usage" >}}
+{{< include-code "keys-usage" java ts >}}
 
 #### Target env resolver file
 
@@ -268,4 +268,4 @@ You may need different configurations depending on the target application enviro
 - `usersFeederFile`: The feeder file to use for user credentials.
 - `productsFeederFile`: The feeder file to use for products.
 
-{{< include-code "target-env-resolver" >}}
+{{< include-code "target-env-resolver" java ts >}}
