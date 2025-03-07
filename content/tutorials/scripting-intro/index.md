@@ -46,11 +46,12 @@ Gatling Enterprise Cloud is a fully managed SaaS solution for load testing. Sign
 Java 11, 17, or 21 64-bit OpenJDK LTS (Long Term Support) version installed on your local machine. We recommend the [Azul JDK](https://www.azul.com/downloads/?package=jdk#zulu).
 {{< /alert >}}
 
-This guide uses the Gatling Java SDK with Maven, which is accessed by downloading and extracting the following `zip`file:
+This guide uses the Gatling Java SDK with Maven. Use the following procedure to install Gatling:
 
-{{< button title="Download Gatling" >}}
-https://github.com/gatling/gatling-maven-plugin-demo-java/archive/refs/heads/main.zip
-{{< /button >}}
+1. Clone the following [repo](https://github.com/gatling/se-ecommerce-demo-gatling-tests).
+
+2. Open the project in your IDE or terminal.
+3. Navigate to the `/java` folder for JavaScript projects in your terminal.
 
 ## Simulation construction
 
@@ -76,7 +77,7 @@ and copy the final simulation, jump to [Test execution]({{< ref "#test-execution
 Once you have downloaded and extracted the Gatling `zip` file, open the project in your integrated development
 environment (IDE). Gatling recommends the [IntelliJ community edition](https://www.jetbrains.com/idea/download/).
 
-1. Navigate to and open `src/test/java/ecomm/EcommSimulation.java`.
+1. Navigate to and open `src/test/java//example/BasicSimulation.java`.
 2. Modify the simulation by deleting everything below line 7 `import io.gatling.javaapi.http.*;`.
 3. The simulation should now look like the following:
 
@@ -90,18 +91,16 @@ You must extend Gatling's `Simulation` class to write a script. To extend the `S
 
 #### Define the protocol class
 
-Inside the `EcommSimulation` class, add an `HTTP protocol` class. Learn about all of the
+Inside the `BasicSimulation` class, add an `HTTP protocol` class. Learn about all of the
 `HttpProtocolBuilder` options in the [Documentation]({{< ref "/reference/script/protocols/http/protocol" >}}). For
-this example, the `baseUrl` property is hardcoded as the Gatling e-commerce test site, and the `acceptHeader` and
-contentTypeHeader`properties are set to`application/json`.
+this example, the `baseUrl` property is hardcoded as the Gatling e-commerce test site, and the `acceptHeader` is set to `application/json`.
 
 {{< include-code "ScriptingIntro2Sample#define-the-protocol-class" java >}}
 
 #### Write the scenario
 
 The next step is to describe the user journey. For a web application, this usually consists of a user arriving at the
-application and then a series of interactions with the application. The following scenario mocks a user arriving on the
-home page of the [Gatling sample application](https://ecomm.gatling.io).
+application and then a series of interactions with the application. The following scenario performs a get request to `https://api-ecomm.gatling.io/session` to retrieve the current user session.
 
 {{< include-code "ScriptingIntro3Sample#write-the-scenario" java >}}
 
@@ -123,7 +122,7 @@ and on Gatling Enterprise Cloud.
 
 Now, you should have a completed simulation that looks like the following:
 
-{{< include-code "EcommSimulation#full-example" java >}}
+{{< include-code "BasicSimulation#full-example" java >}}
 
 ### Run the Simulation on Gatling Enterprise Cloud
 
@@ -196,7 +195,7 @@ Linux/MacOS: ./mvnw gatling:test
 Windows: mvnw.cmd gatling:test
 {{</ platform-toggle >}}
 
-Select `1 Run the Simulation locally` to start the test.
+Select `[1] example.BasicSimulation` to start the test.
 
 When the test has finished, there is an HTML link in the terminal that you can use to access the static report.
 

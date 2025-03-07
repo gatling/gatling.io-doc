@@ -22,12 +22,15 @@ import io.gatling.javaapi.http.*;
 
 class ScriptingIntro2SampleJava {
   //#define-the-protocol-class
-  public class EcommSimulation extends Simulation {
+  public class BasicSimulation extends Simulation {
 
-    // Add the HttpProtocolBuilder:
-    HttpProtocolBuilder httpProtocol = http.baseUrl("https://ecomm.gatling.io")
-        // set the "accept" header to a value suited for the expected response
-        .acceptHeader("application/json");
+    // Define HTTP configuration
+    // Reference: https://docs.gatling.io/reference/script/protocols/http/protocol/
+    HttpProtocolBuilder httpProtocol =
+      http.baseUrl("https://api-ecomm.gatling.io")
+          .acceptHeader("application/json")
+          .userAgentHeader(
+              "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/119.0");
   }
   //#define-the-protocol-class
 }
