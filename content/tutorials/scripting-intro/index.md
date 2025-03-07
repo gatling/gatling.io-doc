@@ -77,7 +77,7 @@ and copy the final simulation, jump to [Test execution]({{< ref "#test-execution
 Once you have cloned the Gatling repo, open the project in your integrated development
 environment (IDE). Gatling recommends the [IntelliJ community edition](https://www.jetbrains.com/idea/download/).
 
-1. Navigate to and open `src/test/java/example/BasicSimulation.java`.
+1. Navigate to and open `java/src/test/java/example/BasicSimulation.java`.
 2. Modify the simulation by deleting everything below line 7 `import io.gatling.javaapi.http.*;`.
 3. The simulation should now look like the following:
 
