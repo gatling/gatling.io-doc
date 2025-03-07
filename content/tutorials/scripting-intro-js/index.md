@@ -42,9 +42,7 @@ Gatling Enterprise Cloud is a fully managed SaaS solution for load testing. Sign
 
 Then, use the following procedure to install Gatling:
 
-1. Download the JavaScript SDK zip file using the following download button:
-   {{< button title="Download Gatling for JavaScript" >}}
-   https://github.com/gatling/gatling-js-demo/archive/refs/heads/main.zip{{< /button >}}
+1. Clone the following [repo](https://github.com/gatling/se-ecommerce-demo-gatling-tests).
 
 2. Unzip and open the project in your IDE or terminal.
 3. Navigate to the `/javascript` folder for JavaScript projects in your terminal.
