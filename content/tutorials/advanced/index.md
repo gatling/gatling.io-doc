@@ -1,9 +1,8 @@
 ---
-menutitle: Writing realistic tests
 title: Writing realistic Gatling tests
-description: How to transform a raw recorded test into a dynamic and meaningful load test. Introduce feeders, dynamic parameters, loops, functions and multiple scenarios.
-lead: Isolate process, configure virtual users, use feeders, checks and looping
-date: 2021-04-20T18:30:56+02:00
+seotitle: Write realistic advanced Gatling tests to simulate real world scenarios for your application using http endpoints groups and injection profiles
+menutitle: Writing realistic tests
+description: Write realistic Gatling tests that simulate real world scenarios on your application.
 ---
 
 In this tutorial, we assume that you have already gone through the
@@ -12,8 +11,8 @@ We will build a realistic load test for a relevant real-world scenario and intro
 [Domain Specific Language](https://en.wikipedia.org/wiki/Domain-specific_language) constructs.
 
 {{< alert tip >}}
-The files for this tutorial can be found
-[on GitHub](https://github.com/karimatwa/ecommerce-demo-gatling-tests/tree/main).
+The sample project for this tutorial can be found
+[on GitHub](https://github.com/gatling/se-ecommerce-demo-gatling-tests).
 {{< /alert >}}
 
 {{< alert tip >}}
@@ -37,8 +36,8 @@ the end goal is to simulate **real-world traffic**, so **taking the time to dete
 
 This can be done in several ways:
 
-- Checking your Product Analytics tool (Amplitude, Firebase)
-- Checking your APM tool (Dynatrace, Datadog)
+- Check your product analytics tool (e.g. Amplitude & Firebase)
+- Check your APM tool (e.g. Dynatrace & Datadog)
 - Asking the product-owner
 
 For our e-commerce platform, we identified the following user journey:
@@ -75,7 +74,7 @@ Let's break it down:
 
 We need to define the individual requests that we need to call throughout the user journeys.
 
-#### I. API Endpoints
+#### API Endpoints
 
 We first define the API endpoints, i.e. the backend API calls and place them in a file under the `/endpoints` directory.\
 Now let's take a closer look at the following definition of the `login` endpoint in the API endpoints file:
@@ -92,7 +91,7 @@ Now let's take a closer look at the following definition of the `login` endpoint
    - **Extract** the `accessToken` from the response body and **save** it to the user session under the name `AccessToken`. Further information on extracting can be found [here](https://docs.gatling.io/reference/script/core/checks/#extracting), and on saving [here](https://docs.gatling.io/reference/script/core/checks/#saving).
    - More on `jmesPath` [here](https://docs.gatling.io/reference/script/core/checks/#jmespath).
 
-#### II. Web Endpoints
+#### Web Endpoints
 
 If the user journeys involve frontend calls that retrieve data (html, resources..etc) from the load-tested application server, then we need to define endpoints for these calls as well. Therefore we create another "web endpoints" file under the `/endpoints` directory.
 
@@ -215,24 +214,24 @@ Finally, we define the setup block. This configuration will execute both scenari
 
 There also is the possibility to execute scenarios sequentially. For more information, please refer to this [section](https://docs.gatling.io/reference/script/core/injection/#sequential-scenarios).
 
-### Utility files
+### Utility helpers
 
 One last step would be adding some utility files to have a better organisation of the codebase. In the `/utils` directory, we add the following files:
 
-#### Config file
+#### Configuration file
 
-Responsible for defining and retrieving all the necessary system properties and environment variables. Let's take a look at the following system properties:
+Responsible for defining **Java System Properties/JavaScript parameters** and **Environment variables** that we leverage in order to customize test behavior with no code changes. Let's take a look at the following example:
 
 {{< include-code "config" java ts >}}
 
 - We define the `testType` system property that we use later on in the switch case of the `injectionProfile` [method](https://docs.gatling.io/tutorials/advanced/#injection-profile-snippet).
 - We define the `targetEnv` system property to specify the target application environment for the load simulation.
 
-We leverage system properties and environment variables to create dynamic tests that require minimal code changes.
+You may define additional Java system properties or environment variables as required to accommodate your scripting needs.
 
 #### Keys file
 
-Here, we define the session variable keys. Let's take a look at the following key definition:
+Here, we define the session variable keys. This file centralizes your key references across all parts of your code in order to improve maintainability, avoiding typos, and keeping the code consistent and easier to refactor. Let's take a look at the following key definition:
 
 {{< include-code "keys" java ts  >}}
 
@@ -240,7 +239,7 @@ Now for the login endpoint, instead of doing `.saveAs("AccessToken")` [here](htt
 
 {{< include-code "keys-usage" java ts >}}
 
-#### Target env resolver file
+#### Target environment resolver file
 
 You may need different configurations depending on the target application environment. Here, we define a method that takes the target environment as input and returns the corresponding configuration.:
 

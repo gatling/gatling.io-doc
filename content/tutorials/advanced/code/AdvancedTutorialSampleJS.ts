@@ -67,21 +67,19 @@ export const buy = group("buy").on(
 .
 ├── .gatling/
 └── src/
-    ├── java/
-        ├── example/
-            ├── endpoints/
-                ├── APIendpoints.java
-                └── WebEndpoints.java
-            ├── groups/
-                ├── ScenarioGroups.java
-            ├── utils/
-                ├── Config.java
-                └── Keys.java
-                └── TargetEnvResolver.java
-            ├── resources/
-                ├── bodies/
-                ├── data/
-            ├── AdvancedSimulation.java
+    ├── endpoints/
+        ├── apiEndpoints.js
+        └── webEndpoints.js
+    ├── groups/
+        ├── scenarioGroups.js
+    ├── utils/
+        ├── config.js
+        └── keys.js
+        └── targetEnvResolver.js
+    ├── resources/
+        ├── bodies/
+        ├── data/
+    ├── advancedSimulation.gatling.js
 */
 //#project-structure
 
