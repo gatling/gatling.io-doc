@@ -32,7 +32,7 @@ This section guides you through installation and setting up your developer envir
 
 Gatling Enterprise Cloud is a fully managed SaaS solution for load testing. Sign up for a [trial account](https://auth.gatling.io/auth/realms/gatling/protocol/openid-connect/registrations?client_id=gatling-enterprise-cloud-public&response_type=code&scope=openid&redirect_uri=https%3A%2F%2Fcloud.gatling.io%2Fr%2Fgatling) to run your first test on Gatling Enterprise Cloud. The [Gatling website](https://gatling.io/features) has a full list of Enterprise features.
 
-### Install Gatling
+### Clone Gatling demo repository { #install-gatling }
 
 {{< alert info >}}
 **Prerequisites**
@@ -42,10 +42,10 @@ Gatling Enterprise Cloud is a fully managed SaaS solution for load testing. Sign
 
 Then, use the following procedure to install Gatling:
 
-1. Clone the following [repo](https://github.com/gatling/se-ecommerce-demo-gatling-tests).
+1. Clone the following [repository](https://github.com/gatling/se-ecommerce-demo-gatling-tests).
 
 2. Open the project in your IDE or terminal.
-3. Navigate to the `/javascript` folder for JavaScript projects in your terminal.
+3. Navigate to the `/javascript` folder.
 4. Run `npm install` to install the packages and dependencies including the `gatling` command.
 
 ## Simulation construction
