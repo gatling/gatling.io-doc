@@ -44,7 +44,7 @@ Then, use the following procedure to install Gatling:
 
 1. Clone the following [repo](https://github.com/gatling/se-ecommerce-demo-gatling-tests).
 
-2. Unzip and open the project in your IDE or terminal.
+2. Open the project in your IDE or terminal.
 3. Navigate to the `/javascript` folder for JavaScript projects in your terminal.
 4. Run `npm install` to install the packages and dependencies including the `gatling` command.
 
