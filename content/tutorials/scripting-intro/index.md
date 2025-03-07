@@ -191,11 +191,9 @@ new or modified simulation locally is often useful to ensure it works before lau
 Using the Java SDK, you can launch your test with the following command in the project root directory:
 
 {{< platform-toggle>}}
-Linux/MacOS: ./mvnw gatling:test
-Windows: mvnw.cmd gatling:test
+Linux/MacOS: ./mvnw gatling:test -Dgatling.simulationClass=example.BasicSimulation
+Windows: mvnw.cmd gatling:test -Dgatling.simulationClass=example.BasicSimulation
 {{</ platform-toggle >}}
-
-Select `[1] example.BasicSimulation` to start the test.
 
 When the test has finished, there is an HTML link in the terminal that you can use to access the static report.
 
