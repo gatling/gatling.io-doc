@@ -53,7 +53,7 @@ public class AdvancedTutorialSampleJava {
   group("homeAnonymous")
       .on(exec(http("").get("/")));
   //#login-endpoint
-  public static final class APIendpoints {
+  public class APIendpoints {
   public static final HttpRequestActionBuilder login =
       http("Login")
           .post("/login")
@@ -77,7 +77,7 @@ public class AdvancedTutorialSampleJava {
   //#with-authentication-headers-wrapper
 
   //#homepage-endpoint
-  public static class WebEndpoints {
+  public class WebEndpoints {
     public static final String pageUrl = "https://ecomm.gatling.io";
     // Define the home page request with response status validation
     // Reference: https://docs.gatling.io/reference/script/protocols/http/request/#checks
@@ -103,7 +103,7 @@ public class AdvancedTutorialSampleJava {
       http("LoginPage").get(pageUrl + "/login").check(status().in(200, 304));
 
     //#authenticate-group
-    public static class ScenarioGroups{
+    public class ScenarioGroups{
       private static final FeederBuilder<Object> usersFeeder =
         jsonFile("data/users_dev.json").circular();
         // Define authentication process
@@ -115,7 +115,7 @@ public class AdvancedTutorialSampleJava {
   
     }
 
-    public static class AdvancedSimulation extends Simulation {
+    public class AdvancedSimulation extends Simulation {
       //#http-protocol-builder-simple
       static final HttpProtocolBuilder httpProtocol =
           http.baseUrl("https://api-ecomm.gatling.io")
@@ -258,14 +258,14 @@ public class AdvancedTutorialSampleJava {
     }
 
   //#config
-  public static class Config {
+  public class Config {
     public static final String testType = System.getProperty("testType", "smoke"); // Test type (default: smoke)
     public static final String targetEnv = System.getProperty("targetEnv", "DEV");
   }
   //#config
 
   //#keys
-  public static class Keys {
+  public class Keys {
     public static final String ACCESS_TOKEN = "AccessToken";
   }
   //#keys
