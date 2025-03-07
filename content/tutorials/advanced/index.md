@@ -152,7 +152,7 @@ Let's take a look at the following `authenticate` group definition:
      ```
 
    - We define `usersFeeder` that loads the json file using `jsonFile()` with the `circular()` strategy. More on feeder strategies [here](https://docs.gatling.io/reference/script/core/session/feeders/#strategies).
-   - We call the `feed(usersFeeder)` in the `authenticate` ChainBuilder to pass dynamic `username` and `password` values to the `login` endpoint that we defined [earlier](http://localhost:1313/tutorials/advanced/#i-api-endpoints).
+   - We call the `feed(usersFeeder)` in the `authenticate` ChainBuilder to pass dynamic `username` and `password` values to the `login` endpoint that we defined [earlier](https://docs.gatling.io/tutorials/advanced/#i-api-endpoints).
 
 4. We also include a `pause(5, 15)` before the login step. This instructs the virtual user to pause for a random duration between 5 and 15 seconds. The randomness helps simulate human-like variations in navigation, such as filling out forms. Pauses are a crucial component of replicating real-world behavior, and it's important to ensure they are placed appropriately throughout the scenario.
 
@@ -244,7 +244,7 @@ Responsible for defining and retrieving all the necessary system properties and 
 
 {{< include-code "config" >}}
 
-- We define the `testType` system property that we use later on in the switch case of the `injectionProfile` [method](http://localhost:1313/tutorials/advanced/#injection-profile-snippet).
+- We define the `testType` system property that we use later on in the switch case of the `injectionProfile` [method](https://docs.gatling.io/tutorials/advanced/#injection-profile-snippet).
 - We define the `targetEnv` system property to specify the target application environment for the load simulation.
 
 We leverage system properties and environment variables to create dynamic tests that require minimal code changes.
@@ -255,7 +255,7 @@ Here, we define the session variable keys. Let's take a look at the following ke
 
 {{< include-code "keys" >}}
 
-Now for the login endpoint, instead of doing `.saveAs("AccessToken")` [here](http://localhost:1313/tutorials/advanced/#login-endpoint-snippet), we can do the following:
+Now for the login endpoint, instead of doing `.saveAs("AccessToken")` [here](https://docs.gatling.io/tutorials/advanced/#login-endpoint-snippet), we can do the following:
 
 {{< include-code "keys-usage" >}}
 
