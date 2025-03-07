@@ -26,7 +26,7 @@ Join the [Gatling Community Forum](https://community.gatling.io) to discuss load
 
 ## Setup
 
-This section guides you through installation and setting up your developer environment. This guide uses JavaScript and the `gatling-js-demo` project. The JavaScript SDK is currently available for the `HTTP` protocol only.
+This section guides you through installation and setting up your developer environment. This guide uses JavaScript and the gatling demo project. The JavaScript SDK is currently available for the `HTTP` protocol only.
 
 ### Sign up for Gatling Enterprise Cloud
 
@@ -71,8 +71,9 @@ and copy the final simulation, jump to [Test execution]({{< ref "#test-execution
 
 To set up the test file use the following procedure:
 
-1. In your IDE create the `myfirstsimulation.gatling.js` file in the `javascript/src/` folder.
-2. Copy the following import statements and past them in the `myfirstsimulation.gatling.js` file.
+1. Navigate to and open `javascript/src/basicSimulation.gatling.js`.
+2. Modify the simulation by deleting everything below line 2 `import { http } from "@gatling.io/http";`.
+3. The simulation should now look like the following:
 
 {{< include-code "ScriptingIntro1Sample#setup-the-file" ts >}}
 
@@ -86,14 +87,13 @@ The `simulation` function takes the `setUp` function as an argument, which is us
 
 Inside the `simulation` function, define an HTTP protocol. Learn about all of the
 `HttpProtocolBuilder` options in the [Documentation]({{< ref "/reference/script/protocols/http/protocol" >}}). For
-this example, the `baseUrl` property is hardcoded as the Gatling e-commerce test site, and the `acceptHeader` and
-`contentTypeHeader` properties are set to `application/json`. Add the HTTP protocol:
+this example, the `baseUrl` property is hardcoded as the Gatling e-commerce test site, and the `acceptHeader` is set to `application/json`. Add the HTTP protocol:
 
 {{< include-code "ScriptingIntro2Sample#define-the-protocol-class" ts >}}
 
 #### Write the scenario
 
-The next step is to describe the user journey. For a web application, this usually consists of a user arriving at the application and then a series of interactions with the application. The following scenario mocks a user arriving on the home page of the [Gatling sample application](https://ecomm.gatling.io). Add the scenario:
+The next step is to describe the user journey. For a web application, this usually consists of a user arriving at the application and then a series of interactions with the application. The following scenario performs a get request to `https://api-ecomm.gatling.io/session` to retrieve the current user session. Add the scenario:
 
 {{< include-code "ScriptingIntro3Sample#write-the-scenario" ts >}}
 
@@ -114,7 +114,7 @@ Congrats! You have written your first Gatling simulation. The next step is to le
 
 Now, you should have a completed simulation that looks like the following:
 
-{{< include-code "EcommSimulation#full-example" ts >}}
+{{< include-code "BasicSimulation#full-example" ts >}}
 
 ### Package, upload and run your simulation to Gatling Enterprise { #package }
 
@@ -180,7 +180,7 @@ The open-source version of Gatling allows you to run simulations locally, genera
 Using the terminal, you can launch your test with the following command in the `javascript` project directory:
 
 ```console
-npx gatling run --simulation myfirstsimulation
+npx gatling run --simulation basicSimulation
 ```
 
 When the test has finished, there is an HTML link in the terminal that you can use to access the static report.
