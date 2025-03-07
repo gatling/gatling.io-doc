@@ -53,26 +53,7 @@ For our e-commerce platform, we identified the following user journey:
 
 ### Project structure
 
-```console
-.
-├── .gatling/
-└── src/
-    ├── java/
-        ├── example/
-            ├── endpoints/
-                ├── APIendpoints.java
-                └── WebEndpoints.java
-            ├── groups/
-                ├── ScenarioGroups.java
-            ├── utils/
-                ├── Config.java
-                └── Keys.java
-                └── TargetEnvResolver.java
-            ├── resources/
-                ├── bodies/
-                ├── data/
-            ├── AdvancedSimulation.java
-```
+{{< include-code "project-structure" java ts >}}
 
 Let's break it down:
 

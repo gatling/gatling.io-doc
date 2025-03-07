@@ -62,6 +62,29 @@ export const buy = group("buy").on(
   exec(http("").get("/"))
 );
 
+//#project-structure
+/*
+.
+├── .gatling/
+└── src/
+    ├── java/
+        ├── example/
+            ├── endpoints/
+                ├── APIendpoints.java
+                └── WebEndpoints.java
+            ├── groups/
+                ├── ScenarioGroups.java
+            ├── utils/
+                ├── Config.java
+                └── Keys.java
+                └── TargetEnvResolver.java
+            ├── resources/
+                ├── bodies/
+                ├── data/
+            ├── AdvancedSimulation.java
+*/
+//#project-structure
+
 //#config
 export const testType = getParameter("testType", "stress");
 export const targetEnv = getParameter("targetEnv", "DEV");

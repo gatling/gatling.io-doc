@@ -52,6 +52,30 @@ public class AdvancedTutorialSampleJava {
   public static final ChainBuilder buy =
   group("homeAnonymous")
       .on(exec(http("").get("/")));
+
+//#project-structure
+/*
+.
+├── .gatling/
+└── src/
+    ├── java/
+        ├── example/
+            ├── endpoints/
+                ├── APIendpoints.java
+                └── WebEndpoints.java
+            ├── groups/
+                ├── ScenarioGroups.java
+            ├── utils/
+                ├── Config.java
+                └── Keys.java
+                └── TargetEnvResolver.java
+            ├── resources/
+                ├── bodies/
+                ├── data/
+            ├── AdvancedSimulation.java
+*/
+//#project-structure
+
   //#login-endpoint
   public class APIendpoints {
   public static final HttpRequestActionBuilder login =
