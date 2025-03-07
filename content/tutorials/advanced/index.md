@@ -107,9 +107,9 @@ Now let's take a closer look at the following definition of the `login` endpoint
 3. We use `.formParam("username", "#{username}")` to set the form parameters of the POST request. More on `formParam` [here](https://docs.gatling.io/reference/script/protocols/http/request/#formparam).
    - We use the [Gatling Expression Language](https://docs.gatling.io/reference/script/core/session/el/) to retrieve the username's value from the virtual user's session. We will set this value later on in this guide using a [Feeder](https://docs.gatling.io/reference/script/core/session/feeders/).
 4. We use `.check()` for the following:
-   - Check that we receive a 200 status code in the response.
-   - Retrieve the `accessToken` from the response body and **save it** to the user session under the name `AccessToken`.
-   - More on Checks and `jmesPath` [here](https://docs.gatling.io/reference/script/core/checks/)
+   - **Validate** that we receive a 200 status code in the response. More on validating [here](https://docs.gatling.io/reference/script/core/checks/#validating).
+   - **Extract** the `accessToken` from the response body and **save** it to the user session under the name `AccessToken`. Further information on extracting can be found [here](https://docs.gatling.io/reference/script/core/checks/#extracting), and on saving [here](https://docs.gatling.io/reference/script/core/checks/#saving).
+   - More on `jmesPath` [here](https://docs.gatling.io/reference/script/core/checks/#jmespath).
 
 #### II. Web Endpoints
 
