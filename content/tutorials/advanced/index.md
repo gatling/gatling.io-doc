@@ -261,7 +261,7 @@ Now for the login endpoint, instead of doing `.saveAs("AccessToken")` [here](htt
 
 #### Target env resolver file
 
-You may need different configurations depending on the target application environment. Here, we define `resolveEnvironmentInfo(String targetEnv)`, which takes the target environment as input and returns the corresponding configuration.:
+You may need different configurations depending on the target application environment. Here, we define a method that takes the target environment as input and returns the corresponding configuration.:
 
 - `pageUrl`: Frontend base URL.
 - `baseUrl`: Backend base URL.

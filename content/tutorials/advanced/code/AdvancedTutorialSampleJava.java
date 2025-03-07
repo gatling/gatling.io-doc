@@ -32,7 +32,7 @@ import java.util.List;
 public class AdvancedTutorialSampleJava {
   public static final String pageUrl = "https://ecomm.gatling.io";
   public static final String ACCESS_TOKEN = "AccessToken";
-  public static final String testType = "AccessToken";
+  public static final String testType = "smoke";
   public static final int vu = 10;
   public static final int duration = 10;
   public static final int ramp_duration = 10;
@@ -68,6 +68,9 @@ public class AdvancedTutorialSampleJava {
   //#login-endpoint
 
   //#with-authentication-headers-wrapper
+  // Add authentication header if an access token exists in the session
+  // Reference:
+  // https://docs.gatling.io/reference/script/protocols/http/request/#headers
   public static final HttpProtocolBuilder withAuthenticationHeader(
       HttpProtocolBuilder protocolBuilder) {
     return protocolBuilder.header(
@@ -78,12 +81,11 @@ public class AdvancedTutorialSampleJava {
 
   //#homepage-endpoint
   public class WebEndpoints {
-    public static final String pageUrl = "https://ecomm.gatling.io";
     // Define the home page request with response status validation
     // Reference: https://docs.gatling.io/reference/script/protocols/http/request/#checks
     public static final HttpRequestActionBuilder homePage =
         http("HomePage")
-            .get(pageUrl)
+            .get("https://ecomm.gatling.io")
             .check(status().in(200, 304)); // Accept both OK (200) and Not Modified (304) statuses
   }
   //#homepage-endpoint
