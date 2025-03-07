@@ -74,7 +74,7 @@ and copy the final simulation, jump to [Test execution]({{< ref "#test-execution
 
 #### Setup the file
 
-Once you have downloaded and extracted the Gatling `zip` file, open the project in your integrated development
+Once you have cloned the demo e-commerce repo, open the project in your integrated development
 environment (IDE). Gatling recommends the [IntelliJ community edition](https://www.jetbrains.com/idea/download/).
 
 1. Navigate to and open `src/test/java//example/BasicSimulation.java`.
