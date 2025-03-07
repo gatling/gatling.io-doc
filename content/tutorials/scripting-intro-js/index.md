@@ -118,37 +118,62 @@ Now, you should have a completed simulation that looks like the following:
 
 {{< include-code "EcommSimulation#full-example" ts >}}
 
-### Package and upload your simulation to Gatling Enterprise { #package }
+### Package, upload and run your simulation to Gatling Enterprise { #package }
 
-To run your simulation on Gatling Enterprise, you need to package the script with all of the required files. The output of this step is a file named `package.zip` in the `target` folder. To upload your simulation to Gatling Enterprise:
+You can package, deploy, and run your simulation using one of two approaches, depending on whether you prefer a manual or automated process.
 
-1. Run the following command in your terminal:
+#### Simple Manual Use Case { #test }
+
+1. Manually generate the package by executing the following command locally on your developer’s workstation:
 
    ```console
    npx gatling enterprise-package
    ```
 
-2. Log in to your Gatling Enterprise account.
-3. Click on **Packages** in the left-side menu.
-4. Click the **Create** button.
-5. Name the package and choose a team (default is typical for trial accounts)
-6. Upload the `package.zip` file you created in step 1.
-7. Click **Save** to save your package to Gatling Enterprise.
+2. The above command will create a packaged **jar** file in your project's **target** directory.
 
-### Create and run a new test on Gatling Enterprise { #test }
+3. From your Gatling Enterprise console, go to **Packages**. Create a new package specifying its name, team that owns it, select your packaged jar file for upload then click **Save**.
 
-An executable test on Gatling Enterprise is called a Simulation. To run your first simulation, you need to select some minimum settings.
+4. Go to **Simulations** > **Create a simulation** > **Test as code**. Under **Select a package**, choose the newly created package, then click **Create**.
 
-1. Click **Simulations** in the left-side menu.
-2. Click **Create a simulation**.
-3. Click **Create a simulation with a package**
-4. Fill in the **General** section including selecting the package you created in the [Package and upload your simulation to Gatling Enterprise]({{< ref "#package" >}}) section.
-5. Choose a location for generating virtual users from (load). The sample application provided by Gatling is hoasted near Paris, so this location will usually yield the fastest response times.
-6. Click **Save and launch** to start your test!
+5. Configure your simulation parameters:
+   - Simulation name.
+   - Under **Select your package and simulation** > **Simulation**, select your simulation class.
+   - Under **Configure your locations**, choose the _Managed_ type and select a location based on your preference.
+   - Click **Save and launch**.
 
-{{< alert info >}}
-Learn about how to read your load test results in the [Reports documentation]({{< ref "reference/stats/reports/cloud" >}}).
-{{</ alert >}}
+#### Advanced Use Case with Automated Deployments (Configuration-as-Code)
+
+Gatling Enterprise Cloud is a feature-rich SaaS platform that is designed for teams and organizations to get the most
+out of load testing. With the trial account, you created in the [Prerequisites section]({{< ref "#install-gatling" >}}), you can upload and run your test with advanced configuration, reporting, and collaboration features.
+
+From Gatling 3.11 packaging and running simulations on Gatling Enterprise Cloud is simplified by using [configuration as code]({{< ref "reference/execute/cloud/user/configuration-as-code" >}}). In this tutorial, we only use the default configuration to demonstrate deploying your project. You can learn more about customizing your configuration with our [configuration-as-code guide]({{< ref "guides/config-as-code" >}}).
+
+To deploy and run your simulation on Gatling Enterprise Cloud, use the following procedure:
+
+1. Generate an [API token]({{< ref "/reference/execute/cloud/admin/api-tokens" >}}) with the `Configure` permission in your Gatling Enterprise Cloud account.
+2. Add the API token to your current terminal session by replacing `<your-API-token>` with the API token generated in step 1 and running the following command:
+
+   {{< platform-toggle >}}
+   Linux/MacOS: export GATLING_ENTERPRISE_API_TOKEN=<your-API-token>
+   Windows: set GATLING_ENTERPRISE_API_TOKEN=<your-API-token>
+   {{</ platform-toggle >}}
+
+3. Run one of the following two commands according to your needs:
+
+   - To deploy your package **and** start the simulation, run:
+
+     ```console
+     npx gatling enterprise-start --enterprise-simulation="<simulation name>"
+     ```
+
+   - To deploy your package without starting a run:
+
+     ```console
+     npx gatling enterprise-deploy
+     ```
+
+Watch the Simulation deploy automatically and generate real-time reports.
 
 ### Test the simulation locally {{% badge info "Optional" /%}} {#run-local}
 
