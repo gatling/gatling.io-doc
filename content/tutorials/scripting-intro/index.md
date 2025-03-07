@@ -142,13 +142,13 @@ You can package, deploy, and run your simulation using one of two approaches, de
 
 3. From your Gatling Enterprise console, go to **Packages**. Create a new package specifying its name, team that owns it, select your packaged jar file for upload then click **Save**.
 
-4. Go to **Simulations** > **Create a simulation** > **Test as code**. Under **Select a package**, choose the newly created package, then click **Create**
+4. Go to **Simulations** > **Create a simulation** > **Test as code**. Under **Select a package**, choose the newly created package, then click **Create**.
 
 5. Configure your simulation parameters:
-   - Simulation name
+   - Simulation name.
    - Under **Select your package and simulation** > **Simulation**, select your simulation class.
    - Under **Configure your locations**, choose the _Managed_ type and select a location based on your preference.
-   - Click **Save and launch**
+   - Click **Save and launch**.
 
 #### Advanced Use Case with Automated Deployments (Configuration-as-Code)
 
