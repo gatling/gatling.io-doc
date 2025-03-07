@@ -51,7 +51,7 @@ This guide uses the Gatling Java SDK with Maven. Use the following procedure to 
 1. Clone the following [repository](https://github.com/gatling/se-ecommerce-demo-gatling-tests).
 
 2. Open the project in your IDE or terminal.
-3. Navigate to the `/java` folder for JavaScript projects in your terminal.
+3. Navigate to the `/java` folder.
 
 ## Simulation construction
 
