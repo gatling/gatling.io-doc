@@ -39,7 +39,7 @@ This guide uses the Java SDK with the Maven wrapper. Gatling recommends that dev
 
 Gatling Enterprise Cloud is a fully managed SaaS solution for load testing. Sign up for a [trial account](https://auth.gatling.io/auth/realms/gatling/protocol/openid-connect/registrations?client_id=gatling-enterprise-cloud-public&response_type=code&scope=openid&redirect_uri=https%3A%2F%2Fcloud.gatling.io%2Fr%2Fgatling) to run your first test on Gatling Enterprise Cloud. The [Gatling website](https://gatling.io/features) has a full list of Enterprise features.
 
-### Install Gatling
+### Clone Gatling demo repository { #install-gatling }
 
 {{< alert info >}}
 **Prerequisites**  
@@ -48,7 +48,7 @@ Java 11, 17, or 21 64-bit OpenJDK LTS (Long Term Support) version installed on y
 
 This guide uses the Gatling Java SDK with Maven. Use the following procedure to install Gatling:
 
-1. Clone the following [repo](https://github.com/gatling/se-ecommerce-demo-gatling-tests).
+1. Clone the following [repository](https://github.com/gatling/se-ecommerce-demo-gatling-tests).
 
 2. Open the project in your IDE or terminal.
 3. Navigate to the `/java` folder for JavaScript projects in your terminal.
