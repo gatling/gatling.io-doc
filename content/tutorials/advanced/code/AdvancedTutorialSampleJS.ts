@@ -271,8 +271,9 @@ setUp(injectionProfile(scn1), injectionProfile(scn2))
 //#keys
 export const ACCESS_TOKEN = "AccessToken";
 //#keys
+() => {
 //#keys-usage
-export const login = http("Login")
+const login = http("Login")
   .post("/login")
   .asFormUrlEncoded()
   .formParam("username", "#{username}")
@@ -280,6 +281,7 @@ export const login = http("Login")
   .check(status().is(200))
   .check(jmesPath("accessToken").saveAs(ACCESS_TOKEN));
 //#keys-usage
+}
 //#target-env-resolver
 // Resolve environment-specific configuration based on the target environment
 const targetEnvResolver = (targetEnv) => {
