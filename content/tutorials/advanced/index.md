@@ -99,6 +99,7 @@ We need to define the individual requests that we need to call throughout the us
 We first define the API endpoints, i.e. the backend API calls and place them in a file under the `/endpoints` directory.\
 Now let's take a closer look at the following definition of the `login` endpoint in the API endpoints file:
 
+<a id="login-endpoint-snippet"></a>
 {{< include-code "login-endpoint" >}}
 
 1. We use an http request action builder class to build a POST http request.
@@ -214,6 +215,7 @@ In our script, we define the following injection profiles according to the desir
 - Injection profiles can be defined according to your specific needs. The profiles provided are commonly used for the mentioned use cases, but they are not set in stone. Be sure to choose the injection profile that best fits your use case.
   {{< /alert >}}
 
+<a id="injection-profile-snippet"></a>
 {{< include-code "injection-profile-switch" >}}
 
 For more information on defining injection profiles using the Gatling DSL, refer to this [section](https://docs.gatling.io/reference/script/core/injection/#open-model).
@@ -231,3 +233,39 @@ Finally, we define the setup block. This configuration will execute both scenari
 {{< include-code "setup-block" >}}
 
 There also is the possibility to execute scenarios sequentially. For more information, please refer to this [section](https://docs.gatling.io/reference/script/core/injection/#sequential-scenarios).
+
+### Utility files
+
+One last step would be adding some utility files to have a better organisation of the codebase. In the `/utils` directory, we add the following files:
+
+#### Config file
+
+Responsible for defining and retrieving all the necessary system properties and environment variables. Let's take a look at the following system properties:
+
+{{< include-code "config" >}}
+
+- We define the `testType` system property that we use later on in the switch case of the `injectionProfile` [method](http://localhost:1313/tutorials/advanced/#injection-profile-snippet).
+- We define the `targetEnv` system property to specify the target application environment for the load simulation.
+
+We leverage system properties and environment variables to create dynamic tests that require minimal code changes.
+
+#### Keys file
+
+Here, we define the session variable keys. Let's take a look at the following key definition:
+
+{{< include-code "keys" >}}
+
+Now for the login endpoint, instead of doing `.saveAs("AccessToken")` [here](http://localhost:1313/tutorials/advanced/#login-endpoint-snippet), we can do the following:
+
+{{< include-code "keys-usage" >}}
+
+#### Target env resolver file
+
+You may need different configurations depending on the target application environment. Here, we define `resolveEnvironmentInfo(String targetEnv)`, which takes the target environment as input and returns the corresponding configuration.:
+
+- `pageUrl`: Frontend base URL.
+- `baseUrl`: Backend base URL.
+- `usersFeederFile`: The feeder file to use for user credentials.
+- `productsFeederFile`: The feeder file to use for products.
+
+{{< include-code "target-env-resolver" >}}

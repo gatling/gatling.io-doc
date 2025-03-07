@@ -257,4 +257,60 @@ public class AdvancedTutorialSampleJava {
 
     }
 
+  //#config
+  public static class Config {
+    public static final String testType = System.getProperty("testType", "smoke"); // Test type (default: smoke)
+    public static final String targetEnv = System.getProperty("targetEnv", "DEV");
+  }
+  //#config
+
+  //#keys
+  public static class Keys {
+    public static final String ACCESS_TOKEN = "AccessToken";
+  }
+  //#keys
+
+  
+  public static class KeysUsage {
+    public static final String ACCESS_TOKEN = "AccessToken";
+    //#keys-usage
+    public static final HttpRequestActionBuilder login =
+    http("Login")
+        .post("/login")
+        .asFormUrlEncoded() // Short for header("Content-Type",
+        // "application/x-www-form-urlencoded")
+        .formParam("username", "#{username}")
+        .formParam("password", "#{password}")
+        .check(status().is(200))
+        .check(jmesPath("accessToken").saveAs(ACCESS_TOKEN));
+    //#keys-usage
+  }
+
+  //#target-env-resolver
+  public class TargetEnvResolver {
+
+    // Record to store environment-specific information
+    public record EnvInfo(
+        String pageUrl, String baseUrl, String usersFeederFile, String productsFeederFile) {}
+  
+    // Resolve environment-specific configuration based on the target environment
+    public static EnvInfo resolveEnvironmentInfo(String targetEnv) {
+      return switch (targetEnv) {
+        case "DEV" ->
+            new EnvInfo(
+                "https://ecomm.gatling.io",
+                "https://api-ecomm.gatling.io",
+                "data/users_dev.json",
+                "data/products_dev.csv");
+        default ->
+            new EnvInfo(
+                "https://ecomm.gatling.io",
+                "https://api-ecomm.gatling.io",
+                "data/users_dev.json",
+                "data/products_dev.csv");
+      };
+    }
+  }
+  //#target-env-resolver
+
 }

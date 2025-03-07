@@ -53,6 +53,18 @@ class AdvancedTutorialSampleKotlin {
 //#setup-block
 // TODO
 //#setup-block
+//#config
+// TODO
+//#config
+//#keys
+// TODO
+//#keys
+//#keys-usage
+// TODO
+//#keys-usage
+//#target-env-resolver
+// TODO
+//#target-env-resolver
 
   object Step1 : Simulation() {
 
