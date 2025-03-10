@@ -21,21 +21,21 @@ import io.gatling.javaapi.core.*;
 import io.gatling.javaapi.http.*;
 
 class ScriptingIntro3SampleJava {
-  //#write-the-scenario
-  public class BasicSimulation extends Simulation {
+//#write-the-scenario
+public class BasicSimulation extends Simulation {
 
-    // Define HTTP configuration
-    // Reference: https://docs.gatling.io/reference/script/protocols/http/protocol/
-    HttpProtocolBuilder httpProtocol =
-      http.baseUrl("https://api-ecomm.gatling.io")
-          .acceptHeader("application/json")
-          .userAgentHeader(
-              "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/119.0");
+  // Define HTTP configuration
+  // Reference: https://docs.gatling.io/reference/script/protocols/http/protocol/
+  HttpProtocolBuilder httpProtocol =
+    http.baseUrl("https://api-ecomm.gatling.io")
+        .acceptHeader("application/json")
+        .userAgentHeader(
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/119.0");
 
-    // Define scenario
-    // Reference: https://docs.gatling.io/reference/script/core/scenario/
-    ScenarioBuilder scenario =
-      scenario("Scenario").exec(http("Session").get("/session"));
-    }
-  //#write-the-scenario
+  // Define scenario
+  // Reference: https://docs.gatling.io/reference/script/core/scenario/
+  ScenarioBuilder scenario =
+    scenario("Scenario").exec(http("Session").get("/session"));
+  }
+//#write-the-scenario
 }

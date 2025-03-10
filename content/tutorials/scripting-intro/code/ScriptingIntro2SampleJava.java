@@ -21,16 +21,16 @@ import io.gatling.javaapi.core.*;
 import io.gatling.javaapi.http.*;
 
 class ScriptingIntro2SampleJava {
-  //#define-the-protocol-class
-  public class BasicSimulation extends Simulation {
+//#define-the-protocol-class
+public class BasicSimulation extends Simulation {
 
-    // Define HTTP configuration
-    // Reference: https://docs.gatling.io/reference/script/protocols/http/protocol/
-    HttpProtocolBuilder httpProtocol =
-      http.baseUrl("https://api-ecomm.gatling.io")
-          .acceptHeader("application/json")
-          .userAgentHeader(
-              "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/119.0");
-  }
-  //#define-the-protocol-class
+  // Define HTTP configuration
+  // Reference: https://docs.gatling.io/reference/script/protocols/http/protocol/
+  HttpProtocolBuilder httpProtocol =
+    http.baseUrl("https://api-ecomm.gatling.io")
+        .acceptHeader("application/json")
+        .userAgentHeader(
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/119.0");
+}
+//#define-the-protocol-class
 }

@@ -25,9 +25,9 @@ import io.gatling.javaapi.http.*;
 //#setup-the-file
 
 class ScriptingIntro1SampleJava {
-  //#extend-the-simulation-class
-  public class BasicSimulation extends Simulation {
+//#extend-the-simulation-class
+public class BasicSimulation extends Simulation {
 
-  }
-  //#extend-the-simulation-class
+}
+//#extend-the-simulation-class
 }
