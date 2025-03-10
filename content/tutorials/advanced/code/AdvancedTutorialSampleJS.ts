@@ -47,19 +47,19 @@ const setUp = null as unknown as SetUpFunction;
 export const loginPage = http("LoginPage").get(`/login`).check(status().in(200, 304));
 
 export const homeAnonymous = group("homeAnonymous").on(
-  exec(http("").get("/"))
+  http("").get("/")
 );
 
 export const homeAuthenticated = group("homeAuthenticated").on(
-  exec(http("").get("/"))
+  http("").get("/")
 );
 
 export const addToCart = group("addToCart").on(
-  exec(http("").get("/"))
+  http("").get("/")
 );
 
 export const buy = group("buy").on(
-  exec(http("").get("/"))
+  http("").get("/")
 );
 
 //#project-structure
