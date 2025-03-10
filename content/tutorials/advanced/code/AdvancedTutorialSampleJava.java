@@ -28,6 +28,7 @@ import static io.gatling.javaapi.http.HttpDsl.http;
 import static io.gatling.javaapi.http.HttpDsl.status;
 
 import java.util.List;
+import java.util.Optional;
 
 public class AdvancedTutorialSampleJava {
   public static final String pageUrl = "https://ecomm.gatling.io";
@@ -39,19 +40,19 @@ public class AdvancedTutorialSampleJava {
 
   public static final ChainBuilder homeAnonymous =
       group("homeAnonymous")
-          .on(exec(http("").get("/")));
+          .on(http("").get("/"));
   public static final ChainBuilder authenticate =
   group("homeAnonymous")
-      .on(exec(http("").get("/")));
+      .on(http("").get("/"));
   public static final ChainBuilder homeAuthenticated =
   group("homeAnonymous")
-      .on(exec(http("").get("/")));
+      .on(http("").get("/"));
   public static final ChainBuilder addToCart =
   group("homeAnonymous")
-      .on(exec(http("").get("/")));
+      .on(http("").get("/"));
   public static final ChainBuilder buy =
   group("homeAnonymous")
-      .on(exec(http("").get("/")));
+      .on(http("").get("/"));
 
 //#project-structure
 /*
@@ -99,7 +100,7 @@ public static final HttpProtocolBuilder withAuthenticationHeader(
     HttpProtocolBuilder protocolBuilder) {
   return protocolBuilder.header(
       "Authorization",
-      session -> session.contains("AccessToken") ? session.getString("AccessToken") : "");
+      session -> Optional.ofNullable(session.getString("AccessToken")).orElse(""));
 }
 //#with-authentication-headers-wrapper
 
