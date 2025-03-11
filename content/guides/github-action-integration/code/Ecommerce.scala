@@ -15,8 +15,6 @@
  */
 
 //#ecommerce-example
-package ecommerce
-
 import io.gatling.core.scenario.Simulation
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._

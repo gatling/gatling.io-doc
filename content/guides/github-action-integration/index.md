@@ -12,6 +12,8 @@ At Gatling, we strongly believe  the shift-left approach is fundamental to ensur
 
 In this guide, we will demonstrate how to integrate performance testing into your CI/CD pipeline using Gatling and GitHub Actions. This approach will enable you to automate your performance tests and ensure application reliability.
 
+
+
 ## Prerequisites
 - Gatling version `{{< var gatlingVersion >}}` or higher
 - An account on Gatling Entreprise
@@ -36,6 +38,12 @@ In our example, we will generate 1 users coming at once to see if our simulation
 ### Deploy to Gatling Enterprise
 
 Now that we have our test locally, we need to deploy the package to Gatling Enterprise to create a simulation.
+
+
+{{< alert info >}}
+This video showcases the JavaScript SDK, but the same process applies to all SDKs that Gatling provides.
+{{< /alert >}}
+
 
 <div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0;">
     <video style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" controls>
