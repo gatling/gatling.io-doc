@@ -23,13 +23,14 @@ You must permit outbound access to the Gatling Cloud API served from `https://ap
 * 51.44.121.66
 * 52.47.87.192
 
-## Configuring a Forward Proxy
+## Configuring a Proxy
 
-This section describes how to have all the outbound requests from Gatling Enterprise components go through a forward proxy or an API gateway.
+This section describes how to have all the outbound requests from Gatling Enterprise components go through a forward
+proxy, an HTTP proxy, or an API gateway.
 
-### Forward Proxy for the Control Plane
+### Proxy for the Control Plane
 
-The Control Plane configuration supports the setup of a forward proxy. 
+The Control Plane configuration supports the setup of a forward proxy and/or an HTTP proxy.
 
 {{< alert info >}}
 When configuring the proxy, you must ensure it rewrites the `Host` header to `api.gatling.io` and forwards all other headers.
@@ -43,17 +44,27 @@ control-plane {
   # Enterprise Cloud Network Configuration
   enterprise-cloud {
     proxy {
-      # Forward Proxy URL
-      forward {
-        url = "http://private-control-plane-forward-proxy/gatling"
-      }
-      # Uncomment if you need to trust custom certificates
+      # Uncomment the block if you want to configure a forward proxy
+      # # Forward Proxy URL
+      # forward {
+      #   url = "http://private-control-plane-forward-proxy/gatling"
+      # }
+
+      # Uncomment the block if you want to configure an HTTP proxy
+      # # HTTP Proxy URL
+      # http {
+      #   # protocol must be http:
+      #   # port must be defined
+      #   url = "http://private-control-plane-http-proxy:3128"
+      # }
+
+      # Uncomment the block if you need to trust custom certificates
       # truststore {
       #   # absolute path to a file containing the certificates in PEM format (can contains multiple concatenated PEM certificates) 
       #   path = "/path/to/truststore.pem" 
       # }
       
-      # Uncomment for mutual authentication
+      # Uncomment the block for mutual authentication
       # keystore {
       #   # absolute path to a file containing the key and its certificate in PKCS12 format
       #   path = "/path/to/keystore.p12"
@@ -65,13 +76,14 @@ control-plane {
 }
 ```
 
-### Forward Proxy for Private Locations
+### Proxy for Private Locations
 
-Private Locations can also be configured to use a forward proxy. You have two options:
+Private Locations can also be configured to use a forward proxy and/or a HTTP proxy. You have two options:
 
-#### 1. Use the Same Forward Proxy as the Control Plane
+#### 1. Use the Same Proxy configuration as the Control Plane
 
-You can reuse the Control Plane's forward proxy configuration by leveraging [HOCON substitutions](https://github.com/lightbend/config/blob/main/HOCON.md#substitutions).
+You can reuse the Control Plane's proxy configuration by leveraging [HOCON substitutions](https://github.com/lightbend/config/blob/main/HOCON.md#substitutions).
+
 ```bash
 control-plane {
   # Authentication token
@@ -79,17 +91,27 @@ control-plane {
   # Control Plane Enterprise Cloud Network Configuration
   enterprise-cloud {
     proxy {
-      # Forward Proxy URL
-      forward {
-        url = "http://private-control-plane-forward-proxy/gatling"
-      }
-      # Uncomment if you need to trust custom certificates
+      # Uncomment the block if you want to configure a forward proxy
+      # # Forward Proxy URL
+      # forward {
+      #   url = "http://private-control-plane-forward-proxy/gatling"
+      # }
+
+      # Uncomment the block if you want to configure an HTTP proxy
+      # # HTTP Proxy URL
+      # http {
+      #   # protocol must be http:
+      #   # port must be defined
+      #   url = "http://private-control-plane-http-proxy:3128"
+      # }
+
+      # Uncomment the block if you need to trust custom certificates
       # truststore {
       #   # absolute path to a file containing the certificates in PEM format (can contains multiple concatenated PEM certificates) 
       #   path = "/path/to/truststore.pem" 
       # }
       
-      # Uncomment for mutual authentication
+      # Uncomment the block for mutual authentication
       # keystore {
       #   # absolute path to a file containing the key and its certificate in PKCS12 format
       #   path = "/path/to/keystore.p12"
@@ -110,23 +132,34 @@ control-plane {
 }
 ```
 
-#### 2. Use a Dedicated Forward Proxy for Private Locations
+#### 2. Use a Dedicated Proxy for Private Locations
 
 If you prefer separate proxies, define a substitution for the private locations and reference it in their configuration.
+
 ```bash
 location-enterprise-cloud = {
   proxy {
-    # Forward Proxy URL
-    forward {
-      url = "http://location-forward-proxy/gatling"
-    }
-    # Uncomment if you need to trust custom certificates
+    # Uncomment the block if you want to configure a forward proxy
+    # # Forward Proxy URL
+    # forward {
+    #   url = "http://location-forward-proxy/gatling"
+    # }
+
+    # Uncomment the block if you want to configure an HTTP proxy
+    # # HTTP Proxy URL
+    # http {
+    #   # protocol must be http:
+    #   # port must be defined
+    #   url = "http://location-http-proxy:3128"
+    # }
+
+    # Uncomment the block if you need to trust custom certificates
     # truststore {
     #   # absolute path to a file containing the certificates in PEM format (can contains multiple concatenated PEM certificates) 
     #   path = "/path/to/truststore.pem" 
     # }
     
-    # Uncomment for mutual authentication
+    # Uncomment the block for mutual authentication
     # keystore {
     #   # absolute path to a file containing the key and its certificate in PKCS12 format
     #   path = "/path/to/keystore.p12"
@@ -142,23 +175,34 @@ control-plane {
   # Control Plane Enterprise Cloud Network Configuration
   enterprise-cloud {
     proxy {
-      # Forward Proxy URL
-      forward {
-        url = "http://private-control-plane-forward-proxy/gatling"
-      }
-      # Uncomment if you need to trust custom certificates
+      # Uncomment the block if you want to configure a forward proxy
+      # # Forward Proxy URL
+      # forward {
+      #   url = "http://private-control-plane-forward-proxy/gatling"
+      # }
+
+      # Uncomment the block if you want to configure an HTTP proxy
+      # # HTTP Proxy URL
+      # http {
+      #   # protocol must be http:
+      #   # port must be defined
+      #   url = "http://private-control-plane-http-proxy:3128"
+      # }
+
+      # Uncomment the block if you need to trust custom certificates
       # truststore {
       #   # absolute path to a file containing the certificates in PEM format (can contains multiple concatenated PEM certificates) 
       #   path = "/path/to/truststore.pem" 
       # }
       
-      # Uncomment for mutual authentication
+      # Uncomment the block for mutual authentication
       # keystore {
       #   # absolute path to a file containing the key and its certificate in PKCS12 format
       #   path = "/path/to/keystore.p12"
       #   # optional password if needed to open the keystore
       #   # password = "p@ssw0rd"
       # }
+
     }
   }
   # Private Locations
@@ -179,7 +223,7 @@ control-plane {
 }
 ```
 
-### Key Notes
+### Proxy Key Notes
 
 * **Host Header Rewriting**: Ensure all configured forward proxies rewrite the host header to `api.gatling.io`. This is a
     mandatory requirement for proper communication.
