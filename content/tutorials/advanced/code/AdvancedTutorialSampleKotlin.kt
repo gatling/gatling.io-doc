@@ -17,10 +17,11 @@
  import io.gatling.javaapi.core.*
  import io.gatling.javaapi.core.CoreDsl.*
  import io.gatling.javaapi.http.HttpDsl.*
+ import io.gatling.javaapi.http.*
+
+ import java.util.Optional
  
  class AdvancedTutorialSampleKotlin {
- 
-   object Step1 : Simulation() {
 
 //#project-structure
 /*
@@ -46,119 +47,271 @@
 */
 //#project-structure
  
- //#isolate-processes
- val search =
-   // let's give proper names, as they are displayed in the reports
-   exec(http("Home")
-     .get("/"))
-     .pause(7)
-     .exec(http("Search")
-     .get("/computers?f=macbook"))
-     .pause(2)
-     .exec(http("Select")
-     .get("/computers/6"))
-     .pause(3)
- 
- val browse: ChainBuilder = TODO()
- 
- val edit: ChainBuilder = TODO()
- //#isolate-processes
- 
- //#processes
- val scn = scenario("Scenario Name")
-   .exec(search, browse, edit)
- //#processes
- 
- //#populations
- val users = scenario("Users")
-   .exec(search, browse)
- val admins = scenario("Admins")
-   .exec(search, browse, edit)
- //#populations
- 
-     val httpProtocol = http
- //#setup-users
- init {
-   setUp(users.injectOpen(atOnceUsers(10)).protocols(httpProtocol))
- }
- //#setup-users
- 
- //#setup-users-and-admins
- init {
-   setUp(
-     users.injectOpen(rampUsers(10).during(10)),
-     admins.injectOpen(rampUsers(2).during(10))
-   ).protocols(httpProtocol)
- }
- //#setup-users-and-admins
-   }
- }
- 
- //#feeder
- val feeder = csv("search.csv").random() // 1, 2
- 
- val search = exec(http("Home")
-   .get("/"))
-   .pause(1)
-   .feed(feeder) // 3
-   .exec(http("Search")
-     .get("/computers?f=#{searchCriterion}") // 4
-     .check(
-       css("a:contains('#{searchComputerName}')", "href")
-         .saveAs("computerUrl") // 5
-     )
-   )
-   .pause(1)
-   .exec(http("Select")
-     .get("#{computerUrl}")) // 6
-   .pause(1)
- //#feeder
- 
- object BrowseLoopSimple {
- //#loop-simple
- fun gotoPage(page: Int) =
-   exec(http("Page $page")
-     .get("/computers?p=$page"))
-     .pause(1)
- 
- val browse =
-   exec(
-     gotoPage(0),
-     gotoPage(1),
-     gotoPage(2),
-     gotoPage(3),
-     gotoPage(4)
-   )
- //#loop-simple
- }
- 
- object BrowseLoopFor {
- //#loop-for
- val browse =
-   repeat(5, "n").on( // 1
-     exec(http("Page #{n}").get("/computers?p=#{n}")) // 2
-       .pause(1)
-   )
- //#loop-for
- }
- 
- object CheckAndTryMax {
- //#check
- val edit =
-   exec(http("Form").get("/computers/new"))
-     .pause(1)
-     .exec(http("Post")
-       .post("/computers")
-       .formParam("name", "computer xyz")
-       .check(status().shouldBe { session ->
-         200 + java.util.concurrent.ThreadLocalRandom.current().nextInt(2)
-       })
-     )
- //#check
- 
- //#tryMax-exitHereIfFailed
- val tryMaxEdit = tryMax(2).on( // 1
-   exec(edit)
- ).exitHereIfFailed() // 2
- //#tryMax-exitHereIfFailed
- }
+
+//#login-endpoint
+// Define login request
+val login: HttpRequestActionBuilder = http("Login")
+    .post("/login")
+    .asFormUrlEncoded()
+    .formParam("username", "#{username}")
+    .formParam("password", "#{password}")
+    .check(status().`is`(200))
+    .check(jmesPath("accessToken").saveAs("AccessToken"))
+//#login-endpoint
+
+//#homepage-endpoint
+// Define the home page request with response status validation
+// Reference: https://docs.gatling.io/reference/script/protocols/http/request/#checks
+val homePage: HttpRequestActionBuilder = http("HomePage")
+    .get("https://ecomm.gatling.io")
+    .check(status().`in`(200, 304)) // Accept both OK (200) and Not Modified (304) statuses
+//#homepage-endpoint
+
+object ScenarioGroupsWrapper {
+
+  val login = http("Login").post("/login")
+  val loginPage = http("LoginPage").get("/login")
+
+//#authenticate-group
+// Define a feeder for user data
+// Reference: https://docs.gatling.io/reference/script/core/feeder/
+private val usersFeeder = jsonFile("data/users_dev.json").circular()
+// Define authentication process
+val authenticate: ChainBuilder = group("authenticate")
+    .on(loginPage, feed(usersFeeder), pause(5, 15), login)
+//#authenticate-group
+
+}
+
+class AdvancedSimulation : Simulation() {
+
+  val homeAnonymous: ChainBuilder = group("homeAnonymous")
+  .on(exec(http("Get").get("/")))
+
+  val authenticate: ChainBuilder = group("homeAnonymous")
+  .on(exec(http("Get").get("/")))
+
+  val homeAuthenticated: ChainBuilder = group("homeAnonymous")
+  .on(exec(http("Get").get("/")))
+
+  val addToCart: ChainBuilder = group("homeAnonymous")
+  .on(exec(http("Get").get("/")))
+
+  val buy: ChainBuilder = group("homeAnonymous")
+  .on(exec(http("Get").get("/")))
+
+  val testType: String = "smoke"
+
+//#with-authentication-headers-wrapper
+// Add authentication header if an access token exists in the session
+fun withAuthenticationHeader(protocolBuilder: HttpProtocolBuilder): HttpProtocolBuilder {
+  return protocolBuilder.header("Authorization") { session ->
+      Optional.ofNullable(session.getString("AccessToken")).orElse("")
+  }
+}
+//#with-authentication-headers-wrapper
+
+//#http-protocol-builder-simple
+val httpProtocol = http.baseUrl("https://api-ecomm.gatling.io")
+  .acceptHeader("application/json")
+  .userAgentHeader(
+      "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/119.0"
+  )
+//#http-protocol-builder-simple
+
+//#http-protocol-builder-with-headers
+private val httpProtocolWithAuthentication =  withAuthenticationHeader(
+        http.baseUrl("https://api-ecomm.gatling.io")
+            .acceptHeader("application/json")
+            .userAgentHeader(
+                "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/119.0"));
+//#http-protocol-builder-with-headers
+
+//#scenario-1
+// Define scenario 1 with a random traffic distribution
+// Reference: https://docs.gatling.io/reference/script/core/scenario/#randomswitch
+val scn1: ScenarioBuilder = scenario("Scenario 1")
+    .exitBlockOnFail()
+    .on(
+        randomSwitch()
+            .on(
+                percent(70.0)
+                    .then(
+                        group("fr")
+                            .on(
+                                homeAnonymous,
+                                pause(1, 15),
+                                authenticate,
+                                homeAuthenticated,
+                                pause(1, 15),
+                                addToCart,
+                                pause(1, 15),
+                                buy
+                            )
+                    ),
+                percent(30.0)
+                    .then(
+                        group("us")
+                            .on(
+                                homeAnonymous,
+                                pause(1, 15),
+                                authenticate,
+                                homeAuthenticated,
+                                pause(1, 15),
+                                addToCart,
+                                pause(1, 15),
+                                buy
+                            )
+                    )
+            )
+    )
+    .exitHereIfFailed()
+//#scenario-1
+
+//#scenario-2
+// Define scenario 2 with a uniform traffic distribution
+// Reference: https://docs.gatling.io/reference/script/core/scenario/#uniformrandomswitch
+val scn2: ScenarioBuilder = scenario("Scenario 2")
+    .exitBlockOnFail()
+    .on(
+        uniformRandomSwitch()
+            .on(
+                group("fr")
+                    .on(
+                        homeAnonymous,
+                        pause(1, 15),
+                        authenticate,
+                        homeAuthenticated,
+                        pause(1, 15),
+                        addToCart,
+                        pause(1, 15),
+                        buy
+                    ),
+                group("us")
+                    .on(
+                        homeAnonymous,
+                        pause(1, 15),
+                        authenticate,
+                        homeAuthenticated,
+                        pause(1, 15),
+                        addToCart,
+                        pause(1, 15),
+                        buy
+                    )
+            )
+    )
+    .exitHereIfFailed()
+//#scenario-2
+
+//#injection-profile-switch
+// Define different load injection profiles
+// Reference: https://docs.gatling.io/reference/script/core/injection/
+private fun injectionProfile(scn: ScenarioBuilder): PopulationBuilder {
+  return when (testType) {
+      "capacity" -> scn.injectOpen(
+          incrementUsersPerSec(1.0)
+              .times(4)
+              .eachLevelLasting(10)
+              .separatedByRampsLasting(4)
+              .startingFrom(10.0)
+      )
+      "soak" -> scn.injectOpen(constantUsersPerSec(1.0).during(100))
+      "stress" -> scn.injectOpen(stressPeakUsers(200).during(20))
+      "breakpoint" -> scn.injectOpen(rampUsers(300).during(120))
+      "ramp-hold" -> scn.injectOpen(
+          rampUsersPerSec(0.0).to(20.0).during(30),
+          constantUsersPerSec(20.0).during(60)
+      )
+      "smoke" -> scn.injectOpen(atOnceUsers(1))
+      else -> scn.injectOpen(atOnceUsers(1))
+  }
+}
+//#injection-profile-switch
+
+//#assertions
+// Define assertions for different test types
+// Reference: https://docs.gatling.io/reference/script/core/assertions/
+private val assertions: List<Assertion> = listOf(
+    global().responseTime().percentile(90.0).lt(500),
+    global().failedRequests().percent().lt(5.0)
+)
+
+private fun getAssertions(): List<Assertion> {
+    return when (testType) {
+        "capacity", "soak", "stress", "breakpoint", "ramp-hold" -> assertions
+        "smoke" -> listOf(global().failedRequests().count().lt(1L))
+        else -> assertions
+    }
+}
+//#assertions
+
+//#setup-block
+// Set up the simulation with scenarios, load profiles, and assertions
+init {
+  setUp(
+      injectionProfile(scn1), injectionProfile(scn2)
+  )
+      .assertions(getAssertions())
+      .protocols(httpProtocolWithAuthentication)
+}
+//#setup-block
+
+}
+
+//#config
+object Config {
+  val testType: String = System.getProperty("testType", "smoke")
+  val targetEnv: String = System.getProperty("targetEnv", "DEV")
+}
+//#config
+
+companion object {
+//#keys
+const val ACCESS_TOKEN = "AccessToken"
+//#keys
+}
+
+object KeysUsageWrapper {
+//#keys-usage
+val login: HttpRequestActionBuilder = http("Login")
+    .post("/login")
+    .asFormUrlEncoded()
+    .formParam("username", "#{username}")
+    .formParam("password", "#{password}")
+    .check(status().`is`(200))
+    .check(jmesPath("accessToken").saveAs(ACCESS_TOKEN))
+//#keys-usage
+}
+
+//#target-env-resolver
+// Data class to store environment-specific information
+data class EnvInfo(
+    val pageUrl: String,
+    val baseUrl: String,
+    val usersFeederFile: String,
+    val productsFeederFile: String
+)
+
+// Object to resolve environment-specific configuration based on the target environment
+object TargetEnvResolver {
+    // Resolve environment-specific configuration based on the target environment
+    fun resolveEnvironmentInfo(targetEnv: String): EnvInfo {
+        return when (targetEnv) {
+            "DEV" -> EnvInfo(
+                pageUrl = "https://ecomm.gatling.io",
+                baseUrl = "https://api-ecomm.gatling.io",
+                usersFeederFile = "data/users_dev.json",
+                productsFeederFile = "data/products_dev.csv"
+            )
+            else -> EnvInfo(
+                pageUrl = "https://ecomm.gatling.io",
+                baseUrl = "https://api-ecomm.gatling.io",
+                usersFeederFile = "data/users_dev.json",
+                productsFeederFile = "data/products_dev.csv"
+            )
+        }
+    }
+}
+//#target-env-resolver
+
+}
