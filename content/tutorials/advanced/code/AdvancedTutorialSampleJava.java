@@ -59,21 +59,22 @@ public class AdvancedTutorialSampleJava {
 .
 ├── .gatling/
 └── src/
-    ├── java/
-        ├── example/
-            ├── endpoints/
-                ├── APIendpoints.java
-                └── WebEndpoints.java
-            ├── groups/
-                ├── ScenarioGroups.java
-            ├── utils/
-                ├── Config.java
-                └── Keys.java
-                └── TargetEnvResolver.java
-            ├── resources/
-                ├── bodies/
-                ├── data/
-            ├── AdvancedSimulation.java
+    ├── test/
+        ├── java/
+            ├── example/
+                ├── endpoints/
+                    ├── APIendpoints.java
+                    └── WebEndpoints.java
+                ├── groups/
+                    ├── ScenarioGroups.java
+                ├── utils/
+                    ├── Config.java
+                    └── Keys.java
+                    └── TargetEnvResolver.java
+                ├── AdvancedSimulation.java
+        ├── resources/
+            ├── bodies/
+            ├── data/
 */
 //#project-structure
 

@@ -76,10 +76,10 @@ export const buy = group("buy").on(
         ├── config.js
         └── keys.js
         └── targetEnvResolver.js
-    ├── resources/
-        ├── bodies/
-        ├── data/
     ├── advancedSimulation.gatling.js
+├── resources/
+    ├── bodies/
+    ├── data/
 */
 //#project-structure
 

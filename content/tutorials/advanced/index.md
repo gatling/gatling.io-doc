@@ -52,7 +52,7 @@ For our e-commerce platform, we identified the following user journey:
 
 ### Project structure
 
-{{< include-code "project-structure" java ts >}}
+{{< include-code "project-structure" >}}
 
 Let's break it down:
 
