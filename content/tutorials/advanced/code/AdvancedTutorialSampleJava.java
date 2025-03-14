@@ -80,15 +80,14 @@ public class AdvancedTutorialSampleJava {
 
 //#login-endpoint
 public class APIendpoints {
-  public static final HttpRequestActionBuilder login =
-      http("Login")
-          .post("/login")
-          .asFormUrlEncoded() // Short for header("Content-Type",
-          // "application/x-www-form-urlencoded")
-          .formParam("username", "#{username}")
-          .formParam("password", "#{password}")
-          .check(status().is(200))
-          .check(jmesPath("accessToken").saveAs("AccessToken"));
+public static final HttpRequestActionBuilder login =
+    http("Login")
+        .post("/login")
+        .asFormUrlEncoded() // Short for header("Content-Type", "application/x-www-form-urlencoded")
+        .formParam("username", "#{username}")
+        .formParam("password", "#{password}")
+        .check(status().is(200))
+        .check(jmesPath("accessToken").saveAs("AccessToken"));
 
 }
 //#login-endpoint
