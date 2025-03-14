@@ -21,6 +21,7 @@ headerMappings ++= Map(
 headerSources / includeFilter := new ExtensionFilter("java", "scala", "kt", "ts")
 
 Compile / javacOptions ++= Seq("-encoding", "utf8")
+Compile / javacOptions ++= Seq("--release", "17")
 Test / javacOptions ++= Seq("-encoding", "utf8")
 Test / javacOptions += "-Xlint:unchecked"
 Test / unmanagedSourceDirectories ++= (baseDirectory.value / "content" ** "code").get

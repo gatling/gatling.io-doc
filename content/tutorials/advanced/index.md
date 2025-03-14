@@ -1,167 +1,251 @@
 ---
-menutitle: Writing realistic tests
 title: Writing realistic Gatling tests
-description: How to transform a raw recorded test into a dynamic and meaningful load test. Introduce feeders, dynamic parameters, loops, functions and multiple scenarios.
-lead: Isolate process, configure virtual users, use feeders, checks and looping
-date: 2021-04-20T18:30:56+02:00
+seotitle: Write realistic advanced Gatling tests to simulate real world scenarios for your application using http endpoints groups and injection profiles
+menutitle: Writing realistic tests
+description: Write realistic Gatling tests that simulate real world scenarios on your application.
 ---
 
 In this tutorial, we assume that you have already gone through the
-[Introduction to the Recorder]({{< ref "recorder" >}}) section and that you have a basic simulation to work with.
-We will apply a series of refactorings to introduce more advanced concepts and
+introductory guides and that you have a basic understanding of how a simulation works.\
+We will build a realistic load test for a relevant real-world scenario and introduce more advanced concepts and
 [Domain Specific Language](https://en.wikipedia.org/wiki/Domain-specific_language) constructs.
 
 {{< alert tip >}}
-The files for this tutorial can be found
-[on GitHub](https://github.com/gatling/gatling/tree/main/gatling-samples/src/main/).
+The sample project for this tutorial can be found
+[on GitHub](https://github.com/gatling/se-ecommerce-demo-gatling-tests).
 {{< /alert >}}
-
-## Step 1: Isolate processes
-
-Presently our Simulation is one big monolithic scenario.
-
-So first let us split it into composable business processes.
-This way, you'll be able to easily reuse some parts and build complex behaviors without sacrificing maintenance.
-
-In our scenario we have three separated processes:
-
-  * search: search models by name
-  * browse: browse the list of models
-  * edit: edit a given model
-
-Here, we're storing those chains into attributes in the same class, but you could as well store them in constants (static final fields in Java, object attributes in Scala and Kotlin, move them into a different class, etc.
-
-{{< include-code "isolate-processes" >}}
-
-We can now rewrite our scenario using these reusable business processes:
-
-{{< include-code "processes" >}}
-
-## Step 2: Configure virtual users
-
-So, this is great, we can load test our server with... one user!
-Let's increase the number of users.
-
-Let's define two populations of users:
-
-* *regular* users: they can search and browse computer models.
-* *admin* users: they can search, browse and also edit computer models.
-
-Translating into a scenario this gives:
-
-{{< include-code "populations" >}}
-
-To increase the number of simulated users, all you have to do is to change the configuration of the simulation as follows:
-
-{{< include-code "setup-users" >}}
-
-Here we set only 10 users, because we don't want to flood our test web application. *Please*, be kind and don't crash our server! ;-)
-
-If you want to simulate 3000 users, you might not want them to start at the same time.
-Indeed, real users are more likely to connect to your web application gradually.
-
-Gatling provides `rampUsers` to implement this behavior.
-The value of the ramp indicates the duration over which the users will be linearly started.
-
-In our scenario let's have 10 regular users and 2 admins, and ramp them over 10 seconds so we don't hammer the server:
-
-{{< include-code "setup-users-and-admins" >}}
-
-## Step 3: Use dynamic data with Feeders and Checks
-
-We have set our simulation to run a bunch of users, but they all search for the same model.
-Wouldn't it be nice if every user could search a different model name?
-
-We need dynamic data so that all users don't play exactly the same scenario, and so that we don't end up with a behavior completely different from the live system (due to caching, JIT etc.).
-This is where Feeders will be useful.
-
-Feeders are data sources containing all the values you want to use in your scenarios.
-There are several types of Feeders, the most simple being the CSV Feeder: this is the one we will use in our test.
-
-First let's create a file named *search.csv* and place it in the `user-files` folder.
-
-This file contains the following lines:
-
-```text
-searchCriterion,searchComputerName
-Macbook,MacBook Pro
-eee,ASUS Eee PC 1005PE
-```
-
-Let's then declare a feeder and use it to feed our users with the above data:
-
-{{< include-code "feeder" >}}
-
-Explanations:
-
-1. First we create a Feeder from a csv file with the following columns: *searchCriterion*, *searchComputerName*.
-2. As the default Feeder strategy is *queue*, we will use the *random* strategy for this test to avoid feeder starvation.
-3. Every time a user reaches the feed step, it picks a random record from the Feeder.
-   This user has two new Session attributes named *searchCriterion*, *searchComputerName*.
-4. We use Session data through [Gatling Expression Language]({{< ref "/reference/script/core/session/el" >}}) to parameterize the search.
-5. We use a [CSS selector check]({{< ref "/reference/script/core/checks#css" >}}) (also parameterized with Gatling Expression Language to capture a part of the HTML response, here a hyperlink, and save it in the user Session under the name *computerUrl*.
-6. We use the previously saved hyperlink to get a specific page.
 
 {{< alert tip >}}
-For more details regarding *Feeders*, please check out the [Feeder reference page]({{< ref "/reference/script/core/session/feeders" >}}).
+It is strongly recommended to review the introductory guides first, as this tutorial introduces more advanced concepts:
 
-For more details regarding *HTTP Checks*, please check out the [Checks reference page]({{< ref "/reference/script/protocols/http/checks" >}}).
+- [Create a simulation with Java](https://docs.gatling.io/tutorials/scripting-intro/)
+- [Create a simulation with JavaScript](https://docs.gatling.io/tutorials/scripting-intro-js/)
+- [Introduction to the Recorder](https://docs.gatling.io/tutorials/recorder/)
+
+Additionally, it is important to have a basic understanding of a virtual user's session. Kindly consult the [Session documentation](https://docs.gatling.io/reference/script/core/session/), particularly the **Feeders** and **Expression Language** sections.
 {{< /alert >}}
 
-## Step 4: Looping
+## Test application
 
-In the *browse* process we have a lot of repetition when iterating through the pages.
-We have four times the same request with a different query param value. Can we change this to not violate the DRY principle?
+In this guide, we will be implementing a script to load test the following application: [https://ecomm.gatling.io](https://ecomm.gatling.io). This is a sample e-commerce website where you can browse products, add to cart, checkout..etc. We encourage you to experiment with the platform to get familiar with its available actions. You may also open the network tab for further insights.
 
-First we will extract the repeated `exec` block to a function.
-Indeed, `Simulation`'s are plain classes, so we can use all the power of the language if needed:
+## Identify relevant scenario(s)
 
-{{< include-code "loop-simple" >}}
+The first step that we need to do before starting to write our script is identifying the relevant user journeys. Always remember that
+the end goal is to simulate **real-world traffic**, so **taking the time to determine the typical user journeys on your application is crucial.**
 
-We can now call this function and pass the desired page number.
-But we still have repetitions, it's time to introduce another builtin structure:
+This can be done in several ways:
 
-{{< include-code "loop-for" >}}
+- Check your product analytics tool (e.g. Amplitude & Firebase)
+- Check your APM tool (e.g. Dynatrace & Datadog)
+- Asking the product-owner
 
-Explanations:
+For our e-commerce platform, we identified the following user journey:
 
-1. The `repeat` builtin is a loop resolved at **runtime**.
-   It takes the number of repetitions and, optionally, the name of the counter that's stored in the user's Session.
-2. As we set the counter name we can use it in Gatling EL and access the nth page.
+1. User lands on the homepage
+2. User logs in
+3. User lands again on the homepage (as an authenticated user)
+4. User adds a product to cart
+5. User buys (checkout)
+
+## Writing the script
+
+### Project structure
+
+{{< include-code "project-structure" >}}
+
+Let's break it down:
+
+- **`endpoints/`**: Contains files responsible for defining individual requests, which we reference throughout our scenarios.
+  - **API endpoints file**: Defines and manages API requests (backend calls) to our application.
+  - **Web endpoints file**: Defines and manages all frontend calls to our application.
+- **`groups/`**: Contains files responsible for defining **groups**, which are collections of endpoints.
+  - **Scenario groups file**: Defines and manages groups.
+- **`utils/`**: Contains utility files designed to simplify and streamline processes.
+  - **Config file**: Handles the retrieval of all necessary system properties and environment variables.
+  - **Keys file**: Contains predefined constants that serve as a single source of truth for virtual user session variable names. More on sessions [here](https://docs.gatling.io/reference/script/core/session/).
+  - **Target env resolver**: Responsible for resolving the targetEnv system property to the appropriate configuration.
+- **`resources/`**: Contains feeder files and request bodies that we reference throughout our script.
+  - **`bodies/`**: Contains the request bodies. For more information on referencing request bodies, see [here](https://docs.gatling.io/reference/script/protocols/http/request/#request-body).
+  - **`data/`**: Contains the feeder files.
+- **Advanced simulation file**: The main Gatling simulation file where we define the scenarios, http protocol, injection profile and assertions.
+
+### Endpoints
+
+We need to define the individual requests that we need to call throughout the user journeys.
+
+#### API Endpoints
+
+We first define the API endpoints, i.e. the backend API calls and place them in a file under the `/endpoints` directory.\
+Now let's take a closer look at the following definition of the `login` endpoint in the API endpoints file:
+
+<a id="login-endpoint-snippet"></a>
+{{< include-code "login-endpoint" >}}
+
+1. We use an http request action builder class to build a POST http request.
+2. We use `.asFormUrlEncoded()`to set the content-type header to `application/x-www-form-urlencoded`.
+3. We use `.formParam("username", "#{username}")` to set the form parameters of the POST request. More on `formParam` [here](https://docs.gatling.io/reference/script/protocols/http/request/#formparam).
+   - We use the [Gatling Expression Language](https://docs.gatling.io/reference/script/core/session/el/) to retrieve the username's value from the virtual user's session. We will set this value later on in this guide using a [Feeder](https://docs.gatling.io/reference/script/core/session/feeders/).
+4. We use `.check()` for the following:
+   - **Validate** that we receive a 200 status code in the response. More on validating [here](https://docs.gatling.io/reference/script/core/checks/#validating).
+   - **Extract** the `accessToken` from the response body and **save** it to the user session under the name `AccessToken`. Further information on extracting can be found [here](https://docs.gatling.io/reference/script/core/checks/#extracting), and on saving [here](https://docs.gatling.io/reference/script/core/checks/#saving).
+   - More on `jmesPath` [here](https://docs.gatling.io/reference/script/core/checks/#jmespath).
+
+#### Web Endpoints
+
+If the user journeys involve frontend calls that retrieve data (html, resources..etc) from the load-tested application server, then we need to define endpoints for these calls as well. Therefore we create another "web endpoints" file under the `/endpoints` directory.
+
+Now let's take a look at the following definition of the `homePage` endpoint:
+
+{{< include-code "homepage-endpoint" >}}
+
+1. We define an http GET request for the `pageUrl`
+2. We define a check to ensure we receive a response with status code corresponding to either 200 or 304.
+
+### Groups
+
+Groups serve as a collection of multiple http requests, providing a clear logical separation for different parts of the user journey. Defining groups enables us to filter by them in the Gatling Enterprise reports, providing a more precise analysis of various processes within the load-tested application.
+
+We will define the groups in a file under the `groups/` directory.
+
+Let's take a look at the following `authenticate` group definition:
+
+{{< include-code "authenticate-group" >}}
+
+1. We define a group under the name `authenticate`.
+2. This group will encompass the following two requests in the user journey: a `GET` request to retrieve the login page html and a `POST` request to the login endpoint.
+3. We use a feeder that injects dynamic data into our simulation. Here is how it works:
+
+   - We first create a json file `users_dev.json` in the directory `/resources/data`.
+
+     ```json
+     [
+       {
+         "username": "admin",
+         "password": "gatling"
+       },
+       {
+         "username": "admin1",
+         "password": "gatling1"
+       }
+     ]
+     ```
+
+   - We define `usersFeeder` that loads the json file using `jsonFile()` with the `circular()` strategy. More on feeder strategies [here](https://docs.gatling.io/reference/script/core/session/feeders/#strategies).
+   - We call the `feed(usersFeeder)` in the `authenticate` ChainBuilder to pass dynamic `username` and `password` values to the `login` endpoint that we defined [earlier](https://docs.gatling.io/tutorials/advanced/#i-api-endpoints).
+
+4. We also include a `pause(5, 15)` before the login step. This instructs the virtual user to pause for a random duration between 5 and 15 seconds. The randomness helps simulate human-like variations in navigation, such as filling out forms. Pauses are a crucial component of replicating real-world behavior, and it's important to ensure they are placed appropriately throughout the scenario.
+
+### Scenarios
+
+Now let's define our scenarios! We will define two scenarios that showcase different user behaviors.
+
+- In our first scenario, we account for regional differences in user behavior commonly observed in e-commerce. To reflect this, we define two distinct user journeys based on the market: one for the French market and another for the US market:
+
+  {{< include-code "scenario-1" >}}
+
+  Let's take a closer look:
+
+  - We wrap our scenario in an `exitBlockOnFail()` block to ensure that the virtual user exits the scenario whenever a request or check fails. This mimics real-world behavior, as users would be unable to proceed if they encounter blockers in the flow. Read more [here](https://docs.gatling.io/reference/script/core/scenario/#exitblockonfail).
+
+  - We use `randomSwitch()` to distribute traffic between two flows based on predefined percentages: 70% for the French **(fr)** market and 30% for the US **(us)** market. - The `randomSwitch()` will assign virtual users to the two flows according to the defined probabilities in `percent()`. - Within each `percent()` block, we define the desired behavior. - More on `randomSwitch()` [here](https://docs.gatling.io/reference/script/core/scenario/#randomswitch).
+
+- In a similar manner, we define our second scenario:
+
+  {{< include-code "scenario-2" >}}
+
+### HTTP protocol
+
+Now, let's define our http protocol builder.
+
+{{< include-code "http-protocol-builder-simple" >}}
+
+- We set the base url, `accept` and `user-agent` headers.
+
+For the `Authorization` header, we will have to set it per each API request that requires authentication, a bit of a headache no? To address this, we can use the following wrapper method:
+
+{{< include-code "with-authentication-headers-wrapper" >}}
+
+The method above takes an `HttpProtocolBuilder` object and conditionally adds the `Authorization` header to the requests:
+
+- If the virtual user's session contains the `AccessToken` key, set `Authorization` header to corresponding value.
+- Else, set `Authorization` to an empty string.
+
+This will eliminate the need to set the `Authorization` header individually for each request. Now we can define our http protocol builder like the following:
+
+{{< include-code "http-protocol-builder-with-headers">}}
+
+### Injection profiles
+
+We've defined our scenarios, i.e. the flows that the virtual user will go through. Now, we need to define how will these virtual users arrive into the load-tested application—**the injection profile**. \
+You should take the time to properly determine how the real-world users arrive to your application and accordingly, decide on the type of load that you will simulate on your application. For instance, are you looking to simulate load for a **Black Friday**? Are you looking to determine the maximum number of users your application can sustain? Deciding on what you are trying to simulate is necessary before defining the injection profile and starting your tests.
+
+In our script, we define the following injection profiles according to the desired load test type:
+
+- **Capacity**: Generally used to determine the maximum number of virtual users your application can sustain. Users arrival rate gets incremented over multiple levels and we analyze the metrics (response time, error ratio..etc) at each level according to our benchmarks.
+- **Soak**: Generally used to monitor the application performance with a fixed load over a long period of time. Useful for checking memory leaks and database degradation over time.
+- **Stress**: Generally used to push the application over its limits. We monitor how the system behaves under extreme load, does it recover properly from failures, does it autoscale as required?
+- **Breakpoint**: Users arrival rate increases linearly. Useful in checking the "hard limit" at which the system starts to break. The key difference between a capacity test and a breakpoint test is that the latter typically reveals a "hard limit", whereas a capacity test provides an estimate of the maximum number of users at which the system can maintain stable performance."
+- **Ramp-hold**: Useful for simulating constant peak traffic. Users arrival rate increases up to a certain rate the stays at this rate for a period of time. Simulates real-world behavior of a Black Friday for example where number of users stays at peak for a long period of time.
+- **Smoke**: Test with one virtual user. Used to ensure that the scenario works and does not break.
 
 {{< alert tip >}}
-For more details regarding loops, please check out the [Loops reference page]({{< ref "/reference/script/core/scenario#loop-statements" >}}).
-{{< /alert >}}
 
-## Step 5: Check and failure management
+- The injection profiles mentioned above are for **open** workload models, meaning the number of concurrent users is **NOT** capped (unlike some ticketing websites for example). For closed models or more information on open vs closed workload models, see [here](https://docs.gatling.io/reference/script/core/injection/#open-vs-closed-workload-models).
+- Injection profiles can be defined according to your specific needs. The profiles provided are commonly used for the mentioned use cases, but they are not set in stone. Be sure to choose the injection profile that best fits your use case.
+  {{< /alert >}}
 
-Up until now we have only used `check` to extract some data from the html response and store it in the session.
-But `check` is also handy to check properties of the response.
-By default Gatling checks if the http response status is *20x* or *304*.
+<a id="injection-profile-snippet"></a>
+{{< include-code "injection-profile-switch" >}}
 
-To demonstrate failure management we will introduce a `check` on a condition that fails randomly:
+For more information on defining injection profiles using the Gatling DSL, refer to this [section](https://docs.gatling.io/reference/script/core/injection/#open-model).
 
-{{< include-code "check" >}}
+### Define assertions
 
-Explanations:
+Now, we need to define assertions—the benchmarks that determine whether the test is considered successful or failed.
 
-1. First we import `ThreadLocalRandom`, to generate random values.
-2. We do a check on a condition that's been customized with a lambda.
-   It will be evaluated every time a user executes the request and randomly return *200* or *201*.
-   As response status is 200, the check will fail randomly.
+{{< include-code "assertions" >}}
 
-To handle this random failure we use the `tryMax` and `exitHereIfFailed` constructs as follow:
+### Add setUp block
 
-{{< include-code "tryMax-exitHereIfFailed" >}}
+Finally, we define the setup block. This configuration will execute both scenarios **simultaneously**. Based on the test type specified in the system properties, it will apply the corresponding injection profile and assertions.
 
-Explanations:
+{{< include-code "setup-block" >}}
 
-1. `tryMax` tries a given block up to n times.
-   Here we try a maximum of two times.
-2. If all tries fail, the user exits the whole scenario due to `exitHereIfFailed`.
+There also is the possibility to execute scenarios sequentially. For more information, please refer to this [section](https://docs.gatling.io/reference/script/core/injection/#sequential-scenarios).
 
-{{< alert tip >}}
-For more details regarding conditional blocks, please check out the [Conditional Statements reference page]({{< ref "/reference/script/core/scenario#conditional-statements" >}}).
-{{< /alert >}}
+### Utility helpers
 
-That's all Folks!
+One last step would be adding some utility files to have a better organisation of the codebase. In the `/utils` directory, we add the following files:
+
+#### Configuration file
+
+Responsible for defining **Java System Properties/JavaScript parameters** and **Environment variables** that we leverage in order to customize test behavior with no code changes. Let's take a look at the following example:
+
+{{< include-code "config" >}}
+
+- We define the `testType` system property that we use later on in the switch case of the `injectionProfile` [method](https://docs.gatling.io/tutorials/advanced/#injection-profile-snippet).
+- We define the `targetEnv` system property to specify the target application environment for the load simulation.
+
+You may define additional Java system properties or environment variables as required to accommodate your scripting needs.
+
+#### Keys file
+
+Here, we define the session variable keys. This file centralizes your key references across all parts of your code in order to improve maintainability, avoiding typos, and keeping the code consistent and easier to refactor. Let's take a look at the following key definition:
+
+{{< include-code "keys" >}}
+
+Now for the login endpoint, instead of doing `.saveAs("AccessToken")` [here](https://docs.gatling.io/tutorials/advanced/#login-endpoint-snippet), we can do the following:
+
+{{< include-code "keys-usage" >}}
+
+#### Target environment resolver file
+
+You may need different configurations depending on the target application environment. Here, we define a method that takes the target environment as input and returns the corresponding configuration.:
+
+- `pageUrl`: Frontend base URL.
+- `baseUrl`: Backend base URL.
+- `usersFeederFile`: The feeder file to use for user credentials.
+- `productsFeederFile`: The feeder file to use for products.
+
+{{< include-code "target-env-resolver" >}}
