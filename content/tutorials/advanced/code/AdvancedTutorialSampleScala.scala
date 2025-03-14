@@ -72,19 +72,19 @@ class AdvancedTutorialSampleScala extends Simulation {
 */
 //#project-structure
 
-//#login-endpoint
 object APIendpoints {
-  // Define login request
-  // Reference: https://docs.gatling.io/reference/script/protocols/http/request/#forms
-  val login = http("Login")
-    .post("/login")
-    .asFormUrlEncoded
-    .formParam("username", "#{username}")
-    .formParam("password", "#{password}")
-    .check(status.is(200))
-    .check(jmesPath("accessToken").saveAs("AccessToken"))
-}
 //#login-endpoint
+// Define login request
+// Reference: https://docs.gatling.io/reference/script/protocols/http/request/#forms
+val login = http("Login")
+  .post("/login")
+  .asFormUrlEncoded
+  .formParam("username", "#{username}")
+  .formParam("password", "#{password}")
+  .check(status.is(200))
+  .check(jmesPath("accessToken").saveAs("AccessToken"))
+//#login-endpoint
+}
 
 //#with-authentication-headers-wrapper
 // Add authentication header if an access token exists in the session
