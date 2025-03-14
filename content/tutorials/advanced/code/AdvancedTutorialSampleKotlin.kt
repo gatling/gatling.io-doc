@@ -50,6 +50,7 @@
 
 //#login-endpoint
 // Define login request
+// Reference: https://docs.gatling.io/reference/script/protocols/http/request/#forms
 val login: HttpRequestActionBuilder = http("Login")
     .post("/login")
     .asFormUrlEncoded()
