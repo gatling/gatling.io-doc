@@ -8,6 +8,7 @@ ordering:
   - tutorials
   - reference
   - guides
+  - concepts
   - release-notes
   - project
 ---
