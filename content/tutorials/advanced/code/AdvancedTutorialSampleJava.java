@@ -79,41 +79,35 @@ public class AdvancedTutorialSampleJava {
 //#project-structure
 
 //#login-endpoint
-public class APIendpoints {
-public static final HttpRequestActionBuilder login =
-    http("Login")
-        .post("/login")
-        .asFormUrlEncoded() // Short for header("Content-Type", "application/x-www-form-urlencoded")
-        .formParam("username", "#{username}")
-        .formParam("password", "#{password}")
-        .check(status().is(200))
-        .check(jmesPath("accessToken").saveAs("AccessToken"));
+public static final HttpRequestActionBuilder login = http("Login")
+  .post("/login")
+  .asFormUrlEncoded() // Short for header("Content-Type", "application/x-www-form-urlencoded")
+  .formParam("username", "#{username}")
+  .formParam("password", "#{password}")
+  .check(status().is(200))
+  .check(jmesPath("accessToken").saveAs("AccessToken"));
 
-}
 //#login-endpoint
 
 //#with-authentication-headers-wrapper
 // Add authentication header if an access token exists in the session
 // Reference:
 // https://docs.gatling.io/reference/script/protocols/http/request/#headers
-public static final HttpProtocolBuilder withAuthenticationHeader(
-    HttpProtocolBuilder protocolBuilder) {
+public static final HttpProtocolBuilder withAuthenticationHeader(HttpProtocolBuilder protocolBuilder) {
   return protocolBuilder.header(
-      "Authorization",
-      session -> Optional.ofNullable(session.getString("AccessToken")).orElse(""));
+    "Authorization",
+    session -> Optional.ofNullable(session.getString("AccessToken")).orElse(""));
 }
 //#with-authentication-headers-wrapper
 
-public class WebEndpoints {
 //#homepage-endpoint
 // Define the home page request with response status validation
 // Reference: https://docs.gatling.io/reference/script/protocols/http/request/#checks
-public static final HttpRequestActionBuilder homePage =
-    http("HomePage")
-        .get("https://ecomm.gatling.io")
-        .check(status().in(200, 304)); // Accept both OK (200) and Not Modified (304) statuses
+public static final HttpRequestActionBuilder homePage = http("HomePage")
+  .get("https://ecomm.gatling.io")
+  .check(status().in(200, 304)); // Accept both OK (200) and Not Modified (304) statuses
 //#homepage-endpoint
-}
+
 
 
   public static class ScenarioGroupsWrapper {
@@ -135,9 +129,8 @@ public class ScenarioGroups{
 private static final FeederBuilder<Object> usersFeeder = jsonFile("data/users_dev.json").circular();
 // Define authentication process
 // Reference: https://docs.gatling.io/reference/script/core/group/
-public static final ChainBuilder authenticate =
-  group("authenticate")
-    .on(loginPage, feed(usersFeeder), pause(5, 15), login);
+public static final ChainBuilder authenticate = group("authenticate")
+  .on(loginPage, feed(usersFeeder), pause(5, 15), login);
 //#authenticate-group
   }
   
@@ -154,8 +147,7 @@ static final HttpProtocolBuilder httpProtocol = http
 
 
 //#http-protocol-builder-with-headers
-static final HttpProtocolBuilder httpProtocolWithAuthentication =
-withAuthenticationHeader(
+static final HttpProtocolBuilder httpProtocolWithAuthentication = withAuthenticationHeader(
   http.baseUrl("https://api-ecomm.gatling.io")
     .acceptHeader("application/json")
     .userAgentHeader("Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/119.0"));
@@ -166,34 +158,34 @@ withAuthenticationHeader(
 // Reference: https://docs.gatling.io/reference/script/core/scenario/#randomswitch
 static final ScenarioBuilder scn1 =
   scenario("Scenario 1")
-      .exitBlockOnFail()
-      .on(
-          randomSwitch()
-              .on(
-                  percent(70)
-                      .then(
-                          group("fr")
-                              .on(
-                                  homeAnonymous,
-                                  pause(5, 15),
-                                  authenticate,
-                                  homeAuthenticated,
-                                  pause(5, 15),
-                                  addToCart,
-                                  pause(5, 15),
-                                  buy)),
-                  percent(30)
-                      .then(
-                          group("us")
-                              .on(
-                                  homeAnonymous,
-                                  pause(5, 15),
-                                  authenticate,
-                                  homeAuthenticated,
-                                  pause(5, 15),
-                                  addToCart,
-                                  pause(5, 15),
-                                  buy))))
+    .exitBlockOnFail()
+    .on(
+      randomSwitch()
+        .on(
+          percent(70)
+            .then(
+              group("fr")
+                .on(
+                  homeAnonymous,
+                  pause(5, 15),
+                  authenticate,
+                  homeAuthenticated,
+                  pause(5, 15),
+                  addToCart,
+                  pause(5, 15),
+                  buy)),
+          percent(30)
+            .then(
+              group("us")
+                .on(
+                  homeAnonymous,
+                  pause(5, 15),
+                  authenticate,
+                  homeAuthenticated,
+                  pause(5, 15),
+                  addToCart,
+                  pause(5, 15),
+                  buy))))
       .exitHereIfFailed();
 //#scenario-1
     
@@ -201,32 +193,32 @@ static final ScenarioBuilder scn1 =
   // Define scenario 2 with a uniform traffic distribution
 // Reference: https://docs.gatling.io/reference/script/core/scenario/#uniformrandomswitch
 static final ScenarioBuilder scn2 =
-scenario("Scenario 2")
+  scenario("Scenario 2")
     .exitBlockOnFail()
     .on(
-        uniformRandomSwitch()
+      uniformRandomSwitch()
+        .on(
+          group("fr")
             .on(
-                group("fr")
-                    .on(
-                        homeAnonymous,
-                        pause(5, 15),
-                        authenticate,
-                        homeAuthenticated,
-                        pause(5, 15),
-                        addToCart,
-                        pause(5, 15),
-                        buy),
-                group("us")
-                    .on(
-                        homeAnonymous,
-                        pause(5, 15),
-                        authenticate,
-                        homeAuthenticated,
-                        pause(5, 15),
-                        addToCart,
-                        pause(5, 15),
-                        buy)))
-    .exitHereIfFailed();
+                homeAnonymous,
+                pause(5, 15),
+                authenticate,
+                homeAuthenticated,
+                pause(5, 15),
+                addToCart,
+                pause(5, 15),
+                buy),
+          group("us")
+            .on(
+                homeAnonymous,
+                pause(5, 15),
+                authenticate,
+                homeAuthenticated,
+                pause(5, 15),
+                addToCart,
+                pause(5, 15),
+                buy)))
+      .exitHereIfFailed();
 //#scenario-2
 
 //#injection-profile-switch
@@ -235,19 +227,19 @@ scenario("Scenario 2")
 static final PopulationBuilder injectionProfile(ScenarioBuilder scn) {
   return switch (testType) {
     case "capacity" ->
-        scn.injectOpen(
-            incrementUsersPerSec(1)
-                .times(4)
-                .eachLevelLasting(10)
-                .separatedByRampsLasting(4)
-                .startingFrom(10));
+      scn.injectOpen(
+        incrementUsersPerSec(1)
+          .times(4)
+          .eachLevelLasting(10)
+          .separatedByRampsLasting(4)
+          .startingFrom(10));
     case "soak" -> scn.injectOpen(constantUsersPerSec(1).during(180));
     case "stress" -> scn.injectOpen(stressPeakUsers(200).during(20));
     case "breakpoint" -> scn.injectOpen(rampUsers(300).during(120));
     case "ramp-hold" ->
-        scn.injectOpen(
-            rampUsersPerSec(0).to(20).during(30),
-            constantUsersPerSec(20).during(60));
+      scn.injectOpen(
+        rampUsersPerSec(0).to(20).during(30),
+        constantUsersPerSec(20).during(60));
     case "smoke" -> scn.injectOpen(atOnceUsers(1));
     default -> scn.injectOpen(atOnceUsers(1));
   };
@@ -257,10 +249,9 @@ static final PopulationBuilder injectionProfile(ScenarioBuilder scn) {
 //#assertions
 // Define assertions for different test types
 // Reference: https://docs.gatling.io/reference/script/core/assertions/
-static final List<Assertion> assertions =
-  List.of(
-      global().responseTime().percentile(90.0).lt(500),
-      global().failedRequests().percent().lt(5.0));
+static final List<Assertion> assertions = List.of(
+  global().responseTime().percentile(90.0).lt(500),
+  global().failedRequests().percent().lt(5.0));
 
 static final List<Assertion> getAssertions() {
   return switch (testType) {
@@ -275,8 +266,8 @@ static final List<Assertion> getAssertions() {
 // Set up the simulation with scenarios, load profiles, and assertions
 {
   setUp(injectionProfile(scn1), injectionProfile(scn2))
-      .assertions(getAssertions())
-      .protocols(httpProtocolWithAuthentication);
+    .assertions(getAssertions())
+    .protocols(httpProtocolWithAuthentication);
 }
 //#setup-block
 
@@ -284,60 +275,58 @@ static final List<Assertion> getAssertions() {
 
     }
 
-//#config
 public class Config {
-  public static final String testType = System.getProperty("testType", "smoke"); // Test type (default: smoke)
-  public static final String targetEnv = System.getProperty("targetEnv", "DEV");
-}
 //#config
-
-//#keys
-public class Keys {
-  public static final String ACCESS_TOKEN = "AccessToken";
+public static final String testType = System.getProperty("testType", "smoke"); // Test type (default: smoke)
+public static final String targetEnv = System.getProperty("targetEnv", "DEV");
+//#config
 }
+
+public class Keys {
 //#keys
+public static final String ACCESS_TOKEN = "AccessToken";
+//#keys
+}
 
   
   public static class KeysUsage {
     public static final String ACCESS_TOKEN = "AccessToken";
 //#keys-usage
-public static final HttpRequestActionBuilder login =
-http("Login")
-    .post("/login")
-    .asFormUrlEncoded() // Short for header("Content-Type",
-    // "application/x-www-form-urlencoded")
-    .formParam("username", "#{username}")
-    .formParam("password", "#{password}")
-    .check(status().is(200))
-    .check(jmesPath("accessToken").saveAs(ACCESS_TOKEN));
+public static final HttpRequestActionBuilder login = http("Login")
+  .post("/login")
+  .asFormUrlEncoded() // Short for header("Content-Type", "application/x-www-form-urlencoded")
+  .formParam("username", "#{username}")
+  .formParam("password", "#{password}")
+  .check(status().is(200))
+  .check(jmesPath("accessToken").saveAs(ACCESS_TOKEN));
 //#keys-usage
   }
 
+  public class TargetEnvResolver {
 //#target-env-resolver
-public class TargetEnvResolver {
 
-  // Record to store environment-specific information
-  public record EnvInfo(
-      String pageUrl, String baseUrl, String usersFeederFile, String productsFeederFile) {}
+// Record to store environment-specific information
+public record EnvInfo(
+  String pageUrl, String baseUrl, String usersFeederFile, String productsFeederFile) {}
 
-  // Resolve environment-specific configuration based on the target environment
-  public static EnvInfo resolveEnvironmentInfo(String targetEnv) {
-    return switch (targetEnv) {
-      case "DEV" ->
-          new EnvInfo(
-              "https://ecomm.gatling.io",
-              "https://api-ecomm.gatling.io",
-              "data/users_dev.json",
-              "data/products_dev.csv");
-      default ->
-          new EnvInfo(
-              "https://ecomm.gatling.io",
-              "https://api-ecomm.gatling.io",
-              "data/users_dev.json",
-              "data/products_dev.csv");
-    };
-  }
+// Resolve environment-specific configuration based on the target environment
+public static EnvInfo resolveEnvironmentInfo(String targetEnv) {
+  return switch (targetEnv) {
+    case "DEV" ->
+      new EnvInfo(
+        "https://ecomm.gatling.io",
+        "https://api-ecomm.gatling.io",
+        "data/users_dev.json",
+        "data/products_dev.csv");
+    default ->
+      new EnvInfo(
+        "https://ecomm.gatling.io",
+        "https://api-ecomm.gatling.io",
+        "data/users_dev.json",
+        "data/products_dev.csv");
+  };
 }
 //#target-env-resolver
+}
 
 }
