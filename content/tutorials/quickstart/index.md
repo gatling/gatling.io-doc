@@ -33,7 +33,7 @@ Once you start your simulation, the load testing data are displayed in real-time
 
 To access the Gatling no-code generator:
 
-1. Navigate to https://cloud.gatling.io in your web browser.
+1. Navigate to [https://cloud.gatling.io](https://cloud.gatling.io) in your web browser.
 2. Login or register if you don't have an account. 
 3. Click on **Create a simulation without coding** in the _Latest simulation runs_ pane on the landing page. 
 
@@ -43,11 +43,11 @@ The no-code generator is divided into 4 steps and can be exported as a Java-Mave
 
 ## Setup your scenario
 
-The first step is to name your simulation in the **Simulation name** field. 
+The first step is to name your simulation in the **Simulation name** field.
 
-Next, Setting up a scenario requires defining the user request(s) and any pauses between the user request(s). For this tutorial, we use the Gatling sample website https://computer-database.gatling.io to demonstrate load testing with the no-code generator. To set up the scenario, click the {{< icon link >}} icon to the right of the **Request URLs** field. 
+Next, Setting up a scenario requires defining the user request(s) and any pauses between the user request(s). For this tutorial, we use the backend APIs for the **[Gatling sample e-commerce website](https://ecomm.gatling.io)** to demonstrate load testing with the no-code generator. We encourage you to experiment with the platform and monitor the network tab to get familiar with its available actions. The base URL for our API tests is **`https://api-ecomm.gatling.io`**. Next, to set up the scenario, click the {{< icon link >}} icon to the right of the **Request URLs** field.
 
-For this example, we are using a `GET` request, but notice that the dropdown menu allows you to pick among all of the common HTTP verbs.  
+For this example, we are using a `GET` request to `https://api-ecomm.gatling.io/products`, but notice that the dropdown menu allows you to pick among all of the common HTTP verbs.
 
 {{< img src="setup-scenario.png" alt="An example of the scenario description" >}}
 
