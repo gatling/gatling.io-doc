@@ -130,16 +130,16 @@ public static final HttpRequestActionBuilder homePage =
     public static final HttpRequestActionBuilder loginPage =
       http("LoginPage").get(pageUrl + "/login").check(status().in(200, 304));
 
-//#authenticate-group
 public class ScenarioGroups{
-  private static final FeederBuilder<Object> usersFeeder =
-    jsonFile("data/users_dev.json").circular();
-    // Define authentication process
-  public static final ChainBuilder authenticate =
-    group("authenticate")
-      .on(loginPage, feed(usersFeeder), pause(5, 15), login);
-  }
 //#authenticate-group
+private static final FeederBuilder<Object> usersFeeder = jsonFile("data/users_dev.json").circular();
+// Define authentication process
+// Reference: https://docs.gatling.io/reference/script/core/group/
+public static final ChainBuilder authenticate =
+  group("authenticate")
+    .on(loginPage, feed(usersFeeder), pause(5, 15), login);
+//#authenticate-group
+  }
   
   }
 
