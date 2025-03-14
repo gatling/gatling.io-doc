@@ -92,18 +92,48 @@ Use the following procedure to upgrade your SDK version:
 
 2. Run `npm install`
 
-### About the Gatling runtime bundle
+### Internet access
 
-The `gatling` CLI tool automatically downloads the Gatling runtime bundle, required to execute your Gatling
-simulations, when needed. By default, it:
+The `gatling` CLI tool requires Internet access to:
 
-- Follows the proxy settings detected from your NPM configuration (`.npmrc` file) or environment variables
-  (`http_proxy` or `https_proxy`), if any, to access the Internet and download the runtime bundle.
-- Installs the runtime bundle in the folder `~/.gatling` (Linux/macOS) or `%USERPROFILE%\.gatling` (Windows). You can
-  override this with the `--gatling-home` option.
+- Automatically download the Gatling runtime bundle, required to execute your Gatling simulations (from
+  `https://github.com/gatling/gatling-js/releases/`).
+  - By default, it is installed in the folder `~/.gatling` (Linux/macOS) or `%USERPROFILE%\.gatling` (Windows). You
+    can override this with the `--gatling-home` option.
+- Access the Gatling Enterprise API (`https://api.gatling.io`) when executing commands such as
+  `npx gatling enterprise-deploy` or `npx gatling enterprise-start`.
+- Access your Control Plane when using the [Private Packages](#private-packages) feature with the same commands.
 
-The `gatling` CLI tool doesn't download the Gatling runtime bundle if it cannot access the address
-`https://github.com/gatling/gatling-js/releases/`. Alternatively, you can try manually downloading the file from
+#### Configuring a proxy
+
+If a proxy configuration is required to access the Internet, simply make sure it is configured for NPM. The `gatling`
+CLI tool will inherit the NPM proxy settings when run with `npx gatling`. NPM proxy settings can be configured using
+environment variables (`HTTP_PROXY`, `HTTPS_PROXY`, `NOPROXY`) or a `.npmrc` file, as shown in the official NPM
+documentation for the following configuration keys:
+
+- [`proxy`](https://docs.npmjs.com/cli/v11/using-npm/config#proxy)
+- [`https-proxy`](https://docs.npmjs.com/cli/v11/using-npm/config#https-proxy)
+- [`noproxy`](https://docs.npmjs.com/cli/v11/using-npm/config#noproxy)
+
+#### Configuring a trust store
+
+When using the [Private Packages](#private-packages) feature, the CLI tool needs to call your Control Plane to
+automatically upload your packaged simulations. If your Control Plane uses an HTTPS certificate signed by an internal
+Certificate Authority (CA), or a self-signed certificate, it will not be trusted by default. In that case, you can
+configure a trust store containing the required certificate using the options:
+
+- `--trust-store <path to trust store>` to point to a trust store in PKCS#12 or JKS format
+- `--trust-store-password <password>` in case your trust store requires a password (usually not needed)
+
+You can check out more details with `npx gatling enterprise-deploy --help` or `npx gatling enterprise-start --help`.
+
+#### Manually downloading the Gatling runtime bundle
+
+If you cannot give Internet access to the `gatling` CLI tool, you can still manually install the required Gatling
+runtime bundle to be able to [run simulations locally](#running-your-simulations) or
+[package them for Gatling Enterprise](#packaging-your-simulations-for-gatling-enterprise-cloud).
+
+To do so, manually download the file from
 [the releases page](https://github.com/gatling/gatling-js/releases/), being careful to choose the same version
 configured in your `package.json` file and the correct variant for your system: we use the same names for the
 [system type](https://nodejs.org/api/os.html#ostype) and [architecture](https://nodejs.org/api/os.html#osarch) as in the
