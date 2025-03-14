@@ -144,11 +144,11 @@ public class ScenarioGroups{
 
     public class AdvancedSimulation extends Simulation {
 //#http-protocol-builder-simple
+// Reference: https://docs.gatling.io/reference/script/protocols/http/protocol/
 static final HttpProtocolBuilder httpProtocol = http
-    .baseUrl("https://api-ecomm.gatling.io")
-    .acceptHeader("application/json")
-    .userAgentHeader(
-        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/119.0");
+  .baseUrl("https://api-ecomm.gatling.io")
+  .acceptHeader("application/json")
+  .userAgentHeader("Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/119.0");
 //#http-protocol-builder-simple
 
 
