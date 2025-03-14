@@ -104,16 +104,17 @@ public static final HttpProtocolBuilder withAuthenticationHeader(
 }
 //#with-authentication-headers-wrapper
 
-//#homepage-endpoint
 public class WebEndpoints {
-  // Define the home page request with response status validation
-  // Reference: https://docs.gatling.io/reference/script/protocols/http/request/#checks
-  public static final HttpRequestActionBuilder homePage =
-      http("HomePage")
-          .get("https://ecomm.gatling.io")
-          .check(status().in(200, 304)); // Accept both OK (200) and Not Modified (304) statuses
-}
 //#homepage-endpoint
+// Define the home page request with response status validation
+// Reference: https://docs.gatling.io/reference/script/protocols/http/request/#checks
+public static final HttpRequestActionBuilder homePage =
+    http("HomePage")
+        .get("https://ecomm.gatling.io")
+        .check(status().in(200, 304)); // Accept both OK (200) and Not Modified (304) statuses
+//#homepage-endpoint
+}
+
 
   public static class ScenarioGroupsWrapper {
 
