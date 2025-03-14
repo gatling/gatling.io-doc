@@ -155,10 +155,9 @@ static final HttpProtocolBuilder httpProtocol = http
 //#http-protocol-builder-with-headers
 static final HttpProtocolBuilder httpProtocolWithAuthentication =
 withAuthenticationHeader(
-    http.baseUrl("https://api-ecomm.gatling.io")
-        .acceptHeader("application/json")
-        .userAgentHeader(
-            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/119.0"));
+  http.baseUrl("https://api-ecomm.gatling.io")
+    .acceptHeader("application/json")
+    .userAgentHeader("Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/119.0"));
 //#http-protocol-builder-with-headers
 
 //#scenario-1
