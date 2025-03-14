@@ -176,24 +176,24 @@ static final ScenarioBuilder scn1 =
                           group("fr")
                               .on(
                                   homeAnonymous,
-                                  pause(1, 15),
+                                  pause(5, 15),
                                   authenticate,
                                   homeAuthenticated,
-                                  pause(1, 15),
+                                  pause(5, 15),
                                   addToCart,
-                                  pause(1, 15),
+                                  pause(5, 15),
                                   buy)),
                   percent(30)
                       .then(
                           group("us")
                               .on(
                                   homeAnonymous,
-                                  pause(1, 15),
+                                  pause(5, 15),
                                   authenticate,
                                   homeAuthenticated,
-                                  pause(1, 15),
+                                  pause(5, 15),
                                   addToCart,
-                                  pause(1, 15),
+                                  pause(5, 15),
                                   buy))))
       .exitHereIfFailed();
 //#scenario-1
@@ -210,22 +210,22 @@ scenario("Scenario 2")
                 group("fr")
                     .on(
                         homeAnonymous,
-                        pause(1, 15),
+                        pause(5, 15),
                         authenticate,
                         homeAuthenticated,
-                        pause(1, 15),
+                        pause(5, 15),
                         addToCart,
-                        pause(1, 15),
+                        pause(5, 15),
                         buy),
                 group("us")
                     .on(
                         homeAnonymous,
-                        pause(1, 15),
+                        pause(5, 15),
                         authenticate,
                         homeAuthenticated,
-                        pause(1, 15),
+                        pause(5, 15),
                         addToCart,
-                        pause(1, 15),
+                        pause(5, 15),
                         buy)))
     .exitHereIfFailed();
 //#scenario-2

@@ -140,12 +140,12 @@ val scn1: ScenarioBuilder = scenario("Scenario 1")
                         group("fr")
                             .on(
                                 homeAnonymous,
-                                pause(1, 15),
+                                pause(5, 15),
                                 authenticate,
                                 homeAuthenticated,
-                                pause(1, 15),
+                                pause(5, 15),
                                 addToCart,
-                                pause(1, 15),
+                                pause(5, 15),
                                 buy
                             )
                     ),
@@ -154,12 +154,12 @@ val scn1: ScenarioBuilder = scenario("Scenario 1")
                         group("us")
                             .on(
                                 homeAnonymous,
-                                pause(1, 15),
+                                pause(5, 15),
                                 authenticate,
                                 homeAuthenticated,
-                                pause(1, 15),
+                                pause(5, 15),
                                 addToCart,
-                                pause(1, 15),
+                                pause(5, 15),
                                 buy
                             )
                     )
@@ -179,23 +179,23 @@ val scn2: ScenarioBuilder = scenario("Scenario 2")
                 group("fr")
                     .on(
                         homeAnonymous,
-                        pause(1, 15),
+                        pause(5, 15),
                         authenticate,
                         homeAuthenticated,
-                        pause(1, 15),
+                        pause(5, 15),
                         addToCart,
-                        pause(1, 15),
+                        pause(5, 15),
                         buy
                     ),
                 group("us")
                     .on(
                         homeAnonymous,
-                        pause(1, 15),
+                        pause(5, 15),
                         authenticate,
                         homeAuthenticated,
-                        pause(1, 15),
+                        pause(5, 15),
                         addToCart,
-                        pause(1, 15),
+                        pause(5, 15),
                         buy
                     )
             )

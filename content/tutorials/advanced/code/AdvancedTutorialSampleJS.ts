@@ -159,24 +159,24 @@ const scn1 = scenario("Scenario 1")
       percent(70).then(
         group("fr").on(
           homeAnonymous,
-          pause(1, 15),
+          pause(5, 15),
           authenticate,
           homeAuthenticated,
-          pause(1, 15),
+          pause(5, 15),
           addToCart,
-          pause(1, 15),
+          pause(5, 15),
           buy
         )
       ),
       percent(30).then(
         group("us").on(
           homeAnonymous,
-          pause(1, 15),
+          pause(5, 15),
           authenticate,
           homeAuthenticated,
-          pause(1, 15),
+          pause(5, 15),
           addToCart,
-          pause(1, 15),
+          pause(5, 15),
           buy
         )
       )
@@ -193,22 +193,22 @@ const scn2 = scenario("Scenario 2")
     uniformRandomSwitch().on(
       group("fr").on(
         homeAnonymous,
-        pause(1, 15),
+        pause(5, 15),
         authenticate,
         homeAuthenticated,
-        pause(1, 15),
+        pause(5, 15),
         addToCart,
-        pause(1, 15),
+        pause(5, 15),
         buy
       ),
       group("us").on(
         homeAnonymous,
-        pause(1, 15),
+        pause(5, 15),
         authenticate,
         homeAuthenticated,
-        pause(1, 15),
+        pause(5, 15),
         addToCart,
-        pause(1, 15),
+        pause(5, 15),
         buy
       )
     )
