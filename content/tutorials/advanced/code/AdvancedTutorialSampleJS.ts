@@ -15,16 +15,9 @@
  */
 
 import {
-  ChainBuilder,
   SetUpFunction,
   atOnceUsers,
-  css,
-  csv,
-  exec,
-  rampUsers,
-  repeat,
   scenario,
-  tryMax,
   group,
   feed,
   pause,
@@ -40,7 +33,7 @@ import {
   jsonFile,
 } from "@gatling.io/core";
 import { http, status } from "@gatling.io/http";
-import { ElFileBody, jmesPath } from "@gatling.io/core";
+import { jmesPath } from "@gatling.io/core";
 
 const setUp = null as unknown as SetUpFunction;
 
@@ -99,6 +92,7 @@ export const login = http("Login")
   .check(status().is(200))
   .check(jmesPath("accessToken").saveAs("AccessToken"));
 //#login-endpoint
+
 //#with-authentication-headers-wrapper
 // Add authentication header if an access token exists in the session
 // Reference: https://docs.gatling.io/reference/script/protocols/http/request/#headers
@@ -108,11 +102,13 @@ export function withAuthenticationHeader(protocolBuilder) {
   );
 }
 //#with-authentication-headers-wrapper
+
 //#homepage-endpoint
 // Define the home page request with response status validation
 // Reference: https://docs.gatling.io/reference/script/protocols/http/request/#checks
 export const homePage = http("HomePage").get("https://ecomm.gatling.io").check(status().in(200, 304)); // Accept both OK (200) and Not Modified (304) statuses
 //#homepage-endpoint
+
 //#authenticate-group
 // Define a feeder for user data
 // Reference: https://docs.gatling.io/reference/script/core/feeder/
@@ -127,28 +123,28 @@ export const authenticate = group("authenticate").on(
 );
 
 //#authenticate-group
+
 () => {
 //#http-protocol-builder-simple
 const httpProtocol = http
   .baseUrl("https://api-ecomm.gatling.io")
   .acceptHeader("application/json")
   .userAgentHeader(
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/119.0"
-  );
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/119.0");
 //#http-protocol-builder-simple
 }
+
 () => {
 //#http-protocol-builder-with-headers
-const httpProtocol = withAuthenticationHeader(
+const httpProtocolWithAuthentication = withAuthenticationHeader(
   http
     .baseUrl("https://api-ecomm.gatling.io")
     .acceptHeader("application/json")
     .userAgentHeader(
-      "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/119.0"
-    )
-);
+      "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/119.0"));
 //#http-protocol-builder-with-headers
 }
+
 //#scenario-1
   // Define scenario 1 with a random traffic distribution
 // Reference: https://docs.gatling.io/reference/script/core/scenario/#randomswitch
@@ -184,6 +180,7 @@ const scn1 = scenario("Scenario 1")
   )
   .exitHereIfFailed();
 //#scenario-1
+
 //#scenario-2
   // Define scenario 2 with a uniform traffic distribution
 // Reference: https://docs.gatling.io/reference/script/core/scenario/#uniformrandomswitch
@@ -215,6 +212,7 @@ const scn2 = scenario("Scenario 2")
   )
   .exitHereIfFailed();
 //#scenario-2
+
 //#injection-profile-switch
 // Define different load injection profiles
 // Reference: https://docs.gatling.io/reference/script/core/injection/
@@ -250,6 +248,7 @@ const injectionProfile = (scn) => {
   }
 };
 //#injection-profile-switch
+
 //#assertions
 // Define assertions for different test types
 // Reference: https://docs.gatling.io/reference/script/core/assertions/
@@ -273,6 +272,7 @@ const getAssertions = () => {
   }
 };
 //#assertions
+
 () => {
 const httpProtocol = withAuthenticationHeader(
   http
