@@ -150,7 +150,7 @@ private val httpProtocolWithAuthentication =  withAuthenticationHeader(
 //#http-protocol-builder-with-headers
 
 //#scenario-1
-// Define scenario 1 with a random traffic distribution
+  // Define scenario 1 with a random traffic distribution
 // Reference: https://docs.gatling.io/reference/script/core/scenario/#randomswitch
 private val scn1: ScenarioBuilder = scenario("Scenario 1")
   .exitBlockOnFail(
@@ -181,7 +181,7 @@ private val scn1: ScenarioBuilder = scenario("Scenario 1")
 //#scenario-1
 
 //#scenario-2
-// Define scenario 2 with a uniform traffic distribution
+  // Define scenario 2 with a uniform traffic distribution
 // Reference: https://docs.gatling.io/reference/script/core/scenario/#uniformrandomswitch
 private val scn2: ScenarioBuilder = scenario("Scenario 2")
   .exitBlockOnFail(

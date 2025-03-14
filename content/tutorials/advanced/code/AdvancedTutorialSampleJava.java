@@ -163,7 +163,7 @@ withAuthenticationHeader(
 //#http-protocol-builder-with-headers
 
 //#scenario-1
-// Define scenario 1 with a random traffic distribution
+  // Define scenario 1 with a random traffic distribution
 // Reference: https://docs.gatling.io/reference/script/core/scenario/#randomswitch
 static final ScenarioBuilder scn1 =
   scenario("Scenario 1")
@@ -199,7 +199,7 @@ static final ScenarioBuilder scn1 =
 //#scenario-1
     
 //#scenario-2
-// Define scenario 2 with a uniform traffic distribution
+  // Define scenario 2 with a uniform traffic distribution
 // Reference: https://docs.gatling.io/reference/script/core/scenario/#uniformrandomswitch
 static final ScenarioBuilder scn2 =
 scenario("Scenario 2")
