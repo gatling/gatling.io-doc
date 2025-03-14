@@ -92,20 +92,19 @@ val login = http("Login")
 def withAuthenticationHeader(protocolBuilder: HttpProtocolBuilder): HttpProtocolBuilder = {
   protocolBuilder.header(
     "Authorization",
-    session => if (session.contains("AccessToken")) session("AccessToken").as[String] else ""
-  )
+    session => if (session.contains("AccessToken")) session("AccessToken").as[String] else "")
 }
 //#with-authentication-headers-wrapper
 
-//#homepage-endpoint
 object WebEndpoints {
-  // Define the home page request with response status validation
-  // Reference: https://docs.gatling.io/reference/script/protocols/http/request/#checks
-  val homePage = http("HomePage")
-    .get("https://ecomm.gatling.io")
-    .check(status.in(200, 304)) // Accept both OK (200) and Not Modified (304) statuses
-}
 //#homepage-endpoint
+// Define the home page request with response status validation
+// Reference: https://docs.gatling.io/reference/script/protocols/http/request/#checks
+val homePage = http("HomePage")
+  .get("https://ecomm.gatling.io")
+  .check(status.in(200, 304)) // Accept both OK (200) and Not Modified (304) statuses
+//#homepage-endpoint
+}
 
 
 object ScenarioGroupsWrapper {
@@ -113,39 +112,37 @@ object ScenarioGroupsWrapper {
 val login = http("Login").post("/login")
 val loginPage = http("LoginPage").get("/login")
 
-//#authenticate-group
 object ScenarioGroups {
-  // Define a feeder for user data
-  // Reference: https://docs.gatling.io/reference/script/core/feeder/
-  private val usersFeeder = jsonFile("data/users_dev.json").circular
-
-  // Define authentication process
-  val authenticate: ChainBuilder = 
-    group("authenticate") (
-      loginPage,
-      feed(usersFeeder),
-      pause(5, 15),
-      login
-    )
-}
 //#authenticate-group
+// Define a feeder for user data
+// Reference: https://docs.gatling.io/reference/script/core/feeder/
+private val usersFeeder = jsonFile("data/users_dev.json").circular
+
+// Define authentication process
+val authenticate: ChainBuilder = group("authenticate") (
+  loginPage, feed(usersFeeder), pause(5, 15), login)
+//#authenticate-group
+}
 }
 
 class AdvancedSimulation extends Simulation {
 
 //#http-protocol-builder-simple
-private val httpProtocol = http.baseUrl("https://api-ecomm.gatling.io")
+// Define HTTP protocol configuration
+// Reference: https://docs.gatling.io/reference/script/protocols/http/protocol/
+private val httpProtocol = http
+  .baseUrl("https://api-ecomm.gatling.io")
 	.acceptHeader("application/json")
-	.userAgentHeader(
-		"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/119.0")
+	.userAgentHeader("Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/119.0")
 //#http-protocol-builder-simple
 
 //#http-protocol-builder-with-headers
+// Define HTTP protocol configuration with authentication header
+// Reference: https://docs.gatling.io/reference/script/protocols/http/protocol/
 private val httpProtocolWithAuthentication =  withAuthenticationHeader(
-        http.baseUrl("https://api-ecomm.gatling.io")
-            .acceptHeader("application/json")
-            .userAgentHeader(
-                "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/119.0"));
+  http.baseUrl("https://api-ecomm.gatling.io")
+    .acceptHeader("application/json")
+    .userAgentHeader("Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/119.0"));
 //#http-protocol-builder-with-headers
 
 //#scenario-1
@@ -162,8 +159,7 @@ private val scn1: ScenarioBuilder = scenario("Scenario 1")
           pause(5, 15),
           addToCart,
           pause(5, 15),
-          buy
-      ),
+          buy),
       30.0 -> group("us")(
           homeAnonymous,
           pause(5, 15),
@@ -172,10 +168,7 @@ private val scn1: ScenarioBuilder = scenario("Scenario 1")
           pause(5, 15),
           addToCart,
           pause(5, 15),
-          buy
-      )
-    )
-  )
+          buy)))
   .exitHereIfFailed
 //#scenario-1
 
@@ -193,8 +186,7 @@ private val scn2: ScenarioBuilder = scenario("Scenario 2")
           pause(5, 15),
           addToCart,
           pause(5, 15),
-          buy
-          ),
+          buy),
     group("us")(
           homeAnonymous,
           pause(5, 15),
@@ -203,10 +195,7 @@ private val scn2: ScenarioBuilder = scenario("Scenario 2")
           pause(5, 15),
           addToCart,
           pause(5, 15),
-          buy
-      )
-    )
-  )
+          buy)))
   .exitHereIfFailed
 //#scenario-2
 
@@ -215,29 +204,20 @@ private val scn2: ScenarioBuilder = scenario("Scenario 2")
 // Reference: https://docs.gatling.io/reference/script/core/injection/
 private def injectionProfile(scn: ScenarioBuilder): PopulationBuilder = {
   testType match {
-    case "capacity" =>
-      scn.inject(
-        incrementUsersPerSec(1)
-          .times(4)
-          .eachLevelLasting(10)
-          .separatedByRampsLasting(4)
-          .startingFrom(10)
-      )
-    case "soak" =>
-      scn.inject(constantUsersPerSec(1).during(180))
-    case "stress" =>
-      scn.inject(stressPeakUsers(200).during(20))
-    case "breakpoint" =>
-      scn.inject(rampUsers(300).during(120))
-    case "ramp-hold" =>
-      scn.inject(
-        rampUsersPerSec(0).to(20).during(30),
-        constantUsersPerSec(20).during(60)
-      )
-    case "smoke" =>
-      scn.inject(atOnceUsers(1))
-    case _ =>
-      scn.inject(atOnceUsers(1))
+    case "capacity" => scn.inject(
+      incrementUsersPerSec(1)
+        .times(4)
+        .eachLevelLasting(10)
+        .separatedByRampsLasting(4)
+        .startingFrom(10))
+    case "soak" => scn.inject(constantUsersPerSec(1).during(180))
+    case "stress" => scn.inject(stressPeakUsers(200).during(20))
+    case "breakpoint" => scn.inject(rampUsers(300).during(120))
+    case "ramp-hold" => scn.inject(
+      rampUsersPerSec(0).to(20).during(30),
+      constantUsersPerSec(20).during(60))
+    case "smoke" => scn.inject(atOnceUsers(1))
+    case _ => scn.inject(atOnceUsers(1))
   }
 }
 //#injection-profile-switch
@@ -246,16 +226,13 @@ private def injectionProfile(scn: ScenarioBuilder): PopulationBuilder = {
 // Define assertions for different test types
 // Reference: https://docs.gatling.io/reference/script/core/assertions/
 private def assertions: Seq[Assertion] = Seq(
-        global.responseTime.percentile(90.0).lt(500),
-        global.failedRequests.percent.lt(5.0)
-      )
+  global.responseTime.percentile(90.0).lt(500),
+  global.failedRequests.percent.lt(5.0))
 
 private def getAssertions(): Seq[Assertion] = {
   testType match {
-    case "capacity" | "soak" | "stress" | "breakpoint" | "ramp-hold" =>
-      assertions
-    case "smoke" =>
-      Seq(global.failedRequests.count.lt(1L))
+    case "capacity" | "soak" | "stress" | "breakpoint" | "ramp-hold" => assertions
+    case "smoke" => Seq(global.failedRequests.count.lt(1L))
     case _ => assertions
   }
 }
@@ -263,56 +240,60 @@ private def getAssertions(): Seq[Assertion] = {
 
 //#setup-block
 // Set up the simulation with scenarios, load profiles, and assertions
-  setUp(
-    injectionProfile(scn1),
-    injectionProfile(scn2)
-  ).assertions(
-    getAssertions(): _*
-  ).protocols(httpProtocolWithAuthentication)
+setUp(injectionProfile(scn1),injectionProfile(scn2))
+  .assertions(getAssertions(): _*)
+  .protocols(httpProtocolWithAuthentication)
 //#setup-block
 
 }
 
-//#config
 object Config {
-  val testType: String = System.getProperty("type", "smoke")
-  val targetEnv: String = System.getProperty("targetEnv", "DEV")
-}
 //#config
-
-//#keys
-object Keys {
-  val ACCESS_TOKEN: String = "AccessToken";
+val testType: String = System.getProperty("type", "smoke")
+val targetEnv: String = System.getProperty("targetEnv", "DEV")
+//#config
 }
+
+object Keys {
 //#keys
+val ACCESS_TOKEN: String = "AccessToken";
+//#keys
+}
 
 object KeysUsage {
 val ACCESS_TOKEN = "AccessToken";
 
 //#keys-usage
 val login = http("Login")
-    .post("/login")
-    .asFormUrlEncoded
-    .formParam("username", "#{username}")
-    .formParam("password", "#{password}")
-    .check(status.is(200))
-    .check(jmesPath("accessToken").saveAs(ACCESS_TOKEN))
+  .post("/login")
+  .asFormUrlEncoded // Short for header("Content-Type", "application/x-www-form-urlencoded")
+  .formParam("username", "#{username}")
+  .formParam("password", "#{password}")
+  .check(status.is(200))
+  .check(jmesPath("accessToken").saveAs(ACCESS_TOKEN))
 //#keys-usage
 }
 
-//#target-env-resolver
 object TargetEnvResolver {
-  // Record to store environment-specific information
-  case class EnvInfo(pageUrl: String, baseUrl: String, usersFeederFile: String, productsFeederFile: String)
+//#target-env-resolver
+// Record to store environment-specific information
+case class EnvInfo(
+  pageUrl: String, baseUrl: String, usersFeederFile: String, productsFeederFile: String)
 
-  // Resolve environment-specific configuration based on the target environment
-  def resolveEnvironmentInfo(targetEnv: String): EnvInfo = targetEnv match {
-    case "DEV" =>
-      EnvInfo("https://ecomm.gatling.io", "https://api-ecomm.gatling.io", "data/users_dev.json", "data/products_dev.csv")
-    case _ =>
-      EnvInfo("https://ecomm.gatling.io", "https://api-ecomm.gatling.io", "data/users_dev.json", "data/products_dev.csv")
-  }
+// Resolve environment-specific configuration based on the target environment
+def resolveEnvironmentInfo(targetEnv: String): EnvInfo = targetEnv match {
+  case "DEV" => EnvInfo(
+    "https://ecomm.gatling.io", 
+    "https://api-ecomm.gatling.io", 
+    "data/users_dev.json", 
+    "data/products_dev.csv")
+  case _ => EnvInfo(
+    "https://ecomm.gatling.io", 
+    "https://api-ecomm.gatling.io", 
+    "data/users_dev.json", 
+    "data/products_dev.csv")
 }
 //#target-env-resolver
+}
 
 }

@@ -97,16 +97,18 @@ export const login = http("Login")
 // Add authentication header if an access token exists in the session
 // Reference: https://docs.gatling.io/reference/script/protocols/http/request/#headers
 export function withAuthenticationHeader(protocolBuilder) {
-  return protocolBuilder.header("Authorization", (session) =>
-    session.contains("AccessToken") ? session.get("AccessToken") : ""
-  );
+  return protocolBuilder.header(
+    "Authorization", 
+    (session) => session.contains("AccessToken") ? session.get("AccessToken") : "");
 }
 //#with-authentication-headers-wrapper
 
 //#homepage-endpoint
 // Define the home page request with response status validation
 // Reference: https://docs.gatling.io/reference/script/protocols/http/request/#checks
-export const homePage = http("HomePage").get("https://ecomm.gatling.io").check(status().in(200, 304)); // Accept both OK (200) and Not Modified (304) statuses
+export const homePage = http("HomePage")
+  .get("https://ecomm.gatling.io")
+  .check(status().in(200, 304)); // Accept both OK (200) and Not Modified (304) statuses
 //#homepage-endpoint
 
 //#authenticate-group
@@ -115,33 +117,30 @@ export const homePage = http("HomePage").get("https://ecomm.gatling.io").check(s
 export const usersFeeder = jsonFile("data/users_dev.json").circular();
 
 // Define authentication process
-export const authenticate = group("authenticate").on(
-  loginPage,
-  feed(usersFeeder),
-  pause(5, 15),
-  login
-);
+export const authenticate = group("authenticate")
+  .on(loginPage, feed(usersFeeder), pause(5, 15), login);
 
 //#authenticate-group
 
 () => {
 //#http-protocol-builder-simple
+// Define HTTP protocol configuration
+// Reference: https://docs.gatling.io/reference/script/protocols/http/protocol/
 const httpProtocol = http
   .baseUrl("https://api-ecomm.gatling.io")
   .acceptHeader("application/json")
-  .userAgentHeader(
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/119.0");
+  .userAgentHeader("Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/119.0");
 //#http-protocol-builder-simple
 }
 
 () => {
 //#http-protocol-builder-with-headers
+// Define HTTP protocol configuration with authentication header
+// Reference: https://docs.gatling.io/reference/script/protocols/http/protocol/
 const httpProtocolWithAuthentication = withAuthenticationHeader(
-  http
-    .baseUrl("https://api-ecomm.gatling.io")
+  http.baseUrl("https://api-ecomm.gatling.io")
     .acceptHeader("application/json")
-    .userAgentHeader(
-      "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/119.0"));
+    .userAgentHeader("Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/119.0"));
 //#http-protocol-builder-with-headers
 }
 
@@ -161,9 +160,7 @@ const scn1 = scenario("Scenario 1")
           pause(5, 15),
           addToCart,
           pause(5, 15),
-          buy
-        )
-      ),
+          buy)),
       percent(30).then(
         group("us").on(
           homeAnonymous,
@@ -173,11 +170,7 @@ const scn1 = scenario("Scenario 1")
           pause(5, 15),
           addToCart,
           pause(5, 15),
-          buy
-        )
-      )
-    )
-  )
+          buy))))
   .exitHereIfFailed();
 //#scenario-1
 
@@ -196,8 +189,7 @@ const scn2 = scenario("Scenario 2")
         pause(5, 15),
         addToCart,
         pause(5, 15),
-        buy
-      ),
+        buy),
       group("us").on(
         homeAnonymous,
         pause(5, 15),
@@ -206,10 +198,7 @@ const scn2 = scenario("Scenario 2")
         pause(5, 15),
         addToCart,
         pause(5, 15),
-        buy
-      )
-    )
-  )
+        buy)))
   .exitHereIfFailed();
 //#scenario-2
 
@@ -224,23 +213,19 @@ const injectionProfile = (scn) => {
           .times(4)
           .eachLevelLasting({ amount: 10, unit: "seconds" })
           .separatedByRampsLasting(4)
-          .startingFrom(10)
-      );
+          .startingFrom(10));
     case "soak":
       return scn.injectOpen(
-        constantUsersPerSec(1).during({ amount: 180, unit: "seconds" })
-      );
+        constantUsersPerSec(1).during({ amount: 180, unit: "seconds" }));
     case "stress":
       return scn.injectOpen(stressPeakUsers(200).during({ amount: 20, unit: "seconds" }));
     case "breakpoint":
       return scn.injectOpen(
-        rampUsersPerSec(0).to(20).during({ amount: 120, unit: "seconds" })
-      );
+        rampUsersPerSec(0).to(20).during({ amount: 120, unit: "seconds" }));
     case "ramp-hold":
       return scn.injectOpen(
         rampUsersPerSec(0).to(20).during({ amount: 30, unit: "seconds" }),
-        constantUsersPerSec(20).during({ amount: 1, unit: "minutes" })
-      );
+        constantUsersPerSec(20).during({ amount: 1, unit: "minutes" }));
     case "smoke":
       return scn.injectOpen(atOnceUsers(1));
     default:
@@ -296,7 +281,7 @@ export const ACCESS_TOKEN = "AccessToken";
 //#keys-usage
 const login = http("Login")
   .post("/login")
-  .asFormUrlEncoded()
+  .asFormUrlEncoded() // Short for header("Content-Type", "application/x-www-form-urlencoded")
   .formParam("username", "#{username}")
   .formParam("password", "#{password}")
   .check(status().is(200))
