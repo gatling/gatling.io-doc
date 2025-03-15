@@ -20,7 +20,7 @@ import io.gatling.javaapi.http.*
 import io.gatling.javaapi.core.CoreDsl.*
 import io.gatling.javaapi.http.HttpDsl.*
 
-class EcommerceSampleSimulation : Simulation() {
+class EcommerceSampleKotlin : Simulation() {
 
     val httpProtocol = http
         .baseUrl("https://ecomm.gatling.io")

@@ -15,31 +15,26 @@
  */
 
 //#ecommerce-example
-import static io.gatling.javaapi.core.CoreDsl.*;
-import static io.gatling.javaapi.http.HttpDsl.*;
+import io.gatling.core.scenario.Simulation
+import io.gatling.core.Predef._
+import io.gatling.http.Predef._
 
-import io.gatling.javaapi.core.*;
-import io.gatling.javaapi.http.*;
+class EcommerceSampleScala extends Simulation {
 
-public class EcommerceSample extends Simulation {
+  val httpProtocol = http
+    .baseUrl("https://ecomm.gatling.io")
+    .acceptHeader("application/json")
+    .contentTypeHeader("application/json")
 
-  HttpProtocolBuilder httpProtocol =
-    http.baseUrl("https://ecomm.gatling.io")
-      .acceptHeader("application/json")
-      .contentTypeHeader("application/json");
-
-  ScenarioBuilder GetHome = scenario("Ecommerce")
-    .exec(http("Get home")
-      .get("/"));
+  val GetHome = scenario("Ecommerce")
+    .exec(http("Get home").get("/"))
 //#ecommerce-example
 
 //#set-up
-  {
-    setUp(
-      GetHome.injectOpen(atOnceUsers(1))
-    ).assertions(
-      global().successfulRequests().percent().gt(90.0)
-    ).protocols(httpProtocol);
-  }
-//#set-up
+  setUp(
+    GetHome.inject(atOnceUsers(1))
+  ).assertions(
+    global.successfulRequests.percent.gt(90.0)
+  ).protocols(httpProtocol)
+  //#set-up
 }
