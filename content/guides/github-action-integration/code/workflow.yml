@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-//#workflow-example
 name: Run Gatling Enterprise Simulation
 
 on:

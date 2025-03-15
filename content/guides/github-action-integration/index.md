@@ -16,9 +16,10 @@ At Gatling, we strongly believe the shift-left approach is fundamental to ensuri
 In this guide, we demonstrate how to integrate performance testing into your CI/CD pipeline using Gatling and GitHub Actions. This approach enables you to automate your performance tests and ensure application reliability.
 
 ## Prerequisites
+
 - Gatling version `{{< var gatlingVersion >}}` or higher
 - An account on Gatling Entreprise
-- Clone [this code](https://github.com/gatling/devrel-projects) and cd into the **`articles/githubintegration`** folder.
+- Clone [this code](https://github.com/gatling/devrel-projects) and cd into the `articles/githubintegration` folder.
 
 ## Test Creation
 
@@ -87,7 +88,7 @@ To successfully launch our workflow, we begin by configuring a secret in our Git
 3. In the left sidebar, click "Secrets and variables"
 4. Select "Actions"
 5. Click on the "New repository secret" button
-6. Add a new secret named **`GATLING_ENTERPRISE_API_TOKEN`**
+6. Add a new secret named `GATLING_ENTERPRISE_API_TOKEN`
 7. Set the value of this secret to your API token
 
 If you don't have an API token yet, you can learn how to create one by following the instructions on this [page]({{< ref "../reference/execute/cloud/admin/api-tokens" >}})
@@ -98,7 +99,7 @@ Now, let's create a simple workflow. This workflow, when launched, prompts for a
 
 Below is the configuration for the workflow:
 
-{{< include-code "workflow-example" yml>}}
+{{< include-code workflow yml>}}
 
 If you wish to customize this workflow further, refer to our [GitHub documentation]({{< ref "../reference/integrations/ci-cd/github-actions" >}}) for more details and options.
 

@@ -15,33 +15,32 @@
  */
 
 //#ecommerce-example
-package ecommerce;
+import {
+  simulation,
+  scenario,
+  atOnceUsers,
+  global,
+} from "@gatling.io/core";
+import { http } from "@gatling.io/http";
 
-import static io.gatling.javaapi.core.CoreDsl.*;
-import static io.gatling.javaapi.http.HttpDsl.*;
+export default simulation((setUp) => {
 
-import io.gatling.javaapi.core.*;
-import io.gatling.javaapi.http.*;
+  const httpProtocol = http
+    .baseUrl("https://ecomm.gatling.io")
 
-public class Ecommerce extends Simulation {
+  const GetHome = scenario("Ecommerce").exec(
 
-  HttpProtocolBuilder httpProtocol =
-    http.baseUrl("https://ecomm.gatling.io")
-      .acceptHeader("application/json")
-      .contentTypeHeader("application/json");
-
-  ScenarioBuilder GetHome = scenario("Ecommerce")
-    .exec(http("Get home")
-      .get("/"));
+    http("Get home").get("/")
+    
+  );
 //#ecommerce-example
 
 //#set-up
-  {
-    setUp(
-      GetHome.injectOpen(atOnceUsers(1))
-    ).assertions(
-      global().successfulRequests().percent().gt(90.0)
-    ).protocols(httpProtocol);
-  }
-}
+setUp(
+    GetHome.injectOpen(atOnceUsers(1)),
+).assertions(
+    global().successfulRequests().percent().gt(90.0)
+).protocols(httpProtocol);
+});
+
 //#set-up
