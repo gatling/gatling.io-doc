@@ -12,4 +12,5 @@ ordering:
   - aws-s3-bucket-feeders
   - config-as-code
   - basic-auth
+  - github-action-integration
 ---
