@@ -45,21 +45,13 @@ Now that we have our test locally, we need to deploy the package to Gatling Ente
 This video showcases the JavaScript SDK, but the same process applies to all SDKs that Gatling provides.
 {{< /alert >}}
 
-<div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0;">
-    <video style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" controls title="Create a Package">
-        <source src="video/create_a_package.mp4" type="video/mp4">
-    </video>
-</div>
+{{< youtube jYPc6lwBAAQ >}}
 
 ### Create the Simulation
 
 Now that our package is on Gatling Enterprise, we need to create a simulation.
 
-<div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0;">
-    <video style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" controls title="Create a Simulation">
-        <source src="video/create_a_simulation.mp4" type="video/mp4">
-    </video>
-</div>
+{{< youtube 7Gb4BcHU0P8 >}}
 
 ### Copy Your Simulation ID
 
@@ -69,11 +61,7 @@ Don't forget to copy your `simulation Id` (click on the three dots to the right 
 
 Now, for GitHub to communicate with Gatling Enterprise and launch the simulation, you need to create an API key.
 
-<div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0;">
-    <video style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" controls title="Create an API Token">
-        <source src="video/create_api_token.mp4" type="video/mp4">
-    </video>
-</div>
+{{< youtube iP4_WM9wTNA >}}
 
 Now that everything is set up on the Gatling Enterprise side, it's time to create our CI script on GitHub.
 
@@ -107,11 +95,7 @@ If you wish to customize this workflow further, refer to our [GitHub documentati
 
 Now that our requirements are set up, go to GitHub → Actions and launch our workflow with the  **`simulation Id`** as an input. After that, you will have a link to check the results on Gatling Enterprise and see logs in the workflow.
 
-<div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0;">
-    <video style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" controls title="Launch the Workflow Tutorial">
-        <source src="video/launch_the_workflow.mp4" type="video/mp4">
-    </video>
-</div>
+{{< youtube Ocv66gH5ZjM >}}
 
 ## Conclusion
 
