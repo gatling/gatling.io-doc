@@ -41,6 +41,5 @@ setUp(
 ).assertions(
     global().successfulRequests().percent().gt(90.0)
 ).protocols(httpProtocol);
-});
-
 //#set-up
+});
