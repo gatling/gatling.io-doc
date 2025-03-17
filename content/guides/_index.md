@@ -13,4 +13,5 @@ ordering:
   - config-as-code
   - basic-auth
   - github-action-integration
+  - gitlab-ci-integration
 ---

@@ -42,7 +42,7 @@ In our example, we generate 1 user coming at once to see if our simulation is wo
 Now that we have our test locally, we need to deploy the package to Gatling Enterprise to create a simulation.
 
 {{< alert info >}}
-This video showcases the JavaScript SDK, but the same process applies to all SDKs that Gatling provides.
+While this video demonstrates the JavaScript SDK, the same process applies to all Gatling SDKs.
 {{< /alert >}}
 
 {{< youtube jYPc6lwBAAQ >}}
