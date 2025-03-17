@@ -47,6 +47,6 @@ libraryDependencies ++= Seq(
   "commons-codec"          % "commons-codec"   % "1.18.0",
   "software.amazon.awssdk" % "secretsmanager"  % awsSdkVersion,
   "software.amazon.awssdk" % "s3"              % awsSdkVersion,
-  ("org.apache.activemq"   % "activemq-broker" % "5.18.6" % Test)
+  ("org.apache.activemq"   % "activemq-broker" % "5.19.0" % Test)
     .exclude("jakarta.jms", "jakarta.jms-api")
 )
