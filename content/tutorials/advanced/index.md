@@ -72,7 +72,7 @@ Let's break it down:
 
 ### Endpoints
 
-We need to define the individual requests that we need to call throughout the user journeys.
+We need to define the individual requests that we call throughout the user journeys.
 
 #### API Endpoints
 
@@ -99,14 +99,14 @@ Now let's take a look at the following definition of the `homePage` endpoint:
 
 {{< include-code "homepage-endpoint" >}}
 
-1. We define an http GET request for the `pageUrl`
+1. We define an http GET request to `https://ecomm.gatling.io`
 2. We define a check to ensure we receive a response with status code corresponding to either 200 or 304.
 
 ### Groups
 
 Groups serve as a collection of multiple http requests, providing a clear logical separation for different parts of the user journey. Defining groups enables us to filter by them in the Gatling Enterprise reports, providing a more precise analysis of various processes within the load-tested application.
 
-We will define the groups in a file under the `groups/` directory.
+We define the groups in a file under the `groups/` directory.
 
 Let's take a look at the following `authenticate` group definition:
 
@@ -148,7 +148,9 @@ Now let's define our scenarios! We will define two scenarios that showcase diffe
 
   - We wrap our scenario in an `exitBlockOnFail()` block to ensure that the virtual user exits the scenario whenever a request or check fails. This mimics real-world behavior, as users would be unable to proceed if they encounter blockers in the flow. Read more [here](https://docs.gatling.io/reference/script/core/scenario/#exitblockonfail).
 
-  - We use `randomSwitch()` to distribute traffic between two flows based on predefined percentages: 70% for the French **(fr)** market and 30% for the US **(us)** market. - The `randomSwitch()` will assign virtual users to the two flows according to the defined probabilities in `percent()`. - Within each `percent()` block, we define the desired behavior. - More on `randomSwitch()` [here](https://docs.gatling.io/reference/script/core/scenario/#randomswitch).
+  - We use `randomSwitch()` to distribute traffic between two flows based on predefined percentages: 70% for the French **(fr)** market and 30% for the US **(us)** market. - The `randomSwitch()` will assign virtual users to the two flows according to the defined probabilities in `percent()`.
+
+  - Within each `percent()` block, we define the desired behavior. - More on `randomSwitch()` [here](https://docs.gatling.io/reference/script/core/scenario/#randomswitch).
 
 - In a similar manner, we define our second scenario:
 
@@ -185,8 +187,8 @@ In our script, we define the following injection profiles according to the desir
 - **Capacity**: Generally used to determine the maximum number of virtual users your application can sustain. Users arrival rate gets incremented over multiple levels and we analyze the metrics (response time, error ratio..etc) at each level according to our benchmarks.
 - **Soak**: Generally used to monitor the application performance with a fixed load over a long period of time. Useful for checking memory leaks and database degradation over time.
 - **Stress**: Generally used to push the application over its limits. We monitor how the system behaves under extreme load, does it recover properly from failures, does it autoscale as required?
-- **Breakpoint**: Users arrival rate increases linearly. Useful in checking the "hard limit" at which the system starts to break. The key difference between a capacity test and a breakpoint test is that the latter typically reveals a "hard limit", whereas a capacity test provides an estimate of the maximum number of users at which the system can maintain stable performance."
-- **Ramp-hold**: Useful for simulating constant peak traffic. Users arrival rate increases up to a certain rate the stays at this rate for a period of time. Simulates real-world behavior of a Black Friday for example where number of users stays at peak for a long period of time.
+- **Breakpoint**: Users arrival rate increases linearly. Useful in checking the "hard limit" at which the system starts to break. The key difference between a capacity test and a breakpoint test is that the latter typically reveals a "hard limit", whereas a capacity test provides an estimate of the maximum number of users at which the system can maintain stable performance.
+- **Ramp-hold**: Useful for simulating constant peak traffic. Users arrival rate increases up to a certain rate then stays at this rate for a period of time. Simulates real-world behavior of a Black Friday for example where the number of users stays at peak for a long period of time.
 - **Smoke**: Test with one virtual user. Used to ensure that the scenario works and does not break.
 
 {{< alert tip >}}
