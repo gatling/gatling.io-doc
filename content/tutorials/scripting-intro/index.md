@@ -188,12 +188,16 @@ Watch the Simulation deploy automatically and generate real-time reports.
 
 The open-source version of Gatling allows you to run simulations locally, generating load from your computer. Running a
 new or modified simulation locally is often useful to ensure it works before launching it on Gatling Enterprise Cloud.
-Using the Java SDK, you can launch your test with the following command in the project root directory:
+Using the Java SDK, you can launch your test in interactive mode using the following approach:
 
-{{< platform-toggle>}}
-Linux/MacOS: ./mvnw gatling:test -Dgatling.simulationClass=example.BasicSimulation
-Windows: mvnw.cmd gatling:test -Dgatling.simulationClass=example.BasicSimulation
-{{</ platform-toggle >}}
+1. Run the following command in the Java project root directory:
+
+   {{< platform-toggle>}}
+   Linux/MacOS: ./mvnw gatling:test
+   Windows: mvnw.cmd gatling:test
+   {{</ platform-toggle >}}
+
+2. Choose `[1] example.BasicSimulation`.
 
 When the test has finished, there is an HTML link in the terminal that you can use to access the static report.
 
