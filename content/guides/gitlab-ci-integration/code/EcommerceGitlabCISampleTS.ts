@@ -29,9 +29,7 @@ export default simulation((setUp) => {
     .baseUrl("https://ecomm.gatling.io")
 
   const GetHome = scenario("Ecommerce").exec(
-
     http("Get home").get("/")
-    
   );
 //#ecommerce-example
 
