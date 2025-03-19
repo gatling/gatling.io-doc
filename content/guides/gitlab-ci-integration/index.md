@@ -1,9 +1,9 @@
 ---
-title: Integrate Gatling with Gitlab CI
-menutitle: Gitlab CI integration
-seotitle: How to integrate Gatling with Gitlab CI
-description: Set up automated load testing with Gitlab CI
-lead: Add performance testing to your GitLab CI pipeline with Gatling Enterprise.
+title: Integrate Gatling with Gitlab CI/CD
+menutitle: Gitlab CI/CD integration
+seotitle: How to integrate Gatling with Gitlab CI/CD
+description: Set up automated load testing with Gitlab CI/CD
+lead: Add performance testing to your Gitlab CI/CD pipeline with Gatling Enterprise.
 badge:
   type: enterprise
   label: Enterprise
@@ -11,7 +11,7 @@ date: 2025-03-11T13:35:00+02:00
 
 ---
 
-Performance testing is a critical component of modern software development. By integrating Gatling Enterprise with GitLab CI, you can incorporate performance testing into your development workflow, ensuring your applications meet performance standards before reaching production.
+Performance testing is a critical component of modern software development. By integrating Gatling Enterprise with Gitlab CI/CD, you can incorporate performance testing into your development workflow, ensuring your applications meet performance standards before reaching production.
 
 ## Prerequisites
 
@@ -65,17 +65,17 @@ Make sure to copy the `simulation Id` by clicking the three dots menu next to yo
 This step is applicable to all CI/CD platforms supported by Gatling Enterprise.
 {{< /alert >}}
 
-To enable Gitlab CI to interact with Gatling Enterprise and trigger simulations, you'll need to generate an API key.
+To enable Gitlab CI/CD to interact with Gatling Enterprise and trigger simulations, you'll need to generate an API key.
 
 {{< youtube iP4_WM9wTNA >}}
 
-With Gatling Enterprise configured, we can now proceed to setting up our GitLab CI pipeline.
+With Gatling Enterprise configured, we can now proceed to setting up our Gitlab CI/CD pipeline.
 
-## Gitlab CI
+## Gitlab CI/CD
 
 ### Set up the Secrets and Environment
 
-To run simulations from GitLab CI, you'll first need to configure a secure API token. Follow these steps to set up the required variable:
+To run simulations from Gitlab CI/CD, you'll first need to configure a secure API token. Follow these steps to set up the required variable:
 
 1. Navigate to your GitLab repository
 2. Access the `Settings` menu
@@ -90,9 +90,9 @@ If you need to generate a new API token, follow our guide [here]({{< ref "../ref
 
 ### Configure the Pipeline
 
-Let's set up a basic GitLab CI pipeline that will run your performance tests. The pipeline configuration will trigger a simulation using the provided **`simulation Id`**.
+Let's set up a basic Gitlab CI/CD pipeline that will run your performance tests. The pipeline configuration will trigger a simulation using the provided **`simulation Id`**.
 
-Here's the pipeline configuration:
+Here's the pipeline configuration (.gitlab-ci.yml): 
 
 ```yaml
 stages:
@@ -109,7 +109,7 @@ run-gatling-enterprise:
     SIMULATION_ID: '00000000-0000-0000-0000-000000000000'
 ```
 
-For advanced pipeline customization options, check our [GitLab CI documentation]({{< ref "../reference/integrations/ci-cd/gitlab-ci" >}}).
+For advanced pipeline customization options, check our [Gitlab CI/CD documentation]({{< ref "../reference/integrations/ci-cd/gitlab-ci" >}}).
 
 ### Run the Pipeline
 
@@ -119,4 +119,4 @@ With everything configured, you can now trigger the pipeline from GitLab CI/CD. 
 
 ## Conclusion
 
-This integration streamlines the testing process and enhances collaboration between development teams. With Gatling Enterprise and GitLab CI, you can create a pipeline that continuously monitors your application's performance, making it easier to maintain high standards of application quality throughout the development lifecycle.
+This integration streamlines the testing process and enhances collaboration between development teams. With Gatling Enterprise and Gitlab CI/CD, you can create a pipeline that continuously monitors your application's performance, making it easier to maintain high standards of application quality throughout the development lifecycle.
