@@ -11,7 +11,7 @@ date: 2025-03-11T13:35:00+02:00
 
 ---
 
-Performance testing is a critical component of modern software development. By integrating Gatling Enterprise with Gitlab CI/CD, you can incorporate performance testing into your development workflow, ensuring your applications meet performance standards before reaching production.
+Performance testing is a critical component of modern software development. By integrating Gatling Enterprise with Gitlab CI/CD, you incorporate performance testing into your development workflow, ensuring your applications meet performance standards before reaching production.
 
 ## Prerequisites
 
@@ -29,7 +29,7 @@ Let's create a simple scenario that loads our [e-commerce demo website](https://
 
 ### Generate the user and assertions
 
-We'll start with a single user to verify our simulation works correctly. Then we'll add assertions to validate our test results. In this example, we'll check that more than 90% of requests are successful.
+We start with a single user to verify our simulation works correctly. Then we add assertions to validate our test results. In this example, we check that more than 90% of requests are successful.
 
 {{< include-code "ecommerce#set-up" ts java scala kt>}}
 
@@ -51,13 +51,13 @@ While this video demonstrates the JavaScript SDK specifically, the deployment pr
 This step is applicable to all CI/CD platforms supported by Gatling Enterprise.
 {{< /alert >}}
 
-Next, we'll create a simulation in Gatling Enterprise using our deployed package.
+Next, we create a simulation in Gatling Enterprise using our deployed package.
 
 {{< youtube 7Gb4BcHU0P8 >}}
 
 ### Copy Your Simulation ID
 
-Make sure to copy the `simulation Id` by clicking the three dots menu next to your simulation name, as we'll use this ID in subsequent steps.
+Make sure to copy the `simulation Id` by clicking the three dots menu next to your simulation name, as we use this ID in subsequent steps.
 
 ### Create an API Key
 
@@ -65,17 +65,17 @@ Make sure to copy the `simulation Id` by clicking the three dots menu next to yo
 This step is applicable to all CI/CD platforms supported by Gatling Enterprise.
 {{< /alert >}}
 
-To enable Gitlab CI/CD to interact with Gatling Enterprise and trigger simulations, you'll need to generate an API key.
+To enable Gitlab CI/CD to interact with Gatling Enterprise and trigger simulations, you need to generate an API key.
 
 {{< youtube iP4_WM9wTNA >}}
 
-With Gatling Enterprise configured, we can now proceed to setting up our Gitlab CI/CD pipeline.
+With Gatling Enterprise configured, we proceed to setting up our Gitlab CI/CD pipeline.
 
 ## Gitlab CI/CD
 
 ### Set up the Secrets and Environment
 
-To run simulations from Gitlab CI/CD, you'll first need to configure a secure API token. Follow these steps to set up the required variable:
+To run simulations from Gitlab CI/CD, you first need to configure a secure API token. Follow these steps to set up the required variable:
 
 1. Navigate to your GitLab repository
 2. Access the `Settings` menu
@@ -90,9 +90,9 @@ If you need to generate a new API token, follow our guide [here]({{< ref "../ref
 
 ### Configure the Pipeline
 
-Let's set up a basic Gitlab CI/CD pipeline that will run your performance tests. The pipeline configuration will trigger a simulation using the provided **`simulation Id`**.
+Let's set up a basic Gitlab CI/CD pipeline that runs your performance tests. The pipeline configuration triggers a simulation using the provided **`simulation Id`**.
 
-Here's the pipeline configuration (.gitlab-ci.yml): 
+Here's the pipeline configuration (.gitlab-ci.yml):
 
 ```yaml
 stages:
@@ -113,10 +113,10 @@ For advanced pipeline customization options, check our [Gitlab CI/CD documentati
 
 ### Run the Pipeline
 
-With everything configured, you can now trigger the pipeline from GitLab CI/CD. Provide your **`simulation Id`** when running the pipeline, and you'll be able to monitor the test execution both in GitLab and Gatling Enterprise.
+With everything configured, you can now trigger the pipeline from GitLab CI/CD. Provide your **`simulation Id`** when running the pipeline, and you are able to monitor the test execution both in GitLab and Gatling Enterprise.
 
 {{< youtube N-QSlrufXps >}}
 
 ## Conclusion
 
-This integration streamlines the testing process and enhances collaboration between development teams. With Gatling Enterprise and Gitlab CI/CD, you can create a pipeline that continuously monitors your application's performance, making it easier to maintain high standards of application quality throughout the development lifecycle.
+This integration streamlines the testing process and enhances collaboration between development teams. With Gatling Enterprise and Gitlab CI/CD, you create a pipeline that continuously monitors your application's performance, making it easier to maintain high standards of application quality throughout the development lifecycle.
