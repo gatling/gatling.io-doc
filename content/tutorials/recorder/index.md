@@ -192,4 +192,4 @@ The simulation should start on your local machine, with the progress displayed i
 Now that you have completed the Introduction to scripting and Introduction to the Recorder tutorials, you have a solid foundation of Gatling and load testing knowlege. We strongly recommend you complete the Writing realistic tests tutorial to learn the essential skills for writing clean and concise tests. 
 
  - [Gatling Academy](https://academy.gatling.io/) 
- - [Writing realistic tests]({{< ref "advanced" >}})
+ - [Writing realistic tests]({{< ref "writing-realistic-tests" >}})

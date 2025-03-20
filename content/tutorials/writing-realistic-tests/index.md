@@ -3,6 +3,8 @@ title: Writing realistic Gatling tests
 seotitle: Write realistic advanced Gatling tests to simulate real world scenarios for your application using http endpoints groups and injection profiles
 menutitle: Writing realistic tests
 description: Write realistic Gatling tests that simulate real world scenarios on your application.
+aliases:
+  - /tutorials/advanced
 ---
 
 In this tutorial, we assume that you have already gone through the

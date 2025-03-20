@@ -172,4 +172,4 @@ You have successfully run your first test! To keep learning, we recommend the fo
 
  - [Gatling Academy](https://gatling.io/academy) 
  - [Introduction to the Recorder]({{< ref "recorder" >}})
- - [Writing realistic tests]({{< ref "advanced" >}})
+ - [Writing realistic tests]({{< ref "writing-realistic-tests" >}})

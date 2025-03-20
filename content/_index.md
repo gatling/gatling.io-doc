@@ -24,7 +24,7 @@ The following tutorials will help you get started with Gatling:
 - [Create a simulation with Java]({{< ref "tutorials/scripting-intro" >}})  
 - [Create a simulation with JavaScript]({{< ref "tutorials/scripting-intro-js" >}}) 
 - [Introduction to the Recorder]({{< ref "tutorials/recorder" >}})  
-- [Writing realistic tests]({{< ref "tutorials/advanced" >}})  
+- [Writing realistic tests]({{< ref "tutorials/writing-realistic-tests" >}})  
 
 Having *scenarios* that are defined in code and are resource efficient are the two requirements that motivated us to create Gatling. Based on an expressive [DSL](http://en.wikipedia.org/wiki/Domain-specific_language), the *scenarios* are self-explanatory. They are easy to maintain and can be kept in a version control system.
 

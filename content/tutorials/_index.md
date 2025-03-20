@@ -9,7 +9,7 @@ ordering:
   - scripting-intro-js
   - postman
   - recorder
-  - advanced
+  - writing-realistic-tests
   - trial-plan
   - faq
 ---

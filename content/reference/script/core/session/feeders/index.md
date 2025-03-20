@@ -6,7 +6,7 @@ lead: Inject data into your virtual users from an external source, eg a CSV file
 date: 2021-04-20T18:30:56+02:00
 ---
 
-{{< alert tip >}}Learning to use feeders is covered in the [Writing realistic tests]({{< ref "/tutorials/advanced/" >}}) tutorial and in [Gatling Academy Module 3](https://academy.gatling.io/course/module-3-java-load-test-a-restful-api).  {{< /alert >}}
+{{< alert tip >}}Learning to use feeders is covered in the [Writing realistic tests]({{< ref "/tutorials/writing-realistic-tests/" >}}) tutorial and in [Gatling Academy Module 3](https://academy.gatling.io/course/module-3-java-load-test-a-restful-api).  {{< /alert >}}
 
 Feeder is a type alias for `Iterator<Map<String, T>>`, meaning that the component created by the feed method will poll `Map<String, T>` records and inject its content.
 
