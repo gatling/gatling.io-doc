@@ -129,7 +129,7 @@ export const authenticate = group("authenticate")
 const httpProtocol = http
   .baseUrl("https://api-ecomm.gatling.io")
   .acceptHeader("application/json")
-  .userAgentHeader("Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/119.0");
+  .userAgentHeader("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36");
 //#http-protocol-builder-simple
 }
 
@@ -140,7 +140,7 @@ const httpProtocol = http
 const httpProtocolWithAuthentication = withAuthenticationHeader(
   http.baseUrl("https://api-ecomm.gatling.io")
     .acceptHeader("application/json")
-    .userAgentHeader("Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/119.0"));
+    .userAgentHeader("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"));
 //#http-protocol-builder-with-headers
 }
 
@@ -264,7 +264,7 @@ const httpProtocol = withAuthenticationHeader(
     .baseUrl("https://api-ecomm.gatling.io")
     .acceptHeader("application/json")
     .userAgentHeader(
-      "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/119.0"
+      "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
     )
 );
 //#setup-block
