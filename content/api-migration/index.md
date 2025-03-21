@@ -13,9 +13,9 @@ Six months ago, we migrated our API to `api.gatling.io`. At this time, we also r
 
 | API Client             | minimum supported version | latest version |
 |------------------------|:-------------------------:|:--------------:|
-| gatling-maven-plugin   |           4.10.0          |     4.16.1     |
-| gatling-sbt            |           4.10.0          |     4.13.1     |
-| gatling-gradle-plugin  |          3.12.0.1         |     3.13.5     |
+| gatling-maven-plugin   |           4.10.0          |     4.16.2     |
+| gatling-sbt            |           4.10.0          |     4.13.2     |
+| gatling-gradle-plugin  |          3.12.0.1         |     3.13.5.1   |
 | Jenkins plugin         |           1.18.0          |     1.18.0     |
 | Bamboo plugin          |           1.18.0          |     1.18.0     |
 | TeamCity plugin        |           1.18.0          |     1.18.0     |
