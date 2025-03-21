@@ -14,27 +14,32 @@
  * limitations under the License.
  */
 
-//#full-example
+//#ecommerce-example
 import {
-  constantUsersPerSec,
+  simulation,
   scenario,
-  simulation
+  atOnceUsers,
+  global,
 } from "@gatling.io/core";
 import { http } from "@gatling.io/http";
 
 export default simulation((setUp) => {
 
-  const httpProtocol =
-    http.baseUrl("https://computer-database.gatling.io")
-      .acceptHeader("application/json")
-      .contentTypeHeader("application/json");
+  const httpProtocol = http
+    .baseUrl("https://ecomm.gatling.io")
 
-  const myScenario = scenario("My Scenario")
-    .exec(http("Request 1")
-      .get("/computers/"));
+  const GetHome = scenario("Ecommerce").exec(
 
-  setUp(
-    myScenario.injectOpen(constantUsersPerSec(2).during(60))
-  ).protocols(httpProtocol);
+    http("Get home").get("/")
+    
+  );
+//#ecommerce-example
+
+//#set-up
+setUp(
+    GetHome.injectOpen(atOnceUsers(1)),
+).assertions(
+    global().successfulRequests().percent().gt(90.0)
+).protocols(httpProtocol);
+//#set-up
 });
-//#full-example

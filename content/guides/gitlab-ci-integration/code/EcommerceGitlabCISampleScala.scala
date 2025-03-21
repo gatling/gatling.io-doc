@@ -14,18 +14,27 @@
  * limitations under the License.
  */
 
-import { simulation } from "@gatling.io/core";
-import { http } from "@gatling.io/http";
+//#ecommerce-example
+import io.gatling.core.scenario.Simulation
+import io.gatling.core.Predef._
+import io.gatling.http.Predef._
 
-//#define-the-protocol-class
-export default simulation((setUp) => {
-  // Define HTTP configuration
-  // Reference: https://docs.gatling.io/reference/script/protocols/http/protocol/
-  const httpProtocol = http
-    .baseUrl("https://api-ecomm.gatling.io")
+class EcommerceGitlabCISampleScala extends Simulation {
+
+  val httpProtocol = http
+    .baseUrl("https://ecomm.gatling.io")
     .acceptHeader("application/json")
-    .userAgentHeader(
-      "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
-    );
-});
-//#define-the-protocol-class
+    .contentTypeHeader("application/json")
+
+  val GetHome = scenario("Ecommerce")
+    .exec(http("Get home").get("/"))
+//#ecommerce-example
+
+//#set-up
+  setUp(
+    GetHome.inject(atOnceUsers(1))
+  ).assertions(
+    global.successfulRequests.percent.gt(90.0)
+  ).protocols(httpProtocol)
+  //#set-up
+}

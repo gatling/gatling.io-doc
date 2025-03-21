@@ -21,14 +21,16 @@ import io.gatling.javaapi.core.*;
 import io.gatling.javaapi.http.*;
 
 class ScriptingIntro2SampleJava {
-  //#define-the-protocol-class
-  public class ComputerDatabaseSimulation extends Simulation {
+//#define-the-protocol-class
+public class BasicSimulation extends Simulation {
 
-    // Add the HttpProtocolBuilder:
-    HttpProtocolBuilder httpProtocol =
-      http.baseUrl("https://computer-database.gatling.io")
-        // set the "accept" header to a value suited for the expected response
-        .acceptHeader("text/html");
-  }
-  //#define-the-protocol-class
+  // Define HTTP configuration
+  // Reference: https://docs.gatling.io/reference/script/protocols/http/protocol/
+  HttpProtocolBuilder httpProtocol =
+    http.baseUrl("https://api-ecomm.gatling.io")
+        .acceptHeader("application/json")
+        .userAgentHeader(
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36");
+}
+//#define-the-protocol-class
 }

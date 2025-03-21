@@ -14,28 +14,32 @@
  * limitations under the License.
  */
 
+//#ecommerce-example
 import static io.gatling.javaapi.core.CoreDsl.*;
 import static io.gatling.javaapi.http.HttpDsl.*;
 
 import io.gatling.javaapi.core.*;
 import io.gatling.javaapi.http.*;
 
-class ScriptingIntro3SampleJava {
-//#write-the-scenario
-public class BasicSimulation extends Simulation {
+public class EcommerceGithubActionSampleJava extends Simulation {
 
-  // Define HTTP configuration
-  // Reference: https://docs.gatling.io/reference/script/protocols/http/protocol/
   HttpProtocolBuilder httpProtocol =
-    http.baseUrl("https://api-ecomm.gatling.io")
-        .acceptHeader("application/json")
-        .userAgentHeader(
-            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36");
+    http.baseUrl("https://ecomm.gatling.io")
+      .acceptHeader("application/json")
+      .contentTypeHeader("application/json");
 
-  // Define scenario
-  // Reference: https://docs.gatling.io/reference/script/core/scenario/
-  ScenarioBuilder scenario =
-    scenario("Scenario").exec(http("Session").get("/session"));
+  ScenarioBuilder GetHome = scenario("Ecommerce")
+    .exec(http("Get home")
+      .get("/"));
+//#ecommerce-example
+
+//#set-up
+  {
+    setUp(
+      GetHome.injectOpen(atOnceUsers(1))
+    ).assertions(
+      global().successfulRequests().percent().gt(90.0)
+    ).protocols(httpProtocol);
   }
-//#write-the-scenario
+//#set-up
 }

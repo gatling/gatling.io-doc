@@ -14,18 +14,30 @@
  * limitations under the License.
  */
 
-import { simulation } from "@gatling.io/core";
+//#ecommerce-example
+import {
+  simulation,
+  scenario,
+  atOnceUsers,
+  global,
+} from "@gatling.io/core";
 import { http } from "@gatling.io/http";
 
-//#define-the-protocol-class
 export default simulation((setUp) => {
-  // Define HTTP configuration
-  // Reference: https://docs.gatling.io/reference/script/protocols/http/protocol/
+
   const httpProtocol = http
-    .baseUrl("https://api-ecomm.gatling.io")
-    .acceptHeader("application/json")
-    .userAgentHeader(
-      "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
-    );
+    .baseUrl("https://ecomm.gatling.io")
+
+  const GetHome = scenario("Ecommerce").exec(
+    http("Get home").get("/")
+  );
+//#ecommerce-example
+
+//#set-up
+setUp(
+    GetHome.injectOpen(atOnceUsers(1)),
+).assertions(
+    global().successfulRequests().percent().gt(90.0)
+).protocols(httpProtocol);
+//#set-up
 });
-//#define-the-protocol-class

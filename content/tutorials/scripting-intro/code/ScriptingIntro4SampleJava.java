@@ -21,25 +21,27 @@ import io.gatling.javaapi.core.*;
 import io.gatling.javaapi.http.*;
 
 class ScriptingIntro4SampleJava {
-  //#define-the-injection-profile
-  public class ComputerDatabaseSimulation extends Simulation {
+//#define-the-injection-profile
+public class BasicSimulation extends Simulation {
 
-    HttpProtocolBuilder httpProtocol =
-      http.baseUrl("https://computer-database.gatling.io")
-          // set the "accept" header to a value suited for the expected response
-          .acceptHeader("text/html");
+  // Define HTTP configuration
+  // Reference: https://docs.gatling.io/reference/script/protocols/http/protocol/
+  HttpProtocolBuilder httpProtocol =
+    http.baseUrl("https://api-ecomm.gatling.io")
+        .acceptHeader("application/json")
+        .userAgentHeader(
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36");
 
-    ScenarioBuilder myScenario = scenario("My Scenario")
-      .exec(
-        http("Request 1").get("/computers/")
-      );
+  // Define scenario
+  // Reference: https://docs.gatling.io/reference/script/core/scenario/
+  ScenarioBuilder scenario =
+    scenario("Scenario").exec(http("Session").get("/session"));
 
-    // Add the setUp block:
-    {
-      setUp(
-        myScenario.injectOpen(constantUsersPerSec(2).during(60))
-      ).protocols(httpProtocol);
-    }
+  // Define injection profile and execute the test
+  // Reference: https://docs.gatling.io/reference/script/core/injection/
+  {
+  setUp(scenario.injectOpen(constantUsersPerSec(2).during(60))).protocols(httpProtocol);
   }
-  //#define-the-injection-profile
+}
+//#define-the-injection-profile
 }

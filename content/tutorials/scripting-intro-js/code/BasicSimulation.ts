@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-import { simulation } from "@gatling.io/core";
+//#full-example
+import { constantUsersPerSec, scenario, simulation } from "@gatling.io/core";
 import { http } from "@gatling.io/http";
 
-//#define-the-protocol-class
 export default simulation((setUp) => {
   // Define HTTP configuration
   // Reference: https://docs.gatling.io/reference/script/protocols/http/protocol/
@@ -27,5 +27,14 @@ export default simulation((setUp) => {
     .userAgentHeader(
       "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
     );
+
+  // Define scenario
+  // Reference: https://docs.gatling.io/reference/script/core/scenario/
+  const scn = scenario("Scenario").exec(http("Session").get("/session"));
+  
+  // Define injection profile and execute the test
+  // Reference: https://docs.gatling.io/reference/script/core/injection/
+  setUp(scn.injectOpen(constantUsersPerSec(2).during(60)))
+    .protocols(httpProtocol);
 });
-//#define-the-protocol-class
+//#full-example

@@ -14,18 +14,21 @@
  * limitations under the License.
  */
 
-import { simulation } from "@gatling.io/core";
-import { http } from "@gatling.io/http";
+name: Run Gatling Enterprise Simulation
 
-//#define-the-protocol-class
-export default simulation((setUp) => {
-  // Define HTTP configuration
-  // Reference: https://docs.gatling.io/reference/script/protocols/http/protocol/
-  const httpProtocol = http
-    .baseUrl("https://api-ecomm.gatling.io")
-    .acceptHeader("application/json")
-    .userAgentHeader(
-      "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"
-    );
-});
-//#define-the-protocol-class
+on:
+  workflow_dispatch:
+    inputs:
+      simulation_id:
+        type: string
+        required: true
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Gatling Enterprise Action
+        uses: gatling/enterprise-action@v1
+        with:
+          api_token: ${{ secrets.GATLING_ENTERPRISE_API_TOKEN }}
+          simulation_id: ${{ inputs.simulation_id }}
