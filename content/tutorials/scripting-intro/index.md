@@ -51,7 +51,7 @@ This guide uses the Gatling Java SDK with Maven. Use the following procedure to 
 1. Clone the following [repository](https://github.com/gatling/se-ecommerce-demo-gatling-tests).
 
 2. Open the project in your IDE or terminal.
-3. Navigate to the `/java` folder.
+3. Navigate to the `/java/maven` folder.
 
 ## Simulation construction
 
@@ -77,7 +77,7 @@ and copy the final simulation, jump to [Test execution]({{< ref "#test-execution
 Once you have cloned the Gatling repo, open the project in your integrated development
 environment (IDE). Gatling recommends the [IntelliJ community edition](https://www.jetbrains.com/idea/download/).
 
-1. Navigate to and open `java/src/test/java/example/BasicSimulation.java`.
+1. Navigate to and open `java/maven/src/test/java/example/BasicSimulation.java`.
 2. Modify the simulation by deleting everything below line 7 `import io.gatling.javaapi.http.*;`.
 3. The simulation should now look like the following:
 
@@ -190,7 +190,7 @@ The open-source version of Gatling allows you to run simulations locally, genera
 new or modified simulation locally is often useful to ensure it works before launching it on Gatling Enterprise Cloud.
 Using the Java SDK, you can launch your test in interactive mode using the following approach:
 
-1. Run the following command in the Java project root directory:
+1. In the `java/maven` directory, run the following command:
 
    {{< platform-toggle>}}
    Linux/MacOS: ./mvnw gatling:test
