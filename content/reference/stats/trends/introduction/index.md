@@ -11,7 +11,7 @@ Run trends and comparisons allow you to investigate how your application perform
     - Response status 
     - Response time percentiles
     - Throughput
-- [Run comparison]({{< ref "../trends/run-compare" >}}) allows you to create a custom, detailed comparison for up to 5 runs covering 10 different metrics. Comparisons are available in graphical and table format and the sampled time window can be modified on the fly. 
+- [Run comparison]({{< ref "../trends/run-compare" >}}) allows you to create a custom, detailed comparison for up to 5 runs covering 11 different metrics. Comparisons are available in graphical and table format and the sampled time window can be modified on the fly. 
 
 ## Accessing run trends and comparison
 
