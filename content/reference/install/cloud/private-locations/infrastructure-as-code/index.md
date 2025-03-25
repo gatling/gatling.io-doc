@@ -10,7 +10,7 @@ This guide provides several infrastructure-as-code options for AWS, Azure, and G
 {{< alert warning >}}
 These scripts are intended to help you bootstrap your deployment.
 They may change frequently and in ways that are not backward compatible.
-Feel free to fork them and adapt them to suit your needs.
+Feel free to fork and adapt them to suit your needs.
 {{< /alert >}}
 
 ## Prerequisites
