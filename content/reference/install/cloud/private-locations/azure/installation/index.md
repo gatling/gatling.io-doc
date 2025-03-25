@@ -11,11 +11,18 @@ date: 2023-03-04T16:00:00+00:00
 Accelerate deployment and simplify configuration with Gatling's pre-built [infrastructure-as-code configurations]({{< ref "infrastructure-as-code/#azure" >}}).
 {{</alert>}}
 
-First of all, you should have followed [introduction]({{< ref "../introduction/" >}}) instructions to configure Gatling Cloud for receiving a new control plane. Please check this section first.
+
+## Introduction
 
 [Azure Container Apps](https://azure.microsoft.com/en-us/products/container-apps) is a managed serverless container services. You can use it to deploy your own control plane instances without creating dedicated virtual machines.
 
 Keep in mind that this is only one way to install a control plane in Azure. You can use any other Azure service able to deploy a container.
+
+{{< img src="azure-diagram.png" alt="Infrastructure schema" >}}
+<div style="text-align: center; margin-top: -2.5em;">
+  <p><em>Diagram includes <a href={{< ref "private-packages" >}}>private packages</a></em></p>
+</div>
+<br>
 
 ## Azure services overview
 
