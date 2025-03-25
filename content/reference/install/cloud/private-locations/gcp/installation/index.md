@@ -11,6 +11,8 @@ date: 2023-09-03T16:00:00+00:00
 Accelerate deployment and simplify configuration with Gatling's pre-built [infrastructure-as-code configurations]({{< ref "infrastructure-as-code/#gcp" >}}).
 {{</alert>}}
 
+## Introduction
+
 GCP [Compute Engine](https://cloud.google.com/compute/docs) is a computing and hosting service that lets you create and run virtual machines on Google infrastructure.
 
 In this example:
@@ -19,6 +21,12 @@ In this example:
 - the [Control Plane configuration]({{< ref "configuration" >}}) file is loaded from a **[Secret Manager](https://cloud.google.com/secret-manager)**
 
 This is only an example.
+
+{{< img src="gcp-diagram.png" alt="Infrastructure schema" >}}
+<div style="text-align: center; margin-top: -2.5em;">
+  <p><em>Diagram includes <a href={{< ref "private-packages" >}}>private packages</a></em></p>
+</div>
+<br>
 
 {{< alert tip >}}
 We advise you to create a dedicated Gatling project, as permissions give access to secrets and existing Virtual Machines.
