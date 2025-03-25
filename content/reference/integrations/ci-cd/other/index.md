@@ -18,7 +18,7 @@ This will not create a new Gatling Enterprise simulation, you have to create it 
 
 You must first [create an API token]({{< ref "../../execute/cloud/admin/api-tokens" >}}). It will be used to authenticate with Gatling Enterprise. Most CI tools should offer a way to store this token securely, and expose it to build scripts as an environment variable.
 
-In the following examples, we assume the API Token is available in an environment variable named `GATLING_ENTERPRISE_API_TOKEN`, which our tools will detect automatically.
+In the following examples, we assume the API Token is available in an environment variable named `GATLING_ENTERPRISE_API_TOKEN`, which our tools, including the example shell script, will detect automatically.
 
 We also assume that you have already [configured a simulation]({{< ref "../../execute/cloud/user/simulations" >}}) on Gatling Enterprise. You can copy the simulation ID from the simulations list view. In the following examples, we will show the simulation ID as `00000000-0000-0000-0000-000000000000`.
 
@@ -55,17 +55,13 @@ These tools must be installed on the machine or container where your CI system w
 
 ### Shell script usage
 
-Configure your CI build to call the script with 3 parameters like this:
+Configure your CI build to call the script like this:
 
 ```shell
-./start_simulation.sh \
-  'https://cloud.gatling.io' \
-  "$GATLING_ENTERPRISE_API_TOKEN" \
-  '00000000-0000-0000-0000-000000000000'
+./start_simulation.sh '00000000-0000-0000-0000-000000000000'
 ```
 
-- Gatling Enterprise URL: `https://cloud.gatling.io`.
-- API token: the [API token]({{< ref "reference/execute/cloud/admin/api-tokens" >}}) will allow the script to
-  authenticate to Gatling Enterprise. The API token needs the **Configure** permission.
+It takes one parameter:
+
 - Simulation ID: the ID of the simulation you want to start. You can get this ID on the
   [Simulations table]({{< ref "reference/execute/cloud/user/simulations" >}}), with the {{< icon clipboard >}} icon.
