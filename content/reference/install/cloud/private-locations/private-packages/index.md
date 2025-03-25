@@ -13,14 +13,14 @@ Ensure secure storage of sensitive simulation packages in your private cloud.
 
 The control plane offers a private repository; enable it for confidential package management!
 
+{{< img src="generic-diagram.png" alt="Infrastructure schema" >}}
+
 ## Private packages
 
 A private package is uploaded through the control plane into a private repository.
 _Gatling Enterprise Cloud only receives the Gatling version associated with the package and the names of simulation classes, which helps in simulation configuration_
 
 When initiating a Gatling run, the control plane generates a temporary signed link to allow the download of the private package from the load generators.
-
-{{< img src="private_packages_general_architecture.png" alt="Infrastructure schema" >}}
 
 {{< alert info >}}
 Private Packages are based on Private Locations. You can not use them with managed locations.
