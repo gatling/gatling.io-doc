@@ -11,6 +11,8 @@ date: 2021-11-15T16:00:00+00:00
 Accelerate deployment and simplify configuration with Gatling's pre-built [infrastructure-as-code configurations]({{< ref "infrastructure-as-code/#aws" >}}).
 {{</alert>}}
 
+## Introduction
+
 AWS [Elastic Container Service (ECS)](https://aws.amazon.com/ecs/) is a managed container orchestration service available on AWS. In this example:
 
 - we use **Amazon ECS** to configure a service to run the Gatling Control Plane
@@ -18,6 +20,12 @@ AWS [Elastic Container Service (ECS)](https://aws.amazon.com/ecs/) is a managed 
 - the [Control Plane configuration]({{< ref "configuration" >}}) file is loaded from an **AWS S3 bucket**
 
 This is only an example. You could, for instance, use ECS to run containers on Amazon EC2, or mount the configuration file from Amazon EFS.
+
+{{< img src="aws-diagram.png" alt="Infrastructure schema" >}}
+<div style="text-align: center; margin-top: -2.5em;">
+  <p><em>Diagram includes <a href={{< ref "private-packages" >}}>private packages</a></em></p>
+</div>
+<br>
 
 ## S3 bucket
 
