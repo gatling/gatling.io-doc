@@ -23,6 +23,12 @@ The config map includes the load generator's start script, so these scripts don'
 
 Finally, the control plane initiates a batch job, with the number of instances configured for the simulation run, and mounts the appropriate config map on each pod.
 
+{{< img src="kubernetes-diagram.png" alt="Infrastructure schema" >}}
+<div style="text-align: center; margin-top: -2.5em;">
+  <p><em>Diagram includes <a href={{< ref "private-packages" >}}>private packages</a></em></p>
+</div>
+<br>
+
 ### Roles
 For each namespace configured for a private location, the control plane needs the following roles:
 
