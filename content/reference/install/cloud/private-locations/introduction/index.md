@@ -27,7 +27,12 @@ To configure private locations, you must configure an agent in your infrastructu
 This control plane will be in charge of spawning load generators in different locations, based on the configuration
 you will provide.
 
-{{< img src="schema.png" alt="Infrastructure schema" >}}
+
+{{< img src="generic-diagram.png" alt="Infrastructure schema" >}}
+<div style="text-align: center; margin-top: -2.5em;">
+  <p><em>Diagram includes <a href={{< ref "private-packages" >}}>private packages</a></em></p>
+</div>
+<br>
 
 The control plane will periodically poll our API to find out if a new simulation run has been started using locations handled by this control plane.
 
