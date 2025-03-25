@@ -7,11 +7,19 @@ lead: Run a Control Plane on Docker, to set up your Private Locations and run lo
 date: 2021-11-15T16:00:00+00:00
 ---
 
+## Introduction
+
 [Docker](https://www.docker.com/) is a tool for running applications in containers.
 
 In this example:
 - we use **Docker** to configure a docker service to run the Gatling Control Plane
 - the [Control Plane configuration]({{< ref "../introduction#configuration" >}}) is mounted as a volume
+
+{{< img src="dedicated-instances-diagram.png" alt="Infrastructure schema" >}}
+<div style="text-align: center; margin-top: -2.5em;">
+  <p><em>Diagram includes <a href={{< ref "private-packages" >}}>private packages</a></em></p>
+</div>
+<br>
 
 ## Control Plane service
 
