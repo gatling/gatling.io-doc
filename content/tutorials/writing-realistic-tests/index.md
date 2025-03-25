@@ -12,9 +12,14 @@ introductory guides and that you have a basic understanding of how a simulation 
 We will build a realistic load test for a relevant real-world scenario and introduce more advanced concepts and
 [Domain Specific Language](https://en.wikipedia.org/wiki/Domain-specific_language) constructs.
 
-{{< alert tip >}}
-The sample project for this tutorial can be found
-[on GitHub](https://github.com/gatling/se-ecommerce-demo-gatling-tests).
+{{< alert info >}}
+**Sample project Prerequisites**  
+Java 17 or 21 64-bit OpenJDK LTS (Long Term Support) version installed on your local machine. The sample project leverages features introduced in Java 17, making it the minimum required version. We recommend the [Azul JDK](https://www.azul.com/downloads/?package=jdk#zulu).
+{{< /alert >}}
+
+{{< alert info >}}
+**Gatling DSL Prerequisites**  
+Java 11, 17 or 21 64-bit OpenJDK LTS (Long Term Support) version installed on your local machine. While the sample project requires Java 17, The Gatling DSL support extends back to Java 11. We recommend the [Azul JDK](https://www.azul.com/downloads/?package=jdk#zulu).
 {{< /alert >}}
 
 {{< alert tip >}}

@@ -42,8 +42,13 @@ Gatling Enterprise Cloud is a fully managed SaaS solution for load testing. Sign
 ### Clone Gatling demo repository { #install-gatling }
 
 {{< alert info >}}
-**Prerequisites**  
-Java 11, 17, or 21 64-bit OpenJDK LTS (Long Term Support) version installed on your local machine. We recommend the [Azul JDK](https://www.azul.com/downloads/?package=jdk#zulu).
+**Sample project Prerequisites**  
+Java 17 or 21 64-bit OpenJDK LTS (Long Term Support) version installed on your local machine. The sample project leverages features introduced in Java 17, making it the minimum required version. We recommend the [Azul JDK](https://www.azul.com/downloads/?package=jdk#zulu).
+{{< /alert >}}
+
+{{< alert info >}}
+**Gatling DSL Prerequisites**  
+Java 11, 17 or 21 64-bit OpenJDK LTS (Long Term Support) version installed on your local machine. While the sample project requires Java 17, The Gatling DSL support extends back to Java 11. We recommend the [Azul JDK](https://www.azul.com/downloads/?package=jdk#zulu).
 {{< /alert >}}
 
 This guide uses the Gatling Java SDK with Maven. Use the following procedure to install Gatling:
