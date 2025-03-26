@@ -35,18 +35,17 @@ This tutorial requires running Gatling on your local machine and using the Mozil
 
 ## Plan the user scenario
 
-This tutorial uses an application named _Computer-Database_, which is deployed at the URL: [http://computer-database.gatling.io](http://computer-database.gatling.io). This application is for demonstration purposes and is read-only. Please be kind and only run small proof of concept load tests against the site.
+This tutorial uses a sample e-commerce website, which is deployed at the URL: [https://ecomm.gatling.io](https://ecomm.gatling.io). This application is for demonstration purposes and is read-only. Please be kind and only run small proof of concept load tests against the site.
 
-To test the performance of the _Computer-Database_ application, create scenarios representative of what happens when users navigate the site.
+To test the performance of the e-commerce application, create scenarios representative of what happens when users navigate the site.
 
 The following is an example of what a real user might do with the application. 
 
 1. The user arrives at the application.
-2. The user searches for 'macbook'.
-3. The user opens one of the search results.
-4. The user goes back to the home page.
-5. The user browses through pages of records.
-6. The user creates a new entry in the computer database. 
+2. The user clicks on the login button.
+3. The user goes to the login page.
+4. The user logs in.
+5. The user adds the first product to his cart. 
 
 
 ## Launch the Recorder
@@ -97,20 +96,15 @@ Once the Recorder is launched, there are 4 buttons to control the session record
 
 Based on the scenario described in [Launch the Recorder](#launch-the-recorder) perform the following actions in your configured web browser. Try to act as a real user would, don't immediately jump from one page to another without taking the time to read. This makes your scenario similar to how a real user would behave.
 
-1. Enter a 'Search' tag in the Recorder application and click **Add**.
-2. Go to the website: [http://computer-database.gatling.io](http://computer-database.gatling.io)
-3. Search for models with 'macbook' in their name.
-4. Select 'Macbook pro'.
-5. Return to the Recorder application.
-6. Enter a 'Browse' tag and click **Add**
-7. Go back to the home page.
-8. Browse through the model pages by clicking on the **Next** button.
-9. Return to the Recorder application.
-10. Enter an 'Edit' tag and click **Add**.
-11. Return to the browser and Click on **Add new computer**.
-12. Fill the form.
-13. Click on **Create this computer**.
-14. Return to the Recorder application and click **Stop**
+1. Enter a 'Homepage' tag in the Recorder application and click **Add**.
+2. Go to the website: [https://ecomm.gatling.io](https://ecomm.gatling.io).
+3. Return to the Recorder application.
+4. Enter a 'Authentication' tag and click **Add**.
+5. Click on the 'Login' button in the top right.
+5. Click on 'Submit'.
+3. Return to the Recorder application.
+6. Enter a 'Cart' tag and click **Add**.
+7. Click on 'Add to cart' for the 'Pink Throwback Hip Bag' product.
 
 The simulation is generated in the folder:
 
@@ -140,23 +134,17 @@ To deploy and run your simulation on Gatling Enterprise Cloud, use the following
     Windows: set GATLING_ENTERPRISE_API_TOKEN=<your-API-token>
     {{</ platform-toggle >}}
 
-    JavaScript SDK:
-
-    ```console
-    Coming soon
-    ```
-
 3. Run the following command in your terminal to deploy and start your simulation:
 
     {{< platform-toggle >}}
-    Linux/MacOS: ./mvnw gatling:enterpriseStart
-    Windows: mvnw.cmd gatling:enterpriseStart
+    Linux/MacOS: ./mvnw gatling:enterpriseStart -Dgatling.enterprise.simulationName="<simulation name>"
+    Windows: mvnw.cmd gatling:enterpriseStart -Dgatling.enterprise.simulationName="<simulation name>"
     {{</ platform-toggle >}}
 
     JavaScript SDK:
 
     ```console
-    Coming soon
+    npx gatling enterprise-start --enterprise-simulation="<simulation name>"
     ```
 
 Watch the Simulation deploy automatically and generate real-time reports.
@@ -173,17 +161,15 @@ Windows: mvnw.cmd gatling:test
 
 JavaScript SDK: 
 
-{{< code-toggle >}}
-JavaScript: npx gatling run  --simulation  <simulation-name>
-TypeScript: npx gatling run  --typescript --simulation  <simulation-name>
-{{</ code-toggle >}}
+```console
+npx gatling run
+```
 
-The Gatling interactive CLI starts and asks a series of questions. Answer the questions as follows: 
+The Gatling interactive CLI starts. Select the recorded simulation as follows: 
 
-1. Press 1 and then enter to select `Run the Simulation locally`.
-2. Press 0 and then enter to select `RecordedSimulation`
-3. (optional) Enter a run description.
-4. Press enter.
+- For maven, press `0` and then enter to select `RecordedSimulation`.
+
+- For the Javascript SDK, press `1` to select `RecordedSimulation`
 
 The simulation should start on your local machine, with the progress displayed in your terminal. When the test has finished, there is an HTML link in the terminal that you can use to access the static report.
 
@@ -191,5 +177,4 @@ The simulation should start on your local machine, with the progress displayed i
 
 Now that you have completed the Introduction to scripting and Introduction to the Recorder tutorials, you have a solid foundation of Gatling and load testing knowlege. We strongly recommend you complete the Writing realistic tests tutorial to learn the essential skills for writing clean and concise tests. 
 
- - [Gatling Academy](https://academy.gatling.io/) 
  - [Writing realistic tests]({{< ref "writing-realistic-tests" >}})
