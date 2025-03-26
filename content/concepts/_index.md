@@ -5,6 +5,5 @@ seotitle: Understanding-oriented guides that help you learn load testing concept
 description: Understanding-oriented guides that help you learn load testing concepts.
 lead: Understanding-oriented guides that help you learn load testing concepts.
 ordering:
- - first-report
  - mean-and-sd
 ---
