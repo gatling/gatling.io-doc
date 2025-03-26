@@ -1,8 +1,11 @@
 ---
 title: Understand your first OSS test report 
+menutitle: Understand test report
+seotitle: Learn how to read and understand a Gatling report
+description: Learn how to read and understand a Gatling report
+lead: Are you looking at a Gatling Test Report for the first time and feeling overwhelmed? Or perhaps you’ve been using it for a while without really understanding everything on there? Welcome! Let’s take a closer look at what it all means together!
+date: 2025-03-23T09:30:56+02:00
 ---
-
-Are you looking at a Gatling Test Report for the first time and feeling overwhelmed? Or perhaps you’ve been using it for a while without really understanding everything on there? Welcome! Let’s take a closer look at what it all means together!
 
 ## The Importance of Good Data
 
@@ -49,11 +52,7 @@ So we have our tabular data and various graphical representations. All the other
 
 ### Requests
 
-- All requests, or groups of requests that were executed as part of our simulation are listed here. We can click on groups to see the requests contained therein.
-    
-Wondering where the report pulls the request and group names from?
-
-<!--image here but convert to code example-->
+- All requests, or groups of requests that were executed as part of our simulation are listed here.
 
 ### Executions
 
