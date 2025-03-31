@@ -65,10 +65,26 @@ You can also see how many API tokens, simulations or packages belong to this tea
 ## Usage
 
 {{< alert warning >}}
-This section is only available to [Administrators]({{< ref "../admin/users#permissions" >}}).
+This section is available to all [global roles]({{< ref "../admin/users#permissions" >}}) except Viewers Administrators.
 {{< /alert >}}
 
-This page shows how your credits where consumed during your current billable month. 
+The usage dashboard allows you to monitor and manage credit consumption during your current billing period. The primary functions are:
+
+- monitor global consumption
+- monitor usage by team
+- set credit quotas by team
+- monitor usage by simulation
+
+### Set a team usage quota
+
+Usage quotas allow you to control credit consumption on a team by team basis. Set quotas are automatically carried over to your next billing period. To set a team usage quota:
+
+1. Click the {{< icon edit >}} icon located on the right side of the **Credit consumption by team** table. 
+2. Enter a value less than your total billing period allotment. 
+3. Click **Save**.
+
+
+
 
 {{< img src="usage.png" alt="Organization usage" >}}
 
