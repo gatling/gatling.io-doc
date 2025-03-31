@@ -15,7 +15,7 @@ we recommend trying the [Intro to scripting]({{< ref "/tutorials/scripting-intro
 
 ## Prerequisites 
 
-- A Gatling Project _(Demo projects: [Maven](https://github.com/gatling/gatling-maven-plugin-demo-java), [Gradle](https://github.com/gatling/gatling-gradle-plugin-demo-java), [sbt](https://github.com/gatling/gatling-sbt-plugin-demo))_
+- A Gatling Project _(Demo projects: [Maven](https://github.com/gatling/gatling-maven-plugin-demo-java), [Gradle](https://github.com/gatling/gatling-gradle-plugin-demo-java), [sbt](https://github.com/gatling/gatling-sbt-plugin-demo), [JavaScript](https://github.com/gatling/gatling-js-demo))_
 - A Gatling Enterprise Cloud account [sign up for a free trial](https://auth.gatling.io/auth/realms/gatling/protocol/openid-connect/registrations?client_id=gatling-enterprise-cloud-public&response_type=code&scope=openid&redirect_uri=https%3A%2F%2Fcloud.gatling.io%2Fr%2Fgatling)
 - An [API token]({{< ref "/reference/execute/cloud/admin/api-tokens" >}}) with the **`Configure`** permission
 
@@ -104,10 +104,12 @@ simulations on Gatling Enterprise Cloud. Use the following procedure to make you
   - [Gatling Plugin with Maven]({{< ref "reference/integrations/build-tools/maven-plugin/#prerequisites" >}})
   - [Gatling Plugin with Gradle]({{< ref "reference/integrations/build-tools/gradle-plugin/#prerequisites" >}})
   - [Gatling Plugin with sbt]({{< ref "reference/integrations/build-tools/sbt-plugin/#prerequisites" >}})
+  - [Gatling Plugin with JavaScript CLI]({{< ref "reference/integrations/build-tools/js-cli/#prerequisites" >}})
 2. Deploy your package and simulation(s) with the following command:
   - [Maven]({{< ref "reference/integrations/build-tools/maven-plugin/#deploying-on-gatling-enterprise-cloud" >}}): `mvn gatling:enterpriseDeploy`
   - [Gradle]({{< ref "reference/integrations/build-tools/gradle-plugin/#deploying-on-gatling-enterprise-cloud" >}}): `gradle gatlingEnterpriseDeploy`
   - [sbt]({{< ref "reference/integrations/build-tools/sbt-plugin/#deploying-on-gatling-enterprise-cloud" >}}): `sbt Gatling/enterpriseDeploy`
+  - [JavaScript CLI]({{< ref "reference/integrations/build-tools/js-cli/#deploying-on-gatling-enterprise-cloud" >}}): `npx gatling enterprise-deploy`
 
 
 The CLI deploys the package and simulation to Gatling Enterprise Cloud and returns the package ID and simulation ID in the terminal. 
