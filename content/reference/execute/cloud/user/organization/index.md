@@ -65,7 +65,7 @@ You can also see how many API tokens, simulations or packages belong to this tea
 ## Usage
 
 {{< alert warning >}}
-This section is available to all [global roles]({{< ref "../admin/users#permissions" >}}) except Viewers Administrators.
+This section is available to all [global roles]({{< ref "../admin/users#permissions" >}}) except Viewers.
 {{< /alert >}}
 
 The usage dashboard allows you to monitor and manage credit consumption during your current billing period. The primary functions are:
