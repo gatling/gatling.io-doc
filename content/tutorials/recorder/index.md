@@ -14,11 +14,13 @@ date: 2021-04-20T18:30:56+02:00
 This tutorial is intended for Gatling versions `{{< var gatlingVersion >}}` and later. 
 {{< /alert >}}
 
-The Gatling Recorder allows you to capture browser-based actions to create a realistic user scenario for load testing. The Recorder application is launched from Gatling, using either the bundle, the Maven, Gradle, or sbt plugins, or the JavaScript SDK.  
+The Gatling Recorder allows you to capture browser-based actions to create a realistic user scenario for load testing. The Recorder application is launched from Gatling, using the Maven, Gradle, or sbt plugins, or the JavaScript SDK.  
 
-In this tutorial, we use Gatling to load test a simple cloud-hosted web server and introduce you to the basic elements of the Recorder. We strongly recommend completing the [Introduction to scripting tutorial]({{< ref "/tutorials/scripting-intro" >}}) before starting to work with the Recorder. 
+In this tutorial, we use Gatling to load test a simple cloud-hosted web server and introduce you to the basic elements of the Recorder. We strongly recommend completing one of the following introductory guides according to your language of preference before starting to work with the Recorder:
+- [Introduction to scripting tutorial with Java]({{< ref "/tutorials/scripting-intro" >}}). 
+- [Introduction to scripting tutorial with Javascript]({{< ref "/tutorials/scripting-intro-js" >}}). 
 
-This tutorial uses Java and the Maven-based Gatling bundle. Gatling recommends that developers use the Java SDK unless they are already experienced with Scala or Kotlin. Java is widely taught in CS courses, requires less CPU for compiling, and is easier to configure in Maven and Gradle. You can adapt the steps to your development environment using reference documentation links provided throughout the guide.
+This tutorial showcases the Gatling recorder using two options: **Java** SDK with the **Maven** plugin and the **JavaScript** SDK. Gatling recommends that developers use the Java SDK unless they are already experienced with Scala, Kotlin. Java is widely taught in CS courses, requires less CPU for compiling, and is easier to configure in Maven and Gradle. You can adapt the steps to your development environment using reference documentation links provided throughout the guide.
 
 {{< alert tip >}}
 Join the [Gatling Community Forum](https://community.gatling.io) to discuss load testing with other users. Please try to find answers in the documentation before asking for help.
@@ -28,16 +30,15 @@ Join the [Gatling Community Forum](https://community.gatling.io) to discuss load
 
 This tutorial requires running Gatling on your local machine and using the Mozilla FireFox browser to create your Gatling Script. Additionally, the tutorial uses Gatling Enterprise Cloud to run tests with dedicated load generators and enhanced data reporting features. Use the following links to access each of the prerequisites:
 
-- [Download Gatling](https://repo1.maven.org/maven2/io/gatling/highcharts/gatling-charts-highcharts-bundle/{{< var gatlingVersion >}}/gatling-charts-highcharts-bundle-{{< var gatlingVersion >}}.zip)
+- [Prerequisites for Java]({{< ref "/reference/install/oss/#prerequisites-for-java-scala-and-kotlin" >}}) or [Prerequisites for Javascript]({{< ref "/reference/install/oss/#use-a-javascript-package-manager" >}})
 - [Create a Gatling Enterprise Cloud trial account](https://cloud.gatling.io/)
 - [Configure your web browser]({{< ref "/reference/script/protocols/http/recorder/#configuration" >}})
 
-
 ## Plan the user scenario
 
-This tutorial uses a sample e-commerce website, which is deployed at the URL: [https://ecomm.gatling.io](https://ecomm.gatling.io). This application is for demonstration purposes and is read-only. Please be kind and only run small proof of concept load tests against the site.
+This tutorial uses a sample _e-commerce_ website, which is deployed at the URL: [https://ecomm.gatling.io](https://ecomm.gatling.io). This application is for demonstration purposes and is read-only. Please be kind and only run small proof of concept load tests against the site.
 
-To test the performance of the e-commerce application, create scenarios representative of what happens when users navigate the site.
+To test the performance of the _e-commerce_ application, create scenarios representative of what happens when users navigate the site.
 
 The following is an example of what a real user might do with the application. 
 
