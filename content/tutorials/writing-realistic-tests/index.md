@@ -13,14 +13,18 @@ We will build a realistic load test for a relevant real-world scenario and intro
 SDK constructs.
 
 {{< alert info >}}
-**Sample project prerequisites**  
-Java 17 or 21 64-bit OpenJDK LTS (Long Term Support) version installed on your local machine. The sample project leverages features introduced in Java 17, making it the minimum required version. We recommend the [Azul JDK](https://www.azul.com/downloads/?package=jdk#zulu).
-{{< /alert >}}
+**Sample project prerequisites**
+
+- **For Java, Scala and Kotlin**: Java 17 or 21 64-bit OpenJDK LTS (Long Term Support) version installed on your local machine. The sample project leverages features introduced in Java 17, making it the minimum required version. We recommend the [Azul JDK](https://www.azul.com/downloads/?package=jdk#zulu).
+- **For JavaScript**: [Node.js](https://nodejs.org/) v18 or later (LTS versions only) and npm v8 or later.
+  {{< /alert >}}
 
 {{< alert info >}}
-**Gatling SDK prerequisites**  
-Java 11, 17 or 21 64-bit OpenJDK LTS (Long Term Support) version installed on your local machine. While the sample project requires Java 17, The Gatling SDK support extends back to Java 11. We recommend the [Azul JDK](https://www.azul.com/downloads/?package=jdk#zulu).
-{{< /alert >}}
+**Gatling SDK prerequisites**
+
+- **For Java, Scala and Kotlin**: Java 11, 17 or 21 64-bit OpenJDK LTS (Long Term Support) version installed on your local machine. While the sample project requires Java 17, The Gatling SDK support extends back to Java 11. We recommend the [Azul JDK](https://www.azul.com/downloads/?package=jdk#zulu).
+- **For JavaScript**: [Node.js](https://nodejs.org/) v18 or later (LTS versions only) and npm v8 or later.
+  {{< /alert >}}
 
 {{< alert tip >}}
 It is strongly recommended to review the introductory guides first, as this tutorial introduces more advanced concepts:
@@ -56,6 +60,14 @@ For our e-commerce platform, we identified the following user journey:
 5. User buys (checkout)
 
 ## Writing the script
+
+### Clone sample project repository
+
+1. Clone the sample project [repository](https://github.com/gatling/se-ecommerce-demo-gatling-tests).
+
+2. Open the project in your IDE or terminal.
+
+3. Navigate to `/<preferred-language>/<build-tool>` based on your preference. For JavaScript, you can simply go to `/javascript`.
 
 ### Project structure
 
