@@ -7,7 +7,7 @@ lead: Run a Control Plane on Kubernetes, to set up your Private Locations and ru
 ---
 
 {{<alert tip >}}
-Accelerate deployment and simplify configuration with Gatling's pre-built [Helm chart]({{< ref "infrastructure-as-code/#kubernetes" >}}).
+Accelerate deployment and simplify configuration with Gatling's pre-built [<span style="text-decoration: underline;">Helm chart</span>]({{< ref "infrastructure-as-code/#kubernetes" >}}).
 {{</alert>}}
 
 ## Introduction

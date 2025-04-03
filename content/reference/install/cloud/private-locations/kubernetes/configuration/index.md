@@ -20,7 +20,7 @@ we recommend that you isolate the load generators on their dedicated nodes, usin
 See `tolerations` configuration below.
 
 {{<alert tip >}}
-Accelerate deployment and simplify configuration with Gatling's pre-built [Helm chart]({{< ref "infrastructure-as-code/#kubernetes" >}}).
+Accelerate deployment and simplify configuration with Gatling's pre-built [<span style="text-decoration: underline;">Helm chart</span>]({{< ref "infrastructure-as-code/#kubernetes" >}}).
 {{</alert>}}
 
 ## Permissions
