@@ -81,7 +81,7 @@ This configuration includes the following parameters:
 #### AWS S3
 
 {{<alert tip >}}
-Accelerate deployment and simplify configuration with Gatling's pre-built [infrastructure-as-code configurations]({{< ref "infrastructure-as-code/#aws" >}}).
+Accelerate deployment and simplify configuration with Gatling's pre-built [<span style="text-decoration: underline;">infrastructure-as-code configurations</span>]({{< ref "infrastructure-as-code/#aws" >}}).
 {{</alert>}}
 
 {{< alert warning >}}
@@ -112,7 +112,7 @@ This configuration includes the following parameters:
 #### Azure Blob Storage
 
 {{<alert tip >}}
-Accelerate deployment and simplify configuration with Gatling's pre-built [infrastructure-as-code configurations]({{< ref "infrastructure-as-code/#azure" >}}).
+Accelerate deployment and simplify configuration with Gatling's pre-built [<span style="text-decoration: underline;">infrastructure-as-code configurations</span>]({{< ref "infrastructure-as-code/#azure" >}}).
 {{</alert>}}
 
 {{< alert warning >}}
@@ -135,9 +135,8 @@ control-plane {
 ```
 
 #### GCP Cloud Storage
-
 {{<alert tip >}}
-Accelerate deployment and simplify configuration with Gatling's pre-built [infrastructure-as-code configurations]({{< ref "infrastructure-as-code/#gcp" >}}).
+Accelerate deployment and simplify configuration with Gatling's pre-built [<span style="text-decoration: underline;">infrastructure-as-code configurations</span>]({{< ref "infrastructure-as-code/#gcp" >}}).
 {{</alert>}}
 
 {{< alert warning >}}
@@ -168,7 +167,7 @@ This configuration includes the following parameters:
 #### Filesystem Storage
 
 {{<alert tip >}}
-Accelerate deployment and simplify configuration with Gatling's pre-built [infrastructure-as-code configurations]({{< ref "infrastructure-as-code" >}}).
+Accelerate deployment and simplify configuration with Gatling's pre-built [<span style="text-decoration: underline;">infrastructure-as-code configurations</span>]({{< ref "infrastructure-as-code" >}}).
 {{</alert>}}
 
 {{< alert warning >}}
