@@ -203,23 +203,12 @@ This configuration includes the following parameters:
 
 ### Configure Private Packages with Infrastructure-as-code
 
-Gatling provides infrastructure-as-code configurations to set up your infrastructure for Private Locations with Private Packages.
+Gatling provides infrastructure-as-code configurations to set up your infrastructure for Private Locations & Packages.
 
-#### AWS S3
-
-To use the infrastructure-as-code configurations to setup your AWS Private Package infrastructure, visit our dedicated [page]({{< ref "infrastructure-as-code/#aws" >}}).
-
-#### Azure Blob Storage
-
-To use the infrastructure-as-code configurations to setup your Azure Private Package infrastructure, visit our dedicated [page]({{< ref "infrastructure-as-code/#azure" >}}).
-
-#### GCP Cloud Storage
-
-To use the infrastructure-as-code configurations to setup your GCP Private Package infrastructure, visit our dedicated [page]({{< ref "infrastructure-as-code/#gcp" >}}).
-
-#### Helm chart for Kubernetes
-
-To use the infrastructure-as-code configurations to setup your Kubernetes Private Package infrastructure, visit our dedicated [page]({{< ref "infrastructure-as-code/#kubernetes" >}}).
+- [AWS S3]({{< ref "infrastructure-as-code/#aws" >}})
+- [Azure Blob Storage]({{< ref "infrastructure-as-code/#azure" >}})
+- [GCP Cloud Storage]({{< ref "infrastructure-as-code/#gcp" >}})
+- [Helm chart]({{< ref "infrastructure-as-code/#kubernetes" >}}) (for Kubernetes; supporting AWS S3, Azure Blob Storage, GCP Cloud Storage & Filesystem Storage)
 
 ### Upload Private Packages using HTTPS {#enableHttps}
 
