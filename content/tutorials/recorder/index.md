@@ -14,13 +14,13 @@ date: 2021-04-20T18:30:56+02:00
 This tutorial is intended for Gatling versions `{{< var gatlingVersion >}}` and later. 
 {{< /alert >}}
 
-The Gatling Recorder allows you to capture browser-based actions to create a realistic user scenario for load testing. The Recorder application is launched from Gatling, using the Maven, Gradle, or sbt plugins, or NPM.  
+The Gatling Recorder allows you to capture browser-based actions to create a realistic user scenario for load testing. The Recorder application is launched from Gatling, using Maven, Gradle, sbt or the JavaScript CLI.  
 
 In this tutorial, we use Gatling to load test a simple cloud-hosted web server and introduce you to the basic elements of the Recorder. We strongly recommend completing one of the following introductory guides according to your language of preference before starting to work with the Recorder:
 - [Introduction to scripting tutorial with Java]({{< ref "/tutorials/scripting-intro" >}}). 
 - [Introduction to scripting tutorial with Javascript]({{< ref "/tutorials/scripting-intro-js" >}}). 
 
-This tutorial showcases the Gatling recorder using two options: **Java** SDK with the **Maven** plugin and the **JavaScript** SDK with **NPM**.
+This tutorial showcases the Gatling recorder using two options: **Java** SDK with the **Maven** plugin and the **JavaScript** SDK with **JavaScript CLI**.
 
 {{< alert tip >}}
 Join the [Gatling Community Forum](https://community.gatling.io) to discuss load testing with other users. Please try to find answers in the documentation before asking for help.
@@ -80,7 +80,7 @@ Linux/MacOS: ./mvnw gatling:recorder
 Windows: mvnw.cmd gatling:recorder
 {{</ platform-toggle >}}
 
-NPM:
+JavaScript CLI:
 ```console
 npm run recorder
 ```
@@ -155,7 +155,7 @@ You can package, deploy, and run your simulation using one of two approaches, de
    Windows: mvnw.cmd gatling:enterprisePackage
    {{</ platform-toggle >}}
 
-   NPM:
+   JavaScript CLI:
 
    ```console
    npx gatling enterprise-package
@@ -200,7 +200,7 @@ To deploy and run your simulation on Gatling Enterprise Cloud, use the following
      Windows: mvnw.cmd gatling:enterpriseStart -Dgatling.enterprise.simulationName="<simulation name>"
      {{</ platform-toggle >}}
 
-     NPM:
+     JavaScript CLI:
 
      ```console
      npx gatling enterprise-start --enterprise-simulation="<simulation name>"
@@ -214,7 +214,7 @@ To deploy and run your simulation on Gatling Enterprise Cloud, use the following
      Windows: mvnw.cmd gatling:enterpriseDeploy
      {{</ platform-toggle >}}
 
-     NPM:
+     JavaScript CLI:
 
      ```console
      npx gatling enterprise-deploy
@@ -236,7 +236,7 @@ Using the Java SDK, you can launch your test in interactive mode using the follo
    Windows: mvnw.cmd gatling:test
    {{</ platform-toggle >}}
 
-   NPM:
+   JavaScript CLI:
 
    ```console
    npx gatling run --simulation basicSimulation
