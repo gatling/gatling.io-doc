@@ -8,7 +8,7 @@ date: 2021-11-15T16:00:00+00:00
 ---
 
 {{<alert tip >}}
-Accelerate deployment and simplify configuration with Gatling's pre-built [infrastructure-as-code configurations]({{< ref "infrastructure-as-code/#aws" >}}).
+Accelerate deployment and simplify configuration with Gatling's pre-built [<span style="text-decoration: underline;">infrastructure-as-code configurations</span>]({{< ref "infrastructure-as-code/#aws" >}}).
 {{</alert>}}
 
 ## Introduction

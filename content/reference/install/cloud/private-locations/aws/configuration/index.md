@@ -17,7 +17,7 @@ The follow recommendations help you to select the best instances and tune them f
 - You might want to tune the `Xmx` JVM options to half of the physical memory. See `jvm-options` configuration below. If you don't, the JVM will use a max heap size of 1/4th of the physical memory.
 
 {{<alert tip >}}
-Accelerate deployment and simplify configuration with Gatling's pre-built [infrastructure-as-code configurations]({{< ref "infrastructure-as-code/#aws" >}}).
+Accelerate deployment and simplify configuration with Gatling's pre-built [<span style="text-decoration: underline;">infrastructure-as-code configurations</span>]({{< ref "infrastructure-as-code/#aws" >}}).
 {{</alert>}}
 
 ## Permissions
