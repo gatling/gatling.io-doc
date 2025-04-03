@@ -29,11 +29,11 @@ SDK constructs.
 {{< alert tip >}}
 It is strongly recommended to review the introductory guides first, as this tutorial introduces more advanced concepts:
 
-- [Create a simulation with Java](https://docs.gatling.io/tutorials/scripting-intro/)
-- [Create a simulation with JavaScript](https://docs.gatling.io/tutorials/scripting-intro-js/)
-- [Introduction to the Recorder](https://docs.gatling.io/tutorials/recorder/)
+- [Create a simulation with Java]({{< ref "/tutorials/scripting-intro" >}})
+- [Create a simulation with JavaScript]({{< ref "/tutorials/scripting-intro-js" >}})
+- [Introduction to the Recorder]({{< ref "/tutorials/recorder" >}})
 
-Additionally, it is important to have a basic understanding of a virtual user's session. Kindly consult the [Session documentation](https://docs.gatling.io/reference/script/core/session/), particularly the **Feeders** and **Expression Language** sections.
+Additionally, it is important to have a basic understanding of a virtual user's session. Kindly consult the [Session documentation]({{< ref "/reference/script/core/session/" >}}), particularly the **Feeders** and **Expression Language** sections.
 {{< /alert >}}
 
 ## Test application
@@ -61,7 +61,7 @@ For our e-commerce platform, we identified the following user journey:
 
 ## Writing the script
 
-### Clone sample project repository
+### Clone Gatling demo repository { #install-gatling }
 
 1. Clone the sample project [repository](https://github.com/gatling/se-ecommerce-demo-gatling-tests).
 
@@ -82,10 +82,10 @@ Let's break it down:
   - **Scenario groups file**: Defines and manages groups.
 - **`utils/`**: Contains utility files designed to simplify and streamline processes.
   - **Config file**: Handles the retrieval of all necessary system properties and environment variables.
-  - **Keys file**: Contains predefined constants that serve as a single source of truth for virtual user session variable names. More on sessions [here](https://docs.gatling.io/reference/script/core/session/).
+  - **Keys file**: Contains predefined constants that serve as a single source of truth for virtual user session variable names. More on sessions [here]({{< ref "/reference/script/core/session/" >}}).
   - **Target env resolver**: Responsible for resolving the targetEnv system property to the appropriate configuration.
 - **`resources/`**: Contains feeder files and request bodies that we reference throughout our script.
-  - **`bodies/`**: Contains the request bodies. For more information on referencing request bodies, see [here](https://docs.gatling.io/reference/script/protocols/http/request/#request-body).
+  - **`bodies/`**: Contains the request bodies. For more information on referencing request bodies, see [here]({{< ref "/reference/script/protocols/http/request/#request-body" >}}).
   - **`data/`**: Contains the feeder files.
 - **Advanced simulation file**: The main Gatling simulation file where we define the scenarios, http protocol, injection profile and assertions.
 
@@ -103,12 +103,12 @@ Now let's take a closer look at the following definition of the `login` endpoint
 
 1. We use an http request action builder class to build a POST http request.
 2. We use `.asFormUrlEncoded()`to set the content-type header to `application/x-www-form-urlencoded`.
-3. We use `.formParam("username", "#{username}")` to set the form parameters of the POST request. More on `formParam` [here](https://docs.gatling.io/reference/script/protocols/http/request/#formparam).
-   - We use the [Gatling Expression Language](https://docs.gatling.io/reference/script/core/session/el/) to retrieve the username's value from the virtual user's session. We will set this value later on in this guide using a [Feeder](https://docs.gatling.io/reference/script/core/session/feeders/).
+3. We use `.formParam("username", "#{username}")` to set the form parameters of the POST request. More on `formParam` [here]({{< ref "/reference/script/protocols/http/request/#formparam" >}}).
+   - We use the [Gatling Expression Language]({{< ref "/reference/script/core/session/el/" >}}) to retrieve the username's value from the virtual user's session. We will set this value later on in this guide using a [Feeder]({{< ref "/reference/script/core/session/feeders/" >}}).
 4. We use `.check()` for the following:
-   - **Validate** that we receive a 200 status code in the response. More on validating [here](https://docs.gatling.io/reference/script/core/checks/#validating).
-   - **Extract** the `accessToken` from the response body and **save** it to the user session under the name `AccessToken`. Further information on extracting can be found [here](https://docs.gatling.io/reference/script/core/checks/#extracting), and on saving [here](https://docs.gatling.io/reference/script/core/checks/#saving).
-   - More on `jmesPath` [here](https://docs.gatling.io/reference/script/core/checks/#jmespath).
+   - **Validate** that we receive a 200 status code in the response. More on validating [here]({{< ref "/reference/script/core/checks/#validating" >}}).
+   - **Extract** the `accessToken` from the response body and **save** it to the user session under the name `AccessToken`. Further information on extracting can be found [here]({{< ref "/reference/script/core/checks/#extracting" >}}), and on saving [here]({{< ref "/reference/script/core/checks/#saving" >}}).
+   - More on `jmesPath` [here]({{< ref "/reference/script/core/checks/#jmespath" >}}).
 
 #### Web Endpoints
 
@@ -150,8 +150,8 @@ Let's take a look at the following `authenticate` group definition:
      ]
      ```
 
-   - We define `usersFeeder` that loads the json file using `jsonFile()` with the `circular()` strategy. More on feeder strategies [here](https://docs.gatling.io/reference/script/core/session/feeders/#strategies).
-   - We call the `feed(usersFeeder)` in the `authenticate` ChainBuilder to pass dynamic `username` and `password` values to the `login` endpoint that we defined [earlier](https://docs.gatling.io/tutorials/writing-realistic-tests/#api-endpoints).
+   - We define `usersFeeder` that loads the json file using `jsonFile()` with the `circular()` strategy. More on feeder strategies [here]({{< ref "/reference/script/core/session/feeders/#strategies" >}}).
+   - We call the `feed(usersFeeder)` in the `authenticate` ChainBuilder to pass dynamic `username` and `password` values to the `login` endpoint that we defined [earlier]({{< ref "#api-endpoints" >}}).
 
 4. We also include a `pause(5, 15)` before the login step. This instructs the virtual user to pause for a random duration between 5 and 15 seconds. The randomness helps simulate human-like variations in navigation, such as filling out forms. Pauses are a crucial component of replicating real-world behavior, and it's important to ensure they are placed appropriately throughout the scenario.
 
@@ -165,11 +165,11 @@ Now let's define our scenarios! We will define two scenarios that showcase diffe
 
   Let's take a closer look:
 
-  - We wrap our scenario in an `exitBlockOnFail()` block to ensure that the virtual user exits the scenario whenever a request or check fails. This mimics real-world behavior, as users would be unable to proceed if they encounter blockers in the flow. Read more [here](https://docs.gatling.io/reference/script/core/scenario/#exitblockonfail).
+  - We wrap our scenario in an `exitBlockOnFail()` block to ensure that the virtual user exits the scenario whenever a request or check fails. This mimics real-world behavior, as users would be unable to proceed if they encounter blockers in the flow. Read more [here]({{< ref "/reference/script/core/scenario/#exitblockonfail" >}}).
 
   - We use `randomSwitch()` to distribute traffic between two flows based on predefined percentages: 70% for the French **(fr)** market and 30% for the US **(us)** market. - The `randomSwitch()` will assign virtual users to the two flows according to the defined probabilities in `percent()`.
 
-  - Within each `percent()` block, we define the desired behavior. - More on `randomSwitch()` [here](https://docs.gatling.io/reference/script/core/scenario/#randomswitch).
+  - Within each `percent()` block, we define the desired behavior. - More on `randomSwitch()` [here]({{< ref "/reference/script/core/scenario/#randomswitch" >}}).
 
 - In a similar manner, we define our second scenario:
 
@@ -212,14 +212,14 @@ In our script, we define the following injection profiles according to the desir
 
 {{< alert tip >}}
 
-- The injection profiles mentioned above are for **open** workload models, meaning the number of concurrent users is **NOT** capped (unlike some ticketing websites for example). For closed models or more information on open vs closed workload models, see [here](https://docs.gatling.io/reference/script/core/injection/#open-vs-closed-workload-models).
+- The injection profiles mentioned above are for **open** workload models, meaning the number of concurrent users is **NOT** capped (unlike some ticketing websites for example). For closed models or more information on open vs closed workload models, see [here]({{< ref "/reference/script/core/injection/#open-vs-closed-workload-models" >}}).
 - Injection profiles can be defined according to your specific needs. The profiles provided are commonly used for the mentioned use cases, but they are not set in stone. Be sure to choose the injection profile that best fits your use case.
   {{< /alert >}}
 
 <a id="injection-profile-snippet"></a>
 {{< include-code "injection-profile-switch" >}}
 
-For more information on defining injection profiles using the Gatling DSL, refer to this [section](https://docs.gatling.io/reference/script/core/injection/#open-model).
+For more information on defining injection profiles using the Gatling SDK, refer to this [section]({{< ref "/reference/script/core/injection/#open-model" >}}).
 
 ### Define assertions
 
@@ -233,7 +233,7 @@ Finally, we define the setup block. This configuration will execute both scenari
 
 {{< include-code "setup-block" >}}
 
-There also is the possibility to execute scenarios sequentially. For more information, please refer to this [section](https://docs.gatling.io/reference/script/core/injection/#sequential-scenarios).
+There also is the possibility to execute scenarios sequentially. For more information, please refer to this [section]({{< ref "/reference/script/core/injection/#sequential-scenarios" >}}).
 
 ### Utility helpers
 
@@ -245,7 +245,7 @@ Responsible for defining **Java System Properties/JavaScript parameters** and **
 
 {{< include-code "config" >}}
 
-- We define the `testType` system property that we use later on in the switch case of the `injectionProfile` [method](https://docs.gatling.io/tutorials/writing-realistic-tests/#injection-profile-snippet).
+- We define the `testType` system property that we use later on in the switch case of the `injectionProfile` method.
 - We define the `targetEnv` system property to specify the target application environment for the load simulation.
 
 You may define additional Java system properties or environment variables as required to accommodate your scripting needs.
@@ -256,7 +256,7 @@ Here, we define the session variable keys. This file centralizes your key refere
 
 {{< include-code "keys" >}}
 
-Now for the login endpoint, instead of doing `.saveAs("AccessToken")` [here](https://docs.gatling.io/tutorials/writing-realistic-tests/#login-endpoint-snippet), we can do the following:
+Now for the login endpoint, instead of doing `.saveAs("AccessToken")` in the `login` `HttpRequestActionBuilder` we defined in the API endpoints file, we can do the following:
 
 {{< include-code "keys-usage" >}}
 
