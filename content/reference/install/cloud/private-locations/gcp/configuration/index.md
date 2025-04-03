@@ -20,7 +20,7 @@ See `jvm-options` configuration below.
 If you don't, the JVM will use a max heap size of 1/4th of the physical memory.
 
 {{<alert tip >}}
-Accelerate deployment and simplify configuration with Gatling's pre-built [infrastructure-as-code configurations]({{< ref "infrastructure-as-code/#gcp" >}}).
+Accelerate deployment and simplify configuration with Gatling's pre-built [<span style="text-decoration: underline;">infrastructure-as-code configurations</span>]({{< ref "infrastructure-as-code/#gcp" >}}).
 {{</alert>}}
 
 ## Permissions

@@ -8,7 +8,7 @@ date: 2023-09-03T16:00:00+00:00
 ---
 
 {{<alert tip >}}
-Accelerate deployment and simplify configuration with Gatling's pre-built [infrastructure-as-code configurations]({{< ref "infrastructure-as-code/#gcp" >}}).
+Accelerate deployment and simplify configuration with Gatling's pre-built [<span style="text-decoration: underline;">infrastructure-as-code configurations</span>]({{< ref "infrastructure-as-code/#gcp" >}}).
 {{</alert>}}
 
 ## Introduction
