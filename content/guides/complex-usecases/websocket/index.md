@@ -7,7 +7,7 @@ date: 2025-04-03T13:35:00+02:00
 
 ---
 
-WebSocket is a bidirectional communication protocol enabling real-time data exchange between clients and servers. Unlike HTTP, WebSockets maintain a persistent connection for instant, efficient communication. WebSockets are ideal for applications needing real-time updates, like live chat, multiplayer gaming, collaborative editing, in-app notifications, and trading platforms, enhancing user experience and operational efficiency. In this guide, we use Gatling to load test this type of application.
+WebSocket is a bidirectional communication protocol enabling real-time data exchange between clients and servers. Unlike HTTP, WebSockets maintain a persistent connection for instant, efficient communication. WebSockets are ideal for applications needing real-time updates, like live chat, multiplayer gaming, collaborative editing, in-app notifications, and trading platforms, enhancing user experience and operational efficiency.
 
 ## Prerequisites
 
