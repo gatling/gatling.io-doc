@@ -13,7 +13,6 @@ WebSocket is a bidirectional communication protocol enabling real-time data exch
 ## Prerequisites
 
 - Gatling version `{{< var gatlingVersion >}}` or higher
-- An account on Gatling Enterprise
 - Clone [this code](https://github.com/gatling/devrel-projects) and cd into the `articles/websocketguide` folder.
 
 ## Launch the Server
