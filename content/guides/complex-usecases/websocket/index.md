@@ -8,7 +8,7 @@ date: 2025-04-03T13:35:00+02:00
 ---
 
 {{< alert info >}}
-This guide showcases the Java SDK, but the same process applies to the Kotlin and Scala SDK
+This guide showcases the Java SDK, but the same process applies to the Kotlin and Scala SDKs
 {{< /alert >}}
 
 
