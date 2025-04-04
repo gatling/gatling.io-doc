@@ -79,7 +79,7 @@ To successfully launch our workflow, we begin by configuring a secret in our Git
 6. Add a new secret named `GATLING_ENTERPRISE_API_TOKEN`
 7. Set the value of this secret to your API token
 
-If you don't have an API token yet, you can learn how to create one by following the instructions on this [page]({{< ref "../reference/execute/cloud/admin/api-tokens" >}})
+If you don't have an API token yet, you can learn how to create one by following the instructions on this [page]({{< ref "/reference/execute/cloud/admin/api-tokens" >}})
 
 ### Understand the Workflow
 
@@ -89,7 +89,7 @@ Below is the configuration for the workflow:
 
 {{< include-code workflow yml>}}
 
-If you wish to customize this workflow further, refer to our [GitHub documentation]({{< ref "../reference/integrations/ci-cd/github-actions" >}}) for more details and options.
+If you wish to customize this workflow further, refer to our [GitHub documentation]({{< ref "/reference/integrations/ci-cd/github-actions" >}}) for more details and options.
 
 ### Launch the Workflow
 
