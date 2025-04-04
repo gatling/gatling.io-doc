@@ -31,7 +31,7 @@ In this tutorial, we create a small scenario using Gatling. Our user connects to
 
 {{< include-code "WebSocketSample#websocket-example" java>}}
 
-The `httpProtocol` allows Gatling to connect to our WebSocket application. After that, we connect to our application and check if the server returns the correct message. `ProcessUnmatchedMessage` processes inbound messages that haven’t been matched with a check and have been buffered. In our case, this allows us to display the messages the server sends. If you need a more detailed use case, you can see the list of available commands [here]({{< ref "../reference/script/protocols/websocket/" >}}).
+The `httpProtocol` allows Gatling to connect to our WebSocket application. After that, we connect to our application and check if the server returns the correct message. `ProcessUnmatchedMessage` processes inbound messages that haven’t been matched with a check and have been buffered. In our case, this allows us to display the messages the server sends.
 
 ### Generate the User
 
@@ -57,4 +57,4 @@ mvn gatling:test
 3. Add appropriate pauses between requests to simulate real user behavior.
 4. Include proper error handling.
 
-This basic implementation should get you started with load testing WebSocket applications. Adjust the parameters and scenarios based on your specific needs.
+This basic implementation should get you started with load testing WebSocket applications.If you need a more detailed use case, you can see the list of available commands [here]({{< ref "../reference/script/protocols/websocket/" >}}).
