@@ -15,4 +15,11 @@ ordering:
   - github-action-integration
   - gitlab-ci-integration
   - load-test-websocket
+  - optimize-scripts
+  - complex-usecases
+  - test-creation
+  - custom-config
+  - analysis
 ---
+
+**The Guides section contains goal-oriented how-to pages. Find directions that help you solve a specific use case or achieve a specific result. The following 5 subsections help you create, optimize, and analyze load tests.**

@@ -164,7 +164,7 @@ npx gatling run --simulation "my-simulation"
 ```
 
 You can pass options to you simulation using a `key=value` format, then read them using the `getParameter` function in your
-code (see [the Passing parameters guide]({{< ref "/guides/passing-parameters#javascript" >}})):
+code (see [the Passing parameters guide]({{< ref "/guides/optimize-scripts/passing-parameters#javascript" >}})):
 
 ```shell
 npx gatling run key1=value1 key2=value2
