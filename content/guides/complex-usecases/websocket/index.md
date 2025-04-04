@@ -1,9 +1,8 @@
 ---
-title: How to load test WebSocket
-menutitle: Load test WebSocket
-seotitle: How to load test WebSocket using Gatling
-description: Set up WebSocket load test with Gatling
-lead: Learn how to implement and run WebSocket load tests with Gatling
+menutitle: Testing WebSocket
+title: How to test the WebSocket protocol
+seotitle: Learn how to load test WebSocket with Gatling
+lead: Learn how to load test WebSocket with Gatling
 date: 2025-04-03T13:35:00+02:00
 
 ---
@@ -57,4 +56,4 @@ mvn gatling:test
 3. Add appropriate pauses between requests to simulate real user behavior.
 4. Include proper error handling.
 
-This basic implementation should get you started with load testing WebSocket applications.If you need a more detailed use case, you can see the list of available commands [here]({{< ref "../reference/script/protocols/websocket/" >}}).
+This basic implementation should get you started with load testing WebSocket applications.If you need a more detailed use case, you can see the list of available commands [here]({{< ref "../../reference/script/protocols/websocket/" >}}).
