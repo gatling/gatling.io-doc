@@ -1,153 +1,107 @@
 ---
-title: Understand your first OSS test report 
-menutitle: Understand test report
+title: Understand your first Gatling open-source test report 
+menutitle: Understand OSS reports
 seotitle: Learn how to read and understand a Gatling report
 description: Learn how to read and understand a Gatling report
-lead: Are you looking at a Gatling Test Report for the first time and feeling overwhelmed? Or perhaps you’ve been using it for a while without really understanding everything on there? Welcome! Let’s take a closer look at what it all means together!
-date: 2025-03-23T09:30:56+02:00
+date: 2025-04-03T04:30:56+02:00
 ---
 
-## The Importance of Good Data
+## Introduction
 
-So, we have a web application and wish to know how it performs under a certain workload. Enter Gatling! The enabler of our desire to exert undue pressure on (hopefully not unsuspecting)systems.
+Gatling is a powerful open-source load testing tool designed to measure and analyze the performance of web applications. One of its standout features is the detailed and comprehensive static HTML report it generates after a test run. This report provides valuable insights into the performance and behavior of the application under load. If you're new to Gatling, this guide will help you understand the important reporting features and how to make the most of them. 
 
-In the grander scheme of [Performance Testing](https://en.wikipedia.org/wiki/Software_performance_testing), the details of how we write our simulation code, whether that be as cleanly implemented pieces of ingenuity or held together by bits of tape, are not so important.
+And if you find yourself needing more advanced features, be sure to check out Gatling Enterprise!
 
-What matters from a testing perspective is, instead, the quality of the information we receive. [We need data](https://gatling.io/features/advanced-dashboards) in order to analyze and evaluate performance, and this is where reports come in.
+Let's dive into the key sections of the Gatling report and explore what each one offers:
 
-It still is essential, of course. For maintainability reasons, for a start, but it’s arguably a lot less critical than test design and data analysis when it comes to making statements about the system under test.
+## Understand the Global tab
 
-### Gatling is a Tool
+This section gives you a quick summary of the entire test run and is broken down into the following catagories:
 
-Gatling takes measurements, records timings, and presents us with information in a useful way. We might read these reports and use the information to adjust our testing strategy. Reading reports and writing tests can be relatively closely coupled, mainly if we use Gatling to measure responses under normal circumstances before ramping up the pressure.
+- Ranges
+- Stats
+- Active Users
+- Requests per second
+- Responses per second
 
-However, it’s important to remember that Gatling is a tool and cannot, for example, identify whether our simulation includes business-critical scenarios or context-appropriate assertions.
+### Ranges
 
-Our report does not exactly represent our application’s behavior. The accuracy is, and can only be, dependent on how well we designed our tests. Which paths through the system we included. How realistic the test data was. How representative the load we simulated is.
+Ranges provides a high-lvel overview of your test results, including the response time raanges and the number of requests. There are also important information about the Gatling version and run information stored in this part of the report. 
 
-If our simulation or tests are lacking, the report will still look lovely but won’t give us an accurate reading of system behavior. In other words, Garbage In, Garbage Out.
+#### Assertions
 
-Let us continue, then, working under the assumption that our simulation and tests are reasonably sensible, and the sticking point is understanding what our report is telling us about our application!
+- **Assertion Results**: If assertions are defined in the test, their results will be displayed here. Assertions help in validating that the test meets specific performance criteria.
 
-### What on earth does it all mean?
+### Stats
 
-Being presented with all of this (useful, wonderful) data all in one go can be a little overwhelming, at first. If you’re feeling flustered, take a moment to breathe. You’re in the right place because we’re going to break the report down and go through it together.
 
-<!--add report screenshot here-->
+### Active users
 
-The centerpiece of our report is, of course, the data itself. However, it’s very rare for humans to make interesting inferences simply from reading abstract numerical data. Gatling knows this, which is why their reports also have a large visual component.
 
-So we have our tabular data and various graphical representations. All the other tabs and sections help us narrow our focus by filtering the data to show us smaller subsets (detailed views).
+### Requests per second
 
-## The Report, in numbers
 
-### Assertions
+### Responses per second
 
-- Assertion: Our assertions are listed in nice, readable sentences
-- Status: Whether our assertion passed (OK) or failed (KO)
 
-### Statistics
 
-<!--something wrong here-->
+
+- **Response Time Percentiles**: This section breaks down the response times into percentiles, such as the 50th (median), 75th, 95th, and 99th percentiles. Understanding these percentiles helps you see how consistent your response times are and identify any outliers.
+
+- **Response Time Graph**: A visual representation of response times over the test duration. This graph can help you spot trends or spikes in response times, making it easier to pinpoint issues.
 
 ### Requests
 
-- All requests, or groups of requests that were executed as part of our simulation are listed here.
+- **Requests Overview**: Get detailed information about each request made during the test, including the number of successful and failed requests.
 
-### Executions
-
-- Total: Total times the event* was executed
-- OK: Successful events
-- KO: Failed events
-- % KO: Percentage of failed events
-- Cnt/s: Count of events per second
-- Event can refer to either a single request or a group of requests
-
-### Response Time
-
-- Min: The fastest response time
-- Percentiles: How the response time compares with others*
-- Max: The slowest response time
-- Mean: The average response time.
-- StdDev: How far the response times vary from the average*
-- Percentiles and Standard Deviation are worth taking a closer look at; more on that later
+- **Request Details**: For each request, you can see metrics like the average response time, minimum and maximum response times, and the standard deviation. This helps you identify which specific requests are performing poorly.
 
 ### Errors
 
-- Error: The error itself (e.g., 500 HTTP response, timeout exception…)
-- Count: How often the error occurred
-- Percentage: The percentage of this error comprised of errors overall
+- **Error Summary**: A list of all errors encountered during the test, along with the number of occurrences for each error type.
 
-When faced with so many different numbers, it's tempting to hone in on the average response time. But is it enough to say that our customers have a good experience on average?
+- **Error Details**: Detailed information about each error, including the request that failed and the error message. This is crucial for diagnosing issues and understanding their impact on the test results.
 
-Let’s consider this result:
+### Active Users
 
-- 5 users load our shop within 2 seconds
-- 2 users only wait 3 seconds
-- 2 users have to wait 5 seconds
-- and 1 user has to wait for 8 entire seconds
+- **User Load Graph**: This graph shows the number of active users over time. It helps you understand how the load was distributed throughout the test and correlate it with performance metrics.
 
-On average, users waited for 3.4 seconds. That’s great, right?
+### Response Time vs. Time
 
-Perhaps we'd leave it there if we hadn’t just read the breakdown.
+- **Response Time Graph**: This graph plots the response time against the time of the test. It helps you identify if there are any trends or patterns in response times as the test progresses.
 
-If we say that anything over 3 seconds is too slow, then 30% of our users had a bad experience. The average alone cannot tell us that, and under normal circumstances, we won’t be able to see what happened (as in the breakdown above) because we will have data not for ten users but for thousands.
+### Throughput
 
-So, what information are we missing? It would be useful to know how similar the other response times are to the average…
+- **Requests per Second**: This section shows the number of requests processed per second. It helps you understand the capacity of your application and identify any bottlenecks.
 
-Don’t be alarmed, Gatling provides us with this information in the form of Standard Deviation and Percentiles. We don’t need to do the maths ourselves – we need to understand what these values represent.
+### Detailed Request Statistics
 
-### Standard Deviation
+- **Individual Request Metrics**: For each request, detailed statistics are provided, including the count, mean response time, standard deviation, and percentiles. This helps you pinpoint which requests are contributing to performance issues.
 
-How are the response times spread out from the average?
+## Understand the Details tab
 
-A low value here indicates that all responses were close to the average, and a high value indicates that they were more spread out.
+The details tab provides request and group-specific charts. In Gatling, you can organize your test scenarios into [groups]({{< ref "/reference/script/core/scenario/#groups" >}}) to better structure and analyze your load tests. The Groups metric provides insights into how these groups performed during the test. Remember that groups can be nested! The provided charts include:
 
-If we see a high standard deviation, we will know that our application does not respond consistently, the average does not tell the whole story, and it’s time to investigate this erratic behavior.
+- Group duration/Response time ranges
+- Group duration/Response time distribution
+- Group duration/Response time percentiles over time
+- Group cumulated response time distribution
+- Number of requests per second for a specific request
+- Number of responses per second for a specific request
+- Response time against global throughput
 
-### Percentiles
+To change which information is plotted, select the group or request of interest in the left-side hierarchal menu. 
 
-How does a response time compare to all the others?
+Understanding the Groups metric allows you to gain a more granular view of your application's performance and make targeted improvements based on how different parts of your test scenarios are executed.
 
-All of these statements are saying the same thing:
+## Tips for Effective Report Analysis
 
-- Measured at the 90th percentile, the response time is 3 seconds.
-- A response time of 3 seconds is greater than 90% of all responses.
-- 90% of responses were faster than 3 seconds.
-- 10% of responses were slower than 3 seconds.
+- **Compare Metrics**: Compare the metrics from different test runs to identify trends and improvements.
 
-The larger our user base, the closer to the 100th percentile we want to measure. Whether or not a response time of 3 seconds measured at the 99th percentile is adequate will depend on how many end users make up that 1%!
+- **Correlate Data**: Correlate the data from different sections of the report to get a holistic view of the application's performance.
 
-## The Report, visually
+- **Identify Bottlenecks**: Use the report to identify bottlenecks and areas for optimization.
 
-### Our brains process visual data very quickly
+- **Regular Monitoring**: Regularly monitor the performance metrics to ensure the application meets the desired performance standards.
 
-Graphical representations of data allow us to identify patterns, trends, and exceptions much more easily than staring at a page of text. It’s no coincidence that Gatling’s reporting is so rich in visual information!
-
-Gatling presents to us not only the statistical data from the table earlier but additional information that illustrates the simulation and application’s behavior over time.
-
-### Time Series Data is illuminating
-
-Can we draw any conclusions from knowing there were N failed requests throughout the simulation? It matters when the failures occurred, what else was happening simultaneously, how many users were active at that second or in the seconds before, and so on.
-
-## Customizing the Report
-
-You may have noticed that the Indicators graph uses standard ranges to delineate response times. Looking at this chart and perhaps seeing a very large red bar without being aware of the range boundaries it’s based upon may result in unnecessary alarm.
-
-Why? Acceptable Performance does not look the same in every context or application. There might be contexts where speed is imperative, and any sluggishness might compromise safety somehow. Others are where a more leisurely pace is expected (and even tolerated).
-
-We don’t judge our bicycle journey to the supermarket against the average speed of a participant in the Tour de France! Context is essential for determining whether something was slow.
-
-How do we ensure that the convenient traffic light visual uses acceptable ranges? By changing the values in the [gatling.conf](https://docs.gatling.io/gatling/reference/current/core/configuration/#gatling-conf) file.
-
-## Load testing is a means to an end
-
-Why is the [report not the end](https://gatling.io/blog/what-are-the-objectives-of-a-load-test) of our performance improvement story?
-
-We are, essentially, engaging in a kind of black-box testing. We send a request and record how long the response takes. What happens inside the application, where precisely in our code or infrastructure, bottlenecks or failures might be? Unknown.
-
-We want to be able to use our report to identify the moment when performance deteriorates. Or at least to give us clues for where to focus our follow-up investigations.
-
-If debugging a performance issue is like a criminal investigation, then our Gatling report would be like CCTV footage of the crime. It doesn’t tell the whole story, but it provides us with vital pointers when we’re deciding how to proceed.
-
-_An earlier version of this guide was contributed by Gatling community member Constance Armitage._
+By understanding these key features of the Gatling static HTML report, you can effectively analyze the performance of your applications and make data-driven decisions to improve their load handling capabilities. Happy testing!

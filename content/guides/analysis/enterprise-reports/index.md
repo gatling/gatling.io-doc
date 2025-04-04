@@ -38,9 +38,7 @@ If you’d like to make a comparison between runs click the “Compare” button
 
 #### How is this helpful?
 
-You can view your application's general performance over a long period of time easily or do a quick comparison to see if any changes you’ve made between runs have caused any improvements or regression in terms of performance.
-
-That’s a quick overview of our Run History and Trends for Gatling Enterprise. If you have any questions or thoughts let us know by emailing contact@gatling.io and we’ll update this post in the future with FAQs and answers for you.
+You can view your application's general performance over a long period of time easily or do a quick comparison to see if any changes you’ve made between runs have caused any improvements or regression in terms of performance. That’s a quick overview of our Run History and Trends for Gatling Enterprise. 
 
 Let’s get into the full reports now.
 
