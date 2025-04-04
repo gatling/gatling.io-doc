@@ -10,5 +10,7 @@ ordering:
   - llm-api
   - mqtt
   - kafka
+  - github-action-integration
+  - gitlab-ci-integration
   # - sqs
 ---
