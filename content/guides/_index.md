@@ -14,4 +14,5 @@ ordering:
   - basic-auth
   - github-action-integration
   - gitlab-ci-integration
+  - load-test-websocket
 ---
