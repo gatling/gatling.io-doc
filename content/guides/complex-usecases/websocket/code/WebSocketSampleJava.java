@@ -35,7 +35,7 @@ public class WebSocketSampleJava extends Simulation {
 
     ScenarioBuilder scn = scenario("Users")
         .exec(
-            ws("Connect").connect("/.ws").await(10).on(
+            ws("Connect").connect("/").await(10).on(
                 ws.checkTextMessage("Connect:check")
                     .check(bodyString().is("connected"))
             ),
