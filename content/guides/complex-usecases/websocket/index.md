@@ -63,4 +63,4 @@ mvn gatling:test
 3. Add appropriate pauses between requests to simulate real user behavior.
 4. Include proper error handling.
 
-This basic implementation should get you started with load testing WebSocket applications. If you need a more detailed use case, you can see the list of available commands [here]({{< ref "../../reference/script/protocols/websocket/" >}}).
+This basic implementation should get you started with load testing WebSocket applications. If you need a more detailed use case, you can see the list of available commands [here]({{< ref "/reference/script/protocols/websocket/" >}}).
