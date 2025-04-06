@@ -6,6 +6,7 @@ lead:  Detailed guides to help you test specific protocols, authentication schem
 ordering:
   - basic-auth
   - grpc
+  - websocket
   - docker-app
   - llm-api
   - mqtt
