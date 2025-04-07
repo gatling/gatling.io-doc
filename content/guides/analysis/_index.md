@@ -6,5 +6,4 @@ lead: Guides to understand, use, and export Gatling test data.
 ordering:
   - dynatrace
   - enterprise-reports
-  - first-report
 ---

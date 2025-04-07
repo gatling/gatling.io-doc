@@ -5,7 +5,7 @@ description: Detailed and practical advice
 lead: Detailed and practical advice
 ordering:
   - optimize-scripts
-  - complex-usecases
+  - complex-use-cases
   - test-creation
   - custom-config
   - analysis
