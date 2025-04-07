@@ -6,10 +6,11 @@ lead:  Detailed guides to help you test specific protocols, authentication schem
 ordering:
   - basic-auth
   - grpc
+  - mqtt
+  - websocket
+  - kafka
   - docker-app
   - llm-api
-  - mqtt
-  - kafka
   - github-action-integration
   - gitlab-ci-integration
   # - sqs
