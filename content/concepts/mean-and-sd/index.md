@@ -61,7 +61,7 @@ Furthermore, what happens when the mean and standard deviation are the same? Doe
 
 Some people went even further and squashed all sorts of shapes with the same average standard deviation on both axes in a single animation. That says a lot about how deviations are as a metric.
 
-{{< img src="dino-sequential.gif" caption="https://edubirdie.com/blog/same-stats-different-graphs" >}}
+{{< img src="dino-sequential-animation.gif" caption="https://edubirdie.com/blog/same-stats-different-graphs" >}}
 
 As you understand now, variance and standard deviation only make sense on Gaussian distributions, which are rarely encountered in load testing. The most common cases are multi-modal distributions, outliers or extreme values, long tails or skewed distributions, etc.
 
