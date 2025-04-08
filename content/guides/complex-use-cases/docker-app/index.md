@@ -7,8 +7,6 @@ lead: tbd
 date: 2025-02-28T10:30:56+02:00
 ---
 
-## Introduction
-
 The number of production services that are deployed and running in containerization platforms such as Docker has grown in recent years. With this shift in the deployment architecture, the need for load testing of applications and services while running in containers is crucial. This guide demostrates how to load test a simple containerized application. 
 
 ## Load testing Docker containers in practice
@@ -25,7 +23,7 @@ In addition to the aforementioned, we must ensure that container-specific monito
 
 Gatling is an excellent choice for load testing your application running in a Docker container. You can use Gatling to create user journey scripts through your application and then execute a stress test once the application is running in a containerized fashion.
 
-## Example TypeScript API
+### Example TypeScript API
 
 Here's an example of a simple API written in TypeScript that has two different API endpoints and its associated Dockerfile:
 

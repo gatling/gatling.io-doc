@@ -15,12 +15,12 @@ The following guide helps you migrate from the Gatling bundle versions 3.9.5 and
 
 The Gatling bundle is a self-contained project that lets you quickly start load testing. The bundle avoids manual configuration by including all the files and dependencies needed to run Gatling. Some benefits of the bundle are:
 
-Straight forward installation
-Faster initial setup due to predefined files
-Quick set-up for feature experimentation
-Sufficient for many small projects
+- Straight forward installation
+- Faster initial setup due to predefined files
+- Quick set-up for feature experimentation
+- Sufficient for many small projects
 
-## Build tool advantages 
+## Build tool advantages
 
 For larger projects or deeper integration into the development process, the Gatling bundle becomes limited. In particular, integrating load tests into CI/CD pipelines is much easier with a build tool. If you have reached this point in your load testing, Gatling recommends migrating to a dependency management tool like Gradle for:
 
@@ -49,21 +49,16 @@ _user-files_: This directory centralizes your simulation scenarios. The simulati
 ## Migration prerequisites
 
 - Upgrade Gatling to 3.9.5.
-- Clone or download the Gatling-Gradle plugin demo
-  - Java
-  - Scala <!--add links-->
+- Clone or download the [Gatling-Gradle plugin demo]({{< ref "/reference/integrations/build-tools/gradle-plugin" >}})
 
 We recommend an IDE like IntelliJ for composing and managing load tests to benefit fully from Gradle’s functionality. To directly import the plugin demo with IntelliJ:
 
 Go to File > New > Project from Version Control
 
-<!--insert image-->
 
 - Paste the repository URL,
 - select your local directory,
 - click Clone.
-
-<!--insert image-->
 
 ## Check your Gatling version
 
@@ -113,7 +108,6 @@ plugins {
 4. (optional) Copy the logback configuration file logback.conf from `/conf` in the Gatling bundle to `src/test/resources/` in your Gradle project. Rename `logback.conf` to `logback-test.xml` to align with Gradle’s context.
 5. (optional) Copy the recorder configuration file `recorder.conf` from `/conf` in the Gatling bundle to `src/test/resources/` in your Gradle project.
  
-
 To configure a specific version of Gatling, modify the build.gradle file.
 
 ```xml
@@ -142,7 +136,8 @@ Run your Gatling test with a local Gradle installation with the following comman
 ```console
 gradle gatlingRun
 ```
+
 If your test ran successfully, you have successfully migrated! You can learn more about using Gradle with Gatling from the following resources:
 
 - The [Gatling Gradle plugin documentation]({{< ref"/reference/integrations/build-tools/gradle-plugin" >}}) contains additional information for configuring tests using the Gradle plugin.
-- [The Gatling Community Forum](https://community.gatling.io/) is a great place to ask questions about using Maven and Gatling.  
+- [The Gatling Community Forum](https://community.gatling.io/) is a great place to ask questions about using Maven and Gatling.

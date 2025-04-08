@@ -21,7 +21,7 @@ In your Postman workspace navigate to the collections menu and press the ellipsi
 
 ## Step 2: Setup a Gatling JavaScript Project
 
-If you don't already have a Gatling JavaScript Project, head to the [open-source downloads page](https://hubs.ly/Q02_3LcX0) for your free copy:
+If you don't already have a Gatling JavaScript Project, head to the [open-source downloads page](https://hubs.ly/Q02_3LcX0) to download it today.
 
 Unzip the Gating JavaScript project and open it in your favorite IDE. The SDK has JavaScript and TypeScript folders. You can use either, but we will focus on JavaScript for the rest of this post.
 
@@ -29,7 +29,7 @@ Add your Postman collection to the `javascript/resources` folder in the Gatling 
 Open the `javascript/src` folder and create a file named `postman.gatling.js`.
 In the newly created file add the following JavaScript code:
 
-```javascript 
+```javascript
 import { simulation, constantUsersPerSec } from "@gatling.io/core";
 import { http } from "@gatling.io/http"; 
 import { postman } from "@gatling.io/postman";
@@ -50,17 +50,19 @@ export default simulation((setUp) => {
  ); 
 });
 ```
+
 - Change your `CollectionName` on line 9 to match the filename for your imported Postman collection.
 - Run the installation command to install all of the packages and dependencies:
 
 ```console
 npm install --save "@gatling.io/postman"
 ```
+
 <div style="position: relative; overflow: hidden; max-width: 100%; padding-bottom: 56.25%; margin: 0px;"><iframe width="560" height="315" src="https://demo.arcade.software/73pR4BgMxkhNDo2gig4i?embed&show_copy_link=true" title="Setup a Gatling JavaScript Project" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; border: none;"></iframe></div>
 
 ## Step 3: Run your test on Gatling Enterprise
 
-Remove the Open-source test limits by running your test on Gatling Enterprise with a free trial account. To do so:
+Remove the open-source test limits by running your test on Gatling Enterprise with a free trial account. To do so:
 
 1. Package your test by running the command `npx gatling enterprise-package` in your terminal. The packaged simulation is saved in the `target` folder.
 2. Log in to your Gatling Enterprise account.

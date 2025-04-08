@@ -6,8 +6,6 @@ lead: Learn how to load test gRPC with Gatling
 date: 2025-02-28T8:30:56+02:00
 ---
 
-## Introduction
-
 The Gatling gRPC DSL lets you create code-based load tests for your sevices that use the gRPC protocol. This guide provides an introduction to testing gRPC with Gatling. The DSL is additionally described in the [reference documentation]({{< ref="/reference/script/protocols/grpc/setup" >}}). 
 
 ## Setting up our environment
@@ -51,6 +49,7 @@ public class GreetingSimulation extends Simulation {
             .channelCredentials("#{channelCredentials}")
             .overrideAuthority("gatling-grpc-demo-test-server");
 ```
+
 The gRPC Protocol Builder tells Gatling to connect to our gRPC application using channel credentials and by overriding the Authority. Now that we are connected, we need to define the user journey of our users.
 
 ### Set up the user journey
@@ -87,6 +86,7 @@ ScenarioBuilder unary = scenario("Greet Unary")
                             statusCode().is(Status.Code.OK),
                             response(GreetResponse::getResult).isEL("Hello #{firstName} #{lastName}")));
 ```
+
 Let me explain it to you:
 
 - The first feeder: This one permits getting random credentials to secure the channel.
@@ -94,11 +94,7 @@ Let me explain it to you:
 - In the exec part:
 
   - The unary call allows testing unary methods; inside of it, we put the name of the service we want to test (if you want to understand more about unary, client/server stream, check the gRPC documentation)
-
-
   - In the send section, we create the object we will send to our server and we put the names coming from the second feeder.
-
-
   - In the check section, we verify that the server returns an OK status and the output string equals the one we provided inside the `isEL`.
 
 ### Scenario greetings with deadlines
@@ -147,6 +143,7 @@ Now we need to tell Gatling what pattern the users will follow. In our case, her
     }
 }
 ```
+
 ## Launching the simulation
 
 ### Setup
@@ -158,6 +155,7 @@ To launch the server, open a terminal and run the following command in the root 
 cd server 
 ./gradlew -PmainClass=io.gatling.grpc.demo.server.greeting.GreetingServer run
 ```
+
 ### Open-source version
 
 To launch the load test, open a terminal and run the following command in the `java/maven` folder:
@@ -167,6 +165,7 @@ To launch the load test, open a terminal and run the following command in the `j
  or 
  ./mvnw gatling:test -Dgrpc.scenario=deadlines -Dgatling.simulationClass=io.gatling.grpc.demo.GreetingSimulation
 ```
+
 After the simulation is complete, Gatling generates an HTML link in the terminal to access your report. Review metrics such as response times, successful and failed connections, and other indicators to identify potential issues with your service.
 
 ### Enterprise version
@@ -186,7 +185,7 @@ Next, create a simulation by navigating to the "Simulations" tab and clicking "C
 
 {{< img src="simulation-runs.png" >}} <!--update for new UI-->
 
-Now click on the #1 to get the data of our scenario 
+Now click on the #1 to get the data of our scenario
 
 {{< img src="scenario-demo.png" >}} <!--update for new UI? -->
 
@@ -196,6 +195,6 @@ Now we see a small summary of the report with 5 users. If you want to view the w
 
 We've explored how to load test gRPC applications using Gatling. We also walked through setting up a practical example that demonstrates both basic gRPC testing and deadline handling, two critical aspects of modern micro-service architectures.
 
-If you want to go deeper, you can check our documentation also try Gatling Entreprise. You will get access to CI/CD integration, detailed reporting, private locations, and many more features to ensure your gRPC services perform reliably under load. 
+If you want to go deeper, you can check our documentation also try Gatling Enterprise. You will get access to CI/CD integration, detailed reporting, private locations, and many more features to ensure your gRPC services perform reliably under load.
 
 The example we've explored, though simple, showcases essential testing patterns that can be adapted for more complex scenarios. Whether you're using the open-source version for initial testing or the enterprise version for comprehensive load testing, Gatling provides the necessary tools to verify the performance and reliability of your gRPC services in real-world conditions.

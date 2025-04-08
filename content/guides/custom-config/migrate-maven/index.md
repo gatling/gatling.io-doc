@@ -10,7 +10,7 @@ date: 2025-02-27T09:30:56+02:00
 ## Introduction
 
 {{< alert info>}}
-The following guide helps you migrate from the Gatling bundle versions 3.9.5 and earlier to the Gradle build tool. It is not useful for Gatling versions >3.10.   
+The following guide helps you migrate from the Gatling bundle versions 3.9.5 and earlier to the Maven build tool. It is not useful for Gatling versions >3.10.
 {{< /alert >}}
 
 The Gatling bundle is an all-in-one project to get started quickly with Gatling. This bundle includes all the files and dependencies needed to run Gatling without having to configure dependencies manually. Its benefits include:
@@ -33,6 +33,7 @@ The Gatling bundle, however, has limitations for larger projects or deeper integ
 This guide details how to migrate your Gatling tests to Maven in less than 5 minutes.
 
 ## Bundle architecture
+
 To better understand the migration process, examining the operation and architecture of the Gatling bundle is helpful. The bundle combines the components necessary to run Gatling and has several important directories.
 
 {{< img src="bundle-folders.webp">}}
@@ -48,9 +49,7 @@ _user-files_: This directory centralizes your simulation scenarios. The simulati
 ## Migration prerequisites
 
 - Upgrade Gatling to the latest release.
-- Clone or download the Gatling-Maven plugin demo
-  - Java
-  - Scala
+- Clone or download the [Gatling-Maven plugin demo]({{< ref "/reference/integrations/build-tools/maven-plugin" >}})
 
 Gatling recommends using an IDE like IntelliJ for writing and managing load tests. With IntelliJ, you can directly clone the plugin demo:
 
@@ -68,7 +67,7 @@ Note that demo projects on GitHub use the latest version of Gatling. If your ver
 
 ## Migrate your Java project to Maven
 
-| Element                | Location in the bundle   | Location in Gradle                  | Mandatory |
+| Element                | Location in the bundle   | Location in Maven                  | Mandatory |
 |------------------------|--------------------------|-------------------------------------|-----------|
 | Test Case              | user-files/simulations/* | src/test/java/                      | Yes       |
 | Resources              | user-files/resources/*   | src/test/resources/                 | Yes       |
@@ -99,7 +98,7 @@ Or to configure the Gatling version:
 
 ## Migrate your Scala project to Maven
 
-| Element                | Location in the bundle   | Location in Gradle                  | Mandatory |
+| Element                | Location in the bundle   | Location in Maven                  | Mandatory |
 |------------------------|--------------------------|-------------------------------------|-----------|
 | Test Case              | user-files/simulations/* | src/test/scala/                     | Yes       |
 | Resources              | user-files/resources/*   | src/test/resources/                 | Yes       |
@@ -115,6 +114,7 @@ Or to configure the Gatling version:
 6. Modify pom.xml from the Maven project to configure a specific version of Gatling.
 
 ## Verifying migration success
+
 After migrating your files from the Gatling bundle to your Maven project, it is time to validate the migration. For this, you can either use the Maven wrapper or locally install Maven.
 
 For most projects, the Maven wrapper, built by Gatling, provides sufficient flexibility to run your load tests. To use the built-in wrapper, run the following command in the root directory of your Maven project.
@@ -131,7 +131,8 @@ To run your Gatling test with a local Maven installation, run the following comm
 ```console
 mvn gatling:test
 ```
+
 Assuming your test ran successfully, you are finished! To learn more about using Maven and Gatling, we offer multiple resources:
 
 - The [Gatling Maven plugin documentation]({{< ref"/reference/integrations/build-tools/maven-plugin" >}}) contains additional information for configuring tests using the Maven plugin.
-- [The Gatling Community Forum](https://community.gatling.io/) is a great place to ask questions about using Maven and Gatling.  
+- [The Gatling Community Forum](https://community.gatling.io/) is a great place to ask questions about using Maven and Gatling.

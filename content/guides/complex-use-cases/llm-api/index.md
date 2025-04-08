@@ -7,8 +7,6 @@ lead: Learn how to use server sent events to load test an LLM API
 date: 2025-02-27T09:30:56+02:00
 ---
 
-## Introduction 
-
 Server-sent events is a server push technology, which allows clients to receive updates from a server using an HTTP connection. It instructs servers how to initiate data transmission to clients after the initial client connection is established.
 
 Gatling allows you to to test server-sent events as an extension of the HTTP DSL. 
@@ -37,15 +35,17 @@ public class SSELLM extends Simulation {
       http.baseUrl("https://api.openai.com/v1/chat")
           .sseUnmatchedInboundMessageBufferSize(100);
 ```
+
 ## Step 3: Defining the scenario
 
 Now the piece has started, the actors enter the scene and follow their scripts. At Gatling, we call this a scenario, and it defines the steps your test will take (connecting, parsing messages, user interaction, etc.,).
 
-In our case, our scenario it’s pretty small:
+In our case, our scenario is pretty small. People will:
 
-People will connect to the completion endpoint of Open AI and send a prompt using SSE.
-Process all the messages until ChatGPT sends us {"data":"[DONE]"}.
-Close the SSE connection.
+- connect to the completion endpoint of Open AI,
+- send a prompt using SSE,
+- process all the messages until ChatGPT sends us {"data":"[DONE]"},
+- close the SSE connection.
 
 ```java
  ScenarioBuilder prompt = scenario("Scenario").exec(
@@ -68,7 +68,7 @@ The `processUnmatchedMessages` method allows us to process the inbound messages.
 
 ## Step 4: Injecting users
 
-<!--fix the writing--> As the audience arrives and fills their seats, the theater comes alive. In Gatling, this is the injection profile. It permits you to choose how and when users enter your test, whether gradually, all at once, in waves,...
+As the audience arrives and fills their seats, the theater comes alive. In Gatling, this is the injection profile. It permits you to choose how and when users enter your test, whether gradually, all at once, or in waves.
 
 In our guide, we will simulate a low number of users (i.e. 10 users) arriving at once on our website. Do you want to use different user arrival profiles? Check out our various [injection profiles](/reference/script/core/injection/#open-model).
 
@@ -82,7 +82,6 @@ In our guide, we will simulate a low number of users (i.e. 10 users) arriving at
 
 ## Step 5: Running the simulation
 
-<!-- fix this section-->
 Run the simulation to see how the LLM handles the load. Use the following command to execute the test:
 
 Set the API token environment variable:
@@ -92,7 +91,7 @@ Linux/MacOS: export api_key=<API-token-value>
 Windows: set api_key=<API-token-value>
 {{</ platform-toggle >}}
  
-Then launch the test: 
+Then launch the test:
 
 {{< platform-toggle >}}
 Linux/MacOS: ./mvnw gatling:test
@@ -105,4 +104,4 @@ After the simulation is complete, Gatling generates an HTML link in the terminal
 
 ## Conclusion
 
-By updating SSE support to add the post method, Gatling enables load testing for applications using this method like LLMs, and many more. This practical example using the OpenAI API demonstrates how you can use Gatling to ensure your applications effectively manage user demands. So, don't streSSE about it and use Gatling to keep your servers and users happy. 
+By updating SSE support to add the post method, Gatling enables load testing for applications using this method like LLMs, and many more. This practical example using the OpenAI API demonstrates how you can use Gatling to ensure your applications effectively manage user demands. So, don't streSSE about it and use Gatling to keep your servers and users happy.
