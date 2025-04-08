@@ -1,9 +1,9 @@
 ---
-title: Create a load test with basic authentication
+title: How to test a Dockerized application with Gatling
 menutitle: Test a Docker-based app
 seotitle: How to test a Docker-based application with Gatling
 description: Create a Gatling simulation that tests dockerized applications.
-lead: tbd
+lead: Learn how to load tests your Dockerized applications.
 date: 2025-02-28T10:30:56+02:00
 ---
 
