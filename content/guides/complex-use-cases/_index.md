@@ -13,5 +13,4 @@ ordering:
   - llm-api
   - github-action-integration
   - gitlab-ci-integration
-  # - sqs
 ---
