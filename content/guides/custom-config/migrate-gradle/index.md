@@ -36,7 +36,7 @@ This guide details migrating Gatling tests to Gradle in 5 minutes or less.
 
 Before starting the migration process, it is useful to review the Gatling bundle file structure. The bundle contains the components required to run Gatling and has several key directories.bin: This directory stores the Gatling and the Recorder start scripts.
 
-{{< img src="bundle-folders.webp">}}
+{{< img src="folders-bundle.webp">}}
 
 _conf_: Housing the Gatling, Akka, and Logback configuration files; this directory is for the technical configuration of Gatling. You can configure the parameters of your tests and monitor the generated logs.
 

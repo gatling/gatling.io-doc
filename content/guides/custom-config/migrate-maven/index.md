@@ -36,7 +36,7 @@ This guide details how to migrate your Gatling tests to Maven in less than 5 min
 
 To better understand the migration process, examining the operation and architecture of the Gatling bundle is helpful. The bundle combines the components necessary to run Gatling and has several important directories.
 
-{{< img src="bundle-folders.webp">}}
+{{< img src="folders-bundle.webp">}}
 
 _conf_: Housing the Gatling, Akka, and Logback configuration files; this directory is for the technical configuration of Gatling. You can configure the parameters of your tests and monitor the generated logs.
 

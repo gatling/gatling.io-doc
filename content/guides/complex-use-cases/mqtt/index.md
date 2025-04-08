@@ -15,7 +15,7 @@ The Gatling MQTT DSL lets you create code-based load tests for your sevices that
 
 This guide helps you set up and test an MQTT broker.  
 
-{{< img src="MQTT-graphic.webp" >}}
+{{< img src="MQTT-gatling.webp" >}}
 
 ## Configuring Gatling for performance testing
 
@@ -93,7 +93,7 @@ Remember that the MQTT protocol differs from the HTTP protocol commonly evaluate
 
 Relevant metrics to monitor for MQTT testing, such as TCP connections, can be found in the Connections tab of the Gatling Enterprise test execution page.
 
-{{< img src="MQTT-graphic2.webp" >}}
+{{< img src="MQTT-report.webp" >}}
 
 ## Conclusion
 
