@@ -49,10 +49,10 @@ Both methods are detailed in the following sections.
 
 ### Start with the demo project {#demo-project}
 
-A [demo project](https://github.com/gatling/gatling-postman-demo) is available with JavaScript and TypeScript test examples:
+A [demo project](https://github.com/gatling/se-ecommerce-demo-gatling-tests/tree/main/postman/) is available with JavaScript and TypeScript test examples:
 
-- [JavaScript](https://github.com/gatling/gatling-postman-demo/tree/main/javascript)
-- [TypeScript](https://github.com/gatling/gatling-postman-demo/tree/main/typescript)
+- [JavaScript](https://github.com/gatling/se-ecommerce-demo-gatling-tests/tree/main/postman/javascript)
+- [TypeScript](https://github.com/gatling/se-ecommerce-demo-gatling-tests/tree/main/postman/typescript)
 
 You can download the demo project and open it in your IDE to start working with the Gatling Postman integration. 
 
@@ -137,24 +137,80 @@ export default simulation((setUp) => {
 You can develop more complex scenarios that, for example, blend Postman Collections and Gatling requests. To learn more about the complete SDK functionality, see the [reference documentation]({{< ref "/reference/script/protocols/postman/" >}}). 
 {{< /alert >}}
 
-## Run your simulation on Gatling Enterprise
+## Test execution
 
-To run your simulation without usage limits, you must use Gatling Enterprise (for more information on usage limits see [License and limitations]({{< ref "#license" >}})). 
+### Run the Simulation on Gatling Enterprise Cloud
 
-1. Package your test by running the command `npx gatling enterprise-package` in your terminal. The packaged simulation is saved in the `target` folder.
-2. Log in to your Gatling Enterprise account. 
-3. Click on **Simulations** in the left-side menu.
-4. Click on **Create a simulation** and follow the prompts to upload your package and create your simulation.
-5. Start your simulation and see the live results!
+You can package, deploy, and run your simulation using one of two approaches, depending on whether you prefer a manual or automated process.
 
-## Run the Simulation locally for debugging {{% badge info "Optional" /%}} {#run-the-simulation-locally-for-debugging}
+#### Simple Manual Use Case { #test }
 
-Use the following command to run your simulation in your local developer environment. The simulation only starts if the injection profile respects the license limitations for open-source usage. 
+1. Manually generate the package by executing the following command locally on your developer’s workstation:
 
-```shell
-npx gatling run
-```
-If you have more than 1 simulation in the `/src` folder, use the interactive CLI to select the Postman-based simulation. 
+   ```console
+   npx gatling enterprise-package
+   ```
+
+2. The above command will create a packaged **zip** file in your project's **target** directory.
+
+3. From your Gatling Enterprise console, go to **Packages**. Create a new package specifying its name, team that owns it, select your packaged zip file for upload then click **Save**.
+
+4. Go to **Simulations** > **Create a simulation** > **Test as code**. Under **Select a package**, choose the newly created package, then click **Create**.
+
+5. Configure your simulation parameters:
+   - Simulation name.
+   - Under **Select your package and simulation** > **Simulation**, select your simulation class.
+   - Under **Configure your locations**, choose the _Managed_ type and select a location based on your preference.
+   - Click **Save and launch**.
+
+#### Advanced Use Case with Automated Deployments (Configuration-as-Code)
+
+Gatling Enterprise Cloud is a feature-rich SaaS platform that is designed for teams and organizations to get the most
+out of load testing. With the [trial account](https://auth.gatling.io/auth/realms/gatling/protocol/openid-connect/registrations?client_id=gatling-enterprise-cloud-public&response_type=code&scope=openid&redirect_uri=https%3A%2F%2Fcloud.gatling.io%2Fr%2Fgatling), you can upload and run your test with advanced configuration, reporting, and collaboration features.
+
+From Gatling 3.11 packaging and running simulations on Gatling Enterprise Cloud is simplified by using [configuration as code]({{< ref "reference/execute/cloud/user/configuration-as-code" >}}). In this tutorial, we only use the default configuration to demonstrate deploying your project. You can learn more about customizing your configuration with our [configuration-as-code guide]({{< ref "guides/custom-config/config-as-code" >}}).
+
+To deploy and run your simulation on Gatling Enterprise Cloud, use the following procedure:
+
+1. Generate an [API token]({{< ref "/reference/execute/cloud/admin/api-tokens" >}}) with the `Configure` permission in your Gatling Enterprise Cloud account.
+2. Add the API token to your current terminal session by replacing `<your-API-token>` with the API token generated in step 1 and running the following command:
+
+   {{< platform-toggle >}}
+   Linux/MacOS: export GATLING_ENTERPRISE_API_TOKEN=<your-API-token>
+   Windows: set GATLING_ENTERPRISE_API_TOKEN=<your-API-token>
+   {{</ platform-toggle >}}
+
+3. Run one of the following two commands according to your needs:
+
+   - To deploy your package **and** start the simulation, run:
+
+     ```console
+     npx gatling enterprise-start --enterprise-simulation="<simulation name>"
+     ```
+
+   - To deploy your package without starting a run:
+
+     ```console
+     npx gatling enterprise-deploy
+     ```
+
+Watch the Simulation deploy automatically and generate real-time reports.
+
+### Run the Simulation locally for debugging {{% badge info "Optional" /%}} {#run-the-simulation-locally-for-debugging}
+
+The open-source version of Gatling allows you to run simulations locally, generating load from your computer. Running a
+new or modified simulation locally is often useful to ensure it works before launching it on Gatling Enterprise Cloud.
+Using the JavaScript CLI, you can launch your test in interactive mode using the following approach:
+
+1. Run the following command:
+
+   ```console
+   npx gatling run
+   ```
+
+2. Choose `example.<postman-simulation-name>`.
+
+When the test has finished, there is an HTML link in the terminal that you can use to access the static report.
 
 ## License and limitations {#license}
 
