@@ -208,7 +208,7 @@ Using the JavaScript CLI, you can launch your test in interactive mode using the
    npx gatling run
    ```
 
-2. Choose `example.<postman-simulation-name>`.
+2. Choose your postman simulation.
 
 When the test has finished, there is an HTML link in the terminal that you can use to access the static report.
 
