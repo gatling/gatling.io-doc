@@ -161,9 +161,9 @@ You can package, deploy, and run your simulation using one of two approaches, de
    npx gatling enterprise-package
    ```
 
-2. The above command will create a packaged **jar** file in your project's **target** directory.
+2. The above command will create a packaged **jar** or **zip** file in your project's **target** directory.
 
-3. From your Gatling Enterprise console, go to **Packages**. Create a new package specifying its name, team that owns it, select your packaged jar file for upload then click **Save**.
+3. From your Gatling Enterprise console, go to **Packages**. Create a new package specifying its name, team that owns it, select your packaged jar/zip file for upload then click **Save**.
 
 4. Go to **Simulations** > **Create a simulation** > **Test as code**. Under **Select a package**, choose the newly created package, then click **Create**.
 
@@ -225,8 +225,8 @@ Watch the Simulation deploy automatically and generate real-time reports.
 ### Run the Simulation locally for debugging {{% badge info "Optional" /%}} {#run-the-simulation-locally-for-debugging}
 
 The open-source version of Gatling allows you to run simulations locally, generating load from your computer. Running a
-new or modified simulation locally is often useful to ensure it works before launching it on Gatling Enterprise.
-Using the Java SDK, you can launch your test in interactive mode using the following approach:
+new or modified simulation locally is often useful to ensure it works before launching it on Gatling Enterprise Cloud.
+Using the Java SDK or the Javascript CLI, you can launch your test in interactive mode using the following approach:
 
 1. Run the following command:
 
@@ -239,10 +239,10 @@ Using the Java SDK, you can launch your test in interactive mode using the follo
    JavaScript CLI:
 
    ```console
-   npx gatling run --simulation basicSimulation
+   npx gatling run
    ```
 
-2. Choose `example.<recorded-simulation-name>`.
+2. Choose your recorded simulation.
 
 When the test has finished, there is an HTML link in the terminal that you can use to access the static report.
 
