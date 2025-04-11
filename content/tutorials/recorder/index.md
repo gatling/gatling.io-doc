@@ -161,7 +161,7 @@ You can package, deploy, and run your simulation using one of two approaches, de
    npx gatling enterprise-package
    ```
 
-2. The above command will create a packaged **jar** or **zip** file in your project's **target** directory.
+2. The above command will create a packaged `jar` or `zip` file in your project's **target** directory.
 
 3. From your Gatling Enterprise console, go to **Packages**. Create a new package specifying its name, team that owns it, select your packaged jar/zip file for upload then click **Save**.
 

@@ -128,7 +128,7 @@ You can package, deploy, and run your simulation using one of two approaches, de
    npx gatling enterprise-package
    ```
 
-2. The above command will create a packaged **zip** file in your project's **target** directory.
+2. The above command will create a packaged `zip` file in your project's **target** directory.
 
 3. From your Gatling Enterprise console, go to **Packages**. Create a new package specifying its name, team that owns it, select your packaged zip file for upload then click **Save**.
 
@@ -177,7 +177,7 @@ Watch the Simulation deploy automatically and generate real-time reports.
 
 The open-source version of Gatling allows you to run simulations locally, generating load from your computer. Running a
 new or modified simulation locally is often useful to ensure it works before launching it on Gatling Enterprise Cloud.
-Using the Java SDK, you can launch your test in interactive mode using the following approach:
+Using the JavaScript CLI, you can launch your test in interactive mode using the following approach:
 
 Using the terminal, you can launch your test with the following command in the `javascript` project directory:
 
