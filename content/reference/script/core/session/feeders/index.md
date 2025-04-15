@@ -8,11 +8,8 @@ date: 2021-04-20T18:30:56+02:00
 
 {{< alert tip >}}Learning to use feeders is covered in the [Writing realistic tests]({{< ref "/tutorials/writing-realistic-tests/" >}}) tutorial and in [Gatling Academy Module 3](https://academy.gatling.io/course/module-3-java-load-test-a-restful-api).  {{< /alert >}}
 
-Feeder is a type alias for `Iterator<Map<String, T>>`, meaning that the component created by the feed method will poll `Map<String, T>` records and inject its content.
-
-It's very simple to build a custom one. For example, here's how one could build a random email generator:
-
-{{< include-code "random-mail-generator" >}}
+Feeders are datasources used to inject test data in your virtual users.
+They are shared, meaning that all the virtual users pull from the same pool of data.
 
 The structure DSL provides a `feed` method that can be called at the same place as `exec`.
 
@@ -26,20 +23,9 @@ It's also possible to feed multiple records at once. In this case, values will b
 
 {{< include-code "feed-multiple" >}}
 
-## Strategies
-
-Gatling provides multiple strategies for the built-in feeders:
-
-{{< include-code "strategies" >}}
-
-{{< alert warning >}}
-When using the default `queue` or `shuffle` strategies, make sure that your dataset contains enough records.
-If your feeder runs out of records, Gatling will self shut down.
-{{< /alert >}}
-
 ## Using arrays and lists
 
-Gatling provides some converters to use in-memory datastructures as Feeders.
+Gatling lets you use in-memory datastructures as Feeders.
 
 {{< include-code "feeder-in-memory" >}}
 
@@ -47,20 +33,18 @@ Gatling provides some converters to use in-memory datastructures as Feeders.
 
 Gatling provides various file based feeders.
 
-When using the bundle distribution, files must be in the `user-files/resources` directory. This location can be overridden, see [configuration]({{< ref "../configuration#gatling-conf" >}}).
-
-When using a build tool such as Maven, Gradle or sbt, files must be placed in `src/main/resources` or `src/test/resources`.
-
-In order to locate the file, Gatling tries the following strategies in sequence:
-
-1. as a **classpath resource** from the classpath root, eg `data/file.csv` for targeting the `your_project/src/main/resources/data/file.csv` file. This is the recommended strategy.
-2. as an **absolute filesystem path** to a file. Use this strategy if you want your feeder files to be deployed separately.
+When using Java, Kotlin or Scala, files must be placed in `src/main/resources` or `src/test/resources` (or `src/gatling/resources` when using Gradle).\
+When using JavaScript or TypeScript, files must be places in `resources`.\
+You then have to configure the **relative path** from this root.\
+This is the recommended strategy.
 
 {{< alert warning >}}
 Don't use relative filesystem paths such as ~~`src/main/resources/data/file.csv`~~, instead use a classpath path `data/file.csv`.
 {{< /alert >}}
 
-## CSV feeders
+As an alternative, you can also configure an absolute path if you want to deploy your feeder files separately and have them directly sit on the host's filesystem.
+
+### CSV feeders
 
 Gatling provides several built-ins for reading character-separated values files.
 
@@ -70,9 +54,9 @@ The only difference is that header fields get trimmed of wrapping whitespaces.
 
 {{< include-code "sep-values-feeders" >}}
 
-## Loading mode
+#### Loading mode {#loading-mode}
 
-CSV files feeders provide several options for how data should be loaded in memory.
+CSV feeders provide several options for how data should be loaded in memory.
 
 `eager` loads the whole data in memory before the Simulation starts, saving disk access at runtime.
 This mode works best with reasonably small files that can be parsed quickly without delaying simulation start time and easily sit in memory.
@@ -93,27 +77,7 @@ The default size of this buffer is 2,000 and can be changed.
 Default behavior is an adaptive policy based on (unzipped, sharded) file size, see `gatling.core.feederAdaptiveLoadModeThreshold` in config file.
 Gatling will use `eager` below threshold and `batch` above.
 
-## Zipped files
-
-If your files are very large, you can provide them zipped and ask gatling to `unzip` them on the fly:
-
-{{< include-code "unzip" >}}
-
-Supported formats are gzip and zip (but archive must contain only one single file).
-
-## Distributed files (Gatling Enterprise only)
-
-If you want to run distributed with [Gatling Enterprise](https://gatling.io/products/)
-and you want to distribute data so that users don't use the same data when they run on different cluster nodes, you can use the `shard` option.
-For example, if you have a file with 30,000 records deployed on 3 nodes, each will use a 10,000 records slice.
-
-{{< alert warning >}}
-`shard` is only effective when running with Gatling Enterprise, otherwise it's just a noop.
-{{< /alert >}}
-
-{{< include-code "shard" >}}
-
-## JSON feeders
+### JSON feeders
 
 Some users might want to use data in JSON format instead of CSV:
 
@@ -143,25 +107,7 @@ Map("id" -> 19435, "foo" -> 2) // record #2
 
 Note that the root element has of course to be an array.
 
-## JDBC feeder
-
-Gatling also provides a builtin that reads from a JDBC connection.
-
-{{< include-code "jdbc-feeder" >}}
-
-Just like File parser built-ins, this returns a `RecordSeqFeederBuilder` instance.
-
-* The databaseUrl must be a JDBC URL (e.g. `jdbc:postgresql:gatling`),
-* the username and password are the credentials to access the database,
-* sql is the query that will get the values needed.
-
-Only JDBC4 drivers are supported, so that they automatically register to the DriverManager.
-
-{{< alert tip >}}
-Do not forget to add the required JDBC driver jar in the classpath (`lib` folder in the bundle)
-{{< /alert >}}
-
-## Sitemap feeder
+### Sitemap feeder
 
 Gatling supports a feeder that reads data from a [Sitemap](http://www.sitemaps.org/protocol.html) file.
 
@@ -217,6 +163,44 @@ Map(
 ) 
 ```
 
+### Zipped files
+
+If your files are very large, you can provide them zipped and ask gatling to `unzip` them on the fly:
+
+{{< include-code "unzip" >}}
+
+Supported formats are gzip and zip (but archive must contain only one single file).
+
+### Distributed files {{% badge enterprise "Enterprise" /%}} {#distributed}
+
+If you want to run distributed with [Gatling Enterprise](https://gatling.io/products/)
+and you want to distribute data so that users don't use the same data when they run on different cluster nodes, you can use the `shard` option.
+For example, if you have a file with 30,000 records deployed on 3 nodes, each will use a 10,000 records slice.
+
+{{< alert warning >}}
+`shard` is only effective when running with Gatling Enterprise, otherwise it's just a noop.
+{{< /alert >}}
+
+{{< include-code "shard" >}}
+
+## JDBC feeder {#jdbc}
+
+Gatling also provides a builtin that reads from a JDBC connection.
+
+{{< include-code "jdbc-feeder" >}}
+
+Just like File parser built-ins, this returns a `RecordSeqFeederBuilder` instance.
+
+* The databaseUrl must be a JDBC URL (e.g. `jdbc:postgresql:gatling`),
+* the username and password are the credentials to access the database,
+* sql is the query that will get the values needed.
+
+Only JDBC4 drivers are supported, so that they automatically register to the DriverManager.
+
+{{< alert tip >}}
+Do not forget to add the required JDBC driver jar in the classpath (`lib` folder in the bundle)
+{{< /alert >}}
+
 ## Redis feeder {#redis}
 
 This feature was originally contributed by Krishnen Chedambarum.
@@ -241,6 +225,17 @@ You can then override the desired Redis command:
 You can create a circular feeder by using the same keys with RPOPLPUSH
 
 {{< include-code "redis-RPOPLPUSH" >}}
+
+## Strategies
+
+Gatling provides multiple strategies for the built-in feeders:
+
+{{< include-code "strategies" >}}
+
+{{< alert warning >}}
+When using the default `queue` or `shuffle` strategies, make sure that your dataset contains enough records.
+If your feeder runs out of records, Gatling will self shut down.
+{{< /alert >}}
 
 ## Transforming records {#transform}
 
@@ -271,3 +266,11 @@ Beware that each `readRecords` call will read the underlying source, eg parse th
 Sometimes, you want to know the size of your feeder without having to use `readRecords` and copy all the data in memory.
 
 {{< include-code "recordsCount" >}}
+
+## Custom feeders {#custom}
+
+Feeder is a type alias for `Iterator<Map<String, T>>`, meaning that the component created by the feed method will poll `Map<String, T>` records and inject its content.
+
+It's very simple to build a custom one. For example, here's how one could build a random email generator:
+
+{{< include-code "random-mail-generator" >}}
