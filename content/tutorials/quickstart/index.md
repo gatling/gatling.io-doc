@@ -8,11 +8,11 @@ badge:
   label: Enterprise
 ---
 
-This tutorial describes step-by-step instructions for running your first simulation with Gatling Enterprise Cloud.
+This tutorial describes step-by-step instructions for running your first simulation with Gatling Enterprise.
 
 {{< alert info >}}
 **Requirements**
-* A Gatling Enterprise Cloud account. Sign up for a [free trial](https://cloud.gatling.io) if you don't already have an account.
+* A Gatling Enterprise account. Sign up for a [free trial](https://cloud.gatling.io) if you don't already have an account.
 {{< /alert >}}
 
 ## Introduction
@@ -28,7 +28,7 @@ Once you start your simulation, the load testing data are displayed in real-time
 The following guide assists you in writing and launching your first load test.
 To keep learning about Gatling and load testing, you can join the [Gatling Community](https://community.gatling.io).
 
-## Access Gatling Enterprise Cloud
+## Access Gatling Enterprise
 
 To access the Gatling no-code generator:
 

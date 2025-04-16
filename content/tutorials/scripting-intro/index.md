@@ -14,7 +14,7 @@ Gatling is a highly flexible load-testing platform. You can write load tests in 
 
 - [install and setup your local dev environment]({{< ref "#install-gatling" >}}),
 - [write your first simulation]({{< ref "#simulation-construction" >}}),
-- [run a simulation on Gatling Enterprise Cloud]({{< ref "#run-the-simulation-on-gatling-enterprise-cloud" >}}),
+- [run a simulation on Gatling Enterprise]({{< ref "#run-the-simulation-on-gatling-enterprise-cloud" >}}),
 - [run the simulation locally for debugging]({{< ref "#run-the-simulation-locally-for-debugging" >}}).
 
 {{< alert tip >}}
@@ -35,9 +35,9 @@ This section guides you through installation and setting up your developer envir
 
 This guide uses the Java SDK with the Maven wrapper. Gatling recommends that developers use the Java SDK unless they are already experienced with Scala or Kotlin. Java is widely taught in CS courses, requires less CPU for compiling, and is easier to configure in Maven and Gradle. You can adapt the steps to your development environment using reference documentation links provided throughout the guide.
 
-### Sign up for Gatling Enterprise Cloud
+### Sign up for Gatling Enterprise
 
-Gatling Enterprise Cloud is a fully managed SaaS solution for load testing. Sign up for a [trial account](https://auth.gatling.io/auth/realms/gatling/protocol/openid-connect/registrations?client_id=gatling-enterprise-cloud-public&response_type=code&scope=openid&redirect_uri=https%3A%2F%2Fcloud.gatling.io%2Fr%2Fgatling) to run your first test on Gatling Enterprise Cloud. The [Gatling website](https://gatling.io/features) has a full list of Enterprise features.
+Gatling Enterprise is a fully managed SaaS solution for load testing. Sign up for a [trial account](https://auth.gatling.io/auth/realms/gatling/protocol/openid-connect/registrations?client_id=gatling-enterprise-cloud-public&response_type=code&scope=openid&redirect_uri=https%3A%2F%2Fcloud.gatling.io%2Fr%2Fgatling) to run your first test on Gatling Enterprise. The [Gatling website](https://gatling.io/features) has a full list of Enterprise features.
 
 ### Clone Gatling demo repository { #install-gatling }
 
@@ -121,7 +121,7 @@ block. The following example adds 2 users per second for 60 seconds. See the
 {{< include-code "ScriptingIntro4Sample#define-the-injection-profile" java >}}
 
 Congrats! You have written your first Gatling simulation. The next step is to learn how to run the simulation locally
-and on Gatling Enterprise Cloud.
+and on Gatling Enterprise.
 
 ## Test execution
 
@@ -129,7 +129,7 @@ Now, you should have a completed simulation that looks like the following:
 
 {{< include-code "BasicSimulation#full-example" java >}}
 
-### Run the Simulation on Gatling Enterprise Cloud
+### Run the Simulation on Gatling Enterprise
 
 You can package, deploy, and run your simulation using one of two approaches, depending on whether you prefer a manual or automated process.
 
@@ -156,14 +156,14 @@ You can package, deploy, and run your simulation using one of two approaches, de
 
 #### Advanced Use Case with Automated Deployments (Configuration-as-Code)
 
-Gatling Enterprise Cloud is a feature-rich SaaS platform that is designed for teams and organizations to get the most
+Gatling Enterprise is a feature-rich SaaS platform that is designed for teams and organizations to get the most
 out of load testing. With the trial account, you created in the [Prerequisites section]({{< ref "#install-gatling" >}}), you can upload and run your test with advanced configuration, reporting, and collaboration features.
 
-From Gatling 3.11 packaging and running simulations on Gatling Enterprise Cloud is simplified by using [configuration as code]({{< ref "reference/execute/cloud/user/configuration-as-code" >}}). In this tutorial, we only use the default configuration to demonstrate deploying your project. You can learn more about customizing your configuration with our [configuration-as-code guide]({{< ref "guides/custom-config/config-as-code" >}}).
+From Gatling 3.11 packaging and running simulations on Gatling Enterprise is simplified by using [configuration as code]({{< ref "reference/execute/cloud/user/configuration-as-code" >}}). In this tutorial, we only use the default configuration to demonstrate deploying your project. You can learn more about customizing your configuration with our [configuration-as-code guide]({{< ref "guides/custom-config/config-as-code" >}}).
 
-To deploy and run your simulation on Gatling Enterprise Cloud, use the following procedure:
+To deploy and run your simulation on Gatling Enterprise, use the following procedure:
 
-1. Generate an [API token]({{< ref "/reference/execute/cloud/admin/api-tokens" >}}) with the `Configure` permission in your Gatling Enterprise Cloud account.
+1. Generate an [API token]({{< ref "/reference/execute/cloud/admin/api-tokens" >}}) with the `Configure` permission in your Gatling Enterprise account.
 2. Add the API token to your current terminal session by replacing `<your-API-token>` with the API token generated in step 1 and running the following command:
 
    {{< platform-toggle >}}
@@ -192,7 +192,7 @@ Watch the Simulation deploy automatically and generate real-time reports.
 ### Run the Simulation locally for debugging {{% badge info "Optional" /%}} {#run-the-simulation-locally-for-debugging}
 
 The open-source version of Gatling allows you to run simulations locally, generating load from your computer. Running a
-new or modified simulation locally is often useful to ensure it works before launching it on Gatling Enterprise Cloud.
+new or modified simulation locally is often useful to ensure it works before launching it on Gatling Enterprise.
 Using the Java SDK, you can launch your test in interactive mode using the following approach:
 
 1. In the `java/maven` directory, run the following command:

@@ -1,7 +1,7 @@
 ---
 title: Control plane setup for private locations
 menutitle: Introduction
-description: Learn how to configure and install a control plane to use Private Locations for Gatling Enterprise Cloud.
+description: Learn how to configure and install a control plane to use Private Locations for Gatling Enterprise.
 lead: Private Locations on your own private account.
 date: 2021-11-07T14:29:04+00:00
 ---
@@ -114,7 +114,7 @@ For examples of installations, see:
 * [Kubernetes deployment]({{< ref "kubernetes/installation" >}})
 * [Docker container deployment]({{< ref "dedicated/installation" >}})
 
-## Managing Control Planes on Gatling Enterprise Cloud
+## Managing Control Planes on Gatling Enterprise
 
 Once configured and running, your control plane status should go {{< badge success Up />}} within a few seconds,
 details are available by clicking on the {{< icon eye >}} button.

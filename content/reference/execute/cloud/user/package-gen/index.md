@@ -1,7 +1,7 @@
 ---
 title: Package Generation
-seotitle: Generate packages for Gatling Enterprise Cloud
-description: Learn how to package Gatling simulations for Gatling Enterprise Cloud from the Gatling zip bundle, or from a Maven, sbt, or Gradle project.
+seotitle: Generate packages for Gatling Enterprise
+description: Learn how to package Gatling simulations for Gatling Enterprise from the Gatling zip bundle, or from a Maven, sbt, or Gradle project.
 lead: Generate a package from your Gatling bundle or with a Maven, sbt, or Gradle project.
 aliases:
  - artifact_gen
@@ -16,7 +16,7 @@ upstream, using one of the methods below, before you can run them with Gatling E
 Gatling Enterprise is compatible with Gatling version from 3.5 to {{< var gatlingVersion >}} included, however, these instructions are aligned with the new Maven-based bundle released in Gatling 3.11.
 
 {{< alert tip >}}
-If you go to the [Simulations page]({{< ref "simulations" >}}) in the Gatling Enterprise Cloud app, you can click on
+If you go to the [Simulations page]({{< ref "simulations" >}}) in the Gatling Enterprise app, you can click on
 "Sample simulations" to download sample projects for all the options below.
 {{< /alert >}}
 

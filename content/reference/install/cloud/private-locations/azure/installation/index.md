@@ -1,7 +1,7 @@
 ---
 title: Azure locations installation
 menutitle: Installation
-seotitle: Install Azure locations in Gatling Enterprise Cloud
+seotitle: Install Azure locations in Gatling Enterprise
 description: How to install a Gatling Control Plane on Azure using Container Apps.
 lead: Run a Control Plane on Azure using Container Apps and Azure Files, to set up your Private Locations and run load generators in your own Azure network.
 date: 2023-03-04T16:00:00+00:00
@@ -257,9 +257,9 @@ Once you've configured your control plane container, it should automatically sta
 You can check logs in your application "Log stream" menu, or perform more complex requests in "Logs" menu.
 Be sure to select the currently active revision logs.
 
-Now that your control plane is up and running, after a short time you should see your control plane with {{< badge success >}}up{{< /badge >}} status in Gatling Enterprise Cloud.
+Now that your control plane is up and running, after a short time you should see your control plane with {{< badge success >}}up{{< /badge >}} status in Gatling Enterprise.
 
-{{< img src="azure-cp-status.png" alt="Checking out the Control Plane's status in Gatling Enterprise Cloud" >}}
+{{< img src="azure-cp-status.png" alt="Checking out the Control Plane's status in Gatling Enterprise" >}}
 
 ## Update your control plane
 

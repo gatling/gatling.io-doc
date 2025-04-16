@@ -221,12 +221,12 @@ Linux/MacOS: ./gradlew gatlingRecorder
 Windows: gradlew.bat gatlingRecorder
 {{</ platform-toggle >}}
 
-### Running your simulations on Gatling Enterprise Cloud
+### Running your simulations on Gatling Enterprise
 
 #### Prerequisites
 
 You need to configure an [an API token]({{< ref "reference/execute/cloud/admin/api-tokens" >}}) for most
-of the actions between the CLI and Gatling Enterprise Cloud.
+of the actions between the CLI and Gatling Enterprise.
 
 {{< alert warning >}}
 The API token needs the `Configure` role on expected teams.
@@ -251,7 +251,7 @@ gatling {
 }
 ```
 
-#### Deploying on Gatling Enterprise Cloud
+#### Deploying on Gatling Enterprise
 
 With `gatlingEnterpriseDeploy` command, you can:
 - Create, update and upload packages
@@ -272,7 +272,7 @@ Check the [Configuration as Code documentation]({{< ref "reference/execute/cloud
 {{< /alert >}}
 
 
-#### Start your simulations on Gatling Enterprise Cloud
+#### Start your simulations on Gatling Enterprise
 
 You can, using the `gatlingEnterpriseStart` command:
 - Automatically [deploy your package and associated simulations](#deploying-on-gatling-enterprise-cloud)
@@ -306,7 +306,7 @@ Here are additional options for this command:
 
 ##### Packaging
 
-You can directly package your simulations for Gatling Enterprise Cloud using:
+You can directly package your simulations for Gatling Enterprise using:
 
 {{< platform-toggle >}}
 Linux/MacOS: ./gradlew gatlingEnterprisePackage
@@ -336,7 +336,7 @@ You can also configure either of those using [Java System properties](https://do
 - packageId: `gatling.enterprise.packageId`
 - simulationId: `gatling.enterprise.simulationId`
 
-Then package and upload your simulation to Gatling Enterprise Cloud:
+Then package and upload your simulation to Gatling Enterprise:
 
 {{< platform-toggle >}}
 Linux/MacOS: ./gradlew gatlingEnterpriseUpload

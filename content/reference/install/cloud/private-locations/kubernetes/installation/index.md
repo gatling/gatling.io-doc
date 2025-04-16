@@ -1,7 +1,7 @@
 ---
 title: Kubernetes locations installation
 menutitle: Installation
-seotitle: Install Kubernetes locations in Gatling Enterprise Cloud
+seotitle: Install Kubernetes locations in Gatling Enterprise
 description: How to install a Gatling Control Plane on Kubernetes, to set up your Private Locations and run load generators in your own Kubernetes cluster.
 lead: Run a Control Plane on Kubernetes, to set up your Private Locations and run load generators in your own Kubernetes network.
 ---

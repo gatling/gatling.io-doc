@@ -15,7 +15,7 @@ This runner, packaged as a Docker image and [published on Docker Hub](https://hu
 
 This plugin doesn't create a new Gatling Enterprise simulation, you have to create it using the Gatling Enterprise Dashboard before.
 
-On Gatling Enterprise Cloud, you can do it using the options provided by our build tools plugins:
+On Gatling Enterprise, you can do it using the options provided by our build tools plugins:
 
 - [Maven]({{< ref "../build-tools/maven-plugin#running-your-simulations-on-gatling-enterprise-cloud" >}})
 - [Gradle]({{< ref "../build-tools/gradle-plugin#running-your-simulations-on-gatling-enterprise-cloud" >}})
@@ -35,11 +35,11 @@ You must first create an API token. It will be used to authenticate with Gatling
 
 You can store the API Token in a [Gitlab CI Variable](https://docs.gitlab.com/ee/ci/variables/#define-a-cicd-variable-in-the-ui) (make sure to check "Mask variable") with the name `GATLING_ENTERPRISE_API_TOKEN`, which our tools will detect automatically. Or if you [use a vault to store secrets](https://docs.gitlab.com/ee/ci/secrets/), store the API Token in your vault and retrieve its value to an environment variable named `GATLING_ENTERPRISE_API_TOKEN` in your Gitlab CI/CD configuration file.
 
-For Gatling Enterprise Cloud, the [API token]({{< ref "../../execute/cloud/admin/api-tokens" >}}) needs the **Start** permission.
+For Gatling Enterprise, the [API token]({{< ref "../../execute/cloud/admin/api-tokens" >}}) needs the **Start** permission.
 
 We also assume that you have already configured a simulation on Gatling Enterprise. You can copy the simulation ID from the simulations list view. In the following examples, we will show the simulation ID as `00000000-0000-0000-0000-000000000000`.
 
-See [Gatling Enterprise Cloud documentation]({{< ref "../../execute/cloud/user/simulations" >}}).
+See [Gatling Enterprise documentation]({{< ref "../../execute/cloud/user/simulations" >}}).
 
 ## Quickstart (minimal job configuration)
 
@@ -125,7 +125,7 @@ run-gatling-enterprise:
 
 - `OVERRIDE_LOAD_GENERATORS` {{< badge info >}}optional{{< /badge >}}: Overrides the simulation's load generators configuration. Must be formatted as a JSON object. Keys are the load generator IDs, which can be retrieved from the public API (using the `/pools` route). Weights are optional.
 
-  See [Gatling Enterprise Cloud public API documentation]({{< ref "../../execute/cloud/user/api" >}}).
+  See [Gatling Enterprise public API documentation]({{< ref "../../execute/cloud/user/api" >}}).
 
 - `FAIL_ACTION_ON_RUN_FAILURE` {{< badge info >}}optional{{< /badge >}} (defaults to `true`): If `true`, the Action will fail if the simulation run ends in an error (including failed assertions). Note: if set to `false` and the simulation ends in an error, some of the outputs may be missing (e.g. there will be no assertion results if the simulation crashed before the end).
 

@@ -1,8 +1,8 @@
 ---
 title: Public APIs
-seotitle: Gatling Enterprise Cloud public APIs
-description: Learn how to use the Gatling Enterprise Cloud public APIs with its Swagger (OpenAPI) documentation.
-lead: Usage of the Gatling Enterprise Cloud public API
+seotitle: Gatling Enterprise public APIs
+description: Learn how to use the Gatling Enterprise public APIs with its Swagger (OpenAPI) documentation.
+lead: Usage of the Gatling Enterprise public API
 date: 2021-03-08T12:50:24+00:00
 toc: false
 swagger-ui: true

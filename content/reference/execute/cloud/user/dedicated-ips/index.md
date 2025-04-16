@@ -1,9 +1,9 @@
 ---
 menutitle: Dedicated IPs 
 title: Dedicated IP addresses
-seotitle: Use dedicated IP addresses in Gatling Enterprise Cloud
-description: Request and use dedicated IP addresses for your load generator locations in Gatling Enterprise Cloud.
-lead: Dedicated IP addresses for your Gatling Enterprise Cloud locations.
+seotitle: Use dedicated IP addresses in Gatling Enterprise
+description: Request and use dedicated IP addresses for your load generator locations in Gatling Enterprise.
+lead: Dedicated IP addresses for your Gatling Enterprise locations.
 date: 2021-03-10T14:29:04+00:00
 ---
 

@@ -139,7 +139,7 @@ You can develop more complex scenarios that, for example, blend Postman Collecti
 
 ## Test execution
 
-### Run the Simulation on Gatling Enterprise Cloud
+### Run the Simulation on Gatling Enterprise
 
 You can package, deploy, and run your simulation using one of two approaches, depending on whether you prefer a manual or automated process.
 
@@ -165,14 +165,14 @@ You can package, deploy, and run your simulation using one of two approaches, de
 
 #### Advanced Use Case with Automated Deployments (Configuration-as-Code)
 
-Gatling Enterprise Cloud is a feature-rich SaaS platform that is designed for teams and organizations to get the most
+Gatling Enterprise is a feature-rich SaaS platform that is designed for teams and organizations to get the most
 out of load testing. With the [trial account](https://auth.gatling.io/auth/realms/gatling/protocol/openid-connect/registrations?client_id=gatling-enterprise-cloud-public&response_type=code&scope=openid&redirect_uri=https%3A%2F%2Fcloud.gatling.io%2Fr%2Fgatling), you can upload and run your test with advanced configuration, reporting, and collaboration features.
 
-From Gatling 3.11 packaging and running simulations on Gatling Enterprise Cloud is simplified by using [configuration as code]({{< ref "reference/execute/cloud/user/configuration-as-code" >}}). In this tutorial, we only use the default configuration to demonstrate deploying your project. You can learn more about customizing your configuration with our [configuration-as-code guide]({{< ref "guides/custom-config/config-as-code" >}}).
+From Gatling 3.11 packaging and running simulations on Gatling Enterprise is simplified by using [configuration as code]({{< ref "reference/execute/cloud/user/configuration-as-code" >}}). In this tutorial, we only use the default configuration to demonstrate deploying your project. You can learn more about customizing your configuration with our [configuration-as-code guide]({{< ref "guides/custom-config/config-as-code" >}}).
 
-To deploy and run your simulation on Gatling Enterprise Cloud, use the following procedure:
+To deploy and run your simulation on Gatling Enterprise, use the following procedure:
 
-1. Generate an [API token]({{< ref "/reference/execute/cloud/admin/api-tokens" >}}) with the `Configure` permission in your Gatling Enterprise Cloud account.
+1. Generate an [API token]({{< ref "/reference/execute/cloud/admin/api-tokens" >}}) with the `Configure` permission in your Gatling Enterprise account.
 2. Add the API token to your current terminal session by replacing `<your-API-token>` with the API token generated in step 1 and running the following command:
 
    {{< platform-toggle >}}
@@ -199,7 +199,7 @@ Watch the Simulation deploy automatically and generate real-time reports.
 ### Run the Simulation locally for debugging {{% badge info "Optional" /%}} {#run-the-simulation-locally-for-debugging}
 
 The open-source version of Gatling allows you to run simulations locally, generating load from your computer. Running a
-new or modified simulation locally is often useful to ensure it works before launching it on Gatling Enterprise Cloud.
+new or modified simulation locally is often useful to ensure it works before launching it on Gatling Enterprise.
 Using the JavaScript CLI, you can launch your test in interactive mode using the following approach:
 
 1. Run the following command:

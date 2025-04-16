@@ -1,7 +1,7 @@
 ---
 title: Dedicated locations configuration
 menutitle: Configuration
-seotitle: Configure dedicated locations in Gatling Enterprise Cloud
+seotitle: Configure dedicated locations in Gatling Enterprise
 description: Deploy load generators on dedicated machines that you manage.
 lead: Deploy load generators on dedicated machines that you manage.
 date: 2023-01-12T16:46:04+00:00

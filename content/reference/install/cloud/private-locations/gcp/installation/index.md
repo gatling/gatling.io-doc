@@ -1,7 +1,7 @@
 ---
 title: GCP locations installation
 menutitle: Installation
-seotitle: Install GCP locations in Gatling Enterprise Cloud
+seotitle: Install GCP locations in Gatling Enterprise
 description: How to install a Gatling Control Plane on GCP using Compute Engine, to set up your Private Locations and run load generators in your own GCP network.
 lead: Run a Control Plane on GCP using Compute Engine, to set up your Private Locations and run load generators in your own GCP network.
 date: 2023-09-03T16:00:00+00:00
@@ -155,9 +155,9 @@ Click **Create*
 
 ## Your Control Plane is up and running!
 
-After a short time, you should see your Control Plane get the "up" status in Gatling Enterprise Cloud.
+After a short time, you should see your Control Plane get the "up" status in Gatling Enterprise.
 
-{{< img src="gcp-control-plane-status.png" alt="Checking out the Control Plane's status in Gatling Enterprise Cloud" >}}
+{{< img src="gcp-control-plane-status.png" alt="Checking out the Control Plane's status in Gatling Enterprise" >}}
 
 You can now configure a simulation to run on one or more of this Control Plane's locations!
 
@@ -189,7 +189,7 @@ Directly updating the control plane image is possible but not recommended since 
 
 It's important to note that, based on your configuration, certain permissions may be missing, leading to deployment failures.
 
-If you encounter the following error within Gatling Enterprise Cloud:
+If you encounter the following error within Gatling Enterprise:
 ```
 Control plane 'cp_example' failed to deploy private location 'prl_example' failed to deploy: com.google.api.gax.rpc.PermissionDeniedException: Forbidden
 ```

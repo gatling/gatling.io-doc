@@ -22,7 +22,7 @@ All the configuration shown in this page is available on the demo project [gatli
 You will need:
 
 - A git repository: we will be using GitHub in our example
-- A working simulation on [Gatling Enterprise Cloud](https://cloud.gatling.io): you
+- A working simulation on [Gatling Enterprise](https://cloud.gatling.io): you
   will need its ID later on, which you can copy with **Copy Simulation ID to clipboard** in the Simulations page
 - An [API token]({{< ref "../../execute/cloud/admin/api-tokens" >}}) which needs the **Start** permission.
 

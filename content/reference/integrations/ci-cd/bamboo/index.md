@@ -33,7 +33,7 @@ The plugin needs some global configuration. Go to **Administration**, then **Glo
 
 Add two new variables:
 
-- the first one is named `frontline.address`, and corresponds to the address of Gatling Enterprise (`https://cloud.gatling.io` if using Gatling Enterprise Cloud).
+- the first one is named `frontline.address`, and corresponds to the address of Gatling Enterprise (`https://cloud.gatling.io` if using Gatling Enterprise).
 - the second one is named `frontline.apiTokenPassword`, and corresponds to the API token needs to authenticate to Gatling Enterprise:
   - the [API token]({{< ref "../../execute/cloud/admin/api-tokens" >}}) needs the **Start** permission.
 

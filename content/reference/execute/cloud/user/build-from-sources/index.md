@@ -1,7 +1,7 @@
 ---
 title: Build from sources
-seotitle: Gatling Enterprise Cloud Build from sources
-description: Learn how to deploy your Gatling project on Gatling Enterprise Cloud by connecting a source repository.
+seotitle: Gatling Enterprise Build from sources
+description: Learn how to deploy your Gatling project on Gatling Enterprise by connecting a source repository.
 date: 2024-03-10T14:29:04+00:00
 ---
 

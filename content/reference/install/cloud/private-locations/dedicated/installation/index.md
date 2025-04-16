@@ -1,7 +1,7 @@
 ---
 title: Dedicated locations installation
 menutitle: Installation
-seotitle: Install dedicated locations in Gatling Enterprise Cloud
+seotitle: Install dedicated locations in Gatling Enterprise
 description: How to install a Gatling Control Plane on Docker, to set up your Private Locations and run load generators.
 lead: Run a Control Plane on Docker, to set up your Private Locations and run load generators.
 date: 2021-11-15T16:00:00+00:00

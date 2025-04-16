@@ -1,7 +1,7 @@
 ---
 menutitle: User
-title: Gatling Enterprise Cloud user guide
-description: Learn how to create a Gatling Enterprise Cloud simulation, run it, and analyze the results.
+title: Gatling Enterprise user guide
+description: Learn how to create a Gatling Enterprise simulation, run it, and analyze the results.
 ordering:
   - login
   - overview

@@ -81,7 +81,7 @@ For example, if 1 user = 1 request, you can generate 64K users /second on your l
 
 Larger loads are possible with Gatling Enterprise by utilizing distributed testing and the ability to add additional load generators.
 
-For Gatling Enterprise Cloud, we use AWS EC2 instances as load generators, which can simulate up to 40,000 virtual users per second or the equivalent of 300,000 requests per second. However, not all requests are built equally and some may take more work from the injectors than others. To figure out how many injectors you need, we recommend starting with as few injectors as possible and checking the injector monitoring tab of your reports. You can determine if you need additional injectors based on metrics like CPU usage. 
+For Gatling Enterprise, we use AWS EC2 instances as load generators, which can simulate up to 40,000 virtual users per second or the equivalent of 300,000 requests per second. However, not all requests are built equally and some may take more work from the injectors than others. To figure out how many injectors you need, we recommend starting with as few injectors as possible and checking the injector monitoring tab of your reports. You can determine if you need additional injectors based on metrics like CPU usage. 
 
 ### Can I use Gatling's open-source edition with multiple load generators? 
 

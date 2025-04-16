@@ -182,12 +182,12 @@ npx gatling recorder
 
 You can check out other options with `npx gatling recorder --help`.
 
-### Running your simulations on Gatling Enterprise Cloud
+### Running your simulations on Gatling Enterprise
 
 #### Prerequisites
 
 You need to configure [an API token]({{< ref "/reference/execute/cloud/admin/api-tokens/" >}}) for most of the actions
-between the CLI and Gatling Enterprise Cloud.
+between the CLI and Gatling Enterprise.
 
 {{< alert warning >}}
 The API token needs the `Configure` role on expected teams.
@@ -202,7 +202,7 @@ Since you probably don't want to include you secret token in your source code, y
 Learn how to work with environment variables and JavaScript parameters in the [Configuration documentation]({{< ref "/reference/script/core/configuration#manage-configuration-values" >}}).
 {{< /alert >}}
 
-#### Packaging your simulations for Gatling Enterprise Cloud
+#### Packaging your simulations for Gatling Enterprise
 
 Use the `enterprise-package` command to create a package of your simulations to deploy on Gatling Enterprise.
 For instance:
@@ -222,7 +222,7 @@ npx gatling enterprise-package --package-file "target/my-package-file.zip"
 
 You can check out other options with `npx gatling enterprise-package --help`.
 
-#### Deploying on Gatling Enterprise Cloud
+#### Deploying on Gatling Enterprise
 
 With the `enterprise-deploy` command, you can:
 
@@ -253,7 +253,7 @@ Check the [Configuration as Code documentation]({{< ref "/reference/execute/clou
 the complete reference and advanced usage.
 {{< /alert >}}
 
-#### Start your simulations on Gatling Enterprise Cloud
+#### Start your simulations on Gatling Enterprise
 
 You can, using the `enterprise-start` command:
 

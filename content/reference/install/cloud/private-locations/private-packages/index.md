@@ -1,6 +1,6 @@
 ---
 title: Private packages
-seotitle: Private packages for Gatling Enterprise Cloud
+seotitle: Private packages for Gatling Enterprise
 description: How to install and use a private repository on your Control Plane.
 lead: Store your simulations' packages privately in your infrastructure, and use them with private locations.
 date: 2023-08-09T12:00:00+00:00
@@ -41,7 +41,7 @@ Before going further, ensure that your repository is ready to hold your packages
 
 ### Control plane server {#control-plane-server}
 
-The control plane with a private repository has a server to manage uploads to the repository, secured by a Gatling Enterprise Cloud API Token with `Configure` role.
+The control plane with a private repository has a server to manage uploads to the repository, secured by a Gatling Enterprise API Token with `Configure` role.
 
 The server is accessible on port 8080 by default when a repository is configured.
 The following **optional server configuration** with the default settings is provided for your reference.
@@ -267,5 +267,5 @@ To create a private package, use Gatling Plugin deployment commands with control
 
 ### Delete a private package
 
-To delete a private package, delete the package within Gatling Enterprise Cloud. 
+To delete a private package, delete the package within Gatling Enterprise. 
 The control plane will receive the order to delete the package on the configured private repository.

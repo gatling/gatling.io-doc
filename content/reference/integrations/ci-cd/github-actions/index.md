@@ -15,7 +15,7 @@ This Action enables you to start a Gatling Enterprise simulation directly from y
 
 This plugin doesn't create a new Gatling Enterprise simulation, you have to create it using the Gatling Enterprise Dashboard before.
 
-On Gatling Enterprise Cloud, you can do it using the options provided by our build tools plugins:
+On Gatling Enterprise, you can do it using the options provided by our build tools plugins:
 
 - [Maven]({{< ref "../build-tools/maven-plugin#running-your-simulations-on-gatling-enterprise-cloud" >}})
 - [Gradle]({{< ref "../build-tools/gradle-plugin#running-your-simulations-on-gatling-enterprise-cloud" >}})
@@ -36,11 +36,11 @@ You must first create an API token. It will be used to authenticate with Gatling
 We recommend storing the API Token [in a GitHub encrypted secret](https://docs.github.com/en/actions/security-guides/encrypted-secrets#using-encrypted-secrets-in-a-workflow).
 In the following examples, we assume the **API Token** is stored in a secret called `GATLING_ENTERPRISE_API_TOKEN`.
 
-For Gatling Enterprise Cloud, the [API token]({{< ref "../../execute/cloud/admin/api-tokens" >}}) needs the **Start** permission.
+For Gatling Enterprise, the [API token]({{< ref "../../execute/cloud/admin/api-tokens" >}}) needs the **Start** permission.
 
 We also assume that you have already configured a simulation on Gatling Enterprise. You can copy the simulation ID from the simulations list view. In the following examples, we will show the simulation ID as `00000000-0000-0000-0000-000000000000`.
 
-See [Gatling Enterprise Cloud documentation]({{< ref "../../execute/cloud/user/simulations" >}}).
+See [Gatling Enterprise documentation]({{< ref "../../execute/cloud/user/simulations" >}}).
 
 ## Quickstart (minimal job configuration)
 

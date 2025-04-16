@@ -1,8 +1,8 @@
 ---
 title: Help
-seotitle: Gatling Enterprise Cloud Help
-description: Learn how to access the documentation and plugins from Gatling Enterprise Cloud.
-lead: Access the documentation and plugins from Gatling Enterprise Cloud.
+seotitle: Gatling Enterprise Help
+description: Learn how to access the documentation and plugins from Gatling Enterprise.
+lead: Access the documentation and plugins from Gatling Enterprise.
 date: 2021-03-10T14:29:53+00:00
 ---
 

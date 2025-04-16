@@ -1,7 +1,7 @@
 ---
 title: AWS locations installation
 menutitle: Installation
-seotitle: Install AWS locations in Gatling Enterprise Cloud
+seotitle: Install AWS locations in Gatling Enterprise
 description: Learn how to install a Gatling Control Plane on AWS using Elastic Container Service (ECS) and Fargate, to set up your Private Locations and run load generators in your own AWS network.
 lead: Run a Control Plane on AWS using Elastic Container Service (ECS) and Fargate, to set up your Private Locations and run load generators in your own AWS network.
 date: 2021-11-15T16:00:00+00:00
@@ -380,6 +380,6 @@ If you kept the default logging configuration, the control plane's logs are sent
 After a short time, you should see your Control Plane get the {{< badge success Up />}} status in Gatling Enterprise
 Cloud.
 
-{{< img src="ecs-control-plane-status.png" alt="Checking out the Control Plane's status in Gatling Enterprise Cloud" >}}
+{{< img src="ecs-control-plane-status.png" alt="Checking out the Control Plane's status in Gatling Enterprise" >}}
 
 You can now configure a simulation to run on one or more of this Control Plane's locations!

@@ -118,7 +118,7 @@ This behavior differs from what was previously possible, eg. calling `test` with
 However, this caused many interferences with other testing libraries and forcing the use of a prefix solves those issues.
 {{< /alert >}}
 
-### Running your simulations on Gatling Enterprise Cloud
+### Running your simulations on Gatling Enterprise
 
 {{< alert info >}}
 To work from the `it` configuration, simply replace `Gatling/` with `GatlingIt/` in the
@@ -128,7 +128,7 @@ configuration and commands.
 #### Prerequisites
 
 You need to configure an [an API token]({{< ref "reference/execute/cloud/admin/api-tokens" >}}) for most
-of the actions between the CLI and Gatling Enterprise Cloud.
+of the actions between the CLI and Gatling Enterprise.
 
 {{< alert warning >}}
 The API token needs the `Configure` role on expected teams.
@@ -148,7 +148,7 @@ If really needed, you can also configure it in your build.sbt:
 Gatling / enterpriseApiToken := "YOUR_API_TOKEN"
 ```
 
-#### Deploying on Gatling Enterprise Cloud
+#### Deploying on Gatling Enterprise
 
 With `Gatling/enterpriseDeploy` command, you can:
 - Create, update and upload packages
@@ -168,7 +168,7 @@ You can run this command without any configuration to try it.
 Check the [Configuration as Code documentation]({{< ref "reference/execute/cloud/user/configuration-as-code" >}}) for the complete reference and advanced usage.
 {{< /alert >}}
 
-#### Start your simulations on Gatling Enterprise Cloud
+#### Start your simulations on Gatling Enterprise
 
 You can, using the `gatling:enterpriseStart` command:
 - Automatically [deploy your package and associated simulations](#deploying-on-gatling-enterprise-cloud)
@@ -197,7 +197,7 @@ Here are additional options for this command:
 
 ##### Packaging
 
-You can directly package your simulations for Gatling Enterprise Cloud using:
+You can directly package your simulations for Gatling Enterprise using:
 
 ```shell
 sbt Gatling/enterprisePackage

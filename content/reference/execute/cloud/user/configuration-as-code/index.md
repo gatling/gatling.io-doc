@@ -1,18 +1,18 @@
 ---
 title: Configuration As Code
-seotitle: Gatling Enterprise Cloud Deployment with Configuration As Code
-description: Guides you through deploying your Gatling project on Gatling Enterprise Cloud.
+seotitle: Gatling Enterprise Deployment with Configuration As Code
+description: Guides you through deploying your Gatling project on Gatling Enterprise.
 date: 2024-03-10T14:29:04+00:00
 ---
 
 # Introduction
 
-Helps you quickly create and maintain your Simulations on Gatling Enterprise Cloud directly from your
+Helps you quickly create and maintain your Simulations on Gatling Enterprise directly from your
 project configuration through a simple command of your Gatling Build Plugin.
 
 ## Pre-requisites
 
-On Gatling Enterprise Cloud:
+On Gatling Enterprise:
 
 - [Create an account]({{< ref "./login/#create-your-own-account" >}})
 - [Create or join an organization]({{< ref "./login/#login" >}})
@@ -25,9 +25,9 @@ For a better understanding, see references for underlying concepts:
 
 ## Usage
 
-To deploy your Gatling project on Gatling Enterprise Cloud, follow these steps:
+To deploy your Gatling project on Gatling Enterprise, follow these steps:
 
-1. Configure the Gatling Enterprise Cloud [API Token]({{< ref "reference/execute/cloud/admin/api-tokens" >}}) within your Gatling Build Plugin:
+1. Configure the Gatling Enterprise [API Token]({{< ref "reference/execute/cloud/admin/api-tokens" >}}) within your Gatling Build Plugin:
    - [Gatling Plugin with Maven]({{< ref "reference/integrations/build-tools/maven-plugin/#prerequisites" >}})
    - [Gatling Plugin with Gradle]({{< ref "reference/integrations/build-tools/gradle-plugin/#prerequisites" >}})
    - [Gatling Plugin with sbt]({{< ref "reference/integrations/build-tools/sbt-plugin/#prerequisites" >}})
@@ -54,10 +54,10 @@ When no additional configuration is provided, the deployment process follows the
 2. Creation of Simulations within the package:
     1. Each Simulation is named after its simulation class.
     2. The team assigned to the simulation is inherited from the package.
-    3. Locations are defaulted by Gatling Enterprise Cloud.
+    3. Locations are defaulted by Gatling Enterprise.
 
 {{< alert info >}}
-During subsequent deployments without additional configuration, inferred values will be sourced from existing simulations on Gatling Enterprise Cloud based on their names.
+During subsequent deployments without additional configuration, inferred values will be sourced from existing simulations on Gatling Enterprise based on their names.
 
 This means that if the simulation name remains unchanged but other properties have been modified in the Cloud UI, those modifications will remain.
 {{< /alert >}}
@@ -113,7 +113,7 @@ gatling.enterprise.package {
 
 To deploy only some of the simulations in your Gatling project, you can configure `simulations` for a given Package.
 
-Only configured simulation classes will be deployed to Gatling Enterprise Cloud.
+Only configured simulation classes will be deployed to Gatling Enterprise.
 
 For example, a project with multiple simulations `com.example.SimulationA` and `io.gatling.SimulationB` , where you only want to deploy `com.example.SimulationA`.
 
