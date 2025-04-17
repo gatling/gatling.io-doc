@@ -31,12 +31,12 @@ To deploy your Gatling project on Gatling Enterprise, follow these steps:
    - [Gatling Plugin with Maven]({{< ref "reference/integrations/build-tools/maven-plugin/#prerequisites" >}})
    - [Gatling Plugin with Gradle]({{< ref "reference/integrations/build-tools/gradle-plugin/#prerequisites" >}})
    - [Gatling Plugin with sbt]({{< ref "reference/integrations/build-tools/sbt-plugin/#prerequisites" >}})
-   - [JavaScript or TypeScript with npm]({{< ref "reference/integrations/build-tools/js-cli/#running-your-simulations-on-gatling-enterprise-cloud" >}})
+   - [JavaScript or TypeScript with npm]({{< ref "reference/integrations/build-tools/js-cli/#running-your-simulations-on-gatling-enterprise" >}})
 2. Use the following command for deployment:
-    - [Maven]({{< ref "reference/integrations/build-tools/maven-plugin/#deploying-on-gatling-enterprise-cloud" >}}): `mvn gatling:enterpriseDeploy`
-    - [Gradle]({{< ref "reference/integrations/build-tools/gradle-plugin/#deploying-on-gatling-enterprise-cloud" >}}): `gradle gatlingEnterpriseDeploy`
-    - [sbt]({{< ref "reference/integrations/build-tools/sbt-plugin/#deploying-on-gatling-enterprise-cloud" >}}): `sbt Gatling/enterpriseDeploy`
-    - [JavaScript or TypeScript with npm]({{< ref "reference/integrations/build-tools/js-cli/#deploying-on-gatling-enterprise-cloud" >}}): `npx gatling enterprise-deploy`
+    - [Maven]({{< ref "reference/integrations/build-tools/maven-plugin/#deploying-on-gatling-enterprise" >}}): `mvn gatling:enterpriseDeploy`
+    - [Gradle]({{< ref "reference/integrations/build-tools/gradle-plugin/#deploying-on-gatling-enterprise" >}}): `gradle gatlingEnterpriseDeploy`
+    - [sbt]({{< ref "reference/integrations/build-tools/sbt-plugin/#deploying-on-gatling-enterprise" >}}): `sbt Gatling/enterpriseDeploy`
+    - [JavaScript or TypeScript with npm]({{< ref "reference/integrations/build-tools/js-cli/#deploying-on-gatling-enterprise" >}}): `npx gatling enterprise-deploy`
     
 {{< alert tip >}}
 Demo projects are available with a fully configured [Package Descriptor example]({{< ref "#package-descriptor" >}}) for each Build Plugin: [Maven](https://github.com/gatling/gatling-maven-plugin-demo-java/tree/main/.gatling/example.package.conf), [Gradle](https://github.com/gatling/gatling-gradle-plugin-demo-java/tree/main/.gatling/example.package.conf), and [sbt](https://github.com/gatling/gatling-sbt-plugin-demo/tree/main/.gatling/example.package.conf)

@@ -155,4 +155,4 @@ include all requests defined in sub-folders (at any depth).
 
 ## Run Postman-based tests on Gatling Enterprise
 
-To run Postman-based tests on Gatling Enterprise you need to package your test and upload it to the Gatling Enterprise platform. See the [JavaScript SDK documentation]({{< ref "reference/integrations/build-tools/js-cli/#running-your-simulations-on-gatling-enterprise-cloud" >}}) for packaging and deployment options. 
+To run Postman-based tests on Gatling Enterprise you need to package your test and upload it to the Gatling Enterprise platform. See the [JavaScript SDK documentation]({{< ref "reference/integrations/build-tools/js-cli/#running-your-simulations-on-gatling-enterprise" >}}) for packaging and deployment options. 

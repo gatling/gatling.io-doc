@@ -166,7 +166,7 @@ You can package, deploy, and run your simulation using one of two approaches, de
 #### Advanced Use Case with Automated Deployments (Configuration-as-Code)
 
 Gatling Enterprise is a feature-rich SaaS platform that is designed for teams and organizations to get the most
-out of load testing. With the [trial account](https://auth.gatling.io/auth/realms/gatling/protocol/openid-connect/registrations?client_id=gatling-enterprise-cloud-public&response_type=code&scope=openid&redirect_uri=https%3A%2F%2Fcloud.gatling.io%2Fr%2Fgatling), you can upload and run your test with advanced configuration, reporting, and collaboration features.
+out of load testing. With the [trial account](https://auth.gatling.io/auth/realms/gatling/protocol/openid-connect/registrations?client_id=gatling-enterprise-public&response_type=code&scope=openid&redirect_uri=https%3A%2F%2Fcloud.gatling.io%2Fr%2Fgatling), you can upload and run your test with advanced configuration, reporting, and collaboration features.
 
 From Gatling 3.11 packaging and running simulations on Gatling Enterprise is simplified by using [configuration as code]({{< ref "reference/execute/cloud/user/configuration-as-code" >}}). In this tutorial, we only use the default configuration to demonstrate deploying your project. You can learn more about customizing your configuration with our [configuration-as-code guide]({{< ref "guides/custom-config/config-as-code" >}}).
 

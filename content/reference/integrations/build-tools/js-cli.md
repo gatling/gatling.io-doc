@@ -131,7 +131,7 @@ You can check out more details with `npx gatling enterprise-deploy --help` or `n
 
 If you cannot give Internet access to the `gatling` CLI tool, you can still manually install the required Gatling
 runtime bundle to be able to [run simulations locally](#running-your-simulations) or
-[package them for Gatling Enterprise](#packaging-your-simulations-for-gatling-enterprise-cloud).
+[package them for Gatling Enterprise](#packaging-your-simulations-for-gatling-enterprise).
 
 To do so, manually download the file from
 [the releases page](https://github.com/gatling/gatling-js/releases/), being careful to choose the same version
@@ -257,7 +257,7 @@ the complete reference and advanced usage.
 
 You can, using the `enterprise-start` command:
 
-- Automatically [deploy your package and associated simulations](#deploying-on-gatling-enterprise-cloud)
+- Automatically [deploy your package and associated simulations](#deploying-on-gatling-enterprise)
 - Start a deployed simulation
 
 By default, the Gatling plugin prompts the user to choose a simulation to start from amongst the deployed simulations.

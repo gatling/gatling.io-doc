@@ -156,7 +156,7 @@ Check the [Configuration as Code documentation]({{< ref "reference/execute/cloud
 #### Start your simulations on Gatling Enterprise
 
 You can, using the `gatling:enterpriseStart` command:
-- Automatically [deploy your package and associated simulations](#deploying-on-gatling-enterprise-cloud)
+- Automatically [deploy your package and associated simulations](#deploying-on-gatling-enterprise)
 - Start a deployed simulation
 
 By default, the Gatling plugin prompts the user to choose a simulation to start from amongst the deployed simulations.
@@ -239,7 +239,7 @@ Configure the [Control Plane URL]({{< ref "/reference/install/cloud/private-loca
 </plugin>
 ```
 
-Once configured, your private package can be created and uploaded using the [deploy command]({{< ref "#deploying-on-gatling-enterprise-cloud" >}}).
+Once configured, your private package can be created and uploaded using the [deploy command]({{< ref "#deploying-on-gatling-enterprise" >}}).
 
 ## Integrating with the Maven lifecycle
 
