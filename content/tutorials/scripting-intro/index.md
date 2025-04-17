@@ -37,7 +37,7 @@ This guide uses the Java SDK with the Maven wrapper. Gatling recommends that dev
 
 ### Sign up for Gatling Enterprise
 
-Gatling Enterprise is a fully managed SaaS solution for load testing. Sign up for a [trial account](https://auth.gatling.io/auth/realms/gatling/protocol/openid-connect/registrations?client_id=gatling-enterprise-public&response_type=code&scope=openid&redirect_uri=https%3A%2F%2Fcloud.gatling.io%2Fr%2Fgatling) to run your first test on Gatling Enterprise. The [Gatling website](https://gatling.io/features) has a full list of Enterprise features.
+Gatling Enterprise is a fully managed SaaS solution for load testing. Sign up for a [trial account](https://cloud.gatling.io/) to run your first test on Gatling Enterprise. The [Gatling website](https://gatling.io/features) has a full list of Enterprise features.
 
 ### Clone Gatling demo repository { #install-gatling }
 

@@ -19,7 +19,7 @@ we recommend trying the [Intro to scripting]({{< ref "/tutorials/scripting-intro
 ## Prerequisites 
 
 - A Gatling Project _(Demo projects: [Maven](https://github.com/gatling/gatling-maven-plugin-demo-java), [Gradle](https://github.com/gatling/gatling-gradle-plugin-demo-java), [sbt](https://github.com/gatling/gatling-sbt-plugin-demo), [JavaScript](https://github.com/gatling/gatling-js-demo))_
-- A Gatling Enterprise account [sign up for a free trial](https://auth.gatling.io/auth/realms/gatling/protocol/openid-connect/registrations?client_id=gatling-enterprise-public&response_type=code&scope=openid&redirect_uri=https%3A%2F%2Fcloud.gatling.io%2Fr%2Fgatling)
+- A Gatling Enterprise account [sign up for a free trial](https://cloud.gatling.io/)
 - An [API token]({{< ref "/reference/execute/cloud/admin/api-tokens" >}}) with the **`Configure`** permission
 
 ## Configure the package descriptor

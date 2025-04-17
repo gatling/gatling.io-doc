@@ -10,7 +10,7 @@ date: 2025-02-28T6:30:56+02:00
 
 ## Prerequisites
 
-- A Gatling Enterprise account [sign up for a free trial here](https://auth.gatling.io/auth/realms/gatling/protocol/openid-connect/registrations?client_id=gatling-enterprise-public&response_type=code&scope=openid&redirect_uri=https%3A%2F%2Fcloud.gatling.io%2Fr%2Fgatling&utm_campaign=4001205-Blog&utm_source=documentation&utm_term=postman)
+- A Gatling Enterprise account [sign up for a free trial here](https://cloud.gatling.io/)
 - A Postman collection
 
 ## Step 1: Export your Postman Collection
