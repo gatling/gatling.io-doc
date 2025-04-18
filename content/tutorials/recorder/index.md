@@ -226,7 +226,7 @@ Watch the Simulation deploy automatically and generate real-time reports.
 
 The open-source version of Gatling allows you to run simulations locally, generating load from your computer. Running a
 new or modified simulation locally is often useful to ensure it works before launching it on Gatling Enterprise Cloud.
-Using one of the JDK plugins or the Javascript CLI, you can launch your test in interactive mode. The following examples are for Maven and the JavaScript CLI. The [Gradle]({{< ref "/reference/integrations/build-tools/gradle-plugin" >}}) and [sbt]({{< ref "/reference/integrations/build-tools/sbt-plugin" >}}) plugins are documented separately.
+You can launch your test in interactive mode using one of the JDK build tool plugins or the JavaScript CLI. The following examples are for Maven and the JavaScript CLI. The [Gradle]({{< ref "/reference/integrations/build-tools/gradle-plugin" >}}) and [sbt]({{< ref "/reference/integrations/build-tools/sbt-plugin" >}}) plugins are documented separately.
 
 1. Run the following command:
 

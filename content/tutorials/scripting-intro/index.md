@@ -142,7 +142,7 @@ You can package, deploy, and run your simulation using one of two approaches, de
    Windows: mvnw.cmd gatling:enterprisePackage
    {{</ platform-toggle >}}
 
-2. The above command will create a packaged `zip` file in your project's **target** directory.
+2. The above command will create a packaged `jar` file in your project's **target** directory.
 
 3. From your Gatling Enterprise console, go to **Packages**. Create a new package specifying its name, team that owns it, select your packaged jar file for upload then click **Save**.
 
