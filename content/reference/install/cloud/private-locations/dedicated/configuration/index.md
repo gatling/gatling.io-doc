@@ -15,6 +15,10 @@ You might want to tune the `Xmx` JVM options to half of the physical memory.
 See `jvm-options` configuration below.
 If you don't, the JVM will use a max heap size of 1/4th of the physical memory.
 
+{{< alert warning >}}
+Each dedicated machine host must be assigned to a single location and control plane. 
+{{< /alert >}}
+
 ## Permissions
 
 You can configure private locations with pre-existing servers. 
