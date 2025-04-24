@@ -15,6 +15,7 @@ Run simulations by simply plugging your git repository.
 - Private Locations: Build from Sources is only compatible with [Private Locations]({{< ref "reference/install/cloud/private-locations/introduction" >}}). Ensure these are configured first.
 - Control Plane image: Use `gatlingcorp/control-plane:latest-builder` instead of `gatlingcorp/control-plane:latest`.
 - Allocate adequate CPU and memory resources according to your project's compilation needs.
+- Git repository with a compatible Gatling plugin version configured
 
 ## Configuration
 
@@ -39,10 +40,10 @@ StrictHostKeyChecking no
 
 **Set Key Permissions:**
 
-Ensure `/app/.ssh/id_gatling` has permissions **644**:
-- Owner: Read & Write
-- Group: Read
-- Others: Read
+Ensure `/app/.ssh/id_gatling` has permissions **400**:
+- Owner: Read
+- Group: -
+- Others: -
 
 **Host Verification (Optional):**
 
@@ -77,13 +78,18 @@ EOF
 - Never include credentials in repository URLs within Gatling Enterprise.
 - Review [Git credentials documentation](https://git-scm.com/docs/gitcredentials) for advanced configurations.
 
-### Build cache
+### Build tools
 
-To ensure build tool caches persist across different builder upgrades, mount a volume for the following directories:
-- Maven cache: `/app/.m2`
-- Gradle cache: `/app/.gradle`
-- SBT cache: `/app/.sbt`
-- NPM cache: `/app/.npm`
+| Build Tool | Gatling Plugin Version | Image Cache Path  |
+|-----------:|------------------------|-------------------|
+|  **Maven** | `4.16.3`               | `/app/.m2`        |
+| **Gradle** | `3.13.5.4`             | `/app/.gradle`    |
+|    **SBT** | `4.13.3`               | `/app/.sbt`       |
+|    **NPM** | `3.13.501`             | `/app/.npm`       |
+
+**Gatling Plugin Version**: The minimum compatible version of each build tool plugin that supports build from sources.
+
+**Image Cache Path**: Ensure build tool caches persist across different upgrades by mounting a volume to the given path.
 
 ## Usage
 
