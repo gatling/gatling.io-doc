@@ -1,14 +1,15 @@
 ---
-title: Analyzing load tests with Gatling Enterprise's advanced reporting features
-menutitle: Analyzing load tests
-seotitle: Analyzing load tests with Gatling Enterprise's advanced reporting features
-description: Analyzing load tests with Gatling Enterprise's advanced reporting features
-lead: Analyzing load tests with Gatling Enterprise's advanced reporting features
+title: Understanding load tests with Gatling Enterprise's advanced reporting features
+menutitle: Understanding load tests
+seotitle: Understanding load tests with Gatling Enterprise's advanced reporting features
+description: Understanding load tests with Gatling Enterprise's advanced reporting features
+lead: Understanding load tests with Gatling Enterprise's advanced reporting features
 date: 2025-02-28T15:30:56+02:00
-badge:
-  type: enterprise
-  label: Enterprise
 ---
+
+{{< alert enterprise >}}
+These features are only available on Gatling Enterprise. To learn more, [explore our plans](https://gatling.io/pricing?utm_source=docs)
+{{< /alert >}}
 
 ## Introduction
 

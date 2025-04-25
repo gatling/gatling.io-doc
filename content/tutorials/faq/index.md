@@ -1,9 +1,11 @@
 ---
-menutitle: FAQ
-title: Gatling frequently asked questions (FAQ)
+menutitle: Common questions
+title: Common questions about Gatling and Gatling Enterprise
 description: Common questions and answers
 lead: Common questions and answers
 date: 2021-04-20T18:30:56+02:00
+aliases: 
+    - /guides/faq
 ---
 
 Below are answers to some of the questions we receive regularly from Gatling and Gatling Enterprise users.
@@ -101,7 +103,7 @@ For example, one can configure [multiple executions](http://maven.apache.org/gui
 Are you sure that some requests are not being cached?
 Gatling does its best to simulate real users' behavior, so HTTP caching is enabled by default.
 
-Depending on your use case, you might either realize that the number of requests is actually perfectly fine, or you might want to [disable caching]({{< ref "/reference/script/protocols/http/protocol#disablecaching" >}}).
+Depending on your use case, you might either realize that the number of requests is actually perfectly fine, or you might want to [disable caching]({{< ref "/reference/script/http/protocol#disablecaching" >}}).
 
 ### How do I use the percentages in Gatling’s reports?
 
