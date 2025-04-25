@@ -4,10 +4,11 @@ seotitle: Gatling Postman getting started
 description: Learn how to use your Postman collections in Gatling load tests.
 lead: Use your Postman collections in Gatling load tests
 date: 2024-12-15T15:22:00+02:00
-badge:
-  type: enterprise
-  label: Enterprise
 ---
+
+{{< alert enterprise >}}
+Enhanced usage of this feature is available with Gatling Enterprise. [Explore our plans to learn more](https://gatling.io/pricing?utm_source=docs).
+{{< /alert >}}
 
 {{< alert warning >}}
 This guide is intended for Gatling versions `{{< var gatlingVersion >}}` and later.
@@ -36,7 +37,7 @@ The Gatling Postman component is designed to import Postman collections and run 
 - Request Authorization & Settings: Features like Basic Auth, Bearer Token handling, and advanced settings (e.g., disabling follow redirects). 
 - File Uploads: For now, file uploads are supported by placing files in your Gatling project's `resources` folder.
 
-More information about the current functionalities and limitations is available in the [reference documentation]({{< ref "/reference/script/protocols/postman/" >}}).
+More information about the current functionalities and limitations is available in the [reference documentation]({{< ref "/integrations/postman/" >}}).
 
 ## Installation
 
@@ -134,7 +135,7 @@ export default simulation((setUp) => {
 });
 ```
 {{< alert tip >}}
-You can develop more complex scenarios that, for example, blend Postman Collections and Gatling requests. To learn more about the complete SDK functionality, see the [reference documentation]({{< ref "/reference/script/protocols/postman/" >}}). 
+You can develop more complex scenarios that, for example, blend Postman Collections and Gatling requests. To learn more about the complete SDK functionality, see the [reference documentation]({{< ref "/integrations/postman/" >}}). 
 {{< /alert >}}
 
 ## Test execution
@@ -168,11 +169,11 @@ You can package, deploy, and run your simulation using one of two approaches, de
 Gatling Enterprise is a feature-rich SaaS platform that is designed for teams and organizations to get the most
 out of load testing. With the [trial account](https://cloud.gatling.io/), you can upload and run your test with advanced configuration, reporting, and collaboration features.
 
-From Gatling 3.11 packaging and running simulations on Gatling Enterprise is simplified by using [configuration as code]({{< ref "reference/execute/cloud/user/configuration-as-code" >}}). In this tutorial, we only use the default configuration to demonstrate deploying your project. You can learn more about customizing your configuration with our [configuration-as-code guide]({{< ref "guides/custom-config/config-as-code" >}}).
+From Gatling 3.11 packaging and running simulations on Gatling Enterprise is simplified by using [configuration as code]({{< ref "reference/run-tests/configuration-as-code" >}}). In this tutorial, we only use the default configuration to demonstrate deploying your project. You can learn more about customizing your configuration with our [configuration-as-code guide]({{< ref "guides/ci-cd-automations/config-as-code" >}}).
 
 To deploy and run your simulation on Gatling Enterprise, use the following procedure:
 
-1. Generate an [API token]({{< ref "/reference/execute/cloud/admin/api-tokens" >}}) with the `Configure` permission in your Gatling Enterprise account.
+1. Generate an [API token]({{< ref "/reference/collaborate/admin/api-tokens" >}}) with the `Configure` permission in your Gatling Enterprise account.
 2. Add the API token to your current terminal session by replacing `<your-API-token>` with the API token generated in step 1 and running the following command:
 
    {{< platform-toggle >}}

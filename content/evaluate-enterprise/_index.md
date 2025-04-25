@@ -1,0 +1,5 @@
+---
+title:
+ordering:
+  - trial-plan
+---

@@ -5,3 +5,4 @@
 /self-hosted-legacy-tmp
 /static/self-hosted-legacy
 target/
+package-lock.json
