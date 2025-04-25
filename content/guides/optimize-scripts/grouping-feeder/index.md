@@ -24,6 +24,6 @@ You want to make sure *user1* will pick *url1* and *url2* while *user2* will pic
 
 ## Suggested Solution
 
-The idea here is to use [`readRecords`]({{< ref "/reference/script/core/session/feeders#read-records" >}}) to load all the csv file records in memory so you can group them the way you want.
+The idea here is to use [`readRecords`]({{< ref "/concepts/session/feeders#read-records" >}}) to load all the csv file records in memory so you can group them the way you want.
 
 {{< include-code "grouping-feeder" >}}
