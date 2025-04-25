@@ -1,5 +1,5 @@
 ---
-title: Dynatrace integration
+title: Connect Gatling to Dynatrace
 seotitle: Integrate Gatling with Dynatrace
 description: Set a custom test header on all generated requests.
 lead: Set a custom test header on all generated requests.
@@ -38,6 +38,6 @@ The header `x-dynatrace-test` is used in the following example with the followin
 
 ## Defining a global signing function (example)
 
-The idea here is to use [`sign`]({{< ref "/reference/script/protocols/http/protocol#sign" >}}) on the HttpProtocol to define a global signing function to be applied on all generated requests.
+The idea here is to use [`sign`]({{< ref "/reference/script/http/protocol#sign" >}}) on the HttpProtocol to define a global signing function to be applied on all generated requests.
 
 {{< include-code "dynatrace-sample" >}}

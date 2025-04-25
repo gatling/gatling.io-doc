@@ -1,6 +1,6 @@
 ---
-title: Test complex use cases
-seotitle: Learn how to test complex use cases
+title: Use cases and protocols
+seotitle: Learn how to test specific use cases and protocols.
 description: Detailed guides to help you test specific protocols, authentication schemes, and application types.
 lead:  Detailed guides to help you test specific protocols, authentication schemes, and application types.
 ordering:
@@ -11,6 +11,4 @@ ordering:
   - kafka
   - docker-app
   - llm-api
-  - github-action-integration
-  - gitlab-ci-integration
 ---

@@ -14,7 +14,7 @@ Gatling provides a kind of language to **define** your load test, called a [DSL]
 {{< alert warning >}}
 The components of this DSL are mere **definitions** of the desired effect.
 They don't generate the desired effect where you invoke them in your own code.
-Only when chained with other components so they are ultimately passed to the [setUp]({{< ref "/reference/script/core/simulation#setup" >}}), can the Gatling engine interpret them and produce the desired effect.
+Only when chained with other components so they are ultimately passed to the [setUp]({{< ref "/concepts/simulation#setup" >}}), can the Gatling engine interpret them and produce the desired effect.
 {{< /alert >}}
 
 The example below doesn't execute 5 HTTP requests.
@@ -84,13 +84,13 @@ Each HTTP Request is easy to grasp (excluding page resources):
 1. *Access GitHub* is a *GET* request pointing at *https://github.com*
 2. *Search for 'gatling'* is a *GET* request pointing at *https://github.com/search?q=gatling*
 
-For more information, check the [Scenario reference section]({{< ref "/reference/script/core/scenario" >}}).
+For more information, check the [Scenario reference section]({{< ref "/concepts/scenario" >}}).
 
 ## Injection Profile
 
 An injection profile is the way Virtual Users are started. It's typically either a rate of users started per second over time (open workload) or a current number of users over time (closed workload).
 
-For more information, check the [Injection reference section]({{< ref "/reference/script/core/injection" >}}).
+For more information, check the [Injection reference section]({{< ref "/concepts/injection" >}}).
 
 ## Load Generator
 
@@ -109,7 +109,7 @@ Here is an example of simulation definition:
 
 {{< include-code "example-definition" >}}
 
-For more information, check the [Simulation Setup reference section]({{< ref "/reference/script/core/simulation" >}}).
+For more information, check the [Simulation Setup reference section]({{< ref "/concepts/simulation" >}}).
 
 ## Session
 
@@ -117,7 +117,7 @@ Each virtual user is backed by a *Session*.
 Those *Sessions* are the actual messages that go down the scenario workflow.
 A *Session* is basically a state placeholder, where testers can inject or capture and store data.
 
-For more information, check the [Session reference section]({{< ref "/reference/script/core/session/api#session" >}}).
+For more information, check the [Session reference section]({{< ref "/concepts/session/api#session" >}}).
 
 ## Feeders
 
@@ -127,7 +127,7 @@ Gatling doesn't provide tools to generate this test data.
 
 *Feeders* are a convenient API for testers to inject data from an external source into the virtual users' sessions.
 
-For more information, check the [Feeders reference section]({{< ref "/reference/script/core/session/feeders" >}}).
+For more information, check the [Feeders reference section]({{< ref "/concepts/session/feeders" >}}).
 
 ## Checks
 
@@ -140,13 +140,13 @@ For example, when sending an HTTP request, you could expect a HTTP redirect; wit
 
 *Checks* can also be used to capture some elements and store them into the Session so that they can be reused later, for example to build the next request.
 
-For more information, check the [Checks reference section]({{< ref "/reference/script/protocols/http/checks" >}}).
+For more information, check the [Checks reference section]({{< ref "/reference/script/http/checks" >}}).
 
 ## Assertions
 
 *Assertions* are used to define acceptance criteria on Gatling statistics (e.g. 99th percentile response time) that would make Gatling fail and return an error status code for the test as a whole.
 
-For more information, check the [Assertions reference section]({{< ref "/reference/script/core/assertions" >}}).
+For more information, check the [Assertions reference section]({{< ref "/concepts/assertions" >}}).
 
 ## Reports
 
