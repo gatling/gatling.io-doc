@@ -14,4 +14,6 @@ ordering:
   - 3.4-to-3.5
   - 3.3-to-3.4
   - 2.3-to-3.0
+  - migrate-gradle
+  - migrate-maven
 ---

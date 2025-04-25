@@ -20,7 +20,7 @@ import { http } from "@gatling.io/http";
 //#define-the-protocol-class
 export default simulation((setUp) => {
   // Define HTTP configuration
-  // Reference: https://docs.gatling.io/reference/script/protocols/http/protocol/
+  // Reference: https://docs.gatling.io/reference/script/http/protocol/
   const httpProtocol = http
     .baseUrl("https://api-ecomm.gatling.io")
     .acceptHeader("application/json")

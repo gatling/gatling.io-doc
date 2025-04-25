@@ -20,7 +20,7 @@ import { http } from "@gatling.io/http";
 
 export default simulation((setUp) => {
   // Define HTTP configuration
-  // Reference: https://docs.gatling.io/reference/script/protocols/http/protocol/
+  // Reference: https://docs.gatling.io/reference/script/http/protocol/
   const httpProtocol = http
     .baseUrl("https://api-ecomm.gatling.io")
     .acceptHeader("application/json")
@@ -29,11 +29,11 @@ export default simulation((setUp) => {
     );
 
   // Define scenario
-  // Reference: https://docs.gatling.io/reference/script/core/scenario/
+  // Reference: https://docs.gatling.io/concepts/scenario/
   const scn = scenario("Scenario").exec(http("Session").get("/session"));
   
   // Define injection profile and execute the test
-  // Reference: https://docs.gatling.io/reference/script/core/injection/
+  // Reference: https://docs.gatling.io/concepts/injection/
   setUp(scn.injectOpen(constantUsersPerSec(2).during(60)))
     .protocols(httpProtocol);
 });

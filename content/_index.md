@@ -5,40 +5,64 @@ date: 2021-04-20T18:30:56+02:00
 cascade:
   docsRepo: https://github.com/gatling/gatling.io-doc/blob/main/content
 ordering:
+  - evaluate-enterprise
   - tutorials
-  - reference
   - guides
+  - integrations
   - concepts
+  - testing-concepts
+  - reference
   - release-notes
   - project
 ---
 
-Gatling is a highly capable load testing tool.
-It is designed for ease of use, maintainability and high performance.
+**Gatling is a high-performance load testing tool built for efficiency, automation, and code-driven testing workflows.**
 
-Out of the box, Gatling comes with excellent support of the HTTP protocol that makes it a tool of choice for load testing any HTTP server.
-As the core engine is actually protocol agnostic, it is perfectly possible to implement support for other protocols.
-For example, Gatling currently also ships JMS support.
+Test scenarios are defined as code using an expressive DSL in Java, JavaScript, Scala, or Kotlin, making them easy to read, version, and maintain as part of your development workflow.
 
-The following tutorials will help you get started with Gatling:  
+Gatling’s architecture is fully asynchronous. Virtual users are modeled as lightweight messages rather than threads, allowing you to simulate thousands of concurrent users with minimal system resources, ideal for modern, high-scale applications.
 
-- [Create a simulation with Java]({{< ref "tutorials/scripting-intro" >}})  
-- [Create a simulation with JavaScript]({{< ref "tutorials/scripting-intro-js" >}}) 
-- [Introduction to the Recorder]({{< ref "tutorials/recorder" >}})  
-- [Writing realistic tests]({{< ref "tutorials/writing-realistic-tests" >}})  
+While Gatling offers robust support for **HTTP** out of the box, the load engine is protocol-agnostic. It also ships with **JMS** support and can be extended to handle other protocols.
 
-Having *scenarios* that are defined in code and are resource efficient are the two requirements that motivated us to create Gatling. Based on an expressive [DSL](http://en.wikipedia.org/wiki/Domain-specific_language), the *scenarios* are self-explanatory. They are easy to maintain and can be kept in a version control system.
+## Need centralized test management and real-time reporting?
 
-Gatling's architecture is asynchronous as long as the underlying protocol, such as HTTP, can be implemented in a non blocking way. This kind of architecture lets us implement virtual users as messages instead of dedicated threads, making them very resource cheap. Thus, running thousands of concurrent virtual users is not an issue.
+**Gatling Enterprise** extends the open-source capabilities with:
 
-## Gatling Enterprise
+- A web UI to manage, launch, and monitor tests
+- Real-time dashboards with detailed analytics
+- CI/CD integration, advanced permissions, and support for hybrid/cloud deployments
 
-[Gatling Enterprise](https://gatling.io/enterprise/), formerly known as Gatling FrontLine, is a management interface for Gatling, that includes advanced metrics and advanced features for integration and automation.
+Try **Gatling Enterprise** free for 14 days, no credit card required.[ Start your trial →](https://cloud.gatling.io?utm_source=docs)
 
-{{< img src="Gatling-enterprise-logo-RVB.png" alt="Gatling Enterprise" >}}
+Want to learn more about what Gatling Enterprise offers? [Compare OSS and Enterprise editions →](https://gatling.io/products/oss-vs-enterprise?utm_source=docs)
 
-## Migrating from a Previous Version of Gatling
+## Getting started
 
-If you're upgrading from Gatling 2.3 to Gatling 3.0, please check the [dedicated migration guide]({{< ref "/release-notes/upgrading/2.3-to-3.0.md" >}}).
+Ready to write and run your first tests? Start here:
 
-Otherwise, please follow the [previous migration guides]({{< ref "/release-notes/upgrading" >}}).
+- [Install Gatling]({{< ref "/tutorials/oss" >}})
+- [Create a simulation with JavaScript]({{< ref "/tutorials/scripting-intro-js" >}})
+- [Create a simulation with Java]({{< ref "/tutorials/scripting-intro" >}})
+- [Create a simulation from Postman]({{< ref "/tutorials/postman" >}})
+- [Create a simulation with the Recorder]({{< ref "/tutorials/recorder" >}})
+- [Create a simulation in the GUI]({{< ref "/tutorials/gui" >}})
+
+## Explore the docs
+
+- [**Guides →**]({{< ref "/guides" >}}) Practical how-to content for writing and scaling tests, managing integrations, and working with Gatling Enterprise.
+- [**Load Testing Concepts →**]({{< ref "/testing-concepts" >}}) Learn the key concepts behind performance testing, virtual users, injection profiles, and load models.
+- [**Analytics & Metrics Concepts →**]({{< ref "/concepts" >}}) Understand the metrics exposed by Gatling Enterprise dashboards and how to interpret them.
+- [**Reference →**]({{< ref "/reference" >}}) Complete documentation for Gatling’s SDKs, protocol support, and configuration options.
+- [**Integrations →**]({{< ref "/integrations" >}}) Explore integrations with CI/CD pipelines, build systems, and observability tools like APM platforms.
+- [**Release Notes →**]({{< ref "/release-notes" >}}) What’s new in the latest Gatling versions and feature releases.
+- [**Migration Guides →**]({{< ref "/release-notes/upgrading" >}}) Instructions for upgrading from earlier versions of Gatling safely and effectively.
+
+## Looking for help?
+
+**Using Gatling Open Source?**
+
+Ask your questions and get help from the community at [**community.gatling.io**](https://community.gatling.io/)
+
+**Using Gatling Enterprise?**
+
+Reach out to our support team directly from your workspace: [**cloud.gatling.io**](https://cloud.gatling.io/)
