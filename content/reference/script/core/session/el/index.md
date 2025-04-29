@@ -6,7 +6,7 @@ lead: Use the Gatling Expression Language (EL) to generate dynamic parameters
 date: 2021-04-20T18:30:56+02:00
 ---
 
-Most Gatling DSL methods can be passed **Gatling Expression Language (EL)** Strings.
+Most Gatling SDK methods can be passed **Gatling Expression Language (EL)** Strings.
 
 This is a very convenient feature to pass dynamic parameters.
 
@@ -14,7 +14,7 @@ This is a very convenient feature to pass dynamic parameters.
 Only Gatling DSL methods will interpolate Gatling EL Strings.
 You can't use Gatling EL in your own methods or functions.
 
-For example `queryParam("latitude", session -> "#{latitude}")` wouldn't work because the parameter is not a String, but a function that returns a String.
+For example, `queryParam("latitude", session -> "#{latitude}")` wouldn't work because the parameter is not a String, but a function that returns a String.
 
 Also, `queryParam("latitude", Integer.parseInt("#{latitude}"))` wouldn't work either because `Integer.parseInt` would be called on the `"#{latitude}"` String before trying to pass the result to the `queryParam` method.
 
@@ -42,14 +42,14 @@ Gatling EL uses a `#{attributeName}` syntax to define placeholders to be replace
 ```
 
 {{< alert warning >}}
-The previous `${}` syntax is deprecated because it was clashing with Scala and Kotlin String interpolation. It will be dropped in a future release.
+The previous `${}` syntax is obsolete because it clashed with Scala and Kotlin String interpolation. 
 
-Please make sure to use the `#{}` syntax from now on.
+Use the `#{}` syntax from now on.
 {{< /alert >}}
 
 ## Built-in functions
 
-Gatling EL provide the following built-in functions:
+Gatling EL provides the following built-in functions:
 
 ```java
 // collection size
@@ -63,7 +63,7 @@ Gatling EL provide the following built-in functions:
 // true if the session contains a `foo` attribute
 "#{foo.exists()}"
   
-// true if the session doesn't contains a `foo` attribute
+// true if the session doesn't contain a `foo` attribute
 "#{foo.isUndefined()}"
   
 // properly formats into a JSON value (wrap Strings with double quotes, deal with null)
@@ -97,12 +97,12 @@ Gatling EL provide the following built-in functions:
 "#{randomLong(2147483648,2147483658)}"
 
 // The following functions generate a random Double value in a given range
-// To use these functions you must adhere to the following formats and pay attention to the gotchas
+// To use these functions, you must adhere to the following formats and pay attention to the gotchas
 // * a valid double string is of the format number.number, ex 0.34 or -12.34, while these are INVALID .34 or 2. or +0.34
 //   must be of the format  -?\d+.\d+ (can start with a - then has digit(s) then a . then has digit(s))
 // * when the double is converted to a string in the payload,
 //   you may end up seeing doubles represented in scientific notation.
-//   This can happen when you choose very small or very big numbers or when requesting many decimal places
+//   This can happen when you choose very small or very large numbers or when requesting many decimal places
 
 // generate a random Double, where the number generated is >= -42.42 and < 42.42 (the right bound of 42.42 is excluded)
 "#{randomDouble(-42.42,42.42)}"
@@ -114,7 +114,7 @@ Gatling EL provide the following built-in functions:
 "#{randomAlphanumeric(10)}"
 ```
 
-You can combine different Gatling EL builtin functions, eg:
+You can combine different Gatling EL built-in functions, eg:
 
 ```java
 // return first element of the first list in `foo`
