@@ -1,5 +1,5 @@
 ---
-menutitle: Third-party plugins
+menutitle: Community protocol plugins
 title: Third-party plugins for Gatling
 aliases:
   - /reference/extensions/third-parties

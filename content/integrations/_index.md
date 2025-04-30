@@ -7,7 +7,7 @@ lead: Extra official and community modules
 ordering:
   - build-tools
   - ci-cd
+  - apm-tools
   - postman
-  - third-parties
   - notifications
 ---
