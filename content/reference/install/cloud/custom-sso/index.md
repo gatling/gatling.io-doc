@@ -103,3 +103,240 @@ See [GitLab's guide](https://docs.gitlab.com/ee/integration/oauth_provider.html)
 - enable the following scopes: `api`, `read_user`, `read_api`
 
 We need the application ID and secret. We also need your GitLab group ID to restrict access to users from your group.
+
+## Custom SSO Group Mapping
+
+Gatling Enterprise Cloud provides an API to map SSO groups to roles within your organization. This allows you to automatically assign users to teams and grant them appropriate permissions based on their SSO group memberships.
+
+### Integration
+
+The Custom SSO Group Mapping feature is exclusively available with the OpenID Connect (OIDC) protocol. 
+To enable this functionality, you must configure a custom scope named `gatling_sso` in your Identity Provider (IdP). This scope should return a `groups` claim containing the complete list of groups that will be mapped to roles within the Gatling Cloud platform.
+
+### Overview
+
+When a user authenticates through your SSO system, their group memberships are forwarded to Gatling Enterprise. The SSO Group Mapping API allows you to define how these groups map to:
+
+- Global roles in your Gatling Enterprise organization
+- Team-specific roles for different teams in your organization
+
+### API Endpoints
+
+The SSO Group Mapping API provides the following endpoints:
+
+#### Create a Group Mapping
+
+```
+POST /api/public/sso-group-mappings
+```
+
+Request body:
+
+Both `globalRole` and `teamRoles` are optional fields, but at least one must be provided.
+
+```json
+{
+  "group": "Marketing",
+  "type": "sso-group-mapping",
+  "globalRole": "Administrator",
+  "teamRoles": {
+    "31ed3cfb-e6f9-40fd-885e-3ba6a44031ff": "Team Viewer",
+    "2252a3b4-052d-4b57-987c-af126d40e12c": "Team Administrator"
+  }
+}
+```
+
+Response (201 Created):
+
+```json
+{
+  "data": {
+    "group": "Marketing",
+    "id": "<UUID>",
+    "type": "sso-group-mapping",
+    "globalRole": "Administrator",
+    "teamRoles": {
+      "31ed3cfb-e6f9-40fd-885e-3ba6a44031ff": "Team Viewer",
+      "2252a3b4-052d-4b57-987c-af126d40e12c": "Team Administrator"
+    }
+  },
+  "relatedResources": {
+    "31ed3cfb-e6f9-40fd-885e-3ba6a44031ff" : {
+      "id": "31ed3cfb-e6f9-40fd-885e-3ba6a44031ff",
+      "type": "team",
+      "name": "Super team"
+    }
+  }
+}
+```
+
+#### List All Group Mappings
+
+```
+GET /api/public/sso-group-mappings
+```
+
+Response:
+
+```json
+{
+  "data": [
+    {
+      "group": "Marketing",
+      "type": "sso-group-mapping",
+      "globalRole": "Administrator",
+      "teamRoles": {
+        "31ed3cfb-e6f9-40fd-885e-3ba6a44031ff": "Team Viewer",
+        "2252a3b4-052d-4b57-987c-af126d40e12c": "Team Administrator"
+      }
+    }
+  ],
+  "relatedResources": {
+    "31ed3cfb-e6f9-40fd-885e-3ba6a44031ff": {
+      "id": "31ed3cfb-e6f9-40fd-885e-3ba6a44031ff",
+      "type": "team",
+      "name": "Super team"
+    }
+  }
+}
+```
+
+#### Get a Specific Group Mapping
+
+```
+GET /api/public/sso-group-mappings/<UUID>
+```
+
+Response:
+
+```json
+{
+  "data": {
+    "group": "Marketing",
+    "id": "<UUID>",
+    "type": "sso-group-mapping",
+    "globalRole": "Administrator",
+    "teamRoles": {
+      "31ed3cfb-e6f9-40fd-885e-3ba6a44031ff": "Team Viewer",
+      "2252a3b4-052d-4b57-987c-af126d40e12c": "Team Administrator"
+    }
+  },
+  "relatedResources": {
+    "31ed3cfb-e6f9-40fd-885e-3ba6a44031ff": {
+      "id": "31ed3cfb-e6f9-40fd-885e-3ba6a44031ff",
+      "type": "team",
+      "name": "Super team"
+    }
+  }
+}
+```
+
+#### Update a Group Mapping
+
+```
+PUT /api/public/sso-group-mappings/<UUID>
+```
+
+Request body:
+
+Both `globalRole` and `teamRoles` are optional fields, but at least one must be provided.
+
+```json
+{
+  "group": "Marketing",
+  "type": "sso-group-mapping",
+  "globalRole": "Administrator",
+  "teamRoles": {
+    "31ed3cfb-e6f9-40fd-885e-3ba6a44031ff": "Team Viewer",
+    "2252a3b4-052d-4b57-987c-af126d40e12c": "Team Administrator"
+  }
+}
+```
+
+Response (200 OK):
+
+```json
+{
+  "data": {
+    "group": "Marketing",
+    "id": "<UUID>",
+    "type": "sso-group-mapping",
+    "globalRole": "Administrator",
+    "teamRoles": {
+      "31ed3cfb-e6f9-40fd-885e-3ba6a44031ff": "Team Viewer",
+      "2252a3b4-052d-4b57-987c-af126d40e12c": "Team Administrator"
+    }
+  }
+}
+```
+
+#### Delete a Group Mapping
+
+```
+DELETE /api/public/sso-group-mappings/<UUID>
+```
+
+Response: 204 No Content
+
+### Usage Examples
+
+#### Example 1: Mapping an SSO Group to a Global Role
+
+To grant all members of the "Administrators" SSO group the Admin role in your Gatling Enterprise organization:
+
+```json
+{
+  "group": "Administrators",
+  "type": "sso-group-mapping",
+  "globalRole": "Administrator"
+}
+```
+
+#### Example 2: Mapping an SSO Group to Team Roles
+
+To grant all members of the "QA" SSO group the Admin role on the "Performance Testing" team and the Viewer role on the "Production Monitoring" team:
+
+```json
+{
+  "group": "QA",
+  "type": "sso-group-mapping",
+  "teamRoles": {
+    "<Performance Testing Team ID>": "Team Administrator",
+    "<Production Monitoring Team ID>": "Team Viewer"
+  }
+}
+```
+
+#### Example 3: Combining Global and Team Roles
+
+You can combine global and team roles in a single mapping:
+
+```json
+{
+  "group": "DevOps",
+  "type": "sso-group-mapping",
+  "globalRole": "Contributor",
+  "teamRoles": {
+    "<Infrastructure Team ID>": "Team Administrator",
+    "<Development Team ID>": "Team Viewer"
+  }
+}
+```
+
+### Available Roles
+
+#### Global Roles
+- **Administrator**: Can administrate users, teams, api tokens and private locations + Leader permissions
+- **Leader**: Can administrate simulations and packages + Contributor permissions
+- **Contributor**: Can start a simulation and generate Public links + Viewer permissions
+- **Viewer**: Can view Reports and Trends page.
+
+#### Team Roles
+- **Team Administrator**: Can administrate users, teams, api tokens and private locations + Leader permissions
+- **Team Leader**: Can administrate simulations and packages + Contributor permissions
+- **Team Contributor**: Can start a simulation and generate Public links + Viewer permissions
+- **Team Viewer**: Can view Reports and Trends page.
+
+{{< alert info >}}
+When a user belongs to multiple SSO groups, they will be granted the highest level of access from all applicable group mappings.
+{{< /alert >}}
