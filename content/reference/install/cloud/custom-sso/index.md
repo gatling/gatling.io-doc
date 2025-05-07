@@ -103,3 +103,76 @@ See [GitLab's guide](https://docs.gitlab.com/ee/integration/oauth_provider.html)
 - enable the following scopes: `api`, `read_user`, `read_api`
 
 We need the application ID and secret. We also need your GitLab group ID to restrict access to users from your group.
+
+## Custom SSO group mapping
+
+Gatling Enterprise provides an API to map SSO groups to roles within your organization. This allows you to automatically assign users to teams and grant them appropriate permissions based on their SSO group memberships.
+
+### Integration
+
+The Custom SSO Group Mapping feature is exclusively available with the OpenID Connect (OIDC) protocol. 
+To enable this functionality, you must configure a custom scope named `gatling_sso` in your Identity Provider (IdP). This scope should return a `gatling-groups` claim containing the complete list of groups that will be mapped to roles within the Gatling Enterprise.
+
+### Overview
+
+When a user authenticates through your SSO system, their group memberships are forwarded to Gatling Enterprise. The SSO Group Mapping API allows you to define how these groups map to:
+
+- global roles in your Gatling Enterprise organization
+- team-specific roles for different teams in your organization
+
+### API endpoints
+
+Consult the [OpenAPI specification]({{< ref "/reference/execute/cloud/user/api" >}}) for available endpoints.
+
+### Usage examples
+
+#### Example 1: mapping an SSO group to a global ole
+
+To grant all members of the "Administrators" SSO group the Admin role in your Gatling Enterprise organization:
+
+```json
+{
+  "group": "Administrators",
+  "type": "sso-group-mapping",
+  "globalRole": "Administrator"
+}
+```
+
+#### Example 2: mapping an SSO group to team roles
+
+To grant all members of the "QA" SSO group the Admin role on the "Performance Testing" team and the Viewer role on the "Production Monitoring" team:
+
+```json
+{
+  "group": "QA",
+  "type": "sso-group-mapping",
+  "teamRoles": {
+    "<Performance Testing Team ID>": "Team Administrator",
+    "<Production Monitoring Team ID>": "Team Viewer"
+  }
+}
+```
+
+#### Example 3: combining global and team roles
+
+You can combine global and team roles in a single mapping:
+
+```json
+{
+  "group": "DevOps",
+  "type": "sso-group-mapping",
+  "globalRole": "Contributor",
+  "teamRoles": {
+    "<Infrastructure Team ID>": "Team Administrator",
+    "<Development Team ID>": "Team Viewer"
+  }
+}
+```
+
+### Available roles
+
+Consult the [available roles]({{< ref "/reference/execute/cloud/admin/users/#permissions" >}}) for available endpoints.
+
+{{< alert info >}}
+When a user belongs to multiple SSO groups, they will be granted the highest level of access from all applicable group mappings.
+{{< /alert >}}
