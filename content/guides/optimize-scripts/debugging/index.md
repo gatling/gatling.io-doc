@@ -78,7 +78,7 @@ Here are the mandatory steps:
 4. Click on `Modify` Java Options, select `Add JVM options` and enter `--add-opens=java.base/java.lang=ALL-UNNAMED`
 5. Click on the `Debug` button to launch
 
-{{< img src="intellij-maven-debug.png" alt="InjelliJ Maven Debug Configuration" >}}
+{{< img src="intellij-maven-debug.png" alt="IntelliJ Maven Debug Configuration" >}}
 
 ### Gradle with IntelliJ IDEA
 
@@ -92,4 +92,4 @@ Here are the mandatory steps:
 4. Click on `Modify options`, select `Add VM options` and enter `--add-opens=java.base/java.lang=ALL-UNNAMED`
 5. Click on the `Debug` button to launch
 
-{{< img src="intellij-maven-debug.png" alt="InjelliJ Gradle Debug Configuration" >}}
+{{< img src="intellij-gradle-debug.png" alt="IntelliJ Gradle Debug Configuration" >}}
