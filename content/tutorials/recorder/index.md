@@ -1,5 +1,5 @@
 ---
-menutitle: Introduction to the Recorder
+menutitle: Create a simulation with the Recorder
 title: Introduction to the Gatling Recorder
 aliases:
   - quickstart
@@ -60,7 +60,7 @@ The following is an example of what a real user might do with the application.
 Additionally, the tutorial uses the Mozilla FireFox browser to create the Gatling Script and Gatling Enterprise to run tests with dedicated load generators and enhanced data reporting features. Kindly check the following prerequisites:
 
 - [Create a Gatling Enterprise trial account](https://cloud.gatling.io/)
-- [Configure your web browser]({{< ref "/reference/script/protocols/http/recorder/#configuration" >}})
+- [Configure your web browser]({{< ref "/reference/script/http/recorder/#configuration" >}})
 
   {{< /alert >}}
 
@@ -102,7 +102,7 @@ Set it up with the following options:
 After configuring the recorder, all you have to do is click **Start!**. 
 
 {{< alert tip >}}
-For more information regarding Recorder and browser configuration, please check out the [Recorder reference documentation]({{< ref "/reference/script/protocols/http/recorder" >}}).
+For more information regarding Recorder and browser configuration, please check out the [Recorder reference documentation]({{< ref "/reference/script/http/recorder" >}}).
 {{< /alert >}}
 
 
@@ -136,7 +136,7 @@ JavaScript: src/
 {{</ code-toggle >}}
 
 {{< alert tip >}}
-The scenario components and their functionality are described in the [Intro to Scripting]({{< ref "/tutorials/scripting-intro" >}}) tutorial. For more details regarding the Simulation structure, please check out the [Simulation reference page]({{< ref "/reference/script/core/simulation" >}}).
+The scenario components and their functionality are described in the [Intro to Scripting]({{< ref "/tutorials/scripting-intro" >}}) tutorial. For more details regarding the Simulation structure, please check out the [Simulation reference page]({{< ref "/concepts/simulation" >}}).
 {{< /alert >}}
 
 ## Test execution
@@ -178,11 +178,11 @@ You can package, deploy, and run your simulation using one of two approaches, de
 Gatling Enterprise is a feature-rich SaaS platform that is designed for teams and organizations to get the most
 out of load testing. With the trial account, you created in the [Prerequisites section]({{< ref "#install-gatling" >}}), you can upload and run your test with advanced configuration, reporting, and collaboration features.
 
-From Gatling 3.11 packaging and running simulations on Gatling Enterprise is simplified by using [configuration as code]({{< ref "reference/execute/cloud/user/configuration-as-code" >}}). In this tutorial, we only use the default configuration to demonstrate deploying your project. You can learn more about customizing your configuration with our [configuration-as-code guide]({{< ref "guides/custom-config/config-as-code" >}}). 
+From Gatling 3.11 packaging and running simulations on Gatling Enterprise is simplified by using [configuration as code]({{< ref "reference/run-tests/configuration-as-code" >}}). In this tutorial, we only use the default configuration to demonstrate deploying your project. You can learn more about customizing your configuration with our [configuration-as-code guide]({{< ref "guides/ci-cd-automations/config-as-code" >}}). 
 
 To deploy and run your simulation on Gatling Enterprise, use the following procedure:
 
-1. Generate an [API token]({{< ref "/reference/execute/cloud/admin/api-tokens" >}}) with the `Configure` permission in your Gatling Enterprise account.
+1. Generate an [API token]({{< ref "/reference/collaborate/admin/api-tokens" >}}) with the `Configure` permission in your Gatling Enterprise account.
 2. Add the API token to your current terminal session by replacing `<your-API-token>` with the API token generated in step 1 and running the following command:
 
    {{< platform-toggle >}}
@@ -226,7 +226,7 @@ Watch the Simulation deploy automatically and generate real-time reports.
 
 The open-source version of Gatling allows you to run simulations locally, generating load from your computer. Running a
 new or modified simulation locally is often useful to ensure it works before launching it on Gatling Enterprise Cloud.
-You can launch your test in interactive mode using one of the JDK build tool plugins or the JavaScript CLI. The following examples are for Maven and the JavaScript CLI. The [Gradle]({{< ref "/reference/integrations/build-tools/gradle-plugin" >}}) and [sbt]({{< ref "/reference/integrations/build-tools/sbt-plugin" >}}) plugins are documented separately.
+You can launch your test in interactive mode using one of the JDK build tool plugins or the JavaScript CLI. The following examples are for Maven and the JavaScript CLI. The [Gradle]({{< ref "/integrations/build-tools/gradle-plugin" >}}) and [sbt]({{< ref "/integrations/build-tools/sbt-plugin" >}}) plugins are documented separately.
 
 1. Run the following command:
 

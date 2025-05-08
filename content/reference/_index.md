@@ -4,10 +4,11 @@ menutitle: Reference
 description: References on Gatling DSL, protocols, news and migrations
 lead: References on Gatling DSL, protocols, news and migrations
 ordering:
-  - glossary
-  - install
+  - deploy
   - script
-  - execute
+  - run-tests
+  - collaborate
   - stats
-  - integrations
+  - api
+  - glossary
 ---
