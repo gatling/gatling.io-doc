@@ -254,7 +254,16 @@ http.nameInferredHtmlResources(uri => "name")
 // clear HTTP proxy
 http.proxy(
   Proxy("myHttpProxyHost", 8080)
+    // credential as static values (optional)
     .credentials("myUsername", "myPassword")
+    // credential as static values (optional)
+    .credentials("#{myUsername}", "#{myPassword}")
+    // credential as functions (optional)
+    .credentials(session => "myUsername", session => "myPassword")
+    // custom CONNECT header, can be dynamic as well (optional)
+    .connectHeader("customHeaderName", "customHeaderValue")
+    // custom CONNECT headers, can be dynamic as well (optional)
+    .connectHeaders(Map("customHeaderName1" -> "customHeaderValue1", "customHeaderName2" -> "customHeaderValue2"))
 )
 
 // HTTPS proxy

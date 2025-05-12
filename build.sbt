@@ -28,9 +28,9 @@ Test / unmanagedSourceDirectories ++= (baseDirectory.value / "content" ** "code"
 
 // Dependencies
 
-val gatlingVersion = "3.13.5"
-val gatlingGrpcVersion = "3.13.5"
-val gatlingMqttVersion = "3.13.5"
+val gatlingVersion = "3.14.1"
+val gatlingGrpcVersion = "3.14.1"
+val gatlingMqttVersion = "3.14.1"
 val awsSdkVersion = "2.31.40"
 
 libraryDependencies ++= Seq(
@@ -48,6 +48,5 @@ libraryDependencies ++= Seq(
   "commons-codec"          % "commons-codec"   % "1.18.0",
   "software.amazon.awssdk" % "secretsmanager"  % awsSdkVersion,
   "software.amazon.awssdk" % "s3"              % awsSdkVersion,
-  ("org.apache.activemq"   % "activemq-broker" % "5.19.0" % Test)
-    .exclude("jakarta.jms", "jakarta.jms-api")
+  "org.apache.activemq"    % "activemq-broker" % "6.1.6"
 )

@@ -324,7 +324,8 @@ Naming resource requests with a custom strategy is not supported by Gatling JS.
 ## Proxy
 
 You can tell Gatling to use a proxy to send the HTTP requests.
-You can optionally set a different port for HTTPS and credentials:
+You can optionally specify Basic auth credentials.
+For HTTP(S) proxies, you can also specify custom CONNECT request headers.
 
 {{< include-code "proxy" >}}
 

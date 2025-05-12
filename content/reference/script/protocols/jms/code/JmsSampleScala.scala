@@ -16,7 +16,7 @@
 
 import io.gatling.core.Predef._
 //#imprts
-import javax.jms._
+import jakarta.jms._
 import io.gatling.jms.Predef._
 //#imprts
 

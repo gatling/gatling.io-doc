@@ -3,6 +3,7 @@ title: Gatling upgrade guides
 description: What changes between Gatling versions.
 lead: How to upgrade from previous Gatling versions.
 ordering:
+  - 3.13-to-3.14
   - 3.12-to-3.13
   - 3.11-to-3.12
   - 3.10-to-3.11

@@ -17,7 +17,7 @@
 import io.gatling.javaapi.core.*
 import io.gatling.javaapi.core.CoreDsl.*
 //#imprts
-import javax.jms.*
+import jakarta.jms.*
 import io.gatling.javaapi.jms.*
 import io.gatling.javaapi.jms.JmsDsl.*
 //#imprts

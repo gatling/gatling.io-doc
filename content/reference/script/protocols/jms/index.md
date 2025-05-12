@@ -14,11 +14,26 @@ The JMS protocol is not supported by Gatling JS.
 
 ## Prerequisites
 
+### Imports
+
 Gatling JMS DSL is not imported by default.
 
 You have to manually add the following imports:
 
 {{< include-code "imprts" java kt scala >}}
+
+### JMS client implementation {#broker}
+
+*Java Message Service* (JMS), now known as *Jakarta Messaging* is an API.
+In order to use it, you must provide your client vendor-specific implementation, eg `org.apache.activemq:activemq-broker` if you are using ActiveMQ.
+
+### Using legacy javax.jms package {#legacy}
+
+Since 3.14.0, Gatling targets the new `jakarta.jms` package.
+
+If you're still using a JMS client that requires the legacy `javax.jms` package and can't upgrade to a modern version, you have to use a wrapper library such as [com.github.marschall:jakarta-jms-adapter](https://github.com/marschall/jakarta-jms-adapter).
+
+Usage is very simple, you just jave to wrap your `java.jms.ConnectionFactory` with a `com.github.marschall.jakartajmsadapter.JakartaConnectionFactory`.
 
 ## JMS protocol {#protocol}
 
