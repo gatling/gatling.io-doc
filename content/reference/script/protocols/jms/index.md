@@ -24,7 +24,7 @@ You have to manually add the following imports:
 
 ### JMS client implementation {#broker}
 
-*Java Message Service* (JMS), now known as *Jakarta Messaging* is an API.
+*Java Message Service* (JMS), now known as *Jakarta Messaging*, is an API.
 In order to use it, you must provide your client vendor-specific implementation, eg `org.apache.activemq:activemq-broker` if you are using ActiveMQ.
 
 ### Using legacy javax.jms package {#legacy}
