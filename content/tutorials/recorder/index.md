@@ -90,7 +90,7 @@ Once launched, the Recorder application opens, allowing you to configure the set
 Set it up with the following options:
 
 * *Recorder Mode* set to *HTTP Proxy*
-* *computerdatabase* package
+* *gatling.ecomm.app.java* package
 * *RecordedSimulation* name
 * *Follow Redirects?* checked
 * *Infer HTML resources?* checked
