@@ -1,6 +1,6 @@
 ---
-title: Getting started with the no-code generator
-menutitle: No-code quickstart
+title: Create a simulation in the GUI
+menutitle: Create a simulation in the GUI
 lead: Learn how to write your first test with the Gatling no-code generator
 description: Learn how to set up Gatling Enterprise for the first time
 badge:

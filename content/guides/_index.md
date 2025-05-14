@@ -6,9 +6,10 @@ lead: Detailed and practical advice
 ordering:
   - optimize-scripts
   - complex-use-cases
-  - test-creation
-  - custom-config
+  - ci-cd-automations
   - analysis
+  - trial-plan
+  - faq
 ---
 
 **The Guides section contains goal-oriented how-to pages. Find directions that help you solve a specific use case or achieve a specific result. The following 5 subsections help you create, optimize, and analyze load tests.**
