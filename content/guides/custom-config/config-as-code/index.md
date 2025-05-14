@@ -76,7 +76,7 @@ The next step is to add your simulations to the `package.conf` file.
 
 Reminder: this step is optional, but once you add the `simulations` block, you must define the `simulation` property. 
 
-The `simulation` is the simulation fully qualified name, for example, `example.BasicSimulation` 
+The `simulation` is the simulation fully qualified name, for example, `com.example.BasicSimulation` 
 if you followed the Intro to scripting tutorial. 
 
 Each simulation also has a unique `id` property, which we will use later in the guide. 
@@ -90,7 +90,7 @@ gatling.enterprise.package {
   simulations = [
     {
       # id = "00000000-0000-0000-0000-000000000001"
-      simulation = "example.BasicSimulation"
+      simulation = "com.example.BasicSimulation"
     }
   ]
 }
