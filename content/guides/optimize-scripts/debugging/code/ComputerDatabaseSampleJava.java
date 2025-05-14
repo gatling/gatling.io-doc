@@ -18,12 +18,12 @@ import io.gatling.javaapi.core.*;
 
 import static io.gatling.javaapi.core.CoreDsl.*;
 
-class ComputerDatabaseSampleJava {
+class BasicSimulationSampleJava {
 
-  ScenarioBuilder scn = scenario("Computer Scenario")
+  ScenarioBuilder scn = scenario("Scenario")
     //#print-session-value
     .exec(session -> {
-      System.out.println(session.getString("addComputer"));
+      System.out.println(session.getString("/session"));
       return session;
     })
     //#print-session-value

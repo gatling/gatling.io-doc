@@ -19,7 +19,7 @@ import { scenario } from "@gatling.io/core";
 scenario("scenario")
 //#print-session-value
 .exec((session) => {
-  console.log(session.get("addComputer"));
+  console.log(session.get("/session"));
   return session;
 })
 //#print-session-value

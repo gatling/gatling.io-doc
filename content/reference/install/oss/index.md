@@ -91,8 +91,8 @@ https://github.com/gatling/gatling-js-demo/archive/refs/heads/main.zip{{< /butto
 You can run the pre-configured demo simulation from the `src/` folder with the following command:
 
 {{< code-toggle >}}
-JavaScript: npx gatling run --simulation computerdatabase
-TypeScript: npx gatling run --typescript --simulation computerdatabase
+JavaScript: npx gatling run --simulation BasicSimulation
+TypeScript: npx gatling run --typescript --simulation BasicSimulation
 {{</ code-toggle >}}
 
 {{< alert info >}}

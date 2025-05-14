@@ -16,12 +16,12 @@
 
 import io.gatling.javaapi.core.CoreDsl.*;
 
-class ComputerDatabaseSampleKotlin {
+class BasicSimulationSampleKotlin {
 
-  val scn = scenario("Computer Scenario")
+  val scn = scenario("Scenario")
     //#print-session-value
     .exec { session ->
-      println(session.getString("addComputer"))
+      println(session.getString("/session"))
       session
     }
     //#print-session-value

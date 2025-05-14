@@ -16,12 +16,12 @@
 
 import io.gatling.core.Predef._
 
-class ComputerDatabaseSampleScala {
+class BasicSimulationSampleScala {
 
-  val scn = scenario("Computer Scenario")
+  val scn = scenario("Scenario")
     //#print-session-value
     .exec { session =>
-      println(session("addComputer").as[String])
+      println(session("/session").as[String])
       session
     }
     //#print-session-value
