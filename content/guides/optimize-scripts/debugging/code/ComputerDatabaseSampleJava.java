@@ -23,7 +23,7 @@ class BasicSimulationSampleJava {
   ScenarioBuilder scn = scenario("Scenario")
     //#print-session-value
     .exec(session -> {
-      System.out.println(session.getString("/session"));
+      System.out.println(session.getString("data"));
       return session;
     })
     //#print-session-value

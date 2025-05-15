@@ -21,7 +21,7 @@ class BasicSimulationSampleKotlin {
   val scn = scenario("Scenario")
     //#print-session-value
     .exec { session ->
-      println(session.getString("/session"))
+      println(session.getString("data"))
       session
     }
     //#print-session-value

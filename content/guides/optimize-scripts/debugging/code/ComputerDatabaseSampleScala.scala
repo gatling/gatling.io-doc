@@ -21,7 +21,7 @@ class BasicSimulationSampleScala {
   val scn = scenario("Scenario")
     //#print-session-value
     .exec { session =>
-      println(session("/session").as[String])
+      println(session("data").as[String])
       session
     }
     //#print-session-value
