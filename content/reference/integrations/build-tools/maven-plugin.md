@@ -193,37 +193,6 @@ Windows: mvnw.cmd gatling:enterprisePackage
 This will generate the `target/<artifactId>-<version>-shaded.jar` package which you can then
 [upload to the Cloud]({{< ref "reference/execute/cloud/user/package-conf" >}}).
 
-##### Upload
-
-You must already have [configured a package]({{< ref "reference/execute/cloud/user/package-conf" >}}).
-Copy the package ID from the Packages table, or copy the simulation ID linked to the package from the Simulations table.
-
-Configure the package ID or simulation ID on the plugin:
-
-```xml
-<plugin>
-    <groupId>io.gatling</groupId>
-    <artifactId>gatling-maven-plugin</artifactId>
-    <version>${gatling-maven-plugin.version}</version>
-    <configuration>
-        <packageId>YOUR_PACKAGE_ID</packageId>
-        <!-- If packageId is missing, the task will use the package linked to the simulationId -->
-        <simulationId>YOUR_SIMULATION_ID</simulationId>
-    </configuration>
-</plugin>
-```
-
-You can also configure either of those using [Java System properties](https://docs.oracle.com/javase/tutorial/essential/environment/sysprop.html):
-- packageId: `gatling.enterprise.packageId`
-- simulationId: `gatling.enterprise.simulationId`
-
-Then package and upload your simulation to Gatling Enterprise:
-
-{{< platform-toggle >}}
-Linux/MacOS: ./mvnw gatling:enterpriseUpload
-Windows: mvnw.cmd gatling:enterpriseUpload
-{{</ platform-toggle >}}
-
 #### Private packages
 
 Configure the [Control Plane URL]({{< ref "/reference/install/cloud/private-locations/private-packages/#control-plane-server" >}}):

@@ -316,33 +316,6 @@ Windows: gradlew.bat gatlingEnterprisePackage
 This will generate the `build/libs/<artifactId>-<version>-tests.jar` package which you can then
 [upload to the Cloud]({{< ref "reference/execute/cloud/user/package-conf" >}}).
 
-##### Upload
-
-You must already have [configured a package]({{< ref "reference/execute/cloud/user/package-conf" >}}). Copy the package ID from
-the Packages table, or copy the simulation ID linked to the package from the Simulations table.
-
-Configure the package ID or simulation ID on the plugin:
-
-```groovy
-gatling {
-  enterprise {
-    packageId "YOUR_PACKAGE_ID"
-    simulationId "YOUR_SIMULATION_ID" // If packageId is missing, the task will use the package linked to the simulationId
-  }
-}
-```
-
-You can also configure either of those using [Java System properties](https://docs.oracle.com/javase/tutorial/essential/environment/sysprop.html):
-- packageId: `gatling.enterprise.packageId`
-- simulationId: `gatling.enterprise.simulationId`
-
-Then package and upload your simulation to Gatling Enterprise:
-
-{{< platform-toggle >}}
-Linux/MacOS: ./gradlew gatlingEnterpriseUpload
-Windows: gradlew.bat gatlingEnterpriseUpload
-{{</ platform-toggle >}}
-
 #### Private packages
 
 Configure the [Control Plane URL]({{< ref "/reference/install/cloud/private-locations/private-packages/#control-plane-server" >}}):

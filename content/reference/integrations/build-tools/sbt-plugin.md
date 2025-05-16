@@ -209,32 +209,6 @@ This will generate the `target/gatling/<artifactId>-gatling-enterprise-<version>
 To package simulations from the `it` configuration, `GatlingIt/enterprisePackage` will generate the
 `target/gatling-it/<artifactId>-gatling-enterprise-<version>.jar` package.
 
-##### Upload
-
-You must already have [configured a package]({{< ref "../../execute/cloud/user/package-conf" >}}). Copy the package ID from
-the Packages table, or copy the simulation ID linked to the package from the Simulations table.
-
-Configure the package ID or simulation ID on the plugin:
-
-```scala
-Gatling / enterprisePackageId := "YOUR_PACKAGE_ID"
-// If packageId is missing, the task will use the package linked to the simulationId
-Gatling / enterpriseSimulationId := "YOUR_SIMULATION_ID"
-```
-
-You can also configure either of those using [Java System properties](https://docs.oracle.com/javase/tutorial/essential/environment/sysprop.html):
-- packageId: `gatling.enterprise.packageId`
-- simulationId: `gatling.enterprise.simulationId`
-
-Then package and upload your simulation to gatling Enterprise Cloud:
-
-```shell
-sbt Gatling/enterpriseUpload
-```
-
-To package and upload simulations from the `it` configuration, simply replace `Gatling/` with `GatlingIt/` in the
-configuration and command.
-
 #### Private packages
 
 Configure the [Control Plane URL]({{< ref "/reference/install/cloud/private-locations/private-packages/#control-plane-server" >}}):
