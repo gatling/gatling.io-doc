@@ -40,9 +40,10 @@ jobs:
           java-version: '21'
           cache: 'maven'
 
-      # Build, package, and upload your Gatling project 
+      # Build and deploy your Gatling project
+      # See https://docs.gatling.io/reference/integrations/build-tools/maven-plugin/#deploying-on-gatling-enterprise for options.
       - name: Build Gatling simulation
-        run: mvn gatling:enterpriseUpload -Dgatling.enterprise.simulationId=${{ env.SIMULATION_ID }}
+        run: mvn gatling:enterpriseDeploy -Dgatling.enterprise.validateSimulationId=${{ env.SIMULATION_ID }}
 
       # Run the simulation on Gatling Enterprise
       - name: Gatling Enterprise Action

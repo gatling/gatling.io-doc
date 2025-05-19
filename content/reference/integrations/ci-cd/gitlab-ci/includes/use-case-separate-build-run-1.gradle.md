@@ -10,13 +10,13 @@ stages:
 variables:
   SIMULATION_ID: '00000000-0000-0000-0000-000000000000'
 
-# Build, package, and upload your Gatling project 
+# Build and deploy your Gatling project
 build-gatling-simulation:
   stage: build
   # Gradle 8 and JDK 17; see https://hub.docker.com/_/gradle for other tags available
-  # See also https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Gradle.gitlab-ci.yml
-  # for other useful options for Gradle builds.
+  # See also https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Gradle.gitlab-ci.yml for other useful options for Gradle builds.
+  # See https://docs.gatling.io/reference/integrations/build-tools/maven-plugin/#deploying-on-gatling-enterprise for options.
   image: gradle:8-jdk17
   script:
-    - gradle gatlingEnterpriseUpload -Dgatling.enterprise.simulationId=$SIMULATION_ID
+    - gradle gatlingEnterpriseDeploy -Dgatling.enterprise.validateSimulationId=$SIMULATION_ID
 ```

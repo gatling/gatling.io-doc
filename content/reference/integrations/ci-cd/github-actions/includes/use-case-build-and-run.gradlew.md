@@ -40,9 +40,10 @@ jobs:
           java-version: '21'
           cache: 'gradle'
 
-      # Build, package, and upload your Gatling project 
+      # Build and deploy your Gatling project
+      # See https://docs.gatling.io/reference/integrations/build-tools/gradle-plugin/#deploying-on-gatling-enterprise for options.
       - name: Build Gatling simulation
-        run: ./gradlew gatlingEnterpriseUpload -Dgatling.enterprise.simulationId=${{ env.SIMULATION_ID }}
+        run: ./gradlew gatlingEnterpriseDeploy -Dgatling.enterprise.validateSimulationId=${{ env.SIMULATION_ID }}
 
       # Run the simulation on Gatling Enterprise
       - name: Gatling Enterprise Action

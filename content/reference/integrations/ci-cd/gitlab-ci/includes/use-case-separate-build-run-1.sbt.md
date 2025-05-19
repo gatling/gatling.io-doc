@@ -10,7 +10,7 @@ stages:
 variables:
   SIMULATION_ID: '00000000-0000-0000-0000-000000000000'
 
-# Build, package, and upload your Gatling project 
+# Build and deploy your Gatling project
 build-gatling-simulation:
   stage: build
   # sbt 1.8.2 and JDK 17.0.5; sbtscala/scala-sbt does not provide 'latest' tags
