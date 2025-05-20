@@ -4,6 +4,7 @@ seotitle: Private locations for Gatling Enterprise
 description: Learn how to setup private locations on your own accounts.
 ordering:
   - introduction
+  - release-notes
   - network
   - aws
   - azure
