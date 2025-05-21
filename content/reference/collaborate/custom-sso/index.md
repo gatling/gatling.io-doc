@@ -122,7 +122,7 @@ When a user authenticates through your SSO system, their group memberships are f
 
 ### API endpoints
 
-Consult the [OpenAPI specification]({{< ref "/reference/execute/cloud/user/api" >}}) for available endpoints.
+Consult the [OpenAPI specification]({{< ref "/reference/api" >}}) for available endpoints.
 
 ### Usage examples
 
@@ -171,7 +171,7 @@ You can combine global and team roles in a single mapping:
 
 ### Available roles
 
-Consult the [available roles]({{< ref "/reference/execute/cloud/admin/users/#permissions" >}}) for available endpoints.
+Consult the [available roles]({{< ref "/reference/collaborate/admin/users/#permissions" >}}) for available endpoints.
 
 {{< alert info >}}
 When a user belongs to multiple SSO groups, they will be granted the highest level of access from all applicable group mappings.
