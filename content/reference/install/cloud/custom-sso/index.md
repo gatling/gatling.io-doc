@@ -111,7 +111,7 @@ Gatling Enterprise provides an API to map SSO groups to roles within your organi
 ### Integration
 
 The Custom SSO Group Mapping feature is exclusively available with the OpenID Connect (OIDC) protocol. 
-To enable this functionality, you must configure a custom scope named `gatling_sso` in your Identity Provider (IdP). This scope should return a `gatling-groups` claim containing the complete list of groups that will be mapped to roles within the Gatling Enterprise.
+To enable this functionality, you must configure a custom scope named `gatling-sso` in your Identity Provider (IdP). This scope should return a `gatling-groups` claim containing the complete list of groups that will be mapped to roles within the Gatling Enterprise.
 
 ### Overview
 
