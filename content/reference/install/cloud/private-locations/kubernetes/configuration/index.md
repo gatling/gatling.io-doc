@@ -148,10 +148,6 @@ Several aspects of this job schema are enforced by the control plane:
 We recommend aligning resource requests with limits to maintain consistent thread pool sizing and prevent unpredictable performance fluctuations. Without this alignment, it can be challenging to differentiate genuine application issues from resource throttling caused by Kubernetes resource allocation.
 {{< /alert >}}
 
-{{< alert info >}}
-Certain operations in `location` require privileged system access. Therefore, the container must run as the root user (UID 0 and GID 0). If your Pod or Container securityContext uses a non-root user, `location` will fail to start.
-{{< /alert >}}
-
 Here is an example of a basic JSON job definition:
 ```json
 {
