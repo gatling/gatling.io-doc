@@ -1,9 +1,9 @@
 ---
-menutitle: Notifications
-title: Notifications configuration
-seotitle: Configure Gatling run notifications for Slack and Microsoft Teams 
-description: Get notified about your Gatling simulations in Slack or Microsoft Teams.
-lead: Get notified about your simulations with Slack or Microsoft Teams.
+menutitle: Slack
+title: Slack notifications configuration
+seotitle: Configure Gatling run notifications for Slack
+description: Get notified about your Gatling simulations in Slack.
+lead: Get notified about your simulations with Slack.
 date: 2021-11-07T14:29:04+00:00
 aliases: 
   - /reference/execute/cloud/admin/notifications/
@@ -15,7 +15,7 @@ This feature is only available on Gatling Enterprise. To learn more, [explore ou
 
 ## Introduction
 
-You can configure Gatling Enterprise to send notifications about your simulation runs results directly with Slack or Microsoft Teams. 
+You can configure Gatling Enterprise to send notifications about your simulation runs results directly with Slack. 
 
 Notifications will be sent as soon as a simulation run ends, and will display:
 - A summary of your simulation info
@@ -23,8 +23,6 @@ Notifications will be sent as soon as a simulation run ends, and will display:
 - Assertions results, if you configured any in your simulation
 
 {{< img src="notifications-slack-example-1.png" alt="Slack example 1" >}}
-
-{{< img src="notifications-teams-example-1.png" alt="Teams example 1" >}}
 
 {{< alert info >}}
 Configuring Notifications is only available to Administrators. 
@@ -34,7 +32,6 @@ Configuring Notifications is only available to Administrators.
 
 {{< include-file >}}
 Slack: includes/preparation.slack.md
-Teams: includes/preparation.teams.md
 {{< /include-file >}}
 
 ## Configuration
@@ -52,8 +49,6 @@ Click on the toggle to activate notifications.
 Paste your webhook URL in the text field, then you can test and save it:
 
 {{< img src="notifications-configuration-slack-1.png" alt="Notifications Slack 1" >}}
-
-{{< img src="notifications-configuration-teams-1.png" alt="Notifications Teams 1" >}}
 
 - The **Test** button sends a hello world message to your webhook before saving it.
 - **Save** persists your configuration. The next simulation runs will send a notification at the end.
