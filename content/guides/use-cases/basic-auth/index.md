@@ -7,7 +7,7 @@ lead: Add basic authentication using a csv feeder to your Gatling simulation.
 date: 2025-02-12T6:30:56+02:00
 aliases:
     - /guides/basic-auth
-
+    - /guides/complex-use-cases/basic-auth/
 ---
 
 ## Prerequisites

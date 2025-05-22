@@ -5,6 +5,8 @@ seotitle: How to test a Docker-based application with Gatling
 description: Create a Gatling simulation that tests dockerized applications.
 lead: Learn how to load tests your Dockerized applications.
 date: 2025-02-28T10:30:56+02:00
+aliases:
+  - /guides/complex-use-cases/docker-app/
 ---
 
 The number of production services that are deployed and running in containerization platforms such as Docker has grown in recent years. With this shift in the deployment architecture, the need for load testing of applications and services while running in containers is crucial. This guide demostrates how to load test a simple containerized application. 

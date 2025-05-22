@@ -5,6 +5,7 @@ description: Learn how to package Gatling simulations for Gatling Enterprise fro
 lead: Generate a package from your Gatling bundle or with a Maven, sbt, or Gradle project.
 aliases:
  - artifact_gen
+ - /reference/execute/cloud/user/package-gen/
 date: 2021-03-08T12:50:32+00:00
 ---
 

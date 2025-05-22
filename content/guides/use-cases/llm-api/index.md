@@ -5,6 +5,8 @@ seotitle: Using server sent events to load test an LLM API
 description: Learn how to use server sent events to load test an LLM API
 lead: Learn how to use server sent events to load test an LLM API
 date: 2025-02-27T09:30:56+02:00
+aliases:
+  - /guides/complex-use-cases/llm-api/
 ---
 
 Server-sent events is a server push technology, which allows clients to receive updates from a server using an HTTP connection. It instructs servers how to initiate data transmission to clients after the initial client connection is established.

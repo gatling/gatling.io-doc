@@ -4,6 +4,8 @@ description: Migration guide from the gatling-grpc community plugin to the offic
 lead: Learn how to migrate a project using the gatling-grpc community plugin to the official Gatling gRPC support
 date: 2024-01-31T13:59:53+0200
 private: true
+aliases:
+  - /reference/script/protocols/grpc/migrating/
 ---
 
 {{< alert info >}}
@@ -19,7 +21,7 @@ This page is intended for existing users of the community-maintained
 who want to switch to using the new official gRPC support for Gatling.
 
 We currently support a subset of the original features, do not hesitate to contact us using the Gatling Enterprise
-support portal with feature requests for anything we do not cover yet. When do you, please detail your actual use case
+support portal with feature requests for anything we do not cover yet. When do you, please detail your use case
 so we can find the best way to address it in the Gatling gRPC plugin.
 
 {{< alert warning >}}

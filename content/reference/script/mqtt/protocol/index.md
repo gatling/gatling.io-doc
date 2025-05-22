@@ -4,6 +4,8 @@ seotitle: Gatling MQTT protocol reference - protocol configuration
 description: How to use the MQTT support in Gatling to connect to a broker and perform checks against inbound messages.
 lead: How to use the MQTT support in Gatling to connect to a broker and perform checks against inbound messages.
 date: 2021-04-20T18:30:56+02:00
+aliases:
+  - /reference/script/protocols/mqtt/protocol/
 ---
 
 {{< alert warning >}}

@@ -9,6 +9,8 @@ lead: >
   Run Gatling simulations written in JavaScript/TypeScript from the command line, and package them to run on Gatling
   Enterprise
 date: 2024-06-20T14:00:00+02:00
+aliases:
+  - /reference/integrations/build-tools/js-cli/
 ---
 
 ## Versions

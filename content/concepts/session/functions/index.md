@@ -4,6 +4,8 @@ seotitle: Gatling session scripting reference - functions
 description: How to use functions to compute dynamic parameters based on Session data using all the power of programing language of choice (Java, Kotlin or Scala)
 lead: Use functions to programmatically generate dynamic parameters
 date: 2021-04-20T18:30:56+02:00
+aliases:
+  - /reference/script/core/session/functions/
 ---
 
 Sometimes, you might want to dynamic parameters that are too complex to compute for Gatling EL.

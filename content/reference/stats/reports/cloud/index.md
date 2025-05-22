@@ -2,9 +2,6 @@
 title: Interactive reports
 description: Learn how to analyze test reports and discover the slow parts of your application.
 lead: Analyze your reports and discover the bottlenecks in your application.
-badge:
-  type: enterprise
-  label: Enterprise
 date: 2021-03-10T14:29:43+00:00
 ---
 

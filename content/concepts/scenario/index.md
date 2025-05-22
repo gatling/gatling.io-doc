@@ -3,6 +3,8 @@ title: Scenario
 seotitle: Gatling scenario scripting reference
 description: How to define scenarios that your virtual users will execute. Use exec to attach a chain or execute a request or a function. Use loops such as repeat, during and asLongAs. Use conditions like doIf and randomSwitch. Uses pauses.
 date: 2021-04-20T18:30:56+02:00
+aliases:
+  - /reference/script/core/scenario/
 ---
 
 This is the reference of the different components available to write scenarios with Gatling.

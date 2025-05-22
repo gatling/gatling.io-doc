@@ -4,6 +4,8 @@ title: How to test the gRPC protocol
 seotitle: Learn how to load test gRPC with Gatling
 lead: Learn how to load test gRPC with Gatling
 date: 2025-02-28T8:30:56+02:00
+aliases:
+  - /guides/complex-use-cases/docker-app/
 ---
 
 The Gatling gRPC DSL lets you create code-based load tests for your sevices that use the gRPC protocol. This guide provides an introduction to testing gRPC with Gatling. The DSL is additionally described in the [reference documentation]({{< ref="/reference/script/protocols/grpc/setup" >}}). 

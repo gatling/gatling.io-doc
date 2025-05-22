@@ -4,6 +4,8 @@ seotitle: Gatling session scripting reference - Expression Language
 description: How to use Gatling Expression Language (EL) to compute dynamic parameters based on Session data using a simple text templating engine
 lead: Use the Gatling Expression Language (EL) to generate dynamic parameters
 date: 2021-04-20T18:30:56+02:00
+aliases:
+  - /reference/script/core/session/el/
 ---
 
 Most Gatling SDK methods can be passed **Gatling Expression Language (EL)** Strings.

@@ -6,6 +6,7 @@ description: Learn how to use the CI script with Azure DevOps Pipelines to run y
 lead: Run your Gatling Enterprise simulations from Azure DevOps Pipelines.
 aliases:
   - /reference/extensions/ci-cd/azure-devops
+  - /reference/integrations/ci-cd/azure-devops
 date: 2023-11-09T15:25:27+0000
 ---
 

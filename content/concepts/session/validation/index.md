@@ -4,6 +4,8 @@ seotitle: Gatling session scripting reference - validation
 description: How to use the Validation monad to handle composable failures in Scala functions. Intended for advanced Scala developers only.
 lead: Manipulate Session data in a monadic way (advanced Scala only)
 date: 2021-04-20T18:30:56+02:00
+aliases:
+  - /reference/script/core/session/validation/
 ---
 
 ## Concept

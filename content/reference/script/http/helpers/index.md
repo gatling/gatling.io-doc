@@ -4,6 +4,8 @@ seotitle: Gatling HTTP protocol reference - helpers
 description: How to use built-in HTTP helpers to manipulate cookies and cache.
 lead: Helpers for handling cookies and caches
 date: 2021-04-20T18:30:56+02:00
+aliases:
+  - /reference/script/protocols/http/helpers/
 ---
 
 ## Dealing with cookies

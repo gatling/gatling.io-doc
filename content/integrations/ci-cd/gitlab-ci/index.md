@@ -6,6 +6,7 @@ description: Learn how to configure GitLab CI/CD to run your simulations on Gatl
 lead: Run your Gatling Enterprise simulations from GitLab CI/CD.
 aliases:
   - /reference/extensions/ci-cd/gitlab-ci
+  - /reference/integrations/ci-cd/gitlab-ci
 date: 2023-02-17T14:00:00+00:00
 ---
 

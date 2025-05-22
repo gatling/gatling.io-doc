@@ -4,6 +4,8 @@ menutitle: Network
 description: Learn how to configure network configuration your Control Plane and Private Locations
 lead: Network Configuration
 date: 2021-11-07T14:29:04+00:00
+aliases:
+  - /reference/install/cloud/private-locations/network/
 ---
 
 {{< alert enterprise >}}

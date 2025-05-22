@@ -4,6 +4,8 @@ seotitle: Gatling gRPC protocol reference - checks
 description: Checks specific to the Gatling gRPC protocol
 lead: Checks specific to the Gatling gRPC protocol
 date: 2023-08-24T11:27:53+0200
+aliases:
+  - /reference/script/protocols/grpc/checks/
 ---
 
 {{< alert warning >}}

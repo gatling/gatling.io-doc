@@ -5,6 +5,8 @@ seotitle: Configure AWS locations in Gatling Enterprise
 description: AWS locations on your private AWS account.
 lead: Private Locations on your AWS account.
 date: 2023-01-12T16:46:04+00:00
+aliases:
+  - /reference/install/cloud/private-locations/aws/configuration/
 ---
 
 ## Instance specifications

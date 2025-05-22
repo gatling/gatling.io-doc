@@ -6,6 +6,8 @@ lead: Usage of the Gatling Enterprise public API
 date: 2021-03-08T12:50:24+00:00
 toc: false
 swagger-ui: true
+aliases:
+  - /reference/execute/cloud/user/api/
 ---
 
 The Gatling Enterprise API server also exposes a public API that you can use to trigger runs or fetch run results and metrics.
@@ -16,7 +18,7 @@ This API requires an `Authorization` HTTP header populated with an [API token]({
 
 {{< swagger-ui src="https://gatling.github.io/gatling-enterprise-api/openapi/openapi.yaml" >}}
 
-# Help
+## Help
 - You have to provide the run ID as a query parameter to fetch other run metadata (load generators, remotes, hostnames, scenarios, groups, requests)
 - The `from` and `to` query parameters for the `/series` endpoint are the lower and upper timestamp bounds of the time window you want to query. 
 - You can fetch the total run time window from the `/runs` endpoint (`injectStart`, `injectEnd`).

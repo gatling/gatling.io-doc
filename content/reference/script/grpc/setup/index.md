@@ -4,6 +4,8 @@ seotitle: Gatling gRPC protocol reference - project setup
 description: How to set up your project to use the Gatling gRPC protocol
 lead: Learn about how to set up your project to use the Gatling gRPC protocol
 date: 2023-08-24T11:27:53+0200
+aliases:
+  - /reference/script/protocols/grpc/setup/
 ---
 
 Under the hood, Gatling uses [gRPC-Java](https://grpc.io/docs/languages/java/) to implement its protocol support.

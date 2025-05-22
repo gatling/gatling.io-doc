@@ -4,6 +4,8 @@ seotitle: Gatling HTTP protocol reference - checks
 description: How to use HTTP specific checks, such as status, header or currentLocation, to validate your HTTP payloads and capture elements and store them in the Session.
 lead: Checks specific to HTTP requests
 date: 2021-04-20T18:30:56+02:00
+aliases:
+  - /reference/script/protocols/http/checks/
 ---
 
 ## HTTP Specific Check Type {#http-check-type}
