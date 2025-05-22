@@ -25,7 +25,7 @@ class ScriptingIntro2SampleJava {
 public class BasicSimulation extends Simulation {
 
   // Define HTTP configuration
-  // Reference: https://docs.gatling.io/reference/script/protocols/http/protocol/
+  // Reference: https://docs.gatling.io/reference/script/http/protocol/
   HttpProtocolBuilder httpProtocol =
     http.baseUrl("https://api-ecomm.gatling.io")
         .acceptHeader("application/json")
