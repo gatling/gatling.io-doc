@@ -1,14 +1,11 @@
 ---
-title: Cloud
+title: Interactive reports
 description: Learn how to analyze test reports and discover the slow parts of your application.
 lead: Analyze your reports and discover the bottlenecks in your application.
-badge:
-  type: enterprise
-  label: Enterprise
 date: 2021-03-10T14:29:43+00:00
 ---
 
-Click on the {{< icon chart-area >}} icon in the [simulations table]({{< ref "/reference/execute/cloud/user/simulations#managing-simulations" >}}) or in the [runs table]({{< ref "../trends/run-trends" >}}) to access the reports.
+Click on the {{< icon chart-area >}} icon in the [simulations table]({{< ref "/reference/run-tests/simulations#managing-simulations" >}}) or in the [runs table]({{< ref "../trends/run-trends" >}}) to access the reports.
 
 This view displays all the metrics available for a specific run.
 
@@ -43,7 +40,7 @@ This section displays your run main KPIs:
 
 Assertions are the run's acceptance criteria. It allows you to quickly know if your requirements are met or not.
 
-Assertions are created in the test script using the Gatling [DSL]({{< ref "../../script/core/assertions" >}}) or in the no-code test builder.
+Assertions are created in the test script using the Gatling [DSL]({{< ref "/concepts/assertions" >}}) or in the no-code test builder.
 
 Each assertion has a status (successful or failed) that indicates whether the current run met your pre-defined requirements.
 
@@ -116,7 +113,7 @@ When downloading a group-level summary, you receive data for both **Duration** a
 
 ### Groups
 
-If you defined [groups]({{< ref "../../script/core/scenario#groups" >}}) in your simulation, you can break down your results per each one of them.
+If you defined [groups]({{< ref "/concepts/scenario#groups" >}}) in your simulation, you can break down your results per each one of them.
 
 Once again like the requests panel, you can visualize your run execution using charts:
 

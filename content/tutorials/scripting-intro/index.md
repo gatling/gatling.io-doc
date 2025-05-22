@@ -75,7 +75,7 @@ A Gatling simulation consists of the following:
 
 The following procedure teaches you to develop the simulation from each constituent component. If you want to skip ahead
 and copy the final simulation, jump to [Test execution]({{< ref "#test-execution" >}}). Learn more about simulations in the
-[Documentation]({{< ref "/reference/script/core/simulation" >}}).
+[Documentation]({{< ref "/concepts/simulation" >}}).
 
 #### Setup the file
 
@@ -97,7 +97,7 @@ You must extend Gatling's `Simulation` class to write a script. To extend the `S
 #### Define the protocol class
 
 Inside the `BasicSimulation` class, add an `HTTP protocol` class. Learn about all of the
-`HttpProtocolBuilder` options in the [Documentation]({{< ref "/reference/script/protocols/http/protocol" >}}). For
+`HttpProtocolBuilder` options in the [Documentation]({{< ref "/reference/script/http/protocol" >}}). For
 this example, the `baseUrl` property is hardcoded as the Gatling e-commerce test site, and the `acceptHeader` is set to `application/json`.
 
 {{< include-code "ScriptingIntro2Sample#define-the-protocol-class" java >}}
@@ -109,14 +109,14 @@ application and then a series of interactions with the application. The followin
 
 {{< include-code "ScriptingIntro3Sample#write-the-scenario" java >}}
 
-See the [Documentation]({{< ref "/reference/script/core/scenario" >}}) for the available scenario
+See the [Documentation]({{< ref "/concepts/scenario" >}}) for the available scenario
 components.
 
 #### Define the injection profile
 
 The final component of a Gatling simulation is the injection profile. The injection profile is contained in the `setUp`
 block. The following example adds 2 users per second for 60 seconds. See the
-[Documentation]({{< ref "/reference/script/core/injection" >}}) for all of the injection profile options.
+[Documentation]({{< ref "/concepts/injection" >}}) for all of the injection profile options.
 
 {{< include-code "ScriptingIntro4Sample#define-the-injection-profile" java >}}
 
@@ -159,11 +159,11 @@ You can package, deploy, and run your simulation using one of two approaches, de
 Gatling Enterprise is a feature-rich SaaS platform that is designed for teams and organizations to get the most
 out of load testing. With the trial account, you created in the [Prerequisites section]({{< ref "#install-gatling" >}}), you can upload and run your test with advanced configuration, reporting, and collaboration features.
 
-From Gatling 3.11 packaging and running simulations on Gatling Enterprise is simplified by using [configuration as code]({{< ref "reference/execute/cloud/user/configuration-as-code" >}}). In this tutorial, we only use the default configuration to demonstrate deploying your project. You can learn more about customizing your configuration with our [configuration-as-code guide]({{< ref "guides/custom-config/config-as-code" >}}).
+From Gatling 3.11 packaging and running simulations on Gatling Enterprise is simplified by using [configuration as code]({{< ref "reference/run-tests/configuration-as-code" >}}). In this tutorial, we only use the default configuration to demonstrate deploying your project. You can learn more about customizing your configuration with our [configuration-as-code guide]({{< ref "guides/ci-cd-automations/config-as-code" >}}).
 
 To deploy and run your simulation on Gatling Enterprise, use the following procedure:
 
-1. Generate an [API token]({{< ref "/reference/execute/cloud/admin/api-tokens" >}}) with the `Configure` permission in your Gatling Enterprise account.
+1. Generate an [API token]({{< ref "/reference/collaborate/admin/api-tokens" >}}) with the `Configure` permission in your Gatling Enterprise account.
 2. Add the API token to your current terminal session by replacing `<your-API-token>` with the API token generated in step 1 and running the following command:
 
    {{< platform-toggle >}}

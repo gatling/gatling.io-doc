@@ -1,5 +1,5 @@
 ---
-title: Open-Source
+title: Static HTML reports
 description: Description of the different charts and tables available in the HTML reports Gatling generates at the end of each test, in particular throughput and response time distribution.
 lead: Analyze your reports thanks to the indicators, active users and requests / responses over time, and distribution
 date: 2021-04-20T18:30:56+02:00
@@ -15,7 +15,7 @@ Details menu points to per-request-type statistics.
 You can use the `-ro` option to generate reports from a truncated simulation.log file, for example when the run was interrupted (Ctrl+C or process killed).
 
 Note that the component in charge of logging into the simulation.log file uses a buffer, so last data might be missing if you forcefully interrupt.
-See [Configuration page]({{< ref "/reference/script/core/configuration#cli-options" >}}).
+See [Configuration page]({{< ref "/concepts/configuration#cli-options" >}}).
 {{< /alert >}}
 
 ## Overall Simulation charts
