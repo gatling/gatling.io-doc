@@ -112,6 +112,8 @@ control-plane {
         }
         # Network interface (optional)
         network-interface {
+          # Specific project for the network interface (optional)
+          # project = "my-network-interface-project-id"
           # Network name on your project (optional)
           # Not needed if subnetwork is configured
           # network = "gatling-network"
