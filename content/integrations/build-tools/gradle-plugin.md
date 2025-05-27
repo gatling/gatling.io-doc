@@ -319,7 +319,7 @@ This will generate the `build/libs/<artifactId>-<version>-tests.jar` package whi
 
 #### Private packages
 
-Configure the [Control Plane URL]({{< ref "/reference/deploy/private-locations/private-packages/#control-plane-server" >}}):
+Configure the [Control Plane URL]({{< ref "/reference/deploy/private-locations/introduction/#control-plane-server" >}}):
 
 ```yaml
 gatling {

@@ -212,7 +212,7 @@ To package simulations from the `it` configuration, `GatlingIt/enterprisePackage
 
 #### Private packages
 
-Configure the [Control Plane URL]({{< ref "/reference/deploy/private-locations/private-packages/#control-plane-server" >}}):
+Configure the [Control Plane URL]({{< ref "/reference/deploy/private-locations/introduction/#control-plane-server" >}}):
 
 ```scala
 Gatling / enterpriseControlPlaneUrl := Some(URI.create("YOUR_CONTROL_PLANE_URL").toURL)
