@@ -83,6 +83,17 @@ control-plane {
   token = ${?CONTROL_PLANE_TOKEN}
   # Control plane description (optional)
   description = "Control plane optional description"
+  # Server configuration (optional)
+  # server {
+    # port = 8080 # (optional, default: 8080)
+    # bindAddress = "0.0.0.0" # (optional, default: 0.0.0.0)
+
+    # # PKCS#12 certificate (optional)
+    # certificate {
+    # path = "/path/to/certificate.p12"
+    #  password = ${CERTIFICATE_PASSWORD} # (optional)
+    # }
+  # }
   # Control plane private locations
   locations = [
     {
@@ -104,6 +115,16 @@ For examples of private locations configuration, see:
 * [Configuration of GCP Compute Engine locations]({{< ref "gcp/configuration" >}})
 * [Configuration of Kubernetes locations]({{< ref "kubernetes/configuration" >}})
 * [Configuration of Dedicated Machines locations]({{< ref "dedicated/configuration" >}})
+
+### Control plane server {#control-plane-server}
+
+The control plane has a server to manage private packages if enabled.
+The server is accessible on port 8080 by default, and provides a healthcheck endpoints via the `/info` path.
+
+This configuration includes the following parameters:
+- **server.port**: The port on which the control plane is listening. (optional)
+- **server.bindAddress**: The network interface to bind to. The default is `0.0.0.0`, which means all available network IPv4 interfaces. (optional)
+- **server.certificate**: The server P12 certificate for secure connection without SSL reverse proxy. (optional)
 
 ### Installation
 

@@ -196,7 +196,7 @@ This will generate the `target/<artifactId>-<version>-shaded.jar` package which 
 
 #### Private packages
 
-Configure the [Control Plane URL]({{< ref "/reference/deploy/private-locations/private-packages/#control-plane-server" >}}):
+Configure the [Control Plane URL]({{< ref "/reference/deploy/private-locations/introduction/#control-plane-server" >}}):
 
 ```scala
 <plugin>

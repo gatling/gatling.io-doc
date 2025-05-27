@@ -55,7 +55,7 @@ Ready to write and run your first tests? Start here:
 - [**Reference →**]({{< ref "/reference" >}}) Complete documentation for Gatling’s SDKs, protocol support, and configuration options.
 - [**Integrations →**]({{< ref "/integrations" >}}) Explore integrations with CI/CD pipelines, build systems, and observability tools like APM platforms.
 - [**Release Notes →**]({{< ref "/release-notes" >}}) What’s new in the latest Gatling versions and feature releases.
-- [**Migration Guides →**]({{< ref "/release-notes/upgrading" >}}) Instructions for upgrading from earlier versions of Gatling safely and effectively.
+- [**Migration Guides →**]({{< ref "/release-notes/gatling/upgrading" >}}) Instructions for upgrading from earlier versions of Gatling safely and effectively.
 
 ## Looking for help?
 

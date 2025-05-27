@@ -64,6 +64,17 @@ control-plane {
   token = ${?CONTROL_PLANE_TOKEN}
   # Control plane description (optional)
   description = "my control plane description"
+  # Server configuration (optional)
+  # server {
+    # port = 8080 # (optional, default: 8080)
+    # bindAddress = "0.0.0.0" # (optional, default: 0.0.0.0)
+
+    # # PKCS#12 certificate (optional)
+    # certificate {
+    # path = "/path/to/certificate.p12"
+    #  password = ${CERTIFICATE_PASSWORD} # (optional)
+    # }
+  # }
   # Locations configurations
   locations = [
     {
