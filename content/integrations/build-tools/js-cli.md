@@ -81,7 +81,7 @@ include a [Prettier](https://prettier.io) configuration for automatic code forma
 
 Gatling periodically releases new versions of the JavaScript SDK to maintain compatibility with Gatling Enterprise,
 add new functionality, and improve performance. Be sure to check the
-[Gatling upgrade guides]({{< ref "/release-notes/upgrading" >}}) for breaking changes.
+[Gatling upgrade guides]({{< ref "/release-notes/gatling/upgrading" >}}) for breaking changes.
 
 Use the following procedure to upgrade your SDK version:
 

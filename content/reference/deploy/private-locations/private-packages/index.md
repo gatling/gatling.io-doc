@@ -41,44 +41,10 @@ Currently, Private Packages support the following underlying storages:
 Before going further, ensure that your repository is ready to hold your packages.
 {{< /alert >}}
 
-### Control plane server {#control-plane-server}
-
-The control plane with a private repository has a server to manage uploads to the repository, secured by a Gatling Enterprise API Token with `Configure` role.
-
-The server is accessible on port 8080 by default when a repository is configured.
-The following **optional server configuration** with the default settings is provided for your reference.
-
-If you intend to put some reverse proxy in front of it, you can use the `/info` path as a healthcheck URL.
-
-```bash
-control-plane {
-  repository {
-    # Upload configuration (optional)
-    upload {
-      directory = "/tmp" # (optional, default: /tmp)
-    }
-    # Server configuration (optional)
-    server {
-      port = 8080 # (optional, default: 8080)
-      bindAddress = "0.0.0.0" # (optional, default: 0.0.0.0)
-      
-      # PKCS#12 certificate (optional)
-      certificate {
-        path = "/path/to/certificate.p12"
-        password = ${CERTIFICATE_PASSWORD} # (optional)
-      }
-    }
-  }
-}
-```
-
-This configuration includes the following parameters:
-- **upload.directory**: This directory temporarily stores uploaded JAR files. (optional)
-- **server.port**: The port on which the control plane is listening for private package uploads.
-- **server.bindAddress**: The network interface to bind to. The default is `0.0.0.0`, which means all available network IPv4 interfaces.
-- **server.certificate**: The server P12 certificate for secure connection without SSL reverse proxy. (optional)
-
 ### Control plane repository
+
+The control plane repository uses the control plane server to manage uploads to the repository, secured by a Gatling Enterprise API Token with `Configure` role.
+You can modify the [server configuration]({{< ref "/reference/deploy/private-locations/introduction/#control-plane-server" >}}) in the Control Plane configuration.
 
 #### AWS S3
 
@@ -222,13 +188,13 @@ To enable HTTPS for your Control Plane container, there are two options:
   - Obtain a valid Domain Name and TLS Certificate. You can use AWS Certificate Manager for simplicity.
   - Create an Application Load Balancer and configure it to listen on port 443.
   - Attach TLS Certificate to the Application Load Balancer.
-  - If you optionally wish to implement TLS encryption on the traffic between ALB and Control Plane server, generate a certificate for the server and update [repository server configuration]({{< ref "#control-plane-server" >}}) in the Control Plane configuration with the generated certificate.
+  - If you optionally wish to implement TLS encryption on the traffic between ALB and Control Plane server, generate a certificate for the server and update [repository server configuration]({{< ref "/reference/deploy/private-locations/introduction/#control-plane-server" >}}) in the Control Plane configuration with the generated certificate.
   - Register your Control Plane as a target group associated with the ALB.
   - Update ALB Security Group to allow inbound traffic on port 443 and allow outbound on your server's port (default: 8080) for the Control Plane Security Group.
   - Update your Route53 or DNS provider settings to point domain or subdomain to the ALB using a CNAME record.
 - Direct IP Aliasing
   - Obtain a valid Domain Name and TLS Certificate.
-  - Update the [repository server configuration]({{< ref "#control-plane-server" >}}) in the Control Plane configuration with the generated certificate.
+  - Update the [repository server configuration]({{< ref "/reference/deploy/private-locations/introduction/#control-plane-server" >}}) in the Control Plane configuration with the generated certificate.
   - Update your Route53 or DNS provider settings to point domain or subdomain to the Control Plane's public IP using an A record.
 
 #### Azure
@@ -246,13 +212,13 @@ To enable HTTPS for your Control Plane container on GCP, there are two options:
   - Obtain a valid domain name and TLS certificate. You can use Google-managed certificates for simplicity.
   - Create a Google Cloud HTTPS Load Balancer and configure it to listen on port 443.
   - Attach the TLS certificate to the HTTPS Load Balancer.
-  - If you optionally wish to implement TLS encryption on the traffic between Google Cloud HTTPS Load Balancer and Control Plane server, generate a certificate for the server and update [repository server configuration]({{< ref "#control-plane-server" >}}) in the Control Plane configuration with the generated certificate.
+  - If you optionally wish to implement TLS encryption on the traffic between Google Cloud HTTPS Load Balancer and Control Plane server, generate a certificate for the server and update [repository server configuration]({{< ref "/reference/deploy/private-locations/introduction/#control-plane-server" >}}) in the Control Plane configuration with the generated certificate.
   - Register your Control Plane as a backend service associated with the Load Balancer.
   - Update the firewall rules to allow inbound traffic on port 443 and allow outbound traffic on your server's port (default: 8080) for the Control Plane's network.
   - Update your Cloud DNS settings or your DNS provider to point your domain or subdomain to the Load Balancer's IP address using a CNAME or A record.
 - Direct IP Aliasing
   - Obtain a valid domain name and TLS certificate.
-  - Update the [repository server configuration]({{< ref "#control-plane-server" >}}) in the Control Plane configuration with the generated certificate.
+  - Update the [repository server configuration]({{< ref "/reference/deploy/private-locations/introduction/#control-plane-server" >}}) in the Control Plane configuration with the generated certificate.
   - Update your Cloud DNS settings or your DNS provider to point your domain or subdomain to the Control Plane's public IP address using an A record.
 
 ## Usage 
