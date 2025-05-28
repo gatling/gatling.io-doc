@@ -1,5 +1,7 @@
 ---
 title: User & team management
+aliases:
+  - /reference/execute
 ordering:
 - admin
 - user
