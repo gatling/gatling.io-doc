@@ -9,7 +9,7 @@ date: 2022-03-01T14:00:00+00:00
 
 Configuring a custom Single Sign-On (SSO) solution is only available on the [enterprise plan](https://gatling.io/pricing/) and must be requested through our [support portal](https://gatlingcorp.atlassian.net/servicedesk/customer/portal/8).
 
-At the moment, we only support integration with SSO systems which are accessible on the Internet, and user roles are still administered within Gatling Enterprise.
+At the moment, we only support integration with SSO systems which are accessible on the Internet.
 
 If you already have an organization on Gatling Enterprise, after configuring a custom SSO, you need to re-invite your users and configure their roles. All other existing data, such as your [teams]({{< ref "/reference/run-tests/simulations" >}}), [simulations]({{< ref "/reference/collaborate/admin/teams" >}}), [reports]({{< ref "/reference/stats/reports/cloud" >}}), and [API tokens]({{< ref "/reference/collaborate/admin/api-tokens" >}}) remain.
 
