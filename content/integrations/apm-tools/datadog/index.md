@@ -63,3 +63,8 @@ Response time min|`gatling_enterprise.response.response_time.min`|Minimum respon
 Response time p95|`gatling_enterprise.response.response_time.p95`|Response time for the 95th percentile 
 Response time p99|`gatling_enterprise.response.response_time.p99`|Response time for the 99th percentile
 Response time p999|`gatling_enterprise.response.response_time.p999`|Response time for the 99.9th percentile
+
+## Use tags to enhance your Datadog dashboard
+
+You can add custom tags by adding system properties, either at the control-plane level or in your test configuration (except for no-code tests):
+`gatling.enterprise.dd.tags.<custom_tag>` = `<your value>`
