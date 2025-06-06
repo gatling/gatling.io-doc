@@ -9,7 +9,7 @@ This feature is only available on Gatling Enterprise. To learn more, [explore ou
 
 ## Introduction
 
-The Datadog integration allows Gatling Enterprise to send load-test metrics—such as response times, throughput, and error rates directly into Datadog’s observability platform. Once enabled, performance data from Gatling Enterprise is sent to Datadog, where it can be correlated with infrastructure and application metrics already collected in your Datadog account 
+The Datadog integration allows Gatling Enterprise to send load-test metrics - such as response times, throughput, and error rates - directly into Datadog’s observability platform. Once enabled, performance data from Gatling Enterprise is sent to Datadog, where it can be correlated with infrastructure and application metrics already collected in your Datadog account 
 
 With this integration in place, you can:
 
@@ -18,8 +18,8 @@ With this integration in place, you can:
 
 ## Prerequisites 
 
-- a valid Datadog API key and a running Datadog Agent configured to accept custom metrics. 
-- A Gatling Enterprise account with private locations. 
+- A valid Datadog API key and your Datadog site. 
+- A Gatling Enterprise account with private locations that can connect to the Datadog network. 
 
 ## Install the Datadog integration
 
@@ -35,7 +35,7 @@ The Datadog integration requires installation steps in your Datadog account and 
       {
         system-properties {
           "gatling.enterprise.dd.api.key" = "<your api key>"
-         "gatling.enterprise.dd.site" = "datadoghq.com"  
+          "gatling.enterprise.dd.site" = "datadoghq.com"  
         }
       }
     ]
@@ -63,8 +63,3 @@ Response time min|`gatling_enterprise.response.response_time.min`|Minimum respon
 Response time p95|`gatling_enterprise.response.response_time.p95`|Response time for the 95th percentile 
 Response time p99|`gatling_enterprise.response.response_time.p99`|Response time for the 99th percentile
 Response time p999|`gatling_enterprise.response.response_time.p999`|Response time for the 99.9th percentile
-
-## Use tags to enhance your Datadog dashboard
-
-You can add custom tags by adding system properties, either at the control-plane level or in your test configuration (except for no-code tests):
-`gatling.enterprise.dd.tags.<custom_tag>` = `<your value>`
