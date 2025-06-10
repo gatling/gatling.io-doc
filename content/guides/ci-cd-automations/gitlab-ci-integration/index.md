@@ -4,8 +4,6 @@ menutitle: Gitlab CI/CD integration
 seotitle: How to integrate Gatling with Gitlab CI/CD
 description: Set up automated load testing with Gitlab CI/CD
 lead: Add performance testing to your Gitlab CI/CD pipeline with Gatling Enterprise.
-date: 2025-03-11T13:35:00+02:00
-
 ---
 
 {{< alert enterprise >}}

@@ -4,7 +4,6 @@ menutitle: Mean and standard deviation
 seotitle: Metrics and analysis of load testing, mean and standard deviation
 description: Learn about why mean and standard deviation can be misleading metrics for load tests
 lead: Learn about why mean and standard deviation can be misleading metrics for load tests
-date: 2025-02-27T09:30:56+02:00
 aliases:
   - /concepts/mean-and-sd/
 ---

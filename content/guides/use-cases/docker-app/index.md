@@ -4,7 +4,6 @@ menutitle: Test a Docker-based app
 seotitle: How to test a Docker-based application with Gatling
 description: Create a Gatling simulation that tests dockerized applications.
 lead: Learn how to load tests your Dockerized applications.
-date: 2025-02-28T10:30:56+02:00
 aliases:
   - /guides/complex-use-cases/docker-app/
 ---

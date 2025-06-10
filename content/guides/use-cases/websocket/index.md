@@ -3,7 +3,6 @@ menutitle: Testing WebSocket
 title: How to test the WebSocket protocol
 seotitle: Learn how to load test WebSocket with Gatling
 lead: Learn how to load test WebSocket with Gatling
-date: 2025-04-03T13:35:00+02:00
 aliases:
   - /guides/complex-use-cases/websocket/
 ---

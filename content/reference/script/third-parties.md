@@ -5,8 +5,7 @@ aliases:
   - /reference/extensions/third-parties
   - /reference/integrations/third-parties/
 description: Active, lagging, and inactive third-party plugins to use non-officially supported protocols, such as Kafka, AMQP, Cassandra and JDBC.
-lead: Third-party plugins allow working with non-officially supported protocols
-date: 2021-04-20T18:30:56+02:00
+lead: Third-party plugins allow working with non-officially supported protocols.
 ---
 
 ## Third Parties

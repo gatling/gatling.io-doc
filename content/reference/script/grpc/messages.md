@@ -3,7 +3,6 @@ title: gRPC Messages
 seotitle: Gatling gRPC protocol reference - messages
 description: Request and response message with Gatling gRPC
 lead: Learn how to handle gRPC request and response messages in Gatling simulations
-date: 2023-09-07T12:00:00+0200
 aliases:
   - /reference/script/protocols/grpc/messages/
 ---

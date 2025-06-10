@@ -4,7 +4,6 @@ menutitle: Migrate to Maven
 seotitle: Learn how to migrate to the Maven build tool.
 description: Learn how to migrate to the Maven build tool.
 lead: Learn how to migrate to the Maven build tool.
-date: 2025-02-27T09:30:56+02:00
 aliases:
   - /release-notes/upgrading/migrate-maven/
 ---

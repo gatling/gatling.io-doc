@@ -4,7 +4,6 @@ title: Generate synthetic data for your load tests
 seotitle: How to generate synthetic data for your Gatling load tests
 description: Learn how to generate synthetic data for your Gatling load tests
 lead: Learn how to generate synthetic data for your Gatling load tests
-date: 2025-02-28T8:30:56+02:00
 ---
 
 Realistic data is crucial in simulating real-world scenarios when building performance tests. Generating dynamic data can help make your Gatling tests more effective and closer to actual production conditions.

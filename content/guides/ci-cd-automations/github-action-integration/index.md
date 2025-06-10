@@ -1,11 +1,9 @@
 ---
-title: Integrate Gatling with Github Actions
+title: Integrate Gatling with GitHub Actions
 menutitle: GitHub Actions integration
-seotitle: How to integrate Gatling with Github Actions
+seotitle: How to integrate Gatling with GitHub Actions
 description: Learn how to integrate Gatling with GitHub Actions for continuous performance testing
 lead: Set up automated performance testing in your CI/CD pipeline using Gatling and GitHub Actions
-date: 2025-03-11T13:35:00+02:00
-
 ---
 
 {{< alert enterprise >}}

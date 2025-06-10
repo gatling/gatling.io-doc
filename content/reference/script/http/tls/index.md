@@ -3,7 +3,6 @@ title: TLS
 seotitle: Gatling HTTP protocol reference - TLS
 description: How to configure TLS/HTTPS features, such as SSLContext, SNI, keystore and truststore.
 lead: Configure the SSLContext, SNI, keystore and truststore
-date: 2021-04-20T18:30:56+02:00
 aliases:
   - /reference/script/protocols/http/tls/
 ---

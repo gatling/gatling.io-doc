@@ -4,7 +4,6 @@ menutitle: Understanding load tests
 seotitle: Understanding load tests with Gatling Enterprise's advanced reporting features
 description: Understanding load tests with Gatling Enterprise's advanced reporting features
 lead: Understanding load tests with Gatling Enterprise's advanced reporting features
-date: 2025-02-28T15:30:56+02:00
 ---
 
 {{< alert enterprise >}}

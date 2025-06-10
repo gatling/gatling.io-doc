@@ -4,7 +4,6 @@ title: How to test the MQTT protocol
 seotitle: Learn how to test the MQTT protocol with Gatling
 description: Learn how to test the MQTT protocol with Gatling
 lead: Learn how to test the MQTT protocol with Gatling
-date: 2025-02-27T09:30:56+02:00
 aliases:
   - /guides/complex-use-cases/mqtt/
 ---

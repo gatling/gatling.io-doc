@@ -3,7 +3,6 @@ title: HTTP Polling
 seotitle: Gatling HTTP protocol reference - polling
 description: How to perform HTTP polling in your tests.
 lead: Learn how to start and stop the polling
-date: 2021-04-20T18:30:56+02:00
 toc: true
 aliases:
   - /reference/script/protocols/http/polling/

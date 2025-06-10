@@ -7,7 +7,6 @@ lead: Run your Gatling Enterprise simulations from Azure DevOps Pipelines.
 aliases:
   - /reference/extensions/ci-cd/azure-devops
   - /reference/integrations/ci-cd/azure-devops
-date: 2023-11-09T15:25:27+0000
 ---
 
 {{< alert enterprise >}}

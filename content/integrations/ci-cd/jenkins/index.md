@@ -7,7 +7,6 @@ lead: Run your Gatling Enterprise simulations from your Jenkins CI.
 aliases:
   - /reference/extensions/ci-cd/jenkins/enterprise
   - /reference/integrations/ci-cd/jenkins
-date: 2021-03-08T12:50:14+00:00
 ---
 
 {{< alert enterprise >}}

@@ -3,7 +3,6 @@ title: Postman
 seotitle: Gatling Postman reference
 description: Learn how to use your Postman collections in Gatling load tests.
 lead: Use your Postman collections in Gatling load tests
-date: 2024-11-15T10:35:00+02:00
 aliases:
   - /reference/script/protocols/postman/
 ---

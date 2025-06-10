@@ -2,7 +2,6 @@
 title: Configuration As Code
 seotitle: Gatling Enterprise Deployment with Configuration As Code
 description: Guides you through deploying your Gatling project on Gatling Enterprise.
-date: 2024-03-10T14:29:04+00:00
 aliases:
   - /reference/execute/cloud/user/configuration-as-code/
 ---

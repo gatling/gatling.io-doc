@@ -3,7 +3,6 @@ title: Create a simulation from Postman
 seotitle: Gatling Postman getting started
 description: Learn how to use your Postman collections in Gatling load tests.
 lead: Use your Postman collections in Gatling load tests
-date: 2024-12-15T15:22:00+02:00
 ---
 
 {{< alert enterprise >}}

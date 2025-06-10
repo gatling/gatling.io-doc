@@ -5,11 +5,13 @@ seotitle: User profile in Gatling Enterprise
 description: Learn how to access your Gatling Enterprise user profile and manage your personal settings.
 lead: Manage your user-level account settings
 date: 2021-03-10T14:29:23+00:00
+aliases:
+  - /reference/execute/cloud/user/profile/
 ---
 
 ## Accessing your profile
 
-To access your profile at any time click on your oraganization's initials in the top right of the screen and then click the **My profile** button.
+To access your profile at any time click on your organization's initials in the top right of the screen and then click the **My profile** button.
 
 {{< img src="profile-menu.png" alt="My profile button" caption="Profile menu">}}
 
