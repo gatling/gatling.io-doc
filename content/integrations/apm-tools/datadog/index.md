@@ -52,7 +52,7 @@ To remove the link between Gatling Enterprise and Datadog, remove the lines cont
 Gatling Enterprise pushes the following list of load test metrics to Datadog:
 
 **Short name**|**Metric name**|**Description**
-:-----|:-----:|:-----:
+:-----|:-----|:-----
 User start|`gatling_enterprise.user.start_count`|Number of injected users
 User end|`gatling_enterprise.user.end_count`|Number of stopped users
 Concurrent user|`gatling_enterprise.user.concurrent`|Number of concurrent users
@@ -65,6 +65,23 @@ Response time p99|`gatling_enterprise.response.response_time.p99`|Response time 
 Response time p999|`gatling_enterprise.response.response_time.p999`|Response time for the 99.9th percentile
 
 ## Use tags to enhance your Datadog dashboard
+
+### Defaults Tags
+
+Gatling Enterprise pushes the following tags to Datadog:
+
+**Short name**|**Tag name**|**Description**
+:-----|:-----|:-----
+Team|`team`|Name of the team that owns the test
+Test|`test`|Test name
+Start date|`start_date`|Timestamp (UTC) of the run start
+Load generator|`load_generator`|Load generator reference integer starting with 0
+Scenario|`scenario`|Scenario name
+Status|`status`|Status of the run (OK or KO)
+Run ID|`run_id`|ID of the run
+
+
+### Custom Tags
 
 You can add custom tags by adding system properties, either at the control-plane level or in your test configuration (except for no-code tests):
 `gatling.enterprise.dd.tags.<custom_tag>` = `<your value>`
