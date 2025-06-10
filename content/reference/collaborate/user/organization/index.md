@@ -3,6 +3,8 @@ title: Organizations
 seotitle: Organizations in Gatling Enterprise
 description: Learn how to access your organization details in Gatling Enterprise.
 date: 2021-08-05T13:13:30+00:00
+aliases:
+  - /reference/execute/cloud/user/organization/
 ---
 
 To view [settings]({{< ref "#settings" >}}) about your organization, click on the **Organization settings** button or on the **Organization** menu item.

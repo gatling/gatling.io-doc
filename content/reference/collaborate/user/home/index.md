@@ -4,6 +4,8 @@ seotitle: Gatling Enterprise home
 description: Checkout your teams last runs and credits left.
 lead: Checkout your teams last runs and credits left.
 date: 2024-06-04T14:29:04+00:00
+aliases:
+  - /reference/execute/cloud/user/home/
 ---
 
 The home page lets you have a quick understanding of the activity that recently happened in your organization while also providing key links to documentation.

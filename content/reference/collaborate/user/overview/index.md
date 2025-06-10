@@ -4,6 +4,8 @@ seotitle: Gatling Enterprise usage overview
 description: Learn how to navigate in Gatling Enterprise.
 lead: Learn how to navigate in Gatling Enterprise.
 date: 2021-03-10T14:29:04+00:00
+aliases:
+  - /reference/execute/cloud/user/overview/
 ---
 
 {{< img src="overview.png" alt="Overview" caption="Overview" >}}
