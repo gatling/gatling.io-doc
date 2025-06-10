@@ -5,6 +5,8 @@ seotitle: User profile in Gatling Enterprise
 description: Learn how to access your Gatling Enterprise user profile and manage your personal settings.
 lead: Manage your user-level account settings
 date: 2021-03-10T14:29:23+00:00
+aliases:
+  - /reference/execute/cloud/user/profile/
 ---
 
 ## Accessing your profile
