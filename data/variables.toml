@@ -1,6 +1,6 @@
 gatlingVersion = "3.14.3"
 gatlingJsVersion = "3.14.300"
-selfHostedVersion = "1.25.1"
+selfHostedVersion = "1.26.3"
 
 ciPluginsVersion = "1.18.0"
 grafanaPluginVersion = "1.16.6"
