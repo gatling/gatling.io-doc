@@ -11,7 +11,7 @@ aliases:
 
 ## Accessing your profile
 
-To access your profile at any time click on your oraganization's initials in the top right of the screen and then click the **My profile** button.
+To access your profile at any time click on your organization's initials in the top right of the screen and then click the **My profile** button.
 
 {{< img src="profile-menu.png" alt="My profile button" caption="Profile menu">}}
 

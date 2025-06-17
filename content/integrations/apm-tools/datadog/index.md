@@ -1,6 +1,9 @@
 ---
-title: Datadog integration for Gatling
+title: Datadog integration for Gatling Enterprise
 menutitle: Datadog
+seotitle: Datadog integration for Gatling Enterprise
+description: Integrate Gatling Enterprise with Datadog to monitor load-test metrics alongside your infrastructure and application metrics.
+lead: Integrate Gatling Enterprise with Datadog to monitor load-test metrics alongside your infrastructure and application metrics.
 ---
 
 {{< alert enterprise >}}

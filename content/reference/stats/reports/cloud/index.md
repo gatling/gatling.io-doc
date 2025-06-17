@@ -2,7 +2,6 @@
 title: Interactive reports
 description: Learn how to analyze test reports and discover the slow parts of your application.
 lead: Analyze your reports and discover the bottlenecks in your application.
-date: 2021-03-10T14:29:43+00:00
 ---
 
 Click on the {{< icon chart-area >}} icon in the [simulations table]({{< ref "/reference/run-tests/simulations#managing-simulations" >}}) or in the [runs table]({{< ref "../trends/run-trends" >}}) to access the reports.

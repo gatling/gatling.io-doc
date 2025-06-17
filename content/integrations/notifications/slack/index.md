@@ -4,7 +4,6 @@ title: Slack notifications configuration
 seotitle: Configure Gatling run notifications for Slack
 description: Get notified about your Gatling simulations in Slack.
 lead: Get notified about your simulations with Slack.
-date: 2021-11-07T14:29:04+00:00
 aliases: 
   - /reference/execute/cloud/admin/notifications/
 ---

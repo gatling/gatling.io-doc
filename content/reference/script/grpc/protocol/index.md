@@ -3,7 +3,6 @@ title: gRPC Protocol
 seotitle: Gatling gRPC protocol reference - protocol configuration
 description: How to configure Gatling gRPC service address, headers, TLS and load balancing
 lead: Learn about gRPC protocol settings, TLS, and load balancing
-date: 2023-08-24T11:27:53+0200
 aliases:
   - /reference/script/protocols/grpc/protocol/
 ---
