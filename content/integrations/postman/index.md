@@ -1,5 +1,6 @@
 ---
-title: Postman
+title: Gatling Postman reference
+menutitle: Postman
 seotitle: Gatling Postman reference
 description: Learn how to use your Postman collections in Gatling load tests.
 lead: Use your Postman collections in Gatling load tests
