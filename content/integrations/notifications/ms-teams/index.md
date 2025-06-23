@@ -4,7 +4,6 @@ title: Microsoft teams configuration
 seotitle: Configure Gatling run notifications for Microsoft Teams 
 description: Get notified about your Gatling simulations in Microsoft Teams.
 lead: Get notified about your simulations with Microsoft Teams.
-date: 2021-11-07T14:29:04+00:00
 aliases: 
   - /reference/execute/cloud/admin/notifications/
 ---

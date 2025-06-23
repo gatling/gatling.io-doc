@@ -7,7 +7,6 @@ lead: Run your Gatling Enterprise simulations from GitHub Actions.
 aliases:
   - /reference/extensions/ci-cd/github-actions
   - /reference/integrations/ci-cd/github-actions/
-date: 2022-01-04T15:00:00+00:00
 ---
 
 {{< alert enterprise >}}

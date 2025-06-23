@@ -1,6 +1,6 @@
 ---
 title: Home
-seotitle: Gatling Enterprise home
+seotitle: Gatling Enterprise home page and latest runs overview
 description: Checkout your teams last runs and credits left.
 lead: Checkout your teams last runs and credits left.
 date: 2024-06-04T14:29:04+00:00

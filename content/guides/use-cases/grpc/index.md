@@ -3,7 +3,6 @@ menutitle: Testing gRPC
 title: How to test the gRPC protocol
 seotitle: Learn how to load test gRPC with Gatling
 lead: Learn how to load test gRPC with Gatling
-date: 2025-02-28T8:30:56+02:00
 aliases:
   - /guides/complex-use-cases/docker-app/
 ---

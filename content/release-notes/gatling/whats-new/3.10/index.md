@@ -3,7 +3,6 @@ title: What's new in 3.10
 seotitle: What's new in Gatling 3.10
 description: Gatling 3.10 release notes.
 lead: Gatling 3.10 release notes.
-date: 2023-12-14T23:00:00+02:00
 aliases:
   - /release-notes/whats-new/3.10/
 ---

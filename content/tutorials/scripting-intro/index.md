@@ -3,7 +3,6 @@ menutitle: Create a simulation with Java
 title: Create your first Java-based simulation
 description: "Get started with Gatling: install, write your first load test, and execute it."
 lead: Learn how to get started with Gatling and create a Gatling simulation.
-date: 2023-12-16T18:30:56+02:00
 ---
 
 {{< alert warning >}}

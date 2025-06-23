@@ -7,7 +7,6 @@ lead: Run your Gatling Enterprise simulations from your Bamboo CI.
 aliases:
   - /reference/extensions/ci-cd/bamboo
   - /reference/integrations/ci-cd/bamboo
-date: 2021-03-08T12:49:49+00:00
 ---
 
 {{< alert enterprise >}}

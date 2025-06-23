@@ -3,7 +3,6 @@ title: Configuration
 seotitle: Gatling configuration reference
 description: "How to configure Gatling: configuration file options, bundle command line options, logging."
 lead: Configure the logs with logback.xml, the configuration with gatling.conf, and the zip bundle command options
-date: 2021-04-20T18:30:56+02:00
 aliases:
   - /reference/script/core/configuration/
 ---
