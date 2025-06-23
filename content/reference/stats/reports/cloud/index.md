@@ -5,6 +5,10 @@ lead: Analyze your reports and discover the bottlenecks in your application.
 date: 2021-03-10T14:29:43+00:00
 ---
 
+{{< alert enterprise >}}
+This feature is only available on Gatling Enterprise. To learn more, [explore our plans](https://gatling.io/pricing?utm_source=docs)
+{{< /alert >}}
+
 Click on the {{< icon chart-area >}} icon in the [simulations table]({{< ref "/reference/run-tests/simulations#managing-simulations" >}}) or in the [runs table]({{< ref "../trends/run-trends" >}}) to access the reports.
 
 This view displays all the metrics available for a specific run.
@@ -151,7 +155,8 @@ The connections panel shows the following time-dependent metrics:
 
 - socket connections, 
 - TCP events, 
-- TLS handshakes.
+- TLS handshakes,
+- bandwidth usage.
 
 {{< img src="report-connections.png" alt="Report Connections panel" >}}
 
