@@ -5,6 +5,9 @@ description: Using run comparison to analyze tests with Gatling Enterprise
 lead: Compare run metrics to understand request-level changes in your application performance.  
 ---
 
+{{< alert enterprise >}}
+This feature is only available on Gatling Enterprise. To learn more, [explore our plans](https://gatling.io/pricing?utm_source=docs)
+{{< /alert >}}
 Run comparison is designed to help you uncover changes in application performance down to the individual request level. You can compare up to 5 runs simultaneously and edit the sampled time window to zoom in on performance bottlenecks. The following sections cover the run comparison functionality. 
 
 ## Select runs for comparison
