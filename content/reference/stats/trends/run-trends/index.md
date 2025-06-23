@@ -5,6 +5,10 @@ description: Using trends and comparison to analyze tests with Gatling Enterpris
 lead: Get a high-level overview of your recent simulation results
 ---
 
+{{< alert enterprise >}}
+This feature is only available on Gatling Enterprise. To learn more, [explore our plans](https://gatling.io/pricing?utm_source=docs)
+{{< /alert >}}
+
 ## Introduction
 
 The run trends page provides a high-level overview of your recent runs performance, allowing you to quickly assess if your application performance is improving or regressing.  

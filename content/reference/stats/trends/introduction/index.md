@@ -5,6 +5,10 @@ description: Using trends and comparison to analyze tests with Gatling Enterpris
 lead: Get an overview of what run trends and comparison does and how to access the feature in Gatling Enterprise.  
 ---
 
+{{< alert enterprise >}}
+This feature is only available on Gatling Enterprise. To learn more, [explore our plans](https://gatling.io/pricing?utm_source=docs)
+{{< /alert >}}
+
 Run trends and comparisons allow you to investigate how your application performance changes over time. While anyone can use the feature, it is particularly powerful when load testing is integrated into your CI/CD workflows. The feature is split into 2 functionalities: 
 
 - [Run trends]({{< ref "../trends/run-trends" >}}) gives you a high-level overview of your test performance covering your recent runs and displays up to 10 runs in total. Bar graphs illustrate: 
