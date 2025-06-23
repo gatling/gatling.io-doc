@@ -521,7 +521,7 @@ You can change the default role by modifying the corresponding `defaultRole` att
 
 ```hocon
 oidc {
-  discoveryUrl = "https://login.microsoftonline.com/organizations/v2.0/.well-known/openid-configuration"
+  discoveryUrl = "https://login.microsoftonline.com/{tenant}/v2.0/.well-known/openid-configuration"
   client {
     id = "******-*******-********-******"
     secret = "****************"
