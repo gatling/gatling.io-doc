@@ -56,7 +56,7 @@ The plugin needs some global configuration. Go to **Manage Jenkins**, **Configur
 
 Choose the Jenkins credentials where [you stored your API token]({{< ref "#api-token-and-jenkins-credentials" >}}).
 
-The **Address** is the address of Gatling Enterprise (use https://cloud.gatling.io).
+The **Address** is the address of Gatling Enterprise (use https://api.gatling.io).
 
 {{< img src="global-configuration.png" alt="Global Configuration" >}}
 
