@@ -1,5 +1,5 @@
 ---
-menutitle: Jenkins Plugin
+menutitle: Jenkins
 title: Jenkins Plugin
 seotitle: Jenkins Plugin for Gatling Enterprise
 description: Learn how to configure the Jenkins plugin and run your simulations.
