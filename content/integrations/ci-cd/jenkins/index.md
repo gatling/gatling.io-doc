@@ -56,7 +56,11 @@ The plugin needs some global configuration. Go to **Manage Jenkins**, **Configur
 
 Choose the Jenkins credentials where [you stored your API token]({{< ref "#api-token-and-jenkins-credentials" >}}).
 
-The **Address** is the address of Gatling Enterprise (use https://cloud.gatling.io).
+The **Address** is the address of Gatling Enterprise (use `https://cloud.gatling.io`). The **API Address** is for the public API (`https://api.gatling.io`).
+
+{{< alert info >}}
+If you specify the **Address** `https://cloud.gatling.io`, you can usually leave the **API Address** field blank as it will default to `https://api.gatling.io`. If you use an internal gateway to allow your Jenkins instance to call the Gatling Enterprise public API, you may need to specify your gateway address as the **API Address**.
+{{< /alert >}}
 
 {{< img src="global-configuration.png" alt="Global Configuration" >}}
 
@@ -79,7 +83,7 @@ pipeline {
     stages {
         stage("Gatling Enterprise simulation") {
             steps {
-                gatlingFrontLineLauncherStep credentialId: 'GATLING_API_TOKEN', simulationId: '00eacd1c-ef91-4076-ad57-99b4c6675a9e'
+                gatlingFrontLineLauncherStep simulationId: '00eacd1c-ef91-4076-ad57-99b4c6675a9e'
             }
         }
     }
@@ -90,11 +94,30 @@ pipeline {
 ```groovy
 node {
     stage("Gatling Enterprise simulation") {
-        gatlingFrontLineLauncherStep credentialId: 'GATLING_API_TOKEN', simulationId: '00eacd1c-ef91-4076-ad57-99b4c6675a9e'
+        gatlingFrontLineLauncherStep simulationId: '00eacd1c-ef91-4076-ad57-99b4c6675a9e'
     }
 }
 ```
 {{< img src="pipeline-configuration.png" alt="Pipeline Configuration" >}}
+
+#### Overriding the global configuration
+
+{{< alert info >}}
+This is especially useful when transitioning from Gatling Enterprise Self-Hosted to Gatling Enterprise Cloud, as you will need use the Cloud URLs and API token only for the simulations which have already been migrated.
+
+Only specifying a different `credentialId` can also be useful if you use API tokens with specific permissions (e.g. each restricted to one team).
+{{</ alert >}}
+
+If you do not want to use the globally configured URLs and API token, you can override their values for each step:
+
+```groovy
+gatlingFrontLineLauncherStep(
+    simulationId: '00eacd1c-ef91-4076-ad57-99b4c6675a9e',
+    credentialId: 'GATLING_API_TOKEN',
+    address: 'https://cloud.gatling.io',
+    apiAddress: 'https://api.gatling.io'
+)
+```
 
 #### Passing parameters
 
@@ -106,6 +129,8 @@ gatlingFrontLineLauncherStep(
     systemProps: ["var": "$var1", "sensitive.var2": "this prop won't be displayed in the run snapshot"]
 )
 ```
+
+#### Run status logging
 
 This step regularly prints a summary of the run's current status to the build logs. By default, the summary is printed every 5 seconds the first 12 times (i.e. for the first 60 seconds), and then every 60 seconds. You can configure this behavior (or completely disable these logs) with the following parameters:
 
