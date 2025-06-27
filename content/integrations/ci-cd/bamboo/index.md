@@ -36,11 +36,16 @@ You need to be connected as an administrator of your Bamboo application to insta
 
 The plugin needs some global configuration. Go to **Administration**, then **Global variables**.
 
-Add two new variables:
+Add new variables:
 
-- the first one is named `frontline.address`, and corresponds to the address of Gatling Enterprise (`https://cloud.gatling.io` if using Gatling Enterprise).
-- the second one is named `frontline.apiTokenPassword`, and corresponds to the API token needs to authenticate to Gatling Enterprise:
+- `frontline.address` corresponds to the address of Gatling Enterprise (`https://cloud.gatling.io`).
+- `frontline.apiAddress` corresponds to the public API (`https://api.gatling.io`).
+- `frontline.apiTokenPassword` corresponds to the API token needed to authenticate to Gatling Enterprise:
   - the [API token]({{< ref "reference/collaborate/admin/api-tokens" >}}) needs the **Start** permission.
+
+{{< alert info >}}
+If you specify `https://cloud.gatling.io` for ``frontline.address``, you can leave out `frontline.apiAddress` as it will default to `https://api.gatling.io`. If you use an internal gateway to allow your Jenkins instance to call the Gatling Enterprise public API, you may need to specify your gateway address for `frontline.apiAddress`.
+{{< /alert >}}
 
 {{< img src="global-variable.png" alt="Global variable" >}}
 

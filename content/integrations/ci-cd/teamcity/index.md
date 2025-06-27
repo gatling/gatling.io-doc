@@ -38,9 +38,14 @@ Once the plugin is uploaded, you need to enable it.
 
 The plugin needs a global configuration. Go to **Administration**, then **frontline-teamcity-plugin**:
 
-- the **Gatling Enterprise Address** is the address of Gatling Enterprise (https://cloud.gatling.io).
+- the **Gatling Enterprise Address** is the address of Gatling Enterprise (`https://cloud.gatling.io`).
+- the **Gatling Enterprise API Address** is for the public API (`https://api.gatling.io`).
 - the **Gatling Enterprise API Token** is needed to authenticate to Gatling Enterprise:
   - the [API token]({{< ref "reference/collaborate/admin/api-tokens" >}}) needs the **Start** permission.
+
+{{< alert info >}}
+If you specify the **Address** `https://cloud.gatling.io`, you can leave the **API Address** field blank as it will default to `https://api.gatling.io`. If you use an internal gateway to allow your Jenkins instance to call the Gatling Enterprise public API, you may need to specify your gateway address as the **API Address**.
+{{< /alert >}}
 
 {{< img src="administration.png" alt="" >}}
 
