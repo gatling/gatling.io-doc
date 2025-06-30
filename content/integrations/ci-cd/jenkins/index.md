@@ -74,7 +74,9 @@ You can use the Pipeline Snippet Generator to help you use the Jenkins Plugin. C
 
 {{< img src="pipeline-generator.png" alt="Snippet Generator" >}}
 
-If you don't want to use the globally configured API token, you can choose another one [stored in a Jenkins secret text credential]({{< ref "#api-token-and-jenkins-credentials" >}}). Choose one of the simulations in the drop-down menu, then click Generate Groovy. Copy and paste the result in your Pipeline script, eg:
+You can [override the address and/or API token]({{< ref "#overriding-the-global-configuration" >}}) if needed, otherwise leave those fields blank. 
+
+Choose one of the simulations in the drop-down menu, then click Generate Groovy. Copy and paste the result in your Pipeline script, eg:
 
 ##### Declarative Pipeline Syntax:
 ```groovy
@@ -108,7 +110,7 @@ This is especially useful when transitioning from Gatling Enterprise Self-Hosted
 Only specifying a different `credentialId` can also be useful if you use API tokens with specific permissions (e.g. each restricted to one team).
 {{</ alert >}}
 
-If you do not want to use the globally configured URLs and API token, you can override their values for each step:
+If you do not want to use the globally configured URLs and API token, you can override their values for each step. For the API token, `credentialId` must contain the ID of a [Jenkins secret text credential]({{< ref "#api-token-and-jenkins-credentials" >}}).
 
 ```groovy
 gatlingFrontLineLauncherStep(
