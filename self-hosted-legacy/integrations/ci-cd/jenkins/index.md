@@ -49,7 +49,7 @@ The plugin needs some global configuration. Go to **Manage Jenkins**, **Configur
 
 Choose the Jenkins credentials where [you stored your API token]({{< ref "#api-token-and-jenkins-credentials" >}}).
 
-The **Address** is the address of Gatling Enterprise. You can also configure it per CI project if you have several instances of Gatling Enterprise Self-Hosted.
+The **Address** is the address of Gatling Enterprise. The **API Address** should be left blank for Gatling Enterprise Self-Hosted.
 
 {{< img src="global-configuration.png" alt="Global Configuration" >}}
 
@@ -63,32 +63,51 @@ You can use the Pipeline Snippet Generator to help you use the Jenkins Plugin. C
 
 {{< img src="pipeline-generator.png" alt="Snippet Generator" >}}
 
-If you don't want to use the globally configured API token, you can chose another one [stored in a Jenkins secret text credential]({{< ref "#api-token-and-jenkins-credentials" >}}). Choose one of the simulations in the drop-down menu, then click Generate Groovy. Copy and paste the result in your Pipeline script, eg:
+You can [override the address and/or API token]({{< ref "#overriding-the-global-configuration" >}}) if needed, otherwise leave those fields blank.
+
+Choose one of the simulations in the drop-down menu, then click Generate Groovy. Copy and paste the result in your Pipeline script, eg:
+
+##### Declarative Pipeline Syntax:
 ```groovy
-// Declarative Pipeline Syntax
 pipeline {
     agent any
     stages {
         stage("Gatling Enterprise simulation") {
             steps {
-                gatlingFrontLineLauncherStep credentialId: 'MY_JENKINS_CREDENTIAL_ID', simulationId: '00eacd1c-ef91-4076-ad57-99b4c6675a9e'
+                gatlingFrontLineLauncherStep simulationId: '00eacd1c-ef91-4076-ad57-99b4c6675a9e'
             }
         }
     }
 }
+```
 
-// Scripted Pipeline Syntax
+##### Scripted Pipeline Syntax:
+```groovy
 node {
     stage("Gatling Enterprise simulation") {
-        gatlingFrontLineLauncherStep credentialId: 'MY_JENKINS_CREDENTIAL_ID', simulationId: '00eacd1c-ef91-4076-ad57-99b4c6675a9e'
+        gatlingFrontLineLauncherStep simulationId: '00eacd1c-ef91-4076-ad57-99b4c6675a9e'
     }
 }
 ```
 {{< img src="pipeline-configuration.png" alt="Pipeline Configuration" >}}
 
-{{< alert tip >}}
-`gatlingFrontLineLauncherStep` can also take an optional `address` parameter, to override the address configured globally. This can be useful in some cases.
-{{< /alert >}}
+#### Overriding the global configuration
+
+{{< alert info >}}
+This is especially useful when transitioning from Gatling Enterprise Self-Hosted to Gatling Enterprise Cloud, as you will need use the Cloud URLs and API token only for the simulations which have already been migrated; or if you have several Self-Hosted instances.
+
+Only specifying a different `credentialId` can also be useful if you use API tokens with specific permissions (e.g. each restricted to one team).
+{{</ alert >}}
+
+If you do not want to use the globally configured URLs and API token, you can override their values for each step. For the API token, `credentialId` must contain the ID of a [Jenkins secret text credential]({{< ref "#api-token-and-jenkins-credentials" >}}).
+
+```groovy
+gatlingFrontLineLauncherStep(
+    simulationId: '00eacd1c-ef91-4076-ad57-99b4c6675a9e',
+    credentialId: 'GATLING_API_TOKEN',
+    address: 'https://my-gatling-enterprise-instance.tld'
+)
+```
 
 #### Passing parameters
 
