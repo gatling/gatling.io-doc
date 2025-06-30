@@ -13,7 +13,7 @@ Migration guide from the gatling-grpc community plugin to the official Gatling g
 {{< /alert >}}
 
 {{< alert warning >}}
-The gRPC protocol is not supported by Gatling JS.
+The gRPC protocol is not supported by the JavaScript SDK. If this functionality is important to you, add a comment to our [public roadmap](https://portal.productboard.com/gatling/1-gatling-roadmap/c/113-javascript-sdk-expansion?&utm_medium=docs&utm_source=callout)
 {{< /alert >}}
 
 This page is intended for existing users of the community-maintained

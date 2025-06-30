@@ -18,7 +18,7 @@ As a consequence, the main HTTP branch and a WebSocket branch can exist in a Gat
 When doing so, each flow branch has its own state, so a user might have to reconcile them, for example when capturing data from a WebSocket check and wanting this data to be available to the HTTP branch.
 
 {{< alert warning >}}
-The WebSocket protocol is not supported by Gatling JS.
+The WebSocket protocol is not supported by the JavaScript SDK. If this functionality is important to you, add a comment to our [public roadmap](https://portal.productboard.com/gatling/1-gatling-roadmap/c/113-javascript-sdk-expansion?&utm_medium=docs&utm_source=callout)
 {{< /alert >}}
 
 ## `wsName`
