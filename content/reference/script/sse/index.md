@@ -11,7 +11,7 @@ aliases:
 SSE support is an extension to the HTTP DSL, whose entry point is the `sse(requestName: Expression[String])` method.
 
 {{< alert warning >}}
-The SSE protocol is not supported by Gatling JS.
+The SSE protocol is not supported by the JavaScript SDK. If this functionality is important to you, add a comment to our [public roadmap](https://portal.productboard.com/gatling/1-gatling-roadmap/c/113-javascript-sdk-expansion?&utm_medium=docs&utm_source=callout)
 {{< /alert >}}
 
 ## `sseName`

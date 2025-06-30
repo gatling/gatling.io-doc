@@ -320,7 +320,7 @@ You can control this behavior and even define your own custom strategy.
 {{< include-code "nameInferredHtmlResources" >}}
 
 {{< alert warning >}}
-Naming resource requests with a custom strategy is not supported by Gatling JS.
+Naming resource requests with a custom strategy is not supported by the JavaScript SDK. If this functionality is important to you, add a comment to our [public roadmap](https://portal.productboard.com/gatling/1-gatling-roadmap/c/113-javascript-sdk-expansion?&utm_medium=docs&utm_source=callout)
 {{< /alert >}}
 
 ## Proxy
