@@ -4,7 +4,6 @@ title: Integrating Other CI/CD Systems
 seotitle: Integrating other CI/CD systems with Gatling Enterprise
 description: Learn how to configure other Continuous Integration/Continuous Delivery systems to run your simulations on Gatling Enterprise.
 lead: Run your Gatling Enterprise simulations from any CI/CD product.
-date: 2021-03-08T12:50:17+00:00
 ---
 
 {{< alert enterprise >}}

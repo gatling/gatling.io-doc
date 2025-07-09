@@ -4,8 +4,6 @@ menutitle: Postman-based load tests
 seotitle: How to create Gatling load tests from Postman collections
 description: Export Postman collections and use them as Gatling scenarios. 
 lead: Learn how to export Postman collections and use them as Gatling scenarios.
-date: 2025-02-28T6:30:56+02:00
-
 ---
 
 ## Prerequisites

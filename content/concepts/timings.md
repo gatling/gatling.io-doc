@@ -2,7 +2,6 @@
 title: Timings
 description: Description of the different metrics reported in Gatling's HTML reports.
 lead: "Learn about all the recorded metrics: users start rate, concurrent users, response times and counts."
-date: 2021-05-20T18:30:56+02:00
 aliases:
   - /reference/stats/timings/
 ---

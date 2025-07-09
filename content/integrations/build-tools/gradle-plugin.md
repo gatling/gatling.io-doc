@@ -7,7 +7,6 @@ lead: The Gradle plugin allows you to run Gatling tests from the command line, w
 aliases:
   - /reference/extensions/build-tools/gradle-plugin
   - /reference/integrations/build-tools/gradle-plugin/
-date: 2021-04-20T18:30:56+02:00
 ---
 
 This Gradle plugin was initially contributed by [Ievgenii Shepeliuk](https://github.com/eshepelyuk) and
