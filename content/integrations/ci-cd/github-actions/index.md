@@ -90,6 +90,8 @@ steps:
     with:
       api_token: ${{ secrets.GATLING_ENTERPRISE_API_TOKEN }}
       simulation_id: '00000000-0000-0000-0000-000000000000'
+      title: 'My run title'
+      description: 'My run description'
       extra_system_properties: >
         {
           "sys_prop_1":"value 1",
@@ -118,6 +120,10 @@ steps:
 - `api_token` {{< badge danger >}}required{{< /badge >}} (unless using an environment variable named `GATLING_ENTERPRISE_API_TOKEN` instead): The API token used by the Action to authenticate with Gatling Enterprise.
 
 - `simulation_id` {{< badge danger >}}required{{< /badge >}}: The ID of the simulation as configured on Gatling Enterprise.
+
+- `title` {{< badge info >}}optional{{< /badge >}}: Specify a title for the new simulation run.
+
+- `description` {{< badge info >}}optional{{< /badge >}}: Specify a description for the new simulation run.
 
 - `extra_system_properties` {{< badge info >}}optional{{< /badge >}}: Additional Java system properties, will be merged with the simulation's configured system properties. Must be formatted as a JSON object containing the desired key/value pairs. Values can be strings, numbers or booleans.
 
