@@ -2,7 +2,6 @@
 title: Migrating from the community plugin
 description: Migration guide from the gatling-grpc community plugin to the official Gatling gRPC support
 lead: Learn how to migrate a project using the gatling-grpc community plugin to the official Gatling gRPC support
-date: 2024-01-31T13:59:53+0200
 private: true
 aliases:
   - /reference/script/protocols/grpc/migrating/

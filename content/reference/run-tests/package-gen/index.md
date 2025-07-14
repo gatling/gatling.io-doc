@@ -6,7 +6,6 @@ lead: Generate a package from your Gatling bundle or with a Maven, sbt, or Gradl
 aliases:
  - artifact_gen
  - /reference/execute/cloud/user/package-gen/
-date: 2021-03-08T12:50:32+00:00
 ---
 
 ## Generating Packages for Gatling Enterprise

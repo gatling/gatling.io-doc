@@ -2,8 +2,7 @@
 title: HTTP Protocol
 seotitle: Gatling HTTP protocol reference - protocol configuration
 description: How to configure Gatling HTTP behavior such as baseUrl, common HTTP headers, common HTTP checks and connection pool sharing.
-lead: Learn about connection, redirect, caching, resource infering and dns resolution
-date: 2021-04-20T18:30:56+02:00
+lead: Learn about connection, redirect, caching, resource infering and dns resolution 
 aliases:
   - /reference/script/protocols/http/protocol/
 ---

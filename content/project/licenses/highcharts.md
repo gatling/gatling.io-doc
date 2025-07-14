@@ -2,7 +2,6 @@
 title: Gatling-Highcharts License
 description: License used by Gatling components which integrate HighCharts & HighStock software licensed by GatlingCorp from the HighSoft company.
 lead: License used by Gatling components which integrate HighCharts & HighStock software licensed by GatlingCorp from the HighSoft company.
-date: 2023-01-18T09:00:00+02:00
 ---
 
 This module is protected by a specific license because it integrates the HighCharts & HighStock software, developed by the HighSoft company and protected by a specific licence granted to GatlingCorp in the context of the Gatling software project.

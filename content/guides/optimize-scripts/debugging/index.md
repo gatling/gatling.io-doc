@@ -4,7 +4,6 @@ title: Debugging guide
 seotitle: Debugging guide for Gatling scripts
 description: Debug Gatling scripts by printing session values or with logback.
 lead: Debug Gatling scripts by printing session values or with logback.
-date: 2025-02-10T18:30:56+02:00
 aliases:
   - /guides/debugging
 ---
