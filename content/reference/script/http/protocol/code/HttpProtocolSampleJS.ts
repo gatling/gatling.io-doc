@@ -279,6 +279,7 @@ http.proxy(
 );
 
 // HTTPS proxy
+// https://everything.curl.dev/usingcurl/proxies/https.html
 http.proxy(
   Proxy("myHttpProxyHost", 8080)
     .https()
