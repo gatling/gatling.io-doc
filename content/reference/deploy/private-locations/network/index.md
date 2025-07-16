@@ -29,6 +29,13 @@ You must permit outbound access to the Gatling Cloud API served from `https://ap
 * 51.44.121.66
 * 52.47.87.192
 
+{{< alert warning >}}
+Starting on August 13, 2025, we'll use the CIDR `18.98.64.240/29` instead.
+If you've been allowing traffic to our IP adresses in your network rules,
+you can already anticipate this change and allow our new CIDR.
+You'll be able to remove the original IP adresses after August 13.
+{{< /alert >}}
+
 ## Configuring a Proxy
 
 This section describes how to have all the outbound requests from Gatling Enterprise components go through a forward
