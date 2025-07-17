@@ -14,19 +14,9 @@
  * limitations under the License.
  */
 
-import io.gatling.javaapi.core.ScenarioBuilder;
-import io.gatling.javaapi.http.HttpProtocolBuilder;
-import io.gatling.javaapi.http.SseMessageCheck;
+import { StringBody, exec, pause, regex, scenario, substring } from "@gatling.io/core";
+import { http, sse } from "@gatling.io/http";
 
-import java.util.Collections;
-
-import static io.gatling.javaapi.core.CoreDsl.*;
-import static io.gatling.javaapi.http.HttpDsl.*;
-import static io.gatling.javaapi.http.HttpDsl.ws;
-
-class SseSampleJava {
-
-  {
 //#sseName
 sse("Sse").sseName("myCustomName");
 //#sseName
@@ -41,7 +31,7 @@ exec(sse("Close").close());
 //#sseClose
 
 //#create-single-check
-SseMessageCheck sseCheck = sse.checkMessage("checkName")
+const sseCheck = sse.checkMessage("checkName")
   .check(regex("event: snapshot(.*)"));
 //#create-single-check
 
@@ -63,8 +53,8 @@ exec(sse("SetCheck").setCheck()
   .await(30).on(sseCheck));
 //#check-from-flow
 
-  SseMessageCheck sseCheck1 = sseCheck;
-  SseMessageCheck sseCheck2 = sseCheck;
+const sseCheck1 = sseCheck;
+const sseCheck2 = sseCheck;
 
 //#check-single-sequence
 // expecting 2 messages
@@ -98,14 +88,15 @@ exec(sse("SetCheck").setCheck()
 //#process
 exec(
   // store the unmatched messages in the Session
-  sse.processUnmatchedMessages((messages, session) -> session.set("messages", messages))
+  sse.processUnmatchedMessages((messages, session) => session.set("messages", messages))
 );
 exec(
   // collect the last message and store it in the Session
-  sse.processUnmatchedMessages((messages, session) ->
-    !messages.isEmpty()
-      ? session.set("lastMessage", messages.get(messages.size() - 1).message())
-      : session)
+  sse.processUnmatchedMessages((messages, session) =>
+    messages.length != 0
+      ? session.set("lastMessage", messages[messages.length - 1].message())
+      : session
+  )
 );
 //#process
 
@@ -117,7 +108,7 @@ http
 //#protocol
 
 //#stock-market-sample
-ScenarioBuilder scn = scenario("ServerSentEvents")
+const scn = scenario("ServerSentEvents")
   .exec(
     sse("Stocks").get("/stocks/prices")
       .await(10).on(
@@ -127,5 +118,3 @@ ScenarioBuilder scn = scenario("ServerSentEvents")
     sse("Close").close()
   );
 //#stock-market-sample
-  }
-}

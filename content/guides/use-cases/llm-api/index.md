@@ -31,42 +31,44 @@ import static io.gatling.javaapi.http.HttpDsl.*;
 import io.gatling.javaapi.core.*;
 import io.gatling.javaapi.http.*;
 
-public class SSELLM extends Simulation {
-   String api_key = System.getenv("api_key");
-   HttpProtocolBuilder httpProtocol =
-      http.baseUrl("https://api.openai.com/v1/chat")
-          .sseUnmatchedInboundMessageBufferSize(100);
+public class SseLlmSimulation extends Simulation {
+  String apiKey = System.getenv("API_KEY");
+  HttpProtocolBuilder httpProtocol =
+    http.baseUrl("https://api.openai.com/v1/chat")
+      .sseUnmatchedInboundMessageBufferSize(100);
+  // ...
+}
 ```
 
 ## Step 3: Defining the scenario
 
-Now the piece has started, the actors enter the scene and follow their scripts. At Gatling, we call this a scenario, and it defines the steps your test will take (connecting, parsing messages, user interaction, etc.,).
+Now the piece has started, the actors enter the scene and follow their scripts. At Gatling, we call this a scenario, and it defines the steps your test will take (connecting, parsing messages, user interaction, etc.).
 
 In our case, our scenario is pretty small. People will:
 
 - connect to the completion endpoint of Open AI,
 - send a prompt using SSE,
-- process all the messages until ChatGPT sends us {"data":"[DONE]"},
+- process all the messages until ChatGPT sends us `{"data":"[DONE]"}`,
 - close the SSE connection.
 
 ```java
- ScenarioBuilder prompt = scenario("Scenario").exec(
-      sse("Connect to LLM and get Answer")
-          .post("/completions")
-          .header("Authorization", "Bearer "+api_key)
-          .body(StringBody("{\"model\": \"gpt-3.5-turbo\",\"stream\":true,\"messages\":[{\"role\":\"user\",\"content\":\"Just say HI\"}]}"))
-          .asJson(),
-      asLongAs("#{stop.isUndefined()}").on(
-          sse.processUnmatchedMessages((messages, session) -> {
-            return messages.stream()
-            .anyMatch(message -> message.message().contains("{\"data\":\"[DONE]\"}")) ? session.set("stop", true) : session;        
-          }) 
-      ),
-      sse("close").close()
-  );
+ScenarioBuilder prompt = scenario("Scenario").exec(
+  sse("Connect to LLM and get Answer")
+    .post("/completions")
+    .header("Authorization", "Bearer " + apiKey)
+    .body(StringBody("{\"model\": \"gpt-3.5-turbo\",\"stream\":true,\"messages\":[{\"role\":\"user\",\"content\":\"Just say HI\"}]}"))
+    .asJson(),
+  asLongAs("#{stop.isUndefined()}").on(
+    sse.processUnmatchedMessages((messages, session) ->
+      messages.stream()
+        .anyMatch(message -> message.message().contains("{\"data\":\"[DONE]\"}")) ? session.set("stop", true) : session;
+    )
+  ),
+  sse("close").close()
+);
 ```
 
-The `processUnmatchedMessages` method allows us to process the inbound messages. This function catches all the messages that ChatGPT sent us and when we receive {"data":"[DONE]"}, we set a stop variable to true in order to exit the loop.
+The `processUnmatchedMessages` method allows us to process the inbound messages. This function catches all the messages that ChatGPT sent us and when we receive `{"data":"[DONE]"}`, we set a stop variable to true in order to exit the loop.
 
 ## Step 4: Injecting users
 
@@ -75,11 +77,11 @@ As the audience arrives and fills their seats, the theater comes alive. In Gatli
 In our guide, we will simulate a low number of users (i.e. 10 users) arriving at once on our website. Do you want to use different user arrival profiles? Check out our various [injection profiles](/reference/script/core/injection/#open-model).
 
 ```java
-  {
-    setUp(
-        prompt.injectOpen(atOnceUsers(10))
-    ).protocols(httpProtocol);
-  }
+{
+  setUp(
+    prompt.injectOpen(atOnceUsers(10))
+  ).protocols(httpProtocol);
+}
 ```
 
 ## Step 5: Running the simulation
@@ -89,8 +91,8 @@ Run the simulation to see how the LLM handles the load. Use the following comman
 Set the API token environment variable:
 
 {{< platform-toggle >}}
-Linux/MacOS: export api_key=<API-token-value>
-Windows: set api_key=<API-token-value>
+Linux/MacOS: export API_KEY=<API-token-value>
+Windows: set API_KEY=<API-token-value>
 {{</ platform-toggle >}}
  
 Then launch the test:

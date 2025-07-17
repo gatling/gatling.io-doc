@@ -10,16 +10,12 @@ aliases:
 
 SSE support is an extension to the HTTP DSL, whose entry point is the `sse(requestName: Expression[String])` method.
 
-{{< alert warning >}}
-The SSE protocol is not supported by the JavaScript SDK. If this functionality is important to you, add a comment to our [public roadmap](https://portal.productboard.com/gatling/1-gatling-roadmap/c/113-javascript-sdk-expansion?&utm_medium=docs&utm_source=callout)
-{{< /alert >}}
-
 ## `sseName`
 
 If you want to deal with several SSE streams per virtual users, you have to give them a name and pass this name on each SSE operation:
 For example:
 
-{{< include-code "sseName" java kt scala >}}
+{{< include-code "sseName" >}}
 
 Of course, this step is not required if you deal with one single SSE stream per virtual user.
 
@@ -29,7 +25,7 @@ The first thing is to connect the stream:
 
 Gatling supports `GET` and `POST` requests:
 
-{{< include-code "sseConnect" java kt scala >}}
+{{< include-code "sseConnect" >}}
 
 {{< alert tip >}}
 Gatling automatically sets `Accept` header to `text/event-stream` and `Cache-Control` to `no-cache`.
@@ -39,7 +35,7 @@ Gatling automatically sets `Accept` header to `text/event-stream` and `Cache-Con
 
 Once you're done with a SSE stream, you can close it.
 
-{{< include-code "sseClose" java kt scala >}}
+{{< include-code "sseClose" >}}
 
 ## Checks
 
@@ -53,32 +49,32 @@ Gatling currently only supports blocking checks that will wait until receiving e
 
 You can set a check right after connecting:
 
-{{< include-code "check-from-connect" java kt scala >}}
+{{< include-code "check-from-connect" >}}
 
 Or you can set a check from main flow:
 
-{{< include-code "check-from-flow" java kt scala >}}
+{{< include-code "check-from-flow" >}}
 
 You can set multiple checks sequentially. Each one will expect one single frame.
 
 You can configure multiple checks in a single sequence:
 
-{{< include-code "check-single-sequence" java kt scala >}}
+{{< include-code "check-single-sequence" >}}
 
 You can also configure multiple check sequences with different timeouts:
 
-{{< include-code "check-multiple-sequence" java kt scala >}}
+{{< include-code "check-multiple-sequence" >}}
 
 ### Create a check
 
 You can create checks for server events with `checkMessage`.
 You can use almost all the same check criteria as for HTTP requests.
 
-{{< include-code "create-single-check" java kt scala >}}
+{{< include-code "create-single-check" >}}
 
 You can have multiple criteria for a given message:
 
-{{< include-code "create-multiple-checks" java kt scala >}}
+{{< include-code "create-multiple-checks" >}}
 
 ### Matching messages
 
@@ -86,7 +82,7 @@ You can define `matching` criteria to filter messages you want to check.
 Matching criterion is a standard check, except it doesn't take `saveAs`.
 Non-matching messages will be ignored.
 
-{{< include-code "check-matching" java kt scala >}}
+{{< include-code "check-matching" >}}
 
 ## Processing unmatched messages
 
@@ -100,13 +96,13 @@ You can then pass your processing logic as a function.
 The list of messages passed to this function is sorted in timestamp ascending (meaning older messages first).
 It contains instances of types `io.gatling.http.action.sse.SseInboundMessage`.
 
-{{< include-code "process" java kt scala >}}
+{{< include-code "process" >}}
 
 ## Configuration
 
 SSE support introduces new HttpProtocol parameters:
 
-{{< include-code "protocol" java kt scala >}}
+{{< include-code "protocol" >}}
 
 ## Debugging
 
@@ -120,4 +116,4 @@ You can inspect streams if you add the following logger to your logback configur
 
 Here's an example that runs against a stock market sample:
 
-{{< include-code "stock-market-sample" java kt scala >}}
+{{< include-code "stock-market-sample" >}}
