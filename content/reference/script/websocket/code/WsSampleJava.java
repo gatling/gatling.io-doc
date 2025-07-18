@@ -19,6 +19,7 @@ import io.gatling.javaapi.http.HttpProtocolBuilder;
 import io.gatling.javaapi.http.WsFrameCheck;
 
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Collections;
 
 import static io.gatling.javaapi.core.CoreDsl.*;
@@ -66,10 +67,10 @@ exec(ws("Message")
 // send text with ElFileBody
 exec(ws("Message")
   .sendText(ElFileBody("filePath")));
-// send text with ElFileBody
+// send text with PebbleStringBody
 exec(ws("Message")
   .sendText(PebbleStringBody("somePebbleTemplate")));
-// send text with ElFileBody
+// send text with PebbleFileBody
 exec(ws("Message")
   .sendText(PebbleFileBody("filePath")));
 
@@ -82,7 +83,7 @@ exec(ws("Message")
 // send bytes with RawFileBody
 exec(ws("Message")
   .sendBytes(RawFileBody("filePath")));
-// send bytes with RawFileBody
+// send bytes with ByteArrayBody
 exec(ws("Message")
   .sendBytes(ByteArrayBody("#{bytes}")));
 //#send
@@ -101,7 +102,7 @@ ws.checkTextMessage(session -> "checkName")
 ws.checkBinaryMessage("checkName")
   .check(
     bodyBytes().is("hello".getBytes(StandardCharsets.UTF_8)),
-    bodyLength().is(3)
+    bodyLength().is(5)
   );
 //#create-single-check
 
@@ -174,21 +175,21 @@ exec(
 );
 exec(
   // collect the last text message and store it in the Session
-  ws.processUnmatchedMessages(
-    (messages, session) -> {
-      Collections.reverse(messages);
-      String lastTextMessage =
-        messages.stream()
-          .filter(m -> m instanceof io.gatling.http.action.ws.WsInboundMessage.Text)
-          .map(m -> ((io.gatling.http.action.ws.WsInboundMessage.Text) m).message())
-          .findFirst()
-          .orElse(null);
-          if (lastTextMessage != null) {
-            return session.set("lastTextMessage", lastTextMessage);
-          } else {
-            return session;
-          }
-      })
+  ws.processUnmatchedMessages((messages, session) -> {
+    var copy = new ArrayList<>(messages);
+    Collections.reverse(copy); // message is immutable, hence the copy
+    String lastTextMessage =
+      copy.stream()
+        .filter(m -> m instanceof io.gatling.http.action.ws.WsInboundMessage.Text)
+        .map(m -> ((io.gatling.http.action.ws.WsInboundMessage.Text) m).message())
+        .findFirst()
+        .orElse(null);
+    if (lastTextMessage != null) {
+      return session.set("lastTextMessage", lastTextMessage);
+    } else {
+      return session;
+    }
+  })
 );
 //#process
 
@@ -212,7 +213,7 @@ http
   //  will automatically reply with message `"pong"`
   //  when message `"ping"` is received.
   //  Those messages won't be visible in any reports or statistics.
-  .wsAutoReplyTextFrame( text ->
+  .wsAutoReplyTextFrame(text ->
     text.equals("ping") ? "pong" : null
   )
   // enable partial support for Engine.IO v4.
