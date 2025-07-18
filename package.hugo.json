@@ -5,8 +5,8 @@
     "test-ts-samples": "tsc --project tsconfig-code-samples.json"
   },
   "devDependencies": {
-    "@gatling.io/core": "3.14.304",
-    "@gatling.io/http": "3.14.304",
-    "@gatling.io/postman": "3.14.304"
+    "@gatling.io/core": "3.14.306",
+    "@gatling.io/http": "3.14.306",
+    "@gatling.io/postman": "3.14.306"
   }
 }

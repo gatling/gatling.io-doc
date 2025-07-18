@@ -61,10 +61,10 @@ exec(ws("Message")
 // send text with ElFileBody
 exec(ws("Message")
   .sendText(ElFileBody("filePath")))
-// send text with ElFileBody
+// send text with PebbleStringBody
 exec(ws("Message")
   .sendText(PebbleStringBody("somePebbleTemplate")))
-// send text with ElFileBody
+// send text with PebbleFileBody
 exec(ws("Message")
   .sendText(PebbleFileBody("filePath")))
 
@@ -77,7 +77,7 @@ exec(ws("Message")
 // send bytes with RawFileBody
 exec(ws("Message")
   .sendBytes(RawFileBody("filePath")))
-// send bytes with RawFileBody
+// send bytes with ByteArrayBody
 exec(ws("Message")
   .sendBytes(ByteArrayBody("#{bytes}")))
 //#send
@@ -96,7 +96,7 @@ ws.checkTextMessage{ session -> "checkName" }
 ws.checkBinaryMessage("checkName")
   .check(
     bodyBytes().shouldBe("hello".toByteArray(StandardCharsets.UTF_8)),
-    bodyLength().shouldBe(3)
+    bodyLength().shouldBe(5)
   )
 //#create-single-check
 
@@ -170,13 +170,13 @@ exec(
 exec(
   // collect the last text message and store it in the Session
   ws.processUnmatchedMessages { messages, session ->
-    messages.reverse()
+    val reversed = messages.reversed() // messages is immutable
     val lastTextMessage =
-        messages.stream()
-          .filter { m -> m is io.gatling.http.action.ws.WsInboundMessage.Text }
-          .map { m -> (m as io.gatling.http.action.ws.WsInboundMessage.Text).message() }
-          .findFirst()
-          .orElse(null)
+      reversed.stream()
+        .filter { m -> m is io.gatling.http.action.ws.WsInboundMessage.Text }
+        .map { m -> (m as io.gatling.http.action.ws.WsInboundMessage.Text).message() }
+        .findFirst()
+        .orElse(null)
     if (lastTextMessage != null) {
       session.set("lastTextMessage", lastTextMessage)
     } else {

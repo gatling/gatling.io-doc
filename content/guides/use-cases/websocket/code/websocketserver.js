@@ -36,13 +36,12 @@ server.on("connection", (socket) => {
   socket.send("connected");
   socket.send("connected");
 
-  //socket.on("message", (data) => {
-    const message = "hello client"
-    //console.log(`message received: ${message}`);
+  socket.on("message", (data) => {
+    console.log(`message received: ${data}`);
     const n = 5 + Math.floor(Math.random() * 15);
     console.log(`responding with ${n} messages`);
-    send(socket, message, 1, n);
-  //});
+    send(socket, data, 1, n);
+  });
 
   socket.on("close", () => {
     console.log("client disconnected");
