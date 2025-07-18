@@ -251,3 +251,7 @@ control-plane {
 * Ensure enough **payload size**:
   * upload: **5MB** from your network to Gatling API.
   * download: **5GB** from Gatling API to your network.
+* Ensure these file **extensions** are allowed:
+  * `.sh`
+  * `.jar`
+  * `.log`
