@@ -53,32 +53,25 @@ If you set `StrictHostKeyChecking yes`, manually add hosts keys to `/app/.ssh/kn
 
 #### Cloning over HTTPS using git credentials
 
-When using HTTPS Git authentication (with passwords or tokens):
-
-**Configure Git Credential Storage:**  
-Run this command on your builder to enable secure credential storage:
+When authenticating with Git over HTTPS (via password or token), 
+you can specify credentials in the Control Plane configuration file (e.g., control-plane.conf):
 
 ```bash
-git config --global credential.helper store
-```
-
-The credentials file (`~/.git-credentials` on the host) is mounted at `/app/.git-credentials` into the container.
-
-**Store Approved Credentials:**
-Use Git's credential approval mechanism (never hardcode credentials in URLs):
-
-```bash
-git credential approve <<EOF
-url=https://github.com/your-org/your-repo.git
-username=your_username
-password=your_token_or_password
-EOF
+control-plane {
+  # ...
+  builder {
+    git.global.credentials.https {
+      username = <username> # (optional)
+      password = <token>
+    }
+  }
+}
 ```
 
 **Security Best Practices:**
-- Always use personal access tokens instead of passwords.
-- Never include credentials in repository URLs within Gatling Enterprise.
-- Review [Git credentials documentation](https://git-scm.com/docs/gitcredentials) for advanced configurations.
+* Use personal access tokens instead of passwords whenever possible.
+* Limit token permissions to read-only access.
+* Never include credentials in repository URLs within Gatling Enterprise.
 
 ### Build tools
 
