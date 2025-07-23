@@ -5,7 +5,7 @@ description: How to define scenarios that your virtual users will execute. Use e
 date: 2021-04-20T18:30:56+02:00
 aliases:
   - /reference/script/core/scenario/
-tags: 
+keywords: 
   - onCase
   - percent
 ---
