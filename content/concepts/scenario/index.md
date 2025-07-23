@@ -1,10 +1,13 @@
 ---
 title: Scenario
 seotitle: Gatling scenario scripting reference
-description: How to define scenarios that your virtual users will execute. Use exec to attach a chain or execute a request or a function. Use loops such as repeat, during and asLongAs. Use conditions like doIf and randomSwitch. Uses pauses.
+description: How to define scenarios that your virtual users will execute. Use exec to attach a chain or execute a request or a function. Use loops such as repeat, during and asLongAs. Use conditions like doIf and randomSwitch. Uses pauses. 
 date: 2021-04-20T18:30:56+02:00
 aliases:
   - /reference/script/core/scenario/
+tags: 
+  - onCase
+  - percent
 ---
 
 This is the reference of the different components available to write scenarios with Gatling.
@@ -45,7 +48,7 @@ Those functions are executed in Gatling's shared threads, so you must absolutely
 {{< /alert >}}
 
 {{< alert warning >}}
-Remember that the [Gatling DSL components are merely definitions]({{< ref "/reference/glossary#dsl" >}}). They only are effective when chained with other DSL components and ultimately passed to the `setUp`. **In particular, they have no effect when used inside functions.**
+Remember that the [Gatling SDK components are merely definitions]({{< ref "/reference/glossary#dsl" >}}). They only are effective when chained with other SDK components and ultimately passed to the `setUp`. **In particular, they have no effect when used inside functions.**
 {{< /alert >}}
 
 {{< include-code "session-lambda-bad" >}}
@@ -198,7 +201,7 @@ Iterate over the loop content forever.
 
 ### Conditional statements
 
-Gatling's DSL has conditional execution support.
+Gatling's SDK has conditional execution support using if statements or switch statements.  
 
 #### `doIf`
 
@@ -255,16 +258,16 @@ Similar to `doSwitch`, but with a fallback if no switch is selected.
 #### `randomSwitch`
 
 `randomSwitch` can be used to emulate simple Markov chains.
-Simple means cyclic graphs are not currently supported.
+Simple means cyclic graphs are not currently supported. One common use case is to model a user journey with several possible paths, each with a percent probability of being selected. 
 
 {{< include-code "randomSwitch" >}}
 
-Percentages sum can't exceed 100%.
-If sum is less than 100%, users that won't fall into one of the chains will simply exit the switch and continue.
-Once users are done with the switch, they simply continue with the rest of the scenario.
+The sum of percentages can't exceed 100%.
+If the sum is less than 100%, users who won't fall into one of the chains will exit the switch and continue.
+Once users have completed the switch, they continue with the rest of the scenario.
 
 {{< alert tip >}}
-Percentages should be formatted as following: 50% -> 50, 33.3% -> 33.3 and so on.
+Percentages should be formatted as follows: 50% -> 50, 33.3% -> 33.3 and so on.
 {{< /alert >}}
 
 #### `randomSwitchOrElse`
@@ -285,7 +288,7 @@ Similar to `randomSwitch`, but dispatch uses a round-robin strategy.
 
 {{< include-code "roundRobinSwitch" >}}
 
-### Errors handling
+### Error handling
 
 #### `tryMax`
 
