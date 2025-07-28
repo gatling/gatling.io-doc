@@ -31,7 +31,7 @@ Test / unmanagedSourceDirectories ++= (baseDirectory.value / "content" ** "code"
 val gatlingVersion = "3.14.3"
 val gatlingGrpcVersion = "3.14.3"
 val gatlingMqttVersion = "3.14.3"
-val awsSdkVersion = "2.32.4"
+val awsSdkVersion = "2.32.9"
 
 libraryDependencies ++= Seq(
   // Gatling modules
