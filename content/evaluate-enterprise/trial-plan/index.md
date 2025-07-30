@@ -164,7 +164,7 @@ The following features are not available on the trial by default:
 
 - High-scale Load Testing with more than 1 Load Generator
 
-- [Distributed Load Testing]({{< ref "/reference/run-tests/simulations/#step-2-locations-configuration" >}})
+- [Distributed Load Testing]({{< ref "/reference/run-tests/simulations/test-as-code#locations-configuration" >}})
 
 - [Dedicated IP]({{< ref "/reference/deploy/dedicated-ips/" >}})
 
