@@ -11,4 +11,5 @@ ordering:
   - kubernetes
   - dedicated
   - private-packages
+  - build-from-sources
 ---

@@ -9,7 +9,7 @@ date: 2021-03-10T14:29:43+00:00
 This feature is only available on Gatling Enterprise. To learn more, [explore our plans](https://gatling.io/pricing?utm_source=docs)
 {{< /alert >}}
 
-Click on the {{< icon chart-area >}} icon in the [simulations table]({{< ref "/reference/run-tests/simulations#managing-simulations" >}}) or in the [runs table]({{< ref "../trends/run-trends" >}}) to access the reports.
+Click on the {{< icon chart-area >}} icon in the [simulations table]({{< ref "/reference/run-tests/simulations/intro" >}}) or in the [runs table]({{< ref "../trends/run-trends" >}}) to access the reports.
 
 This view displays all the metrics available for a specific run.
 

@@ -5,5 +5,4 @@ ordering:
   - package-conf
   - simulations
   - configuration-as-code
-  - build-from-sources
 ---

@@ -5,21 +5,35 @@ description: Learn how to deploy your Gatling project on Gatling Enterprise by c
 date: 2024-03-10T14:29:04+00:00
 aliases:
   - /reference/execute/cloud/user/build-from-sources/
+  - /reference/run-tests/build-from-sources/
+
 ---
 
 # Introduction
 
-Run simulations by simply plugging your git repository.
+Build from sources allows you to build Gatling simulations directly from a source repository, such as GitHub, GitLab, or BitBucket without needing to package them first. This feature is particularly useful for teams that prefer to manage their Gatling projects in a source control system and want to streamline the process of running tests. Simulations are built and stored in your private network, using the Private Locations and Private Packages features of Gatling Enterprise. This approach eliminates the need for manual packaging and uploading of simulation files, enabling a more efficient workflow for performance testing.
+
+{img src="generic-diagram.png" alt="Build from sources architecture diagram" }
+
+The following sections detail how to configure the Control Plane for Build from Sources, including pre-requisites, git authentication, and build tool configurations. Once configured, you can [create simulations]({{< ref "reference/run-tests/simulations/build-from-sources" >}}) in the Gatling Enterprise UI.
 
 ## Pre-requisites
 
-- Private Repository: Build from Sources requires a configured [Private Repository]({{< ref "reference/deploy/private-locations/private-packages" >}}) to store build artifacts.
+- Private Packages: Build from Sources requires a configured [private storage location]({{< ref "reference/deploy/private-locations/private-packages" >}}) to store build artifacts.
 - Private Locations: Build from Sources is only compatible with [Private Locations]({{< ref "reference/deploy/private-locations/introduction" >}}). Ensure these are configured first.
-- Control Plane image: Use `gatlingcorp/control-plane:latest-builder` instead of `gatlingcorp/control-plane:latest`.
+- Control Plane image: Use the dedicated `gatlingcorp/control-plane:latest-builder` image. Note that this image is different from the standard Control Plane image.
 - Allocate adequate CPU and memory resources according to your project's compilation needs.
-- Git repository with a compatible Gatling plugin version configured
+- Git repository with a compatible Gatling plugin version configured.
+
+## Architecture
+
+The Build from Sources feature operates within the Gatling Enterprise architecture, leveraging the Control Plane to manage builds and simulations. The Control Plane interacts with your source repository to fetch simulation code, compiles it using the specified build tool, and stores the resulting artifacts in your private storage location. This process is triggered when you start a simulation in the Gatling Enterprise UI, allowing you to run tests directly from your source code without manual packaging. 
+
+After run completion, the test package is deleted from the private storage location, thus each run requires a fresh build from the source repository. This ensures that you always test the latest version of your simulations.
 
 ## Configuration
+
+The following sections detail how to configure the Control Plane for Build from Sources.
 
 ### Git authentication
 
@@ -96,37 +110,3 @@ control-plane {
 **Gatling Plugin Version**: The minimum compatible version of each build tool plugin that supports build from sources.
 
 **Image Cache Path**: Ensure build tool caches persist across different upgrades by mounting a volume to the given path.
-
-## Usage
-
-### Git repositories
-
-Navigate to Sources → Git repositories
-
-Create a new repository by providing:
-- Name
-- Team (note: simulations built from this repository will inherit this team)
-- URL (e.g: `git@github.com:gatling/gatling.git`)
-
-{{< img src="build-from-sources-create-repository.png" alt="Create Git Repository" >}}
-
-From repository actions, you can create new simulations.
-
-### Creating simulations from sources
-
-Go to **Simulations** → **Create Simulation** → Select **Build from sources**
-
-{{< img src="build-from-sources-simulation-create.png" alt="Create Simulation from Git Repository" >}}
-
-**Configure:**
-- Source repository
-- Branch (defaults to repository default branch)
-- Working directory (defaults to repository root)
-- Build tool of your project
-- Simulation class
-  - JVM projects: Enter the fully qualified name (example: `io.gatling.DemoSimulation`)
-  - JavaScript projects: Use the simulation name (example: `demoSimulation` for `demoSimulation.gatling.js`)
-- Configure private locations and other [simulation properties]({{< ref "reference/run-tests/simulations" >}})
-- Save and launch your simulation
-
-{{< img src="build-from-sources-simulation-configure.png" alt="Create Simulation from Git Repository" >}}
