@@ -17,12 +17,13 @@ To manage users, navigate to the **Organization** menu and click on the {{< icon
 
 ### Understand permissions {#permissions}
 
-There are 8 different user roles and corresponding permission levels in Gatling Enterprise:
+There are 10 different user roles and corresponding permission levels in Gatling Enterprise:
 
 Organization-level roles:
 
 - Administrator
 - Leader
+- Tester
 - Contributor
 - Viewer
 
@@ -30,21 +31,22 @@ Team-level roles:
 
 - Team Administrator
 - Team Leader
+- Team Tester
 - Team Contributor
 - Team Viewer
 
 The following table details the permissions granted to each role. For team-level roles, the permissions only apply to each team for which the user has permissions: 
 
-|                                          | Viewer / Team Viewer | Contributor / Team Contributor | Leader / Team Leader | Administrator / Team Administrator |
-|------------------------------------------|:--------------------:|:------------------------------:|:--------------------:|:----------------------------------:|
-| Access own profile and Organization page |  {{< icon check >}}  |       {{< icon check >}}       |  {{< icon check >}}  |         {{< icon check >}}         |
-| Access Reports and Trends                |       Own team       |            Own team            |       Own team       |              Own team              |
-| Start Simulation                         |                      |            Own team            |       Own team       |              Own team              |
-| Generate Public Links                    |                      |            Own team            |       Own team       |              Own team              |
-| Create Simulation                        |                      |                                |       Own team       |              Own team              |
-| Administrate Packages                    |                      |                                |       Own team       |              Own team              |
-| Administrate API Tokens, Users and Teams |                      |                                |                      |              Own team              |
-| Subscribe and view Offers                |                      |                                |                      |         Administrator only         |
+|                                          | Viewer / Team Viewer | Contributor / Team Contributor | Tester / Team Tester | Leader / Team Leader | Administrator / Team Administrator |
+|------------------------------------------|:--------------------:|:------------------------------:|:--------------------:|:--------------------:|:----------------------------------:|
+| Access own profile and Organization page |  {{< icon check >}}  |       {{< icon check >}}       |  {{< icon check >}}  |  {{< icon check >}}  |         {{< icon check >}}         |
+| Access Reports and Trends                |       Own team       |            Own team            |       Own team       |       Own team       |              Own team              |
+| Start Simulation                         |                      |            Own team            |       Own team       |       Own team       |              Own team              |
+| Generate Public Links                    |                      |            Own team            |       Own team       |       Own team       |              Own team              |
+| Create Simulation                        |                      |                                |       Own team       |       Own team       |              Own team              |
+| Administrate Packages                    |                      |                                |                      |       Own team       |              Own team              |
+| Administrate API Tokens, Users and Teams |                      |                                |                      |                      |              Own team              |
+| Subscribe and view Offers                |                      |                                |                      |                      |         Administrator only         |
 
 ### Invite new users 
 
