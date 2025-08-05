@@ -30,7 +30,7 @@ In order to add a package, click on the **Create** button above the packages tab
 - **Simulation packaged with Gatling Enterprise plugin**: *optional (see below)*. The generated package file to upload.
 
 Depending on the language used for your simulation, the package created will be assigned to `JVM` (Java, Kotlin, Scala) or `JS` (Javascript, Typescript) type.
-This type cannot be updated. For example, a `JS` package cannot replace a `JVM` package: you have to create a new one.
+This type cannot be updated. For example, a `JS` package cannot replace a `JVM` package: you have to create a new package.
 
 ## Upload
 
