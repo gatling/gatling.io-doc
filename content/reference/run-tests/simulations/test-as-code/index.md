@@ -38,7 +38,7 @@ You can use:
 - [dedicated IP addresses]({{< ref "dedicated-ips" >}}) for your managed load generators.
 
 {{< alert info >}}
-It is not currently possible to mix managed, private locations, and dedicated IPs in the same simulation.
+It is not possible to mix managed, private locations, and dedicated IPs in the same simulation.
 {{< /alert >}}
 
 Managed location load generators have the following specifications:
