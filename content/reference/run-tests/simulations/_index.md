@@ -9,6 +9,6 @@ ordering:
   - intro
   - no-code
   - test-as-code
-  - build-from-sources
+  - git-repository
   - optional-config
 ---

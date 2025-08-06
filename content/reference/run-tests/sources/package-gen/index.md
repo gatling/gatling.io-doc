@@ -9,16 +9,35 @@ aliases:
 date: 2021-03-08T12:50:32+00:00
 ---
 
-## Generating Packages for Gatling Enterprise
+## Generating packages for Gatling Enterprise
 
-Gatling Enterprise deploys packages containing your compiled Simulations and resources. Those packages have to be generated
+Gatling Enterprise deploys packages containing your compiled simulations and resources. Those packages have to be generated
 upstream, using one of the methods below, before you can run them with Gatling Enterprise.
 
 Gatling Enterprise is compatible with Gatling version from 3.5 to {{< var gatlingVersion >}} included, however, these instructions are aligned with the new Maven-based bundle released in Gatling 3.11.
 
 {{< alert tip >}}
-If you go to the [Simulations page]({{< ref "simulations" >}}) in the Gatling Enterprise app, you can click on
-"Sample simulations" to download sample projects for all the options below.
+You can download sample projects for all the options below by going to the [Simulations page]({{< ref "/reference/run-tests/simulations/intro" >}}) in the Gatling Enterprise app and clicking on "Don't know where to start?" in the Test as code tab.
+{{< /alert >}}
+
+
+
+### Maven, Gradle, sbt, or JavaScript/TypeScript project
+
+To set up your project, and to learn how to use your preferred build tool to upload simulations to Gatling Enterprise
+Cloud, please refer to respective build tool plugin documentation:
+
+- [Gatling plugin for Maven]({{< ref "/integrations/build-tools/maven-plugin" >}}) (for Java, Kotlin and Scala)
+- [Gatling plugin for Gradle]({{< ref "/integrations/build-tools/gradle-plugin" >}}) (for Java, Kotlin and Scala)
+- [Gatling plugin for sbt]({{< ref "/integrations/build-tools/sbt-plugin" >}}) (for Scala)
+- [Gatling CLI for JavaScript/TypeScript]({{< ref "/integrations/build-tools/js-cli" >}}) (for JavaScript and TypeScript)
+
+{{< alert warning >}}
+The Gatling build plugins now include everything you need to work with Gatling Enterprise. Previous versions required an
+additional plugin to work with Gatling Enterprise. If you have one of the old "FrontLine" plugins
+(`io.gatling.frontline:frontline-maven-plugin`, `io.gatling.frontline:frontline-gradle-plugin` or
+`io.gatling.frontline:sbt-frontline`) in your build, we recommend removing it and updating to the latest version of the
+Gatling plugin instead.
 {{< /alert >}}
 
 ### Gatling bundle
@@ -66,27 +85,10 @@ Windows: mvnw.cmd gatling:help
 {{</ platform-toggle >}}
 
 {{< alert warning >}}
-These commands are only available since Gatling `3.11`. If you're using an older version, you'll have to upgrade.
+These commands are only available since Gatling `3.11`. If you're using an older version, you have to upgrade.
 {{< /alert >}}
 
-### Maven, Gradle or sbt project
-
-To set up you project, and to learn how to use you preferred build tool to upload your simulations to Gatling Enterprise
-Cloud, please refer to the documentation pages of the respective plugins:
-
-- [Gatling plugin for Maven]({{< ref "/integrations/build-tools/maven-plugin" >}}) (for Java, Kotlin and Scala)
-- [Gatling plugin for Gradle]({{< ref "/integrations/build-tools/gradle-plugin" >}}) (for Java, Kotlin and Scala)
-- [Gatling plugin for sbt]({{< ref "/integrations/build-tools/sbt-plugin" >}}) (for Scala)
-
-{{< alert warning >}}
-The Gatling build plugins now include everything you need to work with Gatling Enterprise. Previous versions required an
-additional plugin to work with Gatling Enterprise. If you have one of the old "FrontLine" plugins
-(`io.gatling.frontline:frontline-maven-plugin`, `io.gatling.frontline:frontline-gradle-plugin` or
-`io.gatling.frontline:sbt-frontline`) in your build, we recommend removing it and updating to the latest version of the
-Gatling plugin instead.
-{{< /alert >}}
-
-## Note on Feeders
+## Note on feeders
 
 A typical mistake with Gatling and Gatling Enterprise is to rely on having an exploded Maven/Gradle/sbt project structure, and to try to load files from the project filesystem.
 
@@ -103,7 +105,7 @@ val feeder = csv("src/test/resources/foo.csv")
 val feeder = csv("foo.csv")
 ```
 
-## Load Sharding
+## Load sharding
 
 Injection rates and throttling rates are automatically distributed amongst nodes.
 
@@ -125,7 +127,7 @@ Assuming the CSV file contains 1000 entries, and you run your simulation on 3 Ga
 `shard` is available in Gatling OSS DSL but is a noop there. It's only effective when running tests with Gatling Enterprise.
 {{< /alert >}}
 
-## Resolving Load Generator Location in Simulation
+## Resolving load generator location in a simulation
 
 When running a distributed test from multiple locations, you could be interested in knowing where a given load generator is deployed in order to trigger specific behaviors depending on the location.
 

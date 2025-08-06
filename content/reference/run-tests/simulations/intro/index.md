@@ -40,7 +40,7 @@ To create a new simulation, click on the **Create a simulation** button in the S
 
 - [**No-code**]({{< ref "no-code.md" >}}): Create a simulation without writing any code.
 - [**Test-as-code**]({{< ref "test-as-code.md" >}}): Create a simulation from a packaged test.
-- [**Build from sources**]({{< ref "build-from-sources.md" >}}): Create a simulation from a git repository.
+- [**Build from a Git repository**]({{< ref "git-repository.md" >}}): Create a simulation from a git repository.
 
 Each option has its own dedicated documentation page that explains how to configure the simulation. You can access these pages by clicking on the links above or from the table of contents on the left side of this page.
 

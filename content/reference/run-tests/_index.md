@@ -1,8 +1,6 @@
 ---
 title: Run tests on Gatling Enterprise
 ordering:
-  - package-gen
-  - package-conf
+  - sources
   - simulations
-  - configuration-as-code
 ---
