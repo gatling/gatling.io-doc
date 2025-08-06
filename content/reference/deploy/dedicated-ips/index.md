@@ -48,4 +48,4 @@ When starting a simulation run with dedicated IP addresses:
 - If insufficient IPs are available, the run cannot start.
 
 ### Config-as-code
-You can also enable dedicated IP addresses programmatically through [config-as-code]({{< ref "configuration-as-code" >}}). Simply set the `useDedicatedIps` property to `true` in your [simulation configuration]({{< ref "/reference/run-tests/configuration-as-code/#simulation-config" >}}). This instructs Gatling Enterprise to automatically assign your dedicated IPs to all load generators for that simulation.
+You can also enable dedicated IP addresses programmatically through [config-as-code]({{< ref "configuration-as-code" >}}). Simply set the `useDedicatedIps` property to `true` in your [simulation configuration]({{< ref "/reference/run-tests/sources/configuration-as-code" >}}). This instructs Gatling Enterprise to automatically assign your dedicated IPs to all load generators for that simulation.

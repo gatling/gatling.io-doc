@@ -1,8 +1,9 @@
 ---
-title: Create simulations from packaged tests
-seotitle: Create simulations from packaged tests in Gatling Enterprise
-description: Learn how to create simulations from packaged tests in Gatling Enterprise.
-lead: Create simulations from packaged tests in Gatling Enterprise.
+title: Create simulations from packaged code
+menutitle: Create simulations from packaged code
+seotitle: Create simulations from packaged code in Gatling Enterprise
+description: Learn how to create simulations from packaged code in Gatling Enterprise.
+lead: Create simulations from packaged code in Gatling Enterprise.
 
 ---
 
@@ -83,3 +84,7 @@ The following configurations are optional, further details about the available o
 - Set acceptance criteria
 - Specify a time window
 - Add stop criteria
+
+### Save and launch your simulation
+
+Once you've configured your no-code simulation, click the **Save and Launch** button to save your simulation and start the test.

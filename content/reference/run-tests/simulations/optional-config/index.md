@@ -47,7 +47,7 @@ Ramp up/down parameters will only be applied if the run duration is longer than 
 {{< /alert >}}
 
 {{< alert tip >}}
-Ramp up/down parameters can also be specified with the [public API]({{< ref "/reference/api/" >}}) and the [package descriptor]({{< ref "/reference/run-tests/configuration-as-code/" >}}). 
+Ramp up/down parameters can also be specified with the [public API]({{< ref "/reference/api/" >}}) and the [package descriptor]({{< ref "/reference/run-tests/sources/configuration-as-code" >}}). 
 {{< /alert >}}
 
 ### Stop criteria

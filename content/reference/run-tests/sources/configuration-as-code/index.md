@@ -21,9 +21,9 @@ On Gatling Enterprise:
 - Create an [API Token]({{< ref "reference/collaborate/admin/api-tokens" >}}) with **Configure** permission
 
 For a better understanding, see references for underlying concepts:
-- [Package Generation]({{< ref "reference/run-tests/package-gen" >}})
-- [Package Configuration]({{< ref "reference/run-tests/package-conf" >}})
-- [Simulations]({{< ref "reference/run-tests/simulations" >}})
+- [Package Generation]({{< ref "reference/run-tests/sources/package-gen" >}})
+- [Package Configuration]({{< ref "reference/run-tests/sources/package-conf" >}})
+- [Simulations]({{< ref "reference/run-tests/simulations/intro" >}})
 
 ## Usage
 
@@ -167,9 +167,9 @@ gatling.enterprise.package {
 
 ### Simulation configuration {#simulation-config}
 
-As we mention in the [Default Behavior]({{< ref "#default-behavior" >}}) section, a [Simulation]({{< ref "/reference/run-tests/simulations/" >}}) includes more than just a simulation.
+As we mention in the [Default Behavior]({{< ref "#default-behavior" >}}) section, a [Simulation]({{< ref "/reference/run-tests/simulations/test-as-code" >}}) includes more than just a simulation.
 
-Each property of a [Simulation]({{< ref "/reference/run-tests/simulations/" >}}), can be configured individually or left to default settings, allowing for customization either through configuration or via the Web UI.
+Each property of a [Simulation]({{< ref "/reference/run-tests/simulations/test-as-code" >}}), can be configured individually or left to default settings, allowing for customization either through configuration or via the Web UI.
 
 ```hocon
 gatling.enterprise.package {
@@ -267,7 +267,7 @@ Locations weights sum must be equal to 100
 `parameters` *(optional)* :
 
 - `ignoreDefaults` *(optional)* : Ignore or not [Default Load Generator Parameters]({{< ref "/reference/deploy/private-locations/introduction" >}}) *(default: false, or existing)*
-- `systemProperties` *(optional)* : [Java system properties]({{ < ref "/reference/run-tests/simulations#step-3-load-generator-parameters" >}}) for the simulation *(default: empty, or existing)*
+- `systemProperties` *(optional)* : [Java system properties]({{ < ref "/reference/run-tests/simulations/optional-config/load-generator-parameters" >}}) for the simulation *(default: empty, or existing)*
 - `environmentVariables` *(optional)* : Environment variables for the simulation *(default: empty, or existing)*
 
 {{< alert info >}}

@@ -1,18 +1,19 @@
 ---
-title: Create simulations from sources
+title: Create simulations from a git repository
+menutitle: Create simulations from git repositories
 seotitle: Create simulations from git repositories in Gatling Enterprise
 description: Learn how to create simulations from git repositories in Gatling Enterprise.
 lead: Create simulations from git repositories in Gatling Enterprise.
 date: 2025-07-30T10:29:36+00:00
 ---
 
-## Create simulations from sources
+## Create simulations from a git repository
 
 Use the **Create a simulation** button either coming from the Simulations page or the Getting started guide to open the simulation creation modal.
 
-To create a simulation from sources:
+To create a simulation from a git repository:
 
-1. Select **Build from sources** in the modal.
+1. Select **Build from source** in the modal.
 2. Select your git repository or import a new one.
 3. Click **+ Create**.
 
@@ -47,7 +48,7 @@ You need to configure the general parameters:
 
 ### Configure the load generator locations
 
-Configure the Gatling Enterprise load generator locations. Build from sources is only compatible with Private locations. 
+Configure the Gatling Enterprise load generator locations. Build from a git repository is only compatible with Private locations.
 
 - **Location**: defines the locations to be used when initiating the Gatling Enterprise load generators.
 - **Number of load generators**: number of load generators for this location.
