@@ -20,8 +20,8 @@ At present Gatling Enterprise supports the following languages:
 - Java 
 - Scala
 - Kotlin 
-- Javascript
-- Typescript
+- JavaScript
+- TypeScript
 
 We typically recommend Java because it is widely taught in Computer Science programs and makes including additional developers easier. Gatling is constantly evolving, and more SDKs will likely be added in the future.
 
@@ -126,7 +126,7 @@ To ensure a more accurate understanding of user experience, it is advisable to e
 
 ### Why is gatling-highcharts a dedicated project/repository and why does it use a different license?
 
-Highcharts and Highstock are javascript libraries whose license is not open-source friendly.
+Highcharts and Highstock are JavaScript libraries whose license is not open-source friendly.
 We pay license fees so that we can package and distribute them and let people use them **for free**, but this module can't be open sourced.
 
 We really want to keep as much code as possible under Apache 2, so we move the reports generation library implementation into a separate project [https://github.com/gatling/gatling-highcharts](https://github.com/gatling/gatling-highcharts).

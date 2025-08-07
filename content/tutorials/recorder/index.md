@@ -18,7 +18,7 @@ The Gatling Recorder allows you to capture browser-based actions to create a rea
 
 In this tutorial, we use Gatling to load test a simple cloud-hosted web server and introduce you to the basic elements of the Recorder. We strongly recommend completing one of the following introductory guides according to your language of preference before starting to work with the Recorder:
 - [Introduction to scripting tutorial with Java]({{< ref "/tutorials/scripting-intro" >}}). 
-- [Introduction to scripting tutorial with Javascript]({{< ref "/tutorials/scripting-intro-js" >}}). 
+- [Introduction to scripting tutorial with JavaScript]({{< ref "/tutorials/scripting-intro-js" >}}). 
 
 This tutorial showcases the Gatling recorder using two options: **Java** SDK with the **Maven** plugin and the **JavaScript** SDK with **JavaScript CLI**.
 

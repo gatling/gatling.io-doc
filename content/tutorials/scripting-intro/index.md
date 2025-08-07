@@ -22,7 +22,7 @@ Join the [Gatling Community Forum](https://community.gatling.io) to discuss load
 {{< /alert >}}
 
 {{< alert tip >}}
-If you're a Javascript / Typescript user, you'll be more interested in our [introduction to JavaScript scripting]({{< ref "tutorials/scripting-intro-js" >}})
+If you're a JavaScript / TypeScript user, you'll be more interested in our [introduction to JavaScript scripting]({{< ref "tutorials/scripting-intro-js" >}})
 {{< /alert >}}
 
 ## Setup

@@ -122,7 +122,7 @@ sbt -Dgatling.enterprise.apiToken=<API-token-value> Gatling/enterpriseStart
 
 ### Pass a JavaScript parameter 
 
-The JavaScript and Typescript SDK allows you to pass command line arguments to set parameters such as an API token. To pass a parameter, use the appropriate flag and value. The following example is for an API token with the `enterprise-deploy` command:
+The JavaScript and TypeScript SDK allows you to pass command line arguments to set parameters such as an API token. To pass a parameter, use the appropriate flag and value. The following example is for an API token with the `enterprise-deploy` command:
 
 ``` console
 npx gatling enterprise-deploy --api-token <API-token-value>

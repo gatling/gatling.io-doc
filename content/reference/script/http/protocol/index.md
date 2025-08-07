@@ -13,7 +13,7 @@ HTTP is the main protocol Gatling targets, so that's where we place most of our 
 Gatling HTTP allows you to load test web applications, web services or websites.
 It supports HTTP and HTTPS with almost every existing feature of common browsers such as caching, cookies, redirect, etc.
 
-However, Gatling **is not a browser**: it won't run Javascript, won't apply CSS styles and trigger CSS background-images download, won't react to UI events, etc.
+However, Gatling **is not a browser**: it won't run JavaScript, won't apply CSS styles and trigger CSS background-images download, won't react to UI events, etc.
 Gatling works at the HTTP protocol level.
 
 ## Bootstrapping

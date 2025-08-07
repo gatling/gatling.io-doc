@@ -48,7 +48,7 @@ These templates contain nested stacks for Control Plane, Location, and optional 
 
 ### Cloud Development Kit (CDK)
 
-#### Typescript
+#### TypeScript
 
 This CDK application includes constructs for Control Plane, Location, and Private Package. Installation guide available [here](https://github.com/gatling/gatling-enterprise-control-plane-deployment/blob/main/aws/cdk/typescript/README.md).
 
