@@ -43,6 +43,15 @@ This file is an implementation detail whose sole purpose is the generation of th
 Its format is not documented and is subject to change any time without any further notice.\
 Don't use it for building in-house integrations.
 
+### I can't find certain files that were generated with older versions {#dropped-internals}
+
+{{< alert warning >}}
+If you’re building on internal components, please know that you’re doing so at your own risk—and outside the boundaries of what we support.
+{{< /alert >}}
+
+`stats.json`, `global_stats.json`, `assertions.xml` and `assertions.json` were internal components that lost their purpose.
+As any dead code, they were eliminated and won't be restored.
+
 ### I get a "StackOverflowError" when compiling
 
 Scenarios use method chaining **a lot**.
