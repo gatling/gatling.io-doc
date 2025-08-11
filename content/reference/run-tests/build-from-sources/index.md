@@ -25,31 +25,42 @@ Run simulations by simply plugging your git repository.
 
 #### Cloning over SSH using an SSH key
 
-**Mount SSH Configuration**
+##### SSH Configuration Mount
 
-- Provide an SSH configuration mounted at `/app/.ssh` into the container.
-- Ensure the mounted folder is owned by the Gatling user (UID 1001): `chown -R 1001 /app/.ssh`.
+Set up your SSH key within the control plane configuration block:
 
-**Update SSH Config:**
-
-Edit `/app/.ssh/config` to specify your identity file. For example (GitHub):
-
+```bash
+control-plane {
+  # ...
+  builder {
+    git.global.credentials.ssh {
+      key-file = <keyFile>
+      user-known-hosts-file = <userKnownHostsFile> # (optional – omit this line to disable strict host checking)
+    }
+  }
+}
 ```
-Host github.com
-IdentityFile /app/.ssh/id_gatling
-StrictHostKeyChecking no
+
+- Mount the SSH key file at the `git.global.credentials.ssh.key-file` path inside the container.  
+  Ensure that `/app/.ssh/id_gatling` has permission **400**:
+  - Owner: Read
+  - Group: No access
+  - Others: No access
+
+- Make sure the mounted `.ssh` directory is owned by the Gatling user (UID **1001**):
+```bash
+chown -R 1001 /app/.ssh
 ```
 
-**Set Key Permissions:**
+- If `git.global.credentials.ssh.user-known-hosts-file` is set, mount a `known_hosts` file to the specified path.
 
-Ensure `/app/.ssh/id_gatling` has permissions **400**:
-- Owner: Read
-- Group: -
-- Others: -
+###### How to Add Hosts to `user-known-hosts-file`
 
-**Host Verification (Optional):**
+Use `ssh-keyscan` to populate the file mounted at `user-known-hosts-file`:
 
-If you set `StrictHostKeyChecking yes`, manually add hosts keys to `/app/.ssh/known_hosts`.
+```bash
+ssh-keyscan github.com gitlab.com >> ~/.ssh/known_hosts
+```
 
 #### Cloning over HTTPS using git credentials
 
