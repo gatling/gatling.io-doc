@@ -45,6 +45,29 @@ Beware of not missing messages that would be received prior to setting the check
 
 Gatling currently only supports blocking checks that will wait until receiving expected message or timing out.
 
+When using SSE checks, Stream Events get turned into JSON, eg
+
+```
+id: 77535
+event: snapshot
+data: [{"symbol":"BTC","price":4628.27},{"symbol":"ETH","price":3249.19}]
+```
+
+is turned into:
+
+```json
+{
+  "id": 77535,
+  "event": "snapshot",
+  "data": [
+    {"symbol":"BTC","price":4628.27},
+    {"symbol":"ETH","price":3249.19}
+  ]
+}
+```
+
+This way, you can apply checks on any Stream field with `jsonPath` and `jmesPath`.
+
 ### Set a check
 
 You can set a check right after connecting:
@@ -95,6 +118,8 @@ The buffer is reset when:
 You can then pass your processing logic as a function.
 The list of messages passed to this function is sorted in timestamp ascending (meaning older messages first).
 It contains instances of types `io.gatling.http.action.sse.SseInboundMessage`.
+
+Reminder: messages are JSON string versions of the events.
 
 {{< include-code "process" >}}
 

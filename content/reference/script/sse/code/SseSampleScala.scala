@@ -81,8 +81,8 @@ exec(sse("SetCheck").setCheck
 exec(sse("SetCheck").setCheck
   .await(1)(
     sse.checkMessage("checkName")
-      .matching(substring("event"))
-      .check(regex("event: snapshot(.*)"))
+      .matching(jmesPath("event").is("snapshot"))
+      .check(jmesPath("id").ofType[Int].is(77535))
   ))
 //#check-matching
 
@@ -113,7 +113,7 @@ val scn = scenario("ServerSentEvents")
   .exec(
     sse("Stocks").get("/stocks/prices")
       .await(10)(
-        sse.checkMessage("checkName").check(regex("event: snapshot(.*)"))
+        sse.checkMessage("checkName").check(jmesPath("event").is("snapshot"))
       ),
     pause(15),
     sse("Close").close
