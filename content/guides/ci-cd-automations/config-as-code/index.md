@@ -27,7 +27,7 @@ we recommend trying the [Intro to scripting]({{< ref "/tutorials/scripting-intro
 
 The package descriptor is a `conf` file located `/.gatling/package.conf`. 
 
-The complete set of configuration options can be found in the [Configuration-as-code reference documentation]({{< ref "/reference/run-tests/configuration-as-code" >}}). 
+The complete set of configuration options can be found in the [Configuration-as-code reference documentation]({{< ref "/reference/run-tests/sources/configuration-as-code" >}}). 
 
 This guide will demonstrate how to configure the:
 - package name,
@@ -160,4 +160,4 @@ gatling.enterprise.package {
   }
 }
 ```
-Learn more about configuring your packages and simulations in the [configruation as code reference documentation]({{< ref "/reference/run-tests/configuration-as-code" >}}).
+Learn more about configuring your packages and simulations in the [configruation as code reference documentation]({{< ref "/reference/run-tests/sources/configuration-as-code" >}}).

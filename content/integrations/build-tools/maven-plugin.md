@@ -151,7 +151,7 @@ mvn gatling:enterpriseDeploy -Dgatling.enterprise.packageDescriptorFilename="<fi
 {{< alert info >}}
 You can run this command without any configuration to try it.
 
-Check the [Configuration as Code documentation]({{< ref "reference/run-tests/configuration-as-code" >}}) for the complete reference and advanced usage.
+Check the [Configuration as Code documentation]({{< ref "/reference/run-tests/sources/configuration-as-code" >}}) for the complete reference and advanced usage.
 {{< /alert >}}
 
 #### Start your simulations on Gatling Enterprise
@@ -192,7 +192,7 @@ Windows: mvnw.cmd gatling:enterprisePackage
 {{</ platform-toggle >}}
 
 This will generate the `target/<artifactId>-<version>-shaded.jar` package which you can then
-[upload to the Cloud]({{< ref "reference/run-tests/package-conf" >}}).
+[upload to the Cloud]({{< ref "reference/run-tests/sources/package-conf" >}}).
 
 #### Private packages
 

@@ -251,7 +251,7 @@ You can check out other options with `npx gatling enterprise-deploy --help`.
 {{< alert info >}}
 You can run this command without any configuration to try it.
 
-Check the [Configuration as Code documentation]({{< ref "/reference/run-tests/configuration-as-code" >}}) for
+Check the [Configuration as Code documentation]({{< ref "/reference/run-tests/sources/configuration-as-code" >}}) for
 the complete reference and advanced usage.
 {{< /alert >}}
 

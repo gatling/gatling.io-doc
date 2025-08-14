@@ -159,7 +159,7 @@ You can package, deploy, and run your simulation using one of two approaches, de
 Gatling Enterprise is a feature-rich SaaS platform that is designed for teams and organizations to get the most
 out of load testing. With the trial account, you created in the [Prerequisites section]({{< ref "#install-gatling" >}}), you can upload and run your test with advanced configuration, reporting, and collaboration features.
 
-From Gatling 3.11 packaging and running simulations on Gatling Enterprise is simplified by using [configuration as code]({{< ref "reference/run-tests/configuration-as-code" >}}). In this tutorial, we only use the default configuration to demonstrate deploying your project. You can learn more about customizing your configuration with our [configuration-as-code guide]({{< ref "guides/ci-cd-automations/config-as-code" >}}).
+From Gatling 3.11 packaging and running simulations on Gatling Enterprise is simplified by using [configuration as code]({{< ref "reference/run-tests/sources/configuration-as-code" >}}). In this tutorial, we only use the default configuration to demonstrate deploying your project. You can learn more about customizing your configuration with our [configuration-as-code guide]({{< ref "guides/ci-cd-automations/config-as-code" >}}).
 
 To deploy and run your simulation on Gatling Enterprise, use the following procedure:
 

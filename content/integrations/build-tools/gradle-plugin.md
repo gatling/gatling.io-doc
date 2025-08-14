@@ -269,7 +269,7 @@ gradle GatlingEnterpriseDeploy -Dgatling.enterprise.packageDescriptorFilename="<
 {{< alert info >}}
 You can run this command without any configuration to try it.
 
-Check the [Configuration as Code documentation]({{< ref "reference/run-tests/configuration-as-code" >}}) for the complete reference and advanced usage.
+Check the [Configuration as Code documentation]({{< ref "/reference/run-tests/sources/configuration-as-code" >}}) for the complete reference and advanced usage.
 {{< /alert >}}
 
 
@@ -315,7 +315,7 @@ Windows: gradlew.bat gatlingEnterprisePackage
 {{</ platform-toggle >}}
 
 This will generate the `build/libs/<artifactId>-<version>-tests.jar` package which you can then
-[upload to the Cloud]({{< ref "reference/run-tests/package-conf" >}}).
+[upload to the Cloud]({{< ref "reference/run-tests/sources/package-conf" >}}).
 
 #### Private packages
 
