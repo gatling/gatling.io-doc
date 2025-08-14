@@ -11,7 +11,7 @@ aliases:
 
 # Introduction
 
-Build from source allows you to build Gatling simulations directly from a source repository, such as GitHub, GitLab, or BitBucket without needing to package them first. This feature is particularly useful for teams that prefer to manage their Gatling projects in a source control system and want to streamline the process of running tests. Simulations are built and stored in your private network, using the Private Locations and Private Packages features of Gatling Enterprise. This approach eliminates the need for manual packaging and uploading of simulation files, enabling a more efficient workflow for performance testing.
+Build from a Git repository allows you to build Gatling simulations directly from a source repository, such as GitHub, GitLab, or BitBucket without needing to package them first. This feature is particularly useful for teams that prefer to manage their Gatling projects in a source control system and want to streamline the process of running tests. Simulations are built and stored in your private network, using the Private Locations and Private Packages features of Gatling Enterprise. This approach eliminates the need for manual packaging and uploading of simulation files, enabling a more efficient workflow for performance testing.
 
 {{< img src="generic-diagram.png" alt="Build from Git architecture diagram" >}}
 
