@@ -1,9 +1,9 @@
 ---
-title: Git Repository
-menutitle: Git Repository
-seotitle: Git Repository in Gatling Enterprise
+title: Git repository
+menutitle: Git repository
+seotitle: Git repository in Gatling Enterprise
 description: Learn how to create and manage git repositories in Gatling Enterprise.
-lead: Git Repository in Gatling Enterprise.
+lead: Git repository in Gatling Enterprise.
 date: 2025-07-30T10:29:36+00:00
 ---
 

@@ -11,7 +11,9 @@ aliases:
 
 # Introduction
 
-Build from a Git repository allows you to build Gatling simulations directly from a source repository, such as GitHub, GitLab, or BitBucket without needing to package them first. This feature is particularly useful for teams that prefer to manage their Gatling projects in a source control system and want to streamline the process of running tests. Simulations are built and stored in your private network, using the Private Locations and Private Packages features of Gatling Enterprise. This approach eliminates the need for manual packaging and uploading of simulation files, enabling a more efficient workflow for performance testing.
+Build from a Git repository allows you to build Gatling simulations directly from a source repository, such as GitHub, GitLab, or BitBucket without needing to package them first. This feature is particularly useful for teams that prefer to manage their Gatling projects in a source control system and want to streamline the process of running tests. 
+
+Simulations are built and stored in your private network, using the Private Locations and Private Packages features of Gatling Enterprise. This approach eliminates the need for manual packaging and uploading of simulation files, enabling a more efficient workflow for performance testing.
 
 {{< img src="generic-diagram.png" alt="Build from Git architecture diagram" >}}
 
@@ -19,11 +21,11 @@ The following sections detail how to configure the Control Plane for Build from 
 
 ## Pre-requisites
 
-- Private Packages: Build from a Git repository requires a configured [private storage location]({{< ref "reference/deploy/private-locations/private-packages" >}}) to store build artifacts.
-- Private Locations: Build from a Git repository is only compatible with [Private Locations]({{< ref "reference/deploy/private-locations/introduction" >}}). Ensure these are configured first.
-- Control Plane image: Use the dedicated `gatlingcorp/control-plane:latest-builder` image. Note that this image is different from the standard Control Plane image.
-- Allocate adequate CPU and memory resources according to your project's compilation needs.
-- Git repository with a compatible Gatling plugin version configured.
+- **Private Packages**: Build from a Git repository requires a configured [private storage location]({{< ref "reference/deploy/private-locations/private-packages" >}}) to store build artifacts.
+- **Private Locations**: Build from a Git repository is only compatible with [Private Locations]({{< ref "reference/deploy/private-locations/introduction" >}}). Ensure these are configured first.
+- **Control Plane image**: Use the dedicated `gatlingcorp/control-plane:latest-builder` image. Note that this image is different from the standard Control Plane image.
+- **CPU and memory resources**: Allocate adequate CPU and memory resources according to your project's compilation needs.
+- **Git repository**: Git repository with a compatible Gatling plugin version configured.
 
 ## Architecture
 
@@ -31,15 +33,17 @@ The Build from a Git repository feature operates within the Gatling Enterprise a
 
 After run completion, the test package is deleted from the private storage location, thus each run requires a fresh build from the source repository. This ensures that you always test the latest version of your simulations.
 
-## Configuration
+
+
+## Git authentication
 
 The following sections detail how to configure the Control Plane for Build from a Git repository.
 
-### Git authentication
+### Cloning over SSH using an SSH key
 
-#### Cloning over SSH using an SSH key
+When authenticating with Git over SSH, you can use an SSH key for secure access. This method provides a secure way to authenticate without exposing credentials.
 
-##### SSH Configuration Mount
+#### SSH Configuration Mount
 
 Set up your SSH key within the control plane configuration block:
 
@@ -68,7 +72,7 @@ chown -R 1001 /app/.ssh
 
 - If `git.global.credentials.ssh.user-known-hosts-file` is set, mount a `known_hosts` file to the specified path.
 
-###### How to Add Hosts to `user-known-hosts-file`
+#### How to Add Hosts to `user-known-hosts-file`
 
 Use `ssh-keyscan` to populate the file mounted at `user-known-hosts-file`:
 
@@ -76,7 +80,7 @@ Use `ssh-keyscan` to populate the file mounted at `user-known-hosts-file`:
 ssh-keyscan github.com gitlab.com >> ~/.ssh/known_hosts
 ```
 
-#### Cloning over HTTPS using git credentials
+### Cloning over HTTPS using git credentials
 
 When authenticating with Git over HTTPS (via password or token), 
 you can specify credentials in the Control Plane configuration file (e.g., control-plane.conf):
@@ -98,14 +102,14 @@ control-plane {
 * Limit token permissions to read-only access.
 * Never include credentials in repository URLs within Gatling Enterprise.
 
-### Build tools
+## Build tools for Git repositories
 
 | Build Tool | Gatling Plugin Version | Image Cache Path  |
 |-----------:|------------------------|-------------------|
 |  **Maven** | `4.16.3`               | `/app/.m2`        |
 | **Gradle** | `3.13.5.4`             | `/app/.gradle`    |
-|    **SBT** | `4.13.3`               | `/app/.sbt`       |
-|    **NPM** | `3.13.501`             | `/app/.npm`       |
+|    **sbt** | `4.13.3`               | `/app/.sbt`       |
+|    **npm** | `3.13.501`             | `/app/.npm`       |
 
 **Gatling Plugin Version**: The minimum compatible version of each build tool plugin that supports build from a Git repository.
 

@@ -1,5 +1,5 @@
 ---
-title: Package Configuration
+title: Package configuration
 seotitle: Configure packages in Gatling Enterprise
 description: Learn how to configure and upload a package to Gatling Enterprise.
 lead: Configure and upload your package to Gatling Enterprise.
