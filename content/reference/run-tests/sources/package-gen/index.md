@@ -1,5 +1,5 @@
 ---
-title: Package Generation
+title: Package generation
 seotitle: Generate packages for Gatling Enterprise
 description: Learn how to package Gatling simulations for Gatling Enterprise from the Gatling zip bundle, or from a Maven, sbt, or Gradle project.
 lead: Generate a package from your Gatling bundle or with a Maven, sbt, or Gradle project.
