@@ -1,8 +1,8 @@
 ---
-title: Create simulations without code
-seotitle: Create simulations without code in Gatling Enterprise
-description: Learn how to create simulations without code in Gatling Enterprise.
-lead: Create simulations without code in Gatling Enterprise.
+title: Create no-code simulations
+seotitle: Create no-code simulations in Gatling Enterprise
+description: Learn how to create no-code simulations in Gatling Enterprise.
+lead: Create no-code simulations in Gatling Enterprise.
 date: 2025-07-30T10:29:36+00:00
 ---
 
