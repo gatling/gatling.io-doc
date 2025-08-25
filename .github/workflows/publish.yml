@@ -61,7 +61,7 @@ jobs:
         run: ./bin/entrypoint.sh --noprepare generate
 
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v4
+        uses: aws-actions/configure-aws-credentials@v4.3.1
         with:
           aws-region: eu-west-3
           role-to-assume: ${{ secrets.AWS_ROLE_PROD_DOC }}
