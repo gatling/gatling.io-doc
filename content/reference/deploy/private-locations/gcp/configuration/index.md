@@ -135,6 +135,8 @@ control-plane {
           # with-external-ip = true
         }
       }
+      # Absolute path of the directory where executable binaries will be stored
+      # executable-dir = "/tmp"
       # GCP project id as returned by GCP CLI:
       # gcloud projects list
       project = "my-project-id"

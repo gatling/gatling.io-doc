@@ -106,6 +106,8 @@ control-plane {
       #   type = custom
       #   image = "/subscriptions/4c3f1827-1a32-4d18-8e8e-c8abb129f0fe/resourceGroups/<MyResourceGroup>/providers/Microsoft.Compute/galleries/customImages/images/<MyImage>"
       # }
+      # Absolute path of the directory where executable binaries will be stored
+      # executable-dir = "/tmp"
       # Azure subscription id as returned by Azure CLI:
       # az account show
       subscription = "<MySubscription UUID>"

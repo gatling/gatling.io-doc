@@ -88,6 +88,8 @@ control-plane {
       #   type = custom
       #   id = "ami-00000000000000000"
       # }
+      # Absolute path of the directory where executable binaries will be stored
+      # executable-dir = "/tmp"
       # Security groups
       security-groups = ["sg-mysecuritygroup"]
       # Instance type
