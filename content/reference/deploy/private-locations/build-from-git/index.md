@@ -55,6 +55,8 @@ control-plane {
       key-file = <keyFile>
       user-known-hosts-file = <userKnownHostsFile> # (optional – omit this line to disable strict host checking)
     }
+    # Define the maximum number of builds the control plane can perform concurrently
+    # max-concurrency = 1
   }
 }
 ```
@@ -93,6 +95,8 @@ control-plane {
       username = <username> # (optional)
       password = <token>
     }
+    # Define the maximum number of builds the control plane can perform concurrently
+    # max-concurrency = 1
   }
 }
 ```
