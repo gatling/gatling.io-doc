@@ -104,13 +104,67 @@ control-plane {
 
 ## Build tools for Git repositories
 
-| Build Tool | Gatling Plugin Version | Image Cache Path  |
-|-----------:|------------------------|-------------------|
-|  **Maven** | `4.16.3`               | `/app/.m2`        |
-| **Gradle** | `3.13.5.4`             | `/app/.gradle`    |
-|    **sbt** | `4.13.3`               | `/app/.sbt`       |
-|    **npm** | `3.13.501`             | `/app/.npm`       |
+| Build Tool | Gatling Plugin Version | Image Cache Path | Tuning         |
+| ---------: | ---------------------- | ---------------- | -------------- |
+|  **Maven** | `4.16.3`               | `/app/.m2`       | `MAVEN_OPTS`   |
+| **Gradle** | `3.13.5.4`             | `/app/.gradle`   | `GRADLE_OPTS`  |
+|    **sbt** | `4.13.3`               | `/app/.sbt`      | `SBT_OPTS`     |
+|    **npm** | `3.13.501`             | `/app/.npm`      | `NODE_OPTIONS` |
 
 **Gatling Plugin Version**: The minimum compatible version of each build tool plugin that supports build from a Git repository.
 
 **Image Cache Path**: Ensure build tool caches persist across different upgrades by mounting a volume to the given path.
+
+**Tuning**: These environment variables can be in particular used to cap the memory used by each build process, so that your container doesn't crash with OOM when running multiple concurrent builds.
+The memory of your container is used by:
+
+- the Control Plane process
+- the concurrent build processes
+
+It's your responsibility to provide enough resources to your container and properly distribute the memory so that your container can handle your configured maximum number of concurrent build.
+
+### Configuring Build Tool Memory Settings
+
+Build tools (Maven, Gradle, and sbt) can be configured to use a specific maximum RAM quantity through their respective environment variables. You can set these environment variables through the Control Plane environment variables, and they will be transitively passed to the build tools during compilation.
+
+#### Memory Configuration Examples
+
+**Maven**: Use the `MAVEN_OPTS` environment variable to define JVM memory settings with values like `-Xms512m -Xmx2048m`.
+
+```bash
+# Example: Set Maven to use up to 2GB of RAM
+MAVEN_OPTS="-Xms512m -Xmx2048m"
+```
+
+**Gradle**: Gradle configurations can be applied using the `GRADLE_OPTS` environment variable.
+
+```bash
+# Example: Set Gradle to use up to 2GB of RAM
+GRADLE_OPTS="-Xms512m -Xmx2048m"
+```
+
+**sbt**: Use the `SBT_OPTS` environment variable to configure sbt memory settings.
+
+```bash
+# Example: Set sbt to use up to 2GB of RAM
+SBT_OPTS="-Xms512m -Xmx2048m"
+```
+
+**npm**: Use the `NODE_OPTIONS` environment variable to configure npm memory settings.
+
+```bash
+# Example: Set npm to use up to 2GB of RAM
+NODE_OPTIONS="-Xms512m -Xmx2048m"
+```
+
+#### Setting Environment Variables in Control Plane
+
+When you define these build tool environment variables in the Control Plane container configuration, they are automatically passed through to the respective build tools during the build process. This transitive behavior ensures that memory settings are consistently applied without requiring additional configuration at the build tool level.
+
+To configure these environment variables in your Control Plane deployment:
+
+1. Set the appropriate environment variables (`MAVEN_OPTS`, `GRADLE_OPTS`, `SBT_OPTS` or `NODE_OPTIONS`) in your Control Plane container configuration
+2. The Control Plane will automatically pass these variables to the build tools when compiling your Gatling simulations
+3. Adjust the memory values based on your project's compilation requirements and available system resources
+
+**Note**: Ensure that the Control Plane container has sufficient memory allocated to accommodate the maximum memory settings configured for your build tools.
