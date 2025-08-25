@@ -24,17 +24,12 @@ You must permit outbound access to the Gatling Cloud API served from `https://ap
 * your control plane
 * your private locations, as configured by the control plane
 
-`api.gatling.io` uses the following static IPv4 addresses that you can allow in your network configuration:
-* 15.236.15.177
-* 51.44.121.66
-* 52.47.87.192
+`api.gatling.io` uses the following CIDR blocks:
 
-{{< alert warning >}}
-Starting on August 13, 2025, we'll use the CIDR `18.98.64.240/29` instead.
-If you've been allowing traffic to our IP adresses in your network rules,
-you can already anticipate this change and allow our new CIDR.
-You'll be able to remove the original IP adresses after August 13.
-{{< /alert >}}
+* 18.98.64.240/29
+* 2a05:d012:3a4:c101::/64
+* 2a05:d012:3a4:c102::/64
+* 2a05:d012:3a4:c103::/64
 
 ## Configuring a Proxy
 
