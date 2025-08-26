@@ -20,13 +20,13 @@ The MQTT protocol is not supported by the JavaScript SDK. If this functionality 
 The Gatling MQTT protocol can be used with both the [Open Source](https://gatling.io/products) and
 [Enterprise](https://gatling.io/products) versions of Gatling.
 
-Its usage is unlimited when running on [Gatling Enterprise](https://gatling.io/products). When used with
+Its usage is unlimited when running tests on [Gatling Enterprise](https://gatling.io/products). When used with
 [Gatling Open Source](https://gatling.io/products), usage is limited to:
 
 - 5 users maximum
 - 5 minute duration tests
 
-Limits after which the test will stop.
+Limits after which the test will stop. This means that all locally executed tests using the MQTT protocol are limited by these values.
 
 ## Getting started with the demo project {#demo-project}
 
