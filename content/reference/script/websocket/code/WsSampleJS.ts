@@ -178,7 +178,7 @@ exec(
 exec(
   // collect the last text message and store it in the Session
   ws.processUnmatchedMessages((messages, session) => {
-    const copy = Array.from(messages);
+    const copy = Array.from(messages); // messages is immutable, hence the copy
     copy.reverse();
     const textMessages = copy.filter(isWsInboundMessageText)
       .map(m => m.message());

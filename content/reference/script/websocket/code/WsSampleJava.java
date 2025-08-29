@@ -177,7 +177,7 @@ exec(
   // collect the last text message and store it in the Session
   ws.processUnmatchedMessages((messages, session) -> {
     var copy = new ArrayList<>(messages);
-    Collections.reverse(copy); // message is immutable, hence the copy
+    Collections.reverse(copy); // messages is immutable, hence the copy
     String lastTextMessage =
       copy.stream()
         .filter(m -> m instanceof io.gatling.http.action.ws.WsInboundMessage.Text)

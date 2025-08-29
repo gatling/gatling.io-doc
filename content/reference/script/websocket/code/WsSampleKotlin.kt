@@ -170,7 +170,7 @@ exec(
 exec(
   // collect the last text message and store it in the Session
   ws.processUnmatchedMessages { messages, session ->
-    val reversed = messages.reversed() // messages is immutable
+    val reversed = messages.reversed() // messages is immutable, hence the copy
     val lastTextMessage =
       reversed.stream()
         .filter { m -> m is io.gatling.http.action.ws.WsInboundMessage.Text }
