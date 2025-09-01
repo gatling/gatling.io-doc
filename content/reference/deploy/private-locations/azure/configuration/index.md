@@ -71,7 +71,7 @@ control-plane {
   # Server configuration (optional)
   # server {
     # port = 8080 # (optional, default: 8080)
-    # bindAddress = "0.0.0.0" # (optional, default: 0.0.0.0)
+    # bind-address = "0.0.0.0" # (optional, default: 0.0.0.0)
 
     # # PKCS#12 certificate (optional)
     # certificate {
