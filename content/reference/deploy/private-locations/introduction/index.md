@@ -86,7 +86,7 @@ control-plane {
   # Server configuration (optional)
   # server {
     # port = 8080 # (optional, default: 8080)
-    # bindAddress = "0.0.0.0" # (optional, default: 0.0.0.0)
+    # bind-address = "0.0.0.0" # (optional, default: 0.0.0.0)
 
     # # PKCS#12 certificate (optional)
     # certificate {
@@ -123,7 +123,7 @@ The server is accessible on port 8080 by default, and provides a healthcheck end
 
 This configuration includes the following parameters:
 - **server.port**: The port on which the control plane is listening. (optional)
-- **server.bindAddress**: The network interface to bind to. The default is `0.0.0.0`, which means all available network IPv4 interfaces. (optional)
+- **server.bind-address**: The network interface to bind to. The default is `0.0.0.0`, which means all available network IPv4 interfaces. (optional)
 - **server.certificate**: The server P12 certificate for secure connection without SSL reverse proxy. (optional)
 
 ### Installation
