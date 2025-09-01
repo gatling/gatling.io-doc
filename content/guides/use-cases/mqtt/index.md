@@ -52,34 +52,33 @@ Our Gatling code for the performance test looks like this:
 
 ```java
 public class MqttSimulation extends Simulation {
- MqttProtocolBuilder mqttProtocol = mqtt
-  .broker("test.mosquitto.org", 1883)
-  .qosAtLeastOnce();
+  MqttProtocolBuilder mqttProtocol = mqtt
+    .broker("test.mosquitto.org", 1883)
+    .qosAtLeastOnce();
 
- ChainBuilder connect = exec(mqtt("Connecting").connect());
+  ChainBuilder connect = exec(mqtt("Connecting").connect());
 
- ScenarioBuilder subscriberScenario = scenario("MQTT Subscriber")
-  .exec(connect)
-  .exec(mqtt("Subscribing_Topic")
-   .subscribe("gatling/demo/topic")
-    .qosExactlyOnce() // Override the default QoS level
-    .expect(Duration.ofMillis(500)));
+  ScenarioBuilder subscriberScenario = scenario("MQTT Subscriber")
+    .exec(connect)
+    .exec(mqtt("Subscribing_Topic") 
+      .subscribe("gatling/demo/topic")
+      .qosExactlyOnce() // Override the default QoS level
+      .expect(Duration.ofMillis(500)));
 
- ScenarioBuilder publisherScenario = scenario("MQTT Publisher")
-  .exec(connect)
-  .exec(mqtt("Publishing_Topic")
-   .publish("gatling/demo/topic")
-    .message(StringBody("Gatling test message"))
-    .expect(Duration.ofMillis(500))
-     .check(jsonPath("$.error").notExists()));
+  ScenarioBuilder publisherScenario = scenario("MQTT Publisher")
+    .exec(connect)
+    .exec(mqtt("Publishing_Topic")
+      .publish("gatling/demo/topic")
+      .message(StringBody("Gatling test message"))
+      .expect(Duration.ofMillis(500))
+      .check(jsonPath("$.error").notExists()));
 
- {
-  setUp(
-   subscriberScenario.injectOpen(atOnceUsers(1)),
-   publisherScenario.injectOpen(rampUsers(1000).during(30))
-  ).protocols(mqttProtocol);
- }
-
+  {
+    setUp(
+      subscriberScenario.injectOpen(atOnceUsers(1)),
+      publisherScenario.injectOpen(rampUsers(1000).during(30))
+    ).protocols(mqttProtocol);
+  }
 }
 ```
 

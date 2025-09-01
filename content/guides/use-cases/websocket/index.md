@@ -12,7 +12,6 @@ aliases:
 This guide showcases the Java SDK, but the same process applies to the Kotlin and Scala SDKs
 {{< /alert >}}
 
-
 WebSocket is a bidirectional communication protocol enabling real-time data exchange between clients and servers. Unlike HTTP, WebSockets maintain a persistent connection for instant, efficient communication. WebSockets are ideal for applications needing real-time updates, like live chat, multiplayer gaming, collaborative editing, in-app notifications, and trading platforms, enhancing user experience and operational efficiency.
 
 ## Prerequisites
@@ -24,7 +23,7 @@ WebSocket is a bidirectional communication protocol enabling real-time data exch
 
 Let's create a WebSocket server in JavaScript that we will load test:
 
-{{< include-code "websocketserver#web-example" js>}}
+{{< include-code "websocketserver#web-example" js >}}
 
 This code creates a WebSocket server on port `8765`. When someone connects, it sends a random number of messages with a random interval between `0` and `1` second between each message. 
 
@@ -36,7 +35,7 @@ Now let's load test it.
 
 In this guide, we create a scenario using Gatling. Our user connects to the server, checks for incoming messages, and prints the rest of the messages:
 
-{{< include-code "WebSocketSample#websocket-example" java>}}
+{{< include-code "WebSocketSample#websocket-example" java >}}
 
 The `httpProtocol` allows Gatling to connect to our WebSocket application. After that, we connect to our application and check if the server returns the correct message. `ProcessUnmatchedMessage` processes inbound messages that haven’t been matched with a check and have been buffered. In our case, this allows us to display the messages the server sends.
 
@@ -44,7 +43,7 @@ The `httpProtocol` allows Gatling to connect to our WebSocket application. After
 
 We start with a single user to verify our simulation works correctly. To do that, add the following code to your simulation:
 
-{{< include-code "WebSocketSample#user-example" java>}}
+{{< include-code "WebSocketSample#user-example" java >}}
 
 ### Running the Test
 

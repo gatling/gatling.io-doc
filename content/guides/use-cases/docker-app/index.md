@@ -89,6 +89,7 @@ EXPOSE 3000
 
 CMD [ "node", "server.js" ]
 ```
+
 Now we will build our container image and launch it:
 
 ```console
@@ -98,9 +99,9 @@ Now we will build our container image and launch it:
 The console output should look like the following:
 
 ```console
-[+] Building 1.3s (12/12) FINISHED                                                                                         docker:desktop-linux
-=> [internal] load build definition from Dockerfile                                                                                       0.0s
-=> => transferring dockerfile: 205B                                                                                                       0.0s
+[+] Building 1.3s (12/12) FINISHED                        docker:desktop-linux
+=> [internal] load build definition from Dockerfile                       0.0s
+=> => transferring dockerfile: 205B                                       0.0s
 ...
 
 % docker run -p 3000:3000 myapi
@@ -121,7 +122,6 @@ import {
 import { http } from "@gatling.io/http";
 
 export default simulation((setUp) => {
-
 
   const httpProtocol = http
     .baseUrl("http://localhost:3000")

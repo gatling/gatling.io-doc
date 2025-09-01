@@ -33,10 +33,10 @@ Add a new repository to your .pom file
 
 ```java
 <repositories>
- <repository>
-   <id>confluent</id>
-   <url>https://packages.confluent.io/maven/</url>
- </repository>
+  <repository>
+    <id>confluent</id>
+    <url>https://packages.confluent.io/maven/</url>
+  </repository>
 </repositories>
 ```
 
@@ -44,10 +44,10 @@ Add a new repository to your .pom file
 Add this dependency to your .pom file
 
 <dependency>
- <groupId>org.galaxio</groupId>
- <artifactId>gatling-kafka-plugin_2.13</artifactId>
- <version>1.0.0-RC1</version>
- <scope>test</scope>
+  <groupId>org.galaxio</groupId>
+  <artifactId>gatling-kafka-plugin_2.13</artifactId>
+  <version>1.0.0-RC1</version>
+  <scope>test</scope>
 </dependency>
 ```
 
@@ -57,18 +57,19 @@ Add a new repository to your build.gradle file 
 
 ```java
 repositories {
-  mavenCentral()
-    maven {
-        url "https://packages.confluent.io/maven/"
-    }
+  mavenCentral()
+  maven {
+    url "https://packages.confluent.io/maven/"
+  }
 }
 ```
 
 Add this dependency to your build.gradle file 
 
-```java
+```gradle
 dependencies {
-    gatling "org.galaxio:gatling-kafka-plugin_2.13:1.0.0-RC1"
+  gatling "org.galaxio:gatling-kafka-plugin_2.13:1.0.0-RC1"
+}
 ```
 
 ### Add the import statements
@@ -76,7 +77,8 @@ dependencies {
 Create a new `KafkaSimulation` class. Next, you must add the imports to your simulation class to use the Kafka plugin.
 
 ```java
-org.galaxio.gatling.kafka.javaapi.protocol.*;
+import org.galaxio.gatling.kafka.javaapi.protocol.*;
+
 import static io.gatling.javaapi.core.CoreDsl.*;
 import static org.galaxio.gatling.kafka.javaapi.KafkaDsl.*;
 ```
@@ -87,14 +89,15 @@ Define the configuration of your Kafka cluster (at least the cluster URL and top
 
 ```java
 private final KafkaProtocolBuilder kafkaProtocol = kafka()
-       .topic("test")
-       .properties(
-               Map.of(
-                       ProducerConfig.ACKS_CONFIG, "1",
-                       ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092",
-                       ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer",
-                       ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG , "org.apache.kafka.common.serialization.StringSerializer")
-       );
+  .topic("test")
+  .properties(
+    Map.of(
+      ProducerConfig.ACKS_CONFIG, "1",
+      ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092",
+      ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer",
+      ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG , "org.apache.kafka.common.serialization.StringSerializer"
+    )
+  );
 ```
 
 If you use authentication with your Kafka cluster (e.g., SASL), you must define it here. In a complex configuration like the above, consider using environment variables. They allow you to easily organize, maintain, and change the Kafka cluster configuration. 
@@ -106,21 +109,21 @@ public static final String IP_SERVER = System.getProperty("IP_SERVER", "");
 public static final String URL_REGISTRY = System.getProperty("URL_REGISTRY", "");
 public static final String USER_AUTH = System.getProperty("USER_AUTH", "");
 private final KafkaProtocolBuilder kafkaProtocol = kafka()
-       .topic("test")
-       .properties(
-               Map.of(
-                       ProducerConfig.ACKS_CONFIG, "1",
-                       ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, IP_SERVER,
-                       ProducerConfig.MAX_REQUEST_SIZE_CONFIG, "2097152",
-                       "security.protocol", "SASL_SSL",
-                       "sasl.mechanism", "PLAIN",
-                       "client.dns.lookup", "use_all_dns_ips",
-                       "sasl.jaas.config", "org.apache.kafka.common.security.plain.PlainLoginModule required username=\"$USERNAME_BROKER\" password=\"$PASSWORD_BROKER\";",
-                       "schema.registry.url",URL_REGISTRY,
-                       "basic.auth.credentials.source","USER_INFO",
-                       "basic.auth.user.info", USER_AUTH
-       )
-       );
+  .topic("test")
+  .properties(
+    Map.of(
+      ProducerConfig.ACKS_CONFIG, "1",
+      ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, IP_SERVER,
+      ProducerConfig.MAX_REQUEST_SIZE_CONFIG, "2097152",
+      "security.protocol", "SASL_SSL",
+      "sasl.mechanism", "PLAIN",
+      "client.dns.lookup", "use_all_dns_ips",
+      "sasl.jaas.config", "org.apache.kafka.common.security.plain.PlainLoginModule required username=\"$USERNAME_BROKER\" password=\"$PASSWORD_BROKER\";",
+      "schema.registry.url",URL_REGISTRY,
+      "basic.auth.credentials.source","USER_INFO",
+      "basic.auth.user.info", USER_AUTH
+    )
+  );
 ```
 ## Test scenario
 
@@ -129,9 +132,9 @@ Let’s take a simple example: pushing a text message with a header to our clust
 ```java
 private final Headers headers = new RecordHeaders(new Header[]{new RecordHeader("test-header", "value".getBytes())});
 private final ScenarioBuilder kafkaProducer = scenario("Kafka Producer")
-   .exec(kafka("Simple Message")
-           .send("key","value", headers)
-   );
+  .exec(kafka("Simple Message")
+    .send("key","value", headers)
+  );
 ```
 
 Kafka is designed to work in an asynchronous way, meaning messages are sent and received independently. However, you can use the Kafka plugin to create more complex patterns, such as sending a request and waiting for a reply to ensure that system components have correctly received and processed the messages.
@@ -147,12 +150,14 @@ If your cluster is not yet in production and you are in an early stage of develo
 
 ```java
 {
-    setUp(
-           kafkaProducer.injectOpen(incrementUsersPerSec(1000)
-                   .times(4).eachLevelLasting(60)
-                   .separatedByRampsLasting(10)
-                   .startingFrom(100.0))
-   ).protocols(kafkaProtocol);
+  setUp(
+    kafkaProducer.injectOpen(
+      incrementUsersPerSec(1000)
+        .times(4).eachLevelLasting(60)
+        .separatedByRampsLasting(10)
+        .startingFrom(100.0)
+    )
+  ).protocols(kafkaProtocol);
 }
 ```
 ### Complete Kafka simulation class code example
@@ -172,38 +177,34 @@ import java.util.Map;
 import static io.gatling.javaapi.core.CoreDsl.*;
 import static org.galaxio.gatling.kafka.javaapi.KafkaDsl.*;
 public class KafkaSimulation extends Simulation{
-   public static final String IP_SERVER = System.getProperty("IP_SERVER", "");
-   public static final String URL_REGISTRY = System.getProperty("URL_REGISTRY", "");
-   public static final String USER_AUTH = System.getProperty("USER_AUTH", "");
-   private final KafkaProtocolBuilder kafkaProtocol = kafka()
-           .topic("test")
-           .properties(
-                   Map.of(
-                           ProducerConfig.ACKS_CONFIG, "1",
+  public static final String IP_SERVER = System.getProperty("IP_SERVER", "");
+  public static final String URL_REGISTRY = System.getProperty("URL_REGISTRY", "");
+  public static final String USER_AUTH = System.getProperty("USER_AUTH", "");
+  private final KafkaProtocolBuilder kafkaProtocol = kafka()
+    .topic("test")
+    .properties(
+      Map.of(
+        ProducerConfig.ACKS_CONFIG, "1",
+        ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092",
+        ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer",
+        ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG , "org.apache.kafka.common.serialization.StringSerializer")
+      );
 
-ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092",
+  private final Headers headers = new RecordHeaders(new Header[]{new RecordHeader("test-header", "value".getBytes())});
 
-ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer",
+  private final ScenarioBuilder kafkaProducer = scenario("Kafka Producer")
+    .exec(kafka("Simple Message")
+    .send("key","value", headers)
+  );
 
-ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG , "org.apache.kafka.common.serialization.StringSerializer")
-           );
-
-   private final Headers headers = new RecordHeaders(new Header[]{new RecordHeader("test-header", "value".getBytes())});
-
-   private final ScenarioBuilder kafkaProducer = scenario("Kafka Producer")
-       .exec(kafka("Simple Message")
-               .send("key","value", headers)
-       );
-
-   {
-        setUp(
-
-kafkaProducer.injectOpen(incrementUsersPerSec(1000)
-                       .times(4).eachLevelLasting(60)
-                       .separatedByRampsLasting(10)
-                       .startingFrom(100.0))
-       ).protocols(kafkaProtocol);
-   }
+  {
+    setUp(
+      kafkaProducer.injectOpen(incrementUsersPerSec(1000)
+        .times(4).eachLevelLasting(60)
+        .separatedByRampsLasting(10)
+        .startingFrom(100.0))
+    ).protocols(kafkaProtocol);
+  }
 }
 ```
 
@@ -238,21 +239,22 @@ If you can’t access a Kafka cluster, you can use Docker to start one on a serv
 ```dockerfile
 version: "3"
 services:
-  kafka:
-    container_name: kafka
-    image: 'bitnami/kafka:latest'
-    ports:
-      - 9092:9092     environment:
-      - KAFKA_ENABLE_KRAFT=yes
-      - KAFKA_CFG_NODE_ID=1
-      - KAFKA_CFG_PROCESS_ROLES=broker,controller
-      - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
-      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093
-      -KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
-      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://127.0.0.1:9092
-      - KAFKA_BROKER_ID=1
-      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=1@127.0.0.1:9093
-      - ALLOW_PLAINTEXT_LISTENER=yes
+  kafka:
+    container_name: kafka
+    image: "bitnami/kafka:latest"
+    ports:
+      - 9092:9092
+    environment:
+      - KAFKA_ENABLE_KRAFT=yes
+      - KAFKA_CFG_NODE_ID=1
+      - KAFKA_CFG_PROCESS_ROLES=broker,controller
+      - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://127.0.0.1:9092
+      - KAFKA_BROKER_ID=1
+      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=1@127.0.0.1:9093
+      - ALLOW_PLAINTEXT_LISTENER=yes
 ```
 
 To start this Kafka cluster, create a docker-compose.yml file, copy the contents above and paste it into the file, then run it with:

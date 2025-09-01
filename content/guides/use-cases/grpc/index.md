@@ -47,9 +47,12 @@ After that, we need to set up our base protocol for Gatling to connect to our gR
 ```java
 public class GreetingSimulation extends Simulation {
 
-    GrpcProtocolBuilder baseGrpcProtocol = grpc.forAddress("localhost", 50051)
-            .channelCredentials("#{channelCredentials}")
-            .overrideAuthority("gatling-grpc-demo-test-server");
+  GrpcProtocolBuilder baseGrpcProtocol = grpc.forAddress("localhost", 50051)
+    .channelCredentials("#{channelCredentials}")
+    .overrideAuthority("gatling-grpc-demo-test-server");
+
+  // ...
+}
 ```
 
 The gRPC Protocol Builder tells Gatling to connect to our gRPC application using channel credentials and by overriding the Authority. Now that we are connected, we need to define the user journey of our users.
@@ -60,13 +63,13 @@ Now, we need to create a function that will take the first and last names from t
 
 ```java
 Function<Session, Greeting> greeting = session -> {
-        String firstName = session.getString("firstName");
-        String lastName = session.getString("lastName");
-        return Greeting.newBuilder()
-                .setFirstName(firstName)
-                .setLastName(lastName)
-                .build();
-    };
+  String firstName = session.getString("firstName");
+  String lastName = session.getString("lastName");
+  return Greeting.newBuilder()
+    .setFirstName(firstName)
+    .setLastName(lastName)
+    .build();
+};
 ```
 
 This function retrieves the first and last name from the session and creates the Greeting service using our first and last names as arguments. We will use it inside our two scenarios.
@@ -77,16 +80,16 @@ So in our first scenario, we want to test if the service Greet works by checking
 
 ```java
 ScenarioBuilder unary = scenario("Greet Unary")
-            .feed(Feeders.channelCredentials().circular())
-            .feed(Feeders.randomNames())
-            .exec(grpc("Greet")
-                    .unary(GreetingServiceGrpc.getGreetMethod())
-                    .send(session -> GreetRequest.newBuilder()
-                            .setGreeting(greeting.apply(session))
-                            .build())
-                    .check(
-                            statusCode().is(Status.Code.OK),
-                            response(GreetResponse::getResult).isEL("Hello #{firstName} #{lastName}")));
+  .feed(Feeders.channelCredentials().circular())
+  .feed(Feeders.randomNames())
+  .exec(grpc("Greet")
+    .unary(GreetingServiceGrpc.getGreetMethod())
+    .send(session -> GreetRequest.newBuilder()
+      .setGreeting(greeting.apply(session))
+      .build())
+    .check(
+      statusCode().is(Status.Code.OK),
+      response(GreetResponse::getResult).isEL("Hello #{firstName} #{lastName}")));
 ```
 
 Let me explain it to you:
@@ -104,16 +107,16 @@ Let me explain it to you:
 So in our second scenario, we want to test the same thing but we add a deadline.
 
 ```java
-  ScenarioBuilder deadlines = scenario("Greet w/ Deadlines")
-            .feed(Feeders.channelCredentials().circular())
-            .feed(Feeders.randomNames())
-            .exec(grpc("Greet w/ Deadlines")
-                    .unary(GreetingServiceGrpc.getGreetWithDeadlineMethod())
-                    .send(session -> GreetRequest.newBuilder()
-                            .setGreeting(greeting.apply(session))
-                            .build())
-                    .deadlineAfter(Duration.ofMillis(100))
-                    .check(statusCode().is(Status.Code.DEADLINE_EXCEEDED)));
+ScenarioBuilder deadlines = scenario("Greet w/ Deadlines")
+  .feed(Feeders.channelCredentials().circular())
+  .feed(Feeders.randomNames())
+  .exec(grpc("Greet w/ Deadlines")
+    .unary(GreetingServiceGrpc.getGreetWithDeadlineMethod())
+    .send(session -> GreetRequest.newBuilder()
+      .setGreeting(greeting.apply(session))
+      .build())
+    .deadlineAfter(Duration.ofMillis(100))
+    .check(statusCode().is(Status.Code.DEADLINE_EXCEEDED)));
 ```
 
 You can see that it's almost the same scenario, as the only thing changing is:
@@ -133,16 +136,15 @@ Now we need to tell Gatling what pattern the users will follow. In our case, her
 
 ```java
 {
-        String name = System.getProperty("grpc.scenario");
-        ScenarioBuilder scn;
-        if ("deadlines".equals(name)) {
-            scn = deadlines;
-        } else {
-            scn = unary;
-        }
+  String name = System.getProperty("grpc.scenario");
+  ScenarioBuilder scn;
+  if ("deadlines".equals(name)) {
+    scn = deadlines;
+  } else {
+    scn = unary;
+  }
 
-        setUp(scn.injectOpen(atOnceUsers(5))).protocols(baseGrpcProtocol);
-    }
+  setUp(scn.injectOpen(atOnceUsers(5))).protocols(baseGrpcProtocol);
 }
 ```
 
@@ -163,9 +165,14 @@ cd server
 To launch the load test, open a terminal and run the following command in the `java/maven` folder:
 
 ```console
-./mvnw gatling:test -Dgrpc.scenario=unary -Dgatling.simulationClass=io.gatling.grpc.demo.GreetingSimulation
- or 
- ./mvnw gatling:test -Dgrpc.scenario=deadlines -Dgatling.simulationClass=io.gatling.grpc.demo.GreetingSimulation
+./mvnw gatling:test -Dgrpc.scenario=unary \
+  -Dgatling.simulationClass=io.gatling.grpc.demo.GreetingSimulation
+```
+
+or
+```
+./mvnw gatling:test -Dgrpc.scenario=deadlines \
+  -Dgatling.simulationClass=io.gatling.grpc.demo.GreetingSimulation
 ```
 
 After the simulation is complete, Gatling generates an HTML link in the terminal to access your report. Review metrics such as response times, successful and failed connections, and other indicators to identify potential issues with your service.
@@ -176,7 +183,7 @@ Let's see how to run a simulation using Gatling Enterprise. First, you need to c
 
 ```console
 export GATLING_ENTERPRISE_API_TOKEN=<your_token>
- ./mvnw gatling:enterpriseDeploy
+./mvnw gatling:enterpriseDeploy
 ```
 
 Now on Gatling Enterprise → Package, you will see a new package:
