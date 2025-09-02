@@ -171,24 +171,21 @@ ws.checkTextMessage("checkName")
 //#check-matching
 
 //#process
-exec(
-  // store the unmatched messages in the Session
-  ws.processUnmatchedMessages((messages, session) => session.set("messages", messages))
-);
-exec(
-  // collect the last text message and store it in the Session
-  ws.processUnmatchedMessages((messages, session) => {
-    const copy = Array.from(messages); // messages is immutable, hence the copy
-    copy.reverse();
-    const textMessages = copy.filter(isWsInboundMessageText)
-      .map(m => m.message());
-    if (textMessages.length > 0) {
-      return session.set("lastTextMessage", textMessages[0]);
-    } else {
-      return session;
-    }
-  })
-);
+// store the unmatched messages in the Session
+ws.processUnmatchedMessages((messages, session) => session.set("messages", messages))
+
+// collect the last text message and store it in the Session
+ws.processUnmatchedMessages((messages, session) => {
+  const copy = Array.from(messages); // messages is immutable, hence the copy
+  copy.reverse();
+  const textMessages = copy.filter(isWsInboundMessageText)
+    .map(m => m.message());
+  if (textMessages.length > 0) {
+    return session.set("lastTextMessage", textMessages[0]);
+  } else {
+    return session;
+  }
+});
 //#process
 
 //#protocol

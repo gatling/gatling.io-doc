@@ -8,10 +8,6 @@ aliases:
   -/reference/script/protocols/mqtt/protocol/
 ---
 
-{{< alert warning >}}
-The MQTT protocol is not supported by the JavaScript SDK. If this functionality is important to you, add a comment to our [public roadmap](https://portal.productboard.com/gatling/1-gatling-roadmap/c/113-javascript-sdk-expansion?&utm_medium=docs&utm_source=callout)
-{{< /alert >}}
-
 ## License and limitations {#license}
 
 **The Gatling MQTT component is distributed under the
@@ -39,6 +35,10 @@ supported languages and build tools:
 - [Kotlin with Maven](https://github.com/gatling/gatling-mqtt-demo/tree/main/kotlin/maven)
 - [Scala with SBT](https://github.com/gatling/gatling-mqtt-demo/tree/main/scala/sbt)
 
+{{< alert danger>}}
+TODO JS/TS
+{{< /alert >}}
+
 ## Adding the Gatling MQTT dependency {#gatling-mqtt-dependency}
 
 The Gatling MQTT plugin is not included with Gatling by default. Add the Gatling MQTT dependency, in addition to the
@@ -58,3 +58,7 @@ For Scala:
 2-Gradle: includes/dependency.gradle.scala.md
 3-sbt: includes/dependency.sbt.scala.md
 {{< /include-file >}}
+
+{{< alert danger>}}
+TODO JS/TS
+{{< /alert >}}

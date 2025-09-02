@@ -163,27 +163,24 @@ exec(ws("Send").sendText("hello")
 //#check-matching
 
 //#process
-exec(
-  // store the unmatched messages in the Session
-  ws.processUnmatchedMessages { messages, session -> session.set("messages", messages) }
-)
-exec(
-  // collect the last text message and store it in the Session
-  ws.processUnmatchedMessages { messages, session ->
-    val reversed = messages.reversed() // messages is immutable, hence the copy
-    val lastTextMessage =
-      reversed.stream()
-        .filter { m -> m is io.gatling.http.action.ws.WsInboundMessage.Text }
-        .map { m -> (m as io.gatling.http.action.ws.WsInboundMessage.Text).message() }
-        .findFirst()
-        .orElse(null)
-    if (lastTextMessage != null) {
-      session.set("lastTextMessage", lastTextMessage)
-    } else {
-      session
-    }
+// store the unmatched messages in the Session
+ws.processUnmatchedMessages { messages, session -> session.set("messages", messages) }
+
+// collect the last text message and store it in the Session
+ws.processUnmatchedMessages { messages, session ->
+  val reversed = messages.reversed() // messages is immutable, hence the copy
+  val lastTextMessage =
+    reversed.stream()
+      .filter { m -> m is io.gatling.http.action.ws.WsInboundMessage.Text }
+      .map { m -> (m as io.gatling.http.action.ws.WsInboundMessage.Text).message() }
+      .findFirst()
+      .orElse(null)
+  if (lastTextMessage != null) {
+    session.set("lastTextMessage", lastTextMessage)
+  } else {
+    session
   }
-)
+}
 //#process
 
 //#protocol

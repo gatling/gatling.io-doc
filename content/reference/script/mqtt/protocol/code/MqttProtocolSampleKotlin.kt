@@ -82,14 +82,12 @@ mqtt("Connecting").connect()
 //#connect
 
 //#subscribe
-mqtt("Subscribing")
-  .subscribe("#{myTopic}") // optional, override default QoS
+mqtt("Subscribing").subscribe("#{myTopic}") // optional, override default QoS
   .qosAtMostOnce()
 //#subscribe
 
 //#publish
-mqtt("Publishing")
-  .publish("#{myTopic}")
+mqtt("Publishing").publish("#{myTopic}")
   .message(StringBody("#{myTextPayload}"))
 //#publish
 
@@ -99,17 +97,20 @@ mqtt("Subscribing").subscribe("#{myTopic2}")
   .expect(Duration.ofMillis(100))
 
 // publish and wait (block) until it receives a message withing 100ms
-mqtt("Publishing").publish("#{myTopic}").message(StringBody("#{myPayload}"))
+mqtt("Publishing").publish("#{myTopic}")
+  .message(StringBody("#{myPayload}"))
   .await(Duration.ofMillis(100))
 
 // optionally, define in which topic the expected message will be received
-mqtt("Publishing").publish("#{myTopic}").message(StringBody("#{myPayload}"))
+mqtt("Publishing").publish("#{myTopic}")
+  .message(StringBody("#{myPayload}"))
   .await(Duration.ofMillis(100), "repub/#{myTopic}")
 
 // optionally define check criteria to be applied on the matching received message
-mqtt("Publishing")
-  .publish("#{myTopic}").message(StringBody("#{myPayload}"))
-  .await(Duration.ofMillis(100)).check(jsonPath("$.error").notExists())
+mqtt("Publishing").publish("#{myTopic}")
+  .message(StringBody("#{myPayload}"))
+  .await(Duration.ofMillis(100))
+  .check(jsonPath("$.error").notExists())
 //#check
 
 //#waitForMessages
@@ -125,8 +126,8 @@ processUnmatchedMessages("#{myTopic}") { messages, session ->
   messages
     .map { m -> m.payloadUtf8String() }
     .takeLast(1)
-    .fold(session) { _, lastTextMessage ->
-      session.set("lastTextMessage", lastTextMessage)
+    .fold(session) { _, lastMessage ->
+      session.set("lastMessage", lastMessage)
     }
 }
 //#process

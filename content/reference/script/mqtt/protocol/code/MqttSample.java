@@ -20,6 +20,7 @@ import io.gatling.javaapi.mqtt.*;
 import static io.gatling.javaapi.mqtt.MqttDsl.*;
 //#imports
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.Collections;
 
 import io.gatling.javaapi.core.*;
@@ -59,8 +60,8 @@ MqttProtocolBuilder mqttProtocol = mqtt
   // send last will, possibly with specific QoS and retain
   .lastWill(
     LastWill("#{willTopic}", StringBody("#{willMessage}"))
-    .qosAtLeastOnce()
-    .retain(true)
+      .qosAtLeastOnce()
+      .retain(true)
   )
   // max number of reconnects after connection crash (default: 3)
   .reconnectAttemptsMax(1)
@@ -101,25 +102,33 @@ mqtt("Publishing")
 
 //#check
 // subscribe and expect to receive a message within 100ms, without blocking flow
-mqtt("Subscribing").subscribe("#{myTopic2}")
+mqtt("Subscribing")
+  .subscribe("#{myTopic2}")
   .expect(Duration.ofMillis(100));
 
 // publish and await (block) until it receives a message withing 100ms
-mqtt("Publishing").publish("#{myTopic}").message(StringBody("#{myPayload}"))
+mqtt("Publishing")
+  .publish("#{myTopic}")
+  .message(StringBody("#{myPayload}"))
   .await(Duration.ofMillis(100));
 
 // optionally, define in which topic the expected message will be received
-mqtt("Publishing").publish("#{myTopic}").message(StringBody("#{myPayload}"))
+mqtt("Publishing")
+  .publish("#{myTopic}")
+  .message(StringBody("#{myPayload}"))
   .await(Duration.ofMillis(100), "repub/#{myTopic}");
 
 // optionally define check criteria to be applied on the matching received message
 mqtt("Publishing")
-  .publish("#{myTopic}").message(StringBody("#{myPayload}"))
-  .await(Duration.ofMillis(100)).check(jsonPath("$.error").notExists());
+  .publish("#{myTopic}")
+  .message(StringBody("#{myPayload}"))
+  .await(Duration.ofMillis(100))
+  .check(jsonPath("$.error").notExists());
 //#check
 
 //#waitForMessages
-waitForMessages().timeout(Duration.ofMillis(100));
+waitForMessages()
+  .timeout(Duration.ofMillis(100));
 //#waitForMessages
 
 //#process
@@ -128,18 +137,12 @@ processUnmatchedMessages("#{myTopic}", (messages, session) -> session.set("messa
 
 // collect the last text message and store it in the Session
 processUnmatchedMessages(
-    "#{myTopic}",
-    (messages, session) -> {
-      Collections.reverse(messages);
-      String lastTextMessage =
-          messages.stream()
-              .map(m -> m.payloadUtf8String())
-              .findFirst()
-              .orElse(null);
-      return lastTextMessage != null ?
-          session.set("lastTextMessage", lastTextMessage) :
-          session;
-    });
+  "#{myTopic}",
+  (messages, session) ->
+    !messages.isEmpty()
+      ? session.set("lastMessage", messages.getLast().payloadUtf8String())
+      : session
+);
 //#process
   }
 
