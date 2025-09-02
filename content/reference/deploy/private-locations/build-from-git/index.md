@@ -118,3 +118,7 @@ control-plane {
 **Gatling Plugin Version**: The minimum compatible version of each build tool plugin that supports build from a Git repository.
 
 **Image Cache Path**: Ensure build tool caches persist across different upgrades by mounting a volume to the given path.
+
+{{< alert warning >}}
+When using Scala with maven or gradle, you need to additionally persist `/app/.sbt`.
+{{< /alert >}}
