@@ -19,8 +19,10 @@ import scala.concurrent.duration._
 //#imports
 import io.gatling.mqtt.Predef._
 //#imports
+import io.gatling.mqtt.check.MessageCorrelator
 
 class MqttProtocolSampleScala {
+val check: MessageCorrelator = null
 //#protocol-sample
 val mqttProtocol = mqtt
   // enable protocol version 3.1
@@ -70,7 +72,10 @@ val mqttProtocol = mqtt
   // interval for timeout checker (default: 1 second)
   .timeoutCheckInterval(1)
   // check for pairing messages sent and messages received
-  .correlateBy(null)
+  .correlateBy(check)
+  // enable unmatched MQTT inbound messages buffering,
+  // with a max buffer size of 5
+  .unmatchedInboundMessageBufferSize(5)
 //#protocol-sample
 
 //#connect
@@ -92,21 +97,28 @@ mqtt("Publishing")
 
 //#check
 // subscribe and expect to receive a message within 100ms, without blocking flow
-mqtt("Subscribing").subscribe("#{myTopic2}")
+mqtt("Subscribing")
+  .subscribe("#{myTopic2}")
   .expect(100.milliseconds)
 
 // publish and await (block) until it receives a message withing 100ms
-mqtt("Publishing").publish("#{myTopic}").message(StringBody("#{myPayload}"))
+mqtt("Publishing")
+  .publish("#{myTopic}")
+  .message(StringBody("#{myPayload}"))
   .await(100.milliseconds)
 
 // optionally, define in which topic the expected message will be received
-mqtt("Publishing").publish("#{myTopic}").message(StringBody("#{myPayload}"))
+mqtt("Publishing")
+  .publish("#{myTopic}")
+  .message(StringBody("#{myPayload}"))
   .await(100.milliseconds, "repub/#{myTopic}")
 
 // optionally define check criteria to be applied on the matching received message
 mqtt("Publishing")
-  .publish("#{myTopic}").message(StringBody("#{myPayload}"))
-  .await(100.milliseconds).check(jsonPath("$.error").notExists)
+  .publish("#{myTopic}")
+  .message(StringBody("#{myPayload}"))
+  .await(100.milliseconds)
+  .check(jsonPath("$.error").notExists)
 //#check
 
 //#waitForMessages
@@ -123,7 +135,7 @@ mqtt.processUnmatchedMessages("#{myTopic}") {
 mqtt.processUnmatchedMessages("#{myTopic}") {
   (messages, session) => {
     val lastMessage = messages.reverseIterator.nextOption().map(_.payloadUtf8String)
-    lastMessage.fold(session)(m => session.set("lastTextMessage", m))
+    lastMessage.fold(session)(m => session.set("lastMessage", m))
   }
 }
 //#process

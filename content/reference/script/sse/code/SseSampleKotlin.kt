@@ -88,17 +88,14 @@ exec(sse("SetCheck").setCheck()
 //#check-matching
 
 //#process
-exec(
-  // store the unmatched messages in the Session
-  sse.processUnmatchedMessages { messages, session -> session.set("messages", messages) }
-)
-exec(
-  // collect the last message and store it in the Session
-  sse.processUnmatchedMessages { messages, session ->
-    if (messages.isNotEmpty()) session.set("lastMessage", messages.last().message())
-    else session
-  }
-)
+// store the unmatched messages in the Session
+sse.processUnmatchedMessages { messages, session -> session.set("messages", messages) }
+
+// collect the last message and store it in the Session
+sse.processUnmatchedMessages { messages, session ->
+  if (messages.isNotEmpty()) session.set("lastMessage", messages.last().message())
+  else session
+}
 //#process
 
 //#protocol

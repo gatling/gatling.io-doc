@@ -169,28 +169,25 @@ ws.checkTextMessage("checkName")
 //#check-matching
 
 //#process
-exec(
-  // store the unmatched messages in the Session
-  ws.processUnmatchedMessages((messages, session) -> session.set("messages", messages))
-);
-exec(
-  // collect the last text message and store it in the Session
-  ws.processUnmatchedMessages((messages, session) -> {
-    var copy = new ArrayList<>(messages);
-    Collections.reverse(copy); // messages is immutable, hence the copy
-    String lastTextMessage =
-      copy.stream()
-        .filter(m -> m instanceof io.gatling.http.action.ws.WsInboundMessage.Text)
-        .map(m -> ((io.gatling.http.action.ws.WsInboundMessage.Text) m).message())
-        .findFirst()
-        .orElse(null);
-    if (lastTextMessage != null) {
-      return session.set("lastTextMessage", lastTextMessage);
-    } else {
-      return session;
-    }
-  })
-);
+// store the unmatched messages in the Session
+ws.processUnmatchedMessages((messages, session) -> session.set("messages", messages));
+
+// collect the last text message and store it in the Session
+ws.processUnmatchedMessages((messages, session) -> {
+  var copy = new ArrayList<>(messages);
+  Collections.reverse(copy); // messages is immutable, hence the copy
+  String lastTextMessage =
+    copy.stream()
+      .filter(m -> m instanceof io.gatling.http.action.ws.WsInboundMessage.Text)
+      .map(m -> ((io.gatling.http.action.ws.WsInboundMessage.Text) m).message())
+      .findFirst()
+      .orElse(null);
+  if (lastTextMessage != null) {
+    return session.set("lastTextMessage", lastTextMessage);
+  } else {
+    return session;
+  }
+});
 //#process
 
 //#protocol
