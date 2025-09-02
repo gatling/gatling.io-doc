@@ -3,6 +3,8 @@ title: Package Generation
 seotitle: Generate packages for Gatling Enterprise Self-Hosted
 description: Learn how to package Gatling simulations for Gatling Enterprise Self-Hosted from the Gatling zip bundle, or from a Maven, sbt, or Gradle project.
 date: 2021-03-26T18:06:39+01:00
+aliases:
+  - /docs/enterprise/self-hosted/reference/current/user/binary/
 ---
 
 ## Gatling Enterprise Gatling Versions
