@@ -8,10 +8,6 @@ aliases:
   - /reference/script/protocols/mqtt/protocol/
 ---
 
-{{< alert warning >}}
-The MQTT protocol is not supported by the JavaScript SDK. If this functionality is important to you, add a comment to our [public roadmap](https://portal.productboard.com/gatling/1-gatling-roadmap/c/113-javascript-sdk-expansion?&utm_medium=docs&utm_source=callout)
-{{< /alert >}}
-
 {{< alert info >}}
 MQTT 3.1, 3.1.1 and 5 are currently supported, but some of the new features introduced in 5 might be missing.
 {{< /alert >}}
@@ -22,13 +18,13 @@ Gatling Enterprise MQTT DSL is not imported by default.
 
 You have to manually add the following imports:
 
-{{< include-code "imports" java kt scala >}}
+{{< include-code "imports" >}}
 
 ## MQTT protocol
 
 Use the `mqtt` object in order to create a MQTT protocol.
 
-{{< include-code "protocol-sample" java kt scala >}}
+{{< include-code "protocol-sample" >}}
 
 ## Request
 
@@ -38,26 +34,26 @@ Use the `mqtt("requestName")` method in order to create a MQTT request.
 
 Your virtual users first have to establish a connection.
 
-{{< include-code "connect" java kt scala >}}
+{{< include-code "connect" >}}
 
 ### `subscribe`
 
 Use the `subscribe` method to subscribe to an MQTT topic:
 
-{{< include-code "subscribe" java kt scala >}}
+{{< include-code "subscribe" >}}
 
 ### `publish`
 
 Use the `publish` method to publish a message. You can use the same `Body` API as for HTTP request bodies:
 
-{{< include-code "publish" java kt scala >}}
+{{< include-code "publish" >}}
 
 ## MQTT checks
 
 You can define blocking checks with `await` and non-blocking checks with `expect`.
 Those can be set right after subscribing, or after publishing:
 
-{{< include-code "check" java kt scala >}}
+{{< include-code "check" >}}
 
 You can optionally define in which topic the expected message will be received:
 
@@ -65,7 +61,7 @@ You can optionally define check criteria to be applied on the matching received 
 
 You can use `waitForMessages` and block for all pending non-blocking checks:
 
-{{< include-code "waitForMessages" java kt scala >}}
+{{< include-code "waitForMessages" >}}
 
 ## Processing unmatched messages
 
@@ -79,7 +75,7 @@ You can then pass your processing logic as a function.
 The list of messages passed to this function is sorted in timestamp ascending (meaning older messages first).
 It contains instances of type `io.gatling.mqtt.action.MqttInboundMessage`.
 
-{{< include-code "process" java kt scala >}}
+{{< include-code "process" >}}
 
 ## MQTT configuration
 
@@ -87,4 +83,4 @@ MQTT support honors the ssl and netty configurations from `gatling.conf`.
 
 ## Example
 
-{{< include-code "example" java kt scala >}}
+{{< include-code "example" >}}

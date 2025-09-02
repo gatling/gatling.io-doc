@@ -161,21 +161,18 @@ exec(ws("Send").sendText("hello")
 //#check-matching
 
 //#process
-exec(
-  // store the unmatched messages in the Session
-  ws.processUnmatchedMessages((messages, session) => session.set("messages", messages))
-)
-exec(
-  // collect the last text message and store it in the Session
-  ws.processUnmatchedMessages { (messages, session) =>
-    val lastTextMessage =
-      messages
-        .reverseIterator
-        .collectFirst { case io.gatling.http.action.ws.WsInboundMessage.Text(_, text) => text }
+// store the unmatched messages in the Session
+ws.processUnmatchedMessages((messages, session) => session.set("messages", messages))
 
-    lastTextMessage.fold(session)(m => session.set("lastTextMessage", m))
-  }
-)
+// collect the last text message and store it in the Session
+ws.processUnmatchedMessages { (messages, session) =>
+  val lastTextMessage =
+    messages
+      .reverseIterator
+      .collectFirst { case io.gatling.http.action.ws.WsInboundMessage.Text(_, text) => text }
+
+  lastTextMessage.fold(session)(m => session.set("lastTextMessage", m))
+}
 //#process
 
 //#protocol

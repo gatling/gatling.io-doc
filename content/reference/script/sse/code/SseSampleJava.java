@@ -96,16 +96,14 @@ exec(sse("SetCheck").setCheck()
 //#check-matching
 
 //#process
-exec(
-  // store the unmatched messages in the Session
-  sse.processUnmatchedMessages((messages, session) -> session.set("messages", messages))
-);
-exec(
-  // collect the last message and store it in the Session
-  sse.processUnmatchedMessages((messages, session) ->
-    !messages.isEmpty()
-      ? session.set("lastMessage", messages.get(messages.size() - 1).message())
-      : session)
+// store the unmatched messages in the Session
+sse.processUnmatchedMessages((messages, session) -> session.set("messages", messages));
+
+// collect the last message and store it in the Session
+sse.processUnmatchedMessages((messages, session) ->
+  !messages.isEmpty()
+    ? session.set("lastMessage", messages.get(messages.size() - 1).message())
+    : session
 );
 //#process
 

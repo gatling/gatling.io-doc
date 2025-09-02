@@ -14,24 +14,18 @@
  * limitations under the License.
  */
 
+import { CheckBuilder, StringBody, csv, jsonPath, rampUsersPerSec, scenario, simulation } from "@gatling.io/core";
+
 //#imports
-import io.gatling.javaapi.mqtt.*;
-
-import static io.gatling.javaapi.mqtt.MqttDsl.*;
+import { mqtt } from "@gatling.io/mqtt";
 //#imports
-import java.time.Duration;
-import java.util.ArrayList;
-import java.util.Collections;
 
-import io.gatling.javaapi.core.*;
-import static io.gatling.javaapi.core.CoreDsl.*;
+import { LastWill } from "@gatling.io/mqtt";
 
-class MqttProtocolSampleJava {
-
-CheckBuilder check = null;
+const check: CheckBuilder = null as any as CheckBuilder;
 
 //#protocol-sample
-MqttProtocolBuilder mqttProtocol = mqtt
+const mqttProtocol = mqtt
   // enable protocol version 3.1
   .mqttVersion_3_1()
     // enable protocol version 3.1.1 (default protocol version)
@@ -42,8 +36,6 @@ MqttProtocolBuilder mqttProtocol = mqtt
   .broker("hostname", 1883)
   // if TLS should be enabled (default: false)
   .useTls(true)
-  // Used to specify KeyManagerFactory for each individual virtual user. Input is the 0-based incremental id of the virtual user.
-  .perUserKeyManagerFactory(userId -> (javax.net.ssl.KeyManagerFactory) null)
   // clientIdentifier sent in the connect payload (of not set, Gatling will generate a random one)
   .clientId("#{id}")
   // if session should be cleaned during connect (default: true)
@@ -71,11 +63,11 @@ MqttProtocolBuilder mqttProtocol = mqtt
   // reconnect delay after connection crash in millis (default: 100)
   .reconnectDelay(1)
   // reconnect delay exponential backoff (default: 1.5)
-  .reconnectBackoffMultiplier(1.5F)
+  .reconnectBackoffMultiplier(1.5)
   //  resend delay after send failure in millis (default: 5000)
   .resendDelay(1000)
   // resend delay exponential backoff (default: 1.0)
-  .resendBackoffMultiplier(2.0F)
+  .resendBackoffMultiplier(2.0)
   // interval for timeout checker (default: 1 second)
   .timeoutCheckInterval(1)
   // check for pairing messages sent and messages received
@@ -85,87 +77,77 @@ MqttProtocolBuilder mqttProtocol = mqtt
   .unmatchedInboundMessageBufferSize(5);
 //#protocol-sample
 
-  {
 //#connect
 mqtt("Connecting").connect();
 //#connect
 
 //#subscribe
-mqtt("Subscribing")
-  .subscribe("#{myTopic}")
+mqtt("Subscribing").subscribe("#{myTopic}")
   // optional, override default QoS
   .qosAtMostOnce();
 //#subscribe
 
 //#publish
-mqtt("Publishing")
-  .publish("#{myTopic}")
+mqtt("Publishing").publish("#{myTopic}")
   .message(StringBody("#{myTextPayload}"));
 //#publish
 
 //#check
 // subscribe and expect to receive a message within 100ms, without blocking flow
-mqtt("Subscribing")
-  .subscribe("#{myTopic2}")
-  .expect(Duration.ofMillis(100));
+mqtt("Subscribing").subscribe("#{myTopic2}")
+  .expect({ amount: 100, unit: "milliseconds" });
 
 // publish and await (block) until it receives a message withing 100ms
-mqtt("Publishing")
-  .publish("#{myTopic}")
+mqtt("Publishing").publish("#{myTopic}")
   .message(StringBody("#{myPayload}"))
-  .await(Duration.ofMillis(100));
+  .await({ amount: 100, unit: "milliseconds" });
 
 // optionally, define in which topic the expected message will be received
-mqtt("Publishing")
-  .publish("#{myTopic}")
+mqtt("Publishing").publish("#{myTopic}")
   .message(StringBody("#{myPayload}"))
-  .await(Duration.ofMillis(100), "repub/#{myTopic}");
+  .await({ amount: 100, unit: "milliseconds" }, "repub/#{myTopic}");
 
 // optionally define check criteria to be applied on the matching received message
-mqtt("Publishing")
-  .publish("#{myTopic}")
+mqtt("Publishing").publish("#{myTopic}")
   .message(StringBody("#{myPayload}"))
-  .await(Duration.ofMillis(100))
+  .await({ amount: 100, unit: "milliseconds" }, "repub/#{myTopic}")
   .check(jsonPath("$.error").notExists());
 //#check
 
 //#waitForMessages
-mqtt.waitForMessages().timeout(Duration.ofMillis(100));
+mqtt.waitForMessages().timeout({ amount: 100, unit: "milliseconds" });
 //#waitForMessages
 
 //#process
 // store the unmatched messages in the Session
-mqtt.processUnmatchedMessages("#{myTopic}", (messages, session) -> session.set("messages", messages));
+mqtt.processUnmatchedMessages("#{myTopic}", (messages, session) => session.set("messages", messages));
 
 // collect the last text message and store it in the Session
 mqtt.processUnmatchedMessages(
   "#{myTopic}",
-  (messages, session) ->
-    !messages.isEmpty()
-      ? session.set("lastMessage", messages.get(messages.size() - 1).payloadUtf8String())
+  (messages, session) =>
+    messages.length > 0
+      ? session.set("lastMessage", messages[messages.length - 1].payloadUtf8String())
       : session
 );
 //#process
-  }
 
 //#example
-public class MqttSample extends Simulation {
-  MqttProtocolBuilder mqttProtocol = mqtt
+export default simulation((setUp) => {
+  const mqttProtocol = mqtt
     .broker("localhost", 1883)
     .correlateBy(jsonPath("$.correlationId"));
 
-  ScenarioBuilder scn = scenario("MQTT Test")
+  const scn = scenario("MQTT Test")
     .feed(csv("topics-and-payloads.csv"))
     .exec(mqtt("Connecting").connect())
     .exec(mqtt("Subscribing").subscribe("#{myTopic}"))
     .exec(mqtt("Publishing").publish("#{myTopic}")
       .message(StringBody("#{myTextPayload}"))
-      .expect(Duration.ofMillis(100)).check(jsonPath("$.error").notExists()));
+      .expect({ amount: 100, unit: "milliseconds" })
+      .check(jsonPath("$.error").notExists()));
 
-  {
-    setUp(scn.injectOpen(rampUsersPerSec(10).to(1000).during(60)))
-      .protocols(mqttProtocol);
-  }
-}
+  setUp(scn.injectOpen(rampUsersPerSec(10).to(1000).during(60)))
+    .protocols(mqttProtocol);
+});
 //#example
-}
