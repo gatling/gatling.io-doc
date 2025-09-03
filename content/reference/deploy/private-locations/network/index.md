@@ -64,6 +64,8 @@ control-plane {
       #   # protocol must be http:
       #   # port must be defined
       #   url = "http://private-control-plane-http-proxy:3128"
+      #   # comma-separated list of hosts for which not to use a proxy (e.g: private repository domain, optional), see https://curl.se/docs/manpage.html#--noproxy
+      #   # noproxy = "example.com,other.com"
       # }
 
       # Uncomment the block if you need to trust custom certificates
@@ -92,6 +94,11 @@ Private Locations can also be configured to use a forward proxy and/or a HTTP pr
 
 You can reuse the Control Plane's proxy configuration by leveraging [HOCON substitutions](https://github.com/lightbend/config/blob/main/HOCON.md#substitutions).
 
+{{< alert warning >}}
+When configuring an HTTP proxy (e.g., `enterprise-cloud.proxy.http`) for your private locations **alongside** the use of [private packages]({{< ref "reference/deploy/private-locations/private-packages/#control-plane-repository" >}}),  
+make sure to add the domain of your [private repository]({{< ref "reference/deploy/private-locations/private-packages/#control-plane-repository" >}}) to `enterprise-cloud.proxy.http.noproxy`.  
+{{< /alert >}}
+
 ```bash
 control-plane {
   # Authentication token
@@ -111,12 +118,14 @@ control-plane {
       #   # protocol must be http:
       #   # port must be defined
       #   url = "http://private-control-plane-http-proxy:3128"
+      #   # comma-separated list of hosts for which not to use a proxy (e.g: private repository domain, optional), see https://curl.se/docs/manpage.html#--noproxy
+      #   # noproxy = "example.com,other.com"
       # }
 
       # Uncomment the block if you need to trust custom certificates
       # truststore {
       #   # absolute path to a file containing the certificates in PEM format (can contains multiple concatenated PEM certificates) 
-      #   path = "/path/to/truststore.pem" 
+      #   path = "/path/to/truststore.pem"
       # }
       
       # Uncomment the block for mutual authentication
@@ -143,6 +152,11 @@ control-plane {
 #### 2. Use a Dedicated Proxy for Private Locations
 
 If you prefer separate proxies, define a substitution for the private locations and reference it in their configuration.
+
+{{< alert warning >}}
+When configuring an HTTP proxy (e.g., `enterprise-cloud.proxy.http`) for your private locations **alongside** the use of [private packages]({{< ref "reference/deploy/private-locations/private-packages/#control-plane-repository" >}}),  
+make sure to add the domain of your [private repository]({{< ref "reference/deploy/private-locations/private-packages/#control-plane-repository" >}}) to `enterprise-cloud.proxy.http.noproxy`.  
+{{< /alert >}}
 
 ```bash
 location-enterprise-cloud = {
@@ -195,6 +209,8 @@ control-plane {
       #   # protocol must be http:
       #   # port must be defined
       #   url = "http://private-control-plane-http-proxy:3128"
+      #   # comma-separated list of hosts for which not to use a proxy (e.g: private repository domain, optional), see https://curl.se/docs/manpage.html#--noproxy
+      #   # noproxy = "example.com,other.com"
       # }
 
       # Uncomment the block if you need to trust custom certificates
