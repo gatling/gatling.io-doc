@@ -30,6 +30,39 @@ you can switch between them by clicking on the organization name in the top righ
 Click on the pen icon to edit the **Organization name**.
 {{< /alert >}}
 
+### Features management
+
+{{< img src="features-management.png" alt="Features management" >}}
+
+{{< alert info >}}
+This section is only available to organizations using [private locations]({{< ref "../../deploy/private-locations/introduction" >}}).
+{{< /alert >}}
+
+#### Managed packages
+
+Managed packages are **enabled** by default.
+
+This setting allows you to control whether your organization's users can create and use managed packages. By disabling this feature, you enforce the exclusive use of [private packages]({{< ref "../../deploy/private-locations/private-packages" >}}) for all load tests.
+
+When disabled, users in your organization will be prevented from:
+
+* Creating, uploading or updating packages from the **Sources** view.
+* Creating new simulations with a managed package.
+* Launching any pre-existing simulation that is configured with a managed package.
+
+Note: Any managed packages that were created before this feature was disabled will remain visible in the Sources view. Users can still delete these if necessary.
+
+#### Managed locations
+
+Managed locations are **enabled** by default.
+
+This setting allows you to control whether your users can deploy load tests to our managed locations, including locations using a dedicated IP. By disabling this feature, you enforce the exclusive use of [private locations]({{< ref "../../deploy/private-locations/introduction" >}}) for all load tests.
+
+When disabled, users in your organization will be prevented from:
+
+* Creating new simulations with a managed location, or a location with a dedicated IP.
+* Launching any pre-existing simulation configured with at least one managed/dedicated IP location.
+
 ## Users
 
 Depending on your role, shows all users or administrators in your organization.
