@@ -35,7 +35,7 @@ Click on the pen icon to edit the **Organization name**.
 {{< img src="features-management.png" alt="Features management" >}}
 
 {{< alert info >}}
-This section is only available to organizations using [private locations]({{< ref "../../deploy/private-locations/introduction" >}}) and [Global Administrators]({{< ref "/reference/collaborate/admin/users/#permissions" >}}).
+This section is only available to organizations using [private locations]({{< ref "../../deploy/private-locations/introduction" >}}) and users with [Administrator rights]({{< ref "/reference/collaborate/admin/users/#permissions" >}}).
 {{< /alert >}}
 
 #### Managed packages
