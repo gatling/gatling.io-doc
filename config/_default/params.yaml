@@ -58,3 +58,9 @@ docSearch:
   appId: "6PCIB797P6"
   apiKey: "e53c31a608bc353fc4c4a3694438886f"
   indexName: "gatling"
+  askAi: 
+    indexName: "gatling-ai-markdown"
+    apiKey: "e53c31a608bc353fc4c4a3694438886f"
+    appId: "6PCIB797P6"
+    assistantId: "zLWUmlik715i"
+  
