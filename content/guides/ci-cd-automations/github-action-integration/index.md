@@ -9,7 +9,7 @@ date: 2025-03-11T13:35:00+02:00
 ---
 
 {{< alert enterprise >}}
-This feature is only available on Gatling Enterprise. To learn more, [explore our plans](https://gatling.io/pricing?utm_source=docs)
+This feature is only available on Gatling Enterprise Edition. To learn more, [explore our plans](https://gatling.io/pricing?utm_source=docs)
 {{< /alert >}}
 
 At Gatling, we strongly believe the shift-left approach is fundamental to ensuring application quality. This methodology, which involves integrating testing as early as possible in the development cycle, is particularly crucial for performance testing. Detecting and resolving performance issues before production deployment helps prevent critical and costly situations.
@@ -36,11 +36,11 @@ In our example, we generate 1 user coming at once to see if our simulation is wo
 
 {{< include-code "ecommerce#set-up" ts java scala kt>}}
 
-## Gatling Enterprise
+## Gatling Enterprise Edition
 
-### Deploy to Gatling Enterprise
+### Deploy to Gatling Enterprise Edition
 
-Now that we have our test locally, we need to deploy the package to Gatling Enterprise to create a simulation.
+Now that we have our test locally, we need to deploy the package to Gatling Enterprise Edition to create a simulation.
 
 {{< alert info >}}
 This video showcases the JavaScript SDK, but the same process applies to all SDKs that Gatling provides.
@@ -50,7 +50,7 @@ This video showcases the JavaScript SDK, but the same process applies to all SDK
 
 ### Create the Simulation
 
-Now that our package is on Gatling Enterprise, we need to create a simulation.
+Now that our package is on Gatling Enterprise Edition, we need to create a simulation.
 
 {{< youtube 7Gb4BcHU0P8 >}}
 
@@ -60,11 +60,11 @@ Don't forget to copy your `simulation Id` (click on the three dots to the right 
 
 ### Create an API Key
 
-Now, for GitHub to communicate with Gatling Enterprise and launch the simulation, you need to create an API key.
+Now, for GitHub to communicate with Gatling Enterprise Edition and launch the simulation, you need to create an API key.
 
 {{< youtube iP4_WM9wTNA >}}
 
-Now that everything is set up on the Gatling Enterprise side, it's time to create our CI script on GitHub.
+Now that everything is set up on the Gatling Enterprise Edition side, it's time to create our CI script on GitHub.
 
 ## GitHub Actions
 
@@ -94,7 +94,7 @@ If you wish to customize this workflow further, refer to our [GitHub documentati
 
 ### Launch the Workflow
 
-Now that our requirements are set up, go to GitHub → Actions and launch our workflow with the  **`simulation Id`** as an input. After that, you will have a link to check the results on Gatling Enterprise and see logs in the workflow.
+Now that our requirements are set up, go to GitHub → Actions and launch our workflow with the  **`simulation Id`** as an input. After that, you will have a link to check the results on Gatling Enterprise Edition and see logs in the workflow.
 
 {{< youtube Ocv66gH5ZjM >}}
 
@@ -102,4 +102,4 @@ Now that our requirements are set up, go to GitHub → Actions and launch our wo
 
 Integrating Gatling with GitHub Actions offers a solution for automating performance testing. By adopting this shift-left approach, you can identify and address performance issues early in the development cycle, ensuring higher application quality and reliability.
 
-This integration streamlines the testing process and enhances efficiency between development teams. With Gatling Enterprise and GitHub Actions, you can create a workflow that monitors your application's performance
+This integration streamlines the testing process and enhances efficiency between development teams. With Gatling Enterprise Edition and GitHub Actions, you can create a workflow that monitors your application's performance

@@ -1,9 +1,9 @@
 ---
 menutitle: Custom SSO
 title: Custom SSO configuration
-seotitle: Configure a custom SSO with Gatling Enterprise
+seotitle: Configure a custom SSO with Gatling Enterprise Edition
 description: Learn how to set up a custom Single Sign-On (SSO) system for your organization.
-lead: A custom Single Sign-On (SSO) configuration allows your users to sign into Gatling Enterprise using your organization's authentication system.
+lead: A custom Single Sign-On (SSO) configuration allows your users to sign into Gatling Enterprise Edition using your organization's authentication system.
 date: 2022-03-01T14:00:00+00:00
 aliases:
   - /reference/install/cloud/custom-sso
@@ -13,7 +13,7 @@ Configuring a custom Single Sign-On (SSO) solution is only available on the [ent
 
 At the moment, we only support integration with SSO systems which are accessible on the Internet.
 
-If you already have an organization on Gatling Enterprise, after configuring a custom SSO, you need to re-invite your users and configure their roles. All other existing data, such as your [teams]({{< ref "/reference/run-tests/simulations" >}}), [simulations]({{< ref "/reference/collaborate/admin/teams" >}}), [reports]({{< ref "/reference/stats/reports/cloud" >}}), and [API tokens]({{< ref "/reference/collaborate/admin/api-tokens" >}}) remain.
+If you already have an organization on Gatling Enterprise Edition, after configuring a custom SSO, you need to re-invite your users and configure their roles. All other existing data, such as your [teams]({{< ref "/reference/run-tests/simulations" >}}), [simulations]({{< ref "/reference/collaborate/admin/teams" >}}), [reports]({{< ref "/reference/stats/reports/cloud" >}}), and [API tokens]({{< ref "/reference/collaborate/admin/api-tokens" >}}) remain.
 
 ## Required information
 
@@ -46,7 +46,7 @@ For example, for an organization named Gatling Corp, with the slug `helloworld`,
 
 #### Azure Active Directory (Azure AD) using OIDC
 
-We recommend using OIDC to integrate with Azure AD. You need to create an app registration for Gatling Enterprise, and configure which accounts are allowed to connect. You can then find the metadata URL in Overview > Endpoints > OpenID Connect metadata document, and you can generate a new client secret in Certificates & secrets > Client secrets.
+We recommend using OIDC to integrate with Azure AD. You need to create an app registration for Gatling Enterprise Edition, and configure which accounts are allowed to connect. You can then find the metadata URL in Overview > Endpoints > OpenID Connect metadata document, and you can generate a new client secret in Certificates & secrets > Client secrets.
 
 You need to configure the **redirect URI** in Overview > Add a **redirect URI**.
 
@@ -108,18 +108,18 @@ We need the application ID and secret. We also need your GitLab group ID to rest
 
 ## Custom SSO group mapping
 
-Gatling Enterprise provides an API to map SSO groups to roles within your organization. This allows you to automatically assign users to teams and grant them appropriate permissions based on their SSO group memberships.
+Gatling Enterprise Edition provides an API to map SSO groups to roles within your organization. This allows you to automatically assign users to teams and grant them appropriate permissions based on their SSO group memberships.
 
 ### Integration
 
-The Custom SSO Group Mapping feature is exclusively available with the OpenID Connect (OIDC) protocol. 
-To enable this functionality, you must configure a custom scope named `gatling-sso` in your Identity Provider (IdP). This scope should return a `gatling-groups` claim containing the complete list of groups that will be mapped to roles within the Gatling Enterprise.
+The Custom SSO Group Mapping feature is exclusively available with the OpenID Connect (OIDC) protocol.
+To enable this functionality, you must configure a custom scope named `gatling-sso` in your Identity Provider (IdP). This scope should return a `gatling-groups` claim containing the complete list of groups that will be mapped to roles within the Gatling Enterprise Edition.
 
 ### Overview
 
-When a user authenticates through your SSO system, their group memberships are forwarded to Gatling Enterprise. The SSO Group Mapping API allows you to define how these groups map to:
+When a user authenticates through your SSO system, their group memberships are forwarded to Gatling Enterprise Edition. The SSO Group Mapping API allows you to define how these groups map to:
 
-- global roles in your Gatling Enterprise organization
+- global roles in your Gatling Enterprise Edition organization
 - team-specific roles for different teams in your organization
 
 ### API endpoints
@@ -130,7 +130,7 @@ Consult the [OpenAPI specification]({{< ref "/reference/api" >}}) for available 
 
 #### Example 1: mapping an SSO group to a global ole
 
-To grant all members of the "Administrators" SSO group the Admin role in your Gatling Enterprise organization:
+To grant all members of the "Administrators" SSO group the Admin role in your Gatling Enterprise Edition organization:
 
 ```json
 {

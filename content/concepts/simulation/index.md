@@ -142,12 +142,12 @@ You won't be able to use Gatling DSL in there, as it's only intended for load te
 If you're looking for executing Gatling DSL, you might consider using [sequential scenarios]({{< ref "injection#sequential-scenarios" >}}).
 {{< /alert >}}
 
-## Deployment information (Gatling Enterprise only) {#deployment-info}
+## Deployment information (Gatling Enterprise Edition only) {#deployment-info}
 
-When running tests on Gatling Enterprise, you might be interested in some information about the Load Generator running the test.
+When running tests on Gatling Enterprise Edition, you might be interested in some information about the Load Generator running the test.
 
 {{< alert warning >}}
-`deploymentInfo` is only effective when running with Gatling Enterprise, otherwise it's just a noop.
+`deploymentInfo` is only effective when running with Gatling Enterprise Edition, otherwise it's just a noop.
 {{< /alert >}}
 
 {{< include-code "deployment-info" >}}

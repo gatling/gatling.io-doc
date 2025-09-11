@@ -3,21 +3,21 @@ title: Integrate Gatling with Gitlab CI/CD
 menutitle: Gitlab CI/CD integration
 seotitle: How to integrate Gatling with Gitlab CI/CD
 description: Set up automated load testing with Gitlab CI/CD
-lead: Add performance testing to your Gitlab CI/CD pipeline with Gatling Enterprise.
+lead: Add performance testing to your Gitlab CI/CD pipeline with Gatling Enterprise Edition.
 date: 2025-03-11T13:35:00+02:00
 
 ---
 
 {{< alert enterprise >}}
-This feature is only available on Gatling Enterprise. To learn more, [explore our plans](https://gatling.io/pricing?utm_source=docs)
+This feature is only available on Gatling Enterprise Edition. To learn more, [explore our plans](https://gatling.io/pricing?utm_source=docs)
 {{< /alert >}}
 
-Performance testing is a critical component of modern software development. By integrating Gatling Enterprise with Gitlab CI/CD, you incorporate performance testing into your development workflow, ensuring your applications meet performance standards before reaching production.
+Performance testing is a critical component of modern software development. By integrating Gatling Enterprise Edition with Gitlab CI/CD, you incorporate performance testing into your development workflow, ensuring your applications meet performance standards before reaching production.
 
 ## Prerequisites
 
 - Gatling version `{{< var gatlingVersion >}}` or higher
-- An account on Gatling Entreprise
+- An account on Gatling Enterprise Edition
 - Clone [this code](https://github.com/gatling/devrel-projects) and cd into the `articles/gitlabintegration` folder.
 
 ## Test Creation
@@ -34,11 +34,11 @@ We start with a single user to verify our simulation works correctly. Then we ad
 
 {{< include-code "ecommerce#set-up" ts java scala kt>}}
 
-## Gatling Enterprise
+## Gatling Enterprise Edition
 
-### Deploy to Gatling Enterprise
+### Deploy to Gatling Enterprise Edition
 
-Now that we have our test ready, we need to deploy the package to Gatling Enterprise.
+Now that we have our test ready, we need to deploy the package to Gatling Enterprise Edition.
 
 {{< alert info >}}
 While this video demonstrates the JavaScript SDK specifically, the deployment process remains identical across all Gatling SDKs and CI/CD platforms we support.
@@ -49,10 +49,10 @@ While this video demonstrates the JavaScript SDK specifically, the deployment pr
 ### Create the Simulation
 
 {{< alert info >}}
-This step is applicable to all CI/CD platforms supported by Gatling Enterprise.
+This step is applicable to all CI/CD platforms supported by Gatling Enterprise Edition.
 {{< /alert >}}
 
-Next, we create a simulation in Gatling Enterprise using our deployed package.
+Next, we create a simulation in Gatling Enterprise Edition using our deployed package.
 
 {{< youtube 7Gb4BcHU0P8 >}}
 
@@ -63,14 +63,14 @@ Make sure to copy the `simulation Id` by clicking the three dots menu next to yo
 ### Create an API Key
 
 {{< alert info >}}
-This step is applicable to all CI/CD platforms supported by Gatling Enterprise.
+This step is applicable to all CI/CD platforms supported by Gatling Enterprise Edition.
 {{< /alert >}}
 
-To enable Gitlab CI/CD to interact with Gatling Enterprise and trigger simulations, you need to generate an API key.
+To enable Gitlab CI/CD to interact with Gatling Enterprise Edition and trigger simulations, you need to generate an API key.
 
 {{< youtube iP4_WM9wTNA >}}
 
-With Gatling Enterprise configured, we proceed to setting up our Gitlab CI/CD pipeline.
+With Gatling Enterprise Edition configured, we proceed to setting up our Gitlab CI/CD pipeline.
 
 ## Gitlab CI/CD
 
@@ -117,10 +117,10 @@ For advanced pipeline customization options, check our [Gitlab CI/CD documentati
 
 ### Run the Pipeline
 
-With everything configured, you can now trigger the pipeline from GitLab CI/CD. Provide your **`simulation Id`** when running the pipeline, and you are able to monitor the test execution both in GitLab and Gatling Enterprise.
+With everything configured, you can now trigger the pipeline from GitLab CI/CD. Provide your **`simulation Id`** when running the pipeline, and you are able to monitor the test execution both in GitLab and Gatling Enterprise Edition.
 
 {{< youtube N-QSlrufXps >}}
 
 ## Conclusion
 
-This integration streamlines the testing process and enhances collaboration between development teams. With Gatling Enterprise and Gitlab CI/CD, you create a pipeline that continuously monitors your application's performance, making it easier to maintain high standards of application quality throughout the development lifecycle.
+This integration streamlines the testing process and enhances collaboration between development teams. With Gatling Enterprise Edition and Gitlab CI/CD, you create a pipeline that continuously monitors your application's performance, making it easier to maintain high standards of application quality throughout the development lifecycle.

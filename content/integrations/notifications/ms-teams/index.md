@@ -10,12 +10,12 @@ aliases:
 ---
 
 {{< alert enterprise >}}
-This feature is only available on Gatling Enterprise. To learn more, [explore our plans](https://gatling.io/pricing?utm_source=docs)
+This feature is only available on Gatling Enterprise Edition. To learn more, [explore our plans](https://gatling.io/pricing?utm_source=docs)
 {{< /alert >}}
 
 ## Introduction
 
-You can configure Gatling Enterprise to send notifications about your simulation runs results directly with Microsoft Teams. 
+You can configure Gatling Enterprise Edition to send notifications about your simulation runs results directly with Microsoft Teams. 
 
 Notifications will be sent as soon as a simulation run ends, and will display:
 - A summary of your simulation info

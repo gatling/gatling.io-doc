@@ -10,7 +10,7 @@ date: 2025-02-28T6:30:56+02:00
 
 ## Prerequisites
 
-- A Gatling Enterprise account [sign up for a free trial here](https://cloud.gatling.io/)
+- A Gatling Enterprise Edition account [sign up for a free trial here](https://cloud.gatling.io/)
 - A Postman collection
 
 ## Step 1: Export your Postman Collection
@@ -60,14 +60,14 @@ npm install --save "@gatling.io/postman"
 
 <div style="position: relative; overflow: hidden; max-width: 100%; padding-bottom: 56.25%; margin: 0px;"><iframe width="560" height="315" src="https://demo.arcade.software/73pR4BgMxkhNDo2gig4i?embed&show_copy_link=true" title="Setup a Gatling JavaScript Project" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; border: none;"></iframe></div>
 
-## Step 3: Run your test on Gatling Enterprise
+## Step 3: Run your test on Gatling Enterprise Edition
 
-Remove the open-source test limits by running your test on Gatling Enterprise with a free trial account. To do so:
+Remove the open-source test limits by running your test on Gatling Enterprise Edition with a free trial account. To do so:
 
 1. Package your test by running the command `npx gatling enterprise-package` in your terminal. The packaged simulation is saved in the `target` folder.
-2. Log in to your Gatling Enterprise account.
+2. Log in to your Gatling Enterprise Edition account.
 3. Click on **Simulations** in the left-side menu.
 4. Click on **Create a simulation** and follow the prompts to upload your package and create your simulation.
 5. Start your simulation and see the live results!
 
-<div style="position: relative; overflow: hidden; max-width: 100%; padding-bottom: 56.25%; margin: 0px;"><iframe width="560" height="315" src="https://demo.arcade.software/Ac2v3b1ldJUxMyuSCESd?embed&show_copy_link=true" title="Run your test on Gatling Enterprise" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; border: none;"></iframe></div>
+<div style="position: relative; overflow: hidden; max-width: 100%; padding-bottom: 56.25%; margin: 0px;"><iframe width="560" height="315" src="https://demo.arcade.software/Ac2v3b1ldJUxMyuSCESd?embed&show_copy_link=true" title="Run your test on Gatling Enterprise Edition" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; border: none;"></iframe></div>

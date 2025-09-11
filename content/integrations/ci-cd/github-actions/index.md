@@ -1,9 +1,9 @@
 ---
 menutitle: GitHub Actions
 title: GitHub Actions integration
-seotitle: GitHub Actions integration for Gatling Enterprise
-description: Learn how to configure the Gatling Enterprise GitHub Action and run your simulations.
-lead: Run your Gatling Enterprise simulations from GitHub Actions.
+seotitle: GitHub Actions integration for Gatling Enterprise Edition
+description: Learn how to configure the Gatling Enterprise Edition GitHub Action and run your simulations.
+lead: Run your Gatling Enterprise Edition simulations from GitHub Actions.
 aliases:
   - /reference/extensions/ci-cd/github-actions
   - /reference/integrations/ci-cd/github-actions/
@@ -11,16 +11,16 @@ date: 2022-01-04T15:00:00+00:00
 ---
 
 {{< alert enterprise >}}
-This feature is only available on Gatling Enterprise. To learn more, [explore our plans](https://gatling.io/pricing?utm_source=docs)
+This feature is only available on Gatling Enterprise Edition. To learn more, [explore our plans](https://gatling.io/pricing?utm_source=docs)
 {{< /alert >}}
 
 ## Purpose of this GitHub Action
 
-This Action enables you to start a Gatling Enterprise simulation directly from your GitHub Actions workflows. This plugin links a workflow with one and only one Gatling Enterprise simulation.
+This Action enables you to start a Gatling Enterprise Edition simulation directly from your GitHub Actions workflows. This plugin links a workflow with one and only one Gatling Enterprise Edition simulation.
 
-This plugin doesn't create a new Gatling Enterprise simulation, you have to create it using the Gatling Enterprise Dashboard before.
+This plugin doesn't create a new Gatling Enterprise Edition simulation, you have to create it using the Gatling Enterprise Edition Dashboard before.
 
-On Gatling Enterprise, you can do it using the options provided by our build tools plugins:
+On Gatling Enterprise Edition, you can do it using the options provided by our build tools plugins:
 
 - [Maven]({{< ref "../build-tools/maven-plugin#running-your-simulations-on-gatling-enterprise" >}})
 - [Gradle]({{< ref "../build-tools/gradle-plugin#running-your-simulations-on-gatling-enterprise" >}})
@@ -36,20 +36,20 @@ You can check out the latest releases available [from the GitHub project](https:
 
 ## Pre-requisites
 
-You must first create an API token. It will be used to authenticate with Gatling Enterprise.
+You must first create an API token. It will be used to authenticate with Gatling Enterprise Edition.
 
 We recommend storing the API Token [in a GitHub encrypted secret](https://docs.github.com/en/actions/security-guides/encrypted-secrets#using-encrypted-secrets-in-a-workflow).
 In the following examples, we assume the **API Token** is stored in a secret called `GATLING_ENTERPRISE_API_TOKEN`.
 
-For Gatling Enterprise, the [API token]({{< ref "reference/collaborate/admin/api-tokens" >}}) needs the **Start** permission.
+For Gatling Enterprise Edition, the [API token]({{< ref "reference/collaborate/admin/api-tokens" >}}) needs the **Start** permission.
 
-We also assume that you have already configured a simulation on Gatling Enterprise. You can copy the simulation ID from the simulations list view. In the following examples, we will show the simulation ID as `00000000-0000-0000-0000-000000000000`.
+We also assume that you have already configured a simulation on Gatling Enterprise Edition. You can copy the simulation ID from the simulations list view. In the following examples, we will show the simulation ID as `00000000-0000-0000-0000-000000000000`.
 
-See [Gatling Enterprise documentation]({{< ref "reference/run-tests/simulations" >}}).
+See [Gatling Enterprise Edition documentation]({{< ref "reference/run-tests/simulations" >}}).
 
 ## Quickstart (minimal job configuration)
 
-In this example, we configure a workflow which will only start a simulation as already configured and uploaded on Gatling Enterprise. We use the `workflow_dispatch` trigger event, so that we can [run it manually](https://docs.github.com/en/actions/managing-workflow-runs/manually-running-a-workflow), but feel free to use what works for your use case.
+In this example, we configure a workflow which will only start a simulation as already configured and uploaded on Gatling Enterprise Edition. We use the `workflow_dispatch` trigger event, so that we can [run it manually](https://docs.github.com/en/actions/managing-workflow-runs/manually-running-a-workflow), but feel free to use what works for your use case.
 
 ```yaml
 name: Run Gatling Enterprise Simulation
@@ -117,9 +117,9 @@ steps:
       run_summary_refresh_interval: 60
 ```
 
-- `api_token` {{< badge danger >}}required{{< /badge >}} (unless using an environment variable named `GATLING_ENTERPRISE_API_TOKEN` instead): The API token used by the Action to authenticate with Gatling Enterprise.
+- `api_token` {{< badge danger >}}required{{< /badge >}} (unless using an environment variable named `GATLING_ENTERPRISE_API_TOKEN` instead): The API token used by the Action to authenticate with Gatling Enterprise Edition.
 
-- `simulation_id` {{< badge danger >}}required{{< /badge >}}: The ID of the simulation as configured on Gatling Enterprise.
+- `simulation_id` {{< badge danger >}}required{{< /badge >}}: The ID of the simulation as configured on Gatling Enterprise Edition.
 
 - `title` {{< badge info >}}optional{{< /badge >}}: Specify a title for the new simulation run.
 
@@ -133,7 +133,7 @@ steps:
 
 - `fail_action_on_run_failure` {{< badge info >}}optional{{< /badge >}} (defaults to `true`): If `true`, the Action will fail if the simulation run ends in an error (including failed assertions). Note: if set to `false` and the simulation ends in an error, some of the outputs may be missing (e.g. there will be no assertion results if the simulation crashed before the end).
 
-- `wait_for_run_end` {{< badge info >}}optional{{< /badge >}} (defaults to `true`): If `true`, the Action will wait for the end of te simulation run on Gatling Enterprise before terminating. Note: if set to `false`, some of the outputs may be missing (there will be no status nor assertion results).
+- `wait_for_run_end` {{< badge info >}}optional{{< /badge >}} (defaults to `true`): If `true`, the Action will wait for the end of te simulation run on Gatling Enterprise Edition before terminating. Note: if set to `false`, some of the outputs may be missing (there will be no status nor assertion results).
 
 - `run_summary_enabled` {{< badge info >}}optional{{< /badge >}} (defaults to `true`): Assuming `wait_for_run_end` is also true, will regularly log a summary of the ongoing run to the console until it finishes. See also the [logs section]({{< ref "#logs" >}}).
 
@@ -186,7 +186,7 @@ By default, logs are printed every 5 seconds the first 12 times (i.e. during 60 
 
 ### Cancellation
 
-When the Action starts, it registers a post-execution, clean-up task in the workflow. If the Action fails or gets cancelled by a user, and if the simulation is still running on Gatling Enterprise, this clean-up task will attempt to cancel the execution on Gatling Enterprise.
+When the Action starts, it registers a post-execution, clean-up task in the workflow. If the Action fails or gets cancelled by a user, and if the simulation is still running on Gatling Enterprise Edition, this clean-up task will attempt to cancel the execution on Gatling Enterprise Edition.
 
 ## Sample use cases {{% badge cloud "Cloud" /%}} {#cloud-sample-use-cases}
 
@@ -194,8 +194,8 @@ When the Action starts, it registers a post-execution, clean-up task in the work
 
 This workflow is defined in the GitHub repository which contains your Gatling simulation script built with one of our build tools plugins. In this example, every time the code on the `main` branch gets updated, we:
 
-- build, package, and upload to Gatling Enterprise the current version of the simulation script
-- run the updated simulation on Gatling Enterprise 
+- build, package, and upload to Gatling Enterprise Edition the current version of the simulation script
+- run the updated simulation on Gatling Enterprise Edition
 
 Feel free to use different trigger events or to configure the other inputs and outputs for the Action as documented above, according to your own use case.
 
@@ -209,7 +209,7 @@ sbt: includes/use-case-build-and-run.sbt.md
 
 ### Build and update on every push, run weekly
 
-This first workflow is defined in the GitHub repository which contains your Gatling simulation script built with one of our build tools plugins. In this example, every time the code on the `main` branch gets updated, we build, package, and upload to Gatling Enterprise the current version of the simulation script.
+This first workflow is defined in the GitHub repository which contains your Gatling simulation script built with one of our build tools plugins. In this example, every time the code on the `main` branch gets updated, we build, package, and upload to Gatling Enterprise Edition the current version of the simulation script.
 
 {{< include-file >}}
 Maven: includes/use-case-separate-build-run-1.maven.md
@@ -219,7 +219,7 @@ Gradle Wrapper: includes/use-case-separate-build-run-1.gradlew.md
 sbt: includes/use-case-separate-build-run-1.sbt.md
 {{< /include-file >}}
 
-This second workflow may be defined in the same repository or another one. Once a week (based on a CRON expression), we run the simulation on Gatling Enterprise.
+This second workflow may be defined in the same repository or another one. Once a week (based on a CRON expression), we run the simulation on Gatling Enterprise Edition.
 
 ```yaml
 name: Run Gatling Enterprise Simulation

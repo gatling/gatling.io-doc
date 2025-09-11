@@ -1,8 +1,8 @@
 ---
 menutitle: Grafana Datasource
-title: Grafana Datasource for Gatling Enterprise
-description: Learn how to configure the Gatling Enterprise Grafana datasource to display your Gatling Enterprise simulation reports.
-lead: Display Gatling Enterprise simulation reports in Grafana.
+title: Grafana Datasource for Gatling Enterprise Edition
+description: Learn how to configure the Gatling Enterprise Edition Grafana datasource to display your Gatling Enterprise Edition simulation reports.
+lead: Display Gatling Enterprise Edition simulation reports in Grafana.
 date: 2021-03-08T12:50:08+00:00
 ---
 
@@ -16,7 +16,7 @@ Download and install [Grafana](http://grafana.org/download/).
 
 ## Grafana datasource installation
 
-The Gatling Enterprise datasource for Grafana is packaged as a ZIP bundle and can be downloaded by clicking on the
+The Gatling Enterprise Edition datasource for Grafana is packaged as a ZIP bundle and can be downloaded by clicking on the
 following button:
 
 {{< button title="Download Grafana Datasource" >}}
@@ -47,16 +47,16 @@ If this link is missing in the side menu, it means that your current user does n
 {{< /alert >}}
 
 - Click the **Add data source** link in the top header.
-- Select **Gatling Enterprise**.
+- Select **Gatling Enterprise Edition**.
 
 | Name      | Description                                                                                                                                            |
 |-----------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Name      | The datasource name. Type `Gatling Enterprise` if you want to use our samples.                                                                         |
 | Default   | Should be checked if you want that datasource to be selected by default in new panels.                                                                 |
-| URL       | URL of your Gatling Enterprise server.                                                                                                                 |
+| URL       | URL of your Gatling Enterprise Edition  server.                                                                                                                 |
 | Access    | Server  access via Grafana backend, Browser  access directly from browser.                                                                             |
-| Auth      | Gatling Enterprise datasource ignore these fields.                                                                                                     |
-| API Token | [API token]({{< ref "/admin/api-tokens" >}}) needed to authenticate to Gatling Enterprise. The API token needs the Read permission.                    |
+| Auth      | Gatling Enterprise Edition datasource ignore these fields.                                                                                                     |
+| API Token | [API token]({{< ref "/admin/api-tokens" >}}) needed to authenticate to Gatling Enterprise Edition. The API token needs the Read permission.                    |
 
 {{< img src="configure-datasource.png" alt="pdfheight=20%" >}}
 
@@ -71,7 +71,7 @@ Samples are in the `dashboardSamples` directory in your Grafana bundle.
 They are built with a datasource named *Gatling Enterprise*. Make sure this datasource exists or modify the json file accordingly.
 {{< /alert >}}
 
-To use the Gatling Enterprise datasource in Grafana, you will need to set template variables.
+To use the Gatling Enterprise Edition datasource in Grafana, you will need to set template variables.
 
 These are global dashboard parameters that can be used in your graphs with the query builder.
 
@@ -91,13 +91,13 @@ At the end, your template variables should be something like:
 
 {{< img src="dashboard.png" alt="" >}}
 
-## Gatling Enterprise Metrics
+## Gatling Enterprise Edition Metrics
 
 {{< alert tip >}}
-You can get the list of metrics and test the results via [Gatling Enterprise's Public API]({{< ref "/execute/api" >}}).
+You can get the list of metrics and test the results via [Gatling Enterprise Edition's Public API]({{< ref "/execute/api" >}}).
 {{< /alert >}}
 
-Gatling Enterprise offers a large amount of metrics:
+Gatling Enterprise Edition offers a large amount of metrics:
 
 - **Requests metrics:**
   - `req.<Percentiles>`: Response time percentiles metric.

@@ -1,9 +1,9 @@
 ---
 menutitle: Users
 title: User Management
-seotitle: User management in Gatling Enterprise
-description: Learn how to manage users and their permissions in Gatling Enterprise.
-lead: Manage your organization's users and their permissions in Gatling Enterprise.
+seotitle: User management in Gatling Enterprise Edition
+description: Learn how to manage users and their permissions in Gatling Enterprise Edition.
+lead: Manage your organization's users and their permissions in Gatling Enterprise Edition.
 date: 2021-03-10T13:47:07+00:00
 aliases:
   - /reference/execute/cloud/admin/users/
@@ -17,7 +17,7 @@ To manage users, navigate to the **Organization** menu and click on the {{< icon
 
 ### Understand permissions {#permissions}
 
-There are 10 different user roles and corresponding permission levels in Gatling Enterprise:
+There are 10 different user roles and corresponding permission levels in Gatling Enterprise Edition:
 
 Organization-level roles:
 
@@ -73,7 +73,7 @@ Batch-invite users with the same permissions by adding multiple email addresses 
 
 To view the list of invited users, click on the **Invitations** tab.
 
-Invited users receive an email with an invitation link to join the organization. When invited users click on  **Accept the invitation**, they are redirected to join the organization. Existing Gatling Enterprise users have the new organization added to their account and new Gatling Enterprise users are directed to create an account.
+Invited users receive an email with an invitation link to join the organization. When invited users click on  **Accept the invitation**, they are redirected to join the organization. Existing Gatling Enterprise Edition users have the new organization added to their account and new Gatling Enterprise Edition users are directed to create an account.
 
 ### Edit or remove existing users
 

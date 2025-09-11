@@ -86,18 +86,18 @@ public class MqttSimulation extends Simulation {
 Consider adding assertions to your setup block. [Assertions]({{< ref "/concepts/assertions/#scope" >}}) allow you to specify the acceptable performance criteria for your test, and are returned on a pass/fail basis so you know instantly if your application is meeting the most important KPIs.
 {{< /alert >}}
 
-### Execute a performance test on Gatling Enterprise
+### Execute a performance test on Gatling Enterprise Edition
 
-We can now upload the simulation to Gatling Enterprise and execute a load test while watching the real-time results.
+We can now upload the simulation to Gatling Enterprise Edition and execute a load test while watching the real-time results.
 
 Remember that the MQTT protocol differs from the HTTP protocol commonly evaluated in Gatling and other performance test tools. HTTP is a request-response protocol where a client waits for a response from the server. The MQTT protocol, on the other hand, is a publish-subscribe protocol that doesn’t block threads waiting for a response. Thus, Gatling does not record response times unless a check is configured to block and await a message response.
 
-Relevant metrics to monitor for MQTT testing, such as TCP connections, can be found in the Connections tab of the Gatling Enterprise test execution page.
+Relevant metrics to monitor for MQTT testing, such as TCP connections, can be found in the Connections tab of the Gatling Enterprise Edition test execution page.
 
 {{< img src="MQTT-report.webp" >}}
 
 ## Conclusion
 
-In this article, we’ve seen how Java, Scala, and Kotlin developers can start utilizing Gatling Enterprise to conduct performance tests of MQTT brokers at scale while enduring minimal cost or development time.
+In this article, we’ve seen how Java, Scala, and Kotlin developers can start utilizing Gatling Enterprise Edition to conduct performance tests of MQTT brokers at scale while enduring minimal cost or development time.
 
-The ability to simulate realistic MQTT performance test scenarios with high levels of traffic using the expressive Gatling SDK, combined with widely distributed geographic load test infrastructure deployable on demand in the cloud with a single click, makes Gatling Enterprise an outstanding choice for MQTT performance evaluation of your IoT application.
+The ability to simulate realistic MQTT performance test scenarios with high levels of traffic using the expressive Gatling SDK, combined with widely distributed geographic load test infrastructure deployable on demand in the cloud with a single click, makes Gatling Enterprise Edition an outstanding choice for MQTT performance evaluation of your IoT application.

@@ -1,20 +1,20 @@
 ---
 menutitle: Maven Plugin
 title: Gatling Maven Plugin
-seotitle: Maven Plugin for Gatling and Gatling Enterprise
-description: How to use the Maven plugin for Gatling to run tests and deploy them to Gatling Enterprise.
-lead: The Maven plugin allows you to run Gatling tests from the command line, without the bundle, as well as to package your simulations for Gatling Enterprise
+seotitle: Maven Plugin for Gatling and Gatling Enterprise Edition
+description: How to use the Maven plugin for Gatling to run tests and deploy them to Gatling Enterprise Edition.
+lead: The Maven plugin allows you to run Gatling tests from the command line, without the bundle, as well as to package your simulations for Gatling Enterprise Edition.
 date: 2021-04-20T18:30:56+02:00
 ---
 
 Using this plugin, Gatling can be launched when building your project, for example with your favorite Continuous Integration (CI) solution.
-This plugin can also be used to package your Gatling project to run it on [Gatling Enterprise](https://gatling.io/enterprise/). 
+This plugin can also be used to package your Gatling project to run it on [Gatling Enterprise Edition](https://gatling.io/enterprise/).
 
 ## Versions
 
 Check out available versions on [Maven Central](https://central.sonatype.com/search?q=gatling-maven-plugin&namespace=io.gatling).
 
-Beware that milestones (M versions) are not documented for OSS users and are only released for [Gatling Enterprise](https://gatling.io/enterprise/) customers.
+Beware that milestones (M versions) are not documented for OSS users and are only released for [Gatling Enterprise Edition](https://gatling.io/enterprise/) customers.
 
 ## Setup
 
@@ -98,11 +98,11 @@ Windows: mvnw.cmd gatling:recorder
 Use `gatling:help -Ddetail=true -Dgoal=recorder` to print the description of all the available configuration options
 on the `recorder` goal.
 
-### Running your simulations on Gatling Enterprise Self-Hosted
+### Running your simulations on Gatling Enterprise Edition Self-Hosted { #running-your-simulations-on-gatling-enterprise-self-hosted }
 
 #### Build from sources
 
-Once you have configured the Maven plugin on your project, Gatling Enterprise Self-Hosted can build it from sources
+Once you have configured the Maven plugin on your project, Gatling Enterprise Edition Self-Hosted can build it from sources
 without additional configuration.
 [Add your source repository]({{< ref "/execute/repositories#downloading-from-sources" >}})
 and configure your simulation to

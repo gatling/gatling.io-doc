@@ -124,7 +124,7 @@ Now let's take a look at the following definition of the `homePage` endpoint:
 
 ### Groups
 
-Groups serve as a collection of multiple http requests, providing a clear logical separation for different parts of the user journey. Defining groups enables us to filter by them in the Gatling Enterprise reports, providing a more precise analysis of various processes within the load-tested application.
+Groups serve as a collection of multiple http requests, providing a clear logical separation for different parts of the user journey. Defining groups enables us to filter by them in the Gatling Enterprise Edition reports, providing a more precise analysis of various processes within the load-tested application.
 
 We define the groups in a file under the `groups/` directory.
 

@@ -45,7 +45,7 @@ jobs:
       - name: Build Gatling simulation
         run: ./mvnw gatling:enterpriseDeploy -Dgatling.enterprise.validateSimulationId=${{ env.SIMULATION_ID }}
 
-      # Run the simulation on Gatling Enterprise
+      # Run the simulation on Gatling Enterprise Edition
       - name: Gatling Enterprise Action
         uses: gatling/enterprise-action@v1
         with:

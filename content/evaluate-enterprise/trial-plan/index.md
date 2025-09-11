@@ -1,22 +1,22 @@
 ---
-menutitle: Evaluate Gatling Enterprise
-title: Evaluating Gatling Enterprise with a trial plan
-seotitle: Terms and conditions for a Gatling Enterprise trial account
-description: "Learn about Gatling Enterprise’s free trial, including features to test, trial limitations, advanced features to test, and post-trial options."
-lead: Learn about Gatling Enterprise’s free trial, including features to test, trial limitations, advanced features to test, and post-trial options.
+menutitle: Evaluate Gatling Enterprise Edition
+title: Evaluating Gatling Enterprise Edition with a trial plan
+seotitle: Terms and conditions for a Gatling Enterprise Edition trial account
+description: "Learn about Gatling Enterprise Edition’s free trial, including features to test, trial limitations, advanced features to test, and post-trial options."
+lead: Learn about Gatling Enterprise Edition’s free trial, including features to test, trial limitations, advanced features to test, and post-trial options.
 aliases: 
     - /tutorials/trial-plan
 ---
 
-The trial offers an opportunity to explore the key features of Gatling Enterprise as a load testing platform for free during the trial period.
+The trial offers an opportunity to explore the key features of Gatling Enterprise Edition as a load testing platform for free during the trial period.
 
-Gatling Enterprise offers [3 plan tiers](https://gatling.io/pricing): Basic, Team, and Enterprise.
+Gatling Enterprise Edition offers [3 plan tiers](https://gatling.io/pricing): Basic, Team, and Enterprise.
 
-When you create an account on Gatling Enterprise to start a product trial, you can benefit from the same plan limits as the Basic plan (except for minutes of testing).
+When you create an account on Gatling Enterprise Edition to start a product trial, you can benefit from the same plan limits as the Basic plan (except for minutes of testing).
 
 ## Product evaluation options
 
-You have 2 options to evaluate the capabilities of Gatling Enterprise:
+You have 2 options to evaluate the capabilities of Gatling Enterprise Edition:
 
 ### Self-service
 
@@ -39,7 +39,7 @@ You have 2 options to evaluate the capabilities of Gatling Enterprise:
 
 On the Homepage, you will see a **Subscribe** button, which disappears as soon as you switch to a paid plan.
 
-{{< img src="trial-1.png" alt="Gatling Enterprise subscribe button" >}}
+{{< img src="trial-1.png" alt="Gatling Enterprise Edition subscribe button" >}}
 
 On the homepage, in the right-hand corner, you will see a Plan & Credits section with the number of trial free credits and credits remaining.
 
@@ -64,12 +64,12 @@ To test the following features:
 ### Phase 1
 
 #### Protocol support
-  
-You should consider the protocol your digital service uses and test Gatling Enterprise's ability to generate the required workload for virtual users. The protocol version can matter.
+
+You should consider the protocol your digital service uses and test Gatling Enterprise Edition's ability to generate the required workload for virtual users. The protocol version can matter.
 
 #### Advanced reporting
 
-When your test run ends, you always proceed with the topmost performance engineering activity: understanding and analyzing results. Gatling Enterprise is a leader of advanced metrics and user-friendly reports on load testing. See our dedicated page on [Reports]({{< ref "/reference/stats/" >}})
+When your test run ends, you always proceed with the topmost performance engineering activity: understanding and analyzing results. Gatling Enterprise Edition is a leader of advanced metrics and user-friendly reports on load testing. See our dedicated page on [Reports]({{< ref "/reference/stats/" >}})
 
 #### Compare run metrics
 
@@ -79,13 +79,13 @@ When you have multiple runs of your trial test, you can evaluate the test result
 
 #### Share a report with a public link
 
-Gatling Enterprise simplifies sharing test results with your teammates or management. One way to share results is by generating and sharing a public link to a test report. 
+Gatling Enterprise Edition simplifies sharing test results with your teammates or management. One way to share results is by generating and sharing a public link to a test report.
 
 ### Phase 2
 
 #### Load-scheme distribution and customization
 
-Testing the ability to elevate the number of concurrent users and set up the scheme for applying the load is more important than being able to run your full test at scale. As Gatling Enterprise scales linearly, we don’t recommend high-scale load testing on trial, except if you’re considering a sales-assisted trial.
+Testing the ability to elevate the number of concurrent users and set up the scheme for applying the load is more important than being able to run your full test at scale. As Gatling Enterprise Edition scales linearly, we don’t recommend high-scale load testing on trial, except if you’re considering a sales-assisted trial.
 
 #### Integrations 
 
@@ -95,7 +95,7 @@ Explore how to integrate Gatling into your [CI/CD pipeline]({{< ref "/integratio
 
 Regarding software support, the people behind the performance testing platform you choose are more important than the tool itself. The opportunity to receive guidance throughout the trial or help when troubleshooting any issues from the Gatling team will save you time and money.
 
-The features you can test are unlimited, but remember that you only have 14 days. So, dedicate your time solely to evaluating the Gatling Enterprise product capabilities and carry out your test at scale after you make your decision.
+The features you can test are unlimited, but remember that you only have 14 days. So, dedicate your time solely to evaluating the Gatling Enterprise Edition product capabilities and carry out your test at scale after you make your decision.
 
 ## Trial limitations
 
@@ -144,13 +144,13 @@ So you can run tests with many concurrent virtual users during the trial.
 
 ## Why go on a sales-assisted trial?
 
-You want to talk to a human to help you understand Gatling Enterprise product's capabilities.
+You want to talk to a human to help you understand Gatling Enterprise Edition product's capabilities.
 
-You need customized limits to test Gatling Enterprise.
+You need customized limits to test Gatling Enterprise Edition.
 
-You are already using the open-source version of Gatling and want to understand the differences in detail and the benefits of Gatling Enterprise for your team.
+You are already using the open-source version of Gatling and want to understand the differences in detail and the benefits of Gatling Enterprise Edition for your team.
 
-You want to compare your current tool with Gatling Enterprise.
+You want to compare your current tool with Gatling Enterprise Edition.
 
 The software is important, as are the contractual options, terms and conditions, support, and professional services.
 
@@ -211,7 +211,7 @@ Continue your tests with superior limits and support.
 
 If you wish to continue on a paid plan, you must add a payment method to ensure a seamless transition from the trial to the paid plan when your trial ends. To add a payment method:
 
-1. Click on the **Subscribe to a plan** button on the Gatling Enterprise home page. 
+1. Click on the **Subscribe to a plan** button on the Gatling Enterprise Edition home page. 
 2. Select **Monthly** at the top.
 3. Select between the Basic and Team plans and click **Subscribe now**.
 4. Fill in your payment details and click **Save payment method**.
@@ -221,7 +221,7 @@ If you wish to continue on a paid plan, you must add a payment method to ensure 
 
 If you wish to continue on a paid plan, you must add a payment method to ensure a seamless transition from the trial to the paid plan when your trial ends. To add a payment method:
 
-1. Click on the **Subscribe to a plan** button on the Gatling Enterprise home page. 
+1. Click on the **Subscribe to a plan** button on the Gatling Enterprise Edition home page. 
 2. Select **Annually** at the top.
 3. Select between the Basic and Team plans and click **Subscribe now**.
 4. Fill in your payment details and click **Save payment method**.

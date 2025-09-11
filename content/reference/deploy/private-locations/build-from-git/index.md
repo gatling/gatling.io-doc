@@ -1,7 +1,7 @@
 ---
 title: Configure git repositories
-seotitle: Gatling Enterprise Build from a Git repository
-description: Learn how to deploy your Gatling project on Gatling Enterprise by connecting a source repository.
+seotitle: Gatling Enterprise Edition Build from a Git repository
+description: Learn how to deploy your Gatling project on Gatling Enterprise Edition by connecting a source repository.
 date: 2024-03-10T14:29:04+00:00
 aliases:
   - /reference/execute/cloud/user/build-from-sources/
@@ -13,11 +13,11 @@ aliases:
 
 Build from a Git repository allows you to build Gatling simulations directly from a source repository, such as GitHub, GitLab, or BitBucket without needing to package them first. This feature is particularly useful for teams that prefer to manage their Gatling projects in a source control system and want to streamline the process of running tests. 
 
-Simulations are built and stored in your private network, using the Private Locations and Private Packages features of Gatling Enterprise. This approach eliminates the need for manual packaging and uploading of simulation files, enabling a more efficient workflow for performance testing.
+Simulations are built and stored in your private network, using the Private Locations and Private Packages features of Gatling Enterprise Edition. This approach eliminates the need for manual packaging and uploading of simulation files, enabling a more efficient workflow for performance testing.
 
 {{< img src="generic-diagram.png" alt="Build from Git architecture diagram" >}}
 
-The following sections detail how to configure the Control Plane for Build from a Git repository, including pre-requisites, git authentication, and build tool configurations. Once configured, you can [create simulations]({{< ref "reference/run-tests/simulations/git-repository" >}}) in the Gatling Enterprise UI.
+The following sections detail how to configure the Control Plane for Build from a Git repository, including pre-requisites, git authentication, and build tool configurations. Once configured, you can [create simulations]({{< ref "reference/run-tests/simulations/git-repository" >}}) in the Gatling Enterprise Edition UI.
 
 ## Pre-requisites
 
@@ -29,7 +29,7 @@ The following sections detail how to configure the Control Plane for Build from 
 
 ## Architecture
 
-The Build from a Git repository feature operates within the Gatling Enterprise architecture, leveraging the Control Plane to manage builds and simulations. The Control Plane interacts with your source repository to fetch simulation code, compiles it using the specified build tool, and stores the resulting artifacts in your private storage location. This process is triggered when you start a simulation in the Gatling Enterprise UI, allowing you to run tests directly from your source code without manual packaging.
+The Build from a Git repository feature operates within the Gatling Enterprise Edition architecture, leveraging the Control Plane to manage builds and simulations. The Control Plane interacts with your source repository to fetch simulation code, compiles it using the specified build tool, and stores the resulting artifacts in your private storage location. This process is triggered when you start a simulation in the Gatling Enterprise Edition UI, allowing you to run tests directly from your source code without manual packaging.
 
 After run completion, the test package is deleted from the private storage location, thus each run requires a fresh build from the source repository. This ensures that you always test the latest version of your simulations.
 
@@ -104,7 +104,7 @@ control-plane {
 **Security Best Practices:**
 * Use personal access tokens instead of passwords whenever possible.
 * Limit token permissions to read-only access.
-* Never include credentials in repository URLs within Gatling Enterprise.
+* Never include credentials in repository URLs within Gatling Enterprise Edition.
 
 ## Build tools for Git repositories
 
@@ -120,5 +120,5 @@ control-plane {
 **Image Cache Path**: Ensure build tool caches persist across different upgrades by mounting a volume to the given path.
 
 {{< alert warning >}}
-When using Scala with maven or gradle, you need to additionally persist `/app/.sbt`.
+When using Scala with Maven or Gradle, you need to additionally persist `/app/.sbt`.
 {{< /alert >}}

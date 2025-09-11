@@ -1,8 +1,8 @@
 ---
 title: Overview
-seotitle: Gatling Enterprise usage overview
-description: Learn how to navigate in Gatling Enterprise.
-lead: Learn how to navigate in Gatling Enterprise.
+seotitle: Gatling Enterprise Edition usage overview
+description: Learn how to navigate in Gatling Enterprise Edition.
+lead: Learn how to navigate in Gatling Enterprise Edition.
 date: 2021-03-10T14:29:04+00:00
 aliases:
   - /reference/execute/cloud/user/overview/
@@ -12,7 +12,7 @@ aliases:
 
 ## Navigation Bar
 
-The left-side Gatling Enterprise navigation bar can be collapsed using the Burger Navigation Menu button. {{< icon bars >}}
+The left-side Gatling Enterprise Edition navigation bar can be collapsed using the Burger Navigation Menu button. {{< icon bars >}}
 
 The navigation bar is composed of:
 
@@ -26,7 +26,7 @@ The navigation bar is composed of:
 ---
 - [**Integrations**]({{< ref "/integrations" >}}): shows all integrations download links
 - **Documentation**: shows all documentation guides and the link to the public API Swagger documentation
-- **About**: current version of Gatling Enterprise, and supported Gatling versions
+- **About**: current version of Gatling Enterprise Edition, and supported Gatling versions
 
 ## Navigation dropdown
 

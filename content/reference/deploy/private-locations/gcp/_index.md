@@ -1,7 +1,7 @@
 ---
 title: GCP load generators
 menutitle: GCP
-seotitle: GCP load generators for Gatling Enterprise
+seotitle: GCP load generators for Gatling Enterprise Edition
 description: Load Generators on your GCP cloud.
 ordering:
   - installation

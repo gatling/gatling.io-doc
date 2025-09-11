@@ -1,9 +1,9 @@
 ---
 menutitle: API tokens
 title: API tokens configuration
-seotitle: Configure API Tokens in Gatling Enterprise
-description: Learn how to administrate API tokens to authenticate your requests to the Gatling Enterprise public API.
-lead: Create API Tokens to authenticate your requests to the Gatling Enterprise public API.
+seotitle: Configure API Tokens in Gatling Enterprise Edition
+description: Learn how to administrate API tokens to authenticate your requests to the Gatling Enterprise Edition public API.
+lead: Create API Tokens to authenticate your requests to the Gatling Enterprise Edition public API.
 date: 2021-03-10T13:47:16+00:00
 aliases:
   - /reference/execute/cloud/admin/api-tokens/

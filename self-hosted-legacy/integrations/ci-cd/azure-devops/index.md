@@ -1,9 +1,9 @@
 ---
 menutitle: Azure DevOps Pipelines
 title: Integrating Azure DevOps Pipelines
-seotitle: Integrating Azure DevOps Pipelines with Gatling Enterprise
+seotitle: Integrating Azure DevOps Pipelines with Gatling Enterprise Edition
 description: Learn how to use the CI script with Azure DevOps Pipelines to run your simulations.
-lead: Run your Gatling Enterprise simulations from Azure DevOps Pipelines.
+lead: Run your Gatling Enterprise Edition simulations from Azure DevOps Pipelines.
 date: 2023-11-09T15:25:27+0000
 ---
 
@@ -20,7 +20,7 @@ All the configuration shown in this page is available on the demo project [gatli
 You will need:
 
 - A git repository: we will be using GitHub in our example
-- A working simulation on Gatling Enterprise Self-Hosted:
+- A working simulation on Gatling Enterprise Edition Self-Hosted:
   you will need its ID later on, which you can copy with **Copy Simulation ID to clipboard** in the Simulations page
 - An [API token]({{< ref "/admin/api-tokens" >}}) whichs needs the **All** role.
 
@@ -86,7 +86,7 @@ From here, you will follow a 4 steps process: Connect -> Select -> Configure -> 
 
 4. On the **Review** step, create three variables by clicking **New variable** on the top right, then:
 
-    - `gatlingEnterpriseUrl`: your Gatling Enterprise Self-Hosted hostname
+    - `gatlingEnterpriseUrl`: your Gatling Enterprise Edition Self-Hosted hostname
     - `apiToken`: make sure **Keep this value secret** is enabled
     - `simulationId`: use the ID of the simulation you want to run
 
@@ -102,7 +102,7 @@ After the job has been queued, if you see permissions errors, click on the red *
 
 {{< img src="permission-needed.png" alt="Permissions needed waiting for user action" >}}
 
-After the job is created and queued, you can see the output of a Gatling Enterprise run by clicking on **Job**, 
+After the job is created and queued, you can see the output of a Gatling Enterprise Edition run by clicking on **Job**, 
 then on the **Start simulation** task:
 
 {{< img src="successful-run.png" alt="Example of a successful run" >}}

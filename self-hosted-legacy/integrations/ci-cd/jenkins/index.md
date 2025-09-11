@@ -1,17 +1,17 @@
 ---
 menutitle: Jenkins
 title: Jenkins Plugin
-seotitle: Jenkins Plugin for Gatling Enterprise
+seotitle: Jenkins Plugin for Gatling Enterprise Edition
 description: Learn how to configure the Jenkins plugin and run your simulations.
-lead: Run your Gatling Enterprise simulations from your Jenkins CI.
+lead: Run your Gatling Enterprise Edition simulations from your Jenkins CI.
 date: 2021-03-08T12:50:14+00:00
 ---
 
 ## Purpose of this plugin
 
-This plugin enables you to start a Gatling Enterprise simulation directly from your Jenkins platform. This plugin links a Jenkins job with one and only one Gatling Enterprise simulation.
+This plugin enables you to start a Gatling Enterprise Edition simulation directly from your Jenkins platform. This plugin links a Jenkins job with one and only one Gatling Enterprise Edition simulation.
 
-This plugin doesn't create a new Gatling Enterprise simulation, you have to create it using the Gatling Enterprise Dashboard before.
+This plugin doesn't create a new Gatling Enterprise Edition simulation, you have to create it using the Gatling Enterprise Edition Dashboard before.
 
 ## Installation
 
@@ -27,7 +27,7 @@ You need to be connected as an administrator of your Jenkins application to inst
 
 ## API Token and Jenkins credentials
 
-This plugin requires an API token to allow Jenkins to authenticate with Gatling Enterprise.
+This plugin requires an API token to allow Jenkins to authenticate with Gatling Enterprise Edition.
 
 The [API token]({{< ref "/admin/api-tokens" >}}) needs the **All** role.
 
@@ -45,11 +45,11 @@ If you don't use Jenkins credentials, you can still set an API token directly in
 
 ## Configuration
 
-The plugin needs some global configuration. Go to **Manage Jenkins**, **Configure System**, then **Global Gatling Enterprise Plugin Configuration**.
+The plugin needs some global configuration. Go to **Manage Jenkins**, **Configure System**, then **Global Gatling Enterprise Edition Plugin Configuration**.
 
 Choose the Jenkins credentials where [you stored your API token]({{< ref "#api-token-and-jenkins-credentials" >}}).
 
-The **Address** is the address of Gatling Enterprise. The **API Address** should be left blank for Gatling Enterprise Self-Hosted.
+The **Address** is the address of Gatling Enterprise Edition. The **API Address** should be left blank for Gatling Enterprise Edition Self-Hosted.
 
 {{< img src="global-configuration.png" alt="Global Configuration" >}}
 
@@ -94,7 +94,7 @@ node {
 #### Overriding the global configuration
 
 {{< alert info >}}
-This is especially useful when transitioning from Gatling Enterprise Self-Hosted to Gatling Enterprise Cloud, as you will need use the Cloud URLs and API token only for the simulations which have already been migrated; or if you have several Self-Hosted instances.
+This is especially useful when transitioning from Gatling Enterprise Edition Self-Hosted to Gatling Enterprise Edition Cloud, as you will need use the Cloud URLs and API token only for the simulations which have already been migrated; or if you have several Self-Hosted instances.
 
 Only specifying a different `credentialId` can also be useful if you use API tokens with specific permissions (e.g. each restricted to one team).
 {{</ alert >}}
@@ -111,7 +111,7 @@ gatlingFrontLineLauncherStep(
 
 #### Passing parameters
 
-You can specify a custom Map of system properties which will be used in the Gatling Enterprise run. The syntax is the following:
+You can specify a custom Map of system properties which will be used in the Gatling Enterprise Edition run. The syntax is the following:
 
 ```groovy
 gatlingFrontLineLauncherStep(
@@ -134,7 +134,7 @@ gatlingFrontLineLauncherStep(
 
 #### Displaying assertions as JUnit
 
-You can display the results of the Gatling Enterprise assertions with the JUnit plugin. Add the following line:
+You can display the results of the Gatling Enterprise Edition assertions with the JUnit plugin. Add the following line:
 ```groovy
 junit("gatlingFrontLineJunitResults/*.xml")
 ```
@@ -145,7 +145,7 @@ If you don't have any assertions in your Gatling simulation, the JUnit step will
 
 ### Set-up for an old style job
 
-Add a new build step called **Gatling Enterprise Plugin**.
+Add a new build step called **Gatling Enterprise Edition Plugin**.
 
 If you don't want to use the globally configured API token, you can chose another one [stored in a Jenkins secret text credential]({{< ref "#api-token-and-jenkins-credentials" >}}). Choose one of the simulations in the drop-down menu.
 
@@ -159,7 +159,7 @@ This step regularly prints a summary of the run's current status to the build lo
 
 #### Displaying assertions as JUnit
 
-You can display the results of the Gatling Enterprise assertions with the JUnit plugin.
+You can display the results of the Gatling Enterprise Edition assertions with the JUnit plugin.
 
 Add a new build step called **Publish JUnit test result report** and fill the **Test report XMLs** input with the following line:
 
@@ -177,6 +177,6 @@ A new Gatling Enterprise simulation will be started every time the job is run. C
 
 {{< img src="console-ok.png" alt="Console View" >}}
 
-Live metrics will be displayed in the console, and in the Status page. The link **View Run in Gatling Enterprise** in the build page menu links to Gatling Enterprise.
+Live metrics will be displayed in the console, and in the Status page. The link **View Run in Gatling Enterprise Edition** in the build page menu links to Gatling Enterprise Edition.
 
 {{< img src="run-view.png" alt="Results" >}}

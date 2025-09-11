@@ -151,27 +151,27 @@ override fun after() {
 
 //#deployment-info
 // the UUID of the run
-// null when not deploying on Gatling Enterprise
+// null when not deploying on Gatling Enterprise Edition
 val runId = deploymentInfo.runId
 
 // the name of the Location where this Load Generator is deployed
-// null when not deploying on Gatling Enterprise
+// null when not deploying on Gatling Enterprise Edition
 val locationName = deploymentInfo.locationName
 
 // the number of Load Generators deployed on this Location in this run
-// 1 when not deploying on Gatling Enterprise
+// 1 when not deploying on Gatling Enterprise Edition
 val numberOfLoadGeneratorsInLocation = deploymentInfo.numberOfLoadGeneratorsInLocation
 
 // the index of this Load Generators within the Load Generators deployed on this Location in this run
-// 0 when not deploying on Gatling Enterprise
+// 0 when not deploying on Gatling Enterprise Edition
 val indexOfLoadGeneratorInLocation = deploymentInfo.indexOfLoadGeneratorInLocation
 
 // the total number of Load Generators deployed in this run
-// 1 when not deploying on Gatling Enterprise
+// 1 when not deploying on Gatling Enterprise Edition
 val numberOfLoadGeneratorsInRun = deploymentInfo.numberOfLoadGeneratorsInRun
 
 // the index of this Load Generators within the total number of Load Generators deployed in this run
-// 0 when not deploying on Gatling Enterprise
+// 0 when not deploying on Gatling Enterprise Edition
 val indexOfLoadGeneratorInRun = deploymentInfo.indexOfLoadGeneratorInRun
 //#deployment-info
 }

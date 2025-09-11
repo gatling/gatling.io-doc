@@ -21,7 +21,7 @@ build-gatling-simulation:
   script:
     - sbt Gatling/enterpriseDeploy -Dgatling.enterprise.validateSimulationId=$SIMULATION_ID
 
-# Run the simulation on Gatling Enterprise
+# Run the simulation on Gatling Enterprise Edition
 run-gatling-enterprise:
   stage: load-test
   image:

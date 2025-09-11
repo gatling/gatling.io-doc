@@ -3,11 +3,11 @@ menutitle: JavaScript CLI
 title: JavaScript tooling
 seotitle: Tooling to work with Gatling in JavaScript and TypeScript
 description: >
-  Use our command-line (CLI) tool and a package manager such as npm to work with Gatling and Gatling Enterprise, when
+  Use our command-line (CLI) tool and a package manager such as npm to work with Gatling and Gatling Enterprise Edition, when
   using the JavaScript/TypeScript DSL to write your tests.
 lead: >
   Run Gatling simulations written in JavaScript/TypeScript from the command line, and package them to run on Gatling
-  Enterprise
+  Enterprise Edition
 date: 2024-06-20T14:00:00+02:00
 aliases:
   - /reference/integrations/build-tools/js-cli/
@@ -62,9 +62,9 @@ By default, the `gatling` CLI tool expects that:
   the `--resources-folder` option).
 - When running locally, it will create test reports in the `target/gatling` folder (can be overridden with the
   `--results-folder` option).
-- When running locally or packaging for Gatling Enterprise, it will create a code bundle file at `target/bundle.js`
+- When running locally or packaging for Gatling Enterprise Edition, it will create a code bundle file at `target/bundle.js`
   (can be overridden with the `--bundle-file` option).
-- When packaging for Gatling Enterprise, it will create the package file at `target/package.zip` (can be overridden with
+- When packaging for Gatling Enterprise Edition, it will create the package file at `target/package.zip` (can be overridden with
   the `--package-file` option).
 
 ### Dependency management
@@ -79,7 +79,7 @@ include a [Prettier](https://prettier.io) configuration for automatic code forma
 
 ### Upgrade the JavaScript SDK version
 
-Gatling periodically releases new versions of the JavaScript SDK to maintain compatibility with Gatling Enterprise,
+Gatling periodically releases new versions of the JavaScript SDK to maintain compatibility with Gatling Enterprise Edition,
 add new functionality, and improve performance. Be sure to check the
 [Gatling upgrade guides]({{< ref "/release-notes/gatling/upgrading" >}}) for breaking changes.
 
@@ -102,7 +102,7 @@ The `gatling` CLI tool requires Internet access to:
   `https://github.com/gatling/gatling-js/releases/`).
   - By default, it is installed in the folder `~/.gatling` (Linux/macOS) or `%USERPROFILE%\.gatling` (Windows). You
     can override this with the `--gatling-home` option.
-- Access the Gatling Enterprise API (`https://api.gatling.io`) when executing commands such as
+- Access the Gatling Enterprise Edition API (`https://api.gatling.io`) when executing commands such as
   `npx gatling enterprise-deploy` or `npx gatling enterprise-start`.
 - Access your Control Plane when using the [Private Packages](#private-packages) feature with the same commands.
 
@@ -133,7 +133,7 @@ You can check out more details with `npx gatling enterprise-deploy --help` or `n
 
 If you cannot give Internet access to the `gatling` CLI tool, you can still manually install the required Gatling
 runtime bundle to be able to [run simulations locally](#running-your-simulations) or
-[package them for Gatling Enterprise](#packaging-your-simulations-for-gatling-enterprise).
+[package them for Gatling Enterprise Edition](#packaging-your-simulations-for-gatling-enterprise-edition).
 
 To do so, manually download the file from
 [the releases page](https://github.com/gatling/gatling-js/releases/), being careful to choose the same version
@@ -184,12 +184,12 @@ npx gatling recorder
 
 You can check out other options with `npx gatling recorder --help`.
 
-### Running your simulations on Gatling Enterprise
+### Running your simulations on Gatling Enterprise Edition { #running-your-simulations-on-gatling-enterprise }
 
 #### Prerequisites
 
 You need to configure [an API token]({{< ref "/reference/collaborate/admin/api-tokens/" >}}) for most of the actions
-between the CLI and Gatling Enterprise.
+between the CLI and Gatling Enterprise Edition.
 
 {{< alert warning >}}
 The API token needs the `Configure` role on expected teams.
@@ -204,9 +204,9 @@ Since you probably don't want to include you secret token in your source code, y
 Learn how to work with environment variables and JavaScript parameters in the [Configuration documentation]({{< ref "/concepts/configuration#manage-configuration-values" >}}).
 {{< /alert >}}
 
-#### Packaging your simulations for Gatling Enterprise
+#### Packaging your simulations for Gatling Enterprise Edition
 
-Use the `enterprise-package` command to create a package of your simulations to deploy on Gatling Enterprise.
+Use the `enterprise-package` command to create a package of your simulations to deploy on Gatling Enterprise Edition.
 For instance:
 
 ```shell
@@ -224,7 +224,7 @@ npx gatling enterprise-package --package-file "target/my-package-file.zip"
 
 You can check out other options with `npx gatling enterprise-package --help`.
 
-#### Deploying on Gatling Enterprise
+#### Deploying on Gatling Enterprise Edition { #deploying-on-gatling-enterprise }
 
 With the `enterprise-deploy` command, you can:
 
@@ -255,7 +255,7 @@ Check the [Configuration as Code documentation]({{< ref "/reference/run-tests/so
 the complete reference and advanced usage.
 {{< /alert >}}
 
-#### Start your simulations on Gatling Enterprise
+#### Start your simulations on Gatling Enterprise Edition { #start-your-simulations-on-gatling-enterprise }
 
 You can, using the `enterprise-start` command:
 

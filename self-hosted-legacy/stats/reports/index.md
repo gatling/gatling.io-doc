@@ -79,7 +79,7 @@ This filter bar is a combination of buttons:
 
 ## Charts
 
-All charts in Gatling Enterprise are connected to each other, so if you select a time window on a chart it will automatically change it
+All charts in Gatling Enterprise Edition are interconnected, so if you select a time window on a chart it will automatically change it
 for all other charts. Metrics are drawn in multiple charts.
 
 {{< img src="charts.png" alt="Charts" >}}
@@ -109,7 +109,7 @@ On Flat mode you can filter the data by clicking any column name of the table.
 
 ## Generate Public Links {#public-links}
 
-A public link is a link of the current reports which will be accessible to anyone, without having to log-in to Gatling Enterprise. To generate a public link, click on the *Generate public link* button and choose the expiration date of your link.
+A public link is a link of the current reports which will be accessible to anyone, without having to log-in to Gatling Enterprise Edition. To generate a public link, click on the *Generate public link* button and choose the expiration date of your link.
 
 {{< img src="generate-public-link.png" alt="Generate public links" >}}
 
@@ -119,7 +119,7 @@ Choose an expiration date, then click the generate button.
 
 {{< img src="successful-generation-public-link.png" alt="Successful public link generation" >}}
 
-You can copy the public link to share your report to non-Gatling Enterprise users, or click on the "Go" Button to access it yourself. You can click on the "OK" button to close this modal.
+You can copy the public link to share your report to non-Gatling Enterprise Edition users, or click on the "Go" Button to access it yourself. You can click on the "OK" button to close this modal.
 
 ## Print to PDF
 

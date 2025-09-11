@@ -1,9 +1,9 @@
 ---
 menutitle: Gitlab CI/CD
 title: Gitlab CI/CD integration
-seotitle: Gitlab CI/CD integration for Gatling Enterprise
-description: Learn how to configure GitLab CI/CD to run your simulations on Gatling Enterprise.
-lead: Run your Gatling Enterprise simulations from GitLab CI/CD.
+seotitle: Gitlab CI/CD integration for Gatling Enterprise Edition
+description: Learn how to configure GitLab CI/CD to run your simulations on Gatling Enterprise Edition.
+lead: Run your Gatling Enterprise Edition simulations from GitLab CI/CD.
 aliases:
   - /reference/extensions/ci-cd/gitlab-ci
   - /reference/integrations/ci-cd/gitlab-ci
@@ -11,16 +11,16 @@ date: 2023-02-17T14:00:00+00:00
 ---
 
 {{< alert enterprise >}}
-This feature is only available on Gatling Enterprise. To learn more, [explore our plans](https://gatling.io/pricing?utm_source=docs)
+This feature is only available on Gatling Enterprise Edition. To learn more, [explore our plans](https://gatling.io/pricing?utm_source=docs)
 {{< /alert >}}
 
-## The Gatling Enterprise Docker runner
+## The Gatling Enterprise Edition Docker runner
 
-This runner, packaged as a Docker image and [published on Docker Hub](https://hub.docker.com/r/gatlingcorp/enterprise-runner), enables you to start a Gatling Enterprise simulation directly from your GitLab CI/CD pipelines.
+This runner, packaged as a Docker image and [published on Docker Hub](https://hub.docker.com/r/gatlingcorp/enterprise-runner), enables you to start a Gatling Enterprise Edition simulation directly from your GitLab CI/CD pipelines.
 
-This plugin doesn't create a new Gatling Enterprise simulation, you have to create it using the Gatling Enterprise Dashboard before.
+This plugin doesn't create a new Gatling Enterprise Edition simulation, you have to create it using the Gatling Enterprise Edition Dashboard before.
 
-On Gatling Enterprise, you can do it using the options provided by our build tools plugins:
+On Gatling Enterprise Edition, you can do it using the options provided by our build tools plugins:
 
 - [Maven]({{< ref "../build-tools/maven-plugin#running-your-simulations-on-gatling-enterprise" >}})
 - [Gradle]({{< ref "../build-tools/gradle-plugin#running-your-simulations-on-gatling-enterprise" >}})
@@ -36,19 +36,19 @@ You can check out the latest releases available [from the GitHub project](https:
 
 ## Pre-requisites
 
-You must first create an API token. It will be used to authenticate with Gatling Enterprise.
+You must first create an API token. It will be used to authenticate with Gatling Enterprise Edition.
 
 You can store the API Token in a [Gitlab CI Variable](https://docs.gitlab.com/ee/ci/variables/#define-a-cicd-variable-in-the-ui) (make sure to check "Mask variable") with the name `GATLING_ENTERPRISE_API_TOKEN`, which our tools will detect automatically. Or if you [use a vault to store secrets](https://docs.gitlab.com/ee/ci/secrets/), store the API Token in your vault and retrieve its value to an environment variable named `GATLING_ENTERPRISE_API_TOKEN` in your Gitlab CI/CD configuration file.
 
-For Gatling Enterprise, the [API token]({{< ref "/reference/collaborate/admin/api-tokens" >}}) needs the **Start** permission.
+For Gatling Enterprise Edition, the [API token]({{< ref "/reference/collaborate/admin/api-tokens" >}}) needs the **Start** permission.
 
-We also assume that you have already configured a simulation on Gatling Enterprise. You can copy the simulation ID from the simulations list view. In the following examples, we will show the simulation ID as `00000000-0000-0000-0000-000000000000`.
+We also assume that you have already configured a simulation on Gatling Enterprise Edition. You can copy the simulation ID from the simulations list view. In the following examples, we will show the simulation ID as `00000000-0000-0000-0000-000000000000`.
 
-See [Gatling Enterprise documentation]({{< ref "reference/run-tests/simulations" >}}).
+See [Gatling Enterprise Edition documentation]({{< ref "reference/run-tests/simulations" >}}).
 
 ## Quickstart (minimal job configuration)
 
-In this example, we configure a workflow which will only start a simulation as already configured and uploaded on Gatling Enterprise.
+In this example, we configure a workflow which will only start a simulation as already configured and uploaded on Gatling Enterprise Edition.
 
 Create a file named `.gitlab-ci.yml` in your repository:
 
@@ -122,9 +122,9 @@ run-gatling-enterprise:
     RUN_SUMMARY_REFRESH_INTERVAL: '60'
 ```
 
-- `GATLING_ENTERPRISE_API_TOKEN` {{< badge danger >}}required{{< /badge >}}: The API token used to authenticate with Gatling Enterprise.
+- `GATLING_ENTERPRISE_API_TOKEN` {{< badge danger >}}required{{< /badge >}}: The API token used to authenticate with Gatling Enterprise Edition.
 
-- `SIMULATION_ID` {{< badge danger >}}required{{< /badge >}}: The ID of the simulation as configured on Gatling Enterprise.
+- `SIMULATION_ID` {{< badge danger >}}required{{< /badge >}}: The ID of the simulation as configured on Gatling Enterprise Edition.
 
 - `TITLE` {{< badge info >}}optional{{< /badge >}}: Specify a title for the new simulation run.
 
@@ -136,11 +136,11 @@ run-gatling-enterprise:
 
 - `OVERRIDE_LOAD_GENERATORS` {{< badge info >}}optional{{< /badge >}}: Overrides the simulation's load generators configuration. Must be formatted as a JSON object. Keys are the load generator IDs, which can be retrieved from the public API (using the `/pools` route). Weights are optional.
 
-  See [Gatling Enterprise public API documentation]({{< ref "/reference/api" >}}).
+  See [Gatling Enterprise Edition public API documentation]({{< ref "/reference/api" >}}).
 
 - `FAIL_ACTION_ON_RUN_FAILURE` {{< badge info >}}optional{{< /badge >}} (defaults to `true`): If `true`, the Action will fail if the simulation run ends in an error (including failed assertions). Note: if set to `false` and the simulation ends in an error, some of the outputs may be missing (e.g. there will be no assertion results if the simulation crashed before the end).
 
-- `WAIT_FOR_RUN_END` {{< badge info >}}optional{{< /badge >}} (defaults to `true`): If `true`, the runner will wait for the end of te simulation run on Gatling Enterprise before terminating. Note: if set to `false`, some of the outputs may be missing (there will be no status nor assertion results).
+- `WAIT_FOR_RUN_END` {{< badge info >}}optional{{< /badge >}} (defaults to `true`): If `true`, the runner will wait for the end of te simulation run on Gatling Enterprise Edition before terminating. Note: if set to `false`, some of the outputs may be missing (there will be no status nor assertion results).
 
 - `OUTPUT_DOT_ENV_FILE_PATH` {{< badge info >}}optional{{< /badge >}} (defaults to `gatlingEnterprise.env`): path to a dotenv file where output values will be written
 
@@ -215,8 +215,8 @@ By default, logs are printed every 5 seconds the first 12 times (i.e. during 60 
 
 This pipeline is defined in the GitLab repository which contains your Gatling simulation script built with one of our build tools plugins. In this example, every time the code on the `main` branch gets updated, we:
 
-- build, package, and upload to Gatling Enterprise the current version of the simulation script
-- run the updated simulation on Gatling Enterprise
+- build, package, and upload to Gatling Enterprise Edition the current version of the simulation script
+- run the updated simulation on Gatling Enterprise Edition
 
 Feel free to use different workflow rules or to configure the other inputs and outputs for the runner as documented above, according to your own use case.
 
@@ -230,7 +230,7 @@ sbt: includes/use-case-build-and-run.sbt.md
 
 ### Build and update on every push, run on a schedule
 
-This first pipeline is defined in the GitLab repository which contains your Gatling simulation script built with one of our build tools plugins. In this example, every time the code on the `main` branch gets updated, we build, package, and upload to Gatling Enterprise the current version of the simulation script.
+This first pipeline is defined in the GitLab repository which contains your Gatling simulation script built with one of our build tools plugins. In this example, every time the code on the `main` branch gets updated, we build, package, and upload to Gatling Enterprise Edition the current version of the simulation script.
 
 {{< include-file >}}
 Maven: includes/use-case-separate-build-run-1.maven.md
