@@ -153,7 +153,7 @@ npx gatling run --typescript --simulation myapi
 ```
 At the end of the simulation, Gatling will provide you with a report containing information such as the response time range, number of requests, and more.
 
-When you’re ready to start executing more realistic distributed load tests against your containerized application, Gatling Enterprise is a natural choice. The Enterprise version of Gatling enables you to deploy a distributed test environment in the cloud with multiple load injectors in different availability zones in just a few clicks. You can then execute a load test against your containerized application using the same Gatling user journey scripts created previously.
+When you’re ready to start executing more realistic distributed load tests against your containerized application, Gatling Enterprise Edition is a natural choice. The Enterprise version of Gatling enables you to deploy a distributed test environment in the cloud with multiple load injectors in different availability zones in just a few clicks. You can then execute a load test against your containerized application using the same Gatling user journey scripts created previously.
 
 ## What are the best practices for load testing Docker containers?
 
@@ -163,7 +163,7 @@ By deploying your application into a Docker container and running load tests ear
 
 As well as closely monitoring the performance and health of the Docker containers during load testing, another important aspect of testing is the failover and recovery of your application. You should introduce failure scenarios into your load testing, such as container crashes, network failures, or other infrastructure disruptions. You need to assess the impact of these events on the application during load testing of Docker containers and whether or not the system can recover sufficiently.
 
-Your approach to load-testing applications running in Docker containers should be based on benchmarking load-test results. Gatling Enterprise enables you to quickly execute repeatable distributed load tests and compare the results of any previous test runs in detail directly in the advanced graphical reporting interface.
+Your approach to load-testing applications running in Docker containers should be based on benchmarking load-test results. Gatling Enterprise Edition enables you to quickly execute repeatable distributed load tests and compare the results of any previous test runs in detail directly in the advanced graphical reporting interface.
 
 ## Conclusion
 

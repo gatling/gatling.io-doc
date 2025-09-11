@@ -22,9 +22,9 @@ This would match your injection profile if you're using a closed one.
 The response time is the elapsed time between:
 
 * the instant Gatling tries to send a request. It accounts for:
-  * DNS resolution time (might be bypassed if it's already cached). Note that the DNS resolution time metric is available in Gatling Enterprise.
-  * TCP connect time (might be bypassed if a keep-alive connection is available in the connection pool). Note that the TCP connect time metric is available in Gatling Enterprise.
-  * TLS handshake time (might be bypassed if a keep-alive connection is available in the connection pool). Note that the TLS handshake time metric is available in Gatling Enterprise.
+  * DNS resolution time (might be bypassed if it's already cached). Note that the DNS resolution time metric is available in Gatling Enterprise Edition.
+  * TCP connect time (might be bypassed if a keep-alive connection is available in the connection pool). Note that the TCP connect time metric is available in Gatling Enterprise Edition.
+  * TLS handshake time (might be bypassed if a keep-alive connection is available in the connection pool). Note that the TLS handshake time metric is available in Gatling Enterprise Edition.
   * HTTP round trip
 * the instant Gatling receives a complete response or experiences an error (timeout, connection error, etc)
 
@@ -38,10 +38,10 @@ The counts are the number of group executions, not the sum of the counts of each
 
 This metric provides the response times for all the requests belonging to the specified group.
 
-In Gatling Enterprise, this metric is available in the "Request" stats.
+In Gatling Enterprise Edition, this metric is available in the "Request" stats.
 
 {{< alert warning >}}
-This metric is only available in Gatling Enterprise, not in Gatling open-source HTML reports.
+This metric is only available in Gatling Enterprise Edition, not in Gatling open-source HTML reports.
 {{< /alert >}}
 
 ### Cumulated Response Time
@@ -49,14 +49,14 @@ This metric is only available in Gatling Enterprise, not in Gatling open-source 
 Group cumulated response time is the time in a group when requests are flying: requests' response time and resources start to end duration.
 In short, it's the group duration minus the pauses.
 
-In Gatling Enterprise, this metric is available in the "Group" stats, in the "Cumulated Response Time" chart.
+In Gatling Enterprise Edition, this metric is available in the "Group" stats, in the "Cumulated Response Time" chart.
 In Gatling open-source HTML reports, this metric is available when selecting a group.
 
 ### Duration
 
 Group duration is the elapsed time between the instant a virtual user enters a group and the instant it exits.
 
-In Gatling Enterprise, this metric is available in the "Group" stats, in the "Duration" chart.
+In Gatling Enterprise Edition, this metric is available in the "Group" stats, in the "Duration" chart.
 In Gatling open-source HTML reports, this metric is available when selecting a group.
 
 {{< alert tip >}}

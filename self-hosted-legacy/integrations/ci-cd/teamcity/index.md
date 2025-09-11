@@ -1,17 +1,17 @@
 ---
 menutitle: TeamCity
 title: TeamCity Plugin
-seotitle: TeamCity Plugin for Gatling Enterprise
-description: Learn how to configure the Gatling Enterprise TeamCity plugin and run your simulations.
-lead: Run your Gatling Enterprise simulations from your TeamCity CI.
+seotitle: TeamCity Plugin for Gatling Enterprise Edition
+description: Learn how to configure the Gatling Enterprise Edition TeamCity plugin and run your simulations.
+lead: Run your Gatling Enterprise Edition simulations from your TeamCity CI.
 date: 2021-03-08T12:50:20+00:00
 ---
 
 ## Purpose of this plugin
 
-This plugin allows you to start a Gatling Enterprise simulation directly from your TeamCity platform. This plugin links a TeamCity plan with one and only one Gatling Enterprise simulation.
+This plugin allows you to start a Gatling Enterprise Edition simulation directly from your TeamCity platform. This plugin links a TeamCity plan with one and only one Gatling Enterprise Edition simulation.
 
-This plugin doesn't create a new Gatling Enterprise simulation, you have to create it manually before.
+This plugin doesn't create a new Gatling Enterprise Edition simulation, you have to create it manually before.
 
 ## Installation
 
@@ -31,16 +31,16 @@ Once the plugin is uploaded, you need to enable it.
 
 The plugin needs a global configuration. Go to **Administration**, then **frontline-teamcity-plugin**:
 
-- the **Gatling Enterprise Address** is the address of Gatling Enterprise.
-- the **Gatling Enterprise API Address** is not needed with Gatling Enterprise Self-Hosted and should be left blank.
-- the **Gatling Enterprise API Token** is needed to authenticate to Gatling Enterprise:
+- the **Gatling Enterprise Edition Address** is the address of Gatling Enterprise Edition.
+- the **Gatling Enterprise Edition API Address** is not needed with Gatling Enterprise Edition Self-Hosted and should be left blank.
+- the **Gatling Enterprise Edition API Token** is needed to authenticate to Gatling Enterprise Edition:
   - the [API token]({{< ref "/admin/api-tokens" >}}) needs the **All** role.
 
 {{< img src="administration.png" alt="" >}}
 
 ## Plan set-up
 
-Add a new build step called **Gatling Enterprise Launcher**. Choose in the Simulation list the simulation you want to monitor. You need to configure the global properties of the plugin, and create at least a simulation on Gatling Enterprise to do this step.
+Add a new build step called **Gatling Enterprise Edition Launcher**. Choose in the Simulation list the simulation you want to monitor. You need to configure the global properties of the plugin, and create at least a simulation on Gatling Enterprise Edition to do this step.
 
 {{< img src="configuration.png" alt="Configuration" >}}
 
@@ -48,7 +48,7 @@ This step regularly prints a summary of the run's current status to the build lo
 
 ### JUnit reporting
 
-You can display the results of the Gatling Enterprise assertions as a JUnit Test.
+You can display the results of the Gatling Enterprise Edition assertions as a JUnit Test.
 
 Add a new build feature called **XML report processing**. Choose **Ant JUnit** as report type, and enter in the **Monitoring rules** input the following line:
 
@@ -58,10 +58,10 @@ Add a new build feature called **XML report processing**. Choose **Ant JUnit** a
 
 ## Usage
 
-A new Gatling Enterprise simulation will be started every time the job is run. Check the Console Log to see the advancement of the simulation. If the simulation ran successfully, it will look like the following:
+A new Gatling Enterprise Edition simulation will be started every time the job is run. Check the Console Log to see the advancement of the simulation. If the simulation ran successfully, it will look like the following:
 
 {{< img src="log.png" alt="Console Log" >}}
 
-When the job run is finished, you will be able to see on the **Gatling Enterprise Results** tab, the summary of the Gatling Enterprise simulation.
+When the job run is finished, you will be able to see on the **Gatling Enterprise Edition Results** tab, the summary of the Gatling Enterprise Edition simulation.
 
 {{< img src="display-results.png" alt="Display results" >}}

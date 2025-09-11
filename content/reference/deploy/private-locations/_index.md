@@ -1,6 +1,6 @@
 ---
 title: Private locations
-seotitle: Private locations for Gatling Enterprise
+seotitle: Private locations for Gatling Enterprise Edition
 description: Learn how to setup private locations on your own accounts.
 ordering:
   - introduction

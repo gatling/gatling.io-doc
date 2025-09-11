@@ -1,7 +1,7 @@
 ---
 title: AWS locations configuration
 menutitle: Configuration
-seotitle: Configure AWS locations in Gatling Enterprise
+seotitle: Configure AWS locations in Gatling Enterprise Edition
 description: AWS locations on your private AWS account.
 lead: Private Locations on your AWS account.
 date: 2023-01-12T16:46:04+00:00
@@ -24,7 +24,7 @@ Accelerate deployment and simplify configuration with Gatling's pre-built [<span
 
 ## Permissions
 
-AWS private locations require the control plane to have access to AWS credentials from the default credential provider chain.
+AWS private locations requires the control plane to have access to AWS credentials from the default credential provider chain.
 
 See [the AWS documentation for the Default Credential Provider Chain](https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html#credentials-default).
 

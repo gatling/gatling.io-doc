@@ -1,6 +1,6 @@
 ---
 title: Gatling documentation
-description: Documentation for the Gatling and Gatling Enterprise load testing tools.
+description: Documentation for the Gatling Community and Enterprise Edition load testing tools.
 date: 2021-04-20T18:30:56+02:00
 cascade:
   docsRepo: https://github.com/gatling/gatling.io-doc/blob/main/content
@@ -26,15 +26,15 @@ While Gatling offers robust support for **HTTP** out of the box, the load engine
 
 ## Need centralized test management and real-time reporting?
 
-**Gatling Enterprise** extends the open-source capabilities with:
+**Gatling Enterprise Edition** extends the open-source capabilities with:
 
 - A web UI to manage, launch, and monitor tests
 - Real-time dashboards with detailed analytics
 - CI/CD integration, advanced permissions, and support for hybrid/cloud deployments
 
-Try **Gatling Enterprise** free for 14 days, no credit card required.[ Start your trial →](https://cloud.gatling.io?utm_source=docs)
+Try **Gatling Enterprise Edition** free for 14 days, no credit card required.[ Start your trial →](https://cloud.gatling.io?utm_source=docs)
 
-Want to learn more about what Gatling Enterprise offers? [Compare OSS and Enterprise editions →](https://gatling.io/products/oss-vs-enterprise?utm_source=docs)
+Want to learn more about what Gatling Enterprise Edition offers? [Compare OSS and Enterprise editions →](https://gatling.io/products/oss-vs-enterprise?utm_source=docs)
 
 ## Getting started
 
@@ -49,9 +49,9 @@ Ready to write and run your first tests? Start here:
 
 ## Explore the docs
 
-- [**Guides →**]({{< ref "/guides" >}}) Practical how-to content for writing and scaling tests, managing integrations, and working with Gatling Enterprise.
+- [**Guides →**]({{< ref "/guides" >}}) Practical how-to content for writing and scaling tests, managing integrations, and working with Gatling Enterprise Edition.
 - [**Load Testing Concepts →**]({{< ref "/testing-concepts" >}}) Learn the key concepts behind performance testing, virtual users, injection profiles, and load models.
-- [**Analytics & Metrics Concepts →**]({{< ref "/concepts" >}}) Understand the metrics exposed by Gatling Enterprise dashboards and how to interpret them.
+- [**Analytics & Metrics Concepts →**]({{< ref "/concepts" >}}) Understand the metrics exposed by Gatling Enterprise Edition dashboards and how to interpret them.
 - [**Reference →**]({{< ref "/reference" >}}) Complete documentation for Gatling’s SDKs, protocol support, and configuration options.
 - [**Integrations →**]({{< ref "/integrations" >}}) Explore integrations with CI/CD pipelines, build systems, and observability tools like APM platforms.
 - [**Release Notes →**]({{< ref "/release-notes" >}}) What’s new in the latest Gatling versions and feature releases.
@@ -59,10 +59,10 @@ Ready to write and run your first tests? Start here:
 
 ## Looking for help?
 
-**Using Gatling Open Source?**
+**Using Gatling Community Edition?**
 
 Ask your questions and get help from the community at [**community.gatling.io**](https://community.gatling.io/)
 
-**Using Gatling Enterprise?**
+**Using Gatling Enterprise Edition?**
 
 Reach out to our support team directly from your workspace: [**cloud.gatling.io**](https://cloud.gatling.io/)

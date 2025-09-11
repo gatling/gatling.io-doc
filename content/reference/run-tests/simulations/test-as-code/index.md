@@ -1,9 +1,9 @@
 ---
 title: Create simulations from packaged code
 menutitle: Create simulations from packaged code
-seotitle: Create simulations from packaged code in Gatling Enterprise
-description: Learn how to create simulations from packaged code in Gatling Enterprise.
-lead: Create simulations from packaged code in Gatling Enterprise.
+seotitle: Create simulations from packaged code in Gatling Enterprise Edition
+description: Learn how to create simulations from packaged code in Gatling Enterprise Edition.
+lead: Create simulations from packaged code in Gatling Enterprise Edition.
 
 ---
 
@@ -16,7 +16,7 @@ Click the **Create a simulation** button on the Simulations view or the **Get st
 Once you've selected your package, click the **Create** button to configure your simulation
 
 {{< alert warning >}}
-Gatling Enterprise has a hard limit for run durations of 7 days and will stop any test running for longer than that.
+Gatling Enterprise Edition has a hard limit for run durations of 7 days and will stop any test running for longer than that.
 This limit exists for both performance reasons (to avoid data growing too large to be presented in the dashboard) and security
 reasons (to avoid a forgotten test running forever).
 {{< /alert >}}
@@ -31,10 +31,10 @@ In this step, define the simulation's general parameters:
 
 ### Configure the load generator locations {#locations-configuration}
 
-Configure the Gatling Enterprise load generator location(s).
+Configure the Gatling Enterprise Edition load generator location(s).
 
 You can use: 
-- managed locations provided by Gatling Enterprise
+- managed locations provided by Gatling Enterprise Edition
 - [private locations]({{< ref "/reference/deploy/private-locations/introduction" >}})
 - [dedicated IP addresses]({{< ref "dedicated-ips" >}}) for your managed load generators.
 
@@ -48,7 +48,7 @@ Managed location load generators have the following specifications:
 - 8GB of RAM
 - bandwidth up to 10 Gbit/s
 
-Gatling Enterprise managed locations are available in the following regions:
+Gatling Enterprise Edition managed locations are available in the following regions:
 
 - AP Pacific (Hong kong)
 - AP Pacific (Tokyo)
@@ -68,7 +68,7 @@ To get the best results from your simulation you should select the load generato
 
 {{< img src="step2.png" alt="Create simulation" >}}
 
-- **Location**: defines the locations to be used when initiating the Gatling Enterprise load generators.
+- **Location**: defines the locations to be used when initiating the Gatling Enterprise Edition load generators.
 - **Number of load generators**: number of load generators for this location.
 - **Weight distribution**: by default, every load generator will produce the same load. If enabled, you must set the weight in % for each location (e.g. the first location does 20% of the requests, and the second does 80%). The sum of all weights must be 100%.
 

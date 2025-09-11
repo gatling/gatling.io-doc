@@ -21,7 +21,7 @@ To use this guide, you will need to meet the following prerequisites:  
 - Java 17
 - Maven or Gradle
 - A Kafka broker (up and running)
-- A trial Gatling Enterprise account
+- A trial Gatling Enterprise Edition account
 
 ### Add the dependencies
 
@@ -212,14 +212,14 @@ public class KafkaSimulation extends Simulation{
 
 We recommend running your test locally to debug and ensure it works. To do so, run the Engine class or use Maven or Gradle. You can find the details in the [Maven]({{< ref="/integrations/build-tools/maven-plugin" >}}) and [Gradle]({{< ref="/integrations/build-tools/gradle-plugin" >}}) documentation, respectively. 
 
-The next step is to use Gatling Enterprise to take advantage of key features such as: 
+The next step is to use Gatling Enterprise Edition to take advantage of key features such as: 
 
 - distributed load testing to inject heavy traffic,  
 - advanced reporting,
 - run history and comparison,
 - centralized reporting and access to a multi-tenant solution.
 
-To do this, use your Gatling Enterprise account and follow the documentation for packaging and uploading your simulation. Then, follow either the Maven or Gradle plugin documentation to run your first simulation on Gatling Enterprise.
+To do this, use your Gatling Enterprise Edition account and follow the documentation for packaging and uploading your simulation. Then, follow either the Maven or Gradle plugin documentation to run your first simulation on Gatling Enterprise Edition.
 
 {{< img src="kafka-gatling.webp" >}}
 

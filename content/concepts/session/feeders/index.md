@@ -175,12 +175,12 @@ Supported formats are gzip and zip (but archive must contain only one single fil
 
 ### Distributed files {{% badge enterprise "Enterprise" /%}} {#distributed}
 
-If you want to run distributed with [Gatling Enterprise](https://gatling.io/products/)
+If you want to run distributed with [Gatling Enterprise Edition](https://gatling.io/products/)
 and you want to distribute data so that users don't use the same data when they run on different cluster nodes, you can use the `shard` option.
 For example, if you have a file with 30,000 records deployed on 3 nodes, each will use a 10,000 records slice.
 
 {{< alert warning >}}
-`shard` is only effective when running with Gatling Enterprise, otherwise it's just a noop.
+`shard` is only effective when running with Gatling Enterprise Edition, otherwise it's just a noop.
 {{< /alert >}}
 
 {{< include-code "shard" >}}

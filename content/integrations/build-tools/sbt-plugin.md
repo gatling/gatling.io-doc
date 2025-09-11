@@ -1,9 +1,9 @@
 ---
 menutitle: sbt Plugin
 title: Gatling sbt Plugin
-seotitle: sbt Plugin for Gatling and Gatling Enterprise
-description: How to use the sbt plugin for Gatling to run tests and deploy them to Gatling Enterprise.
-lead: The sbt plugin allows you to run Gatling tests from the command line, without the bundle, as well as to package your simulations for Gatling Enterprise
+seotitle: sbt Plugin for Gatling and Gatling Enterprise Edition
+description: How to use the sbt plugin for Gatling to run tests and deploy them to Gatling Enterprise Edition.
+lead: The sbt plugin allows you to run Gatling tests from the command line, without the bundle, as well as to package your simulations for Gatling Enterprise Edition.
 aliases:
   - /reference/extensions/build-tools/sbt-plugin
   - /reference/integrations/build-tools/sbt-plugin/
@@ -11,13 +11,13 @@ date: 2021-04-20T18:30:56+02:00
 ---
 
 This sbt plugin integrates Gatling with sbt, allowing to use Gatling as a testing framework. It can also be used to
-package your Gatling project to run it on [Gatling Enterprise](https://gatling.io/products/).
+package your Gatling project to run it on [Gatling Enterprise Edition](https://gatling.io/products/).
 
 ## Versions
 
 Check out available versions on [Maven Central](https://central.sonatype.com/search?q=gatling-sbt&namespace=io.gatling).
 
-Beware that milestones (M versions) are not documented for OSS users and are only released for [Gatling Enterprise](https://gatling.io/products/) customers.
+Beware that milestones (M versions) are not documented for OSS users and are only released for [Gatling Enterprise Edition](https://gatling.io/products/) customers.
 
 ## Setup
 
@@ -119,7 +119,7 @@ This behavior differs from what was previously possible, eg. calling `test` with
 However, this caused many interferences with other testing libraries and forcing the use of a prefix solves those issues.
 {{< /alert >}}
 
-### Running your simulations on Gatling Enterprise
+### Running your simulations on Gatling Enterprise Edition { #running-your-simulations-on-gatling-enterprise }
 
 {{< alert info >}}
 To work from the `it` configuration, simply replace `Gatling/` with `GatlingIt/` in the
@@ -129,7 +129,7 @@ configuration and commands.
 #### Prerequisites
 
 You need to configure an [an API token]({{< ref "reference/collaborate/admin/api-tokens" >}}) for most
-of the actions between the CLI and Gatling Enterprise.
+of the actions between the CLI and Gatling Enterprise Edition.
 
 {{< alert warning >}}
 The API token needs the `Configure` role on expected teams.
@@ -149,7 +149,7 @@ If really needed, you can also configure it in your build.sbt:
 Gatling / enterpriseApiToken := "YOUR_API_TOKEN"
 ```
 
-#### Deploying on Gatling Enterprise
+#### Deploying on Gatling Enterprise Edition { #deploying-on-gatling-enterprise }
 
 With `Gatling/enterpriseDeploy` command, you can:
 - Create, update and upload packages
@@ -169,7 +169,7 @@ You can run this command without any configuration to try it.
 Check the [Configuration as Code documentation]({{< ref "/reference/run-tests/sources/configuration-as-code" >}}) for the complete reference and advanced usage.
 {{< /alert >}}
 
-#### Start your simulations on Gatling Enterprise
+#### Start your simulations on Gatling Enterprise Edition { #start-your-simulations-on-gatling-enterprise }
 
 You can, using the `gatling:enterpriseStart` command:
 - Automatically [deploy your package and associated simulations](#deploying-on-gatling-enterprise)
@@ -198,7 +198,7 @@ Here are additional options for this command:
 
 ##### Packaging
 
-You can directly package your simulations for Gatling Enterprise using:
+You can directly package your simulations for Gatling Enterprise Edition using:
 
 ```shell
 sbt Gatling/enterprisePackage

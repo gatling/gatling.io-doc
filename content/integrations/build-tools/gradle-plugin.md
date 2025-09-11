@@ -1,9 +1,9 @@
 ---
 menutitle: Gradle Plugin
 title: Gatling Gradle Plugin
-seotitle: Gradle Plugin for Gatling and Gatling Enterprise
-description: How to use the Gradle plugin for Gatling to run tests and deploy them to Gatling Enterprise.
-lead: The Gradle plugin allows you to run Gatling tests from the command line, without the bundle, as well as to package your simulations for Gatling Enterprise
+seotitle: Gradle Plugin for Gatling and Gatling Enterprise Edition
+description: How to use the Gradle plugin for Gatling to run tests and deploy them to Gatling Enterprise Edition.
+lead: The Gradle plugin allows you to run Gatling tests from the command line, without the bundle, as well as to package your simulations for Gatling Enterprise Edition.
 aliases:
   - /reference/extensions/build-tools/gradle-plugin
   - /reference/integrations/build-tools/gradle-plugin/
@@ -102,7 +102,7 @@ The plugin defines the following extension properties in the `gatling` closure:
 | `jvmArgs`           | List    | <pre>[<br> '-server',<br> '-Xmx1G',<br> '-XX:+HeapDumpOnOutOfMemoryError',<br> '-XX:MaxInlineLevel=20',<br> '-XX:MaxTrivialSize=12',<br> '--add-opens=java.base/java.lang=ALL-UNNAMED',<br> '--add-opens=java.base/jdk.internal.misc=ALL-UNNAMED'<br>]</pre> | Arguments passed to JVM when executing Gatling simulations (setting them replaces the defaults) |
 | `systemProperties`  | Map     | `[]`                                                                                                                                                                                                                                                         | Systems properties passed to JVM together with gradle ones                                      |
 | `simulation`        | String  | A fully qualified class name that extends a Gatling `Simulation`                                                                                                                                                                                             | The simulation to run                                                                           |
-| `apiToken`          | String  | `null`, optional                                                                                                                                                                                                                                             | Your Gatling Enterprise api token                                                               |
+| `apiToken`          | String  | `null`, optional                                                                                                                                                                                                                                             | Your Gatling Enterprise Edition api token                                                               |
 
 How to override Gatling version, JVM arguments and system properties:
 
@@ -222,12 +222,12 @@ Linux/MacOS: ./gradlew gatlingRecorder
 Windows: gradlew.bat gatlingRecorder
 {{</ platform-toggle >}}
 
-### Running your simulations on Gatling Enterprise
+### Running your simulations on Gatling Enterprise Edition { #running-your-simulations-on-gatling-enterprise }
 
 #### Prerequisites
 
 You need to configure an [an API token]({{< ref "reference/collaborate/admin/api-tokens" >}}) for most
-of the actions between the CLI and Gatling Enterprise.
+of the actions between the CLI and Gatling Enterprise Edition.
 
 {{< alert warning >}}
 The API token needs the `Configure` role on expected teams.
@@ -252,7 +252,7 @@ gatling {
 }
 ```
 
-#### Deploying on Gatling Enterprise
+#### Deploying on Gatling Enterprise Edition { #deploying-on-gatling-enterprise }
 
 With `gatlingEnterpriseDeploy` command, you can:
 - Create, update and upload packages
@@ -273,7 +273,7 @@ Check the [Configuration as Code documentation]({{< ref "/reference/run-tests/so
 {{< /alert >}}
 
 
-#### Start your simulations on Gatling Enterprise
+#### Start your simulations on Gatling Enterprise Edition { #start-your-simulations-on-gatling-enterprise }
 
 You can, using the `gatlingEnterpriseStart` command:
 - Automatically [deploy your package and associated simulations](#deploying-on-gatling-enterprise)
@@ -307,7 +307,7 @@ Here are additional options for this command:
 
 ##### Packaging
 
-You can directly package your simulations for Gatling Enterprise using:
+You can directly package your simulations for Gatling Enterprise Edition using:
 
 {{< platform-toggle >}}
 Linux/MacOS: ./gradlew gatlingEnterprisePackage

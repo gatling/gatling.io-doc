@@ -8,7 +8,7 @@ aliases:
 ---
 
 {{< alert enterprise >}}
-This feature is only available on Gatling Enterprise. To learn more, [explore our plans](https://gatling.io/pricing?utm_source=docs)
+This feature is only available on Gatling Enterprise Edition. To learn more, [explore our plans](https://gatling.io/pricing?utm_source=docs)
 {{< /alert >}}
 
 This guide provides several infrastructure-as-code options for AWS, Azure, and GCP, as well as a Kubernetes Helm chart for Private Locations & Packages deployment. By leveraging the configurations & charts from [gatling/gatling-enterprise-control-plane-deployment](https://github.com/gatling/gatling-enterprise-control-plane-deployment), you can quickly spin up Private Locations & Packages.

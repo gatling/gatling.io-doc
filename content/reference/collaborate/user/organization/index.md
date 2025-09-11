@@ -1,7 +1,7 @@
 ---
 title: Organizations
-seotitle: Organizations in Gatling Enterprise
-description: Learn how to access your organization details in Gatling Enterprise.
+seotitle: Organizations in Gatling Enterprise Edition
+description: Learn how to access your organization details in Gatling Enterprise Edition.
 date: 2021-08-05T13:13:30+00:00
 aliases:
   - /reference/execute/cloud/user/organization/

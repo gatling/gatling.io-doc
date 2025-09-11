@@ -16,7 +16,7 @@ Integrating AWS Secrets Manager with Gatling allows secure access and retrieval 
 
 ## Prerequisites
 
-- Utilizing Gatling Enterprise's Private Locations feature. For more information, visit: [Gatling Cloud Installation Guide]({{< ref "/reference/deploy/private-locations/introduction/" >}})
+- Utilizing Gatling Enterprise Edition's Private Locations feature. For more information, visit: [Gatling Cloud Installation Guide]({{< ref "/reference/deploy/private-locations/introduction/" >}})
 - Using Gatling SDK with Java 1.x or 2.x.
 
 

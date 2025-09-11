@@ -166,4 +166,4 @@ In Gatling, the default unit for duration parameters is seconds.
 Throughput is the number of requests per second during a test. 
 
 - In the OSS version throughput is reported as a mean value for the entire test (req/s). 
-- In Gatling Enterprise, throughput is time-resolved. 
+- In Gatling Enterprise Edition, throughput is time-resolved. 

@@ -1,7 +1,7 @@
 ---
 title: GCP locations configuration
 menutitle: Configuration
-seotitle: Configure GCP locations in Gatling Enterprise
+seotitle: Configure GCP locations in Gatling Enterprise Edition
 description: Load Generators on your private GCP account.
 lead: Private Locations on your GCP account.
 date: 2023-10-02T15:29:00+00:00

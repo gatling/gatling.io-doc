@@ -1,20 +1,20 @@
 ---
 menutitle: sbt Plugin
 title: Gatling sbt Plugin
-seotitle: sbt Plugin for Gatling and Gatling Enterprise
-description: How to use the sbt plugin for Gatling to run tests and deploy them to Gatling Enterprise.
-lead: The sbt plugin allows you to run Gatling tests from the command line, without the bundle, as well as to package your simulations for Gatling Enterprise
+seotitle: sbt Plugin for Gatling and Gatling Enterprise Edition
+description: How to use the sbt plugin for Gatling to run tests and deploy them to Gatling Enterprise Edition.
+lead: The sbt plugin allows you to run Gatling tests from the command line, without the bundle, as well as to package your simulations for Gatling Enterprise Edition.
 date: 2021-04-20T18:30:56+02:00
 ---
 
 This sbt plugin integrates Gatling with sbt, allowing to use Gatling as a testing framework. It can also be used to
-package your Gatling project to run it on [Gatling Enterprise](https://gatling.io/products/).
+package your Gatling project to run it on [Gatling Enterprise Edition](https://gatling.io/products/).
 
 ## Versions
 
 Check out available versions on [Maven Central](https://central.sonatype.com/search?q=gatling-sbt&namespace=io.gatling).
 
-Beware that milestones (M versions) are not documented for OSS users and are only released for [Gatling Enterprise](https://gatling.io/products/) customers.
+Beware that milestones (M versions) are not documented for OSS users and are only released for [Gatling Enterprise Edition](https://gatling.io/products/) customers.
 
 ## Setup
 
@@ -116,11 +116,11 @@ This behavior differs from what was previously possible, eg. calling `test` with
 However, this caused many interferences with other testing libraries and forcing the use of a prefix solves those issues.
 {{< /alert >}}
 
-### Running your simulations on Gatling Enterprise Self-Hosted
+### Running your simulations on Gatling Enterprise Self-Hosted { #running-your-simulations-on-gatling-enterprise-self-hosted }
 
 #### Build from sources
 
-Once you have configured the sbt plugin on your project, Gatling Enterprise Self-Hosted can build it from sources
+Once you have configured the sbt plugin on your project, Gatling Enterprise Edition Self-Hosted can build it from sources
 without additional configuration. [Add your source repository]({{< ref "/execute/repositories#downloading-from-sources" >}})
 and configure your simulation to [build from sources]({{< ref "/execute/simulations#option-1-build-from-sources" >}})
 using sbt.
@@ -133,7 +133,7 @@ sbt Gatling/enterprisePackage
 ```
 
 {{< alert warning >}}
-If you use the `it` configuration, you will need to configure a custom build command in Gatling Enterprise, as the
+If you use the `it` configuration, you will need to configure a custom build command in Gatling Enterprise Edition Self-Hosted, as the
 default one is for the `test` configuration:
 ``sbt -J-Xss100M ;clean;GatlingIt/enterprisePackage -batch --error``
 {{< /alert >}}

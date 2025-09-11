@@ -1,7 +1,7 @@
 ---
 title: Release Notes
-seotitle: What's New in Gatling Enterprise Self-Hosted
-description: Find out about latest Gatling Enterprise Self-Hosted versions and the new features
+seotitle: What's New in Gatling Enterprise Edition Self-Hosted
+description: Find out about latest Gatling Enterprise Edition Self-Hosted versions and the new features
 lead: What's new in the latest releases
 ordering:
   - 1.26.md

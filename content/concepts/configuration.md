@@ -98,7 +98,7 @@ Windows: echo %GATLING_ENTERPRISE_API_TOKEN%
 
 ### Pass a Java system property
 
-To pass a Java system property, use `-Dprop=value` with any of the JVM build tools. The following example passes and API token and starts a simulation on Gatling Enterprise:
+To pass a Java system property, use `-Dprop=value` with any of the JVM build tools. The following example passes and API token and starts a simulation on Gatling Enterprise Edition:
 
 #### Maven
 

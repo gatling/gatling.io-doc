@@ -9,7 +9,7 @@ aliases:
 ---
 
 {{< alert enterprise >}}
-Enhanced usage of this feature is available with Gatling Enterprise. [Explore our plans to learn more](https://gatling.io/pricing?utm_source=docs).
+Enhanced usage of this feature is available with Gatling Enterprise Edition. [Explore our plans to learn more](https://gatling.io/pricing?utm_source=docs).
 {{< /alert >}}
 
 [Postman](https://www.postman.com) is a collaborative platform for testing and documenting APIs. Check the
@@ -18,12 +18,12 @@ Enhanced usage of this feature is available with Gatling Enterprise. [Explore ou
 ## License and limitations {#license}
 
 **The Gatling Postman component is distributed under the
-[Gatling Enterprise Component License]({{< ref "/project/licenses/enterprise-component" >}}).**
+[Gatling Enterprise Edition Component License]({{< ref "/project/licenses/enterprise-component" >}}).**
 
 Gatling Postman can be used with both the [Open Source](https://gatling.io/products/) and
 [Enterprise](https://gatling.io/products/) versions of Gatling.
 
-Its usage is unlimited when running on [Gatling Enterprise](https://gatling.io/products/). When used with
+Its usage is unlimited when running on [Gatling Enterprise Edition](https://gatling.io/products/). When used with
 [Gatling Open Source](https://gatling.io/products/), usage is limited to:
 
 - 5 users maximum
@@ -156,6 +156,6 @@ collection root) one after the other:
 By default, only requests defined directly at the current level are included. Use the `recursive` option if you want to
 include all requests defined in sub-folders (at any depth).
 
-## Run Postman-based tests on Gatling Enterprise
+## Run Postman-based tests on Gatling Enterprise Edition
 
-To run Postman-based tests on Gatling Enterprise you need to package your test and upload it to the Gatling Enterprise platform. See the [JavaScript SDK documentation]({{< ref "/integrations/build-tools/js-cli/#running-your-simulations-on-gatling-enterprise" >}}) for packaging and deployment options. 
+To run Postman-based tests on Gatling Enterprise Edition you need to package your test and upload it to the Gatling Enterprise Edition platform. See the [JavaScript SDK documentation]({{< ref "/integrations/build-tools/js-cli/#running-your-simulations-on-gatling-enterprise" >}}) for packaging and deployment options.

@@ -1,9 +1,9 @@
 ---
 menutitle: Azure DevOps Pipelines
 title: Integrating Azure DevOps Pipelines
-seotitle: Integrating Azure DevOps Pipelines with Gatling Enterprise
+seotitle: Integrating Azure DevOps Pipelines with Gatling Enterprise Edition
 description: Learn how to use the CI script with Azure DevOps Pipelines to run your simulations.
-lead: Run your Gatling Enterprise simulations from Azure DevOps Pipelines.
+lead: Run your Gatling Enterprise Edition simulations from Azure DevOps Pipelines.
 aliases:
   - /reference/extensions/ci-cd/azure-devops
   - /reference/integrations/ci-cd/azure-devops
@@ -11,12 +11,12 @@ date: 2023-11-09T15:25:27+0000
 ---
 
 {{< alert enterprise >}}
-This feature is only available on Gatling Enterprise. To learn more, [explore our plans](https://gatling.io/pricing?utm_source=docs)
+This feature is only available on Gatling Enterprise Edition. To learn more, [explore our plans](https://gatling.io/pricing?utm_source=docs)
 {{< /alert >}}
 
 We do not currently provide an official Azure Pipelines extension.
 This page documents how to use our [CI script]({{< ref "other#using-a-shell-script" >}}) to run tests on Gatling
-Enterprise with Azure DevOps
+Enterprise Edition with Azure DevOps
 
 {{< alert info >}}
 All the configuration shown in this page is available on the demo project [gatling/azure-devops-demo](https://github.com/gatling/azure-devops-demo).
@@ -27,7 +27,7 @@ All the configuration shown in this page is available on the demo project [gatli
 You will need:
 
 - A git repository: we will be using GitHub in our example
-- A working simulation on [Gatling Enterprise](https://cloud.gatling.io): you
+- A working simulation on [Gatling Enterprise Edition](https://cloud.gatling.io): you
   will need its ID later on, which you can copy with **Copy Simulation ID to clipboard** in the Simulations page
 - An [API token]({{< ref "reference/collaborate/admin/api-tokens" >}}) which needs the **Start** permission.
 
@@ -107,7 +107,7 @@ After the job has been queued, if you see permissions errors, click on the red *
 
 {{< img src="permission-needed.png" alt="Permissions needed waiting for user action" >}}
 
-After the job is created and queued, you can see the output of a Gatling Enterprise run by clicking on **Job**, 
+After the job is created and queued, you can see the output of a Gatling Enterprise Edition run by clicking on **Job**, 
 then on the **Start simulation** task:
 
 {{< img src="successful-run.png" alt="Example of a successful run" >}}

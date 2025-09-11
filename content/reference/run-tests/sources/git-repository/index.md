@@ -1,9 +1,9 @@
 ---
 title: Git repository
 menutitle: Git repository
-seotitle: Git repository in Gatling Enterprise
-description: Learn how to create and manage git repositories in Gatling Enterprise.
-lead: Git repository in Gatling Enterprise.
+seotitle: Git repository in Gatling Enterprise Edition
+description: Learn how to create and manage git repositories in Gatling Enterprise Edition.
+lead: Git repository in Gatling Enterprise Edition.
 date: 2025-07-30T10:29:36+00:00
 ---
 
@@ -37,6 +37,6 @@ From the Sources view, you can create simulations directly from a Git repository
 
 To copy the repository ID, click on the kebab menu (three dots) and select **Copy repository ID to clipboard**.
 
-## Delete a Git repository from Gatling Enterprise
+## Delete a Git repository from Gatling Enterprise Edition
 
 To delete a Git repository, click on the kebab menu (three dots) and select **Delete**. Confirm the deletion in the pop-up dialog.

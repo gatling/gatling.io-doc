@@ -1,9 +1,9 @@
 ---
 menutitle: Gradle Plugin
 title: Gatling Gradle Plugin
-seotitle: Gradle Plugin for Gatling and Gatling Enterprise
-description: How to use the Gradle plugin for Gatling to run tests and deploy them to Gatling Enterprise.
-lead: The Gradle plugin allows you to run Gatling tests from the command line, without the bundle, as well as to package your simulations for Gatling Enterprise
+seotitle: Gradle Plugin for Gatling and Gatling Enterprise Edition
+description: How to use the Gradle plugin for Gatling to run tests and deploy them to Gatling Enterprise Edition.
+lead: The Gradle plugin allows you to run Gatling tests from the command line, without the bundle, as well as to package your simulations for Gatling Enterprise Edition.
 date: 2021-04-20T18:30:56+02:00
 ---
 
@@ -99,7 +99,7 @@ The plugin defines the following extension properties in the `gatling` closure:
 | `jvmArgs`           | List    | <pre>[<br> '-server',<br> '-Xmx1G',<br> '-XX:+HeapDumpOnOutOfMemoryError',<br> '-XX:+UseG1GC',<br> '-XX:+ParallelRefProcEnabled',<br> '-XX:MaxInlineLevel=20',<br> '-XX:MaxTrivialSize=12'<br>]</pre> | Additional arguments passed to JVM when executing Gatling simulations                  |
 | `systemProperties`  | Map     | `['java.net.preferIPv6Addresses': true]`                                                                                                                                                              | Additional systems properties passed to JVM together with caller JVM system properties |
 | `simulation`        | String  | A fully qualified class name that extends a Gatling `Simulation`                                                                                                                                      | The simulation to run                                                                  |
-| `apiToken`          | String  | `null`, optional                                                                                                                                                                                      | Your Gatling Enterprise api token                                                      |
+| `apiToken`          | String  | `null`, optional                                                                                                                                                                                      | Your Gatling Enterprise Edition api token                                                      |
 
 How to override Gatling version, JVM arguments and system properties:
 
@@ -218,11 +218,11 @@ Linux/MacOS: ./gradlew gatlingRecorder
 Windows: gradlew.bat gatlingRecorder
 {{</ code-toggle >}}
 
-### Running your simulations on Gatling Enterprise Self-Hosted
+### Running your simulations on Gatling Enterprise Edition Self-Hosted { #running-your-simulations-on-gatling-enterprise-self-hosted }
 
 #### Build from sources
 
-Once you have configured the Gradle plugin on your project, Gatling Enterprise Self-Hosted can build it from sources
+Once you have configured the Gradle plugin on your project, Gatling Enterprise Edition Self-Hosted can build it from sources
 without additional configuration.
 [Add your source repository]({{< ref "/execute/repositories#downloading-from-sources" >}})
 and configure your simulation to

@@ -1,6 +1,6 @@
 ---
 title: Private packages
-seotitle: Private packages for Gatling Enterprise
+seotitle: Private packages for Gatling Enterprise Edition
 description: How to install and use a private repository on your Control Plane.
 lead: Store your simulations' packages privately in your infrastructure, and use them with private locations.
 date: 2023-08-09T12:00:00+00:00
@@ -20,7 +20,7 @@ The control plane offers a private repository; enable it for confidential packag
 ## Private packages
 
 A private package is uploaded through the control plane into a private repository.
-_Gatling Enterprise Cloud only receives the Gatling version associated with the package and the names of simulation classes, which helps in simulation configuration_
+_Gatling Enterprise Edition only receives the Gatling version associated with the package and the names of simulation classes, which helps in simulation configuration_
 
 When initiating a Gatling run, the control plane generates a temporary signed link to allow the download of the private package from the load generators.
 
@@ -43,7 +43,7 @@ Before going further, ensure that your repository is ready to hold your packages
 
 ### Control plane repository
 
-The control plane repository uses the control plane server to manage uploads to the repository, secured by a Gatling Enterprise API Token with `Configure` role.
+The control plane repository uses the control plane server to manage uploads to the repository, secured by a Gatling Enterprise Edition API Token with `Configure` role.
 You can modify the [server configuration]({{< ref "/reference/deploy/private-locations/introduction/#control-plane-server" >}}) in the Control Plane configuration.
 
 #### AWS S3
@@ -235,5 +235,5 @@ To create a private package, use Gatling Plugin deployment commands with control
 
 ### Delete a private package
 
-To delete a private package, delete the package within Gatling Enterprise. 
+To delete a private package, delete the package within Gatling Enterprise Edition. 
 The control plane will receive the order to delete the package on the configured private repository.

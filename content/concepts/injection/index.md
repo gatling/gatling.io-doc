@@ -98,9 +98,9 @@ It's also possible with `andThen` to chain scenarios, so that children scenarios
 
 When chaining `andThen` calls, Gatling will define the new children to only start once all the users of the previous children have terminated, descendants included.
 
-## Disabling Gatling Enterprise load sharding
+## Disabling Gatling Enterprise Edition load sharding
 
-By default, Gatling Enterprise will distribute your injection profile amongst all load generators when running a distributed test from multiple nodes.
+By default, Gatling Enterprise Edition will distribute your injection profile amongst all load generators when running a distributed test from multiple nodes.
 
 This might not be the desired behavior, typically when running a first initial scenario with one single user in order to fetch some auth token to be used by the actual scenario.
 Indeed, only one node would run this user, leaving the other nodes without an initialized token.

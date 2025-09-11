@@ -1,7 +1,7 @@
 ---
 title: Kubernetes locations configuration
 menutitle: Configuration
-seotitle: Configure Kubernetes locations in Gatling Enterprise
+seotitle: Configure Kubernetes locations in Gatling Enterprise Edition
 description: Load Generators on your private Kubernetes cluster.
 lead: Private Locations on your Kubernetes cluster.
 date: 2023-01-12T16:46:04+00:00

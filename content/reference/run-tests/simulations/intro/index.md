@@ -1,8 +1,8 @@
 ---
-title: Introduction to simulations in Gatling Enterprise
-seotitle: Run tests on Gatling Enterprise
-description: Learn how to run tests on Gatling Enterprise.
-lead: Run tests on Gatling Enterprise.
+title: Introduction to simulations in Gatling Enterprise Edition
+seotitle: Run tests on Gatling Enterprise Edition
+description: Learn how to run tests on Gatling Enterprise Edition.
+lead: Run tests on Gatling Enterprise Edition.
 date: 2025-07-30T10:29:36+00:00
 ---
 

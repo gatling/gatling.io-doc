@@ -1,14 +1,14 @@
 ---
 title: Optional configurations for simulations
-seotitle: Optional configurations for simulations in Gatling Enterprise
-description: Learn about the optional configurations available for simulations in Gatling Enterprise.
-lead: Optional configurations for simulations in Gatling Enterprise.
+seotitle: Optional configurations for simulations in Gatling Enterprise Edition
+description: Learn about the optional configurations available for simulations in Gatling Enterprise Edition.
+lead: Optional configurations for simulations in Gatling Enterprise Edition.
 date: 2025-07-30T10:29:36+00:00
 ---
 
 ## Optional configurations for simulations
 
-In addition to the standard configuration options, Gatling Enterprise provides several optional configurations for simulations. These options allow you to customize the behavior of your simulations to better suit your testing needs.
+In addition to the standard configuration options, Gatling Enterprise Edition provides several optional configurations for simulations. These options allow you to customize the behavior of your simulations to better suit your testing needs.
 
 ### Load generator parameters
 
@@ -74,4 +74,4 @@ the **run will stop if the mean CPU exceeds 80% for the last 60 seconds**.
 
 ### Acceptance criteria (no-code simulations only)
 
-Gatling Enterprise allows you to define acceptance criteria for your simulations. This includes specifying thresholds for key performance indicators (KPIs) such as response time, throughput, and error rate. By setting clear acceptance criteria, you can ensure that your application meets the desired performance standards before it is deployed. For test-as-code simulations, these criteria can be defined in the simulation code itself, while for no-code simulations, they can be configured through the user interface.
+Gatling Enterprise Edition allows you to define acceptance criteria for your simulations. This includes specifying thresholds for key performance indicators (KPIs) such as response time, throughput, and error rate. By setting clear acceptance criteria, you can ensure that your application meets the desired performance standards before it is deployed. For test-as-code simulations, these criteria can be defined in the simulation code itself, while for no-code simulations, they can be configured through the user interface.

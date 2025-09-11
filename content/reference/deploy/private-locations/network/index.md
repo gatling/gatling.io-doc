@@ -9,7 +9,7 @@ aliases:
 ---
 
 {{< alert enterprise >}}
-This feature is only available on Gatling Enterprise. To learn more, [explore our plans](https://gatling.io/pricing?utm_source=docs)
+This feature is only available on Gatling Enterprise Edition. To learn more, [explore our plans](https://gatling.io/pricing?utm_source=docs)
 {{< /alert >}}
 
 This guide provides clear instructions for configuring network access for both the Control Plane and Private Locations.
@@ -33,7 +33,7 @@ You must permit outbound access to the Gatling Cloud API served from `https://ap
 
 ## Configuring a Proxy
 
-This section describes how to have all the outbound requests from Gatling Enterprise components go through a forward
+This section describes how to have all the outbound requests from Gatling Enterprise Edition components go through a forward
 proxy, an HTTP proxy, or an API gateway.
 
 ### Proxy for the Control Plane

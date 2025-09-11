@@ -177,16 +177,16 @@ or
 
 After the simulation is complete, Gatling generates an HTML link in the terminal to access your report. Review metrics such as response times, successful and failed connections, and other indicators to identify potential issues with your service.
 
-### Enterprise version
+### Enterprise Edition version
 
-Let's see how to run a simulation using Gatling Enterprise. First, you need to create an API key on Gatling Enterprise. To do this, you can check our documentation. Now you need to run the following commands:
+Let's see how to run a simulation using Gatling Enterprise Edition. First, you need to create an API key on Gatling Enterprise Edition. To do this, you can check our documentation. Now you need to run the following commands:
 
 ```console
 export GATLING_ENTERPRISE_API_TOKEN=<your_token>
 ./mvnw gatling:enterpriseDeploy
 ```
 
-Now on Gatling Enterprise → Package, you will see a new package:
+Now on Gatling Enterprise Edition → Sources, you will see a new package:
 
 {{< img src="package-demo.png" >}}
 
@@ -204,6 +204,6 @@ Now we see a small summary of the report with 5 users. If you want to view the w
 
 We've explored how to load test gRPC applications using Gatling. We also walked through setting up a practical example that demonstrates both basic gRPC testing and deadline handling, two critical aspects of modern micro-service architectures.
 
-If you want to go deeper, you can check our documentation also try Gatling Enterprise. You will get access to CI/CD integration, detailed reporting, private locations, and many more features to ensure your gRPC services perform reliably under load.
+If you want to go deeper, you can check our documentation and also try the Gatling Enterprise Edition. You will get access to CI/CD integration, detailed reporting, private locations, and many more features to ensure your gRPC services perform reliably under load.
 
-The example we've explored, though simple, showcases essential testing patterns that can be adapted for more complex scenarios. Whether you're using the open-source version for initial testing or the enterprise version for comprehensive load testing, Gatling provides the necessary tools to verify the performance and reliability of your gRPC services in real-world conditions.
+The example we've explored, though simple, showcases essential testing patterns that can be adapted for more complex scenarios. Whether you're using the open-source version for initial testing or the Enterprise Edition for comprehensive load testing, Gatling provides the necessary tools to verify the performance and reliability of your gRPC services in real-world conditions.

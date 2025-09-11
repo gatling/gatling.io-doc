@@ -1,7 +1,7 @@
 ---
 title: Azure locations configuration
 menutitle: Configuration
-seotitle: Configure Azure locations in Gatling Enterprise
+seotitle: Configure Azure locations in Gatling Enterprise Edition
 description: Learn how to configure load generators on your private Azure portal.
 lead: Learn how to configure load generators on your private Azure portal.
 date: 2023-03-31T15:29:00+00:00

@@ -1,8 +1,8 @@
 ---
 title: Create no-code simulations
-seotitle: Create no-code simulations in Gatling Enterprise
-description: Learn how to create no-code simulations in Gatling Enterprise.
-lead: Create no-code simulations in Gatling Enterprise.
+seotitle: Create no-code simulations in Gatling Enterprise Edition
+description: Learn how to create no-code simulations in Gatling Enterprise Edition.
+lead: Create no-code simulations in Gatling Enterprise Edition.
 date: 2025-07-30T10:29:36+00:00
 ---
 
@@ -45,9 +45,9 @@ Set the time parameters for the injection profile:
 
 #### Select the load generator location(s)
 
-You can either use the managed locations provided by Gatling Enterprise, your own [private locations]({{< ref "/reference/deploy/private-locations/introduction" >}}), or [dedicated IP addresses]({{< ref "dedicated-ips" >}}) for your load generators. The no-code test builder defaults to 1 load generator deployed in the Paris region.
+You can either use the managed locations provided by Gatling Enterprise Edition, your own [private locations]({{< ref "/reference/deploy/private-locations/introduction" >}}), or [dedicated IP addresses]({{< ref "dedicated-ips" >}}) for your load generators. The no-code test builder defaults to 1 load generator deployed in the Paris region.
 
-- **Location**: defines the locations to be used when initiating the Gatling Enterprise load generators.
+- **Location**: defines the locations to be used when initiating the Gatling Enterprise Edition load generators.
 - **Number of load generators**: number of load generators for this location.
 - **Weight distribution**: by default, every load generator will produce the same load. If enabled, you must set the weight in % for each location (e.g. the first location does 20% of the requests, and the second does 80%). The sum of all weights must be 100%.
 
@@ -57,7 +57,7 @@ Managed location load generators have the following specifications:
 - 8GB of RAM
 - bandwidth up to 10 Gbit/s
 
-Gatling Enterprise managed locations are available in the following regions:
+Gatling Enterprise Edition managed locations are available in the following regions:
 
 - AP Pacific (Hong kong)
 - AP Pacific (Tokyo)
