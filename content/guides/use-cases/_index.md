@@ -11,4 +11,5 @@ ordering:
   - kafka
   - docker-app
   - llm-api
+  - sse-js
 ---
