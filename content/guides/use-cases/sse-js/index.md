@@ -30,7 +30,7 @@ The project consists of 3 parts:
 
 Additionally there is a `docker-compose.yml` file to launch the backend and frontend together and (optionally) an ngrok tunnel to expose the services so they can be tested using Gatling Enterprise Edition.
 
-You can find the complete code in the [Gatling devrel repository](https://github.com/gatling/gatling-devrel/sse-js-crypto-feed).
+You can find the complete code in the [Gatling devrel repository](https://github.com/gatling/talks-and-tutorials).
 
 Let's get started! 
 
@@ -296,7 +296,6 @@ export default simulation((setUp) => {
 });
 
 ```
-
 
 ## Testing the application locally
 
