@@ -21,7 +21,7 @@ In your Postman workspace navigate to the collections menu and press the ellipsi
 
 ## Step 2: Setup a Gatling JavaScript Project
 
-If you don't already have a Gatling JavaScript Project, head to the [open-source downloads page](https://hubs.ly/Q02_3LcX0) to download it today.
+If you don't already have a Gatling JavaScript Project, head to the [Community Edition downloads page](https://hubs.ly/Q02_3LcX0) to download it today.
 
 Unzip the Gating JavaScript project and open it in your favorite IDE. The SDK has JavaScript and TypeScript folders. You can use either, but we will focus on JavaScript for the rest of this post.
 
@@ -62,7 +62,7 @@ npm install --save "@gatling.io/postman"
 
 ## Step 3: Run your test on Gatling Enterprise Edition
 
-Remove the open-source test limits by running your test on Gatling Enterprise Edition with a free trial account. To do so:
+Remove the Community Edition test limits by running your test on Gatling Enterprise Edition with a free trial account. To do so:
 
 1. Package your test by running the command `npx gatling enterprise-package` in your terminal. The packaged simulation is saved in the `target` folder.
 2. Log in to your Gatling Enterprise Edition account.

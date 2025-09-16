@@ -20,11 +20,11 @@ Enhanced usage of this feature is available with Gatling Enterprise Edition. [Ex
 **The Gatling Postman component is distributed under the
 [Gatling Enterprise Edition Component License]({{< ref "/project/licenses/enterprise-component" >}}).**
 
-Gatling Postman can be used with both the [Open Source](https://gatling.io/products/) and
+Gatling Postman can be used with both the [Community Edition](https://gatling.io/products/) and
 [Enterprise](https://gatling.io/products/) versions of Gatling.
 
 Its usage is unlimited when running on [Gatling Enterprise Edition](https://gatling.io/products/). When used with
-[Gatling Open Source](https://gatling.io/products/), usage is limited to:
+[Gatling Community Edition](https://gatling.io/products/), usage is limited to:
 
 - 5 users maximum
 - 5 minute duration tests

@@ -26,7 +26,7 @@ While Gatling offers robust support for **HTTP** out of the box, the load engine
 
 ## Need centralized test management and real-time reporting?
 
-**Gatling Enterprise Edition** extends the open-source capabilities with:
+**Gatling Enterprise Edition** extends the Community Edition capabilities with:
 
 - A web UI to manage, launch, and monitor tests
 - Real-time dashboards with detailed analytics
@@ -34,7 +34,7 @@ While Gatling offers robust support for **HTTP** out of the box, the load engine
 
 Try **Gatling Enterprise Edition** free for 14 days, no credit card required.[ Start your trial →](https://cloud.gatling.io?utm_source=docs)
 
-Want to learn more about what Gatling Enterprise Edition offers? [Compare OSS and Enterprise editions →](https://gatling.io/products/oss-vs-enterprise?utm_source=docs)
+Want to learn more about what Gatling Enterprise Edition offers? [Compare Community Edition and Enterprise editions →](https://gatling.io/products/oss-vs-enterprise?utm_source=docs)
 
 ## Getting started
 

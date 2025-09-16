@@ -24,7 +24,7 @@ Gatling Enterprise consists of:
 - The Gatling Enterprise Extensions:
   * Continuous Integration plugins for Jenkins, Bamboo and TeamCity or any solution that can trigger a bash script
   * A Grafana Datasource for querying Gatling Enterprise metrics
-- Gatling injectors to be used like standard Gatling OSS, with extra features so Gatling Enterprise can collect data from them
+- Gatling injectors to be used like standard Gatling Community Edition, with extra features so Gatling Enterprise can collect data from them
 
 ## Documentation conventions
 

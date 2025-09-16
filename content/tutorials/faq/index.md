@@ -1,6 +1,6 @@
 ---
 menutitle: Common questions
-title: Common questions about Gatling and Gatling Enterprise
+title: Common questions about Gatling Enterprise and Community Editions
 description: Common questions and answers
 lead: Common questions and answers
 date: 2021-04-20T18:30:56+02:00
@@ -8,7 +8,7 @@ aliases:
     - /guides/faq
 ---
 
-Below are answers to some of the questions we receive regularly from Gatling and Gatling Enterprise users.
+Below are answers to some of the questions we receive regularly from Gatling Community Edition and Gatling Enterprise Edition users.
 
 If you can't find a solution here or in the rest of documentation, post your question in the [Gatling Community Forum](https://community.gatling.io).
 
@@ -16,7 +16,8 @@ If you can't find a solution here or in the rest of documentation, post your que
 
 ### Which languages can I use to write scripts? 
 
-At present Gatling Enterprise supports the following languages:
+At present all Gatling editions support the following languages:
+
 - Java 
 - Scala
 - Kotlin 
@@ -25,13 +26,13 @@ At present Gatling Enterprise supports the following languages:
 
 We typically recommend Java because it is widely taught in Computer Science programs and makes including additional developers easier. Gatling is constantly evolving, and more SDKs will likely be added in the future.
 
-### Can I migrate my Gatling open-source scripts to Gatling Enterprise?
+### Can I migrate my Gatling Community Edition scripts to Gatling Enterprise Edition?
 
-Yes, the tests you develop for Gatling open source are compatible with Gatling Enterprise without requiring any modifications. If you have a Gatling Enterprise account, you can view Gatling simulations that have been migrated and are already available on the Enterprise platform.
+Yes, the tests you develop for Gatling Community Edition are compatible with Gatling Enterprise Edition without requiring any modifications. If you have a Gatling Enterprise Edition account, you can view Gatling simulations that have been migrated and are already available on the Enterprise platform.
 
-Gatling provides plugins for Maven, Gradle, and sbt. These plugins allow for a straightforward transition of your open-source script into Gatling Enterprise.
+Gatling provides plugins for Maven, Gradle, and sbt. These plugins allow for a straightforward transition of your Community Edition script into Gatling Enterprise Edition.
 
-JavaScript and TypeScript users can use their preferred package manager to create `zip` files for running tests on Gatling Enterprise.
+JavaScript and TypeScript users can use their preferred package manager to create `zip` files for running tests on Gatling Enterprise Edition.
 
 ## Running simulations
 
@@ -79,7 +80,7 @@ There are 3 main reasons to consider using additional load generators:
 
 ### How much load can 1 load generator generate with Gatling?
 
-This is the most common question we receive from people interested in Gatling Enterprise.
+This is the most common question we receive from people interested in Gatling Enterprise Edition.
 
 Gatling’s simulation capacity is determined by several factors including:
 
@@ -88,15 +89,15 @@ Gatling’s simulation capacity is determined by several factors including:
 - user actions, and 
 - script optimization. 
 
-For example, if 1 user = 1 request, you can generate 64K users /second on your local machine. This is limited by the operating system, not by Gatling. 
+For example, if 1 user = 1 request, you can generate 64,000 users per second on your local machine. This is limited by the operating system, not by Gatling. 
 
-Larger loads are possible with Gatling Enterprise by utilizing distributed testing and the ability to add additional load generators.
+Larger loads are possible with Gatling Enterprise Edition by utilizing distributed testing and the ability to add additional load generators.
 
-For Gatling Enterprise, we use AWS EC2 instances as load generators, which can simulate up to 40,000 virtual users per second or the equivalent of 300,000 requests per second. However, not all requests are built equally and some may take more work from the injectors than others. To figure out how many injectors you need, we recommend starting with as few injectors as possible and checking the injector monitoring tab of your reports. You can determine if you need additional injectors based on metrics like CPU usage. 
+For Gatling Enterprise Edition, we use AWS EC2 instances as load generators, which can simulate up to 40,000 virtual users per second or the equivalent of 300,000 requests per second. However, not all requests are built equally and some may take more work from the injectors than others. To figure out how many injectors you need, we recommend starting with as few injectors as possible and checking the injector monitoring tab of your reports. You can determine if you need additional injectors based on metrics like CPU usage. 
 
-### Can I use Gatling's open-source edition with multiple load generators? 
+### Can I use Gatling's Community Edition with multiple load generators?
 
-Multiple load generators, also known as distributed testing, is a key feature in Gatling Enterprise. We don't support using the open-source edition for distributed testing. If you need distributed testing for either heavy traffic, or geographic distribution, we strongly encourage you to consider an enterprise license. 
+Multiple load generators, also known as distributed testing, is a key feature in Gatling's Enterprise Edition. We don't support using the Community Edition for distributed testing. If you need distributed testing for either heavy traffic, or geographic distribution, we strongly encourage you to consider an Enterprise Edition license.
 
 ### Can Gatling launch several simulations sequentially?
 

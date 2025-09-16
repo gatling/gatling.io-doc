@@ -17,7 +17,7 @@ package your Gatling project to run it on [Gatling Enterprise Edition](https://g
 
 Check out available versions on [Maven Central](https://central.sonatype.com/search?q=gatling-sbt&namespace=io.gatling).
 
-Beware that milestones (M versions) are not documented for OSS users and are only released for [Gatling Enterprise Edition](https://gatling.io/products/) customers.
+Beware that milestones (M versions) are not documented for Community Edition users and are only released for [Gatling Enterprise Edition](https://gatling.io/products/) customers.
 
 ## Setup
 
