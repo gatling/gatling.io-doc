@@ -17,7 +17,7 @@ This plugin can also be used to package your Gatling project to run it on [Gatli
 
 Check out available versions on [Maven Central](https://central.sonatype.com/search?q=gatling-maven-plugin&namespace=io.gatling).
 
-Beware that milestones (M versions) are not documented for OSS users and are only released for [Gatling Enterprise Edition](https://gatling.io/enterprise/) customers.
+Beware that milestones (M versions) are not documented for Community Edition users and are only released for [Gatling Enterprise Edition](https://gatling.io/enterprise/) customers.
 
 ## Setup
 

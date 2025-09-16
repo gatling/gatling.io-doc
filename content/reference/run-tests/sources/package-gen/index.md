@@ -124,7 +124,7 @@ Assuming the CSV file contains 1000 entries, and you run your simulation on 3 Ga
 - Third node will access the last 334 entries
 
 {{< alert tip >}}
-`shard` is available in Gatling OSS DSL but is a noop there. It's only effective when running tests with Gatling Enterprise.
+`shard` is available in Gatling Community Edition DSL but is a noop there. It's only effective when running tests with Gatling Enterprise Edition.
 {{< /alert >}}
 
 ## Resolving load generator location in a simulation
@@ -142,5 +142,5 @@ val baseUrl = if (locationName == "Europe - Paris") "https://example.fr" else "h
 
 {{< alert tip >}}
 This System property is only defined when deploying with Gatling Enterprise.
-It is not defined when running locally with any Gatling OSS launcher.
+It is not defined when running locally with any Gatling Community Edition launcher.
 {{< /alert >}}

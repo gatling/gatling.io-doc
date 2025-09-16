@@ -43,7 +43,7 @@ This metric provides the response times for all the requests belonging to the sp
 In Gatling Enterprise Edition, this metric is available in the "Request" stats.
 
 {{< alert warning >}}
-This metric is only available in Gatling Enterprise Edition, not in Gatling open-source HTML reports.
+This metric is only available in Gatling Enterprise Edition, not in Gatling Community Edition HTML reports.
 {{< /alert >}}
 
 ### Cumulated response time
@@ -52,17 +52,17 @@ Group cumulated response time is the time in a group when requests are flying: r
 In short, it's the group duration minus the pauses.
 
 In Gatling Enterprise Edition, this metric is available in the "Group" stats, in the "Cumulated Response Time" chart.
-In Gatling open-source HTML reports, this metric is available when selecting a group.
+In Gatling Community Edition HTML reports, this metric is available when selecting a group.
 
 ### Duration
 
 Group duration is the elapsed time between the instant a virtual user enters a group and the instant it exits.
 
 In Gatling Enterprise Edition, this metric is available in the "Group" stats, in the "Duration" chart.
-In Gatling open-source HTML reports, this metric is available when selecting a group.
+In Gatling Community Edition HTML reports, this metric is available when selecting a group.
 
 {{< alert tip >}}
-The Gatling open-source HTML reports can only display one metric.
+The Gatling Community Edition HTML reports can only display one metric.
 By default, they display the "cumulated response time" metric.
 You can switch to displaying the "duration" metric: turn the `charting.charting.useGroupDurationMetric` option to `true` in `gatling.conf` before generating the reports.
 {{< /alert >}}

@@ -19,11 +19,11 @@ The gRPC protocol is not supported by the JavaScript SDK. If this functionality 
 **The Gatling gRPC component is distributed under the
 [Gatling Enterprise Component License]({{< ref "/project/licenses/enterprise-component" >}}).**
 
-The Gatling gRPC protocol can be used with both the [Open Source](https://gatling.io/products/) and
+The Gatling gRPC protocol can be used with both the [Community Edition](https://gatling.io/products/) and
 [Enterprise](https://gatling.io/products/) versions of Gatling.
 
 Its usage is unlimited when running tests on [Gatling Enterprise](https://gatling.io/products/).
-When used with [Gatling Open Source](https://gatling.io/products/), usage is limited to:
+When used with [Gatling Community Edition](https://gatling.io/products/), usage is limited to:
 
 - 5 users maximum
 - 5 minute duration tests

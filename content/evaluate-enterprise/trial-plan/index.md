@@ -148,7 +148,7 @@ You want to talk to a human to help you understand Gatling Enterprise Edition pr
 
 You need customized limits to test Gatling Enterprise Edition.
 
-You are already using the open-source version of Gatling and want to understand the differences in detail and the benefits of Gatling Enterprise Edition for your team.
+You are already using the Community Edition version of Gatling and want to understand the differences in detail and the benefits of Gatling Enterprise Edition for your team.
 
 You want to compare your current tool with Gatling Enterprise Edition.
 

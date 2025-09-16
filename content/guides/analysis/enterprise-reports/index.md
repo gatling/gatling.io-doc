@@ -15,9 +15,9 @@ These features are only available on Gatling Enterprise Edition. To learn more, 
 
 Gatling Enterprise Edition has many reporting features that make analyzing a single load test or a time series of tests faster and easier. Our reporting is designed for collaboration across your organization. The following guide gives you an overview of each reporting feature and how to use it to improve your testing. 
 
-## Open-source vs. Enterprise reporting
+## Community Edition vs. Enterprise Edition reporting
 
-Gatling Open Source reports while powerful and a great start are stored in separate HTML files. For Gatling Enterprise Edition one of the first and most important changes is how reports are kept. In order to compare two reports with Gatling Open Source you need to open two reports separately and compare the results manually. However, with Gatling Enterprise Edition you can directly and quickly compare any two reports with the click of a button.
+Gatling Community Edition reports while powerful and a great start are stored in separate HTML files. For Gatling Enterprise Edition one of the first and most important changes is how reports are kept. In order to compare two reports with Gatling Community Edition you need to open two reports separately and compare the results manually. However, with Gatling Enterprise Edition you can directly and quickly compare any two reports with the click of a button.
 
 ### Run trends and comparison
 
@@ -47,7 +47,7 @@ Let’s get into the full reports now.
 
 ### Filtering, sharing, and collaboration
 
-As mentioned before Gatling Open Source reports are static html files that can’t be changed or modified. Gatling Enterprise Edition reports are designed for collaboration.
+As mentioned before Gatling Community Edition reports are static html files that can’t be changed or modified. Gatling Enterprise Edition reports are designed for collaboration.
 
 To start with you have your run bar:
 

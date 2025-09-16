@@ -160,7 +160,7 @@ cd server
 ./gradlew -PmainClass=io.gatling.grpc.demo.server.greeting.GreetingServer run
 ```
 
-### Open-source version
+### Community Edition version
 
 To launch the load test, open a terminal and run the following command in the `java/maven` folder:
 
@@ -206,4 +206,4 @@ We've explored how to load test gRPC applications using Gatling. We also walked 
 
 If you want to go deeper, you can check our documentation and also try the Gatling Enterprise Edition. You will get access to CI/CD integration, detailed reporting, private locations, and many more features to ensure your gRPC services perform reliably under load.
 
-The example we've explored, though simple, showcases essential testing patterns that can be adapted for more complex scenarios. Whether you're using the open-source version for initial testing or the Enterprise Edition for comprehensive load testing, Gatling provides the necessary tools to verify the performance and reliability of your gRPC services in real-world conditions.
+The example we've explored, though simple, showcases essential testing patterns that can be adapted for more complex scenarios. Whether you're using the Community Edition version for initial testing or the Enterprise Edition for comprehensive load testing, Gatling provides the necessary tools to verify the performance and reliability of your gRPC services in real-world conditions.

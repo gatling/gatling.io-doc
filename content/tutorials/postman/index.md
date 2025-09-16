@@ -199,7 +199,7 @@ Watch the Simulation deploy automatically and generate real-time reports.
 
 ### Run the Simulation locally for debugging {{% badge info "Optional" /%}} {#run-the-simulation-locally-for-debugging}
 
-The open-source version of Gatling allows you to run simulations locally, generating load from your computer. Running a
+The Community Edition version of Gatling allows you to run simulations locally, generating load from your computer. Running a
 new or modified simulation locally is often useful to ensure it works before launching it on Gatling Enterprise.
 Using the JavaScript CLI, you can launch your test in interactive mode using the following approach:
 
@@ -218,11 +218,11 @@ When the test has finished, there is an HTML link in the terminal that you can u
 **The Gatling Postman component is distributed under the
 [Gatling Enterprise Component License]({{< ref "/project/licenses/enterprise-component" >}}).**
 
-Gatling Postman can be used with both the [Open Source](https://gatling.io/products/) and
+Gatling Postman can be used with both the [Community Edition](https://gatling.io/products/) and
 [Enterprise](https://gatling.io/products/) versions of Gatling.
 
 Its usage is unlimited when running on [Gatling Enterprise](https://gatling.io/products/). When used with
-[Gatling Open Source](https://gatling.io/products/), usage is limited to:
+[Gatling Community Edition](https://gatling.io/products/), usage is limited to:
 
 - 5 users maximum
 - 5 minute duration tests

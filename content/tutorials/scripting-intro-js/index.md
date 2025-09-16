@@ -175,7 +175,7 @@ Watch the Simulation deploy automatically and generate real-time reports.
 
 ### Test the simulation locally {{% badge info "Optional" /%}} {#run-local}
 
-The open-source version of Gatling allows you to run simulations locally, generating load from your computer. Running a
+The Community Edition version of Gatling allows you to run simulations locally, generating load from your computer. Running a
 new or modified simulation locally is often useful to ensure it works before launching it on Gatling Enterprise.
 Using the JavaScript CLI, you can launch your test in interactive mode using the following approach:
 

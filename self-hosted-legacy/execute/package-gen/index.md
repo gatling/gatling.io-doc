@@ -7,9 +7,9 @@ date: 2021-03-26T18:06:39+01:00
 
 ## Gatling Enterprise Gatling Versions
 
-Gatling Enterprise actually uses custom versions of the Gatling components. Those binaries are not open source and their usage is restricted to Gatling Enterprise.
+Gatling Enterprise actually uses custom versions of the Gatling components. Those binaries are not open source and their usage is restricted to Gatling Enterprise Edition.
 
-When you deploy simulations with Gatling Enterprise, it replaces your Gatling OSS dependencies with their custom counterparts.
+When you deploy simulations with Gatling Enterprise, it replaces your Gatling Community Edition dependencies with their custom counterparts.
 
 ## Configuring Gatling Projects
 
@@ -68,7 +68,7 @@ Assuming a CSV file contains 1000 entries, and 3 Gatling nodes, the entries will
 - Third node will access the last 334 entries
 
 {{< alert tip >}}
-`shard` is available in Gatling OSS DSL but is a noop there. It's only effective when running tests with Gatling Enterprise.
+`shard` is available in Gatling Community Edition DSL but is a noop there. It's only effective when running tests with Gatling Enterprise.
 {{< /alert >}}
 
 ## Resolving Injector Location in Simulation
@@ -86,5 +86,5 @@ val baseUrl = if (poolName == "London") "https://domain.co.uk" else "https://dom
 
 {{< alert tip >}}
 This System property is only defined when deploying with Gatling Enterprise.
-It's not defined when running locally with any Gatling OSS launcher.
+It's not defined when running locally with any Gatling Community Edition launcher.
 {{< /alert >}}

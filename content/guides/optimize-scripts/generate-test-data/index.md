@@ -120,7 +120,7 @@ pip3 install -r requirements.txt
 python3 api.py
 ```
 
-### Open-source version
+### Community Edition version
 
 To launch the load test, open a terminal and run the following command in the Gatling folder:
 
