@@ -110,17 +110,17 @@ mqtt("Publishing")
 //#check
 
 //#waitForMessages
-waitForMessages.timeout(100.milliseconds)
+mqtt.waitForMessages.timeout(100.milliseconds)
 //#waitForMessages
 
 //#process
 // store the unmatched messages in the Session
-processUnmatchedMessages("#{myTopic}") {
+mqtt.processUnmatchedMessages("#{myTopic}") {
   (messages, session) => session.set("messages", messages)
 }
 
 // collect the last text message and store it in the Session
-processUnmatchedMessages("#{myTopic}") {
+mqtt.processUnmatchedMessages("#{myTopic}") {
   (messages, session) => {
     val lastMessage = messages.reverseIterator.nextOption().map(_.payloadUtf8String)
     lastMessage.fold(session)(m => session.set("lastTextMessage", m))

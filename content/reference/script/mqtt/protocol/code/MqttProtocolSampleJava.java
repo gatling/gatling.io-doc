@@ -119,27 +119,21 @@ mqtt("Publishing")
 //#check
 
 //#waitForMessages
-waitForMessages().timeout(Duration.ofMillis(100));
+mqtt.waitForMessages().timeout(Duration.ofMillis(100));
 //#waitForMessages
 
 //#process
 // store the unmatched messages in the Session
-processUnmatchedMessages("#{myTopic}", (messages, session) -> session.set("messages", messages));
+mqtt.processUnmatchedMessages("#{myTopic}", (messages, session) -> session.set("messages", messages));
 
 // collect the last text message and store it in the Session
-processUnmatchedMessages(
-    "#{myTopic}",
-    (messages, session) -> {
-      Collections.reverse(messages);
-      String lastTextMessage =
-          messages.stream()
-              .map(m -> m.payloadUtf8String())
-              .findFirst()
-              .orElse(null);
-      return lastTextMessage != null ?
-          session.set("lastTextMessage", lastTextMessage) :
-          session;
-    });
+mqtt.processUnmatchedMessages(
+  "#{myTopic}",
+  (messages, session) ->
+    !messages.isEmpty()
+      ? session.set("lastMessage", messages.get(messages.size() - 1).payloadUtf8String())
+      : session
+);
 //#process
   }
 

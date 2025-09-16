@@ -113,15 +113,15 @@ mqtt("Publishing")
 //#check
 
 //#waitForMessages
-waitForMessages().timeout(Duration.ofMillis(100))
+mqtt.waitForMessages().timeout(Duration.ofMillis(100))
 //#waitForMessages
 
 //#process
 // store the unmatched messages in the Session
-processUnmatchedMessages("#{myTopic}") { messages, session -> session.set("messages", messages) }
+mqtt.processUnmatchedMessages("#{myTopic}") { messages, session -> session.set("messages", messages) }
 
 // collect the last text message and store it in the Session
-processUnmatchedMessages("#{myTopic}") { messages, session ->
+mqtt.processUnmatchedMessages("#{myTopic}") { messages, session ->
   messages
     .map { m -> m.payloadUtf8String() }
     .takeLast(1)
