@@ -6,3 +6,4 @@
 /static/self-hosted-legacy
 target/
 package-lock.json
+.bsp/
