@@ -3,7 +3,7 @@
   <dependency>
     <groupId>io.gatling</groupId>
     <artifactId>gatling-mqtt</artifactId>
-    <version>${gatling-mqtt.version}</version>
+    <version>{{< var gatlingMqttVersion >}}</version>
     <scope>test</scope>
   </dependency>
 </dependencies>

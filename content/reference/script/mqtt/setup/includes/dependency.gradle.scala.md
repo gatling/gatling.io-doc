@@ -1,6 +1,6 @@
 ```gradle
 dependencies {
-  gatlingImplementation("io.gatling:gatling-mqtt:$gatlingMqttVersion")
+  gatlingImplementation("io.gatling:gatling-mqtt:{{< var gatlingMqttVersion >}}")
 }
 ```
 
