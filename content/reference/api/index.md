@@ -16,7 +16,7 @@ The Gatling Enterprise API server also exposes a public API that you can use to 
 This API requires an `Authorization` HTTP header populated with an [API token]({{< ref "/reference/collaborate/admin/api-tokens" >}}).
 {{< /alert >}}
 
-{{< swagger-ui src="https://gatling.github.io/gatling-enterprise-api/openapi/openapi.yaml" >}}
+{{< swagger-ui src="https://gatling.github.io/gatling-enterprise-api/openapi/20250917-public-openapi.yaml" >}}
 
 ## Help
 - You have to provide the run ID as a query parameter to fetch other run metadata (load generators, remotes, hostnames, scenarios, groups, requests)
