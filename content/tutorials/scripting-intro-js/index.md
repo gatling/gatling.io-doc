@@ -14,11 +14,11 @@ Gatling is a highly flexible load-testing platform. You can write load tests in 
 
 In this guide, we cover a "Hello world"-style example for JavaScript of how to:
 
-- [install and setup your local dev environment]({{< ref "#install-gatling" >}}),
-- [write your first simulation]({{< ref "#simulation-construction" >}}),
-- [Package and upload your simulation to Gatling Enterprise]({{< ref "#package" >}}),
+- [Install and setup your local dev environment]({{< ref "#install-gatling" >}})
+- [Write your first simulation]({{< ref "#simulation-construction" >}})
+- [Package and upload your simulation to Gatling Enterprise]({{< ref "#package" >}})
 - [Create and run a new test on Gatling Enterprise]({{< ref "#test" >}})
-- [test your simulation locally]({{< ref "#run-local" >}}).
+- [Test your simulation locally]({{< ref "#run-local" >}})
 
 {{< alert tip >}}
 Join the [Gatling Community Forum](https://community.gatling.io) to discuss load testing with other users. Please try to find answers in the Documentation before asking for help.
