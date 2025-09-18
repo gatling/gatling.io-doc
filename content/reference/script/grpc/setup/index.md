@@ -94,10 +94,10 @@ For a project running Kotlin with either Maven or Gradle:
 For an sbt project running Scala, add the ScalaPB plugin in `project/plugins.sbt`:
 
 ```scala
-addSbtPlugin("com.thesamet" % "sbt-protoc" % "1.0.6")
+addSbtPlugin("com.thesamet" % "sbt-protoc" % "1.0.8")
 
 libraryDependencies ++= Seq(
-  "com.thesamet.scalapb" %% "compilerplugin" % "0.11.14"
+  "com.thesamet.scalapb" %% "compilerplugin" % "0.11.20"
 )
 ```
 
@@ -105,7 +105,7 @@ And configure it in your project settings (`build.sbt`):
 
 ```scala
 val commons = Seq(
-  PB.protocVersion := "3.25.2" // scalapb.compiler.Version.protobufVersion may point to an older version
+  PB.protocVersion := "4.32.1" // scalapb.compiler.Version.protobufVersion may point to an older version
 )
 
 val scalaSettings: Seq[Def.Setting[_]] = commons ++ Seq(

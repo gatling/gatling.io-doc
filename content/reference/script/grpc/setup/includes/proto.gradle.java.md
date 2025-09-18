@@ -2,16 +2,16 @@
 plugins {
   id("idea")
   id("java")
-  id("com.google.protobuf") version "0.9.4"
+  id("com.google.protobuf") version "0.9.5"
 }
 
 protobuf {
   protoc {
-    artifact = "com.google.protobuf:protoc:3.25.2"
+    artifact = "com.google.protobuf:protoc:4.32.1"
   }
   plugins {
     grpc {
-      artifact = "io.grpc:protoc-gen-grpc-java:1.61.0"
+      artifact = "io.grpc:protoc-gen-grpc-java:1.75.0"
     }
   }
   generateProtoTasks {

@@ -1,6 +1,6 @@
 ```gradle
 dependencies {
-  gatlingImplementation("io.gatling:gatling-grpc-java:$gatlingGrpcVersion")
+  gatlingImplementation("io.gatling:gatling-grpc-java:{{< var gatlingGrpcVersion >}}")
 }
 ```
 

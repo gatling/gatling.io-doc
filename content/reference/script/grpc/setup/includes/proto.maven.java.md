@@ -1,30 +1,28 @@
 ```xml
 <build>
-  <extensions>
-    <extension>
-      <groupId>kr.motd.maven</groupId>
-      <artifactId>os-maven-plugin</artifactId>
-      <version>${os-maven-plugin.version}</version>
-    </extension>
-  </extensions>
   <plugins>
     <plugin>
-      <groupId>org.xolstice.maven.plugins</groupId>
+      <groupId>io.github.ascopes</groupId>
       <artifactId>protobuf-maven-plugin</artifactId>
       <version>${protobuf-maven-plugin.version}</version>
       <executions>
         <execution>
-          <id>compile</id>
           <goals>
-            <goal>test-compile</goal>
-            <goal>test-compile-custom</goal>
+            <goal>generate-test</goal>
           </goals>
         </execution>
       </executions>
       <configuration>
-        <pluginId>grpc-java</pluginId>
-        <pluginArtifact>io.grpc:protoc-gen-grpc-java:${protoc-gen-grpc-java.version}:exe:${os.detected.classifier}</pluginArtifact>
-        <protocArtifact>com.google.protobuf:protoc:${protobuf.version}:exe:${os.detected.classifier}</protocArtifact>
+        <protocVersion>${protobuf.version}</protocVersion>
+        <binaryMavenPlugins>
+          <binaryMavenPlugin>
+            <groupId>io.grpc</groupId>
+            <artifactId>protoc-gen-grpc-java</artifactId>
+            <version>${grpc.version}</version>
+            <!-- Avoid dependency on javax.annotation-api -->
+            <options>@generated=omit</options>
+          </binaryMavenPlugin>
+        </binaryMavenPlugins>
       </configuration>
     </plugin>
   </plugins>
@@ -35,10 +33,9 @@ With the following properties:
 
 ```xml
 <properties>
-  <protobuf.version>3.25.2</protobuf.version>
-  <protobuf-maven-plugin.version>0.6.1</protobuf-maven-plugin.version>
-  <protoc-gen-grpc-java.version>1.61.0</protoc-gen-grpc-java.version>
-  <os-maven-plugin.version>1.7.1</os-maven-plugin.version>
+  <grpc.version>1.75.0</grpc.version>
+  <protobuf.version>4.32.1</protobuf.version>
+  <protobuf-maven-plugin.version>3.9.1</protobuf-maven-plugin.version>
 </properties>
 ```
 
