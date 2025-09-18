@@ -3,7 +3,7 @@
   <dependency>
     <groupId>io.gatling</groupId>
     <artifactId>gatling-grpc-java</artifactId>
-    <version>${gatling-grpc.version}</version>
+    <version>{{< var gatlingGrpcVersion >}}</version>
     <scope>test</scope>
   </dependency>
 </dependencies>
