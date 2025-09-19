@@ -10,7 +10,7 @@ date: 2025-09-10T13:35:00+02:00
 
 Websocket protocol is widely used for real-time applications such as chat, gaming, and live updates. The protocol enables persistent, full-duplex communication between client and server. Testing websocket endpoints is crucial to ensure your system can handle concurrent connections and real-time data exchange. This guide demonstrates how to use Gatling's JavaScript/TypeScript SDK to load test a websocket server, helping you validate performance and reliability before going to production.
 
-The following example uses a simple chatbot websocket server available from the Gatling [Talks and Tutorials Repository]( https://github.com/gatling/talks-and-tutorials/articles/websocket-chatbot-js). The application:
+The following example uses a simple chatbot websocket server available from the Gatling [Talks and Tutorials Repository](https://github.com/gatling/talks-and-tutorials/articles/websocket-chatbot-js). The application:
 
 - Echoes messages, simulating a chatbot response.
 - Listens on `ws://localhost:3000` by default.
@@ -31,7 +31,7 @@ This guide assumes basic familiarity with JavaScript and command-line tools. If 
 1. **Clone and start the demo server**
 
   ```bash
-  git clone https://github.com/gatling/talks-and-tutorials/articles/websocket-chatbot-js.git
+  git clone https://github.com/gatling/talks-and-tutorials.git
   cd websocket-chatbot-js
   npm install
   npm start
@@ -88,7 +88,7 @@ To run the websocket simulation with Enterprise Edition:
   docker compose up
   ```
 5. From the Enterprise Edition web interface, create an API token with the `Configure` permission and copy it to the clipboard.
-6. From the `gatling/typescript` folder, upload the  the simulation with:
+6. From the `gatling/typescript` folder, upload the simulation with:
   ```bash
   npx gatling enterpriseStart --typescript --simulation chatbotSimulation --api-token <your_token>
   ```
