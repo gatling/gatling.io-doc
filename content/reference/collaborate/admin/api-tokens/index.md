@@ -20,11 +20,13 @@ Once the API token is created, make sure to copy the token, as you won't be able
 
 {{< img src="create-token.png" alt="Create token" >}}
 
-There are three permissions available for API Tokens:
+There are 5 permissions available for API Tokens:
 
-- The Read permission, allowing to read all the data
-- The Start permission, allowing to start simulations + Read permissions (typically useful in a CI plugin)
-- The Configure permission, allowing to create / upload packages and create simulations + Start permissions (typically useful in our build plugins)
+- The **None** permission, which doesn't allow any action. Typically useful to restrict global permissions on team-specific tokens.
+- The **Read** permission, allows reading all data.
+- The **Start** permission, allows starting simulations + Read permissions (typically useful in a CI plugin).
+- The **Configure** permission, allows creating / uploading packages and creating simulations + Start permissions (typically useful in our build plugins).
+- The **Administrate** permission, allows managing all organization resources.
 
 You can set a permission globally or within a specific team only.
 
