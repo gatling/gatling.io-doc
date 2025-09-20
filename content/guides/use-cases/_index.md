@@ -12,4 +12,5 @@ ordering:
   - docker-app
   - llm-api
   - sse-js
+  - websocket-js
 ---
