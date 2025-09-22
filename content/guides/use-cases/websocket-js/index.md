@@ -10,7 +10,7 @@ date: 2025-09-10T13:35:00+02:00
 
 WebSocket protocol is widely used for real-time applications such as chat, gaming, and live updates. The protocol enables persistent, full-duplex communication between client and server. Testing WebSocket endpoints is crucial to ensure your system can handle concurrent connections and real-time data exchange. This guide demonstrates how to use Gatling's JavaScript/TypeScript SDK to load test a WebSocket server, helping you validate performance and reliability before going to production.
 
-The following example uses a simple chatbot WebSocket server available from the Gatling [Talks and Tutorials Repository](https://github.com/gatling/talks-and-tutorials/articles/websocket-chatbot-js). The application:
+The following example uses a simple chatbot WebSocket server available from the Gatling [Talks and Tutorials Repository](https://github.com/gatling/talks-and-tutorials/). The application:
 
 - Echoes messages, simulating a chatbot response.
 - Listens on `ws://localhost:3000` by default.
