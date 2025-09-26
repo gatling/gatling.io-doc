@@ -8,7 +8,7 @@ lead: Learn how to load test MQTT brokers with the JavaScript/TypeScript SDK usi
 
 ## Introduction
 
-This guide walks through the **mqtt-js** reference project (repo: [stb13579/mqtt-js](https://github.com/stb13579/mqtt-js)) to show how you can exercise an MQTT broker with Gatling's JavaScript/TypeScript SDK. The sample application simulates a fleet of delivery vehicles that publish telemetry over MQTT while a Node.js backend ingests the stream and exposes a live dashboard. Gatling wraps that workflow so you can rehearse realistic MQTT workloads and inspect detailed performance metrics.
+This guide walks through the **mqtt-js** reference project in the [Talks and tutorials repo](https://github.com/gatling/talks-and-tutorials/) to show how you can exercise an MQTT broker with Gatling's JavaScript/TypeScript SDK. The sample application simulates a fleet of delivery vehicles that publish telemetry over MQTT while a Node.js backend ingests the stream and exposes a live dashboard. Gatling wraps that workflow so you can rehearse realistic MQTT workloads and inspect detailed performance metrics.
 
 {{< alert tip >}}
 New to Gatling scripting in JavaScript or TypeScript? Start with the [Create a simulation with JavaScript/TypeScript tutorial]({{< ref "/tutorials/scripting-intro-js/" >}}) before diving into protocol-specific use cases.
@@ -32,8 +32,8 @@ New to Gatling scripting in JavaScript or TypeScript? Start with the [Create a s
 1. **Fetch the repository and install dependencies.**
 
    ```bash
-   git clone https://github.com/stb13579/mqtt-js.git 
-   cd mqtt-js
+   git clone https://github.com/gatling/talks-and-tutorials.git
+   cd articles/mqtt-js
    npm install
    ```
 
@@ -157,17 +157,13 @@ npx gatling run --simulation deliveryVehicleSimulation loadProfile=smoke brokerH
 
 Gatling Enterprise lets you scale MQTT tests across distributed load generators and monitor KPIs in real time. It also removes the 5 virtual user limit of the open-source CLI. To deploy the mqtt-js simulation to Enterprise:
 
-1. Package the simulation from either the TypeScript or JavaScript project root.
+1. Create an API token in Gatling Enterprise with the `Configure` permission.
+2. Package the simulation and deploy it from either the TypeScript or JavaScript project root.
    ```bash
-   npx gatling enterprise-package
+   npx gatling enterprise-deploy -simulation deliveryVehicleSimulation --api-token <your_token>
    ```
-2. Create an API token in Gatling Enterprise with the `Configure` permission.
-3. Start the run from your workstation, passing the token and simulation name:
-   ```bash
-   npx gatling enterprise-start --simulation deliveryVehicleSimulation --api-token <your_token>
-   ```
-4. Configure environment variables (`BROKER_HOST`, credentials, TLS certificates) in the Enterprise interface so remote load generators can reach your broker.
-5. Use Enterprise dashboards to watch connection counts, message throughput, and failure trends while the test executes.
+4. Configure environment variables and/or JavaScript parameters (`BROKER_HOST`, credentials, TLS certificates) in the Enterprise Edition interface so remote load generators can reach your broker.
+5. Use Enterprise Edition dashboards to watch connection counts, message throughput, and failure trends while the test executes.
 
 Refer to the [JavaScript CLI guide]({{< ref "/integrations/build-tools/js-cli/#deploying-on-gatling-enterprise" >}}) for advanced packaging and deployment options.
 
