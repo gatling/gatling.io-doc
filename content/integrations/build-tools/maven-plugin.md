@@ -13,6 +13,18 @@ date: 2021-04-20T18:30:56+02:00
 Using this plugin, Gatling can be launched when building your project, for example with your favorite Continuous Integration (CI) solution.
 This plugin can also be used to package your Gatling project to run it on [Gatling Enterprise Edition](https://gatling.io/enterprise/).
 
+{{< alert tip >}}
+This documentation assumes that you have Maven installed on your machine and hence uses the standard Maven command format (for example mvn gatling:test).
+If you prefer to use the Maven wrapper that downloads and installs Maven on-the-fly, its equivalent commands follow the format:
+
+{{< platform-toggle >}}
+Linux/MacOS: ./mvnw gatling:<command>
+Windows: mvnw.cmd gatling:<command>
+{{</ platform-toggle >}}
+
+Where `<command>` is the gatling goal (for example `test`, `recorder`, `enterprisePackage`, `enterpriseStart`).
+{{< /alert >}}
+
 ## Versions
 
 Check out available versions on [Maven Central](https://central.sonatype.com/search?q=gatling-maven-plugin&namespace=io.gatling).
@@ -74,10 +86,9 @@ See each goal's section below for the relevant configuration options.
 
 You can directly launch the `gatling-maven-plugin` with the `test` goal:
 
-{{< platform-toggle >}}
-Linux/MacOS: ./mvnw gatling:test
-Windows: mvnw.cmd gatling:test
-{{</ platform-toggle >}}
+```shell
+mvn gatling:test
+```
 
 Use `mvn gatling:help -Ddetail=true -Dgoal=test` to print the description of all the available configuration options on
 the `test` goal.
@@ -93,10 +104,9 @@ The `gatling:test` goal runs in interactive mode and suggests the simulation cla
 
 You can launch the [Gatling Recorder]({{< ref "reference/script/http/recorder" >}}):
 
-{{< platform-toggle >}}
-Linux/MacOS: ./mvnw gatling:recorder
-Windows: mvnw.cmd gatling:recorder
-{{</ platform-toggle >}}
+```shell
+mvn gatling:recorder
+```
 
 Use `gatling:help -Ddetail=true -Dgoal=recorder` to print the description of all the available configuration options
 on the `recorder` goal.
@@ -163,10 +173,9 @@ You can, using the `gatling:enterpriseStart` command:
 By default, the Gatling plugin prompts the user to choose a simulation to start from amongst the deployed simulations.
 However, users can also specify the simulation name directly to bypass the prompt using the following command:
 
-{{< platform-toggle >}}
-Linux/MacOS: ./mvnw gatling:enterpriseStart -Dgatling.enterprise.simulationName="<simulation name>"
-Windows: mvnw.cmd gatling:enterpriseStart -Dgatling.enterprise.simulationName="<simulation name>"
-{{</ platform-toggle >}}
+```shell
+mvn gatling:enterpriseStart -Dgatling.enterprise.simulationName="<simulation name>"
+```
 
 Replace `<simulation name>` with the desired name of the simulation you want to start.
 
@@ -186,10 +195,9 @@ Here are additional options for this command:
 
 You can directly package your simulations for Gatling Enterprise Edition using:
 
-{{< platform-toggle >}}
-Linux/MacOS: ./mvnw gatling:enterprisePackage
-Windows: mvnw.cmd gatling:enterprisePackage
-{{</ platform-toggle >}}
+```shell
+mvn gatling:enterprisePackage
+```
 
 This will generate the `target/<artifactId>-<version>-shaded.jar` package which you can then
 [upload to the Cloud]({{< ref "reference/run-tests/sources/package-conf" >}}).
