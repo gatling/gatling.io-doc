@@ -163,7 +163,7 @@ Gatling Enterprise lets you scale MQTT tests across distributed load generators 
    npx gatling enterprise-deploy --simulation deliveryVehicleSimulation --api-token <your_token>
    ```
 3. Configure environment variables and/or JavaScript parameters (`BROKER_HOST`, credentials, TLS certificates) in the Enterprise Edition interface so remote load generators can reach your broker.
-5. Use Enterprise Edition dashboards to watch connection counts, message throughput, and failure trends while the test executes.
+4. Use Enterprise Edition dashboards to watch connection counts, message throughput, and failure trends while the test executes.
 
 Refer to the [JavaScript CLI guide]({{< ref "/integrations/build-tools/js-cli/#deploying-on-gatling-enterprise" >}}) for advanced packaging and deployment options.
 
