@@ -172,9 +172,9 @@ Each engine (`classic` or `javascript`) supports specific Java versions, where `
 The table below outlines the supported Java versions for certified Gatling images:
 
 | Engine      | Supported Java Versions |
-|-------------|-------------------------|
-| classic     | 21 or latest            |
-| javascript  | latest                  |
+|-------------|------------------------|
+| classic     | 25 or latest           |
+| javascript  | latest                 |
 
 {{< alert info >}}
 For the `javascript` engine, only the latest Java version is supported, which corresponds to the GraalVM version used to run Gatling with JavaScript.

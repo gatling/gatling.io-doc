@@ -158,7 +158,7 @@ The table below outlines the supported Java versions for certified Gatling image
 
 | Engine      | Supported Java Versions |
 |-------------|-------------------------|
-| classic     | 21 or latest            |
+| classic     | 25 or latest            |
 | javascript  | latest                  |
 
 {{< alert info >}}
