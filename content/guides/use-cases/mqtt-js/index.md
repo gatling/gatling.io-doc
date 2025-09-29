@@ -160,7 +160,7 @@ Gatling Enterprise lets you scale MQTT tests across distributed load generators 
 1. Create an API token in Gatling Enterprise with the `Configure` permission.
 2. Package the simulation and deploy it from either the TypeScript or JavaScript project root.
    ```bash
-   npx gatling enterprise-deploy -simulation deliveryVehicleSimulation --api-token <your_token>
+   npx gatling enterprise-deploy --simulation deliveryVehicleSimulation --api-token <your_token>
    ```
 3. Configure environment variables and/or JavaScript parameters (`BROKER_HOST`, credentials, TLS certificates) in the Enterprise Edition interface so remote load generators can reach your broker.
 5. Use Enterprise Edition dashboards to watch connection counts, message throughput, and failure trends while the test executes.
