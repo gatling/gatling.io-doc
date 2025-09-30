@@ -30,7 +30,7 @@ SDK constructs.
 {{< alert tip >}}
 It is strongly recommended to review the introductory guides first, as this tutorial introduces more advanced concepts:
 
-- [Create a simulation with Java]({{< ref "/tutorials/scripting-intro" >}})
+- [Create a simulation with Java]({{< ref "/tutorials/java/scripting-intro" >}})
 - [Create a simulation with JavaScript]({{< ref "/tutorials/scripting-intro-js" >}})
 - [Introduction to the Recorder]({{< ref "/tutorials/recorder" >}})
 

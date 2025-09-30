@@ -6,7 +6,7 @@ description: Step-by-step introduction to Gatling.
 ordering:
 
   - oss 
-  - scripting-intro
+  - java
   - scripting-intro-js
   - postman
   - recorder

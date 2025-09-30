@@ -206,9 +206,11 @@ Using the Java SDK, you can launch your test in interactive mode using the follo
 
 When the test has finished, there is an HTML link in the terminal that you can use to access the static report.
 
-## Keep learning
+## Step 6: Next steps and additional learning
+- Repeat the tutorial against your own API—replace the base URL and adjust requests.
+- Enrich the scenario with checks (`.check(status().is(200))`) and pauses (`.pause(1)`), then re-run locally.
+- Graduate to the broader [Load Testing With Gatling (Java)]({{< ref "tutorials/java/get-started/index.md" >}}) guide for feeders, correlation, and workload modelling.
+- Revisit the [Java introduction]({{< ref "tutorials/java/intro/index.md" >}}) when you need Maven configuration snippets or project structure advice.
+- Explore the [Recorder tutorial]({{< ref "tutorials/recorder" >}}) to capture traffic and generate simulations automatically.
 
-You have successfully run your first test! To keep learning, we recommend the following resources:
-
-- [Introduction to the Recorder]({{< ref "recorder" >}})
-- [Writing realistic tests]({{< ref "writing-realistic-tests" >}})
+You have now installed Gatling, authored a Java simulation, and executed it locally and (optionally) on Gatling Enterprise. Keep iterating!
