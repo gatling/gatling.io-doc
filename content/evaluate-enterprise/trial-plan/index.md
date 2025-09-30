@@ -57,7 +57,7 @@ We recommend that you quickly create a straightforward load test simulating the 
 
 - Create a test in 1-min [specifying a website ]({{< ref "/tutorials/gui" >}}) URL
 
-- [Use your existing Gatling script]({{< ref "/tutorials/scripting-intro#run-the-simulation-on-gatling-enterprise" >}})
+- [Use your existing Gatling script]({{< ref "/tutorials/java/scripting-intro#run-the-simulation-on-gatling-enterprise" >}})
 
 To test the following features:
 

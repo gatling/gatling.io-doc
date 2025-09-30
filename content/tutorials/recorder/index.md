@@ -17,7 +17,7 @@ This tutorial is intended for Gatling versions `{{< var gatlingVersion >}}` and 
 The Gatling Recorder allows you to capture browser-based actions to create a realistic user scenario for load testing. The Recorder application is launched from Gatling, using Maven, Gradle, sbt or the JavaScript CLI.  
 
 In this tutorial, we use Gatling to load test a simple cloud-hosted web server and introduce you to the basic elements of the Recorder. We strongly recommend completing one of the following introductory guides according to your language of preference before starting to work with the Recorder:
-- [Introduction to scripting tutorial with Java]({{< ref "/tutorials/scripting-intro" >}}). 
+- [Introduction to scripting tutorial with Java]({{< ref "/tutorials/java/scripting-intro" >}}). 
 - [Introduction to scripting tutorial with JavaScript]({{< ref "/tutorials/scripting-intro-js" >}}). 
 
 This tutorial showcases the Gatling recorder using two options: **Java** SDK with the **Maven** plugin and the **JavaScript** SDK with **JavaScript CLI**.
@@ -136,12 +136,12 @@ JavaScript: src/
 {{</ code-toggle >}}
 
 {{< alert tip >}}
-The scenario components and their functionality are described in the [Intro to Scripting]({{< ref "/tutorials/scripting-intro" >}}) tutorial. For more details regarding the Simulation structure, please check out the [Simulation reference page]({{< ref "/concepts/simulation" >}}).
+The scenario components and their functionality are described in the [Intro to Scripting]({{< ref "/tutorials/java/scripting-intro" >}}) tutorial. For more details regarding the Simulation structure, please check out the [Simulation reference page]({{< ref "/concepts/simulation" >}}).
 {{< /alert >}}
 
 ## Test execution
 
-### Run the Simulation on Gatling Enterprise
+### Run the Simulation on Gatling Enterprise Edition {#run-the-simulation-on-gatling-enterprise}
 
 You can package, deploy, and run your simulation using one of two approaches, depending on whether you prefer a manual or automated process.
 
@@ -173,7 +173,7 @@ You can package, deploy, and run your simulation using one of two approaches, de
    - Under **Configure your locations**, choose the _Managed_ type and select a location based on your preference.
    - Click **Save and launch**.
 
-#### Advanced Use Case with Automated Deployments (Configuration-as-Code)
+#### Advanced use case with automated deployments (Configuration-as-Code)
 
 Gatling Enterprise is a feature-rich SaaS platform that is designed for teams and organizations to get the most
 out of load testing. With the trial account, you created in the [Prerequisites section]({{< ref "#install-gatling" >}}), you can upload and run your test with advanced configuration, reporting, and collaboration features.
