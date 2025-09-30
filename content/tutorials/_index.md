@@ -7,7 +7,7 @@ ordering:
 
   - oss 
   - java
-  - scripting-intro-js
+  - javascript
   - postman
   - recorder
   - gui

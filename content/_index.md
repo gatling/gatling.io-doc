@@ -41,7 +41,9 @@ Want to learn more about what Gatling Enterprise Edition offers? [Compare Commun
 Ready to write and run your first tests? Start here:
 
 - [Install Gatling]({{< ref "/tutorials/oss" >}})
-- [Create a simulation with JavaScript]({{< ref "/tutorials/scripting-intro-js" >}})
+- [JavaScript introduction]({{< ref "/tutorials/javascript/intro/" >}})
+- [Get started with the JavaScript SDK]({{< ref "/tutorials/javascript/get-started/" >}})
+- [Create a simulation with JavaScript]({{< ref "/tutorials/javascript/scripting-intro-js" >}})
 - [Create a simulation with Java]({{< ref "/tutorials/java/scripting-intro" >}})
 - [Create a simulation from Postman]({{< ref "/tutorials/postman" >}})
 - [Create a simulation with the Recorder]({{< ref "/tutorials/recorder" >}})

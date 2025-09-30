@@ -31,7 +31,7 @@ SDK constructs.
 It is strongly recommended to review the introductory guides first, as this tutorial introduces more advanced concepts:
 
 - [Create a simulation with Java]({{< ref "/tutorials/java/scripting-intro" >}})
-- [Create a simulation with JavaScript]({{< ref "/tutorials/scripting-intro-js" >}})
+- [Create a simulation with JavaScript]({{< ref "/tutorials/javascript/scripting-intro-js" >}})
 - [Introduction to the Recorder]({{< ref "/tutorials/recorder" >}})
 
 Additionally, it is important to have a basic understanding of a virtual user's session. Kindly consult the [Session documentation]({{< ref "/concepts/session/" >}}), particularly the **Feeders** and **Expression Language** sections.

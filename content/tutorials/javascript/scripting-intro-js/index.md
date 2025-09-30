@@ -12,6 +12,10 @@ This guide is only intended for the Gatling JavaScript SDK version `{{< var gatl
 
 Gatling is a highly flexible load-testing platform. You can write load tests in Java, Kotlin, Scala, JavaScript, and TypeScript, or use our [no-code feature](https://gatling.io/features/no-code-generator/) with Gatling Enterprise.
 
+{{< alert tip >}}
+Already comfortable with the toolchain? Jump straight to the [JavaScript introduction]({{< ref "tutorials/javascript/intro/index.md" >}}) or explore broader patterns in [Get started with the JavaScript SDK]({{< ref "tutorials/javascript/get-started/index.md" >}}).
+{{< /alert >}}
+
 In this guide, we cover a "Hello world"-style example for JavaScript of how to:
 
 - [Install and setup your local dev environment]({{< ref "#install-gatling" >}})
