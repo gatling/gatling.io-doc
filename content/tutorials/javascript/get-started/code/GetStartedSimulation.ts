@@ -20,9 +20,8 @@ import { http, status } from "@gatling.io/http";
 
 export default simulation((setUp) => {
   const httpProtocol = http
-    .baseUrl(process.env.BASE_URL ?? "https://api-ecomm.gatling.io")
-    .acceptHeader("application/json")
-    .header("X-Trace", (session) => session.sessionId);
+    .baseUrl("https://api-ecomm.gatling.io")
+    .acceptHeader("application/json");
 
   const scn = scenario("JS Browse")
     .exec(
@@ -37,12 +36,11 @@ export default simulation((setUp) => {
         .check(status().in(200, 304))
     );
 
+  const usersPerSec = 2;
+  const durationSeconds = 60;
+
   setUp(
-    scn.injectOpen(
-      constantUsersPerSec(Number(process.env.USERS_PER_SEC ?? 2)).during(
-        Number(process.env.TEST_DURATION ?? 60)
-      )
-    )
+    scn.injectOpen(constantUsersPerSec(usersPerSec).during(durationSeconds))
   ).protocols(httpProtocol);
 });
 //#full-example
