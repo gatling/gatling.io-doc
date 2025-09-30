@@ -1,5 +1,5 @@
 ---
-menutitle: Create a simulation with Java
+menutitle: Create a simulation in Java
 title: Create your first Java-based simulation
 description: "Get started with Gatling: install, write your first load test, and execute it."
 lead: Learn how to get started with Gatling and create a Gatling simulation.
@@ -10,206 +10,158 @@ date: 2023-12-16T18:30:56+02:00
 This guide is intended for Gatling versions `{{< var gatlingVersion >}}` and later.
 {{< /alert >}}
 
-Gatling is a highly flexible load-testing platform. You can write load tests in Java, Kotlin, and Scala or use our [no-code feature](https://gatling.io/features/no-code-generator/) with Gatling Enterprise. In this guide, we cover a "Hello world"-style example of how to:
-
-- [install and setup your local dev environment]({{< ref "#install-gatling" >}}),
-- [write your first simulation]({{< ref "#simulation-construction" >}}),
-- [run a simulation on Gatling Enterprise]({{< ref "#run-the-simulation-on-gatling-enterprise" >}}),
-- [run the simulation locally for debugging]({{< ref "#run-the-simulation-locally-for-debugging" >}}).
+New to Gatling and the Java SDK? This tutorial walks through every edit required to produce, run, and package your first simulation. If you already know the basics and just need configuration reminders, jump to the [Java introduction]({{< ref "tutorials/java/intro/index.md" >}}). For a broader tour of feeders, checks, and workload modelling, continue with [Get started with the Java SDK]({{< ref "tutorials/java/get-started/index.md" >}}).
 
 {{< alert tip >}}
-Join the [Gatling Community Forum](https://community.gatling.io) to discuss load testing with other users. Please try to find answers in the documentation before asking for help.
+Prefer JavaScript or TypeScript? Follow the [introduction to JavaScript scripting]({{< ref "tutorials/scripting-intro-js" >}}) instead.
 {{< /alert >}}
 
-{{< alert tip >}}
-If you're a JavaScript / TypeScript user, you'll be more interested in our [introduction to JavaScript scripting]({{< ref "tutorials/scripting-intro-js" >}})
-{{< /alert >}}
+## Before you begin
+1. Install a 64-bit OpenJDK (version 17 or 21 recommended). Earlier LTS versions such as 11 also work for the SDK, but the sample project targets Java 17.
+2. Install Git and an IDE. We use IntelliJ IDEA Community Edition in the instructions, but any Java IDE works.
+3. (Optional) Create a [Gatling Enterprise trial account](https://cloud.gatling.io/) if you plan to run the script in the cloud.
 
-## Setup
+Confirm your environment in a terminal:
 
-This section guides you through installation and setting up your developer environment. Gatling has a lot of optionalities, including:
+```shell
+java -version
+mvn -version
+```
 
-- build tools,
-- CI/CD integrations,
-- Java, Kotlin, and Scala SDKs
+If either command fails, fix it before you continue. Maven can come from your system installation or from the Maven Wrapper bundled with the project.
 
-This guide uses the Java SDK with the Maven wrapper. Gatling recommends that developers use the Java SDK unless they are already experienced with Scala or Kotlin. Java is widely taught in CS courses, requires less CPU for compiling, and is easier to configure in Maven and Gradle. You can adapt the steps to your development environment using reference documentation links provided throughout the guide.
-
-### Sign up for Gatling Enterprise
-
-Gatling Enterprise is a fully managed SaaS solution for load testing. Sign up for a [trial account](https://cloud.gatling.io/) to run your first test on Gatling Enterprise. The [Gatling website](https://gatling.io/features) has a full list of Enterprise features.
-
-### Clone Gatling demo repository { #install-gatling }
+## Step 1: Clone the tutorial project { #install-gatling }
+1. Open a terminal and run:
+   ```shell
+   git clone https://github.com/gatling/se-ecommerce-demo-gatling-tests.git
+   cd se-ecommerce-demo-gatling-tests/java/maven
+   ```
+2. Prefer ZIP downloads? Grab the archive from GitHub, extract it, and open the `java/maven` directory in your IDE.
+3. The module ships with a Maven Wrapper (`./mvnw` / `mvnw.cmd`). Use it unless your organisation mandates a system-wide Maven.
 
 {{< alert info >}}
-**Sample project prerequisites**  
-Java 17 or 21 64-bit OpenJDK LTS (Long Term Support) version installed on your local machine. The sample project leverages features introduced in Java 17, making it the minimum required version. We recommend the [Azul JDK](https://www.azul.com/downloads/?package=jdk#zulu).
+The sample project targets the demo backend at [https://ecomm.gatling.io](https://ecomm.gatling.io). It is safe to use for practice.
 {{< /alert >}}
 
-{{< alert info >}}
-**Gatling SDK prerequisites**  
-Java 11, 17 or 21 64-bit OpenJDK LTS (Long Term Support) version installed on your local machine. While the sample project requires Java 17, The Gatling SDK support extends back to Java 11. We recommend the [Azul JDK](https://www.azul.com/downloads/?package=jdk#zulu).
-{{< /alert >}}
+## Step 2: Inspect the project layout
+```
+se-ecommerce-demo-gatling-tests/
+└── java/maven
+    ├── src/test/java/example/BasicSimulation.java
+    ├── src/test/resources/data/...
+    ├── pom.xml
+    └── mvnw / mvnw.cmd
+```
 
-This guide uses the Gatling Java SDK with Maven. Use the following procedure to install Gatling:
+- `BasicSimulation.java` is the file you will edit.
+- `src/test/resources` contains data files you can feed into requests.
+- `pom.xml` already references the Gatling Maven plugin—no additional setup needed.
 
-1. Clone the following [repository](https://github.com/gatling/se-ecommerce-demo-gatling-tests).
+## Step 3: Build the simulation incrementally { #simulation-construction }
+Each subsection adds one concept. Keep IntelliJ (or your IDE) open with `BasicSimulation.java` selected.
 
-2. Open the project in your IDE or terminal.
-3. Navigate to the `/java/maven` folder.
-
-## Simulation construction
-
-This guide introduces the basic Gatling HTTP features. Gatling provides a cloud-hosted web application
-[https://ecomm.gatling.io](https://ecomm.gatling.io) for running sample simulations. You'll learn how to construct simulations
-using the Java SDK. Code examples for the Kotlin and Scala SDKs are available throughout the Documentation.
-
-### Learn the simulation components
-
-A Gatling simulation consists of the following:
-
-- importing Gatling classes,
-- configuring the protocol (commonly HTTP),
-- describing a scenario,
-- setting up the injection profile (virtual user profile).
-
-The following procedure teaches you to develop the simulation from each constituent component. If you want to skip ahead
-and copy the final simulation, jump to [Test execution]({{< ref "#test-execution" >}}). Learn more about simulations in the
-[Documentation]({{< ref "/concepts/simulation" >}}).
-
-#### Setup the file
-
-Once you have cloned the Gatling repo, open the project in your integrated development
-environment (IDE). Gatling recommends the [IntelliJ community edition](https://www.jetbrains.com/idea/download/).
-
-1. Navigate to and open `java/maven/src/test/java/example/BasicSimulation.java`.
-2. Modify the simulation by deleting everything below line 7 `import io.gatling.javaapi.http.*;`.
-3. The simulation should now look like the following:
+### 3.1 Clean up the starter file
+Delete everything below the import statements so only the package and imports remain. The file should match:
 
 {{< include-code "ScriptingIntro1Sample#setup-the-file" java >}}
 
-#### Extend the `Simulation` class
-
-You must extend Gatling's `Simulation` class to write a script. To extend the `Simulation` class, after the import statements, add:
+### 3.2 Extend the `Simulation` class
+Gatling scripts extend `Simulation`. Add the class declaration:
 
 {{< include-code "ScriptingIntro1Sample#extend-the-simulation-class" java >}}
 
-#### Define the protocol class
-
-Inside the `BasicSimulation` class, add an `HTTP protocol` class. Learn about all of the
-`HttpProtocolBuilder` options in the [Documentation]({{< ref "/reference/script/http/protocol" >}}). For
-this example, the `baseUrl` property is hardcoded as the Gatling e-commerce test site, and the `acceptHeader` is set to `application/json`.
+### 3.3 Define the HTTP protocol
+Configure the target base URL and headers so Gatling knows how to talk to your application:
 
 {{< include-code "ScriptingIntro2Sample#define-the-protocol-class" java >}}
 
-#### Write the scenario
+Key callouts:
+- `http.baseUrl("https://api-ecomm.gatling.io")` sets the server you will exercise.
+- Custom headers (user agent, accept) mimic a real browser. Adjust them when testing your own system.
 
-The next step is to describe the user journey. For a web application, this usually consists of a user arriving at the
-application and then a series of interactions with the application. The following scenario performs a get request to `https://api-ecomm.gatling.io/session` to retrieve the current user session.
+### 3.4 Describe a scenario
+Scenarios encode user journeys. Start with a single request:
 
 {{< include-code "ScriptingIntro3Sample#write-the-scenario" java >}}
 
-See the [Documentation]({{< ref "/concepts/scenario" >}}) for the available scenario
-components.
+Here you:
+- Name the scenario (`"Scenario"`).
+- Issue a GET request against `/session`.
+- Leave room to add checks or additional steps later.
 
-#### Define the injection profile
-
-The final component of a Gatling simulation is the injection profile. The injection profile is contained in the `setUp`
-block. The following example adds 2 users per second for 60 seconds. See the
-[Documentation]({{< ref "/concepts/injection" >}}) for all of the injection profile options.
+### 3.5 Choose an injection profile
+Configure the arrival rate and duration for virtual users:
 
 {{< include-code "ScriptingIntro4Sample#define-the-injection-profile" java >}}
 
-Congrats! You have written your first Gatling simulation. The next step is to learn how to run the simulation locally
-and on Gatling Enterprise.
+This configuration launches two users per second for one minute. Tweak the numbers once the script works.
 
-## Test execution
-
-Now, you should have a completed simulation that looks like the following:
+You now have a complete simulation. The finished file should match:
 
 {{< include-code "BasicSimulation#full-example" java >}}
 
-### Run the Simulation on Gatling Enterprise
+Need a refresher on what each SDK call does? Keep the [Java introduction]({{< ref "tutorials/java/intro/index.md" >}}) and the [Java HTTP reference]({{< ref "reference/script/http/index.md" >}}) handy.
 
-You can package, deploy, and run your simulation using one of two approaches, depending on whether you prefer a manual or automated process.
+## Step 4: Run the simulation locally {#run-the-simulation-locally-for-debugging}
+1. From the `java/maven` directory, run the Maven Wrapper:
 
-#### Simple Manual Use Case
+   {{< platform-toggle >}}
+   Linux/MacOS: ./mvnw gatling:test
+   Windows: mvnw.cmd gatling:test
+   {{</ platform-toggle >}}
 
-1. Manually generate the package by executing the following command locally on your developer’s workstation:
+2. When prompted, choose `[1] example.BasicSimulation`.
+3. After the run completes, open the HTML report printed in the terminal (`target/gatling/basicsimulation-<timestamp>/index.html`).
+
+Troubleshooting tips:
+- **Command not allowed:** make the wrapper executable (`chmod +x mvnw`).
+- **Compilation errors:** check that each code block above is in place—missing braces are the most common typo.
+- **SSL or DNS failures:** verify you can open `https://api-ecomm.gatling.io/session` in a browser.
+
+## Step 5: Package and run on Gatling Enterprise {#run-the-simulation-on-gatling-enterprise}
+Upload your script manually or drive automated deployments.
+
+### Manual packaging
+1. From the same directory, run:
 
    {{< platform-toggle >}}
    Linux/MacOS: ./mvnw gatling:enterprisePackage
    Windows: mvnw.cmd gatling:enterprisePackage
    {{</ platform-toggle >}}
 
-2. The above command will create a packaged `jar` file in your project's **target** directory.
+2. The command produces a `.jar` under `target/`. Upload it under **Packages** in the Gatling Enterprise console.
+3. Create a simulation, choose the uploaded package, select a managed location, and launch.
 
-3. From your Gatling Enterprise console, go to **Packages**. Create a new package specifying its name, team that owns it, select your packaged jar file for upload then click **Save**.
-
-4. Go to **Simulations** > **Create a simulation** > **Test as code**. Under **Select a package**, choose the newly created package, then click **Create**.
-
-5. Configure your simulation parameters:
-   - Simulation name.
-   - Under **Select your package and simulation** > **Simulation**, select your simulation class.
-   - Under **Configure your locations**, choose the _Managed_ type and select a location based on your preference.
-   - Click **Save and launch**.
-
-#### Advanced Use Case with Automated Deployments (Configuration-as-Code)
-
-Gatling Enterprise is a feature-rich SaaS platform that is designed for teams and organizations to get the most
-out of load testing. With the trial account, you created in the [Prerequisites section]({{< ref "#install-gatling" >}}), you can upload and run your test with advanced configuration, reporting, and collaboration features.
-
-From Gatling 3.11 packaging and running simulations on Gatling Enterprise is simplified by using [configuration as code]({{< ref "reference/run-tests/sources/configuration-as-code" >}}). In this tutorial, we only use the default configuration to demonstrate deploying your project. You can learn more about customizing your configuration with our [configuration-as-code guide]({{< ref "guides/ci-cd-automations/config-as-code" >}}).
-
-To deploy and run your simulation on Gatling Enterprise, use the following procedure:
-
-1. Generate an [API token]({{< ref "/reference/collaborate/admin/api-tokens" >}}) with the `Configure` permission in your Gatling Enterprise account.
-2. Add the API token to your current terminal session by replacing `<your-API-token>` with the API token generated in step 1 and running the following command:
+### Automated deployment (configuration as code)
+1. Generate an [API token]({{< ref "/reference/collaborate/admin/api-tokens" >}}) with the `Configure` permission.
+2. Export it in your terminal session:
 
    {{< platform-toggle >}}
    Linux/MacOS: export GATLING_ENTERPRISE_API_TOKEN=<your-API-token>
    Windows: set GATLING_ENTERPRISE_API_TOKEN=<your-API-token>
    {{</ platform-toggle >}}
 
-3. Run one of the following two commands according to your needs:
-
-   - To deploy your package **and** start the simulation, run:
+3. Run one of the following commands:
+   - Deploy and start immediately:
 
      {{< platform-toggle >}}
      Linux/MacOS: ./mvnw gatling:enterpriseStart -Dgatling.enterprise.simulationName="<simulation name>"
      Windows: mvnw.cmd gatling:enterpriseStart -Dgatling.enterprise.simulationName="<simulation name>"
      {{</ platform-toggle >}}
 
-   - To deploy your package without starting a run:
+   - Deploy only:
 
      {{< platform-toggle >}}
      Linux/MacOS: ./mvnw gatling:enterpriseDeploy
      Windows: mvnw.cmd gatling:enterpriseDeploy
      {{</ platform-toggle >}}
 
-Watch the Simulation deploy automatically and generate real-time reports.
+Follow the run in the Enterprise UI for live metrics and historical reporting.
 
-### Run the Simulation locally for debugging {{% badge info "Optional" /%}} {#run-the-simulation-locally-for-debugging}
-
-The Community Edition version of Gatling allows you to run simulations locally, generating load from your computer. Running a
-new or modified simulation locally is often useful to ensure it works before launching it on Gatling Enterprise.
-Using the Java SDK, you can launch your test in interactive mode using the following approach:
-
-1. In the `java/maven` directory, run the following command:
-
-   {{< platform-toggle>}}
-   Linux/MacOS: ./mvnw gatling:test
-   Windows: mvnw.cmd gatling:test
-   {{</ platform-toggle >}}
-
-2. Choose `[1] example.BasicSimulation`.
-
-When the test has finished, there is an HTML link in the terminal that you can use to access the static report.
-
-## Step 6: Next steps and additional learning
+## Step 6: Keep learning
 - Repeat the tutorial against your own API—replace the base URL and adjust requests.
 - Enrich the scenario with checks (`.check(status().is(200))`) and pauses (`.pause(1)`), then re-run locally.
-- Graduate to the broader [Load Testing With Gatling (Java)]({{< ref "tutorials/java/get-started/index.md" >}}) guide for feeders, correlation, and workload modelling.
+- Graduate to [Get started with the Java SDK]({{< ref "tutorials/java/get-started/index.md" >}}) for feeders, correlation, and workload modelling.
 - Revisit the [Java introduction]({{< ref "tutorials/java/intro/index.md" >}}) when you need Maven configuration snippets or project structure advice.
 - Explore the [Recorder tutorial]({{< ref "tutorials/recorder" >}}) to capture traffic and generate simulations automatically.
 

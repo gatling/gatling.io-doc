@@ -1,9 +1,19 @@
 ---
-title: Get started with the Java SDK
+title: Gatling Java SDK — From Template to Production-Ready Simulations
+menutitle: Java SDK
+description: Learn how to create a Gatling simulation using the Java SDK, run it locally, and deploy it to Gatling Enterprise Edition.
 ---
 
 ## Why this guide exists
-Use this page when you already understand the basics from the [Java introduction]({{< ref "tutorials/java/intro/index.md" >}}) and want a fuller view of Gatling’s Java tooling. It gathers the essential building blocks—scenarios, feeders, checks, workload models, and project hygiene—without forcing you through a step-by-step tutorial. If you prefer copy-and-paste instructions, switch to [Create your first Java-based simulation]({{< ref "tutorials/java/scripting-intro/index.md" >}}).
+Build on the fast-start information from the [Java introduction]({{< ref "tutorials/java/intro/index.md" >}}) and learn how to assemble production-ready scripts. This page collects the core building blocks—scenarios, feeders, checks, workload models, and workflow hygiene—without walking through every editor action. If you need a slower pace, fall back to [Create your first Java-based simulation]({{< ref "tutorials/java/scripting-intro/index.md" >}}).
+
+## What you will cover
+- Anatomy of a maintainable simulation file.
+- Feeding data and correlating dynamic responses.
+- Choosing injection profiles that mimic real traffic.
+- Operating tips: reports, troubleshooting, and governance.
+
+We link to the appropriate reference material whenever we skip implementation details, so you can go deeper on demand.
 
 ## Prerequisites
 - Java 17 (or newer) LTS runtime.
@@ -18,44 +28,44 @@ Clone the [gatling-java-demo](https://github.com/gatling/gatling-java-demo) proj
 ./mvnw gatling:test
 ```
 
-For IDE configuration, wrapper details, and project anatomy, defer to the [introduction page]({{< ref "tutorials/java/intro/index.md" >}}).
+Need help with IDE configuration or directory layout? Revisit the [Java introduction]({{< ref "tutorials/java/intro/index.md" >}}) before continuing.
 
 ## Understand the core concepts
-| Concept | Description |
-| --- | --- |
-| Simulation | Executable performance test class that orchestrates your scenarios and injection profiles. |
-| Protocol | Shared configuration (e.g., base URL, headers) applied to one or more scenarios. |
-| Scenario | Virtual user behaviour—a sequence of actions that represents a workflow. |
-| Feeder | Test data source (CSV, JSON, JDBC, custom code). |
-| Checks & Assertions | Response validations and pass/fail thresholds for your run. |
-| Injection Profile | Defines the arrival rate and ramp-up strategy for virtual users. |
+| Concept | Description | Dig deeper |
+| --- | --- | --- |
+| Simulation | Executable performance test class that orchestrates your scenarios and injection profiles. | [Simulation concepts]({{< ref "/concepts/simulation" >}}) |
+| Protocol | Shared configuration (e.g., base URL, headers) applied to one or more scenarios. | [HTTP protocol reference]({{< ref "/reference/script/http/protocol" >}}) |
+| Scenario | Virtual user behaviour—a sequence of actions that represents a workflow. | [Scenario SDK reference]({{< ref "/concepts/scenario" >}}) |
+| Feeder | Test data source (CSV, JSON, JDBC, custom code). | [Feeder reference]({{< ref "/concepts/session/feeders" >}}) |
+| Checks & Assertions | Response validations and pass/fail thresholds for your run. | [Checks]({{< ref "/concepts/checks" >}}), [Assertions]({{< ref "/concepts/assertions" >}}) |
+| Injection Profile | Defines the arrival rate and ramp-up strategy for virtual users. | [Injection SDK reference]({{< ref "/concepts/injection" >}}) |
 
 **Mental model:** translate your business journey into scenarios, feed them data, run users through an injection profile, and guard the outcome with assertions.
 
 ## Assemble a baseline simulation
-Start from a single-scenario template, then branch into helper classes as the script grows.
+Start from a single-scenario template, then break logic into helpers as the script grows.
 
 ### Baseline example
 {{< include-code "GetStartedSimulation#full-example" java >}}
 
 Key points:
 - Keep protocol builders immutable, then share them across scenarios with `.protocols()`.
-- Use `System.getProperty` for quick parameterization (`-Dusers=100`). For complex configuration, graduate to Typesafe Config or dedicated Java classes.
+- Use `System.getProperty` for quick parameterization (`-Dusers=100`). For richer configuration, graduate to Typesafe Config or dedicated Java classes (see the [configuration guide]({{< ref "guides/optimize-scripts/passing-parameters/" >}})).
 
-## Enrich scenarios with data and business behaviour
+## Enrich scenarios with data and business behavior
 
 ### Feeders: avoid hot-cache artifacts
 {{< include-code "FeederExample#full-example" java >}}
 
 - Store CSV/JSON files under `src/test/resources/data` so they ride the classpath.
-- Pick the right strategy (`.circular()`, `.queue()`, `.random()`) to balance uniqueness and repeatability.
+- Pick the right strategy (`.circular()`, `.queue()`, `.random()`) to balance uniqueness and repeatability. More strategies live in the [feeder reference]({{< ref "concepts/session/feeders" >}}).
 
 ### Correlation: capture dynamic values
 {{< include-code "AddWithCsrf#full-example" java >}}
 
 - Add a check that extracts the token (`saveAs`).
 - Reuse it in later requests with `#{csrf}` (string interpolation) or `.formParam("csrf", session("csrf"))` if you prefer method references.
-- Keep a `check(status().is(200))` near every extractor to fail fast when the app changes.
+- Keep a `check(status().is(200))` near every extractor to fail fast when the app changes. For advanced extractors, see the [check builders]({{< ref "reference/script/http/checks" >}}).
 
 ### Compose journeys
 Break long journeys into smaller chains and reuse them:
@@ -85,24 +95,27 @@ Common injection shortcuts:
 - `constantUsersPerSec(rate).during(t)` when you care about arrival rate more than concurrent sessions.
 - `heavisideUsers(x).during(t)` for S-curve ramps that avoid sudden jumps.
 
+Prefer pacing by arrival rate or closed workload models? Study the [injection SDK reference]({{< ref "/concepts/injection" >}}) and [closed models guide]({{< ref "/testing-concepts/workload-models/" >}}).
+
 ## Run and inspect results
 - Run locally with `./mvnw -Dgatling.simulationClass=… gatling:test` or interactive mode (`./mvnw gatling:test`).
-- After each run, open `target/gatling/<simulation>-<timestamp>/index.html`.
-- Focus on p95/p99 latency, throughput, per-request errors, and response time distribution. Correlate regressions with application metrics.
+- After each run, open `target/gatling/<simulation>-<timestamp>/index.html` and focus on p95/p99 latency, throughput, per-request errors, and response time distribution.
+- Need to automate? Wire the same command into CI, or explore [Gatling Enterprise]({{< ref "/evaluate-enterprise/trial-plan/" >}}) for distributed runs and real-time dashboards.
 
 ## Troubleshooting checklist
 - **Connection failures:** verify base URL, DNS, VPN/proxy rules, and SSL trust stores.
 - **Server 429/503 responses:** coordinate with ops and honour rate limits—reduce load or widen ramp.
-- **Too-perfect results:** add `pause()` and realistic think times; confirm you are requesting business-critical endpoints, not static assets only.
+- **Too-perfect results:** add `pause()` and realistic think times; confirm you are exercising business-critical endpoints, not just static assets.
 - **Data collisions:** switch feeders to `.queue()` or generate unique IDs per user; reset test data between runs.
 
 ## Operational hygiene
 - Version your tests alongside application code and review them like any other pull request.
 - Externalize secrets via environment variables or the Gatling Enterprise console—never hard-code credentials.
 - Document target SLOs in code using assertions so CI builds surface performance regressions immediately.
+- Share knowledge: keep README notes or ADRs that explain scenarios, target metrics, and known limitations.
 
 ## Where to go next
 - Want a slower, instructional pace? Follow [Create your first Java-based simulation]({{< ref "tutorials/java/scripting-intro/index.md" >}}).
 - Need IDE, packaging, or Maven plugin help? Revisit the [Java introduction]({{< ref "tutorials/java/intro/index.md" >}}) or the [gatling-maven-plugin guide]({{< ref "integrations/build-tools/maven-plugin/index.md" >}}).
-- Move beyond HTTP with the [protocol guides]({{< ref "reference/index.md" >}}) and expand checks using the [Java DSL reference]({{< ref "reference/script/http/index.md" >}}).
-- Scale out, share dashboards, and automate governance with [Gatling Enterprise]({{< ref "evaluate-enterprise/trial-plan/index.md" >}}).
+- Move beyond HTTP with the [protocol guides]({{< ref "reference/index.md" >}}) and expand checks using the [Java SDK reference]({{< ref "reference/script/http/index.md" >}}).
+- Ready for team-wide load infrastructure? Scale out, share dashboards, and automate governance with [Gatling Enterprise]({{< ref "evaluate-enterprise/trial-plan/index.md" >}}).
