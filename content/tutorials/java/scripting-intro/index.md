@@ -13,7 +13,7 @@ This guide is intended for Gatling versions `{{< var gatlingVersion >}}` and lat
 New to Gatling and the Java SDK? This tutorial walks through every edit required to produce, run, and package your first simulation. If you already know the basics and just need configuration reminders, jump to the [Java introduction]({{< ref "tutorials/java/intro/index.md" >}}). For a broader tour of feeders, checks, and workload modelling, continue with [Get started with the Java SDK]({{< ref "tutorials/java/get-started/index.md" >}}).
 
 {{< alert tip >}}
-Prefer JavaScript or TypeScript? Follow the [introduction to JavaScript scripting]({{< ref "tutorials/scripting-intro-js" >}}) instead.
+Prefer JavaScript or TypeScript? Follow the [introduction to JavaScript scripting]({{< ref "tutorials/javascript/scripting-intro-js/index.md" >}}) instead.
 {{< /alert >}}
 
 ## Before you begin
