@@ -156,8 +156,10 @@ control-plane {
       #   "--add-opens=java.base/java.nio=ALL-UNNAMED", 
       #   "--add-opens=java.base/jdk.internal.misc=ALL-UNNAMED"
       # ]
-      #  Based on your instance configuration, you may want to update Xmx and Xms values.
-      # jvm-options = ["-Xmx4G", "-Xms512M"]
+      # Based on your instance configuration, you may want to update Xmx and Xms values.
+      # If your load generators are running on Java 24 or newer,
+      # we also recommend enforcing the new ZGC garbage collector.
+      # jvm-options = ["-XX:+UseZGC", "-Xmx4G", "-Xms512M"]
     }
   ]
 }
