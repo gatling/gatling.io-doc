@@ -12,4 +12,5 @@ ordering:
   - recorder
   - gui
   - faq
+  - js-hub
 ---
