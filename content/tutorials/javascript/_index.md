@@ -7,4 +7,5 @@ ordering:
   - intro
   - scripting-intro-js
   - get-started
+  - quickstart
 ---

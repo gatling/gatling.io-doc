@@ -1,5 +1,5 @@
 ---
-menutitle: Create a simulation with JavaScript
+menutitle: Create your first simulation
 title: Create your first JavaScript-based simulation
 description: "Get started with Gatling and JavaScript: install, write your first load test, and execute it."
 lead: Learn how to get started with Gatling and create a Gatling simulation with JavaScript.
