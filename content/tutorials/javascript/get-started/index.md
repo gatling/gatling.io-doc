@@ -1,5 +1,7 @@
 ---
-title: Get started with the JavaScript SDK
+title: Explore the JavaScript SDK — From Template to Production-Ready Simulations
+menutitle: Explore the JavaScript SDK
+description: Learn how to create a Gatling simulation using the JavaScript SDK, run it locally, and deploy it to Gatling Enterprise Edition.
 ---
 
 ## Why this guide exists
@@ -36,7 +38,7 @@ Need help with IDE configuration or project layout? Revisit the [JavaScript intr
 | --- | --- | --- |
 | Simulation | Default export of a `.gatling.ts` file that wires scenarios and injection. | [Simulation concepts]({{< ref "/concepts/simulation" >}}) |
 | Protocol | Shared configuration (e.g., base URL, headers) applied to one or more scenarios. | [HTTP protocol reference]({{< ref "/reference/script/http/protocol" >}}) |
-| Scenario | Virtual user behaviour—chains of requests, pauses, and logic. | [Scenario reference]({{< ref "/concepts/scenario" >}}) |
+| Scenario | Virtual user behavior—chains of requests, pauses, and logic. | [Scenario reference]({{< ref "/concepts/scenario" >}}) |
 | Feeder | Data source (arrays, CSV, custom functions) injected into sessions. | [Feeders reference]({{< ref "/concepts/session/feeders" >}}) |
 | Checks & Assertions | Response validations and pass/fail thresholds. | [Checks reference]({{< ref "/reference/script/http/checks" >}}), [Assertions]({{< ref "/concepts/assertions" >}}) |
 | Injection Profile | Defines arrival rate and ramp-up strategy. | [Injection reference]({{< ref "/concepts/injection" >}}) |
@@ -54,13 +56,13 @@ Key points:
 - Use environment variables (or typed configuration helpers) for quick parameterisation.
 - Export the simulation as the module default so the Gatling CLI can pick it up automatically.
 
-## Enrich scenarios with data and behaviour
+## Enrich scenarios with data and behavior
 
 ### Feeders: avoid hot-cache artifacts
 ```ts
 import { exec, scenario } from "@gatling.io/core";
 import { http, status } from "@gatling.io/http";
-import products from "./data/products.json" assert { type: "json" };
+import products from "./resources/products.json" assert { type: "json" };
 
 const productFeeder = () =>
   products[Math.floor(Math.random() * products.length)];
@@ -73,7 +75,7 @@ const browse = scenario("Browse with data").exec(
 );
 ```
 
-- Store CSV/JSON under `src/data` so they are bundled.
+- Store CSV/JSON under `src/resources` so they are bundled.
 - Pick a strategy (`random`, `queue`, `circular`) that balances uniqueness and repeatability. See the [Feeders reference]({{< ref "/concepts/session/feeders" >}}) for additional helpers.
 
 ### Correlation: capture dynamic values
@@ -96,7 +98,7 @@ const addWithCsrf = scenario("Add with CSRF")
   );
 ```
 
-- Always pair extractors with a status/content check so failures surface immediately.
+- Pair extractors with a status/content check so failures surface immediately.
 - Choose the extractor that matches the response format (`jsonPath`, `css`, `regex`, etc.). The [check reference]({{< ref "reference/script/http/checks" >}}) lists every option.
 
 ### Compose journeys
@@ -150,16 +152,9 @@ Need a refresher on each injection helper? Review the [injection reference]({{< 
 - After each run, open `target/gatling/<simulation>-<timestamp>/index.html` to review percentiles, throughput, and errors.
 - Automate the same commands in CI, or evaluate [Gatling Enterprise]({{< ref "/evaluate-enterprise/trial-plan/" >}}) for distributed load and real-time dashboards.
 
-## Troubleshooting checklist
-- **Command not found:** ensure `node_modules/.bin` is on your PATH or prefix commands with `npx`/`npm run`.
-- **Connection failures:** verify base URLs, proxies, VPNs, and TLS certificates.
-- **Server 429/503 responses:** coordinate with ops; ramp up gradually or tune load levels.
-- **Data collisions:** ensure feeders produce unique values or reset state between runs.
-- **Type errors when compiling:** align your `tsconfig.json` with the Gatling TypeScript template; ensure `esModuleInterop` is enabled if you mix import styles.
-
 ## Operational hygiene
 - Commit simulations alongside application code and review them like any other change.
-- Externalise secrets via environment variables or Gatling Enterprise configuration-as-code.
+- Externalize secrets via environment variables or Gatling Enterprise [configuration-as-code]({{< ref "/reference/run-tests/sources/configuration-as-code/" >}}).
 - Encode SLOs with assertions so builds fail fast when thresholds are breached.
 - Document scenario intent, metrics, and known caveats in README files or ADRs.
 
