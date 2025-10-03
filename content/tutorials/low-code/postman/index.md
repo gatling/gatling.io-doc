@@ -66,7 +66,7 @@ npm install --save "@gatling.io/postman"
 ```
 
 For more details on how to create a JavaScript or TypeScript project, check the
-[dedicated tutorial]({{< ref "/tutorials/javascript/scripting-intro-js/" >}}).
+[dedicated tutorial]({{< ref "/tutorials/test-as-code/javascript/running-your-first-simulation/" >}}).
 
 ## Import your Postman assets
 

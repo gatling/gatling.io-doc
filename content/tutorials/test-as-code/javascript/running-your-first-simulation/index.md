@@ -10,10 +10,10 @@ date: 2023-12-16T18:30:56+02:00
 This guide is only intended for the Gatling JavaScript SDK version `{{< var gatlingJsVersion >}}`.
 {{< /alert >}}
 
-Gatling is a highly flexible load-testing platform. You can write load tests in Java, Kotlin, Scala, JavaScript, and TypeScript, or use our [no-code feature](https://gatling.io/features/no-code-generator/) with Gatling Enterprise.
+Gatling is a highly flexible load-testing platform. You can write load tests in Java, Kotlin, Scala, JavaScript, and TypeScript, or use our [no-code feature](https://gatling.io/features/no-code-generator/) with Gatling Enterprise Edition.
 
 {{< alert tip >}}
-Already comfortable with the toolchain? Jump straight to the [JavaScript introduction]({{< ref "tutorials/javascript/intro/index.md" >}}) or explore broader patterns in [Get started with the JavaScript SDK]({{< ref "tutorials/javascript/get-started/index.md" >}}).
+Already comfortable with the toolchain? Jump straight to the [JavaScript introduction]({{< ref "tutorials/test-as-code/javascript/installation-guide/index.md" >}}) or explore broader patterns in [Get started with the JavaScript SDK]({{< ref "tutorials/test-as-code/javascript/full-sdk-capabilities/index.md" >}}).
 {{< /alert >}}
 
 In this guide, we cover a "Hello world"-style example for JavaScript of how to:
@@ -120,7 +120,7 @@ Now, you should have a completed simulation that looks like the following:
 
 {{< include-code "BasicSimulation#full-example" ts >}}
 
-### Package, upload and run your simulation to Gatling Enterprise { #package }
+### Package, upload and run your simulation to Gatling Enterprise Edition { #package }
 
 You can package, deploy, and run your simulation using one of two approaches, depending on whether you prefer a manual or automated process.
 
@@ -134,7 +134,7 @@ You can package, deploy, and run your simulation using one of two approaches, de
 
 2. The above command will create a packaged `zip` file in your project's **target** directory.
 
-3. From your Gatling Enterprise console, go to **Packages**. Create a new package specifying its name, team that owns it, select your packaged zip file for upload then click **Save**.
+3. From your Gatling Enterprise Edition console, go to **Packages**. Create a new package specifying its name, team that owns it, select your packaged zip file for upload then click **Save**.
 
 4. Go to **Simulations** > **Create a simulation** > **Test as code**. Under **Select a package**, choose the newly created package, then click **Create**.
 
@@ -149,9 +149,9 @@ You can package, deploy, and run your simulation using one of two approaches, de
 Gatling Enterprise is a feature-rich SaaS platform that is designed for teams and organizations to get the most
 out of load testing. With the trial account, you created in the [Prerequisites section]({{< ref "#install-gatling" >}}), you can upload and run your test with advanced configuration, reporting, and collaboration features.
 
-From Gatling 3.11 packaging and running simulations on Gatling Enterprise is simplified by using [configuration as code]({{< ref "reference/run-tests/sources/configuration-as-code" >}}). In this tutorial, we only use the default configuration to demonstrate deploying your project. You can learn more about customizing your configuration with our [configuration-as-code guide]({{< ref "guides/ci-cd-automations/config-as-code" >}}).
+From Gatling 3.11 packaging and running simulations on Gatling Enterprise Edition is simplified by using [configuration as code]({{< ref "reference/run-tests/sources/configuration-as-code" >}}). In this tutorial, we only use the default configuration to demonstrate deploying your project. You can learn more about customizing your configuration with our [configuration-as-code guide]({{< ref "guides/ci-cd-automations/config-as-code" >}}).
 
-To deploy and run your simulation on Gatling Enterprise, use the following procedure:
+To deploy and run your simulation on Gatling Enterprise Edition, use the following procedure:
 
 1. Generate an [API token]({{< ref "/reference/collaborate/admin/api-tokens" >}}) with the `Configure` permission in your Gatling Enterprise account.
 2. Add the API token to your current terminal session by replacing `<your-API-token>` with the API token generated in step 1 and running the following command:

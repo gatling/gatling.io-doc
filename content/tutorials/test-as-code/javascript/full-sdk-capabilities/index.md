@@ -1,11 +1,11 @@
 ---
 title: Explore the JavaScript SDK — From Template to Production-Ready Simulations
-menutitle: Explore the JavaScript SDK
+menutitle: Full SDK Capabilities
 description: Learn how to create a Gatling simulation using the JavaScript SDK, run it locally, and deploy it to Gatling Enterprise Edition.
 ---
 
 ## Why this guide exists
-Build on the quick-start information from the [JavaScript introduction]({{< ref "tutorials/javascript/intro/" >}}) and learn how to assemble production-ready scripts. This page collects the core building blocks—scenarios, feeders, checks, workload models, and operational tips—without forcing you through every editor action. If you need a slower pace, fall back to [Create your first JavaScript-based simulation]({{< ref "tutorials/javascript/scripting-intro-js/" >}}).
+Build on the quick-start information from the [JavaScript introduction]({{< ref "tutorials/test-as-code/javascript/installation-guide/" >}}) and learn how to assemble production-ready scripts. This page collects the core building blocks—scenarios, feeders, checks, workload models, and operational tips—without forcing you through every editor action. If you need a slower pace, fall back to [Create your first JavaScript-based simulation]({{< ref "tutorials/test-as-code/javascript/running-your-first-simulation/" >}}).
 
 ## What you will cover
 - Anatomy of a maintainable simulation module.
@@ -31,7 +31,7 @@ npm install
 npm run gatling:test -- --simulation src/basicSimulation.gatling
 ```
 
-Need help with IDE configuration or project layout? Revisit the [JavaScript introduction]({{< ref "tutorials/javascript/intro/" >}}) before continuing.
+Need help with IDE configuration or project layout? Revisit the [JavaScript introduction]({{< ref "tutorials/test-as-code/javascript/installation-guide/" >}}) before continuing.
 
 ## Understand the core concepts
 | Concept | Description | Deep dive |
@@ -159,7 +159,7 @@ Need a refresher on each injection helper? Review the [injection reference]({{< 
 - Document scenario intent, metrics, and known caveats in README files or ADRs.
 
 ## Where to go next
-- Want a slower, instructional pace? Follow [Create your first JavaScript-based simulation]({{< ref "tutorials/javascript/scripting-intro-js/" >}}).
-- Need setup or packaging reminders? Revisit the [JavaScript introduction]({{< ref "tutorials/javascript/intro/" >}}).
+- Want a slower, instructional pace? Follow [Create your first JavaScript-based simulation]({{< ref "tutorials/test-as-code/javascript/running-your-first-simulation/" >}}).
+- Need setup or packaging reminders? Revisit the [JavaScript introduction]({{< ref "tutorials/test-as-code/javascript/installation-guide/" >}}).
 - Expand beyond HTTP with the [protocol guides]({{< ref "reference/" >}}) and the [HTTP scripting reference]({{< ref "reference/script/http/" >}}).
 - Ready for team-wide load infrastructure? Scale out and automate with [Gatling Enterprise]({{< ref "evaluate-enterprise/trial-plan/" >}}).

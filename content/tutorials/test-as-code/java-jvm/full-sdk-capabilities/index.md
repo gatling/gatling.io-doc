@@ -1,11 +1,12 @@
 ---
 title: Gatling Java SDK — From Template to Production-Ready Simulations
-menutitle: Java SDK
+menutitle: Full SDK Capabilities
+seotitle: Learn how to create a Gatling simulation using the Java SDK, run it locally, and deploy it to Gatling Enterprise Edition  
 description: Learn how to create a Gatling simulation using the Java SDK, run it locally, and deploy it to Gatling Enterprise Edition.
 ---
 
 ## Why this guide exists
-Build on the fast-start information from the [Java introduction]({{< ref "tutorials/java/intro/index.md" >}}) and learn how to assemble production-ready scripts. This page collects the core building blocks—scenarios, feeders, checks, workload models, and workflow hygiene—without walking through every editor action. If you need a slower pace, fall back to [Create your first Java-based simulation]({{< ref "tutorials/java/scripting-intro/index.md" >}}).
+Build on the fast-start information from the [Java introduction]({{< ref "tutorials/test-as-code/java-jvm/installation-guide/index.md" >}}) and learn how to assemble production-ready scripts. This page collects the core building blocks—scenarios, feeders, checks, workload models, and workflow hygiene—without walking through every editor action. If you need a slower pace, fall back to [Create your first Java-based simulation]({{< ref "tutorials/test-as-code/java-jvm/running-your-first-simulation/index.md" >}}).
 
 ## What you will cover
 - Anatomy of a maintainable simulation file.
@@ -28,7 +29,7 @@ Clone the [gatling-java-demo](https://github.com/gatling/gatling-java-demo) proj
 ./mvnw gatling:test
 ```
 
-Need help with IDE configuration or directory layout? Revisit the [Java introduction]({{< ref "tutorials/java/intro/index.md" >}}) before continuing.
+Need help with IDE configuration or directory layout? Revisit the [Java introduction]({{< ref "tutorials/test-as-code/java-jvm/installation-guide/index.md" >}}) before continuing.
 
 ## Understand the core concepts
 | Concept | Description | Dig deeper |
@@ -115,7 +116,7 @@ Prefer pacing by arrival rate or closed workload models? Study the [injection SD
 - Share knowledge: keep README notes or ADRs that explain scenarios, target metrics, and known limitations.
 
 ## Where to go next
-- Want a slower, instructional pace? Follow [Create your first Java-based simulation]({{< ref "tutorials/java/scripting-intro/index.md" >}}).
-- Need IDE, packaging, or Maven plugin help? Revisit the [Java introduction]({{< ref "tutorials/java/intro/index.md" >}}) or the [gatling-maven-plugin guide]({{< ref "integrations/build-tools/maven-plugin/index.md" >}}).
+- Want a slower, instructional pace? Follow [Create your first Java-based simulation]({{< ref "tutorials/test-as-code/java-jvm/running-your-first-simulation/index.md" >}}).
+- Need IDE, packaging, or Maven plugin help? Revisit the [Java introduction]({{< ref "tutorials/test-as-code/java-jvm/installation-guide/index.md" >}}) or the [gatling-maven-plugin guide]({{< ref "integrations/build-tools/maven-plugin/index.md" >}}).
 - Move beyond HTTP with the [protocol guides]({{< ref "reference/index.md" >}}) and expand checks using the [Java SDK reference]({{< ref "reference/script/http/index.md" >}}).
 - Ready for team-wide load infrastructure? Scale out, share dashboards, and automate governance with [Gatling Enterprise]({{< ref "evaluate-enterprise/trial-plan/index.md" >}}).

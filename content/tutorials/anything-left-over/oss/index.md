@@ -98,7 +98,7 @@ TypeScript: npx gatling run --typescript --simulation basicSimulation
 {{</ code-toggle >}}
 
 {{< alert info >}}
-To learn more about developing Gatling tests in JavaScript/TypeScript, follow the [Intro to scripting]({{< ref "/tutorials/java/scripting-intro/" >}}) tutorial.
+To learn more about developing Gatling tests in JavaScript/TypeScript, follow the [Intro to scripting]({{< ref "/tutorials/test-as-code/java-jvm/running-your-first-simulation/" >}}) tutorial.
 {{< /alert >}}
 
 ## Use the standalone bundle
