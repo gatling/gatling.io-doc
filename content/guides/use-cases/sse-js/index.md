@@ -15,7 +15,7 @@ Performance testing SSE endpoints is crucial to ensure they can handle high load
 {{< alert info >}}
 This guide showcases the JavaScript/TypeScript SDK, but the same process applies to the Java, Kotlin, and Scala SDKs.
 
- If you haven't already, we recommend starting with the [Create a simulation with JavaScript/TypeScript tutorial]({{<ref "/tutorials/scripting-intro-js/" >}}) to set up your environment and understand the basics of writing simulations.
+ If you haven't already, we recommend starting with the [Create a simulation with JavaScript/TypeScript tutorial]({{<ref "/tutorials/test-as-code/javascript/running-your-first-simulation/" >}}) to set up your environment and understand the basics of writing simulations.
 {{< /alert >}}
 
 ## Price streaming as an SSE use case

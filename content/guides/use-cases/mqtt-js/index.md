@@ -11,7 +11,7 @@ lead: Learn how to load test MQTT brokers with the JavaScript/TypeScript SDK usi
 This guide walks through the **mqtt-js** reference project in the [Talks and tutorials repo](https://github.com/gatling/talks-and-tutorials/) to show how you can exercise an MQTT broker with Gatling's JavaScript/TypeScript SDK. The sample application simulates a fleet of delivery vehicles that publish telemetry over MQTT while a Node.js backend ingests the stream and exposes a live dashboard. Gatling wraps that workflow so you can rehearse realistic MQTT workloads and inspect detailed performance metrics.
 
 {{< alert tip >}}
-New to Gatling scripting in JavaScript or TypeScript? Start with the [Create a simulation with JavaScript/TypeScript tutorial]({{< ref "/tutorials/scripting-intro-js/" >}}) before diving into protocol-specific use cases.
+New to Gatling scripting in JavaScript or TypeScript? Start with the [Create a simulation with JavaScript/TypeScript tutorial]({{< ref "/tutorials/test-as-code/javascript/running-your-first-simulation/" >}}) before diving into protocol-specific use cases.
 {{< /alert >}}
 
 ## Why this example matters

@@ -14,7 +14,7 @@ then deploy and start your simulations with a single command.
 It assumes that you have a working Gatling project. 
 
 If you are just starting out, 
-we recommend trying the [Intro to scripting]({{< ref "/tutorials/scripting-intro" >}}) tutorial before using this guide.
+we recommend trying the [Intro to scripting]({{< ref "/tutorials/test-as-code/java-jvm/running-your-first-simulation" >}}) tutorial before using this guide.
 
 ## Prerequisites 
 

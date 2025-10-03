@@ -17,7 +17,7 @@ The following example uses a simple chatbot WebSocket server available from the 
 - Includes a Docker setup and ngrok configuration for public access, which enables testing from Gatling Enterprise Edition.
 
 {{< alert tip >}} 
-This guide assumes basic familiarity with JavaScript and command-line tools. If you're new to Gatling, check out the [Create a simulation with JavaScript]({{<ref "/tutorials/scripting-intro-js" >}}) tutorial first.
+This guide assumes basic familiarity with JavaScript and command-line tools. If you're new to Gatling, check out the [Create a simulation with JavaScript]({{<ref "/tutorials/test-as-code/javascript/running-your-first-simulation" >}}) tutorial first.
 {{< /alert >}}
 
 ## Key concepts
