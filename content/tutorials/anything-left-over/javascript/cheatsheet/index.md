@@ -1,6 +1,7 @@
 ---
-title: Intro to Load Testing with the JavaScript SDK
-description: Spin up a Gatling JavaScript project quickly, run a first simulation with Node.js, and plan your next steps.
+title: Gatling JavaScript SDK Cheatsheet
+menutitle: Cheatsheet
+description: Spin up a Gatling JavaScript project quickly, run a first simulation, find useful Js-related information in 1 place, and plan your next steps.
 
 ---
 
@@ -23,8 +24,8 @@ Already comfortable with Node.js tooling and TypeScript? Use this page as your f
 
 ### Choose the companion that fits your journey
 
-- Need a line-by-line walkthrough? Follow [Create your first JavaScript-based simulation]({{< ref "tutorials/javascript/scripting-intro-js/" >}}).
-- Want a deeper catalogue of feeders, checks, and workload ideas? Continue with [Get started with the JavaScript SDK]({{< ref "tutorials/javascript/get-started/" >}}).
+- Need a line-by-line walkthrough? Follow [Create your first JavaScript-based simulation]({{< ref "tutorials/test-as-code/javascript/running-your-first-simulation/" >}}).
+- Want a deeper catalogue of feeders, checks, and workload ideas? Continue with [Get started with the JavaScript SDK]({{< ref "tutorials/test-as-code/javascript/full-sdk-capabilities/" >}}).
 - Looking for SDK syntax or API details? Go straight to the [HTTP scripting reference]({{< ref "reference/script/http/" >}}).
 
 ## Prerequisites
@@ -231,7 +232,7 @@ const mySecret = getEnvironmentVariable(
 2. Open the folder in your editor (VS Code, WebStorm, or similar).
 3. Prefer yarn or pnpm? Generate a lockfile with your tool of choice and update scripts accordingly.
 
-If you would rather follow a step-by-step tutorial, switch to [Create your first JavaScript-based simulation]({{< ref "tutorials/javascript/scripting-intro-js/" >}}).
+If you would rather follow a step-by-step tutorial, switch to [Create your first JavaScript-based simulation]({{< ref "tutorials/test-as-code/javascript/running-your-first-simulation/" >}}).
 
 Check the [HTTP scripting reference]({{< ref "reference/script/http/" >}}) for optional protocol modules or utility packages.
 
@@ -273,7 +274,7 @@ Read values in TypeScript with `process.env.MY_VAR ?? "fallback"`. For secrets, 
 
 ## What to explore next
 
-- Need practical patterns (feeders, correlation, workload models)? Continue with [Get started with the JavaScript SDK]({{< ref "tutorials/javascript/get-started/" >}}).
-- Prefer a guided tutorial? Start with [Create your first JavaScript-based simulation]({{< ref "tutorials/javascript/scripting-intro-js/" >}}).
+- Need practical patterns (feeders, correlation, workload models)? Continue with [Get started with the JavaScript SDK]({{< ref "tutorials/test-as-code/javascript/full-sdk-capabilities/" >}}).
+- Prefer a guided tutorial? Start with [Create your first JavaScript-based simulation]({{< ref "tutorials/test-as-code/javascript/running-your-first-simulation/" >}}).
 - Browse the [HTTP scripting reference]({{< ref "reference/script/http/" >}}) and [protocol guides]({{< ref "reference/" >}}) as you harden your tests.
 - Evaluate distributed runs, real-time dashboards, and governance with [Gatling Enterprise]({{< ref "evaluate-enterprise/trial-plan/" >}}).

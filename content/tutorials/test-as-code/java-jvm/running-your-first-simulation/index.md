@@ -10,10 +10,10 @@ date: 2023-12-16T18:30:56+02:00
 This guide is intended for Gatling versions `{{< var gatlingVersion >}}` and later.
 {{< /alert >}}
 
-New to Gatling and the Java SDK? This tutorial walks through every edit required to produce, run, and package your first simulation. If you already know the basics and just need configuration reminders, jump to the [Java introduction]({{< ref "tutorials/java/intro/index.md" >}}). For a broader tour of feeders, checks, and workload modelling, continue with [Get started with the Java SDK]({{< ref "tutorials/java/get-started/index.md" >}}).
+New to Gatling and the Java SDK? This tutorial walks through every edit required to produce, run, and package your first simulation. If you already know the basics and just need configuration reminders, jump to the [Java introduction]({{< ref "tutorials/test-as-code/java-jvm/installation-guide/index.md" >}}). For a broader tour of feeders, checks, and workload modelling, continue with [Get started with the Java SDK]({{< ref "tutorials/test-as-code/java-jvm/full-sdk-capabilities/index.md" >}}).
 
 {{< alert tip >}}
-Prefer JavaScript or TypeScript? Follow the [introduction to JavaScript scripting]({{< ref "tutorials/javascript/scripting-intro-js/index.md" >}}) instead.
+Prefer JavaScript or TypeScript? Follow the [introduction to JavaScript scripting]({{< ref "tutorials/test-as-code/javascript/running-your-first-simulation/index.md" >}}) instead.
 {{< /alert >}}
 
 ## Before you begin
@@ -100,7 +100,7 @@ You now have a complete simulation. The finished file should match:
 
 {{< include-code "BasicSimulation#full-example" java >}}
 
-Need a refresher on what each SDK call does? Keep the [Java introduction]({{< ref "tutorials/java/intro/index.md" >}}) and the [Java HTTP reference]({{< ref "reference/script/http/index.md" >}}) handy.
+Need a refresher on what each SDK call does? Keep the [Java introduction]({{< ref "tutorials/test-as-code/java-jvm/installation-guide/index.md" >}}) and the [Java HTTP reference]({{< ref "reference/script/http/index.md" >}}) handy.
 
 ## Step 4: Run the simulation locally {#run-the-simulation-locally-for-debugging}
 1. From the `java/maven` directory, run the Maven Wrapper:
@@ -161,8 +161,8 @@ Follow the run in the Enterprise UI for live metrics and historical reporting.
 ## Step 6: Keep learning
 - Repeat the tutorial against your own API—replace the base URL and adjust requests.
 - Enrich the scenario with checks (`.check(status().is(200))`) and pauses (`.pause(1)`), then re-run locally.
-- Graduate to [Get started with the Java SDK]({{< ref "tutorials/java/get-started/index.md" >}}) for feeders, correlation, and workload modelling.
-- Revisit the [Java introduction]({{< ref "tutorials/java/intro/index.md" >}}) when you need Maven configuration snippets or project structure advice.
-- Explore the [Recorder tutorial]({{< ref "tutorials/recorder" >}}) to capture traffic and generate simulations automatically.
+- Graduate to [Get started with the Java SDK]({{< ref "tutorials/test-as-code/java-jvm/full-sdk-capabilities/index.md" >}}) for feeders, correlation, and workload modelling.
+- Revisit the [Java introduction]({{< ref "tutorials/test-as-code/java-jvm/installation-guide/index.md" >}}) when you need Maven configuration snippets or project structure advice.
+- Explore the [Recorder tutorial]({{< ref "tutorials/low-code/recorder" >}}) to capture traffic and generate simulations automatically.
 
 You have now installed Gatling, authored a Java simulation, and executed it locally and (optionally) on Gatling Enterprise. Keep iterating!

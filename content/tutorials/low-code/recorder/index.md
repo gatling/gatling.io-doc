@@ -17,8 +17,8 @@ This tutorial is intended for Gatling versions `{{< var gatlingVersion >}}` and 
 The Gatling Recorder allows you to capture browser-based actions to create a realistic user scenario for load testing. The Recorder application is launched from Gatling, using Maven, Gradle, sbt or the JavaScript CLI.  
 
 In this tutorial, we use Gatling to load test a simple cloud-hosted web server and introduce you to the basic elements of the Recorder. We strongly recommend completing one of the following introductory guides according to your language of preference before starting to work with the Recorder:
-- [Introduction to scripting tutorial with Java]({{< ref "/tutorials/java/scripting-intro" >}}). 
-- [Introduction to scripting tutorial with JavaScript]({{< ref "/tutorials/javascript/scripting-intro-js" >}}). 
+- [Introduction to scripting tutorial with Java]({{< ref "/tutorials/test-as-code/java-jvm/running-your-first-simulation" >}}). 
+- [Introduction to scripting tutorial with JavaScript]({{< ref "/tutorials/test-as-code/javascript/running-your-first-simulation" >}}). 
 
 This tutorial showcases the Gatling recorder using two options: **Java** SDK with the **Maven** plugin and the **JavaScript** SDK with **JavaScript CLI**.
 
@@ -136,7 +136,7 @@ JavaScript: src/
 {{</ code-toggle >}}
 
 {{< alert tip >}}
-The scenario components and their functionality are described in the [Intro to Scripting]({{< ref "/tutorials/java/scripting-intro" >}}) tutorial. For more details regarding the Simulation structure, please check out the [Simulation reference page]({{< ref "/concepts/simulation" >}}).
+The scenario components and their functionality are described in the [Intro to Scripting]({{< ref "/tutorials/test-as-code/java-jvm/running-your-first-simulation" >}}) tutorial. For more details regarding the Simulation structure, please check out the [Simulation reference page]({{< ref "/concepts/simulation" >}}).
 {{< /alert >}}
 
 ## Test execution
