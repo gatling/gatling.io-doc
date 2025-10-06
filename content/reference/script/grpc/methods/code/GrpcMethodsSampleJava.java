@@ -321,17 +321,17 @@ class GrpcMethodsSampleJava {
     var callCredentials = callCredentialsForUser("");
     //#unaryCallCredentials
     grpc("name")
-        .unary(ExampleServiceGrpc.getExampleMethod())
-        .send(message)
-        // with a constant
-        .callCredentials(callCredentials)
-        // or with an EL string to retrieve CallCredentials already stored in the session
-        .callCredentials("#{callCredentials}")
-        // or with a function
-        .callCredentials(session -> {
-          var name = session.getString("myUserName");
-          return callCredentialsForUser(name);
-        });
+      .unary(ExampleServiceGrpc.getExampleMethod())
+      .send(message)
+      // with a constant
+      .callCredentials(callCredentials)
+      // or with an EL string to retrieve CallCredentials already stored in the session
+      .callCredentials("#{callCredentials}")
+      // or with a function
+      .callCredentials(session -> {
+        var name = session.getString("myUserName");
+        return callCredentialsForUser(name);
+      });
     //#unaryCallCredentials
   }
 
