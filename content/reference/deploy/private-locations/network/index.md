@@ -66,6 +66,10 @@ control-plane {
       #   url = "http://private-control-plane-http-proxy:3128"
       #   # comma-separated list of hosts for which not to use a proxy (e.g: private repository domain, optional), see https://curl.se/docs/manpage.html#--noproxy
       #   # noproxy = "example.com,other.com"
+      #   # credentials {
+      #   #   username = "<username>"
+      #   #   password = "<password>"
+      #   # }
       # }
 
       # Uncomment the block if you need to trust custom certificates
@@ -120,6 +124,10 @@ control-plane {
       #   url = "http://private-control-plane-http-proxy:3128"
       #   # comma-separated list of hosts for which not to use a proxy (e.g: private repository domain, optional), see https://curl.se/docs/manpage.html#--noproxy
       #   # noproxy = "example.com,other.com"
+      #   # credentials {
+      #   #   username = "<username>"
+      #   #   password = "<password>"
+      #   # }
       # }
 
       # Uncomment the block if you need to trust custom certificates
@@ -211,6 +219,10 @@ control-plane {
       #   url = "http://private-control-plane-http-proxy:3128"
       #   # comma-separated list of hosts for which not to use a proxy (e.g: private repository domain, optional), see https://curl.se/docs/manpage.html#--noproxy
       #   # noproxy = "example.com,other.com"
+      #   # credentials {
+      #   #   username = "<username>"
+      #   #   password = "<password>"
+      #   # }
       # }
 
       # Uncomment the block if you need to trust custom certificates
