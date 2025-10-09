@@ -10,10 +10,6 @@ aliases:
 
 Under the hood, Gatling uses [gRPC-Java](https://grpc.io/docs/languages/java/) to implement its protocol support.
 
-{{< alert warning >}}
-The gRPC protocol is not supported by the JavaScript SDK. If this functionality is important to you, add a comment to our [public roadmap](https://portal.productboard.com/gatling/1-gatling-roadmap/c/113-javascript-sdk-expansion?&utm_medium=docs&utm_source=callout)
-{{< /alert >}}
-
 ## License and limitations {#license}
 
 **The Gatling gRPC component is distributed under the
@@ -37,9 +33,11 @@ supported languages and build tools:
 
 - [Java with Gradle](https://github.com/gatling/gatling-grpc-demo/tree/main/java/gradle)
 - [Java with Maven](https://github.com/gatling/gatling-grpc-demo/tree/main/java/maven)
+- [JavaScript](https://github.com/gatling/gatling-grpc-demo/tree/main/javascript)
 - [Kotlin with Gradle](https://github.com/gatling/gatling-grpc-demo/tree/main/kotlin/gradle)
 - [Kotlin with Maven](https://github.com/gatling/gatling-grpc-demo/tree/main/kotlin/maven)
 - [Scala with sbt](https://github.com/gatling/gatling-grpc-demo/tree/main/scala/sbt)
+- [TypeScript](https://github.com/gatling/gatling-grpc-demo/tree/main/typescript)
 
 It also contains a [demo server](https://github.com/gatling/gatling-grpc-demo/tree/main/server) that you can use if
 you want to run the example scenarios over a working server.
@@ -56,6 +54,11 @@ For Java or Kotlin:
 2-Gradle: includes/dependency.gradle.java.md
 {{< /include-file >}}
 
+For JavaScript/TypeScript:
+
+```console
+npm install @gatling.io/grpc@{{< var gatlingJsVersion >}}
+```
 For Scala:
 
 {{< include-file >}}
@@ -73,12 +76,21 @@ appropriate configurations for your use case instead.
 
 ### Protobuf for Java
 
-For a project running Java with either Maven or Gradle: 
+For a project running Java with either Maven or Gradle:
 
 {{< include-file >}}
 1-Maven: includes/proto.maven.java.md
 2-Gradle: includes/proto.gradle.java.md
 {{< /include-file >}}
+
+### Protobuf for JavaScript and TypeScript
+
+Add your proto files in the `protobuf` directory.
+
+Check the demo project for full examples:
+
+- [Gatling gRPC JavaScript](https://github.com/gatling/gatling-grpc-demo/tree/main/javascript)
+- [Gatling gRPC TypeScript](https://github.com/gatling/gatling-grpc-demo/tree/main/javascript)
 
 ### Protobuf for Kotlin
 

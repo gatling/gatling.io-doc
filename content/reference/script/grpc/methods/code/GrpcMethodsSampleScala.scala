@@ -43,7 +43,8 @@ class GrpcMethodsSampleScala {
   // with a Gatling EL string
   grpc("#{requestName}").unary(ExampleServiceGrpc.METHOD_EXAMPLE)
   // with a function
-  grpc(session => session("requestName").as[String]).unary(ExampleServiceGrpc.METHOD_EXAMPLE)
+  grpc(session => session("requestName").as[String])
+    .unary(ExampleServiceGrpc.METHOD_EXAMPLE)
   //#unaryInstantiation
 
   //#unaryLifecycle
@@ -61,12 +62,14 @@ class GrpcMethodsSampleScala {
   // with a Gatling EL string
   grpc("#{requestName}").serverStream(ExampleServiceGrpc.METHOD_EXAMPLE)
   // with a function
-  grpc(session => session("requestName").as[String]).serverStream(ExampleServiceGrpc.METHOD_EXAMPLE)
+  grpc(session => session("requestName").as[String])
+    .serverStream(ExampleServiceGrpc.METHOD_EXAMPLE)
   //#serverStreamInstantiation
 
   {
     //#serverStreamLifecycle
-    val stream = grpc("request name").serverStream(ExampleServiceGrpc.METHOD_EXAMPLE)
+    val stream =
+      grpc("request name").serverStream(ExampleServiceGrpc.METHOD_EXAMPLE)
 
     val scn = scenario("scenario name").exec(
       stream.send(message),
@@ -77,13 +80,15 @@ class GrpcMethodsSampleScala {
 
   {
     //#serverStreamNames
-    val stream1 = grpc("request name")
-      // specify streamName initially
-      .serverStream(ExampleServiceGrpc.METHOD_EXAMPLE, "first-stream")
-    val stream2 = grpc("request name")
-      .serverStream(ExampleServiceGrpc.METHOD_EXAMPLE)
-      // or use the streamName method
-      .streamName("second-stream")
+    val stream1 =
+      grpc("request name")
+        // specify streamName initially
+        .serverStream(ExampleServiceGrpc.METHOD_EXAMPLE, "first-stream")
+    val stream2 =
+      grpc("request name")
+        .serverStream(ExampleServiceGrpc.METHOD_EXAMPLE)
+        // or use the streamName method
+        .streamName("second-stream")
 
     exec(
       stream1.send(message),
@@ -99,12 +104,15 @@ class GrpcMethodsSampleScala {
   // with a Gatling EL string
   grpc("#{requestName}").clientStream(ExampleServiceGrpc.METHOD_EXAMPLE)
   // with a function
-  grpc(session => session("requestName").as[String]).clientStream(ExampleServiceGrpc.METHOD_EXAMPLE)
+  grpc(session => session("requestName").as[String])
+    .clientStream(ExampleServiceGrpc.METHOD_EXAMPLE)
   //#clientStreamInstantiation
 
   {
     //#clientStreamLifecycle
-    val stream = grpc("request name").clientStream(ExampleServiceGrpc.METHOD_EXAMPLE)
+    val stream =
+      grpc("request name")
+        .clientStream(ExampleServiceGrpc.METHOD_EXAMPLE)
 
     val scn = scenario("scenario name").exec(
         stream.start,
@@ -118,13 +126,15 @@ class GrpcMethodsSampleScala {
 
   {
     //#clientStreamNames
-    val stream1 = grpc("request name")
-      // specify streamName initially
-      .clientStream(ExampleServiceGrpc.METHOD_EXAMPLE, "first-stream")
-    val stream2 = grpc("request name")
-      .clientStream(ExampleServiceGrpc.METHOD_EXAMPLE)
-      // or use the streamName method
-      .streamName("second-stream")
+    val stream1 =
+      grpc("request name")
+        // specify streamName initially
+        .clientStream(ExampleServiceGrpc.METHOD_EXAMPLE, "first-stream")
+    val stream2 =
+      grpc("request name")
+        .clientStream(ExampleServiceGrpc.METHOD_EXAMPLE)
+        // or use the streamName method
+        .streamName("second-stream")
 
     exec(
       stream1.start,
@@ -140,18 +150,21 @@ class GrpcMethodsSampleScala {
   // with a Gatling EL string
   grpc("#{requestName}").bidiStream(ExampleServiceGrpc.METHOD_EXAMPLE)
   // with a function
-  grpc(session => session("requestName").as[String]).bidiStream(ExampleServiceGrpc.METHOD_EXAMPLE)
+  grpc(session => session("requestName").as[String])
+    .bidiStream(ExampleServiceGrpc.METHOD_EXAMPLE)
   //#bidiStreamInstantiation
 
   {
     //#bidiStreamLifecycle
-    val stream = grpc("request name").bidiStream(ExampleServiceGrpc.METHOD_EXAMPLE)
+    val stream =
+      grpc("request name")
+        .bidiStream(ExampleServiceGrpc.METHOD_EXAMPLE)
 
     val scn = scenario("scenario name").exec(
-        stream.start,
-        stream.send(message1),
-        stream.send(message2),
-        stream.halfClose,
+      stream.start,
+      stream.send(message1),
+      stream.send(message2),
+      stream.halfClose,
       stream.awaitStreamEnd
     )
     //#bidiStreamLifecycle
@@ -159,13 +172,15 @@ class GrpcMethodsSampleScala {
 
   {
     //#bidiStreamNames
-    val stream1 = grpc("request name")
-      // specify streamName initially
-      .bidiStream(ExampleServiceGrpc.METHOD_EXAMPLE, "first-stream")
-    val stream2 = grpc("request name")
-      .bidiStream(ExampleServiceGrpc.METHOD_EXAMPLE)
-      // or use the streamName method
-      .streamName("second-stream")
+    val stream1 =
+      grpc("request name")
+        // specify streamName initially
+        .bidiStream(ExampleServiceGrpc.METHOD_EXAMPLE, "first-stream")
+    val stream2 =
+      grpc("request name")
+        .bidiStream(ExampleServiceGrpc.METHOD_EXAMPLE)
+        // or use the streamName method
+        .streamName("second-stream")
 
     exec(
       stream1.start,
@@ -177,16 +192,20 @@ class GrpcMethodsSampleScala {
 
   //#unarySend
   // with a static payload
-  grpc("name").unary(ExampleServiceGrpc.METHOD_EXAMPLE)
+  grpc("name")
+    .unary(ExampleServiceGrpc.METHOD_EXAMPLE)
     .send(RequestMessage("hello"))
   // with a function payload
-  grpc("name").unary(ExampleServiceGrpc.METHOD_EXAMPLE)
+  grpc("name")
+    .unary(ExampleServiceGrpc.METHOD_EXAMPLE)
     .send(session => RequestMessage(session("message").as[String]))
   //#unarySend
 
   {
     //#clientStreamSend
-    val stream = grpc("name").clientStream(ExampleServiceGrpc.METHOD_EXAMPLE)
+    val stream =
+      grpc("name")
+        .clientStream(ExampleServiceGrpc.METHOD_EXAMPLE)
 
     exec(
       stream.send(RequestMessage("first message")),
@@ -261,9 +280,10 @@ class GrpcMethodsSampleScala {
 
   {
     //#clientStreamAsciiHeaders
-    val stream = grpc("request name")
-      .clientStream(ExampleServiceGrpc.METHOD_EXAMPLE)
-      .asciiHeader("header")("value")
+    val stream =
+      grpc("request name")
+        .clientStream(ExampleServiceGrpc.METHOD_EXAMPLE)
+        .asciiHeader("header")("value")
 
     exec(
       stream.start, // Header is sent only once, on stream start
@@ -317,7 +337,8 @@ class GrpcMethodsSampleScala {
   //#unaryChecks
 
   //#bidiMessageResponseTimePolicy
-  grpc("name").bidiStream(ExampleServiceGrpc.METHOD_EXAMPLE)
+  grpc("name")
+    .bidiStream(ExampleServiceGrpc.METHOD_EXAMPLE)
     // Default: from the start of the entire stream
     .messageResponseTimePolicy(FromStreamStartPolicy)
     // From the time when the last request message was sent
@@ -328,7 +349,9 @@ class GrpcMethodsSampleScala {
 
   {
     //#clientStreamStart
-    val stream = grpc("name").clientStream(ExampleServiceGrpc.METHOD_EXAMPLE)
+    val stream =
+      grpc("name")
+        .clientStream(ExampleServiceGrpc.METHOD_EXAMPLE)
 
     exec(stream.start)
     //#clientStreamStart
@@ -336,7 +359,9 @@ class GrpcMethodsSampleScala {
 
   {
     //#clientStreamHalfClose
-    val stream = grpc("name").clientStream(ExampleServiceGrpc.METHOD_EXAMPLE)
+    val stream =
+      grpc("name")
+        .clientStream(ExampleServiceGrpc.METHOD_EXAMPLE)
 
     exec(stream.halfClose)
     //#clientStreamHalfClose
@@ -344,7 +369,9 @@ class GrpcMethodsSampleScala {
 
   {
     //#bidiStreamWaitEnd
-    val stream = grpc("name").bidiStream(ExampleServiceGrpc.METHOD_EXAMPLE)
+    val stream =
+      grpc("name")
+        .bidiStream(ExampleServiceGrpc.METHOD_EXAMPLE)
 
     exec(stream.awaitStreamEnd)
     //#bidiStreamWaitEnd
@@ -352,7 +379,9 @@ class GrpcMethodsSampleScala {
 
   {
     //#bidiStreamCancel
-    val stream = grpc("name").bidiStream(ExampleServiceGrpc.METHOD_EXAMPLE)
+    val stream =
+      grpc("name")
+        .bidiStream(ExampleServiceGrpc.METHOD_EXAMPLE)
 
     exec(stream.cancel)
     //#bidiStreamCancel
