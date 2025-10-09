@@ -8,10 +8,6 @@ aliases:
   - /reference/script/protocols/grpc/checks/
 ---
 
-{{< alert warning >}}
-The gRPC protocol is not supported by the JavaScript SDK. If this functionality is important to you, add a comment to our [public roadmap](https://portal.productboard.com/gatling/1-gatling-roadmap/c/113-javascript-sdk-expansion?&utm_medium=docs&utm_source=callout).
-{{< /alert >}}
-
 ## Checks
 
 The following components of a gRPC request can be checked, each having their own built-in:
@@ -32,7 +28,7 @@ A gRPC status is composed of two parts:
 
 Targets the status code itself:
 
-{{< include-code "statusCode" java kt scala >}}
+{{< include-code "statusCode" >}}
 
 {{< alert tip >}}
 Status is the only check that has defaults in the gRPC protocol.
@@ -45,22 +41,22 @@ check that will verify that the response status code is `Status.Code.OK`.
 
 Targets the description part of a status:
 
-{{< include-code "statusDescription" java kt scala >}}
+{{< include-code "statusDescription" >}}
 
 The description being optional, its absence can be tested using `isNull`:
 
-{{< include-code "statusDescriptionIsNull" java kt scala >}}
+{{< include-code "statusDescriptionIsNull" >}}
 
 #### `statusCause`
 
 Targets the cause of a status. Note that since the cause is a `Throwable`, you cannot easily compare it for equality;
 but you can, for instance, check a specific field (like in this example):
 
-{{< include-code "statusCause" java kt scala >}}
+{{< include-code "statusCause" >}}
 
 The cause being optional, its absence can be tested using `isNull`:
 
-{{< include-code "statusCauseIsNull" java kt scala >}}
+{{< include-code "statusCauseIsNull" >}}
 
 ### Headers
 
@@ -72,11 +68,11 @@ headers are defined as [metadata](https://grpc.io/docs/guides/metadata/), i.e., 
 To check a header value, it is required to use a `Metadata.Key` as defined in the `io.grpc` package. Here using the
 the header name and the default ASCII marshaller:
 
-{{< include-code "header" java kt scala >}}
+{{< include-code "header" >}}
 
 A header can be multivalued and checked against a collection:
 
-{{< include-code "headerMultiValued" java kt scala >}}
+{{< include-code "headerMultiValued" >}}
 
 Shortcuts exists to help the usage of ASCII/binary headers that uses the default marshallers.
 
@@ -84,13 +80,13 @@ Shortcuts exists to help the usage of ASCII/binary headers that uses the default
 
 Shortcut for a header with the default ASCII marshaller, i.e. `io.grpc.Metadata#ASCII_STRING_MARSHALLER`:
 
-{{< include-code "asciiHeader" java kt scala >}}
+{{< include-code "asciiHeader" >}}
 
 #### `binaryHeader`
 
 And here with the default binary marshaller, i.e. `io.grpc.Metadata#BINARY_BYTE_MARSHALLER`:
 
-{{< include-code "binaryHeader" java kt scala >}}
+{{< include-code "binaryHeader" >}}
 
 {{< alert tip >}}
 gRPC requires binary header keys to end with the suffix `-bin`.
@@ -103,11 +99,11 @@ gRPC requires binary header keys to end with the suffix `-bin`.
 To check a trailer value, it is required to use a `Metadata.Key` as defined in the `io.grpc` package. Here using the
 trailer name and the default ASCII marshaller:
 
-{{< include-code "trailer" java kt scala >}}
+{{< include-code "trailer" >}}
 
 A trailer can be multivalued and checked against a collection:
 
-{{< include-code "trailerMultiValued" java kt scala >}}
+{{< include-code "trailerMultiValued" >}}
 
 Shortcuts exists to help the usage of ASCII/binary trailers that uses the default marshallers.
 
@@ -115,13 +111,13 @@ Shortcuts exists to help the usage of ASCII/binary trailers that uses the defaul
 
 Shortcut for a trailer with the default ASCII marshaller, i.e. `io.grpc.Metadata#ASCII_STRING_MARSHALLER`:
 
-{{< include-code "asciiTrailer" java kt scala >}}
+{{< include-code "asciiTrailer" >}}
 
 #### `binaryTrailer`
 
 And here with the default binary marshaller:
 
-{{< include-code "binaryTrailer" java kt scala >}}
+{{< include-code "binaryTrailer" >}}
 
 {{< alert tip >}}
 gRPC requires binary trailer keys to end with the suffix `-bin`.
@@ -131,9 +127,9 @@ gRPC requires binary trailer keys to end with the suffix `-bin`.
 
 #### `response`
 
-Targets the message part. 
+Targets the message part.
 
-{{< include-code "message" java kt scala >}}
+{{< include-code "message" >}}
 
 Note that the lambda's parameter type cannot be inferred by the compiler and must be specified explicitly.
 
@@ -144,11 +140,11 @@ Checks are performed in the following order independently of the order in which 
 - Status
 - Headers
 - Trailers
-- Response (Message) 
+- Response (Message)
 
 In the following example, even though the status check is defined last, it will be performed first:
 
-{{< include-code "ordering" java kt scala >}} 
+{{< include-code "ordering" >}}
 
 If you don't define a status check yourself, the [default status code check]({{< ref "#statuscode" >}})
 will be applied first.
@@ -159,7 +155,7 @@ will be applied first.
 
 For unary calls, checks are defined after the `send` method:
 
-{{< include-code "unaryChecks" java kt scala >}}
+{{< include-code "unaryChecks" >}}
 
 ### Streams
 
@@ -171,19 +167,19 @@ received.
 
 With a server stream:
 
-{{< include-code "serverStreamChecks" java kt scala >}}
+{{< include-code "serverStreamChecks" >}}
 
 A client stream:
 
-{{< include-code "clientStreamChecks" java kt scala >}}
+{{< include-code "clientStreamChecks" >}}
 
 And a bidi stream:
 
-{{< include-code "bidiStreamChecks" java kt scala >}}
+{{< include-code "bidiStreamChecks" >}}
 
 ## Limitations to the gRPC checks API
 
 It is not currently possible to apply different checks to specific incoming messages in the same stream. Be wary that
 `saveAs` will overwrite previously saved values:
 
-{{< include-code "reconcile" java kt scala >}}
+{{< include-code "reconcile" >}}

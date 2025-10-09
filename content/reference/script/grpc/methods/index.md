@@ -8,10 +8,6 @@ aliases:
   - /reference/script/protocols/grpc/methods/
 ---
 
-{{< alert warning >}}
-The gRPC protocol is not supported by the JavaScript SDK. If this functionality is important to you, add a comment to our [public roadmap](https://portal.productboard.com/gatling/1-gatling-roadmap/c/113-javascript-sdk-expansion?&utm_medium=docs&utm_source=callout)
-{{< /alert >}}
-
 ## Summary
 
 With gRPC, [four types of methods can be defined](https://grpc.io/docs/what-is-grpc/core-concepts/#service-definition):
@@ -60,13 +56,13 @@ For unary gRPC methods, Gatling gRPC requests are declared with the `unary` keyw
 takes a [method descriptor]({{< ref "#method-descriptor" >}}) describing the gRPC method to call (which must describe a
 unary method).
 
-{{< include-code "unaryInstantiation" java kt scala >}}
+{{< include-code "unaryInstantiation" >}}
 
 When you `send` a message, Gatling gRPC will automatically handle the client-side lifecycle of the underlying gRPC
 stream (open a stream, send a single message, half-close the stream) and wait for the server to respond and close the
 stream.
 
-{{< include-code "unaryLifecycle" java kt scala >}}
+{{< include-code "unaryLifecycle" >}}
 
 ### Streaming method calls
 
@@ -78,9 +74,9 @@ to perform several actions on the same stream at various times during the scenar
 
 `grpc(requestName)` is the entrypoint for any gRPC request with the Gatling gRPC DSL. `serverStream(methodDescriptor)` then
 takes a [method descriptor]({{< ref "#method-descriptor" >}}) describing the gRPC method to call (which must describe a
-server streaming  method).
+server streaming method).
 
-{{< include-code "serverStreamInstantiation" java kt scala >}}
+{{< include-code "serverStreamInstantiation" >}}
 
 The typical lifecycle of a server stream consists of:
 
@@ -88,20 +84,20 @@ The typical lifecycle of a server stream consists of:
   not send any more messages)
 - Waiting until the stream gets closed by the server with the `awaitStreamEnd` method
 
-{{< include-code "serverStreamLifecycle" java kt scala >}}
+{{< include-code "serverStreamLifecycle" >}}
 
 If several server streams are opened concurrently by a virtual user, they must be given explicit stream names to
 differentiate them:
 
-{{< include-code "serverStreamNames" java kt scala >}}
+{{< include-code "serverStreamNames" >}}
 
 #### Client stream {#instantiate-client-stream}
 
 `grpc(requestName)` is the entrypoint for any gRPC request with the Gatling gRPC DSL. `clientStream(methodDescriptor)` then
 takes a [method descriptor]({{< ref "#method-descriptor" >}}) describing the gRPC method to call (which must describe a
-client streaming  method).
+client streaming method).
 
-{{< include-code "clientStreamInstantiation" java kt scala >}}
+{{< include-code "clientStreamInstantiation" >}}
 
 The typical lifecycle of a client stream consists of:
 
@@ -110,20 +106,20 @@ The typical lifecycle of a client stream consists of:
 - Half-closing the stream with the `halfClose` method when done sending messages
 - Waiting until the stream gets closed by the server with the `awaitStreamEnd` method
 
-{{< include-code "clientStreamLifecycle" java kt scala >}}
+{{< include-code "clientStreamLifecycle" >}}
 
 If several client streams are opened concurrently by a virtual user, they must be given explicit stream names to
 differentiate them:
 
-{{< include-code "clientStreamNames" java kt scala >}}
+{{< include-code "clientStreamNames" >}}
 
 #### Bidirectional stream {#instantiate-bidi-stream}
 
 `grpc(requestName)` is the entrypoint for any gRPC request with the Gatling gRPC DSL. `bidiStream(methodDescriptor)` then
 takes a [method descriptor]({{< ref "#method-descriptor" >}}) describing the gRPC method to call (which must describe a
-bidirectional streaming  method).
+bidirectional streaming method).
 
-{{< include-code "bidiStreamInstantiation" java kt scala >}}
+{{< include-code "bidiStreamInstantiation" >}}
 
 The typical lifecycle of a bidirectional stream consists of:
 
@@ -132,12 +128,12 @@ The typical lifecycle of a bidirectional stream consists of:
 - Half-closing the stream with the `halfClose` method when done sending messages
 - Waiting until the stream gets closed by the server with the `awaitStreamEnd` method
 
-{{< include-code "bidiStreamLifecycle" java kt scala >}}
+{{< include-code "bidiStreamLifecycle" >}}
 
 If several bidirectional streams are opened concurrently by a virtual user, they must be given explicit stream names to
 differentiate them:
 
-{{< include-code "bidiStreamNames" java kt scala >}}
+{{< include-code "bidiStreamNames" >}}
 
 ## Methods reference
 
@@ -151,21 +147,21 @@ differentiate them:
 You can easily add ASCII format request headers (they will use the standard ASCII marshaller,
 `io.grpc.Metadata#ASCII_STRING_MARSHALLER`):
 
-{{< include-code "unaryAsciiHeaders" java kt scala >}}
+{{< include-code "unaryAsciiHeaders" >}}
 
 Or binary format headers (they will use the standard binary marshaller,
 `io.grpc.Metadata#BINARY_BYTE_MARSHALLER`):
 
-{{< include-code "unaryBinaryHeaders" java kt scala >}}
+{{< include-code "unaryBinaryHeaders" >}}
 
 If you need to use custom marshallers, you can add headers one at a time with your own `io.grpc.Metadata.Key`:
 
-{{< include-code "unaryCustomHeaders" java kt scala >}}
+{{< include-code "unaryCustomHeaders" >}}
 
 Note that in gRPC, headers are per-stream, not per-message. Even in client or bidirectional streaming methods,
 request headers are sent only once, when starting the stream:
 
-{{< include-code "clientStreamAsciiHeaders" java kt scala >}}
+{{< include-code "clientStreamAsciiHeaders" >}}
 
 Also note that keys in gRPC headers are allowed to be associated with more than one value, so adding the same key a
 second time will simply add a second value, not replace the first one.
@@ -180,7 +176,7 @@ second time will simply add a second value, not replace the first one.
 You can specify call credentials by providing an instance of `io.grpc.CallCredentials`. This will override any value set
 [on the protocol]({{< ref "protocol#callcredentials" >}}).
 
-{{< include-code "unaryCallCredentials" java kt scala >}}
+{{< include-code "unaryCallCredentials" >}}
 
 ### Add deadline {#method-deadline}
 
@@ -191,7 +187,7 @@ You can specify call credentials by providing an instance of `io.grpc.CallCreden
 
 You can specify a [deadline](https://grpc.io/docs/guides/deadlines/#deadlines-on-the-client) to use for the request:
 
-{{< include-code "deadline" java kt scala >}}
+{{< include-code "deadline" >}}
 
 The actual deadline will be computed just before the start of each gRPC request based on the provided duration.
 
@@ -204,7 +200,7 @@ The actual deadline will be computed just before the start of each gRPC request 
 
 You can specify one or more checks, to be applied to the response headers, trailers, status, or message:
 
-{{< include-code "unaryChecks" java kt scala >}}
+{{< include-code "unaryChecks" >}}
 
 See the [checks section]({{< ref "checks" >}}) for more details on gRPC checks.
 
@@ -227,7 +223,7 @@ For streaming methods only, you can specify how to calculate the response time l
 - `FromLastMessageReceivedPolicy`: measure the time since the previous response message was received. If this is the
   first response message received, falls back to `FromStreamStartPolicy`.
 
-{{< include-code "bidiMessageResponseTimePolicy" java kt scala >}}
+{{< include-code "bidiMessageResponseTimePolicy" >}}
 
 ### Open stream {#method-start}
 
@@ -237,7 +233,7 @@ For streaming methods only, you can specify how to calculate the response time l
 For client or bidirectional streaming methods only, you must start the stream to signal that the client is ready to
 send messages. Only then can you send messages and/or half-close the stream.
 
-{{< include-code "clientStreamStart" java kt scala >}}
+{{< include-code "clientStreamStart" >}}
 
 ### Send a message {#method-send}
 
@@ -249,11 +245,11 @@ send messages. Only then can you send messages and/or half-close the stream.
 The message sent must be of the type specified in the method descriptor for outbound messages. You can pass a static
 message, or a function to construct the message from the Gatling Session.
 
-{{< include-code "unarySend" java kt scala >}}
+{{< include-code "unarySend" >}}
 
 For client streaming and bidirectional streaming methods, you can send several messages.
 
-{{< include-code "clientStreamSend" java kt scala >}}
+{{< include-code "clientStreamSend" >}}
 
 ### Half-close stream {#method-half-close}
 
@@ -263,7 +259,7 @@ For client streaming and bidirectional streaming methods, you can send several m
 For client or bidirectional streaming methods only, you can half-close the stream to signal that the client has finished
 sending messages. You can then no longer use the `send` method on the same stream.
 
-{{< include-code "clientStreamHalfClose" java kt scala >}}
+{{< include-code "clientStreamHalfClose" >}}
 
 ### Wait for stream end {#method-wait-end}
 
@@ -272,9 +268,9 @@ sending messages. You can then no longer use the `send` method on the same strea
 {{< badge info >}}bidiStream{{< /badge >}}
 
 For streaming methods only, you can use the `awaitStreamEnd` method to wait until the server closes the connection.
-During that time, you may also still receive response messages from the server. 
+During that time, you may also still receive response messages from the server.
 
-{{< include-code "bidiStreamWaitEnd" java kt scala >}}
+{{< include-code "bidiStreamWaitEnd" >}}
 
 ### Cancel stream {#method-cancel}
 
@@ -284,4 +280,4 @@ During that time, you may also still receive response messages from the server.
 
 For streaming methods only, you can use the `cancel` method to cancel the gRPC stream and prevent any further processing.
 
-{{< include-code "bidiStreamCancel" java kt scala >}}
+{{< include-code "bidiStreamCancel" >}}
