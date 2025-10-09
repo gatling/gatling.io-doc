@@ -29,10 +29,6 @@ This allows, for instance:
 - Manually instantiating a method descriptor in your code, instead of using a description file and a code generator.
 - Transforming a method descriptor.
 
-{{< alert warning >}}
-The gRPC protocol is not supported by the JavaScript SDK. If this functionality is important to you, add a comment to our [public roadmap](https://portal.productboard.com/gatling/1-gatling-roadmap/c/113-javascript-sdk-expansion?&utm_medium=docs&utm_source=callout).
-{{< /alert >}}
-
 ## Using protoc-generated Java {#protoc-java}
 
 You can check out our sample projects for configuration examples
@@ -97,7 +93,54 @@ grpc("John Doe's greet request")
   );
 ```
 
-## Using protoc-generated Java and Kotlin {#protoc-java-kotlin}
+## Using protoc-generated JavaScript and TypeScript {#protoc-javascript}
+
+You can check out our sample projects for [JavaScript](https://github.com/gatling/gatling-grpc-demo/tree/main/javascript) or
+[TypeScript](https://github.com/gatling/gatling-grpc-demo/tree/main/typescript) examples.
+
+If we consider the following `.proto` service definition:
+
+```protobuf
+syntax = "proto3";
+
+package greeting;
+
+message Greeting {
+  string first_name = 1;
+  string last_name = 2;
+}
+
+message GreetRequest {
+  Greeting greeting = 1;
+}
+
+message GreetResponse {
+  string result = 1;
+}
+
+service GreetingService {
+  rpc Greet(GreetRequest) returns (GreetResponse) {};
+  rpc GreetWithDeadline(GreetRequest) returns (GreetResponse) {};
+}
+```
+
+TODO
+
+```javascript
+grpc("John Doe's greet request")
+  .unary("greeting.GreetingService/GreetMethod")
+  .send({
+    greeting: {
+      first_name: "John",
+      last_name: "Doe"
+    }
+  })
+  .check(
+    response((response) => response.result).is("Hello John Doe")
+  );
+```
+
+## Using protoc-generated Kotlin {#protoc-kotlin}
 
 The Kotlin support built into protoc relies on the same Java classes used [with pure Java code](
 {{< ref "#protoc-java" >}}). However, it adds Kotlin builders for the Java classes, to make them easier to use in your

@@ -76,7 +76,8 @@ class GrpcMethodsSampleJava {
     // with a Gatling EL string
     grpc("#{requestName}").unary(ExampleServiceGrpc.getExampleMethod());
     // with a function
-    grpc(session -> session.getString("requestName")).unary(ExampleServiceGrpc.getExampleMethod());
+    grpc(session -> session.getString("requestName"))
+      .unary(ExampleServiceGrpc.getExampleMethod());
     //#unaryInstantiation
 
     //#unaryLifecycle
@@ -96,7 +97,8 @@ class GrpcMethodsSampleJava {
     // with a Gatling EL string
     grpc("#{requestName}").serverStream(ExampleServiceGrpc.getExampleMethod());
     // with a function
-    grpc(session -> session.getString("requestName")).serverStream(ExampleServiceGrpc.getExampleMethod());
+    grpc(session -> session.getString("requestName"))
+      .serverStream(ExampleServiceGrpc.getExampleMethod());
     //#serverStreamInstantiation
 
     //#serverStreamLifecycle
@@ -111,8 +113,9 @@ class GrpcMethodsSampleJava {
 
     //#serverStreamNames
     GrpcServerStreamingServiceBuilder<RequestMessage, ResponseMessage> stream1 =
-      // specify streamName initially
-      grpc("request name").serverStream(ExampleServiceGrpc.getExampleMethod(), "first-stream");
+      grpc("request name")
+        // specify streamName initially
+        .serverStream(ExampleServiceGrpc.getExampleMethod(), "first-stream");
     GrpcServerStreamingServiceBuilder<RequestMessage, ResponseMessage> stream2 =
       grpc("request name")
         .serverStream(ExampleServiceGrpc.getExampleMethod())
@@ -135,12 +138,14 @@ class GrpcMethodsSampleJava {
     // with a Gatling EL string
     grpc("#{requestName}").clientStream(ExampleServiceGrpc.getExampleMethod());
     // with a function
-    grpc(session -> session.getString("requestName")).clientStream(ExampleServiceGrpc.getExampleMethod());
+    grpc(session -> session.getString("requestName"))
+      .clientStream(ExampleServiceGrpc.getExampleMethod());
     //#clientStreamInstantiation
 
     //#clientStreamLifecycle
     GrpcClientStreamingServiceBuilder<RequestMessage, ResponseMessage> stream =
-      grpc("request name").clientStream(ExampleServiceGrpc.getExampleMethod());
+      grpc("request name")
+        .clientStream(ExampleServiceGrpc.getExampleMethod());
 
     ScenarioBuilder scn = scenario("scenario name").exec(
       stream.start(),
@@ -153,8 +158,9 @@ class GrpcMethodsSampleJava {
 
     //#clientStreamNames
     GrpcClientStreamingServiceBuilder<RequestMessage, ResponseMessage> stream1 =
-      // specify streamName initially
-      grpc("request name").clientStream(ExampleServiceGrpc.getExampleMethod(), "first-stream");
+      grpc("request name")
+        // specify streamName initially
+        .clientStream(ExampleServiceGrpc.getExampleMethod(), "first-stream");
     GrpcClientStreamingServiceBuilder<RequestMessage, ResponseMessage> stream2 =
       grpc("request name")
         .clientStream(ExampleServiceGrpc.getExampleMethod())
@@ -176,12 +182,14 @@ class GrpcMethodsSampleJava {
     // with a Gatling EL string
     grpc("#{requestName}").bidiStream(ExampleServiceGrpc.getExampleMethod());
     // with a function
-    grpc(session -> session.getString("requestName")).bidiStream(ExampleServiceGrpc.getExampleMethod());
+    grpc(session -> session.getString("requestName"))
+      .bidiStream(ExampleServiceGrpc.getExampleMethod());
     //#bidiStreamInstantiation
 
     //#bidiStreamLifecycle
     GrpcBidirectionalStreamingServiceBuilder<RequestMessage, ResponseMessage> stream =
-      grpc("request name").bidiStream(ExampleServiceGrpc.getExampleMethod());
+      grpc("request name")
+        .bidiStream(ExampleServiceGrpc.getExampleMethod());
 
     ScenarioBuilder scn = scenario("scenario name").exec(
       stream.start(),
@@ -194,8 +202,9 @@ class GrpcMethodsSampleJava {
 
     //#bidiStreamNames
     GrpcBidirectionalStreamingServiceBuilder<RequestMessage, ResponseMessage> stream1 =
-      // specify streamName initially
-      grpc("request name").bidiStream(ExampleServiceGrpc.getExampleMethod(), "first-stream");
+      grpc("request name")
+        // specify streamName initially
+        .bidiStream(ExampleServiceGrpc.getExampleMethod(), "first-stream");
     GrpcBidirectionalStreamingServiceBuilder<RequestMessage, ResponseMessage> stream2 =
       grpc("request name")
         .bidiStream(ExampleServiceGrpc.getExampleMethod())
@@ -213,10 +222,12 @@ class GrpcMethodsSampleJava {
   {
     //#unarySend
     // with a static payload
-    grpc("name").unary(ExampleServiceGrpc.getExampleMethod())
+    grpc("name")
+      .unary(ExampleServiceGrpc.getExampleMethod())
       .send(new RequestMessage("hello"));
     // with a function payload
-    grpc("name").unary(ExampleServiceGrpc.getExampleMethod())
+    grpc("name")
+      .unary(ExampleServiceGrpc.getExampleMethod())
       .send(session -> new RequestMessage(session.getString("message")));
     //#unarySend
   }
@@ -224,7 +235,8 @@ class GrpcMethodsSampleJava {
   private class ClientStreamSend {{
     //#clientStreamSend
     GrpcClientStreamingServiceBuilder<RequestMessage, ResponseMessage> stream =
-      grpc("name").clientStream(ExampleServiceGrpc.getExampleMethod());
+      grpc("name")
+        .clientStream(ExampleServiceGrpc.getExampleMethod());
 
     exec(
       stream.send(new RequestMessage("first message")),
@@ -249,7 +261,7 @@ class GrpcMethodsSampleJava {
       // Adds another header, with a static value
       .asciiHeader("header").value("value")
       // with a Gatling EL string header value
-      .asciiHeader("header").valueEl("#{headerValue}")
+      .asciiHeader("header").valueEL("#{headerValue}")
       // with a function value
       .asciiHeader("header").value(session -> session.getString("headerValue"));
     //#unaryAsciiHeaders
@@ -271,7 +283,7 @@ class GrpcMethodsSampleJava {
       // Adds another header, with a static value
       .binaryHeader("header-bin").value("value".getBytes(utf8))
       // with a Gatling EL string header value
-      .binaryHeader("header-bin").valueEl("#{headerValue}")
+      .binaryHeader("header-bin").valueEL("#{headerValue}")
       // with a function value
       .binaryHeader("header-bin").value(session -> session.get("headerValue"));
     //#unaryBinaryHeaders
@@ -291,7 +303,7 @@ class GrpcMethodsSampleJava {
       .header(Metadata.Key.of("header", intToAsciiMarshaller)).value(123)
       .header(Metadata.Key.of("header-bin", doubleToBinaryMarshaller)).value(4.56)
       // with a Gatling EL string header value
-      .header(Metadata.Key.of("header-bin", doubleToBinaryMarshaller)).valueEl("#{headerValue}")
+      .header(Metadata.Key.of("header-bin", doubleToBinaryMarshaller)).valueEL("#{headerValue}")
       // with a function value
       .header(Metadata.Key.of("header-bin", doubleToBinaryMarshaller)).value(session -> session.get("headerValue"));
     //#unaryCustomHeaders
@@ -359,7 +371,8 @@ class GrpcMethodsSampleJava {
     //#unaryChecks
 
     //#bidiMessageResponseTimePolicy
-    grpc("name").bidiStream(ExampleServiceGrpc.getExampleMethod())
+    grpc("name")
+      .bidiStream(ExampleServiceGrpc.getExampleMethod())
       // Default: from the start of the entire stream
       .messageResponseTimePolicy(MessageResponseTimePolicy.FromStreamStart)
       // From the time when the last request message was sent
@@ -372,7 +385,8 @@ class GrpcMethodsSampleJava {
   private class ClientStreamStart {{
     //#clientStreamStart
     GrpcClientStreamingServiceBuilder<RequestMessage, ResponseMessage> stream =
-      grpc("name").clientStream(ExampleServiceGrpc.getExampleMethod());
+      grpc("name")
+        .clientStream(ExampleServiceGrpc.getExampleMethod());
 
     exec(stream.start());
     //#clientStreamStart
@@ -381,7 +395,8 @@ class GrpcMethodsSampleJava {
   private class ClientStreamHalfClose {{
     //#clientStreamHalfClose
     GrpcClientStreamingServiceBuilder<RequestMessage, ResponseMessage> stream =
-      grpc("name").clientStream(ExampleServiceGrpc.getExampleMethod());
+      grpc("name")
+        .clientStream(ExampleServiceGrpc.getExampleMethod());
 
     exec(stream.halfClose());
     //#clientStreamHalfClose
@@ -390,7 +405,8 @@ class GrpcMethodsSampleJava {
   private class BidiStreamWaitEnd {{
     //#bidiStreamWaitEnd
     GrpcBidirectionalStreamingServiceBuilder<RequestMessage, ResponseMessage> stream =
-      grpc("name").bidiStream(ExampleServiceGrpc.getExampleMethod());
+      grpc("name")
+        .bidiStream(ExampleServiceGrpc.getExampleMethod());
 
     exec(stream.awaitStreamEnd());
     //#bidiStreamWaitEnd
@@ -399,7 +415,8 @@ class GrpcMethodsSampleJava {
   private class BidiStreamCancel {{
     //#bidiStreamCancel
     GrpcBidirectionalStreamingServiceBuilder<RequestMessage, ResponseMessage> stream =
-      grpc("name").bidiStream(ExampleServiceGrpc.getExampleMethod());
+      grpc("name")
+        .bidiStream(ExampleServiceGrpc.getExampleMethod());
 
     exec(stream.cancel());
     //#bidiStreamCancel

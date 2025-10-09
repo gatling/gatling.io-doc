@@ -56,7 +56,7 @@ class GrpcProtocolSampleKotlin : Simulation() {
       // with a static header value
       .asciiHeader("key").value("value")
       // with a Gatling EL string header value
-      .asciiHeader("key").valueEl("#{headerValue}")
+      .asciiHeader("key").valueEL("#{headerValue}")
       // with a function value
       .asciiHeader("key").value { session -> session.getString("headerValue") }
     //#asciiHeader
@@ -70,7 +70,7 @@ class GrpcProtocolSampleKotlin : Simulation() {
       // with a static header value
       .binaryHeader("key").value("value".toByteArray(UTF_8))
       // with a Gatling EL string header value
-      .binaryHeader("key").valueEl("#{headerValue}")
+      .binaryHeader("key").valueEL("#{headerValue}")
       // with a function value
       .binaryHeader("key").value { session -> session.get("headerValue") }    //#binaryHeader
     //#binaryHeaders
@@ -84,7 +84,7 @@ class GrpcProtocolSampleKotlin : Simulation() {
       // with a static header value
       .header(key).value("value")
       // with a Gatling EL string header value
-      .header(key).valueEl("#{headerValue}")
+      .header(key).valueEL("#{headerValue}")
       // with a function value
       .header(key).value { session -> session.get("headerValue") }
     //#header
