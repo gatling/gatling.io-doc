@@ -93,10 +93,76 @@ grpc("John Doe's greet request")
   );
 ```
 
-## Using protoc-generated JavaScript and TypeScript {#protoc-javascript}
+## Using JavaScript and TypeScript {#javascript}
 
 You can check out our sample projects for [JavaScript](https://github.com/gatling/gatling-grpc-demo/tree/main/javascript) or
 [TypeScript](https://github.com/gatling/gatling-grpc-demo/tree/main/typescript) examples.
+
+### Type conversions
+
+Gatling will handle conversions between JavaScript object and Protobuf messages automatically.
+
+[Scalar types](https://protobuf.dev/programming-guides/editions/#scalar) follow this conversion table:
+
+| Protobuf   | JavaScript/TypeScript |
+|------------|-----------------------|
+| `double`   | `number`              |
+| `float`    | `number`              |
+| `int32`    | `number`              |
+| `int64`    | `number`              |
+| `uint32`   | `number`              |
+| `uint64`   | `number`              |
+| `sint32`   | `number`              |
+| `sint64`   | `number`              |
+| `fixed32`  | `number`              |
+| `fixed64`  | `number`              |
+| `sfixed32` | `number`              |
+| `sfixed64` | `number`              |
+| `bool`     | `boolean`             |
+| `string`   | `string`              |
+| `bytes`    | `number[]`            |
+
+In addition:
+
+- `enum` fields convert from/to JavaScript `string`s containing valid value names for the enumeration.
+- `repeated` fields convert from/to JavaScript arrays.
+- `message` fields convert from/to JavaScript objects with corresponding field names, and each field type is in turn
+  converted according to the usual rules.
+
+For instance, for this message definition:
+
+```protobuf
+syntax = "proto3";
+
+enum BookType {
+  NOVEL = 0;
+  NON_FICTION = 1;
+  COMICS = 2;
+}
+
+message Book {
+  string title = 1;
+  BookType type = 2;
+  int32 publication_year = 3;
+}
+
+message Library {
+  repeated Book books = 1;
+}
+```
+
+This is a valid JavaScript value:
+
+```javascript
+const library = {
+  books: [
+    { title: "Grpc: Up and Running", type: "NON_FICTION", publication_year: 2020 },
+    { title: "The Lord of the Rings", type: "NOVEL", publication_year: 1954 }
+  ]
+}
+```
+
+### Example
 
 If we consider the following `.proto` service definition:
 
@@ -124,7 +190,7 @@ service GreetingService {
 }
 ```
 
-TODO
+It can be called with the following Gatling code:
 
 ```javascript
 grpc("John Doe's greet request")
