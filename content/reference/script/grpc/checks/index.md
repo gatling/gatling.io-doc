@@ -127,7 +127,7 @@ gRPC requires binary trailer keys to end with the suffix `-bin`.
 
 #### `response`
 
-Targets the message part. 
+Targets the message part.
 
 {{< include-code "message" >}}
 
@@ -140,7 +140,7 @@ Checks are performed in the following order independently of the order in which 
 - Status
 - Headers
 - Trailers
-- Response (Message) 
+- Response (Message)
 
 In the following example, even though the status check is defined last, it will be performed first:
 

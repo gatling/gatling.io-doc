@@ -39,7 +39,7 @@ With the following properties:
 </properties>
 ```
 
-Add your proto files in the `src/test/proto` directory. 
+Add your proto files in the `src/test/proto` directory.
 
 Check the demo project for a full example:
 [Gatling gRPC Java demo with Maven](https://github.com/gatling/gatling-grpc-demo/tree/main/java/maven).

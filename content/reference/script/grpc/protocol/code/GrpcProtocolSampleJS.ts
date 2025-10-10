@@ -57,39 +57,40 @@ const protocol = () => {
   //#binaryHeader
   grpc
     // with a static header value
-    // FIXME .binaryHeader("key").value("value".getBytes(UTF_8))
+    .binaryHeader("key").value([118, 97, 108, 117, 101])
     // with a Gatling EL string header value
     .binaryHeader("key").valueEL("#{headerValue}")
     // with a function value
     .binaryHeader("key").value((session) => session.get("headerValue"));
   //#binaryHeader
   //#binaryHeaders
-  // FIXME grpc.binaryHeaders({ key: "value".getBytes(UTF_8) });
+  grpc.binaryHeaders({
+    key: [118, 97, 108, 117, 101]
+  });
   //#binaryHeaders
-/*
-//#header
-NOT SUPPORTED
-//#header
-*/
+  /*
+  //#header
+  INFO:
+  The `header` DSL method is not supported by Gatling JS. We recommend using
+  [`asciiHeader`]({{< ref "/reference/script/grpc/protocol#asciiheader" >}}) or
+  [`binaryHeader`]({{< ref "/reference/script/grpc/protocol#binaryheader" >}}) instead.
+  //#header
+  */
   //#shareChannel
   grpc.shareChannel();
   //#shareChannel
   //#shareSslContext
   grpc.shareSslContext();
   //#shareSslContext
-  // FIXME const callCredentials = callCredentialsForUser("");
+  /*
   //#callCredentials
-  grpc
-    // with a constant
-    // FIXME .callCredentials(callCredentials)
-    // or with an EL string to retrieve CallCredentials already stored in the session
-    // FIXME .callCredentials("#{callCredentials}")
-    // or with a function
-    // FIXME .callCredentials((session) => {
-    //  const name = session.get("myUserName");
-    //  return callCredentialsForUser(name);
-    //});
+  INFO:
+  The `callCredentials` DSL method is not supported by Gatling JS. We recommend using
+  [`asciiHeader`]({{< ref "/reference/script/grpc/protocol#asciiheader" >}}) or
+  [`binaryHeader`]({{< ref "/reference/script/grpc/protocol#binaryheader" >}}) with a
+  Gatling EL instead.
   //#callCredentials
+  */
   var channelCredentials = channelCredentialsForUser("");
   //#channelCredentials
   grpc
@@ -111,11 +112,11 @@ NOT SUPPORTED
     privateKey: "client.key"
   });
   //#tlsMutualAuthChannelCredentials
-/*
-//#insecureTrustManagerChannelCredentials
-NOT SUPPORTED
-//#insecureTrustManagerChannelCredentials
-*/
+  /*
+  //#insecureTrustManagerChannelCredentials
+  NOT SUPPORTED
+  //#insecureTrustManagerChannelCredentials
+  */
   //#overrideAuthority
   grpc.overrideAuthority("test.example.com");
   //#overrideAuthority
@@ -151,5 +152,4 @@ NOT SUPPORTED
   //#useChannelPool
 };
 
-// FIXME const callCredentialsForUser = (name: string): CallCredentials => {};
 const channelCredentialsForUser = (name: string): ChannelCredentials => ({});

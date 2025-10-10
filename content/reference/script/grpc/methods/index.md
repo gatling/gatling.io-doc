@@ -74,7 +74,7 @@ to perform several actions on the same stream at various times during the scenar
 
 `grpc(requestName)` is the entrypoint for any gRPC request with the Gatling gRPC DSL. `serverStream(methodDescriptor)` then
 takes a [method descriptor]({{< ref "#method-descriptor" >}}) describing the gRPC method to call (which must describe a
-server streaming  method).
+server streaming method).
 
 {{< include-code "serverStreamInstantiation" >}}
 
@@ -95,7 +95,7 @@ differentiate them:
 
 `grpc(requestName)` is the entrypoint for any gRPC request with the Gatling gRPC DSL. `clientStream(methodDescriptor)` then
 takes a [method descriptor]({{< ref "#method-descriptor" >}}) describing the gRPC method to call (which must describe a
-client streaming  method).
+client streaming method).
 
 {{< include-code "clientStreamInstantiation" >}}
 
@@ -117,7 +117,7 @@ differentiate them:
 
 `grpc(requestName)` is the entrypoint for any gRPC request with the Gatling gRPC DSL. `bidiStream(methodDescriptor)` then
 takes a [method descriptor]({{< ref "#method-descriptor" >}}) describing the gRPC method to call (which must describe a
-bidirectional streaming  method).
+bidirectional streaming method).
 
 {{< include-code "bidiStreamInstantiation" >}}
 
@@ -268,7 +268,7 @@ sending messages. You can then no longer use the `send` method on the same strea
 {{< badge info >}}bidiStream{{< /badge >}}
 
 For streaming methods only, you can use the `awaitStreamEnd` method to wait until the server closes the connection.
-During that time, you may also still receive response messages from the server. 
+During that time, you may also still receive response messages from the server.
 
 {{< include-code "bidiStreamWaitEnd" >}}
 

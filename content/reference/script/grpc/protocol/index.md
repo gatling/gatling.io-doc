@@ -173,7 +173,7 @@ Add a single header with a custom key.
 
 {{< include-code "header" >}}
 
-### Loading balancing
+### Load balancing
 
 When the name resolver returns a list of several service IP addresses, you probably want to configure a load balancing
 policy. The policy is responsible for maintaining connections to the services and picking a connection to use each time
@@ -200,7 +200,7 @@ first one it can connect to:
 
 ##### `usePickRandomLoadBalancingPolicy`
 
-Randomly pick an address from the name resolver: 
+Randomly pick an address from the name resolver:
 
 {{< include-code "usePickRandomLoadBalancingPolicy" >}}
 

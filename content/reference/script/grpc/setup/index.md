@@ -76,7 +76,7 @@ appropriate configurations for your use case instead.
 
 ### Protobuf for Java
 
-For a project running Java with either Maven or Gradle: 
+For a project running Java with either Maven or Gradle:
 
 {{< include-file >}}
 1-Maven: includes/proto.maven.java.md

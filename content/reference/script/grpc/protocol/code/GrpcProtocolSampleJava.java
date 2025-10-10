@@ -77,7 +77,9 @@ class GrpcProtocolSampleJava extends Simulation {
       .binaryHeader("key").value(session -> session.get("headerValue"));
     //#binaryHeader
     //#binaryHeaders
-    grpc.binaryHeaders(Map.of("key", "value".getBytes(UTF_8)));
+    grpc.binaryHeaders(
+      Map.of("key", "value".getBytes(UTF_8))
+    );
     //#binaryHeaders
     //#header
     var key = Metadata.Key.of("key", Metadata.ASCII_STRING_MARSHALLER);

@@ -223,23 +223,18 @@ const unaryAsciiHeaders = () => {
 const unaryBinaryHeaders = () => {
   //#unaryBinaryHeaders
   // Extracting a map of headers allows you to reuse these in several requests
-  const encoder = new TextEncoder();
   const sentHeaders = {
-    "header-1-bin": encoder.encode("value"),
-    "header-2-bin": encoder.encode("value")
+    "header-1-bin": [118, 97, 108, 117, 101],
+    "header-2-bin": [118, 97, 108, 117, 101]
   };
 
   grpc("name")
     .unary("example.ExampleService/Example")
     .send(message)
     // Adds several headers at once
-    // FIXME
-    // @ts-ignore
     .binaryHeaders(sentHeaders)
     // Adds another header, with a static value
-    // FIXME
-    // @ts-ignore
-    .binaryHeader("header-bin").value(encoder.encode("value"))
+    .binaryHeader("header-bin").value([118, 97, 108, 117, 101])
     // with a Gatling EL string header value
     .binaryHeader("header-bin").valueEL("#{headerValue}")
     // with a function value
@@ -249,7 +244,10 @@ const unaryBinaryHeaders = () => {
 
 /*
 //#unaryCustomHeaders
-NOT SUPPORTED
+INFO:
+The `header` DSL method is not supported by Gatling JS. We recommend using
+`asciiHeader` or `binaryHeader` instead.
+[See here for more information]({{< ref "/reference/script/grpc/methods#method-headers" >}}).
 //#unaryCustomHeaders
 */
 
@@ -268,23 +266,14 @@ const clientStreamAsciiHeaders = () => {
   //#clientStreamAsciiHeaders
 };
 
-const unaryCallCredentials = () => {
-  // FIXME var callCredentials = callCredentialsForUser("");
-  //#unaryCallCredentials
-  grpc("name")
-    .unary("example.ExampleService/Example")
-    .send(message)
-    // with a constant
-    // FIXME .callCredentials(callCredentials)
-    // or with an EL string to retrieve CallCredentials already stored in the session
-    // FIXME .callCredentials("#{callCredentials}")
-    // or with a function
-    // FIXME .callCredentials(session -> {
-    //  const name = session.get("myUserName");
-    //  return callCredentialsForUser(name);
-    //});
-  //#unaryCallCredentials
-};
+/*
+//#unaryCallCredentials
+INFO:
+The `callCredentials` DSL method is not supported by Gatling JS. We recommend using
+`asciiHeader` or `binaryHeader` with a Gatling EL.
+[See here for more information]({{< ref "/reference/script/grpc/methods#method-headers" >}}).
+//#unaryCallCredentials
+*/
 
 const deadline = () => {
   //#deadline
