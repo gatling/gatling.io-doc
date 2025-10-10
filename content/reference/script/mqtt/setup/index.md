@@ -5,7 +5,7 @@ description: How to set up your project to use the Gatling MQTT protocol.
 lead: Learn about how to set up your project to use the Gatling MQTT protocol.
 date: 2024-02-07T14:18:28+00:00
 aliases:
-  -/reference/script/protocols/mqtt/protocol/
+  -/reference/script/protocols/mqtt/setup/
 ---
 
 ## License and limitations {#license}
