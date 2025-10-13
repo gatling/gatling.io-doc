@@ -80,7 +80,7 @@ Request|`gatling_enterprise.request.count`|Number of requests
 Response|`gatling_enterprise.response.count`|Number of responses
 Response time max|`gatling_enterprise.response.response_time.max`|Maximum response time
 Response time min|`gatling_enterprise.response.response_time.min`|Minimum response time
-Response time p95|`gatling_enterprise.response.response_time.p95`|Response time for the 95th percentiles (95% of the requests)
+Response time p95|`gatling_enterprise.response.response_time.p95`|Response time for the 95th percentile (95% of the requests)
 Response time p99|`gatling_enterprise.response.response_time.p99`|Response time for the 99th percentiles (99% of the requests)
 Response time p999|`gatling_enterprise.response.response_time.p999`|Response time for the 99.9th percentiles (99.9% of the requests)
 Response Code|`gatling_enterprise.response.code`|0
