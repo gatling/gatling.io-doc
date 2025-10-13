@@ -52,7 +52,7 @@ To remove the link between Gatling Enterprise Edition and Datadog, remove the li
 
 ## Events pushed to Datadog
 
-Gatling Enterprise Edition generates events for load test injection start and end.
+Gatling Enterprise Edition generates events for load test injection `start` and `end`.
 
 All events are available under the `source:gatling-enterprise` tag, and have the following tags:
 
