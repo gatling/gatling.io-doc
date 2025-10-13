@@ -18,7 +18,9 @@ With this integration in place, you can:
 
 ## Prerequisites 
 
-- A valid Datadog API key (for the metrics), a valid Datadog Application key (for the events), and your Datadog site.
+- A valid Datadog API key (for the metrics)
+- A valid Datadog Application key (for the events)
+- Your Datadog site
 - A Gatling Enterprise Edition account with private locations that can connect to the Datadog network. 
 
 ## Install the Datadog integration
@@ -81,8 +83,8 @@ Response|`gatling_enterprise.response.count`|Number of responses
 Response time max|`gatling_enterprise.response.response_time.max`|Maximum response time
 Response time min|`gatling_enterprise.response.response_time.min`|Minimum response time
 Response time p95|`gatling_enterprise.response.response_time.p95`|Response time for the 95th percentile (95% of the requests)
-Response time p99|`gatling_enterprise.response.response_time.p99`|Response time for the 99th percentiles (99% of the requests)
-Response time p999|`gatling_enterprise.response.response_time.p999`|Response time for the 99.9th percentiles (99.9% of the requests)
+Response time p99|`gatling_enterprise.response.response_time.p99`|Response time for the 99th percentile (99% of the requests)
+Response time p999|`gatling_enterprise.response.response_time.p999`|Response time for the 99.9th percentile (99.9% of the requests)
 Response Code|`gatling_enterprise.response.code`|0
 Request Bits|`gatling_enterprise.bandwidth_usage.sent`|Outbound bandwidth usage
 Response Bits|`gatling_enterprise.bandwidth_usage.received`|Inbound bandwidth usage
@@ -91,15 +93,15 @@ Request TCP close|`gatling_enterprise.tcp.close_count`|Number of closed TCP requ
 Response TCP|`gatling_enterprise.tcp.connection_count`|Number of TCP requests
 Response TCP connect time max|`gatling_enterprise.tcp.connect_time.min`|Minimum TCP response connect time
 Response TCP connect time min|`gatling_enterprise.tcp.connect_time.max`|Maximum TCP response connect time
-Response TCP connect time p95|`gatling_enterprise.tcp.connect_time.p95`|TCP response connect time for the 95th percentiles (95% of the requests)
-Response TCP connect time p99|`gatling_enterprise.tcp.connect_time.p99`|TCP response connect time for the 99th percentiles (99% of the requests)
-Response TLS handshake time p999|`gatling_enterprise.tcp.connect_time.p999`|TCP response connect time for the 99.9th percentiles (99.9% of the requests)
+Response TCP connect time p95|`gatling_enterprise.tcp.connect_time.p95`|TCP response connect time for the 95th percentile (95% of the requests)
+Response TCP connect time p99|`gatling_enterprise.tcp.connect_time.p99`|TCP response connect time for the 99th percentile (99% of the requests)
+Response TLS handshake time p999|`gatling_enterprise.tcp.connect_time.p999`|TCP response connect time for the 99.9th percentile (99.9% of the requests)
 Response TLS|`gatling_enterprise.tls.handshake_count`|Number of TSL responses
 Response TLS handshake time max|`gatling_enterprise.tls.handshake_time.min`|Minimum TLS response handshake time
 Response TLS handshake time min|`gatling_enterprise.tls.handshake_time.max`|Maximum TLS response handshake time
-Response TLS handshake time p95|`gatling_enterprise.tls.handshake_time.p95`|TLS response handshake time for the 95th percentiles (95% of the requests)
-Response TLS handshake time p99|`gatling_enterprise.tls.handshake_time.p99`|TLS response handshake time for the 99th percentiles (99% of the requests)
-Response TLS handshake time p999|`gatling_enterprise.tls.handshake_time.p999`|TLS response handshake time for the 99.9th percentiles (99.9% of the requests)
+Response TLS handshake time p95|`gatling_enterprise.tls.handshake_time.p95`|TLS response handshake time for the 95th percentile (95% of the requests)
+Response TLS handshake time p99|`gatling_enterprise.tls.handshake_time.p99`|TLS response handshake time for the 99th percentile (99% of the requests)
+Response TLS handshake time p999|`gatling_enterprise.tls.handshake_time.p999`|TLS response handshake time for the 99.9th percentile (99.9% of the requests)
 
 ## Use metrics tags to enhance your Datadog dashboard
 
