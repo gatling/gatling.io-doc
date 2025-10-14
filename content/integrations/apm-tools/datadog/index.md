@@ -85,7 +85,7 @@ Response time min|`gatling_enterprise.response.response_time.min`|Minimum respon
 Response time p95|`gatling_enterprise.response.response_time.p95`|Response time for the 95th percentile (95% of the requests)
 Response time p99|`gatling_enterprise.response.response_time.p99`|Response time for the 99th percentile (99% of the requests)
 Response time p999|`gatling_enterprise.response.response_time.p999`|Response time for the 99.9th percentile (99.9% of the requests)
-Response Code|`gatling_enterprise.response.code`|0
+Response Code|`gatling_enterprise.response.code`|Response code, in the case of HTTP, the HTTP response status code
 Request Bits|`gatling_enterprise.bandwidth_usage.sent`|Outbound bandwidth usage
 Response Bits|`gatling_enterprise.bandwidth_usage.received`|Inbound bandwidth usage
 Request TCP open|`gatling_enterprise.tcp.open_count`|Number of opened TCP requests
