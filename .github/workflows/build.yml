@@ -36,7 +36,7 @@ jobs:
         run: sbt "all headerCheckAll scalafmtSbtCheck" "test"
 
       - name: Setup Node
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v6
         with:
           node-version: '20'
           cache: 'npm'
