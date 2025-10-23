@@ -143,9 +143,8 @@ control-plane {
 }
 ```
 
-**Security Best Practices:**
-
-{{< alert warning >}}
+{{< alert tip >}}
+Security Best Practices:
 
 * Use personal access tokens instead of passwords whenever possible.
 * Limit token permissions to read-only access.
