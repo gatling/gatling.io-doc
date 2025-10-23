@@ -65,7 +65,6 @@ We strongly recommend that you mount **all** the following directories on a pers
 * `/app/.cache/coursier`
 * `/app/.ivy2`
 * `/app/.npm`
-
 {{< /alert >}}
 
 ## Architecture
@@ -149,5 +148,4 @@ Security Best Practices:
 * Use personal access tokens instead of passwords whenever possible.
 * Limit token permissions to read-only access.
 * Never include credentials in repository URLs within Gatling Enterprise Edition.
-
 {{< /alert >}}
