@@ -26,7 +26,7 @@ The following sections detail how to configure the Control Plane for Build from 
 Use the dedicated `gatlingcorp/control-plane:latest-builder` image. 
 
 {{< alert warning >}}
-Note that this image is different from the regular Control Plane image.
+Note that this image is different from the regular Control Plane image, see the `latest-builder` tag.
 {{< /alert >}}
 
 ### CPU and memory resources
