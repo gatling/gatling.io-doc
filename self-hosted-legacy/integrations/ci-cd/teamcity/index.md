@@ -18,7 +18,7 @@ This plugin doesn't create a new Gatling Enterprise Edition simulation, you have
 To download the plugin, you need to get the ZIP file by clicking on the following button:
 
 {{< button title="Download Teamcity Plugin" >}}
-https://downloads.gatling.io/releases/frontline-teamcity-plugin/{{< var ciPluginsVersion >}}/frontline-teamcity-plugin-{{< var ciPluginsVersion >}}.zip
+https://downloads.gatling.io/releases/frontline-teamcity-plugin/{{< var selfHostedCiPluginsVersion >}}/frontline-teamcity-plugin-{{< var selfHostedCiPluginsVersion >}}.zip
 {{< /button >}}
 
 You need to be connected as an administrator of your TeamCity application to install it. Navigate to **Administration**, **Plugins**, **Upload plugin zip**, and choose the downloaded zip file.

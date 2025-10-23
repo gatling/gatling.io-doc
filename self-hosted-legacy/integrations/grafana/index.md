@@ -20,7 +20,7 @@ The Gatling Enterprise Edition datasource for Grafana is packaged as a ZIP bundl
 following button:
 
 {{< button title="Download Grafana Datasource" >}}
-https://downloads.gatling.io/releases/frontline-grafana-bundle/{{< var grafanaPluginVersion >}}/frontline-grafana-bundle-{{< var grafanaPluginVersion >}}-bundle.zip
+https://downloads.gatling.io/releases/frontline-grafana-bundle/{{< var selfHostedGrafanaPluginVersion >}}/frontline-grafana-bundle-{{< var selfHostedGrafanaPluginVersion >}}-bundle.zip
 {{< /button >}}
 
 You can install it using the `grafana-cli`:

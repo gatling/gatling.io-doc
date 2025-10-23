@@ -18,7 +18,7 @@ This plugin doesn't create a new Gatling Enterprise Edition simulation, you have
 To download the plugin, you need to get the JAR file by clicking on the following button:
 
 {{< button title="Download Bamboo Plugin" >}}
-https://downloads.gatling.io/releases/frontline-bamboo-plugin/{{< var ciPluginsVersion >}}/frontline-bamboo-plugin-{{< var ciPluginsVersion >}}.jar
+https://downloads.gatling.io/releases/frontline-bamboo-plugin/{{< var selfHostedCiPluginsVersion >}}/frontline-bamboo-plugin-{{< var selfHostedCiPluginsVersion >}}.jar
 {{< /button >}}
 
 You need to be connected as an administrator of your Bamboo application to install it. Go to *Bamboo Administration*, *Manage Apps*, *Upload app*, and choose the jar file.

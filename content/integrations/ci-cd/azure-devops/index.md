@@ -40,7 +40,7 @@ On Azure DevOps, your will need:
 
 ## Preparing the repository
 
-First, [download the CI script](https://downloads.gatling.io/releases/frontline-ci-script/{{< var ciPluginsVersion >}}/frontline-ci-script-{{< var ciPluginsVersion >}}.zip), unzip it and put the content at the root of the repository. Make sure it is named `start_simulation.sh`.
+First, [download the CI script](https://github.com/gatling/gatling-enterprise-ci-plugins/releases/download/v{{< var gatlingCiPluginsVersion >}}/gatling-enterprise-ci-script-{{< var gatlingCiPluginsVersion >}}.zip), unzip it and put the content at the root of the repository. Make sure it is named `start_simulation.sh`.
 
 {{< alert info >}}
 If you want to learn more about this CI script, you can check its [documentation page]({{< ref "other#using-a-shell-script" >}}).

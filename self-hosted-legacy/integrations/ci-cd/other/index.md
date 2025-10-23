@@ -41,7 +41,7 @@ sbt: includes/run-with-build-tool.sbt.md
 
 This script launches an existing simulation on Gatling Enterprise Edition and displays live metrics.
 
-It can be [downloaded here](https://downloads.gatling.io/releases/frontline-ci-script/{{< var ciPluginsVersion >}}/frontline-ci-script-{{< var ciPluginsVersion >}}.zip).
+It can be [downloaded here](https://downloads.gatling.io/releases/frontline-ci-script/{{< var selfHostedCiPluginsVersion >}}/frontline-ci-script-{{< var selfHostedCiPluginsVersion >}}.zip).
 
 ### Shell script requirements
 
