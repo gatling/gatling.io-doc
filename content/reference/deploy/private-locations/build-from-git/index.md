@@ -62,7 +62,7 @@ We strongly recommend that you mount **all** the following directories on a pers
 * `/app/.m2`
 * `/app/.gradle`
 * `/app/.sbt`
-* `/app/.cache`
+* `/app/.cache/coursier`
 * `/app/.ivy2`
 * `/app/.npm`
 
