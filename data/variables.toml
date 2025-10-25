@@ -1,4 +1,4 @@
-gatlingVersion = "3.14.6"
+gatlingVersion = "3.14.7"
 gatlingGrpcVersion = "3.14.6"
 gatlingJsVersion = "3.14.600"
 gatlingMqttVersion = "3.14.6"
