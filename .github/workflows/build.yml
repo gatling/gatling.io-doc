@@ -44,7 +44,7 @@ jobs:
       - name: Setup Hugo
         uses: ./.github/actions/setup-hugo
         with:
-          hugo-version: '0.142.0'
+          hugo-version: '0.152.2'
 
       - name: Prepare project
         run: ./bin/entrypoint.sh prepare
