@@ -1,11 +1,12 @@
 ---
 menutitle: Create a simulation with the Recorder
 title: Introduction to the Gatling Recorder
-aliases:
-  - quickstart
 description: "Learn the basics about Gatling: installing, using the Recorder to generate a basic raw test and how to execute it."
 lead: Learn Gatling concepts and use the Recorder to create a runnable Gatling simulation.
 date: 2021-04-20T18:30:56+02:00
+aliases:
+  - /tutorials/recorder/
+  - quickstart
 ---
 
 ## Introduction
@@ -17,8 +18,8 @@ This tutorial is intended for Gatling versions `{{< var gatlingVersion >}}` and 
 The Gatling Recorder allows you to capture browser-based actions to create a realistic user scenario for load testing. The Recorder application is launched from Gatling, using Maven, Gradle, sbt or the JavaScript CLI.  
 
 In this tutorial, we use Gatling to load test a simple cloud-hosted web server and introduce you to the basic elements of the Recorder. We strongly recommend completing one of the following introductory guides according to your language of preference before starting to work with the Recorder:
-- [Introduction to scripting tutorial with Java]({{< ref "/tutorials/scripting-intro" >}}). 
-- [Introduction to scripting tutorial with JavaScript]({{< ref "/tutorials/scripting-intro-js" >}}). 
+- [Introduction to scripting tutorial with Java]({{< ref "/tutorials/test-as-code/java-jvm/running-your-first-simulation" >}}). 
+- [Introduction to scripting tutorial with JavaScript]({{< ref "/tutorials/test-as-code/javascript/running-your-first-simulation" >}}). 
 
 This tutorial showcases the Gatling recorder using two options: **Java** SDK with the **Maven** plugin and the **JavaScript** SDK with **JavaScript CLI**.
 
@@ -52,7 +53,7 @@ The following is an example of what a real user might do with the application.
 {{< alert info >}}
 **Gatling SDK prerequisites**
 
-- **For Java**: Java 11, 17 or 21 64-bit OpenJDK LTS (Long Term Support) version installed on your local machine. While the sample project requires Java 17, The Gatling SDK support extends back to Java 11. We recommend the [Azul JDK](https://www.azul.com/downloads/?package=jdk#zulu).
+- **For Java**: Java 11 through 25 (64-bit OpenJDK LTS versions) installed on your local machine. While the sample project requires Java 17, the Gatling SDK supports LTS versions 11-25. We recommend the [Azul JDK](https://www.azul.com/downloads/?package=jdk#zulu).
 - **For JavaScript**: [Node.js](https://nodejs.org/) v18 or later (LTS versions only) and npm v8 or later.
   {{< /alert >}}
 
@@ -136,12 +137,12 @@ JavaScript: src/
 {{</ code-toggle >}}
 
 {{< alert tip >}}
-The scenario components and their functionality are described in the [Intro to Scripting]({{< ref "/tutorials/scripting-intro" >}}) tutorial. For more details regarding the Simulation structure, please check out the [Simulation reference page]({{< ref "/concepts/simulation" >}}).
+The scenario components and their functionality are described in the [Intro to Scripting]({{< ref "/tutorials/test-as-code/java-jvm/running-your-first-simulation" >}}) tutorial. For more details regarding the Simulation structure, please check out the [Simulation reference page]({{< ref "/concepts/simulation" >}}).
 {{< /alert >}}
 
 ## Test execution
 
-### Run the Simulation on Gatling Enterprise
+### Run the Simulation on Gatling Enterprise Edition {#run-the-simulation-on-gatling-enterprise}
 
 You can package, deploy, and run your simulation using one of two approaches, depending on whether you prefer a manual or automated process.
 
@@ -173,7 +174,7 @@ You can package, deploy, and run your simulation using one of two approaches, de
    - Under **Configure your locations**, choose the _Managed_ type and select a location based on your preference.
    - Click **Save and launch**.
 
-#### Advanced Use Case with Automated Deployments (Configuration-as-Code)
+#### Advanced use case with automated deployments (Configuration-as-Code)
 
 Gatling Enterprise is a feature-rich SaaS platform that is designed for teams and organizations to get the most
 out of load testing. With the trial account, you created in the [Prerequisites section]({{< ref "#install-gatling" >}}), you can upload and run your test with advanced configuration, reporting, and collaboration features.

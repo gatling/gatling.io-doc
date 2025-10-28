@@ -5,10 +5,11 @@ lead: Learn how to write your first test with the Gatling no-code test builder
 description: Learn how to set up Gatling Enterprise for the first time
 aliases:
   - /tutorials/quickstart
+  - /tutorials/gui/
 ---
 
 {{< alert enterprise >}}
-This feature is only available on Gatling Enterprise. To learn more, [explore our plans](https://gatling.io/pricing?utm_source=docs)
+This feature is only available on Gatling Enterprise Edition. To learn more, [explore our plans](https://gatling.io/pricing?utm_source=docs)
 {{< /alert >}}
 
 This tutorial describes step-by-step instructions for running your first simulation with Gatling Enterprise.

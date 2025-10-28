@@ -55,9 +55,9 @@ Load testing is a way of ensuring that your digital service (website, web app, A
 
 We recommend that you quickly create a straightforward load test simulating the activity of a small part of your desired virtual users.
 
-- Create a test in 1-min [specifying a website ]({{< ref "/tutorials/gui" >}}) URL
+- Create a test in 1-min [specifying a website ]({{< ref "/tutorials/no-code/gui-builder" >}}) URL
 
-- [Use your existing Gatling script]({{< ref "/tutorials/scripting-intro#run-the-simulation-on-gatling-enterprise" >}})
+- [Use your existing Gatling script]({{< ref "/tutorials/test-as-code/java-jvm/running-your-first-simulation#run-the-simulation-on-gatling-enterprise" >}})
 
 To test the following features:
 

@@ -62,7 +62,7 @@ Gatling is more likely to use 100% of the CPU cores and will not benefit from CP
 ## Certified images
 
 We provide certified, pre-built Virtual Machine images for AWS, Azure and GCE, and Docker images for Kubernetes and OpenShift.
-These images are available for OpenJDK 11, 17 and 21, and include all recommended optimisations.
+These images are available for OpenJDK LTS versions 11 through 25, and include all recommended optimisations.
 If you can't use our certified images, we provide the templates from which our certified images are built:
 
 * For AWS, Azure & GCE: [frontline-injector-playbook](https://github.com/gatling/frontline-injector-playbook/) (requires Ansible & Packer)
