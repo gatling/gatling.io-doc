@@ -5,8 +5,12 @@ menutitle: AI Assistant for VS Code
 description: AI-powered assistant for Gatling performance testing in VS Code. Get intelligent help with creating, optimizing, and understanding Gatling simulations.
 lead: AI-powered assistant for Gatling performance testing. Get intelligent help with creating, optimizing, and understanding Gatling simulations directly in VS Code.
 ---
+The Gatling AI Assistant brings AI-powered performance testing directly to VS Code. Key benefits include:
 
-The Gatling AI Assistant brings the power of artificial intelligence directly to your performance testing workflow in Visual Studio Code. This extension helps you create, optimize, and understand Gatling simulations with intelligent AI guidance, supporting multiple programming languages and providing contextual assistance for complex performance testing scenarios. The AI assistant leverages specific context about Gatling projects to deliver accurate and relevant help, making it easier than ever to build effective performance tests.
+- **Intelligent guidance**: Create and optimize Gatling simulations with AI assistance
+- **Multi-language support**: Work with JavaScript, TypeScript, Java, Scala, and Kotlin
+- **Contextual help**: Get relevant assistance based on your specific Gatling project
+- **Streamlined workflow**: Build effective performance tests faster than ever
 
 
 {{< alert info >}}
@@ -20,6 +24,44 @@ The Gatling AI Assistant brings the power of artificial intelligence directly to
 
 **You are responsible** for ensuring that any AI-generated code meets your quality standards, security requirements, and performance expectations before using it in production environments.
 {{< /alert >}}
+
+## Quick start
+
+Get up and running with the Gatling AI Assistant in minutes:
+
+### 1. Installation
+
+Install the extension from the VS Code Marketplace:
+
+- Open VS Code
+- Go to the Extensions view (`Ctrl+Shift+X` / `Cmd+Shift+X`)
+- Search for "Gatling AI Assistant"
+- Click "Install"
+
+Alternatively, install via command line:
+```bash
+code --install-extension GatlingCorp.gatling-ai-assistant
+```
+
+### 2. Access the Gatling sidebar
+
+- Look for the Gatling icon in the Activity Bar (left sidebar)
+- Click the icon to open the Gatling AI Assistant panel
+
+### 3. Configure your API key
+
+Set up your chosen LLM provider:
+
+1. Open the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`)
+2. Type "Gatling: Set API Key"
+3. Select your provider (OpenAI, Anthropic, or Azure OpenAI)
+4. Enter your API key when prompted
+
+### 4. Start using the AI assistant
+
+- Begin chatting with the AI assistant in the sidebar
+- Select code and use "Explain Code" from the context menu
+- Ask questions about Gatling concepts and best practices
 
 ## Features
 
@@ -67,44 +109,6 @@ Built with enterprise security and compliance in mind:
 - **Secure credential storage**: API keys stored using VS Code's secure secrets API
 - **Data governance**: Control what information is shared with AI providers
 - **Audit trail**: Track AI interactions for compliance requirements
-
-## Quick start
-
-Get up and running with the Gatling AI Assistant in minutes:
-
-### 1. Installation
-
-Install the extension from the VS Code Marketplace:
-
-- Open VS Code
-- Go to the Extensions view (`Ctrl+Shift+X` / `Cmd+Shift+X`)
-- Search for "Gatling AI Assistant"
-- Click "Install"
-
-Alternatively, install via command line:
-```bash
-code --install-extension GatlingCorp.gatling-ai-assistant
-```
-
-### 2. Access the Gatling sidebar
-
-- Look for the Gatling icon in the Activity Bar (left sidebar)
-- Click the icon to open the Gatling AI Assistant panel
-
-### 3. Configure your API key
-
-Set up your chosen LLM provider:
-
-1. Open the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`)
-2. Type "Gatling: Set API Key"
-3. Select your provider (OpenAI, Anthropic, or Azure OpenAI)
-4. Enter your API key when prompted
-
-### 4. Start using the AI assistant
-
-- Begin chatting with the AI assistant in the sidebar
-- Select code and use "Explain Code" from the context menu
-- Ask questions about Gatling concepts and best practices
 
 ## Supported LLM providers
 
