@@ -7,4 +7,5 @@ ordering:
   - private-locations
   - infrastructure-as-code
   - dedicated-ips
+  - install-local
 ---

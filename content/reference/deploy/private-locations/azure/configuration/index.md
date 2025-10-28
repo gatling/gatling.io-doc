@@ -51,7 +51,7 @@ So when using a custom image, make sure following are available:
 - [cloud-init](https://learn.microsoft.com/en-us/azure/virtual-machines/custom-data) integration.
 - [jq](https://jqlang.github.io/jq/download/) a lightweight and flexible command-line JSON processor.
 - [curl](https://curl.se/download.html) a command line tool and library for transferring data with URLs
-- [Java runtime environment](https://openjdk.org/install/): OpenJDK 64bits LTS versions: 11, 17 or 21 (see [Gatling prerequisites]({{< ref "/tutorials/oss#java-version" >}}))
+- [Java runtime environment](https://openjdk.org/install/): OpenJDK 64bits LTS versions: 11 through 25 (see [Gatling prerequisites]({{< ref "/tutorials/test-as-code/java-jvm/installation-guide/#requirements" >}}))
 
 {{<alert tip >}}
 Accelerate deployment and simplify configuration with Gatling's pre-built [infrastructure-as-code configurations]({{< ref "infrastructure-as-code/" >}}).

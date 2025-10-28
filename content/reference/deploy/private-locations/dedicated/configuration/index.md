@@ -40,7 +40,7 @@ So, make sure following are available on the location configured hosts:
 - [jq](https://jqlang.github.io/jq/download/) a lightweight and flexible command-line JSON processor.
 - [curl](https://curl.se/download.html) a command line tool and library for transferring data with URLs
 - [Java runtime environment](https://openjdk.org/install/):
-  - For Gatling Java and Scala support: OpenJDK 64bits LTS versions: 11, 17 or 21 (see [Gatling prerequisites]({{< ref "/tutorials/oss#java-version" >}}))
+  - For Gatling Java and Scala support: OpenJDK 64bits LTS versions: 11 through 25 (see [Gatling prerequisites]({{< ref "/tutorials/test-as-code/java-jvm/installation-guide/#requirements" >}}))
   - For Gatling JS and Postman support: either [GraalVM CE](https://github.com/graalvm/graalvm-ce-builds/releases)
     or [Oracle GraalVM](https://www.graalvm.org/downloads/). You need at least GraalVM for JDK 21.0.2, but we recommend
     installing the latest version.

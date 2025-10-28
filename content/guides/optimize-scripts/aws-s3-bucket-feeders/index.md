@@ -18,7 +18,7 @@ This guide requires load generators using:
 
 - [Private locations on Gatling Enterprise Edition](https://docs.gatling.io/reference/install/cloud/private-locations/introduction/)
 - [Local test execution](https://docs.gatling.io/tutorials/scripting-intro/#run-the-simulation-locally-for-debugging)
-- Gatling SDK with Java 11, 17, 21, or 22.
+- Gatling SDK with Java 11 through 25 (any LTS version).
 
 {{< alert info >}}
 This setup does not work with managed locations on Gatling Enterprise Edition.

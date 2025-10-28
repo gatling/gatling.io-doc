@@ -23,16 +23,16 @@ SDK constructs.
 {{< alert info >}}
 **Gatling SDK prerequisites**
 
-- **For Java, Scala and Kotlin**: Java 11, 17 or 21 64-bit OpenJDK LTS (Long Term Support) version installed on your local machine. While the sample project requires Java 17, The Gatling SDK support extends back to Java 11. We recommend the [Azul JDK](https://www.azul.com/downloads/?package=jdk#zulu).
+- **For Java, Scala and Kotlin**: Java 11 through 25 (64-bit OpenJDK LTS versions) installed on your local machine. While the sample project requires Java 17, the Gatling SDK supports LTS versions 11-25. We recommend the [Azul JDK](https://www.azul.com/downloads/?package=jdk#zulu).
 - **For JavaScript**: [Node.js](https://nodejs.org/) v18 or later (LTS versions only) and npm v8 or later.
   {{< /alert >}}
 
 {{< alert tip >}}
 It is strongly recommended to review the introductory guides first, as this tutorial introduces more advanced concepts:
 
-- [Create a simulation with Java]({{< ref "/tutorials/scripting-intro" >}})
-- [Create a simulation with JavaScript]({{< ref "/tutorials/scripting-intro-js" >}})
-- [Introduction to the Recorder]({{< ref "/tutorials/recorder" >}})
+- [Create a simulation with Java]({{< ref "/tutorials/test-as-code/java-jvm/running-your-first-simulation" >}})
+- [Create a simulation with JavaScript]({{< ref "/tutorials/test-as-code/javascript/running-your-first-simulation" >}})
+- [Introduction to the Recorder]({{< ref "/tutorials/low-code/recorder" >}})
 
 Additionally, it is important to have a basic understanding of a virtual user's session. Kindly consult the [Session documentation]({{< ref "/concepts/session/" >}}), particularly the **Feeders** and **Expression Language** sections.
 {{< /alert >}}

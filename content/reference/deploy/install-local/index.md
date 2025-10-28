@@ -7,6 +7,7 @@ lead: "Learn how to install Gatling for Java, Kotlin, Scala, JavaScript, or Type
 date: 2021-04-20T18:58:06+02:00
 aliases:
   - /reference/install/oss/
+  - /tutorials/oss/
 ---
 
 ## Introduction
@@ -21,7 +22,7 @@ Gatling also provides a [standalone bundled version]({{< ref "#use-the-standalon
 
 ### Java version
 
-Gatling supports 64-bit OpenJDK LTS (Long Term Support) versions: 11, 17, and 21.
+Gatling supports 64-bit OpenJDK LTS (Long Term Support) versions: 11 to 25.
 Other JVMs such as, 32-bit systems or OpenJ9, are not supported. We recommend the [Azul JDK](https://www.azul.com/downloads/?package=jdk#zulu).
 
 ### Supported languages
@@ -98,7 +99,7 @@ TypeScript: npx gatling run --typescript --simulation basicSimulation
 {{</ code-toggle >}}
 
 {{< alert info >}}
-To learn more about developing Gatling tests in JavaScript/TypeScript, follow the [Intro to scripting]({{< ref "/tutorials/scripting-intro/" >}}) tutorial.
+To learn how to run your first Gatling simulation in JavaScript/TypeScript, see the [JavaScript: Running your first simulation]({{< ref "/tutorials/test-as-code/javascript/running-your-first-simulation/" >}}) tutorial.
 {{< /alert >}}
 
 ## Use the standalone bundle

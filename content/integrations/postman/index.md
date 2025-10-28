@@ -72,7 +72,7 @@ You can also add Gatling Postman to an existing Gatling project written in JavaS
 2. Copy your exported Postman files (collection, and optionally environment and global variables) to the resources folder.
 
 For more details on how to create a JavaScript or TypeScript project, check the
-[dedicated tutorial]({{< ref "/tutorials/scripting-intro-js/" >}}).
+[dedicated tutorial]({{< ref "/tutorials/test-as-code/javascript/running-your-first-simulation/" >}}).
 
 ## DSL overview
 
@@ -103,13 +103,13 @@ export default simulation((setUp) => { // 2
 });
 ```
 
-1. The [Gatling core and HTTP imports]({{< ref "/tutorials/scripting-intro-js/#set-up-the-file" >}}) are used for all 
+1. The [Gatling core and HTTP imports]({{< ref "/tutorials/test-as-code/javascript/running-your-first-simulation/#simulation-construction" >}}) are used for all 
    functionalities not specific to Postman.
-2. As for all [JavaScript tests]({{< ref "/tutorials/scripting-intro-js/#define-the-simulation-function" >}}), define a
+2. As for all [JavaScript tests]({{< ref "/tutorials/test-as-code/javascript/running-your-first-simulation/#simulation-construction" >}}), define a
    simulation function.
 3. Gatling Postman uses the standard [Gatling HTTP protocol]({{< ref "/reference/script/http/protocol" >}}).
 4. It is possible to perform Postman requests inside an existing Gatling test.
-5. Don't forget to [set up an injection profile]({{< ref "/tutorials/scripting-intro-js/#define-the-injection-profile" >}}).
+5. Don't forget to [set up an injection profile]({{< ref "/tutorials/test-as-code/javascript/running-your-first-simulation/#simulation-construction" >}}).
 
 ## DSL reference
 
