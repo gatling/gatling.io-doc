@@ -1,7 +1,7 @@
-import de.heikoseeberger.sbtheader.FileType
 import sbt._
 import sbt.io.ExtensionFilter
 import sbt.Keys._
+import sbtheader.FileType
 import _root_.io.gatling.build.license.ApacheV2License
 
 kotlinVersion := "2.2.21"
