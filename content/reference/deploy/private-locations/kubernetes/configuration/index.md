@@ -85,6 +85,9 @@ control-plane {
       description = "Private Location on Kubernetes"
       # Private location type
       type = "kubernetes"
+      # Context name (optional, default based on current-context kubernetes configuration)
+      # See https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/
+      # context = "test"
       # Namespace (optional, default based on kubernetes configuration)
       namespace = "gatling"
       # Engine (optional, default classic)
