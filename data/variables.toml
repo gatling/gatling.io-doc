@@ -1,6 +1,6 @@
 gatlingVersion = "3.14.7"
 gatlingGrpcVersion = "3.14.7"
-gatlingJsVersion = "3.14.700"
+gatlingJsVersion = "3.14.703"
 gatlingMqttVersion = "3.14.7"
 gatlingCiPluginsVersion = "1.0.0"
 
