@@ -1,6 +1,9 @@
 ---
 title: Datadog integration for Gatling
 menutitle: Datadog
+seotitle: Integrate Gatling with Datadog
+description: Send load test metrics to Datadog.
+lead: Send load test metrics to Datadog.
 ---
 
 {{< alert enterprise >}}
@@ -68,7 +71,6 @@ Run ID|`run_id`|ID of the run
 
 See the [official Datadog Events documentation](https://docs.datadoghq.com/fr/service_management/events/guides/usage/) for managing and displaying events.
 
-
 ## Metrics pushed to Datadog
 
 Gatling Enterprise Edition pushes the following list of load test metrics to Datadog:
@@ -95,8 +97,8 @@ Response TCP connect time max|`gatling_enterprise.tcp.connect_time.min`|Minimum 
 Response TCP connect time min|`gatling_enterprise.tcp.connect_time.max`|Maximum TCP response connect time
 Response TCP connect time p95|`gatling_enterprise.tcp.connect_time.p95`|TCP response connect time for the 95th percentile (95% of the requests)
 Response TCP connect time p99|`gatling_enterprise.tcp.connect_time.p99`|TCP response connect time for the 99th percentile (99% of the requests)
-Response TLS handshake time p999|`gatling_enterprise.tcp.connect_time.p999`|TCP response connect time for the 99.9th percentile (99.9% of the requests)
-Response TLS|`gatling_enterprise.tls.handshake_count`|Number of TSL responses
+Response TCP connect time p999|`gatling_enterprise.tcp.connect_time.p999`|TCP response connect time for the 99.9th percentile (99.9% of the requests)
+Response TLS|`gatling_enterprise.tls.handshake_count`|Number of TLS responses
 Response TLS handshake time max|`gatling_enterprise.tls.handshake_time.min`|Minimum TLS response handshake time
 Response TLS handshake time min|`gatling_enterprise.tls.handshake_time.max`|Maximum TLS response handshake time
 Response TLS handshake time p95|`gatling_enterprise.tls.handshake_time.p95`|TLS response handshake time for the 95th percentile (95% of the requests)
@@ -117,7 +119,6 @@ Load generator|`load_generator`|Load generator reference integer starting with 0
 Scenario|`scenario`|Scenario name
 Status|`status`|Status of the run (OK or KO)
 Run ID|`run_id`|ID of the run
-
 
 ### Custom Tags
 
