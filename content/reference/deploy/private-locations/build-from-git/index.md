@@ -80,7 +80,7 @@ This ensures that you always test the latest version of your simulations.
 
 The following sections detail how to configure the Control Plane for Build from a Git repository.
 
-### Cloning over SSH using an SSH key
+### Cloning over SSH
 
 When authenticating with Git over SSH, you can use an SSH key for secure access. This method provides a secure way to authenticate without exposing credentials.
 
@@ -123,7 +123,20 @@ Use `ssh-keyscan` to populate the file mounted at `user-known-hosts-file`:
 ssh-keyscan github.com gitlab.com >> ~/.ssh/known_hosts
 ```
 
-### Cloning over HTTPS using git credentials
+### Cloning over HTTPS
+
+#### Configuring a custom Certificate Authority
+
+If your git repository HTTPS server uses a private key issued by an internal CA, its certificate must be trusted on the git client side.
+
+You have to :
+1. expose the CA certificate to the container, typically from a mounted directory
+2. this certificate must be in **PEM** format
+3. on your container, set the `GIT_SSL_CAINFO` env var with the absolute path to the CA certificate from inside the container
+
+For more information, please check the [git documentation](https://git-scm.com/docs/git-config#Documentation/git-config.txt-httpsslCAInfo) and the [cURL documentation](https://curl.se/docs/manpage.html#--cacert) (which is what git uses underneath).
+
+#### Configuring git credentials
 
 When authenticating with Git over HTTPS (via password or token), 
 you can specify credentials in the Control Plane configuration file (e.g., control-plane.conf):
