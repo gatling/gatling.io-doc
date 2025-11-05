@@ -32,7 +32,7 @@ If you prefer to manually configure your Maven project rather than clone one of 
   <dependency>
     <groupId>io.gatling.highcharts</groupId>
     <artifactId>gatling-charts-highcharts</artifactId>
-    <version>MANUALLY_REPLACE_WITH_LATEST_VERSION</version>
+    <version>{{< var gatlingVersion >}}</version>
     <scope>test</scope>
   </dependency>
 </dependencies>
@@ -40,7 +40,7 @@ If you prefer to manually configure your Maven project rather than clone one of 
 <plugin>
   <groupId>io.gatling</groupId>
   <artifactId>gatling-maven-plugin</artifactId>
-  <version>MANUALLY_REPLACE_WITH_LATEST_VERSION</version>
+  <version>{{< var gatlingMavenPluginVersion >}}</version>
 </plugin>
 ```
 
@@ -56,7 +56,7 @@ The plugin supports many configuration options, eg:
 <plugin>
   <groupId>io.gatling</groupId>
   <artifactId>gatling-maven-plugin</artifactId>
-  <version>MANUALLY_REPLACE_WITH_LATEST_VERSION</version>
+  <version>{{< var gatlingMavenPluginVersion >}}</version>
   <configuration>
     <simulationClass>foo.Bar</simulationClass>
   </configuration>
@@ -175,7 +175,7 @@ The plugin's goals can also be bound to the Maven lifecycle phases by configurin
 <plugin>
   <groupId>io.gatling</groupId>
   <artifactId>gatling-maven-plugin</artifactId>
-  <version>MANUALLY_REPLACE_WITH_LATEST_VERSION</version>
+  <version>{{< var gatlingMavenPluginVersion >}}</version>
   <executions>
     <execution>
       <goals>

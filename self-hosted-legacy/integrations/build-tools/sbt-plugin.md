@@ -37,15 +37,15 @@ Cloning or downloading our demo project on GitHub is definitely the fastest way 
 If you prefer to manually configure your sbt project rather than clone our sample, you need to add the Gatling plugin dependency to your `project/plugins.sbt`:
 
 ```scala
-addSbtPlugin("io.gatling" % "gatling-sbt" % "MANUALLY_REPLACE_WITH_LATEST_VERSION")
+addSbtPlugin("io.gatling" % "gatling-sbt" % "{{< var gatlingSbtPluginVersion >}}")
 ```
 
 And then add the Gatling library dependencies and enable the Gatling plugin in your `build.sbt`:
 
 ```scala
 enablePlugins(GatlingPlugin)
-libraryDependencies += "io.gatling.highcharts" % "gatling-charts-highcharts" % "MANUALLY_REPLACE_WITH_LATEST_VERSION" % "test"
-libraryDependencies += "io.gatling"            % "gatling-test-framework"    % "MANUALLY_REPLACE_WITH_LATEST_VERSION" % "test"
+libraryDependencies += "io.gatling.highcharts" % "gatling-charts-highcharts" % "{{< var gatlingVersion >}}" % "test"
+libraryDependencies += "io.gatling"            % "gatling-test-framework"    % "{{< var gatlingVersion >}}" % "test"
 ```
 
 ### 'Test' vs 'Integration Tests' configurations

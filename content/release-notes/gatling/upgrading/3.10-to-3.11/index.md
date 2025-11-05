@@ -117,7 +117,7 @@ As it uses a maven project layout, it can be easily imported in any IDE.
 
 The following procedure assists you to migrate from the standalone bundle to the new Maven-based bundle.
 
-1. Download the [Maven-based bundle](https://repo1.maven.org/maven2/io/gatling/highcharts/gatling-charts-highcharts-bundle/{{< var gatlingVersion >}}/gatling-charts-highcharts-bundle-{{< var gatlingVersion >}}-bundle.zip). 
+1. Download the [Maven-based bundle](https://repo1.maven.org/maven2/io/gatling/highcharts/gatling-charts-highcharts-bundle/{{< var gatlingBundleVersion >}}/gatling-charts-highcharts-bundle-{{< var gatlingBundleVersion >}}-bundle.zip). 
 2. Upgrade your existing project to [Gatling 3.10.5]({{< ref "/release-notes/gatling/upgrading/3.9-to-3.10/" >}}) if you are not already on this version.
 3. From your existing project: 
 

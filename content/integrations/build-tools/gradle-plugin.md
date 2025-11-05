@@ -108,7 +108,7 @@ How to override Gatling version, JVM arguments and system properties:
 
 ```groovy
 gatling {
-  gatlingVersion = '3.13.4'
+  gatlingVersion = '{{< var gatlingVersion >}}'
   jvmArgs = ['-server', '-Xms512M', '-Xmx512M']
   systemProperties = ['file.encoding': 'UTF-8']
 }

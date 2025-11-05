@@ -42,7 +42,7 @@ If you prefer to manually configure your Gradle project rather than clone one of
 
 ```groovy
  plugins {
-   id 'io.gatling.gradle' version "MANUALLY_REPLACE_WITH_LATEST_VERSION"
+   id 'io.gatling.gradle' version "{{< var gatlingGradlePluginVersion >}}"
  }
 ```
 
@@ -105,7 +105,7 @@ How to override Gatling version, JVM arguments and system properties:
 
 ```groovy
 gatling {
-  gatlingVersion = '3.8.3'
+  gatlingVersion = '{{< var gatlingGradlePluginVersion >}}'
   jvmArgs = ['-server', '-Xms512M', '-Xmx512M']
   systemProperties = ['file.encoding': 'UTF-8']
 }
