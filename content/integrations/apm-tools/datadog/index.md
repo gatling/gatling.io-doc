@@ -1,6 +1,9 @@
 ---
 title: Datadog integration for Gatling
 menutitle: Datadog
+seotitle: Integrate Gatling with Datadog
+description: Send load test metrics to Datadog.
+lead: Send load test metrics to Datadog.
 ---
 
 {{< alert enterprise >}}
@@ -45,7 +48,6 @@ The Datadog integration requires installation steps in your Datadog account and 
       }
     ]
   }
-
   ```
  
 ## Uninstall the Datadog integration
@@ -68,7 +70,6 @@ Run ID|`run_id`|ID of the run
 
 See the [official Datadog Events documentation](https://docs.datadoghq.com/fr/service_management/events/guides/usage/) for managing and displaying events.
 
-
 ## Metrics pushed to Datadog
 
 Gatling Enterprise Edition pushes the following list of load test metrics to Datadog:
@@ -90,18 +91,18 @@ Request Bits|`gatling_enterprise.bandwidth_usage.sent`|Outbound bandwidth usage
 Response Bits|`gatling_enterprise.bandwidth_usage.received`|Inbound bandwidth usage
 Request TCP open|`gatling_enterprise.tcp.open_count`|Number of opened TCP requests
 Request TCP close|`gatling_enterprise.tcp.close_count`|Number of closed TCP requests
-Response TCP|`gatling_enterprise.tcp.connection_count`|Number of TCP requests
-Response TCP connect time max|`gatling_enterprise.tcp.connect_time.min`|Minimum TCP response connect time
-Response TCP connect time min|`gatling_enterprise.tcp.connect_time.max`|Maximum TCP response connect time
-Response TCP connect time p95|`gatling_enterprise.tcp.connect_time.p95`|TCP response connect time for the 95th percentile (95% of the requests)
-Response TCP connect time p99|`gatling_enterprise.tcp.connect_time.p99`|TCP response connect time for the 99th percentile (99% of the requests)
-Response TLS handshake time p999|`gatling_enterprise.tcp.connect_time.p999`|TCP response connect time for the 99.9th percentile (99.9% of the requests)
-Response TLS|`gatling_enterprise.tls.handshake_count`|Number of TSL responses
-Response TLS handshake time max|`gatling_enterprise.tls.handshake_time.min`|Minimum TLS response handshake time
-Response TLS handshake time min|`gatling_enterprise.tls.handshake_time.max`|Maximum TLS response handshake time
-Response TLS handshake time p95|`gatling_enterprise.tls.handshake_time.p95`|TLS response handshake time for the 95th percentile (95% of the requests)
-Response TLS handshake time p99|`gatling_enterprise.tls.handshake_time.p99`|TLS response handshake time for the 99th percentile (99% of the requests)
-Response TLS handshake time p999|`gatling_enterprise.tls.handshake_time.p999`|TLS response handshake time for the 99.9th percentile (99.9% of the requests)
+TCP connections|`gatling_enterprise.tcp.connection_count`|Number of new TCP connections
+TCP connect time max|`gatling_enterprise.tcp.connect_time.min`|Minimum TCP connect time
+TCP connect time min|`gatling_enterprise.tcp.connect_time.max`|Maximum TCP connect time
+TCP connect time p95|`gatling_enterprise.tcp.connect_time.p95`|TCP connect time for the 95th percentile (95% of the requests)
+TCP connect time p99|`gatling_enterprise.tcp.connect_time.p99`|TCP connect time for the 99th percentile (99% of the requests)
+TCP connect time p999|`gatling_enterprise.tcp.connect_time.p999`|TCP connect time for the 99.9th percentile (99.9% of the requests)
+TLS handshakes|`gatling_enterprise.tls.handshake_count`|Number of TLS handshakes
+TLS handshake time max|`gatling_enterprise.tls.handshake_time.min`|Minimum TLS handshake time
+TLS handshake time min|`gatling_enterprise.tls.handshake_time.max`|Maximum TLS handshake time
+TLS handshake time p95|`gatling_enterprise.tls.handshake_time.p95`|TLS handshake time for the 95th percentile (95% of the requests)
+TLS handshake time p99|`gatling_enterprise.tls.handshake_time.p99`|TLS handshake time for the 99th percentile (99% of the requests)
+TLS handshake time p999|`gatling_enterprise.tls.handshake_time.p999`|TLS handshake time for the 99.9th percentile (99.9% of the requests)
 
 ## Use metrics tags to enhance your Datadog dashboard
 
@@ -117,7 +118,6 @@ Load generator|`load_generator`|Load generator reference integer starting with 0
 Scenario|`scenario`|Scenario name
 Status|`status`|Status of the run (OK or KO)
 Run ID|`run_id`|ID of the run
-
 
 ### Custom Tags
 
