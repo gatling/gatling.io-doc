@@ -17,7 +17,6 @@
 import { exec, scenario } from "@gatling.io/core";
 import { grpc, response, statusCode } from "@gatling.io/grpc";
 
-const grpcProtocol = grpc.forAddress("host", 50051);
 const message = {};
 const message1 = {};
 const message2 = {};
@@ -198,6 +197,28 @@ const clientStreamSend = () => {
   //#clientStreamSend
 };
 
+const serverConfiguration = () => {
+  //#server-configuration
+  const exampleServer1 = grpc
+    .serverConfiguration("example1")
+    .forAddress("host", 50051);
+
+  const exampleServer2 = grpc
+    .serverConfiguration("example2")
+    .forAddress("host", 50052);
+
+  const grpcProtocol = grpc
+    // First server configuration listed becomes the default
+    .serverConfigurations(exampleServer1, exampleServer2);
+
+  grpc("name")
+    .unary("example.ExampleService/Example")
+    // Using server configuration `example2` by name:
+    .serverConfiguration("example2")
+    .send(message);
+  //#server-configuration
+};
+
 const unaryAsciiHeaders = () => {
   //#unaryAsciiHeaders
   // Extracting a map of headers allows you to reuse these in several requests
@@ -339,7 +360,28 @@ const bidiStreamWaitEnd = () => {
       .bidiStream("example.ExampleService/Example");
 
   exec(stream.awaitStreamEnd());
+  // Optionally reconcile the forked session (accessible only by this stream) with the main session;
+  // e.g. if you used a gRPC check to save a value, it was saved in the forked session.
+  exec(stream.awaitStreamEnd((main, forked) => main.set("key", forked.get("key"))));
   //#bidiStreamWaitEnd
+};
+
+const bidiStreamProcessUnmatchedMessages = () => {
+  //#bidiStreamProcessUnmatchedMessages
+  const stream =
+    grpc("name")
+      .bidiStream("example.ExampleService/Example");
+
+  // Process unmatched messages at a point during the stream lifecycle
+  exec(stream.processUnmatchedMessages((messages, session) =>
+    session.set("messages", messages)));
+  // Combine with awaitStreamEnd(): process remaining unmatched messages when the stream ends
+  exec(stream.awaitStreamEndAndProcessUnmatchedMessages((messages, session) =>
+    session.set("messages", messages)));
+  // Combine with awaitStreamEnd(), including reconciling the forked session
+  exec(stream.awaitStreamEndAndProcessUnmatchedMessages((messages, main, forked) =>
+    main.set("messages", messages).set("key", forked.getString("key"))));
+  //#bidiStreamProcessUnmatchedMessages
 };
 
 const bidiStreamCancel = () => {

@@ -21,9 +21,26 @@ You have to manually add the following imports:
 Use the `grpc` object in order to create a gRPC protocol.
 
 As with every protocol in Gatling, the gRPC protocol can be configured for a scenario. This is done thanks to the following
-statements:
+statements, which define a single [server configuration]({{< ref "#server-configurations" >}}) and bind it to the gRPC protocol:
 
 {{< include-code "protocol-configuration" >}}
+
+{{< alert warning >}}
+Server configuration at the protocol level is deprecated and will be removed in the next minor version of Gatling gRPC.
+Update your code to use [server configurations]({{< ref "#server-configurations" >}}) as soon as possible.
+{{< /alert >}}
+
+## Server Configurations
+
+Server configurations define the connection settings for one or more gRPC servers.
+When multiple server configurations are defined, the first is used as the default unless explicitly overridden using the
+[`serverConfiguration`]({{< ref "./methods#server-configuration" >}}) DSL method:
+
+{{< include-code "server-configuration" >}}
+
+{{< alert tip >}}
+Server configuration names must be unique.
+{{< /alert >}}
 
 ### Target {{% badge danger required /%}} {#target}
 
@@ -211,3 +228,15 @@ This load balancing policy is bundled with Gatling gRPC but not a standard of gR
 Round-robin load balancing over the addresses returned by the name resolver:
 
 {{< include-code "useRoundRobinLoadBalancingPolicy" >}}
+
+### Other settings
+
+##### `unmatchedInboundMessageBufferSize`
+
+By default, unmatched inbound messages are not buffered, you must enable this feature by setting the size of the buffer
+on the protocol with `.unmatchedInboundMessageQueueSize(maxSize)`:
+
+{{< include-code "unmatchedInboundMessageBufferSize" >}}
+
+Buffered messages can then be processed with
+[`processUnmatchedMessages` or `awaitStreamEndAndProcessUnmatchedMessages`]({{< ref "./methods#method-process-unmatched" >}}).

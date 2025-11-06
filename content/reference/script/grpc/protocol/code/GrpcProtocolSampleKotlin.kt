@@ -32,8 +32,12 @@ class GrpcProtocolSampleKotlin : Simulation() {
 
   init {
     //#protocol-configuration
-    val grpcProtocol = grpc
+    val exampleServer = grpc
+      .serverConfiguration("example")
       .forAddress("host", 50051)
+
+    val grpcProtocol = grpc
+      .serverConfigurations(exampleServer)
 
     val scn = scenario("Scenario") // etc.
 
@@ -45,14 +49,39 @@ class GrpcProtocolSampleKotlin : Simulation() {
   }
 
   init {
+    //#server-configuration
+    val exampleServer1 = grpc
+      .serverConfiguration("example1")
+      .forAddress("host", 50051)
+
+    val exampleServer2 = grpc
+      .serverConfiguration("example2")
+      .forAddress("host", 50052)
+
+    val grpcProtocol = grpc
+      // exampleServer1 will serve as the default server configuration
+      .serverConfigurations(exampleServer1, exampleServer2)
+
+    val scn = scenario("Scenario") // etc.
+
+    setUp(
+      scn.injectOpen(atOnceUsers(1))
+        .protocols(grpcProtocol)
+    )
+    //#server-configuration
+  }
+
+  init {
+    val exampleServer =
+      grpc.serverConfiguration("serverConfiguration")
     //#forAddress
-    grpc.forAddress("host", 50051)
+    exampleServer.forAddress("host", 50051)
     //#forAddress
     //#forTarget
-    grpc.forTarget("dns:///host:50051")
+    exampleServer.forTarget("dns:///host:50051")
     //#forTarget
     //#asciiHeader
-    grpc
+    exampleServer
       // with a static header value
       .asciiHeader("key").value("value")
       // with a Gatling EL string header value
@@ -61,12 +90,12 @@ class GrpcProtocolSampleKotlin : Simulation() {
       .asciiHeader("key").value { session -> session.getString("headerValue") }
     //#asciiHeader
     //#asciiHeaders
-    grpc.asciiHeaders(
+    exampleServer.asciiHeaders(
       mapOf("key" to "value")
     )
     //#asciiHeaders
     //#binaryHeader
-    grpc
+    exampleServer
       // with a static header value
       .binaryHeader("key").value("value".toByteArray(UTF_8))
       // with a Gatling EL string header value
@@ -74,13 +103,13 @@ class GrpcProtocolSampleKotlin : Simulation() {
       // with a function value
       .binaryHeader("key").value { session -> session.get("headerValue") }    //#binaryHeader
     //#binaryHeaders
-    grpc.binaryHeaders(
+    exampleServer.binaryHeaders(
       mapOf("key" to "value".toByteArray(UTF_8))
     )
     //#binaryHeaders
     //#header
     val key = Metadata.Key.of("key", Metadata.ASCII_STRING_MARSHALLER)
-    grpc
+    exampleServer
       // with a static header value
       .header(key).value("value")
       // with a Gatling EL string header value
@@ -89,14 +118,14 @@ class GrpcProtocolSampleKotlin : Simulation() {
       .header(key).value { session -> session.get("headerValue") }
     //#header
     //#shareChannel
-    grpc.shareChannel()
+    exampleServer.shareChannel()
     //#shareChannel
     //#shareSslContext
-    grpc.shareSslContext()
+    exampleServer.shareSslContext()
     //#shareSslContext
     val callCredentials = callCredentialsForUser("")
     //#callCredentials
-    grpc
+    exampleServer
       // with a constant
       .callCredentials(callCredentials)
       // or with an EL string to retrieve CallCredentials already stored in the session
@@ -109,7 +138,7 @@ class GrpcProtocolSampleKotlin : Simulation() {
     //#callCredentials
     val channelCredentials = channelCredentialsForUser("")
     //#channelCredentials
-    grpc
+    exampleServer
       // with a constant
       .channelCredentials(channelCredentials)
       // or with an EL string to retrieve CallCredentials already stored in the session
@@ -121,7 +150,7 @@ class GrpcProtocolSampleKotlin : Simulation() {
       }
     //#channelCredentials
     //#tlsMutualAuthChannelCredentials
-    grpc.channelCredentials(
+    exampleServer.channelCredentials(
       TlsChannelCredentials.newBuilder()
         .keyManager(
           ClassLoader.getSystemResourceAsStream("client.crt"),
@@ -137,38 +166,41 @@ class GrpcProtocolSampleKotlin : Simulation() {
       )
     //#insecureTrustManagerChannelCredentials
     //#overrideAuthority
-    grpc.overrideAuthority("test.example.com")
+    exampleServer.overrideAuthority("test.example.com")
     //#overrideAuthority
     //#usePlaintext
-    grpc.usePlaintext()
+    exampleServer.usePlaintext()
     //#usePlaintext
     //#useInsecureTrustManager
-    grpc.useInsecureTrustManager()
+    exampleServer.useInsecureTrustManager()
     //#useInsecureTrustManager
     //#useStandardTrustManager
-    grpc.useStandardTrustManager()
+    exampleServer.useStandardTrustManager()
     //#useStandardTrustManager
     //#useCustomCertificateTrustManager
-    grpc.useCustomCertificateTrustManager("certificatePath")
+    exampleServer.useCustomCertificateTrustManager("certificatePath")
     //#useCustomCertificateTrustManager
     //#useCustomLoadBalancingPolicy
-    grpc.useCustomLoadBalancingPolicy("pick_first")
+    exampleServer.useCustomLoadBalancingPolicy("pick_first")
     //#useCustomLoadBalancingPolicy
     //#useCustomLoadBalancingPolicy2
-    grpc.useCustomLoadBalancingPolicy("pick_first", "{}")
+    exampleServer.useCustomLoadBalancingPolicy("pick_first", "{}")
     //#useCustomLoadBalancingPolicy2
     //#usePickFirstLoadBalancingPolicy
-    grpc.usePickFirstLoadBalancingPolicy()
+    exampleServer.usePickFirstLoadBalancingPolicy()
     //#usePickFirstLoadBalancingPolicy
     //#usePickRandomLoadBalancingPolicy
-    grpc.usePickRandomLoadBalancingPolicy()
+    exampleServer.usePickRandomLoadBalancingPolicy()
     //#usePickRandomLoadBalancingPolicy
     //#useRoundRobinLoadBalancingPolicy
-    grpc.useRoundRobinLoadBalancingPolicy()
+    exampleServer.useRoundRobinLoadBalancingPolicy()
     //#useRoundRobinLoadBalancingPolicy
     //#useChannelPool
-    grpc.useChannelPool(4)
+    exampleServer.useChannelPool(4)
     //#useChannelPool
+    //#unmatchedInboundMessageBufferSize
+    exampleServer.unmatchedInboundMessageBufferSize(5)
+    //#unmatchedInboundMessageBufferSize
   }
 
   private fun callCredentialsForUser(name: String): CallCredentials =

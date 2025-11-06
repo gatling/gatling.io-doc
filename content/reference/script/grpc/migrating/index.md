@@ -12,10 +12,6 @@ aliases:
 Migration guide from the gatling-grpc community plugin to the official Gatling gRPC support.
 {{< /alert >}}
 
-{{< alert warning >}}
-The gRPC protocol is not supported by the JavaScript SDK. If this functionality is important to you, add a comment to our [public roadmap](https://portal.productboard.com/gatling/1-gatling-roadmap/c/113-javascript-sdk-expansion?&utm_medium=docs&utm_source=callout)
-{{< /alert >}}
-
 This page is intended for existing users of the community-maintained
 [gRPC plugin for Gatling](https://github.com/phiSgr/gatling-grpc) (created by George Leung),
 who want to switch to using the new official gRPC support for Gatling.
@@ -59,17 +55,17 @@ You shouldn't need to change your code generation configuration, but you may wan
 
 Remove imports which start with `com.github.phisgr.gatling`. Use the following imports to access the official gRPC DSL:
 
-{{< include-code "GrpcOfficialSample#imports" java kt scala >}}
+{{< include-code "GrpcOfficialSample#imports" >}}
 
 ## Protocol
 
 One major difference is that, in the community plugin, you need to create your own `ManagedChannelBuilder`:
 
-{{< include-code "GrpcCommunitySample#protocol" java kt scala >}}
+{{< include-code "GrpcCommunitySample#protocol" >}}
 
 In the official gRPC support, the creation of the channel builder is hidden inside the Gatling protocol:
 
-{{< include-code "GrpcOfficialSample#protocol" java kt scala >}}
+{{< include-code "GrpcOfficialSample#protocol" >}}
 
 |                                     | Community Plugin                | Official Plugin                                                                               |
 |-------------------------------------|---------------------------------|-----------------------------------------------------------------------------------------------|
@@ -286,6 +282,6 @@ val request: RequestMessage =
 
 We recommend using a lambda function instead:
 
-{{< include-code "GrpcOfficialSample#expression" java kt scala >}}
+{{< include-code "GrpcOfficialSample#expression" >}}
 
 - Silencing a request using `silent` is currently not supported
