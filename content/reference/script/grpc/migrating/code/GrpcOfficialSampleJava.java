@@ -32,9 +32,13 @@ class GrpcOfficialSampleJava extends Simulation {
 
   {
     //#protocol
-    GrpcProtocolBuilder grpcProtocol = grpc
+    GrpcServerConfigurationBuilder server = grpc
+      .serverConfiguration("server")
       .forAddress("host", 50051)
       .useInsecureTrustManager(); // not required, useInsecureTrustManager is the default
+
+    GrpcProtocolBuilder grpcProtocol = grpc
+      .serverConfigurations(server);
     //#protocol
   }
 

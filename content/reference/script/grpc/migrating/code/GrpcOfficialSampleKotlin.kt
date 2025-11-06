@@ -30,9 +30,13 @@ class GrpcOfficialSampleKotlin : Simulation() {
 
   init {
     //#protocol
-    val grpcProtocol = grpc
+    val server = grpc
+      .serverConfiguration("server")
       .forAddress("host", 50051)
       .useInsecureTrustManager() // not required, useInsecureTrustManager is the default
+
+    val grpcProtocol = grpc
+      .serverConfigurations(server)
     //#protocol
   }
 

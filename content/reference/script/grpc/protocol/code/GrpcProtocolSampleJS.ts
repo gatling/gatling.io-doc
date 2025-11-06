@@ -23,8 +23,12 @@ import { ChannelCredentials } from "@gatling.io/grpc";
 
 const protocolConfiguration = simulation((setUp) => {
   //#protocol-configuration
-  const grpcProtocol = grpc
+  const exampleServer = grpc
+    .serverConfiguration("example")
     .forAddress("host", 50051);
+
+  const grpcProtocol = grpc
+    .serverConfigurations(exampleServer);
 
   const scn = scenario("Scenario"); // etc.
 
@@ -35,15 +39,40 @@ const protocolConfiguration = simulation((setUp) => {
   //#protocol-configuration
 });
 
+const serverConfiguration = simulation((setUp) => {
+  //#server-configuration
+  const exampleServer1 = grpc
+    .serverConfiguration("example1")
+    .forAddress("host", 50051);
+
+  const exampleServer2 = grpc
+    .serverConfiguration("example2")
+    .forAddress("host", 50052);
+
+  const grpcProtocol = grpc
+    // exampleServer1 will serve as the default server configuration
+    .serverConfigurations(exampleServer1, exampleServer2);
+
+  const scn = scenario("Scenario"); // etc.
+
+  setUp(
+    scn.injectOpen(atOnceUsers(1))
+      .protocols(grpcProtocol)
+  );
+  //#server-configuration
+});
+
 const protocol = () => {
+  const exampleServer =
+    grpc.serverConfiguration("serverConfiguration");
   //#forAddress
-  grpc.forAddress("host", 50051);
+  exampleServer.forAddress("host", 50051);
   //#forAddress
   //#forTarget
-  grpc.forTarget("dns:///host:50051");
+  exampleServer.forTarget("dns:///host:50051");
   //#forTarget
   //#asciiHeader
-  grpc
+  exampleServer
     // with a static header value
     .asciiHeader("key").value("value")
     // with a Gatling EL string header value
@@ -52,10 +81,10 @@ const protocol = () => {
     .asciiHeader("key").value((session) => session.get("headerValue"));
   //#asciiHeader
   //#asciiHeaders
-  grpc.asciiHeaders({ key: "value" });
+  exampleServer.asciiHeaders({ key: "value" });
   //#asciiHeaders
   //#binaryHeader
-  grpc
+  exampleServer
     // with a static header value
     .binaryHeader("key").value([118, 97, 108, 117, 101])
     // with a Gatling EL string header value
@@ -64,7 +93,7 @@ const protocol = () => {
     .binaryHeader("key").value((session) => session.get("headerValue"));
   //#binaryHeader
   //#binaryHeaders
-  grpc.binaryHeaders({
+  exampleServer.binaryHeaders({
     key: [118, 97, 108, 117, 101]
   });
   //#binaryHeaders
@@ -77,10 +106,10 @@ const protocol = () => {
   //#header
   */
   //#shareChannel
-  grpc.shareChannel();
+  exampleServer.shareChannel();
   //#shareChannel
   //#shareSslContext
-  grpc.shareSslContext();
+  exampleServer.shareSslContext();
   //#shareSslContext
   /*
   //#callCredentials
@@ -93,7 +122,7 @@ const protocol = () => {
   */
   var channelCredentials = channelCredentialsForUser("");
   //#channelCredentials
-  grpc
+  exampleServer
     // with a constant
     .channelCredentials(channelCredentials)
     // or with an EL string to retrieve CallCredentials already stored in the session
@@ -106,7 +135,7 @@ const protocol = () => {
     });
   //#channelCredentials
   //#tlsMutualAuthChannelCredentials
-  grpc.channelCredentials({
+  exampleServer.channelCredentials({
     rootCerts: "ca.crt",
     certChain: "client.crt",
     privateKey: "client.key"
@@ -118,38 +147,41 @@ const protocol = () => {
   //#insecureTrustManagerChannelCredentials
   */
   //#overrideAuthority
-  grpc.overrideAuthority("test.example.com");
+  exampleServer.overrideAuthority("test.example.com");
   //#overrideAuthority
   //#usePlaintext
-  grpc.usePlaintext();
+  exampleServer.usePlaintext();
   //#usePlaintext
   //#useInsecureTrustManager
-  grpc.useInsecureTrustManager();
+  exampleServer.useInsecureTrustManager();
   //#useInsecureTrustManager
   //#useStandardTrustManager
-  grpc.useStandardTrustManager();
+  exampleServer.useStandardTrustManager();
   //#useStandardTrustManager
   //#useCustomCertificateTrustManager
-  grpc.useCustomCertificateTrustManager("certificatePath");
+  exampleServer.useCustomCertificateTrustManager("certificatePath");
   //#useCustomCertificateTrustManager
   //#useCustomLoadBalancingPolicy
-  grpc.useCustomLoadBalancingPolicy("pick_first");
+  exampleServer.useCustomLoadBalancingPolicy("pick_first");
   //#useCustomLoadBalancingPolicy
   //#useCustomLoadBalancingPolicy2
-  grpc.useCustomLoadBalancingPolicy("pick_first", "{}");
+  exampleServer.useCustomLoadBalancingPolicy("pick_first", "{}");
   //#useCustomLoadBalancingPolicy2
   //#usePickFirstLoadBalancingPolicy
-  grpc.usePickFirstLoadBalancingPolicy();
+  exampleServer.usePickFirstLoadBalancingPolicy();
   //#usePickFirstLoadBalancingPolicy
   //#usePickRandomLoadBalancingPolicy
-  grpc.usePickRandomLoadBalancingPolicy();
+  exampleServer.usePickRandomLoadBalancingPolicy();
   //#usePickRandomLoadBalancingPolicy
   //#useRoundRobinLoadBalancingPolicy
-  grpc.useRoundRobinLoadBalancingPolicy();
+  exampleServer.useRoundRobinLoadBalancingPolicy();
   //#useRoundRobinLoadBalancingPolicy
   //#useChannelPool
-  grpc.useChannelPool(4);
+  exampleServer.useChannelPool(4);
   //#useChannelPool
+  //#unmatchedInboundMessageBufferSize
+  exampleServer.unmatchedInboundMessageBufferSize(5);
+  //#unmatchedInboundMessageBufferSize
 };
 
 const channelCredentialsForUser = (name: string): ChannelCredentials => ({});
