@@ -164,6 +164,6 @@ Follow the run in the Enterprise UI for live metrics and historical reporting.
 - Enrich the scenario with checks (`.check(status().is(200))`) and pauses (`.pause(1)`), then re-run locally.
 - Graduate to [Full SDK Capabilities]({{< ref "tutorials/test-as-code/javascript/full-sdk-capabilities/index.md" >}}) for feeders, correlation, and workload modelling.
 - Revisit the [Installation Guide]({{< ref "tutorials/test-as-code/javascript/installation-guide/index.md" >}}) when you need npm configuration or project structure advice.
-- Explore the [Recorder tutorial]({{< ref "tutorials/low-code/recorder" >}}) to capture traffic and generate simulations automatically.
+- Explore the [Recorder tutorial]({{< ref "tutorials/low-code/browser/recorder" >}}) to capture traffic and generate simulations automatically.
 
 You have now installed Gatling, authored a JavaScript simulation, and executed it locally and (optionally) on Gatling Enterprise. Keep iterating!
