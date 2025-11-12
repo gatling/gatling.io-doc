@@ -34,6 +34,12 @@ Note that this image is different from the regular Control Plane image, see the 
 Allocate adequate CPU and memory resources according to your project's compilation needs.
 4 CPUs and 4Gb of memory should be a strict minimum.
 
+### Filesystem
+
+Beware that compiling code and generating packages generates tons of small files that we need to delete afterward to not fill the filesystem.
+
+Please avoid using [XFS](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/7/html/storage_administration_guide/ch-xfs) whose performance is very bad for deleting tons of small files.
+
 ### Private Locations
 
 Build from a Git repository is only compatible with [Private Locations]({{< ref "reference/deploy/private-locations/introduction" >}}). Ensure these are configured first.
@@ -43,7 +49,9 @@ Build from a Git repository is only compatible with [Private Locations]({{< ref 
 Build from a Git repository requires a configured [private storage location]({{< ref "reference/deploy/private-locations/private-packages" >}}) to store ephemeral packages.
 These will be automatically deleted once they are deployed on the load generators.
 
-### Gatling build tool plugins versions
+### Build tool
+
+#### Required Gatling plugins versions
 
 We require the following minimum versions:
 
@@ -54,7 +62,7 @@ We require the following minimum versions:
 |    **sbt** | `gatling-sbt`          | `4.13.3`        |
 |    **npm** | `@gatling.io/cli`      | `3.13.501`      |
 
-### Build tools local caches
+#### Local caches
 
 {{< alert warning >}}
 We strongly recommend that you mount **all** the following directories on a persisted volume so you don't have to re-download all the dependencies on each container reboot:
@@ -66,6 +74,12 @@ We strongly recommend that you mount **all** the following directories on a pers
 * `/app/.ivy2`
 * `/app/.npm`
 {{< /alert >}}
+
+#### Configuration
+
+If your infrastructure blocks access to online dependency repositories such as [Maven Central](https://central.sonatype.com/), [Gradle Portal](https://plugins.gradle.org/) or [NPM Registry](https://www.npmjs.com/) and instead requires dependencies to be downloaded from a corporate repository, please make sure to configure your build tool accordingly.
+
+In particular, for maven, you might want to mount a `/app/.m2/conf/settings.xml` with a [mirrors](https://maven.apache.org/guides/mini/guide-mirror-settings.html) configuration so Maven Central is not even tried and cause timeouts.
 
 ## Architecture
 
