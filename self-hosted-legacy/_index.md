@@ -24,7 +24,7 @@ The following tutorials will help you get started with Gatling:
 
 - [Introduction to scripting](https://docs.gatling.io/tutorials/scripting-intro/)
 - [Introduction to Gatling scripting with JavaScript](https://docs.gatling.io/tutorials/test-as-code/javascript/running-your-first-simulation/)
-- [Introduction to the Recorder](https://docs.gatling.io/tutorials/low-code/recorder/)
+- [Introduction to the Recorder](https://docs.gatling.io/tutorials/low-code/browser/recorder/)
 - [Writing realistic tests](https://docs.gatling.io/tutorials/advanced/)
 
 Having *scenarios* that are defined in code and are resource efficient are the two requirements that motivated us to create Gatling. Based on an expressive [DSL](http://en.wikipedia.org/wiki/Domain-specific_language), the *scenarios* are self-explanatory. They are easy to maintain and can be kept in a version control system.

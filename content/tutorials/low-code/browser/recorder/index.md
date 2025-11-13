@@ -1,5 +1,5 @@
 ---
-menutitle: Create a simulation with the Recorder
+menutitle: Legacy recorder
 title: Introduction to the Gatling Recorder
 description: "Learn the basics about Gatling: installing, using the Recorder to generate a basic raw test and how to execute it."
 lead: Learn Gatling concepts and use the Recorder to create a runnable Gatling simulation.

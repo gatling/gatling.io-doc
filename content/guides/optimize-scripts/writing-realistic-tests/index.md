@@ -32,7 +32,7 @@ It is strongly recommended to review the introductory guides first, as this tuto
 
 - [Create a simulation with Java]({{< ref "/tutorials/test-as-code/java-jvm/running-your-first-simulation" >}})
 - [Create a simulation with JavaScript]({{< ref "/tutorials/test-as-code/javascript/running-your-first-simulation" >}})
-- [Introduction to the Recorder]({{< ref "/tutorials/low-code/recorder" >}})
+- [Introduction to the Recorder]({{< ref "/tutorials/low-code/browser/recorder" >}})
 
 Additionally, it is important to have a basic understanding of a virtual user's session. Kindly consult the [Session documentation]({{< ref "/concepts/session/" >}}), particularly the **Feeders** and **Expression Language** sections.
 {{< /alert >}}

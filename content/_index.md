@@ -46,7 +46,7 @@ Ready to write and run your first tests? Start here:
 - [Create a simulation with JavaScript]({{< ref "/tutorials/test-as-code/javascript/running-your-first-simulation" >}})
 - [Create a simulation with Java]({{< ref "/tutorials/test-as-code/java-jvm/running-your-first-simulation" >}})
 - [Create a simulation from Postman]({{< ref "/tutorials/low-code/postman" >}})
-- [Create a simulation with the Recorder]({{< ref "/tutorials/low-code/recorder" >}})
+- [Create a simulation with the Recorder]({{< ref "/tutorials/low-code/browser/recorder" >}})
 - [Create a simulation in the GUI]({{< ref "/tutorials/no-code/gui-builder" >}})
 
 ## Explore the docs

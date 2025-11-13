@@ -1,7 +1,7 @@
 /gatling                               -> /
     /tutorials                         -> /tutorials/
         /installation/                 -> /reference/install/oss/
-        /quickstart/                   -> /tutorials/low-code/recorder/
+        /quickstart/                   -> /tutorials/low-code/browser/recorder/
         /advanced/                     -> /tutorials/advanced/
     /reference/$version                -> /reference/
     /reference/current                 -> /reference/
