@@ -5,7 +5,7 @@ import sbtheader.FileType
 import _root_.io.gatling.build.license.ApacheV2License
 
 kotlinVersion := "2.2.21"
-scalaVersion := "2.13.17"
+scalaVersion := "2.13.18"
 
 enablePlugins(GatlingAutomatedScalafmtPlugin)
 scalafmtOnCompile := false
