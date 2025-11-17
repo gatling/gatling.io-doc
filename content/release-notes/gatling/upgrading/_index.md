@@ -4,6 +4,7 @@ description: What changes between Gatling versions.
 lead: How to upgrade from previous Gatling versions.
 aliases:
   - /release-notes/upgrading/
+  - /release-notes/oss/upgrading/
 ordering:
   - 3.13-to-3.14
   - 3.12-to-3.13
