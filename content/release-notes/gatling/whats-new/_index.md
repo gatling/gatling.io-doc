@@ -4,6 +4,7 @@ description: Find out about latest gatling versions and the new features.
 lead: What's new in the latest releases.
 aliases:
   - /release-notes/whats-new/
+  - /release-notes/oss/whats-new/
 ordering:
   - 3.14.md
   - 3.13.md
