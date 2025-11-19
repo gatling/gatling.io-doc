@@ -42,7 +42,7 @@ You can store the API Token in a [Gitlab CI Variable](https://docs.gitlab.com/ee
 
 For Gatling Enterprise Edition, the [API token]({{< ref "/reference/collaborate/admin/api-tokens" >}}) needs the **Start** permission.
 
-We also assume that you have already configured a simulation on Gatling Enterprise Edition. You can copy the simulation ID from the simulations list view. In the following examples, we will show the simulation ID as `00000000-0000-0000-0000-000000000000`.
+We also assume that you have already configured a simulation on Gatling Enterprise Edition. You can copy the simulation ID from the simulations list view. In the following examples, we will show the simulation ID as `test_00000000000000000000000000`.
 
 See [Gatling Enterprise Edition documentation]({{< ref "reference/run-tests/simulations" >}}).
 
@@ -67,7 +67,7 @@ run-gatling-enterprise:
     # We assume GATLING_ENTERPRISE_API_TOKEN is available,
     # e.g. configured on the GitLab project
     # Specify your simulation ID:
-    SIMULATION_ID: 'test_ufbo8am3ifduuc5jot6xgstf9a'
+    SIMULATION_ID: 'test_00000000000000000000000000'
 ```
 
 Push this to GitLab. The pipeline will run automatically on new commits; you can also run it manually from your GitLab project's CI/CD menu.
@@ -93,7 +93,7 @@ run-gatling-enterprise:
     - gatlingEnterpriseStart
   variables:
     GATLING_ENTERPRISE_API_TOKEN: 'my-api-token' # Typically not hard-coded in the script!
-    SIMULATION_ID: 'test_ufbo8am3ifduuc5jot6xgstf9a'
+    SIMULATION_ID: 'test_00000000000000000000000000'
     TITLE: 'My run title'
     DESCRIPTION: 'My run description'
     EXTRA_SYSTEM_PROPERTIES: >
@@ -162,7 +162,7 @@ run-gatling-enterprise:
   script:
     - gatlingEnterpriseStart
   variables:
-    SIMULATION_ID: 'test_ufbo8am3ifduuc5jot6xgstf9a'
+    SIMULATION_ID: 'test_00000000000000000000000000'
   artifacts:
     reports:
       dotenv: 'gatlingEnterprise.env' # Using the default value
@@ -252,5 +252,5 @@ run-gatling-enterprise:
   script:
     - gatlingEnterpriseStart
   variables:
-    SIMULATION_ID: 'test_ufbo8am3ifduuc5jot6xgstf9a'
+    SIMULATION_ID: 'test_00000000000000000000000000'
 ```

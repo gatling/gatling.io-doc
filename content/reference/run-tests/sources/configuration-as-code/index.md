@@ -107,7 +107,7 @@ You can configure the [Team]({{< ref "reference/collaborate/admin/teams" >}}), h
 ```hocon
 gatling.enterprise.package {
   name = "My package name"
-  team = "My team name" # or ID with team = "00000000-0000-0000-0000-000000000000"
+  team = "My team name" # or ID with team = "team_00000000000000000000000000"
 }
 ```
 
@@ -144,20 +144,20 @@ To avoid this, you can set the package and simulation IDs in the configuration.
 These IDs will be logged during your first deployment, such as after your initial [Usage]({{< ref "#usage" >}}).
 
 ```
-Package 'My package name' (id='00000000-0000-0000-0000-000000000000') deployed
-Simulation 'com.example.SimulationA' (id='00000000-0000-0000-0000-000000000001') deployed
+Package 'My package name' (id='package_00000000000000000000000000') deployed
+Simulation 'com.example.SimulationA' (id='test_00000000000000000000000000') deployed
 ```
 
 Then, you can freely update names without having new packages or simulations created:
 
 ```hocon
 gatling.enterprise.package {
-  id = "00000000-0000-0000-0000-000000000000"
+  id = "package_00000000000000000000000000"
   name = "My new package name"
   team = "My team name"
   simulations = [
     {
-      id = "00000000-0000-0000-0000-000000000001"
+      id = "test_00000000000000000000000000"
       name = "My new simulation name"
       simulation = "com.example.SimulationA"
     }
@@ -173,12 +173,12 @@ Each property of a [Simulation]({{< ref "/reference/run-tests/simulations/test-a
 
 ```hocon
 gatling.enterprise.package {
-  # id = "00000000-0000-0000-0000-000000000000"
+  # id = "package_00000000000000000000000000"
   name = "My package name"
   team = "My team name"
   simulations = [
     {
-      # id = "00000000-0000-0000-0000-000000000001"
+      # id = "test_00000000000000000000000000"
       name = "My simulation name"
       simulation = "com.example.SimulationA"
       locations = [
@@ -300,9 +300,9 @@ Consequently, both example simulations **`com.example.SimulationA`** and **`com.
 
 ```hocon
 gatling.enterprise.package {
-  # id = "00000000-0000-0000-0000-000000000000"
+  # id = "package_00000000000000000000000000"
   name = "My package name"
-  team = "My team name" # or ID with team = "00000000-0000-0000-0000-000000000000"
+  team = "My team name" # or ID with team = "team_00000000000000000000000000"
   default {
     simulation {
       locations = [

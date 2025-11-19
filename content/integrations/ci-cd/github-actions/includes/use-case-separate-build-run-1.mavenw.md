@@ -18,7 +18,7 @@ concurrency:
 # The GATLING_ENTERPRISE_API_TOKEN environment variable is recognized by the
 # Gatling Maven plugin
 env:
-  SIMULATION_ID: '00000000-0000-0000-0000-000000000000'
+  SIMULATION_ID: 'test_00000000000000000000000000'
   GATLING_ENTERPRISE_API_TOKEN: ${{ secrets.GATLING_ENTERPRISE_API_TOKEN }}
 
 jobs:

@@ -9,7 +9,7 @@ stages:
   - load-test
 
 variables:
-  SIMULATION_ID: '00000000-0000-0000-0000-000000000000'
+  SIMULATION_ID: 'test_00000000000000000000000000'
 
 # Build and deploy your Gatling project
 build-gatling-simulation:

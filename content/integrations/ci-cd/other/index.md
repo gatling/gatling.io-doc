@@ -26,7 +26,7 @@ You must first [create an API token]({{< ref "reference/collaborate/admin/api-to
 
 In the following examples, we assume the API Token is available in an environment variable named `GATLING_ENTERPRISE_API_TOKEN`, which our tools, including the example shell script, will detect automatically.
 
-We also assume that you have already [configured a simulation]({{< ref "reference/run-tests/simulations" >}}) on Gatling Enterprise Edition. You can copy the simulation ID from the simulations list view. In the following examples, we will show the simulation ID as `00000000-0000-0000-0000-000000000000`.
+We also assume that you have already [configured a simulation]({{< ref "reference/run-tests/simulations" >}}) on Gatling Enterprise Edition. You can copy the simulation ID from the simulations list view. In the following examples, we will show the simulation ID as `test_00000000000000000000000000`.
 
 ## Using a build tool plugin
 
@@ -66,7 +66,7 @@ These tools must be installed on the machine or container where your CI system w
 Configure your CI build to call the script like this:
 
 ```shell
-./start_simulation.sh 'test_ufbo8am3ifduuc5jot6xgstf9a'
+./start_simulation.sh 'test_00000000000000000000000000'
 ```
 
 It takes one parameter:

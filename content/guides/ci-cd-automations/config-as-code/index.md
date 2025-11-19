@@ -64,7 +64,7 @@ Once you have created the `package.conf` file:
 
 ```hocon
 gatling.enterprise.package {
-  # id = "00000000-0000-0000-0000-000000000000"
+  # id = "package_00000000000000000000000000"
   name = "My package name"
   team = "My team name"
 }
@@ -84,12 +84,12 @@ Each simulation also has a unique `id` property, which we will use later in the 
 Add the `simulations` array with one simulation object:
 ```hocon
 gatling.enterprise.package {
-  # id = "00000000-0000-0000-0000-000000000000"
+  # id = "package_00000000000000000000000000"
   name = "My package name"
   team = "My team name"
   simulations = [
     {
-      # id = "00000000-0000-0000-0000-000000000001"
+      # id = "test_00000000000000000000000000"
       simulation = "example.BasicSimulation"
     }
   ]
@@ -139,9 +139,9 @@ To setup the `default` object, add the following code to your `package.conf` fil
 
 ```hocon
 gatling.enterprise.package {
-  # id = "00000000-0000-0000-0000-000000000000"
+  # id = "package_00000000000000000000000000"
   name = "My package name"
-  team = "My team name" # or ID with team = "00000000-0000-0000-0000-000000000000"
+  team = "My team name" # or ID with team = "team_00000000000000000000000000"
   default {
     simulation {
       locations = [

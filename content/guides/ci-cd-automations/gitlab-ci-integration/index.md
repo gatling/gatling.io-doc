@@ -110,7 +110,7 @@ run-gatling-enterprise:
     # We assume GATLING_ENTERPRISE_API_TOKEN is available,
     # e.g. configured on the GitLab project
     # Specify your simulation ID:
-    SIMULATION_ID: '00000000-0000-0000-0000-000000000000'
+    SIMULATION_ID: 'test_00000000000000000000000000'
 ```
 
 For advanced pipeline customization options, check our [Gitlab CI/CD documentation]({{< ref "/integrations/ci-cd/gitlab-ci" >}}).
