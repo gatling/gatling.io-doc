@@ -66,7 +66,7 @@ These tools must be installed on the machine or container where your CI system w
 Configure your CI build to call the script like this:
 
 ```shell
-./start_simulation.sh '00000000-0000-0000-0000-000000000000'
+./start_simulation.sh 'test_ufbo8am3ifduuc5jot6xgstf9a'
 ```
 
 It takes one parameter:

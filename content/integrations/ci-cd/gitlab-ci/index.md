@@ -67,7 +67,7 @@ run-gatling-enterprise:
     # We assume GATLING_ENTERPRISE_API_TOKEN is available,
     # e.g. configured on the GitLab project
     # Specify your simulation ID:
-    SIMULATION_ID: '00000000-0000-0000-0000-000000000000'
+    SIMULATION_ID: 'test_ufbo8am3ifduuc5jot6xgstf9a'
 ```
 
 Push this to GitLab. The pipeline will run automatically on new commits; you can also run it manually from your GitLab project's CI/CD menu.
@@ -93,7 +93,7 @@ run-gatling-enterprise:
     - gatlingEnterpriseStart
   variables:
     GATLING_ENTERPRISE_API_TOKEN: 'my-api-token' # Typically not hard-coded in the script!
-    SIMULATION_ID: '00000000-0000-0000-0000-000000000000'
+    SIMULATION_ID: 'test_ufbo8am3ifduuc5jot6xgstf9a'
     TITLE: 'My run title'
     DESCRIPTION: 'My run description'
     EXTRA_SYSTEM_PROPERTIES: >
@@ -107,11 +107,6 @@ run-gatling-enterprise:
         "ENV_VAR_1":"value 1",
         "ENV_VAR_2":42,
         "ENV_VAR_3":true
-      }
-    OVERRIDE_LOAD_GENERATORS: >
-      {
-        "4a399023-d443-3a58-864f-3919760df78b":{"size":1,"weight":60},
-        "c800b6d9-163b-3db7-928f-86c1470a9542":{"size":1,"weight":40}
       }
     FAIL_ACTION_ON_RUN_FAILURE: 'true'
     WAIT_FOR_RUN_END: 'true'
@@ -133,8 +128,6 @@ run-gatling-enterprise:
 - `EXTRA_SYSTEM_PROPERTIES` {{< badge info >}}optional{{< /badge >}}: Additional Java system properties, will be merged with the simulation's configured system properties. Must be formatted as a JSON object containing the desired key/value pairs. Values can be strings, numbers or booleans.
 
 - `EXTRA_ENVIRONMENT_VARIABLES` {{< badge info >}}optional{{< /badge >}}: Additional environment variables, will be merged with the simulation's configured environment variables. Must be formatted as a JSON object containing the desired key/value pairs. Values can be strings, numbers or booleans.
-
-- `OVERRIDE_LOAD_GENERATORS` {{< badge info >}}optional{{< /badge >}}: Overrides the simulation's load generators configuration. Must be formatted as a JSON object. Keys are the load generator IDs, which can be retrieved from the public API (using the `/pools` route). Weights are optional.
 
   See [Gatling Enterprise Edition public API documentation]({{< ref "/reference/api" >}}).
 
@@ -169,7 +162,7 @@ run-gatling-enterprise:
   script:
     - gatlingEnterpriseStart
   variables:
-    SIMULATION_ID: '00000000-0000-0000-0000-000000000000'
+    SIMULATION_ID: 'test_ufbo8am3ifduuc5jot6xgstf9a'
   artifacts:
     reports:
       dotenv: 'gatlingEnterprise.env' # Using the default value
@@ -259,5 +252,5 @@ run-gatling-enterprise:
   script:
     - gatlingEnterpriseStart
   variables:
-    SIMULATION_ID: '00000000-0000-0000-0000-000000000000'
+    SIMULATION_ID: 'test_ufbo8am3ifduuc5jot6xgstf9a'
 ```

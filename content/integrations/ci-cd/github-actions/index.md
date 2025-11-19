@@ -89,7 +89,7 @@ steps:
   - uses: gatling/enterprise-action@v1
     with:
       api_token: ${{ secrets.GATLING_ENTERPRISE_API_TOKEN }}
-      simulation_id: '00000000-0000-0000-0000-000000000000'
+      simulation_id: 'test_ufbo8am3ifduuc5jot6xgstf9a'
       title: 'My run title'
       description: 'My run description'
       extra_system_properties: >
@@ -103,11 +103,6 @@ steps:
           "ENV_VAR_1":"value 1",
           "ENV_VAR_2":42,
           "ENV_VAR_3":true
-        }
-      override_load_generators: >
-        {
-          "4a399023-d443-3a58-864f-3919760df78b":{"size":1,"weight":60},
-          "c800b6d9-163b-3db7-928f-86c1470a9542":{"size":1,"weight":40}
         }
       fail_action_on_run_failure: true
       wait_for_run_end: true
@@ -128,8 +123,6 @@ steps:
 - `extra_system_properties` {{< badge info >}}optional{{< /badge >}}: Additional Java system properties, will be merged with the simulation's configured system properties. Must be formatted as a JSON object containing the desired key/value pairs. Values can be strings, numbers or booleans.
 
 - `extra_environment_variables` {{< badge info >}}optional{{< /badge >}}: Additional environment variables, will be merged with the simulation's configured environment variables. Must be formatted as a JSON object containing the desired key/value pairs. Values can be strings, numbers or booleans.
-
-- `override_load_generators` {{< badge info >}}optional{{< /badge >}}: Overrides the simulation's load generators configuration. Must be formatted as a JSON object. Keys are the load generator IDs, which can be retrieved [from the public API]({{< ref "/reference/api" >}}) (using the `/pools` route). Weights are optional.
 
 - `fail_action_on_run_failure` {{< badge info >}}optional{{< /badge >}} (defaults to `true`): If `true`, the Action will fail if the simulation run ends in an error (including failed assertions). Note: if set to `false` and the simulation ends in an error, some of the outputs may be missing (e.g. there will be no assertion results if the simulation crashed before the end).
 
@@ -154,7 +147,7 @@ steps:
     uses: gatling/enterprise-action@v1
     with:
       api_token: ${{ secrets.GATLING_ENTERPRISE_API_TOKEN }}
-      simulation_id: '00000000-0000-0000-0000-000000000000'
+      simulation_id: 'test_ufbo8am3ifduuc5jot6xgstf9a'
   - run: |
       echo "run_id=${{ steps.enterprise-action.outputs.run_id }}"
       echo "reports_url=${{ steps.enterprise-action.outputs.reports_url }}"
@@ -237,5 +230,5 @@ jobs:
         uses: gatling/enterprise-action@v1
         with:
           api_token: ${{ secrets.GATLING_ENTERPRISE_API_TOKEN }}
-          simulation_id: '00000000-0000-0000-0000-000000000000'
+          simulation_id: 'test_ufbo8am3ifduuc5jot6xgstf9a'
 ```
