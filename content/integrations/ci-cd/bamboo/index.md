@@ -38,13 +38,13 @@ The plugin needs some global configuration. Go to **Administration**, then **Glo
 
 Add new variables:
 
-- `frontline.address` corresponds to the address of Gatling Enterprise Edition (`https://cloud.gatling.io`).
-- `frontline.apiAddress` corresponds to the public API (`https://api.gatling.io`).
-- `frontline.apiTokenPassword` corresponds to the API token needed to authenticate to Gatling Enterprise Edition:
+- `gatling.enterprise.address` corresponds to the address of Gatling Enterprise Edition (`https://cloud.gatling.io`).
+- `gatling.enterprise.apiAddress` corresponds to the public API (`https://api.gatling.io`).
+- `gatling.enterprise.apiTokenPassword` corresponds to the API token needed to authenticate to Gatling Enterprise Edition:
   - the [API token]({{< ref "reference/collaborate/admin/api-tokens" >}}) needs the **Start** permission.
 
 {{< alert info >}}
-If you specify `https://cloud.gatling.io` for ``frontline.address``, you can leave out `frontline.apiAddress` as it will default to `https://api.gatling.io`. If you use an internal gateway to allow your Jenkins instance to call the Gatling Enterprise Edition public API, you may need to specify your gateway address for `frontline.apiAddress`.
+If you specify `https://cloud.gatling.io` for ``gatling.enterprise.address``, you can leave out `gatling.enterprise.apiAddress` as it will default to `https://api.gatling.io`. If you use an internal gateway to allow your Jenkins instance to call the Gatling Enterprise Edition public API, you may need to specify your gateway address for `gatling.enterprise.apiAddress`.
 {{< /alert >}}
 
 {{< img src="global-variable.png" alt="Global variable" >}}
@@ -66,7 +66,7 @@ You can display the results of the Gatling Enterprise Edition assertions with th
 Add a new build task called **JUnit Parser** and fill the **Specify custom results directories** input with the following line:
 
 ```
-**/gatlingFrontLineJunitResults/*.xml
+**/gatlingEnterpriseJunitResults/*.xml
 ```
 
 {{< alert danger >}}
