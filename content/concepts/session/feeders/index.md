@@ -10,30 +10,30 @@ aliases:
 
 {{< alert tip >}}Learning to use feeders is covered in the [Writing realistic tests]({{< ref "/guides/optimize-scripts/writing-realistic-tests/" >}}) tutorial.{{< /alert >}}
 
-Feeders are datasources used to inject test data in your virtual users.
-They are shared, meaning that all the virtual users pull from the same pool of data.
+Feeders are a stock of data that your virtual users can consume records from.
 
-The structure DSL provides a `feed` method that can be called at the same place as `exec`.
+The SDK provides a `feed` method that can be called at the same place as `exec`.
 
 {{< include-code "feed-keyword" >}}
 
-This defines a workflow step where **every virtual user** feeds on the same Feeder.
+This defines a step where **every virtual user** feeds on the same Feeder.
 
-Every time a virtual user reaches this step, it will pop a record out of the Feeder, which will be injected into the user's Session, resulting in a new Session instance.
+Every time a virtual user reaches this step, it collects a record from the Feeder.\
+This record is then injected into the user's [Session]({{< ref "/concepts/session/api/#session" >}}), making new attributes available.
 
-It's also possible to feed multiple records at once. In this case, values will be Java List or Scala Seq containing all the values of the same key.
+It's also possible to feed multiple records at once. In this case, values are Java List or Scala Seq containing all the values of the same key.
 
 {{< include-code "feed-multiple" >}}
 
 ## Using arrays and lists
 
-Gatling lets you use in-memory datastructures as Feeders.
+Gatling lets you use in-memory data structures as Feeders.
 
 {{< include-code "feeder-in-memory" >}}
 
 ## File based feeders
 
-Gatling provides various file based feeders.
+Gatling provides multiple file-based feeders.
 
 When using Java, Kotlin or Scala, files must be placed in `src/main/resources` or `src/test/resources` (or `src/gatling/resources` when using Gradle).\
 When using JavaScript or TypeScript, files must be places in `resources`.\
@@ -56,29 +56,6 @@ The only difference is that header fields get trimmed of wrapping whitespaces.
 
 {{< include-code "sep-values-feeders" >}}
 
-#### Loading mode {#loading-mode}
-
-CSV feeders provide several options for how data should be loaded in memory.
-
-`eager` loads the whole data in memory before the Simulation starts, saving disk access at runtime.
-This mode works best with reasonably small files that can be parsed quickly without delaying simulation start time and easily sit in memory.
-This behavior was the default prior to Gatling 3.1 and you can still force it.
-
-{{< include-code "eager" >}}
-
-`batch` works better with large files whose parsing would delay simulation start time and eat a lot of heap space.
-Data is then read by chunks.
-
-{{< alert warning >}}
-When in `batch` mode, `random` and `shuffle` can't of course operate on the full stock, and only operate on an internal buffer of records.
-The default size of this buffer is 2,000 and can be changed.
-{{< /alert >}}
-
-{{< include-code "batch" >}}
-
-Default behavior is an adaptive policy based on (unzipped, sharded) file size, see `gatling.core.feederAdaptiveLoadModeThreshold` in config file.
-Gatling will use `eager` below threshold and `batch` above.
-
 ### JSON feeders
 
 Some users might want to use data in JSON format instead of CSV:
@@ -100,14 +77,14 @@ For example, the following JSON:
 ]
 ```
 
-will be turned into:
+is turned into:
 
 ```scala
 Map("id" -> 19434, "foo" -> 1) // record #1
 Map("id" -> 19435, "foo" -> 2) // record #2
 ```
 
-Note that the root element has of course to be an array.
+Note that the root element must be an array.
 
 ### Sitemap feeder
 
@@ -175,7 +152,7 @@ Supported formats are gzip and zip (but archive must contain only one single fil
 
 ### Distributed files {{% badge enterprise "Enterprise" /%}} {#distributed}
 
-If you want to run distributed with [Gatling Enterprise Edition](https://gatling.io/products/)
+If you want to run distributed tests with [Gatling Enterprise Edition](https://gatling.io/products/)
 and you want to distribute data so that users don't use the same data when they run on different cluster nodes, you can use the `shard` option.
 For example, if you have a file with 30,000 records deployed on 3 nodes, each will use a 10,000 records slice.
 
@@ -187,7 +164,7 @@ For example, if you have a file with 30,000 records deployed on 3 nodes, each wi
 
 ## JDBC feeder {#jdbc}
 
-Gatling also provides a builtin that reads from a JDBC connection.
+Gatling also provides a built-in that reads from a JDBC connection.
 
 {{< include-code "jdbc-feeder" >}}
 
@@ -195,7 +172,7 @@ Just like File parser built-ins, this returns a `RecordSeqFeederBuilder` instanc
 
 * The databaseUrl must be a JDBC URL (e.g. `jdbc:postgresql:gatling`),
 * the username and password are the credentials to access the database,
-* sql is the query that will get the values needed.
+* sql is the query that gets the needed values.
 
 Only JDBC4 drivers are supported, so that they automatically register to the DriverManager.
 
@@ -230,14 +207,115 @@ You can create a circular feeder by using the same keys with RPOPLPUSH
 
 ## Strategies
 
-Gatling provides multiple strategies for the built-in feeders:
+Gatling provides multiple strategies for the built-in feeders.
 
-{{< include-code "strategies" >}}
+### queue
+
+This is the default strategy that will be applied if you don't specify one.
+
+The `queue` strategy makes the virtual users consume the records, meaning that:
+* no virtual user can collect the same record
+* at some point, the whole stock of data is consumed
+
+This strategy is suited when:
+* no virtual users must collect the same record because it would result in duplicates, e.g. multiple virtual users using the same credentials
+* you want the records to be consumed in the exact order as they are defined in your source, e.g. your CSV file
+
+{{< include-code "queue" >}}
+
+```
+For example, given a CSV file with the following content:
+key
+1
+2
+3
+
+When using the `queue` strategy:
+* the 1st virtual user consumes the record ("key", "1").
+* the 2nd virtual user consumes the record ("key", "2").
+* the 3rd virtual user consumes the record ("key", "3").
+* the 4th virtual user will cause Gatling to crash.
+```
 
 {{< alert warning >}}
-When using the default `queue` or `shuffle` strategies, make sure that your dataset contains enough records.
-If your feeder runs out of records, Gatling will self shut down.
+If you try to consume more records than what's available, Gatling will crash with an error
 {{< /alert >}}
+
+### shuffle
+
+The `shuffle` strategy is very similar to the `queue` one, except that the records are collected in a random order.
+
+This strategy is suited when:
+* no virtual users must collect the same record because it would result in duplicates, e.g. multiple virtual users using the same credentials
+* you want to introduce some randomness in the order the records are consumed
+
+{{< include-code "shuffle" >}}
+
+```
+For example, given a CSV file with the following content:
+key
+1
+2
+3
+
+When using the `shuffle` strategy:
+* the 1st virtual user consumes a random record, e.g. ("key", "3").
+* the 2nd virtual user consumes a random record from the remaining ones, e.g. ("key", "2").
+* the 3rd virtual user consumes the last available record ("key", "1").
+* the 4th virtual user will cause Gatling to crash.
+```
+
+{{< alert warning >}}
+If you try to consume more records than what's available, Gatling will crash with an error
+{{< /alert >}}
+
+### random
+
+The `random` strategy makes the virtual users collect records in a random order, meaning that:
+* multiple virtual users can collect the same record
+* your stock of data will never run out
+
+This strategy is suited when:
+* you don't care that multiple virtual users use the same data, e.g. search keywords
+* you want to introduce some randomness in the order the records are consumed
+
+{{< include-code "random" >}}
+
+```
+For example, given a `data.csv` file with the following content:
+key
+1
+2
+3
+
+When using the `random` strategy:
+* the 1st virtual user collects a random record, e.g ("key", "3").
+* the 2nd virtual user collects a random record, e.g ("key", "1").
+* the 3rd virtual user collects a random record, e.g ("key", "3") again.
+* the 4th virtual user collects a random record, e.g ("key", "2").
+```
+
+### circular
+
+The `circular` strategy is very similar to the `random` one, except that it preserves the original record order from your source:
+* multiple virtual users can collect the same record: when the reading index reaches the end of the source, it moves back to the beginning
+* you want the records to be consumed in the exact order as they are defined in your source, e.g. your CSV file
+
+```
+For example, given a `data.csv` file with the following content:
+key
+1
+2
+3
+
+When using the `circular` strategy:
+* the 1st virtual user collects the record ("key", "1").
+* the 2nd virtual user collects the record ("key", "2").
+* the 3rd virtual user collects the record ("key", "3").
+* the 4th virtual user collects the record ("key", "1") again.
+```
+
+{{< include-code "circular" >}}
 
 ## Transforming records {#transform}
 
@@ -247,7 +325,7 @@ For example, a csv feeder would give you only Strings, but you might want to tra
 
 `transform` takes:
 * in Java and Kotlin, a `BiFunction<String, T, Object>`
-* in Scala a `PartialFunction[(String, T), Any]` that is defined only for records you want to transform, leaving the other ones as is
+* in Scala a `PartialFunction[(String, T), Any]` that is defined only for records you want to transform, leaving the other ones as-is
 
 For example:
 

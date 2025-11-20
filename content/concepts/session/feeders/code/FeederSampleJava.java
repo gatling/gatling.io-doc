@@ -41,7 +41,10 @@ Iterator<Map<String, Object>> feeder =
 //#random-mail-generator
 
 //#feed-keyword
+// called directly
 feed(feeder);
+// attached to a scenario or an exec
+scenario("scn").feed(feeder);
 //#feed-keyword
 
 //#feed-multiple
@@ -55,16 +58,22 @@ feed(feeder, "#{numberOfRecords}");
 feed(feeder, session -> session.getInt("numberOfRecords"));
 //#feed-multiple
 
-//#strategies
-// default behavior: use an Iterator on the underlying sequence
+//#queue
+// default behavior, can be omitted
 csv("foo").queue();
-// randomly pick an entry in the sequence
-csv("foo").random();
-// shuffle entries, then behave like queue
+//#queue
+
+//#shuffle
 csv("foo").shuffle();
-// go back to the top of the sequence once the end is reached
+//#shuffle
+
+//#random
+csv("foo").random();
+//#random
+
+//#circular
 csv("foo").circular();
-//#strategies
+//#circular
   }
 
   {
@@ -74,14 +83,14 @@ arrayFeeder(new Map[] {
   Map.of("foo", "foo1"),
   Map.of("foo", "foo2"),
   Map.of("foo", "foo3")
-}).random();
+});
 
 // using a List
 listFeeder(List.of(
   Map.of("foo", "foo1"),
   Map.of("foo", "foo2"),
   Map.of("foo", "foo3")
-)).random();
+));
 //#feeder-in-memory
   }
 
@@ -96,21 +105,6 @@ ssv("foo.ssv");
 // use a custom separator
 separatedValues("foo.txt", '#');
 //#sep-values-feeders
-  }
-
-  {
-//#eager
-csv("foo.csv").eager().random();
-//#eager
-  }
-
-  {
-//#batch
-// use default buffer size (2000 lines)
-csv("foo.csv").batch().random();
-// tune internal buffer size
-csv("foo.csv").batch(200).random();
-//#batch
   }
 
   {
