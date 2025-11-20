@@ -36,7 +36,7 @@ Once the plugin is uploaded, you need to enable it.
 
 ## Configuration
 
-The plugin needs a global configuration. Go to **Administration**, then **frontline-teamcity-plugin**:
+The plugin needs a global configuration. Go to **Administration**, then **gatling-enterprise-teamcity-plugin**:
 
 - the **Gatling Enterprise Edition Address** is the address of Gatling Enterprise Edition (`https://cloud.gatling.io`).
 - the **Gatling Enterprise Edition API Address** is for the public API (`https://api.gatling.io`).
@@ -63,7 +63,7 @@ You can display the results of the Gatling Enterprise Edition assertions as a JU
 
 Add a new build feature called **XML report processing**. Choose **Ant JUnit** as report type, and enter in the **Monitoring rules** input the following line:
 
-`gatlingFrontLineJunitResults/*.xml`
+`gatlingEnterpriseJunitResults/*.xml`
 
 {{< img src="junit.png" alt="JUnit" >}}
 
