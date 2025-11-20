@@ -81,33 +81,33 @@ Gatling Enterprise Edition pushes the following list of load test metrics to Dyn
 
 **Short name**|**Metric name**|**Description**
 :-----|:-----|:-----
-User start|`gatling_enterprise.user.start_count`|Number of injected users
-User end|`gatling_enterprise.user.end_count`|Number of stopped users
-Concurrent user|`gatling_enterprise.user.concurrent`|Number of concurrent users
-Request|`gatling_enterprise.request.count`|Number of requests
-Response|`gatling_enterprise.response.count`|Number of responses
-Response time max|`gatling_enterprise.response.response_time.max`|Maximum response time
-Response time min|`gatling_enterprise.response.response_time.min`|Minimum response time
-Response time p95|`gatling_enterprise.response.response_time.p95`|Response time for the 95th percentile (95% of the requests)
-Response time p99|`gatling_enterprise.response.response_time.p99`|Response time for the 99th percentile (99% of the requests)
-Response time p999|`gatling_enterprise.response.response_time.p999`|Response time for the 99.9th percentile (99.9% of the requests)
-Response Code|`gatling_enterprise.response.code`|Response code, in the case of HTTP, the HTTP response status code
-Request Bits|`gatling_enterprise.bandwidth_usage.sent`|Outbound bandwidth usage
-Response Bits|`gatling_enterprise.bandwidth_usage.received`|Inbound bandwidth usage
-Request TCP open|`gatling_enterprise.tcp.open_count`|Number of opened TCP requests
-Request TCP close|`gatling_enterprise.tcp.close_count`|Number of closed TCP requests
-TCP connections|`gatling_enterprise.tcp.connection_count`|Number of new TCP connections
-TCP connect time max|`gatling_enterprise.tcp.connect_time.min`|Minimum TCP connect time
-TCP connect time min|`gatling_enterprise.tcp.connect_time.max`|Maximum TCP connect time
-TCP connect time p95|`gatling_enterprise.tcp.connect_time.p95`|TCP connect time for the 95th percentile (95% of the requests)
-TCP connect time p99|`gatling_enterprise.tcp.connect_time.p99`|TCP connect time for the 99th percentile (99% of the requests)
-TCP connect time p999|`gatling_enterprise.tcp.connect_time.p999`|TCP connect time for the 99.9th percentile (99.9% of the requests)
-TLS handshakes|`gatling_enterprise.tls.handshake_count`|Number of TLS handshakes
-TLS handshake time max|`gatling_enterprise.tls.handshake_time.min`|Minimum TLS handshake time
-TLS handshake time min|`gatling_enterprise.tls.handshake_time.max`|Maximum TLS handshake time
-TLS handshake time p95|`gatling_enterprise.tls.handshake_time.p95`|TLS handshake time for the 95th percentile (95% of the requests)
-TLS handshake time p99|`gatling_enterprise.tls.handshake_time.p99`|TLS handshake time for the 99th percentile (99% of the requests)
-TLS handshake time p999|`gatling_enterprise.tls.handshake_time.p999`|TLS handshake time for the 99.9th percentile (99.9% of the requests)
+User start|`gatling.enterprise.user.start_count`|Number of injected users
+User end|`gatling.enterprise.user.end_count`|Number of stopped users
+Concurrent user|`gatling.enterprise.user.concurrent`|Number of concurrent users
+Request|`gatling.enterprise.request.count`|Number of requests
+Response|`gatling.enterprise.response.count`|Number of responses
+Response time max|`gatling.enterprise.response.response_time.max`|Maximum response time
+Response time min|`gatling.enterprise.response.response_time.min`|Minimum response time
+Response time p95|`gatling.enterprise.response.response_time.p95`|Response time for the 95th percentile (95% of the requests)
+Response time p99|`gatling.enterprise.response.response_time.p99`|Response time for the 99th percentile (99% of the requests)
+Response time p999|`gatling.enterprise.response.response_time.p999`|Response time for the 99.9th percentile (99.9% of the requests)
+Response Code|`gatling.enterprise.response.code`|Response code, in the case of HTTP, the HTTP response status code
+Request Bits|`gatling.enterprise.bandwidth_usage.sent`|Outbound bandwidth usage
+Response Bits|`gatling.enterprise.bandwidth_usage.received`|Inbound bandwidth usage
+Request TCP open|`gatling.enterprise.tcp.open_count`|Number of opened TCP requests
+Request TCP close|`gatling.enterprise.tcp.close_count`|Number of closed TCP requests
+TCP connections|`gatling.enterprise.tcp.connection_count`|Number of new TCP connections
+TCP connect time max|`gatling.enterprise.tcp.connect_time.min`|Minimum TCP connect time
+TCP connect time min|`gatling.enterprise.tcp.connect_time.max`|Maximum TCP connect time
+TCP connect time p95|`gatling.enterprise.tcp.connect_time.p95`|TCP connect time for the 95th percentile (95% of the requests)
+TCP connect time p99|`gatling.enterprise.tcp.connect_time.p99`|TCP connect time for the 99th percentile (99% of the requests)
+TCP connect time p999|`gatling.enterprise.tcp.connect_time.p999`|TCP connect time for the 99.9th percentile (99.9% of the requests)
+TLS handshakes|`gatling.enterprise.tls.handshake_count`|Number of TLS handshakes
+TLS handshake time max|`gatling.enterprise.tls.handshake_time.min`|Minimum TLS handshake time
+TLS handshake time min|`gatling.enterprise.tls.handshake_time.max`|Maximum TLS handshake time
+TLS handshake time p95|`gatling.enterprise.tls.handshake_time.p95`|TLS handshake time for the 95th percentile (95% of the requests)
+TLS handshake time p99|`gatling.enterprise.tls.handshake_time.p99`|TLS handshake time for the 99th percentile (99% of the requests)
+TLS handshake time p999|`gatling.enterprise.tls.handshake_time.p999`|TLS handshake time for the 99.9th percentile (99.9% of the requests)
 
 See the official Dynatrace documentation for [exploring metrics](https://docs.dynatrace.com/docs/analyze-explore-automate/explorer).
 
