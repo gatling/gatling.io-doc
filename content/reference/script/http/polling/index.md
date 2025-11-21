@@ -9,7 +9,7 @@ aliases:
   - /reference/script/protocols/http/polling/
 ---
 
-HTTP polling is an extension to the HTTP DSL, whose entry point is the `poll` method.
+HTTP polling is an extension to the HTTP SDK, whose entry point is the `poll` method.
 
 ## Common operations
 

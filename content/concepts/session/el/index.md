@@ -13,7 +13,7 @@ Most Gatling SDK methods can be passed **Gatling Expression Language (EL)** Stri
 This is a very convenient feature to pass dynamic parameters.
 
 {{< alert warning >}}
-Only Gatling DSL methods will interpolate Gatling EL Strings.
+Only Gatling SDK methods will interpolate Gatling EL Strings.
 You can't use Gatling EL in your own methods or functions.
 
 For example, `queryParam("latitude", session -> "#{latitude}")` wouldn't work because the parameter is not a String, but a function that returns a String.

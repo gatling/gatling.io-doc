@@ -24,17 +24,17 @@ class ConceptsIntroductionSampleJava extends Simulation {
 
   public ConceptsIntroductionSampleJava() {
 
-//#dsl-bad
+//#sdk-bad
 for (int i = 0; i < 5; i++) {
   http("Access Github").get("https://github.com");
 }
-//#dsl-bad
+//#sdk-bad
 
-//#dsl-immutable
+//#sdk-immutable
 HttpRequestActionBuilder request1 = http("Access Github").get("https://github.com");
 // request1 is left unchanged
 HttpRequestActionBuilder request2 = request1.header("accept-encoding", "gzip");
-//#dsl-immutable
+//#sdk-immutable
 
 //#simple-scenario
 scenario("Standard User")

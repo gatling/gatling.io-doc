@@ -8,7 +8,7 @@ aliases:
   - /reference/script/protocols/sse/
 ---
 
-SSE support is an extension to the HTTP DSL, whose entry point is the `sse(requestName: Expression[String])` method.
+SSE support is an extension to the HTTP SDK, whose entry point is the `sse(requestName: Expression[String])` method.
 
 ## `sseName`
 

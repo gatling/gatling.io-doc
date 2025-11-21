@@ -14,7 +14,7 @@ MQTT 3.1, 3.1.1 and 5 are currently supported, but some of the new features intr
 
 ## Prerequisites
 
-Gatling Enterprise MQTT DSL is not imported by default.
+Gatling Enterprise MQTT SDK is not imported by default.
 
 You have to manually add the following imports:
 

@@ -10,7 +10,7 @@ aliases:
 
 WebSocket support was initially contributed by [Andrew Duffy](https://github.com/amjjd).
 
-WebSocket support is an extension to the HTTP DSL, whose entry point is the `ws` method.
+WebSocket support is an extension to the HTTP SDK, whose entry point is the `ws` method.
 
 WebSocket protocol is very different from the HTTP one as the communication is 2 ways: both client-to-server and server-to-client, so the model is different from the HTTP request/response pair.
 

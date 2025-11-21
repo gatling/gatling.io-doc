@@ -7,12 +7,12 @@ lead: Learn more about virtual users, scenarios, simulations, sessions, feeders,
 date: 2021-04-20T18:30:56+02:00
 ---
 
-## Domain-Specific Language (DSL) {#dsl}
+## Software Development Kit (SDK) {#sdk}
 
-Gatling provides a kind of language to **define** your load test, called a [DSL](https://en.wikipedia.org/wiki/Domain-specific_language).
+Gatling provides a set of methods to **define** your load test, called a Software Development Kit (SDK).
 
 {{< alert warning >}}
-The components of this DSL are mere **definitions** of the desired effect.
+The components of this SDK are mere **definitions** of the desired effect.
 They don't generate the desired effect where you invoke them in your own code.
 Only when chained with other components so they are ultimately passed to the [setUp]({{< ref "/concepts/simulation#setup" >}}), can the Gatling engine interpret them and produce the desired effect.
 {{< /alert >}}
@@ -20,16 +20,16 @@ Only when chained with other components so they are ultimately passed to the [se
 The example below doesn't execute 5 HTTP requests.
 It creates 5 dangling HTTP requests definitions that don't have any effect.
 
-{{< include-code "dsl-bad" >}}
+{{< include-code "sdk-bad" >}}
 
 ## Immutability
 
 {{< alert warning >}}
-Most Gatling APIs such as DSL components and Session, are **immutable**.
+Most Gatling SDK components, including `Session` are **immutable**.
 This means you can't update existing instances but only generate new instances with the desired changes.
 {{< /alert >}}
 
-{{< include-code "dsl-immutable" >}}
+{{< include-code "sdk-immutable" >}}
 
 ## Virtual User
 
@@ -62,7 +62,7 @@ For example, a standard e-commerce application scenario could be:
 10. Payment
 11. Log out
 
-Scenarios are represented as scripts in conjunction with a DSL ([Domain Specific Language](http://en.wikipedia.org/wiki/Domain-specific_language)).
+Scenarios are represented as scripts in conjunction with an SDK.
 This allows fast writing of scenarios and easy maintenance of existing scenarios.
 
 Here is a simple example of a scenario:

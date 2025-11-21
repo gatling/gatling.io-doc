@@ -14,7 +14,7 @@ Note that most method can take static value, [Gatling Expression Language (EL)](
 
 ## Request name
 
-HTTP support has a dedicated DSL, whose entry point is the `http(requestName)` method.
+HTTP support has a dedicated SDK, whose entry point is the `http(requestName)` method.
 
 This request name is important because it will act as a key when computing stats for the reports.
 If the same name appears in multiple places in a Simulation, Gatling will consider the requests to be the same type, and their statistics will be aggregated.
@@ -266,7 +266,7 @@ The [asXXX shortcuts]({{< ref "#asxxx" >}}) can help you configure the necessary
 
 
 Once bootstrapped with one of the following methods, `BodyPart` has the following methods for setting additional options.
-Like in the rest of the DSL, almost every parameter can be a plain `String`, a Gatling Expression Language `String`, or a function.
+Like in the rest of the SDK, almost every parameter can be a plain `String`, a Gatling Expression Language `String`, or a function.
 
 {{< include-code "bodyPart-options" >}}
 

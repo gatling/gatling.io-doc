@@ -68,7 +68,7 @@ Assuming a CSV file contains 1000 entries, and 3 Gatling nodes, the entries will
 - Third node will access the last 334 entries
 
 {{< alert tip >}}
-`shard` is available in Gatling Community Edition DSL but is a noop there. It's only effective when running tests with Gatling Enterprise.
+`shard` is available in Gatling Community Edition SDK but is a noop there. It's only effective when running tests with Gatling Enterprise.
 {{< /alert >}}
 
 ## Resolving Injector Location in Simulation

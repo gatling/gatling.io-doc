@@ -83,7 +83,7 @@ Open `gatling/typescript/src/deliveryVehicleSimulation.gatling.ts` to inspect th
 - **Stateful virtual users:** An `exec` block seeds each virtual user with coordinates, fuel level, and topic names. A `repeat` loop updates the session on every telemetry tick before publishing a JSON payload.
 - **Checks and assertions:** The simulation asserts connection success and bounds the 95th percentile publish latency—use these to catch regressions automatically.
 
-The excerpt below highlights how the MQTT DSL is used inside the scenario:
+The excerpt below highlights how the MQTT SDK is used inside the scenario:
 
 ```ts
 const mqttProtocol = mqtt

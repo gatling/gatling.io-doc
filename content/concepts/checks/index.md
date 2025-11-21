@@ -28,7 +28,7 @@ You can also define multiple checks at once:
 
 {{< include-code "status-is-not-404-or-500" >}}
 
-This API provides a dedicated DSL for chaining the following steps:
+Gatling provides the following methods for chaining the following steps:
 
 1. [defining the check type]({{< ref "#check-type" >}})
 2. [extracting]({{< ref "#extracting" >}})
@@ -232,7 +232,7 @@ Checksums are computed against the stream of chunks, so the whole body is not st
 
 ## Extracting
 
-The extraction step of the check DSL lets you filter the desired occurrence(s).
+The extraction step lets you filter the desired occurrence(s).
 
 {{< alert tip >}}
 If you don't explicitly define the extraction step, Gatling will perform an implicit [`find`]({{< ref "#find" >}}).

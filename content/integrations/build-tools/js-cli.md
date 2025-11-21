@@ -4,7 +4,7 @@ title: JavaScript tooling
 seotitle: Tooling to work with Gatling in JavaScript and TypeScript
 description: >
   Use our command-line (CLI) tool and a package manager such as npm to work with Gatling and Gatling Enterprise Edition, when
-  using the JavaScript/TypeScript DSL to write your tests.
+  using the JavaScript/TypeScript SDK to write your tests.
 lead: >
   Run Gatling simulations written in JavaScript/TypeScript from the command line, and package them to run on Gatling
   Enterprise Edition
