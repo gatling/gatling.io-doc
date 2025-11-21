@@ -21,17 +21,17 @@ import io.gatling.javaapi.http.HttpDsl.*
 class ConceptsIntroductionSampleKotlin: Simulation() {
 
   init {
-//#dsl-bad
+//#sdk-bad
 for (i in 1..5) {
   http("Access Github").get("https://github.com")
 }
-//#dsl-bad
+//#sdk-bad
 
-//#dsl-immutable
+//#sdk-immutable
 val request1 = http("Access Github").get("https://github.com")
 // request1 is left unchanged
 val request2 = request1.header("accept-encoding", "gzip")
-//#dsl-immutable
+//#sdk-immutable
 
 //#simple-scenario
 scenario("Standard User")

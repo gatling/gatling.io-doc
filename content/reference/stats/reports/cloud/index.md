@@ -44,7 +44,7 @@ This section displays your run main KPIs:
 
 Assertions are the run's acceptance criteria. It allows you to quickly know if your requirements are met or not.
 
-Assertions are created in the test script using the Gatling [DSL]({{< ref "/concepts/assertions" >}}) or in the no-code test builder.
+Assertions are created in the test script using the Gatling [SDK]({{< ref "/concepts/assertions" >}}) or in the no-code test builder.
 
 Each assertion has a status (successful or failed) that indicates whether the current run met your pre-defined requirements.
 

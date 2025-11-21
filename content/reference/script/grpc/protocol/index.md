@@ -10,7 +10,7 @@ aliases:
 
 ## Bootstrapping
 
-The Gatling gRPC DSL is not imported by default.
+The Gatling gRPC SDK is not imported by default.
 
 You have to manually add the following imports:
 
@@ -34,7 +34,7 @@ Update your code to use [server configurations]({{< ref "#server-configurations"
 
 Server configurations define the connection settings for one or more gRPC servers.
 When multiple server configurations are defined, the first is used as the default unless explicitly overridden using the
-[`serverConfiguration`]({{< ref "./methods#server-configuration" >}}) DSL method:
+[`serverConfiguration`]({{< ref "./methods#server-configuration" >}}) SDK method:
 
 {{< include-code "server-configuration" >}}
 

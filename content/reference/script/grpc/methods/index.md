@@ -1,8 +1,8 @@
 ---
 title: gRPC Methods
-seotitle: Gatling gRPC protocol reference - DSL methods
-description: All methods of the Gatling gRPC DSL
-lead: Learn how to use each method offered by the Gatling gRPC DSL
+seotitle: Gatling gRPC protocol reference - SDK methods
+description: All methods of the Gatling gRPC SDK
+lead: Learn how to use each method offered by the Gatling gRPC SDK
 date: 2023-08-24T11:27:53+0200
 aliases:
   - /reference/script/protocols/grpc/methods/
@@ -11,7 +11,7 @@ aliases:
 ## Summary
 
 With gRPC, [four types of methods can be defined](https://grpc.io/docs/what-is-grpc/core-concepts/#service-definition):
-unary, server streaming, client streaming and bidirectional streaming. Different Gatling DSL methods can be used
+unary, server streaming, client streaming and bidirectional streaming. Different Gatling SDK methods can be used
 depending on the type of the gRPC method.
 
 {{< table >}}
@@ -34,7 +34,7 @@ depending on the type of the gRPC method.
 
 ## gRPC method descriptor {#method-descriptor}
 
-The Gatling gRPC DSL will need a method descriptor, of type `io.grpc.MethodDescriptor`, to define each gRPC method used.
+The Gatling gRPC SDK will need a method descriptor, of type `io.grpc.MethodDescriptor`, to define each gRPC method used.
 The most common use case is to use [generated code](https://grpc.io/docs/languages/java/generated-code/) from a .proto
 specification file which describes the gRPC service, but the method descriptor could also be constructed by hand.
 
@@ -54,7 +54,7 @@ public final class ExampleServiceGrpc {
 
 For unary gRPC methods, Gatling gRPC requests are declared with the `unary` keyword.
 
-`grpc(requestName)` is the entrypoint for any gRPC request with the Gatling gRPC DSL. `unary(methodDescriptor)` then
+`grpc(requestName)` is the entrypoint for any gRPC request with the Gatling gRPC SDK. `unary(methodDescriptor)` then
 takes a [method descriptor]({{< ref "#method-descriptor" >}}) describing the gRPC method to call (which must describe a
 unary method).
 
@@ -74,7 +74,7 @@ to perform several actions on the same stream at various times during the scenar
 
 #### Server stream {#instantiate-server-stream}
 
-`grpc(requestName)` is the entrypoint for any gRPC request with the Gatling gRPC DSL. `serverStream(methodDescriptor)` then
+`grpc(requestName)` is the entrypoint for any gRPC request with the Gatling gRPC SDK. `serverStream(methodDescriptor)` then
 takes a [method descriptor]({{< ref "#method-descriptor" >}}) describing the gRPC method to call (which must describe a
 server streaming method).
 
@@ -95,7 +95,7 @@ differentiate them:
 
 #### Client stream {#instantiate-client-stream}
 
-`grpc(requestName)` is the entrypoint for any gRPC request with the Gatling gRPC DSL. `clientStream(methodDescriptor)` then
+`grpc(requestName)` is the entrypoint for any gRPC request with the Gatling gRPC SDK. `clientStream(methodDescriptor)` then
 takes a [method descriptor]({{< ref "#method-descriptor" >}}) describing the gRPC method to call (which must describe a
 client streaming method).
 
@@ -117,7 +117,7 @@ differentiate them:
 
 #### Bidirectional stream {#instantiate-bidi-stream}
 
-`grpc(requestName)` is the entrypoint for any gRPC request with the Gatling gRPC DSL. `bidiStream(methodDescriptor)` then
+`grpc(requestName)` is the entrypoint for any gRPC request with the Gatling gRPC SDK. `bidiStream(methodDescriptor)` then
 takes a [method descriptor]({{< ref "#method-descriptor" >}}) describing the gRPC method to call (which must describe a
 bidirectional streaming method).
 

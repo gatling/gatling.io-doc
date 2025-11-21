@@ -27,17 +27,17 @@ import { http } from "@gatling.io/http";
 
 const setUp = null as unknown as SetUpFunction;
 
-//#dsl-bad
+//#sdk-bad
 for (let i = 0; i < 5; i++) {
   http("Access Github").get("https://github.com");
 }
-//#dsl-bad
+//#sdk-bad
 
-//#dsl-immutable
+//#sdk-immutable
 const request1 = http("Access Github").get("https://github.com");
 // request1 is left unchanged
 const request2 = request1.header("accept-encoding", "gzip");
-//#dsl-immutable
+//#sdk-immutable
 
 //#simple-scenario
 scenario("Standard User")

@@ -27,7 +27,7 @@ The following tutorials will help you get started with Gatling:
 - [Introduction to the Recorder](https://docs.gatling.io/tutorials/low-code/browser/recorder/)
 - [Writing realistic tests](https://docs.gatling.io/tutorials/advanced/)
 
-Having *scenarios* that are defined in code and are resource efficient are the two requirements that motivated us to create Gatling. Based on an expressive [DSL](http://en.wikipedia.org/wiki/Domain-specific_language), the *scenarios* are self-explanatory. They are easy to maintain and can be kept in a version control system.
+Having *scenarios* that are defined in code and are resource efficient are the two requirements that motivated us to create Gatling. Based on an expressive SDK, the *scenarios* are self-explanatory. They are easy to maintain and can be kept in a version control system.
 
 Gatling's architecture is asynchronous as long as the underlying protocol, such as HTTP, can be implemented in a non blocking way. This kind of architecture lets us implement virtual users as messages instead of dedicated threads, making them very resource cheap. Thus, running thousands of concurrent virtual users is not an issue.
 

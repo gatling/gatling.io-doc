@@ -124,7 +124,7 @@ Assuming the CSV file contains 1000 entries, and you run your simulation on 3 Ga
 - Third node will access the last 334 entries
 
 {{< alert tip >}}
-`shard` is available in Gatling Community Edition DSL but is a noop there. It's only effective when running tests with Gatling Enterprise Edition.
+`shard` is available in Gatling Community Edition SDK but is a noop there. It's only effective when running tests with Gatling Enterprise Edition.
 {{< /alert >}}
 
 ## Resolving load generator location in a simulation

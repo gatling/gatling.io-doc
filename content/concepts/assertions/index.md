@@ -18,7 +18,7 @@ Assertions are registered for a simulation using the method `assertions` on the 
 
 This method takes as many assertions as you like.
 
-The API provides a dedicated DSL for chaining the following steps:
+Gatling provides the following methods for chaining the following steps:
 
 1. defining the scope of the assertion
 2. selecting the statistic

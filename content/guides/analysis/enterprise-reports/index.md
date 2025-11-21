@@ -77,7 +77,7 @@ That should be pretty obvious. This is where you can see the performance of your
 
 ### The Groups Tab
 
-When designing a scenario, you can create a group of requests to organize and model processes on a page. You can even nest your groups to get a little more organized.  Here’s a look at how to create a group in your scenario using our Java DSL:
+When designing a scenario, you can create a group of requests to organize and model processes on a page. You can even nest your groups to get a little more organized.  Here’s a look at how to create a group in your scenario using our Java SDK:
 
 ```java 
 group("foo").on(

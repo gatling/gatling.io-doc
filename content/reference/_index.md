@@ -1,8 +1,8 @@
 ---
 title: Gatling reference documentation
 menutitle: Reference
-description: References on Gatling DSL, protocols, news and migrations
-lead: References on Gatling DSL, protocols, news and migrations
+description: References on Gatling SDK, protocols, news and migrations
+lead: References on Gatling SDK, protocols, news and migrations
 ordering:
   - deploy
   - script

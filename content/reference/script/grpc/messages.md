@@ -73,7 +73,7 @@ Then protoc will generate:
   static getters for the method descriptors: `getGreetMethod()` and `getGreetWithDeadlineMethod()`.
 
 For example, here is how we can send a `GreetRequest` message to the `Greet` method, and validate the `GreetResponse`
-message received in response, using the generated code with the Gatling gRPC DSL:
+message received in response, using the generated code with the Gatling gRPC SDK:
 
 ```java
 grpc("John Doe's greet request")
@@ -256,7 +256,7 @@ Then protoc will generate:
   static getters for the method descriptors: `getGreetMethod()` and `getGreetWithDeadlineMethod()`.
 
 For example, here is how we can send a `GreetRequest` message to the `Greet` method, and validate the `GreetResponse`
-message received in response, using the generated code with the Gatling gRPC DSL:
+message received in response, using the generated code with the Gatling gRPC SDK:
 
 ```kotlin
 grpc("John Doe's greet request")
@@ -320,7 +320,7 @@ Then ScalaPB will generate:
   descriptors: `METHOD_GREET` and `METHOD_GREET_WITH_DEADLINE`.
 
 For example, here is how we can send a `GreetRequest` message to the `Greet` method, and validate the `GreetResponse`
-message received in response, using the generated code with the Gatling gRPC DSL:
+message received in response, using the generated code with the Gatling gRPC SDK:
 
 ```scala
 grpc("John Doe's greet request")

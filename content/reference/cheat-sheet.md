@@ -412,7 +412,7 @@ content:
                 description: Pause for a given <i>duration</i>
 
           - keyword: incrementUsersPerSec
-            description: Meta DSL to write open increment tests (succession of several increasing levels)
+            description: Meta method to write open increment tests (succession of several increasing levels)
             new: true
             syntax:
               - signature: |
@@ -442,7 +442,7 @@ content:
                 description: Scale from <i>fromNbUsers</i> to <i>toNbUsers</i> during <i>duration</i>
 
           - keyword: incrementConcurrentUsers
-            description: Meta DSL to write closed increment tests (succession of several increasing levels)
+            description: Meta method to write closed increment tests (succession of several increasing levels)
             new: true
             syntax:
               - signature: |

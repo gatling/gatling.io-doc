@@ -18,7 +18,7 @@ ordering:
 
 **Gatling is a high-performance load testing tool built for efficiency, automation, and code-driven testing workflows.**
 
-Test scenarios are defined as code using an expressive DSL in Java, JavaScript, Scala, or Kotlin, making them easy to read, version, and maintain as part of your development workflow.
+Test scenarios are defined as code using expressive SDKs for Java, JavaScript, TypeScript, Scala, or Kotlin, making them easy to read, version, and maintain as part of your development workflow.
 
 Gatling’s architecture is fully asynchronous. Virtual users are modeled as lightweight messages rather than threads, allowing you to simulate thousands of concurrent users with minimal system resources, ideal for modern, high-scale applications.
 

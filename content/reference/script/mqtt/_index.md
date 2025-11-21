@@ -2,7 +2,7 @@
 title: MQTT
 seotitle: Gatling MQTT protocol reference
 description: MQTT protocol description language
-lead: DSL for MQTT.
+lead: SDK for MQTT.
 ordering:
   - setup
   - protocol

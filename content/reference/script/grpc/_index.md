@@ -2,7 +2,7 @@
 title: gRPC
 seotitle: Gatling gRPC protocol reference
 description: gRPC protocol description language
-lead: DSL for gRPC
+lead: SDK for gRPC
 ordering:
   - setup
   - protocol

@@ -74,7 +74,7 @@ You can also add Gatling Postman to an existing Gatling project written in JavaS
 For more details on how to create a JavaScript or TypeScript project, check the
 [dedicated tutorial]({{< ref "/tutorials/test-as-code/javascript/running-your-first-simulation/" >}}).
 
-## DSL overview
+## SDK overview
 
 The Gatling Postman support works as an extension for Gatling's HTTP protocol; it generates requests or scenarios which
 are compatible with Gatling's HTTP protocol. Here is an example of a Gatling simulation using a request imported from a
@@ -111,7 +111,7 @@ export default simulation((setUp) => { // 2
 4. It is possible to perform Postman requests inside an existing Gatling test.
 5. Don't forget to [set up an injection profile]({{< ref "/tutorials/test-as-code/javascript/running-your-first-simulation/#simulation-construction" >}}).
 
-## DSL reference
+## SDK reference
 
 ### Import Postman
 

@@ -53,7 +53,7 @@ You shouldn't need to change your code generation configuration, but you may wan
 
 ## Imports
 
-Remove imports which start with `com.github.phisgr.gatling`. Use the following imports to access the official gRPC DSL:
+Remove imports which start with `com.github.phisgr.gatling`. Use the following imports to access the official gRPC SDK:
 
 {{< include-code "GrpcOfficialSample#imports" >}}
 

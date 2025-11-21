@@ -48,7 +48,7 @@ Those functions are executed in Gatling's shared threads, so you must absolutely
 {{< /alert >}}
 
 {{< alert warning >}}
-Remember that the [Gatling SDK components are merely definitions]({{< ref "/reference/glossary#dsl" >}}). They only are effective when chained with other SDK components and ultimately passed to the `setUp`. **In particular, they have no effect when used inside functions.**
+Remember that the [Gatling SDK components are merely definitions]({{< ref "/reference/glossary#sdk" >}}). They only are effective when chained with other SDK components and ultimately passed to the `setUp`. **In particular, they have no effect when used inside functions.**
 {{< /alert >}}
 
 {{< include-code "session-lambda-bad" >}}
