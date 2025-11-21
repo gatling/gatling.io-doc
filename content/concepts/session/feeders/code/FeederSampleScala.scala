@@ -26,7 +26,10 @@ val feeder = Iterator.continually {
 //#random-mail-generator
 
 //#feed-keyword
+// called directly
 feed(feeder)
+// attached to a scenario or an exec
+scenario("scn").feed(feeder)
 //#feed-keyword
 
 //#feed-multiple
@@ -40,16 +43,22 @@ feed(feeder, "#{numberOfRecords}")
 feed(feeder, session => session("numberOfRecords").as[Int])
 //#feed-multiple
 
-//#strategies
-// default behavior: use an Iterator on the underlying sequence
-csv("foo").queue()
-// randomly pick an entry in the sequence
-csv("foo").random()
-// shuffle entries, then behave like queue
-csv("foo").shuffle()
-// go back to the top of the sequence once the end is reached
-csv("foo").circular()
-//#strategies
+//#queue
+// default behavior, can be omitted
+csv("foo").queue
+//#queue
+
+//#shuffle
+csv("foo").shuffle
+//#shuffle
+
+//#random
+csv("foo").random
+//#random
+
+//#circular
+csv("foo").circular
+//#circular
   }
 
   {
@@ -59,14 +68,14 @@ Array(
   Map("foo" -> "foo1", "bar" -> "bar1"),
   Map("foo" -> "foo2", "bar" -> "bar2"),
   Map("foo" -> "foo3", "bar" -> "bar3")
-).random
+)
 
 // using a IndexedSeq (implicit conversion)
 IndexedSeq(
   Map("foo" -> "foo1", "bar" -> "bar1"),
   Map("foo" -> "foo2", "bar" -> "bar2"),
   Map("foo" -> "foo3", "bar" -> "bar3")
-).random
+)
 //#feeder-in-memory
   }
 
@@ -81,21 +90,6 @@ ssv("foo.ssv")
 // use a custom separator
 separatedValues("foo.txt", '#')
 //#sep-values-feeders
-  }
-
-  {
-//#eager
-csv("foo.csv").eager
-//#eager
-  }
-
-  {
-//#batch
-// use default buffer size (2000 lines)
-csv("foo.csv").batch
-// tune internal buffer size
-csv("foo.csv").batch(200)
-//#batch
   }
 
   {

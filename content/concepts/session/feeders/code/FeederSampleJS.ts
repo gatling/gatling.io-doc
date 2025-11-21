@@ -21,6 +21,7 @@ import {
   feed,
   jsonFile,
   jsonUrl,
+  scenario,
   separatedValues,
   ssv,
   tsv
@@ -35,7 +36,10 @@ The `feeder(Iterator)` method is currently not supported by Gatling JS.
 */
 
 //#feed-keyword
+// called directly
 feed(feeder);
+// attached to a scenario or an exec
+scenario("scn").feed(feeder);
 //#feed-keyword
 
 //#feed-multiple
@@ -49,16 +53,22 @@ feed(feeder, "#{numberOfRecords}");
 feed(feeder, (session) => session.get("numberOfRecords"));
 //#feed-multiple
 
-//#strategies
-// default behavior: use an Iterator on the underlying sequence
+//#queue
+// default behavior, can be omitted
 csv("foo").queue();
-// randomly pick an entry in the sequence
-csv("foo").random();
-// shuffle entries, then behave like queue
+//#queue
+
+//#shuffle
 csv("foo").shuffle();
-// go back to the top of the sequence once the end is reached
+//#shuffle
+
+//#random
+csv("foo").random();
+//#random
+
+//#circular
 csv("foo").circular();
-//#strategies
+//#circular
 
 //#feeder-in-memory
 // using an array
@@ -66,7 +76,7 @@ arrayFeeder([
   { "foo": "foo1" },
   { "foo": "foo2" },
   { "foo": "foo3" }
-]).random();
+]);
 //#feeder-in-memory
 
 //#sep-values-feeders
@@ -79,17 +89,6 @@ ssv("foo.ssv");
 // use a custom separator
 separatedValues("foo.txt", '#');
 //#sep-values-feeders
-
-//#eager
-csv("foo.csv").eager().random();
-//#eager
-
-//#batch
-// use default buffer size (2000 lines)
-csv("foo.csv").batch().random();
-// tune internal buffer size
-csv("foo.csv").batch(200).random();
-//#batch
 
 //#unzip
 csv("foo.csv.zip").unzip();
