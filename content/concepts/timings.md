@@ -64,5 +64,5 @@ In Gatling Community Edition HTML reports, this metric is available when selecti
 {{< alert tip >}}
 The Gatling Community Edition HTML reports can only display one metric.
 By default, they display the "cumulated response time" metric.
-You can switch to displaying the "duration" metric: turn the `charting.charting.useGroupDurationMetric` option to `true` in `gatling.conf` before generating the reports.
+You can switch to displaying the "duration" metric: turn the `gatling.charting.useGroupDurationMetric` option to `true` in `gatling.conf` before generating the reports.
 {{< /alert >}}
