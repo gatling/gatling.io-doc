@@ -27,7 +27,7 @@ You can request dedicated IP addresses through [technical support](https://gatli
 Please provide:
 
 - Organization slug,
-- Desired number of dedicated IP addresses per location([available locations]( {{< ref "reference/run-tests/simulations/test-as-code#locations-configuration" >}})),
+- Desired number of dedicated IP addresses per location ([available locations]({{< ref "reference/run-tests/simulations/test-as-code#locations-configuration" >}})),
 - Contact Email,
 - GitHub username.
 
