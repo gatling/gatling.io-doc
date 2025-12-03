@@ -30,6 +30,28 @@ This plugin requires at least Gradle 7.6.
 The latest version of this plugin is tested against Gradle versions ranging from 7.1 to 8.6.
 Any version outside this range is not guaranteed to work.
 
+### Java vs Kotlin versions
+
+Your Kotlin version might not support your Java version that's installed on your machine or that's shipped in Gatling Enterprise.
+If you get errors such as:
+
+* `Kotlin does not yet support 25 JDK target, falling back to Kotlin JVM_24 JVM target`
+* `Inconsistent JVM-target compatibility detected for tasks 'compileGatlingJava' (25) and 'compileGatlingKotlin' (24).`
+
+Please force the Java bytecode version in your `build.gradle.kts` with the following piece:
+
+```
+tasks.withType(JavaCompile::class) {
+  options.release.set(21)
+}
+
+kotlin {
+  compilerOptions {
+    jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_21)
+  }
+}
+```
+
 ## Setup
 
 {{< alert tip >}}
