@@ -5,7 +5,7 @@ description: "Get started with Gatling and JavaScript: install, write your first
 lead: Learn how to get started with Gatling and create a Gatling simulation with JavaScript.
 date: 2023-12-16T18:30:56+02:00
 aliases:
-  - /docs/tutorials/scripting-intro-js/
+  - /tutorials/scripting-intro-js/
 ---
 
 {{< alert warning >}}
