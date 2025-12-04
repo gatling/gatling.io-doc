@@ -5,7 +5,7 @@ description: "Get started with Gatling: install, write your first load test, and
 lead: Learn how to get started with Gatling and create a Gatling simulation.
 date: 2023-12-16T18:30:56+02:00
 aliases:
-  - /docs/tutorials/scripting-intro/
+  - /tutorials/scripting-intro/
 ---
 
 {{< alert warning >}}
