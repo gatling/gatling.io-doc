@@ -83,12 +83,38 @@ In particular, for maven, you might want to mount a `/app/.m2/conf/settings.xml`
 
 ## Architecture
 
-The Build from a Git repository feature operates within the Gatling Enterprise Edition architecture, leveraging the Control Plane to manage builds and simulations.\
-The Control Plane interacts with your source repository to fetch simulation code, compiles it using the specified build tool, and stores the resulting artifacts in your private storage location.\
+The Build from a Git repository feature operates within the Gatling Enterprise Edition architecture, leveraging the Control Plane to manage builds and simulations.
+
+The Control Plane interacts with your source repository to fetch simulation code, compiles it using the specified build tool, and stores the resulting artifacts in your private storage location.
+
 This process is triggered when you start a simulation in the Gatling Enterprise Edition UI, allowing you to run tests directly from your source code without manual packaging.
 
-After run completion, the test package is deleted from the private storage location, thus each run requires a fresh build from the source repository.\
+After run completion, the test package is deleted from the private storage location, thus each run requires a fresh build from the source repository.
+
 This ensures that you always test the latest version of your simulations.
+
+## Build Concurrency
+
+By default, the **Control Plane** is configured to allow only **one build** to be performed at a time.
+
+This default setting means that if multiple simulations requiring a build from source are started simultaneously, 
+subsequent builds will enter a queue and must wait for the preceding build to complete before starting.
+
+A **build timeout of 10 minutes** is enforced. The build process must successfully complete within this timeframe.
+
+You can increase the maximum number of concurrent builds by adjusting the following configuration:
+```bash
+control-plane {
+  # ...
+  builder {
+    # Define the maximum number of builds the control plane can perform concurrently.
+    # Increase this value to allow more builds to run in parallel.
+    max-concurrency = 1 # Change '1' to the desired concurrency level (e.g., 2, 4)
+  }
+}
+```
+
+Make sure your Control Plane's underlying infrastructure ([CPU and memory requirements]({{< ref "#cpu-and-memory-resources" >}})) can support simultaneous build operations,
 
 ## Git authentication
 
@@ -110,8 +136,6 @@ control-plane {
       key-file = <keyFile>
       user-known-hosts-file = <userKnownHostsFile> # (optional – omit this line to disable strict host checking)
     }
-    # Define the maximum number of builds the control plane can perform concurrently
-    # max-concurrency = 1
   }
 }
 ```
@@ -163,8 +187,6 @@ control-plane {
       username = <username> # (optional)
       password = <token>
     }
-    # Define the maximum number of builds the control plane can perform concurrently
-    # max-concurrency = 1
   }
 }
 ```
