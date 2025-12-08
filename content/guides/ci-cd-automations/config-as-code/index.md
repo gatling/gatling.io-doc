@@ -160,4 +160,4 @@ gatling.enterprise.package {
   }
 }
 ```
-Learn more about configuring your packages and simulations in the [configruation as code reference documentation]({{< ref "/reference/run-tests/sources/configuration-as-code" >}}).
+Learn more about configuring your packages and simulations in the [configuration as code reference documentation]({{< ref "/reference/run-tests/sources/configuration-as-code" >}}).
