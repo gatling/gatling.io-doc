@@ -105,28 +105,6 @@ val feeder = csv("src/test/resources/foo.csv")
 val feeder = csv("foo.csv")
 ```
 
-## Load sharding
-
-Injection rates and throttling rates are automatically distributed amongst nodes.
-
-However, Feeders data is not automatically sharded, as it might not be the desired behavior.
-
-If you want data to be unique cluster-wide, you have to explicitly tell Gatling to shard the data, e.g.:
-
-```scala
-val feeder = csv("foo.csv").shard
-```
-
-Assuming the CSV file contains 1000 entries, and you run your simulation on 3 Gatling nodes, the entries will be distributed as follows:
-
-- First node will access the first 333 entries
-- Second node will access the next 333 entries
-- Third node will access the last 334 entries
-
-{{< alert tip >}}
-`shard` is available in Gatling Community Edition SDK but is a noop there. It's only effective when running tests with Gatling Enterprise Edition.
-{{< /alert >}}
-
 ## Resolving load generator location in a simulation
 
 When running a distributed test from multiple locations, you could be interested in knowing where a given load generator is deployed in order to trigger specific behaviors depending on the location.
