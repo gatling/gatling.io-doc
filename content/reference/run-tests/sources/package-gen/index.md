@@ -104,21 +104,3 @@ val feeder = csv("src/test/resources/foo.csv")
 // correct
 val feeder = csv("foo.csv")
 ```
-
-## Resolving load generator location in a simulation
-
-When running a distributed test from multiple locations, you could be interested in knowing where a given load generator is deployed in order to trigger specific behaviors depending on the location.
-
-For example, you might want to hit `https://example.fr` if the load generator is deployed in the `Europe - Paris` location, and `https://example.com` otherwise.
-
-In your simulation code, you can resolve the name of the location in which the load generator running the code is deployed:
-
-```scala
-val locationName = System.getProperty("gatling.enterprise.poolName") // pool is the former name of location
-val baseUrl = if (locationName == "Europe - Paris") "https://example.fr" else "https://example.com"
-```
-
-{{< alert tip >}}
-This System property is only defined when deploying with Gatling Enterprise.
-It is not defined when running locally with any Gatling Community Edition launcher.
-{{< /alert >}}
