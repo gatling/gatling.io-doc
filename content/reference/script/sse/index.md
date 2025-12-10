@@ -57,7 +57,7 @@ is turned into:
 
 ```json
 {
-  "id": 77535,
+  "id": "77535",
   "event": "snapshot",
   "data": [
     {"symbol":"BTC","price":4628.27},
