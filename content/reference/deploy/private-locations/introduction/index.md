@@ -83,6 +83,14 @@ control-plane {
   token = ${?CONTROL_PLANE_TOKEN}
   # Control plane description (optional)
   description = "Control plane optional description"
+  # Default block to set common system properties (optional)
+  # default {
+    # locations {
+      # system-properties = {
+        # sysprop-example = "default-property-value "
+      # }
+    # }
+  # }
   # Server configuration (optional)
   # server {
     # port = 8080 # (optional, default: 8080)
@@ -115,6 +123,29 @@ For examples of private locations configuration, see:
 * [Configuration of GCP Compute Engine locations]({{< ref "gcp/configuration" >}})
 * [Configuration of Kubernetes locations]({{< ref "kubernetes/configuration" >}})
 * [Configuration of Dedicated Machines locations]({{< ref "dedicated/configuration" >}})
+
+#### Default block 
+
+With the `default` block, you can assign default system properties to all configured locations in the control plane:
+
+```bash
+default {
+  locations {
+    system-properties = {
+      sysprop-example = "default-property-value"
+    }
+  }
+}
+```
+
+In this example, all control plane locations will have the system properties `sysprop-example` set to `default-property-value`.
+
+If the same property is defined locally in a location, the local value will override the default one.
+If other properties are defined locally in a location, the properties set in the default block will be added.
+
+{{< alert warning >}}
+The default block can only be used to set system properties.
+{{< /alert >}}
 
 ### Control plane server {#control-plane-server}
 
