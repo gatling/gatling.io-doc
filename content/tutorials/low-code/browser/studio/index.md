@@ -192,6 +192,18 @@ You can select a web browser in the list of detected ones.
 
 If your browser is not in the list, you may manually provide a path to a Chromium-based web browser installed on your computer.
 
+### Proxy settings
+
+If your computer is behind a proxy, Gatling Studio allows you to specify your own configuration by filling in:
+-  the protocol your proxy is using (either HTTP or HTTPS),
+- the hostname and,
+- the port.
+
+Note that this configuration only applies to Gatling Studio itself and not your recorder. If your browser needs to use your proxy, update your browser's settings directly.
+
+{{< alert tip >}}
+We only support proxies that don't need any custom CA installed for now. If you need to add a custom CA, please open [a feature request on GitHub](https://github.com/gatling/gatling-studio/issues/new?template=feature_request.md).
+{{< /alert >}}
 
 ## Feedback
 
