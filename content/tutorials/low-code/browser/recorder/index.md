@@ -47,14 +47,14 @@ The following is an example of what a real user might do with the application.
 **Sample project prerequisites**
 
 - **For Java**: Java 17 or 21 64-bit OpenJDK LTS (Long Term Support) version installed on your local machine. The sample project leverages features introduced in Java 17, making it the minimum required version. We recommend the [Azul JDK](https://www.azul.com/downloads/?package=jdk#zulu).
-- **For JavaScript**: [Node.js](https://nodejs.org/) v18 or later (LTS versions only) and npm v8 or later.
+- **For JavaScript**: [Node.js](https://nodejs.org/)v20 or later (LTS versions only) and npm v10 or later.
   {{< /alert >}}
 
 {{< alert info >}}
 **Gatling SDK prerequisites**
 
 - **For Java**: Java 11 through 25 (64-bit OpenJDK LTS versions) installed on your local machine. While the sample project requires Java 17, the Gatling SDK supports LTS versions 11-25. We recommend the [Azul JDK](https://www.azul.com/downloads/?package=jdk#zulu).
-- **For JavaScript**: [Node.js](https://nodejs.org/) v18 or later (LTS versions only) and npm v8 or later.
+- **For JavaScript**: [Node.js](https://nodejs.org/)v20 or later (LTS versions only) and npm v10 or later.
   {{< /alert >}}
 
 {{< alert info >}}

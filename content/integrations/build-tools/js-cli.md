@@ -21,8 +21,8 @@ Check out available versions on [the npm registry](https://www.npmjs.com/package
 
 You need:
 
-- [Node.js](https://nodejs.org/) v18 or later (we only support using LTS versions)
-- npm v8 or later, which comes pre-installed with Node.js
+- [Node.js](https://nodejs.org/)v20 or later (we only support using LTS versions)
+- npm v10 or later, which comes pre-installed with Node.js
 
 Using another compatible package manager (such as Yarn) should also work, but you need to adapt the equivalent npm
 commands and configuration on your own.

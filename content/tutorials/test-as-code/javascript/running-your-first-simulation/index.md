@@ -19,7 +19,7 @@ Prefer Java or a JVM language? Follow the [Create your first Java-based simulati
 {{< /alert >}}
 
 ## Before you begin
-1. Install Node.js v18 or later (LTS versions recommended) with npm v8 or later.
+1. Install Node.js v20 or later (LTS versions recommended) with npm v10 or later.
 2. Install Git and a code editor. We use VS Code in the instructions, but any editor works.
 3. (Optional) Create a [Gatling Enterprise trial account](https://cloud.gatling.io/) if you plan to run the script in the cloud.
 
