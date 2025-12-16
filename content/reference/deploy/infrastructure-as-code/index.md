@@ -39,29 +39,6 @@ Helm charts versions are available on the Gatling Helm subdomain [https://helm.g
 
 Deploys the Control Plane container on Elastic Container Service (ECS) using Fargate and creates the necessary IAM permissions to spawn EC2 instances as load generators in your VPC. Optionally supports storing Private Packages in an existing S3 bucket.
 
-### CloudFormation
-
-These templates contain nested stacks for Control Plane, Location, and optional Private Package resources.
-
-- [Private Locations sample template](https://github.com/gatling/gatling-enterprise-control-plane-deployment/blob/main/aws/cloudformation/samples/private-location)
-- [Private Locations & Packages sample template](https://github.com/gatling/gatling-enterprise-control-plane-deployment/blob/main/aws/cloudformation/samples/private-location-package)
-
-### Cloud Development Kit (CDK)
-
-#### TypeScript
-
-This CDK application includes constructs for Control Plane, Location, and Private Package. Installation guide available [here](https://github.com/gatling/gatling-enterprise-control-plane-deployment/blob/main/aws/cdk/typescript/README.md).
-
-- [Private Locations sample configuration](https://github.com/gatling/gatling-enterprise-control-plane-deployment/blob/main/aws/cdk/typescript/bin/private-location.ts)
-- [Private Locations & Packages sample configuration](https://github.com/gatling/gatling-enterprise-control-plane-deployment/blob/main/aws/cdk/typescript/bin/private-location-package.ts)
-
-#### Java
-
-This CDK application includes constructs for Control Plane, Location, and Private Package. Installation guide available [here](https://github.com/gatling/gatling-enterprise-control-plane-deployment/blob/main/aws/cdk/java/README.md).
-
-- [Private Locations sample configuration](https://github.com/gatling/gatling-enterprise-control-plane-deployment/blob/main/aws/cdk/java/src/main/java/com/gatlingenterprise/PrivateLocation.java)
-- [Private Locations & Packages sample configuration](https://github.com/gatling/gatling-enterprise-control-plane-deployment/blob/main/aws/cdk/java/src/main/java/com/gatlingenterprise/PrivateLocationPackage.java)
-
 ### Terraform
 
 The configuration consists of three modules: one for deploying the control plane, another for specifying the location, and a third for defining an optional private package.
