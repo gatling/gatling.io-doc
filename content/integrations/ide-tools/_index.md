@@ -4,4 +4,5 @@ description: Integrate Gatling with your favorite IDE for a smoother development
 lead: Enhance your Gatling experience with powerful IDE integrations.
 ordering:
   - vscode
+  - cursor
 ---
