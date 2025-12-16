@@ -14,7 +14,7 @@ The Gatling JavaScript SDK lets you script load tests with modern JavaScript or 
 - You want Gatling's HTML reports, assertions, and workload models without changing ecosystems.
 
 ## Requirements
-- Node.js LTS versions >18 with npm 8 or newer installed on macOS, Linux, or Windows.
+- Node.js LTS versions >20 with npm 10 or newer installed on macOS, Linux, or Windows.
 - Git or download access to the Gatling JavaScript demo project.
 - A Gatling Enterprise Edition account for distributed runs.
 
