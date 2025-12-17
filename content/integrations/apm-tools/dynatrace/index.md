@@ -123,6 +123,9 @@ Team|`team`|Name of the team that owns the test
 Test|`test`|Test name
 Load generator|`load_generator`|Load generator reference integer starting with 0
 Scenario|`scenario`|Scenario name
+Group|`group`|Group name (only for request and response metrics)
+Request|`request`|Request name (only for request and response metrics)
+Remote|`remote`|Remote InetSocketAddress (only for bandwidth, tcp and tls metrics)
 Status|`status`|Status of the run (ok or ko)
 Run ID|`run_id`|ID of the run
 
