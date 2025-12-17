@@ -12,7 +12,8 @@ This feature is only available on Gatling Enterprise Edition. To learn more, [ex
 
 ## Introduction
 
-The Datadog integration allows Gatling Enterprise Edition to send load-test metrics - such as response times, throughput, and error rates - directly into Datadog’s observability platform. Once enabled, performance data from Gatling Enterprise Edition is sent to Datadog, where it can be correlated with infrastructure and application metrics already collected in your Datadog account
+The Datadog integration allows Gatling Enterprise Edition to send load-test metrics - such as response times, throughput, and error rates - directly into Datadog’s observability platform.
+Once enabled, performance data from Gatling Enterprise Edition is sent to Datadog, where it can be correlated with infrastructure and application metrics already collected in your Datadog account.
 
 With this integration in place, you can:
 
@@ -41,7 +42,7 @@ The Datadog integration requires installation steps in your Datadog account and 
     locations = [
       {
         system-properties {
-          "gatling.enterprise.dd.api.key" = "<your Datadog api key>"
+          "gatling.enterprise.dd.api.key" = "<your Datadog API key>"
           "gatling.enterprise.dd.application.key" = "<your Datadog application key>"
           "gatling.enterprise.dd.site" = "datadoghq.com"
         }
