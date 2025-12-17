@@ -78,7 +78,7 @@ You can install and configure Gatling manually by following instructions in the 
 
 To install Gatling for JavaScript and TypeScript, you must have:
 
-- [Node.js](https://nodejs.org/en/download)v20 or later (LTS versions only)
+- [Node.js](https://nodejs.org/en/download) v20 or later (LTS versions only)
 - npm v10 or later (included in the NodeJS installation)
 
 Then, use the following procedure to install Gatling:
