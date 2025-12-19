@@ -178,6 +178,10 @@ For now, the project export is only available in Java/Maven.
 
 You can then use your local environment to run your Gatling Test locally, edit parameters, and package it to upload to Gatling Enterprise Edition.
 
+{{< alert info >}}
+Note: `Sec-*` headers are not relevant in the context of load testing and are filtered out when a project is exported.
+{{< /alert >}}
+
 {{< alert tip >}}
 For more information on how to run a test, refer to the [Installation Guide](https://docs.gatling.io/tutorials/test-as-code/java-jvm/installation-guide/) part of this documentation.
 {{< /alert >}}
