@@ -4,4 +4,5 @@ ordering:
   - datadog
   - dynatrace
   - influxdb
+  - newrelic
 ---
