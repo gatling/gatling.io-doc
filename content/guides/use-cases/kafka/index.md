@@ -7,6 +7,7 @@ lead: Learn how to Load test a Kafka server with Gatling
 date: 2025-02-28T09:30:56+02:00
 aliases:
   - /guides/complex-use-cases/kafka/
+  - /guides/load-test-a-kafka-server/
 ---
 
 ## How to test your Kafka server with Gatling 
