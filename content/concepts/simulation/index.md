@@ -40,7 +40,8 @@ The only mandatory piece in your Simulations is that they must call the `setUp` 
 
 which correspond to injecting one single user into the `scn` scenario.
 
-It's possible to have multiple populations, ie scenarios with an associated injection profile, in the same simulation:
+It's possible to have multiple populations, ie scenarios with an associated injection profile, in the same simulation.
+In this case, the scenarios will run in parallel.
 
 {{< include-code "setUp-multiple" >}}
 
