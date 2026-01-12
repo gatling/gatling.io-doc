@@ -3,545 +3,419 @@ menutitle: Testing gRPC with JS/TS
 title: Test gRPC with the JS/TS SDK
 seotitle: How to Test gRPC with the JS/TS SDK
 description: Step-by-step guide to testing gRPC using the JavaScript/TypeScript SDK.
-lead: Learn how to load test gRPC services with the JavaScript/TypeScript SDK using the grpc-js fleet-tracking demo.
+lead: Learn how to load test gRPC services with the JavaScript/TypeScript SDK using the official Gatling gRPC demo.
 ---
 
 ## Introduction
-This guide walks you through creating comprehensive load tests for gRPC services using Gatling's TypeScript SDK. We'll build tests for a real-world vehicle telemetry system that demonstrates both unary RPCs and server streaming.
 
-### What You'll Learn
+This guide walks through the official [Gatling gRPC demo](https://github.com/gatling/gatling-grpc-demo) to show how you can load test gRPC services with Gatling's JavaScript/TypeScript SDK. The demo provides a complete environment with example gRPC servers (a greeting service and calculator service) and pre-built load tests that demonstrate both unary and streaming RPC patterns.
 
-By the end of this guide, you'll be able to:
-- Set up Gatling for gRPC load testing with TypeScript
-- Configure protocol buffers for code generation
-- Test unary RPC endpoints
-- Test server streaming endpoints
-- Create multiple load profiles for different scenarios
-- Deploy and run tests on Gatling Enterprise
+gRPC is increasingly common in microservices architectures, mobile backends, and IoT platforms. Load testing gRPC endpoints ensures they can handle production traffic patterns before deployment. Gatling's JavaScript/TypeScript SDK provides a straightforward way to create realistic gRPC workloads and measure performance under load.
 
-### Prerequisites
+{{< alert tip >}}
+New to Gatling scripting in JavaScript or TypeScript? Start with the [Create a simulation with JavaScript/TypeScript tutorial]({{< ref "/tutorials/test-as-code/javascript/running-your-first-simulation/" >}}) before diving into protocol-specific use cases.
+{{< /alert >}}
 
-Before starting, you'll need:
-- **Node.js v20 or later** installed
-- **Basic understanding of gRPC** and protocol buffers
-- **A gRPC service to test** (we'll use a vehicle telemetry service as our example)
+## Why this example matters
 
-If you haven't worked with gRPC before, we recommend reviewing the [gRPC documentation](https://grpc.io/docs/) to understand the core concepts of services, RPCs, and protocol buffers.
+- **Real-world gRPC patterns:** The demo covers both unary RPCs (simple request-response) and streaming RPCs (continuous data flows), which are common in production gRPC services.
+- **Complete working environment:** The project includes a demo gRPC server, working simulations, and all necessary configuration—everything you need to understand gRPC load testing locally.
+- **Reusable patterns:** The Gatling scripts demonstrate how to configure gRPC connections, generate protocol buffer code, send messages, validate responses, and handle streaming data using the `@gatling.io/grpc` module.
 
-### Understanding the Example Service
+## Prerequisites
 
-Our example tests a Vehicle Telemetry Service that provides four gRPC endpoints:
+- Node.js 20 or later (npm included)
+- Docker (required for the demo gRPC servers)
+- A local Git client
+- A [Gatling Enterprise Edition account](https://cloud.gatling.io/?utm_source=docs&utm_medium=js-guides) for distributed testing (optional)
 
-1. **GetFleetSnapshot** (unary) - Retrieves current state of all vehicles
-2. **QueryTelemetryHistory** (server streaming) - Streams historical telemetry data
-3. **StreamVehicleSnapshots** (server streaming) - Real-time vehicle data stream
-4. **GetHistoricalAggregates** (unary) - Returns time-bucketed analytics
+## Clone and start the demo
 
-This mix of unary and streaming RPCs represents common patterns you'll encounter in production gRPC services.
+1. **Fetch the repository and navigate to the TypeScript demo.**
 
-## Project Setup
+   ```bash
+   git clone https://github.com/gatling/gatling-grpc-demo.git
+   cd gatling-grpc-demo/typescript
+   npm install
+   ```
 
-### Initialize Your Gatling Project
+2. **Start the demo gRPC servers.** From the repository root, launch the greeting and calculator services via Docker Compose.
 
-First, create a new directory and initialize the Gatling TypeScript project:
+   ```bash
+   cd ..  # Navigate back to repository root
+   docker compose up -d
+   ```
 
-```bash
-mkdir gatling-grpc-tests
-cd gatling-grpc-tests
-npm init -y
-npm install @gatling.io/cli @gatling.io/core @gatling.io/grpc
-```
+   This starts:
+   - **Greeting service** on `localhost:50051`
+   - **Calculator service** on `localhost:50052`
 
-### Configure TypeScript
+   Both servers run without TLS for local testing.
 
-Create a `tsconfig.json`:
+At this point you have a complete gRPC test environment. The servers are running, and the TypeScript project already includes the proto files in the `protobuf/` directory (`greeting.proto` and `calculator.proto`). Gatling's gRPC plugin will automatically generate TypeScript client code from these `.proto` files when you run the simulation.
 
-```json
-{
-  "compilerOptions": {
-    "target": "ES2022",
-    "module": "ES2022",
-    "moduleResolution": "bundler",
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "resolveJsonModule": true
-  },
-  "include": ["src/**/*"]
-}
-```
+## Understand the gRPC simulation structure
 
-### Set Up Protocol Buffers
+Gatling gRPC tests in JavaScript/TypeScript follow a test-as-code approach consisting of three main steps:
 
-Create the directory structure for your proto files:
+1. **Configure the gRPC protocol** (server address, TLS settings)
+2. **Define the scenario** (the RPC calls virtual users will make)
+3. **Shape the load** (how many users, injection patterns)
 
-```bash
-mkdir -p protobuf/google/protobuf
-mkdir -p src
-mkdir -p resources
-```
+Let's break down how these work for gRPC services.
 
-Gatling's gRPC plugin automatically generates TypeScript code from your `.proto` files. Place your service definition in `protobuf/telemetry.proto`:
+## Create a simple gRPC load test
 
-```protobuf
-syntax = "proto3";
+Open `src/GreetingSimulation.gatling.ts` to inspect a basic unary RPC test. The simulation demonstrates the core pattern for testing gRPC services:
 
-package telemetry.v1;
+### Set up the gRPC protocol
 
-import "google/protobuf/timestamp.proto";
-
-service TelemetryService {
-  rpc GetFleetSnapshot(FleetSnapshotRequest) returns (FleetSnapshotResponse);
-  rpc QueryTelemetryHistory(HistoryRequest) returns (stream TelemetrySnapshot);
-  rpc StreamVehicleSnapshots(StreamRequest) returns (stream VehicleSnapshot);
-  rpc GetHistoricalAggregates(AggregatesRequest) returns (AggregatesResponse);
-}
-
-message FleetSnapshotRequest {
-  repeated string vehicle_ids = 1;
-  bool include_metrics = 2;
-}
-
-message FleetSnapshotResponse {
-  repeated VehicleSnapshot snapshots = 1;
-  FleetMetrics metrics = 2;
-}
-
-// Additional message definitions...
-```
-
-**Important**: If your proto files import Google's common types (like `google/protobuf/timestamp.proto`), you must include them in your `protobuf/` directory. Download the official definitions from the [protocolbuffers/protobuf repository](https://github.com/protocolbuffers/protobuf/tree/main/src/google/protobuf) and place them in `protobuf/google/protobuf/`.
-
-### Configure Gatling
-
-Create `.gatling/package.conf` to tell Gatling where to find your proto files:
-
-```hocon
-gatling {
-  package {
-    outputDirectory = "target/bundle"
-  }
-  grpc {
-    protocPlugin {
-      path = "protobuf"
-    }
-  }
-}
-```
-
-## Creating Your First gRPC Test
-
-Let's start with a simple test for the unary `GetFleetSnapshot` endpoint. Create `src/fleetTest.gatling.ts`:
+First, configure the connection to your gRPC service:
 
 ```typescript
 import { simulation, scenario, atOnceUsers } from "@gatling.io/core";
 import { grpc, statusCode } from "@gatling.io/grpc";
 
 export default simulation((setUp) => {
-  // --- Server Configuration ---
   // Configure the gRPC server connection
-  const telemetryServer = grpc
-    .serverConfiguration("telemetry")
+  const grpcProtocol = grpc
+    .serverConfiguration("greeting-server")
     .forAddress("127.0.0.1", 50051)
-    .usePlaintext();  // Use for non-TLS connections
+    .usePlaintext();  // Required for non-TLS connections
 
-  const testProtocol = grpc.serverConfigurations(telemetryServer);
+  const protocol = grpc.serverConfigurations(grpcProtocol);
+```
 
-  // --- Scenario Definition ---
-  // Test the GetFleetSnapshot endpoint
-  const fleetScenario = scenario("Fleet Snapshot Test")
+**Important details:**
+- `.forAddress()` specifies the gRPC server host and port
+- `.usePlaintext()` disables TLS encryption (required for local testing without certificates)
+- Use `127.0.0.1` instead of `localhost` to avoid IPv4/IPv6 resolution issues
+
+### Define the scenario with unary RPCs
+
+For unary RPCs (single request, single response), use the `.unary()` method:
+
+```typescript
+  // Define the user journey
+  const greetingScenario = scenario("Greeting Service Test")
     .exec(
-      grpc("GetFleetSnapshot - All Vehicles")
-        .unary("telemetry.v1.TelemetryService/GetFleetSnapshot")
-        .send({ vehicle_ids: [], include_metrics: true })
+      grpc("Greet Alice")
+        .unary("helloworld.Greeter/SayHello")
+        .send({ name: "Alice" })
         .check(statusCode().is("OK"))
     )
     .exec(
-      grpc("GetFleetSnapshot - Specific Vehicle")
-        .unary("telemetry.v1.TelemetryService/GetFleetSnapshot")
-        .send({ vehicle_ids: ["vehicle-1"], include_metrics: false })
+      grpc("Greet Bob")
+        .unary("helloworld.Greeter/SayHello")
+        .send({ name: "Bob" })
         .check(statusCode().is("OK"))
     );
+```
 
-  // --- Load Injection ---
-  // Run with 2 virtual users executing once
-  setUp(fleetScenario.injectOpen(atOnceUsers(2))).protocols(testProtocol);
+**Key elements:**
+- **Service path format:** `package.ServiceName/MethodName` (from your `.proto` file)
+- **Request payload:** Use JavaScript objects with field names matching your protobuf definition (snake_case)
+- **Checks:** Validate responses with `.check()` (at minimum, verify status code is "OK")
+
+### Shape the load
+
+Finally, inject virtual users to generate load:
+
+```typescript
+  // Inject 5 users at once
+  setUp(greetingScenario.injectOpen(atOnceUsers(5)))
+    .protocols(protocol);
 });
 ```
 
-### Understanding the Code
+## Run your first gRPC load test
 
-Let's break down the key components:
-
-**Server Configuration**: The `serverConfiguration()` method creates a connection profile for your gRPC service. The `.usePlaintext()` method is crucial for non-TLS connections - without it, Gatling defaults to expecting TLS/SSL.
-
-**RPC Invocation**: For unary RPCs, use the `.unary()` method with the fully qualified service path (`package.service/Method`). The `.send()` method accepts a JavaScript object matching your protobuf message structure.
-
-**Field Naming**: Use snake_case field names as defined in your `.proto` files. Gatling's code generator handles the mapping automatically.
-
-**Checks**: The `.check()` method validates responses. At minimum, verify the status code is "OK" to ensure the RPC succeeded.
-
-### Running Your First Test
-
-Build and run the simulation:
+Execute the greeting simulation against the local server:
 
 ```bash
-npx gatling run --typescript --simulation fleetTest
+npx gatling run --typescript --simulation GreetingSimulation
 ```
+
+Gatling will:
+1. Generate TypeScript client code from the proto files in `protobuf/`
+2. Compile the simulation
+3. Execute 5 virtual users making greeting requests
+4. Generate an HTML report
 
 You should see output showing successful requests:
 
 ```
 ---- Global Information --------------------------------------------------------
-> request count                                                      4      (OK=4      KO=0     )
-> min response time                                                 45      (OK=45     KO=-     )
-> max response time                                                156      (OK=156    KO=-     )
+> request count                                                     10 (OK=10     KO=0     )
+> min response time                                                 12 (OK=12     KO=-     )
+> max response time                                                 89 (OK=89     KO=-     )
 ================================================================================
 ```
 
-## Testing Server Streaming
+Open the generated report at `target/gatling/<timestamp>/index.html` to view detailed metrics, response time distributions, and request counts.
 
-Server streaming RPCs require different handling since they return multiple messages over time. Create `src/streamingTest.gatling.ts`:
+## Test server streaming RPCs
+
+Server streaming RPCs return multiple messages over time and require different handling. Open `src/CalculatorSimulation.gatling.ts` to see how streaming works.
+
+### Define a server stream
 
 ```typescript
-import {
-  Session,
-  simulation,
-  scenario,
-  atOnceUsers
-} from "@gatling.io/core";
+import { Session, simulation, scenario, atOnceUsers } from "@gatling.io/core";
 import { grpc, statusCode } from "@gatling.io/grpc";
 
 export default simulation((setUp) => {
-  // --- Server Configuration ---
-  const telemetryServer = grpc
-    .serverConfiguration("telemetry")
-    .forAddress("127.0.0.1", 50051)
+  // Configure protocol
+  const grpcProtocol = grpc
+    .serverConfiguration("calculator-server")
+    .forAddress("127.0.0.1", 50052)
     .usePlaintext();
 
-  const testProtocol = grpc.serverConfigurations(telemetryServer);
+  const protocol = grpc.serverConfigurations(grpcProtocol);
 
-  // --- Helper Function ---
-  // Build a time range for historical queries
-  const buildTimeRange = () => {
-    const endSeconds = Math.floor(Date.now() / 1000);
-    const startSeconds = endSeconds - 3600; // Last hour
-    return {
-      start: { seconds: startSeconds, nanos: 0 },
-      end: { seconds: endSeconds, nanos: 0 }
-    };
-  };
-
-  // --- Stream Definition ---
-  // Define the server stream separately from execution
-  const historyStream = grpc("QueryTelemetryHistory")
-    .serverStream("telemetry.v1.TelemetryService/QueryTelemetryHistory")
+  // Define the server stream separately
+  const fibonacciStream = grpc("Fibonacci Stream")
+    .serverStream("calculator.Calculator/Fibonacci")
     .check(statusCode().is("OK"));
 
-  // --- Scenario Definition ---
-  const streamingScenario = scenario("Historical Data Stream")
-    // Store the time range in session for use in the request
-    .exec((session: Session) => {
-      const timeRange = buildTimeRange();
-      return session.set("timeRange", timeRange);
-    })
-    // Send the stream request and wait for completion
+  // Use the stream in a scenario
+  const calculatorScenario = scenario("Calculator Stream Test")
     .exec(
-      historyStream.send((session: Session) => ({
-        vehicle_ids: [],
-        range: session.get("timeRange"),
-        limit: 100
-      })),
-      historyStream.awaitStreamEnd()
+      fibonacciStream.send({ count: 10 }),
+      fibonacciStream.awaitStreamEnd()
     );
 
-  // --- Load Injection ---
-  setUp(streamingScenario.injectOpen(atOnceUsers(1))).protocols(testProtocol);
+  setUp(calculatorScenario.injectOpen(atOnceUsers(3)))
+    .protocols(protocol);
 });
 ```
 
-### Key Differences for Streaming
+**Critical differences for streaming:**
+1. **Create stream objects separately** using `.serverStream()` before calling `.send()`
+2. **Always call `.awaitStreamEnd()`** after `.send()` to wait for all messages
+3. **Never reuse stream objects**—create a fresh stream for each request
 
-**Stream Object Lifecycle**: Create the stream object using `.serverStream()` separately from the `.send()` and `.awaitStreamEnd()` calls. This allows proper stream state management.
+### Run the streaming test
 
-**Session Variables**: Use Gatling's session to store dynamic values needed for request construction. The `.exec()` method with a function parameter lets you manipulate session state.
+```bash
+npx gatling run --typescript --simulation CalculatorSimulation
+```
 
-**Awaiting Completion**: Always call `.awaitStreamEnd()` after `.send()` to ensure Gatling waits for all streamed messages before considering the request complete.
+The report will show the stream request duration (total time to receive all messages) and validate that the stream completed successfully.
 
-**Important**: Never reuse the same stream object for multiple requests. Each `.exec()` block should use a fresh stream definition if you need multiple streaming calls in one scenario.
+## Working with protocol buffers
 
-## Building a Comprehensive Load Test
+### Proto file requirements
 
-Now let's create a full simulation with multiple scenarios and configurable load profiles. Create `src/telemetrySimulation.gatling.ts`:
+Gatling automatically generates client code from `.proto` files in the `protobuf/` directory. The directory structure must match the import paths in your proto files.
+
+For example, if your proto file imports Google's common types:
+
+```protobuf
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+service MyService {
+  rpc GetData(Request) returns (Response);
+}
+```
+
+You must include the imported files:
+
+```
+protobuf/
+├── google/
+│   └── protobuf/
+│       └── timestamp.proto
+└── myservice.proto
+```
+
+Download Google's proto definitions from the [protocolbuffers/protobuf repository](https://github.com/protocolbuffers/protobuf/tree/main/src/google/protobuf) and place them in `protobuf/google/protobuf/`.
+
+### Field naming conventions
+
+Use **snake_case** field names in your `.send()` objects to match your protobuf definitions:
+
+```typescript
+// If your proto defines: message Request { string user_id = 1; }
+.send({ user_id: "12345" })  // Correct
+
+// Not: .send({ userId: "12345" })  // Wrong
+```
+
+## Common configuration patterns
+
+### Testing with TLS
+
+For production gRPC services using TLS, remove `.usePlaintext()`:
+
+```typescript
+const grpcProtocol = grpc
+  .serverConfiguration("secure-service")
+  .forAddress("api.example.com", 443);
+  // TLS is enabled by default
+```
+
+### Runtime parameters
+
+Make your simulations configurable with runtime parameters:
+
+```typescript
+import { getParameter } from "@gatling.io/core";
+
+const grpcHost = getParameter("grpcHost") || "127.0.0.1";
+const grpcPort = parseInt(getParameter("grpcPort") || "50051");
+
+const grpcProtocol = grpc
+  .serverConfiguration("service")
+  .forAddress(grpcHost, grpcPort)
+  .usePlaintext();
+```
+
+Run with custom parameters:
+
+```bash
+npx gatling run --typescript --simulation GreetingSimulation \
+  grpcHost=staging.example.com \
+  grpcPort=443
+```
+
+### Advanced response validation
+
+Beyond status codes, validate response content:
+
+```typescript
+import { grpc, statusCode, response } from "@gatling.io/grpc";
+
+grpc("Greet")
+  .unary("helloworld.Greeter/SayHello")
+  .send({ name: "Alice" })
+  .check(
+    statusCode().is("OK"),
+    response((r: any) => r.message.includes("Alice"), "Contains name")
+  );
+```
+
+## Create realistic load profiles
+
+For production-like testing, combine multiple scenarios with different injection patterns:
 
 ```typescript
 import {
-  Session,
-  simulation,
-  scenario,
   atOnceUsers,
   rampUsers,
   constantUsersPerSec,
   getParameter
 } from "@gatling.io/core";
-import { grpc, statusCode } from "@gatling.io/grpc";
 
-export default simulation((setUp) => {
-  // --- Configuration Parameters ---
-  // Allow runtime configuration via CLI parameters
-  const grpcHost = getParameter("grpcHost") || "127.0.0.1";
-  const grpcPort = parseInt(getParameter("grpcPort") || "50051");
-  const loadProfile = getParameter("loadProfile") || "mixed";
-  const testDurationSeconds = parseInt(getParameter("testDurationSeconds") || "60");
+const loadProfile = getParameter("loadProfile") || "smoke";
 
-  // --- Server Configuration ---
-  const telemetryServer = grpc
-    .serverConfiguration("telemetry")
-    .forAddress(grpcHost, grpcPort)
-    .usePlaintext();
+// Define multiple scenarios
+const quickUsers = scenario("Quick Checks")
+  .exec(/* quick unary calls */);
 
-  const baseGrpcProtocol = grpc.serverConfigurations(telemetryServer);
+const streamingUsers = scenario("Long Streams")
+  .exec(/* streaming calls */);
 
-  // --- Helper Functions ---
-  const buildTimeRange = (durationSeconds: number = 3600) => {
-    const endSeconds = Math.floor(Date.now() / 1000);
-    const startSeconds = endSeconds - durationSeconds;
-    return {
-      start: { seconds: startSeconds, nanos: 0 },
-      end: { seconds: endSeconds, nanos: 0 }
-    };
-  };
+// Shape different load profiles
+const loadProfiles = {
+  smoke: () => {
+    setUp(
+      quickUsers.injectOpen(atOnceUsers(1)),
+      streamingUsers.injectOpen(atOnceUsers(1))
+    ).protocols(protocol);
+  },
 
-  // --- Scenario 1: Fleet Snapshots ---
-  const fleetScenario = scenario("Fleet Queries")
-    .exec(
-      grpc("GetFleetSnapshot - All")
-        .unary("telemetry.v1.TelemetryService/GetFleetSnapshot")
-        .send({ vehicle_ids: [], include_metrics: true })
-        .check(statusCode().is("OK"))
-    )
-    .pause(1)
-    .exec(
-      grpc("GetFleetSnapshot - Filtered")
-        .unary("telemetry.v1.TelemetryService/GetFleetSnapshot")
-        .send({ vehicle_ids: ["vehicle-1", "vehicle-2"], include_metrics: false })
-        .check(statusCode().is("OK"))
-    );
-
-  // --- Scenario 2: Historical Queries ---
-  const historyStream = grpc("QueryHistory")
-    .serverStream("telemetry.v1.TelemetryService/QueryTelemetryHistory")
-    .check(statusCode().is("OK"));
-
-  const historyScenario = scenario("Historical Data")
-    .exec((session: Session) => session.set("timeRange", buildTimeRange(3600)))
-    .exec(
-      historyStream.send((session: Session) => ({
-        vehicle_ids: [],
-        range: session.get("timeRange"),
-        limit: 100
-      })),
-      historyStream.awaitStreamEnd()
-    );
-
-  // --- Scenario 3: Aggregates ---
-  const aggregatesScenario = scenario("Analytics Queries")
-    .exec((session: Session) => session.set("timeRange", buildTimeRange(3600)))
-    .exec(
-      grpc("GetAggregates - Speed")
-        .unary("telemetry.v1.TelemetryService/GetHistoricalAggregates")
-        .send((session: Session) => ({
-          vehicle_ids: [],
-          range: session.get("timeRange"),
-          aggregate_type: "SPEED",
-          window_seconds: 300
-        }))
-        .check(statusCode().is("OK"))
-    );
-
-  // --- Load Profile Configuration ---
-  // Define different load patterns based on the loadProfile parameter
-  const loadProfiles = {
-    smoke: () => {
-      setUp(
-        fleetScenario.injectOpen(atOnceUsers(1)),
-        historyScenario.injectOpen(atOnceUsers(1)),
-        aggregatesScenario.injectOpen(atOnceUsers(1))
-      ).protocols(baseGrpcProtocol);
-    },
-
-    fleet: () => {
-      setUp(
-        fleetScenario.injectOpen(
-          rampUsers(10).during(30),
-          constantUsersPerSec(5).during(testDurationSeconds)
-        )
-      ).protocols(baseGrpcProtocol);
-    },
-
-    mixed: () => {
-      setUp(
-        fleetScenario.injectOpen(rampUsers(5).during(20)),
-        historyScenario.injectOpen(atOnceUsers(2)),
-        aggregatesScenario.injectOpen(rampUsers(3).during(15))
-      ).protocols(baseGrpcProtocol);
-    }
-  };
-
-  // Execute the selected load profile
-  const profileFunction = loadProfiles[loadProfile as keyof typeof loadProfiles];
-  if (profileFunction) {
-    profileFunction();
-  } else {
-    throw new Error(`Unknown load profile: ${loadProfile}`);
+  load: () => {
+    setUp(
+      quickUsers.injectOpen(
+        rampUsers(50).during(60),
+        constantUsersPerSec(5).during(300)
+      ),
+      streamingUsers.injectOpen(
+        rampUsers(10).during(120)
+      )
+    ).protocols(protocol);
   }
-});
+};
+
+// Execute selected profile
+loadProfiles[loadProfile]();
 ```
 
-### Running Different Load Profiles
-
-Execute specific load profiles using CLI parameters:
+Run with:
 
 ```bash
-# Quick smoke test
-npx gatling run --typescript --simulation telemetrySimulation \
-  loadProfile=smoke
-
-# Heavy fleet queries
-npx gatling run --typescript --simulation telemetrySimulation \
-  loadProfile=fleet \
-  testDurationSeconds=120
-
-# Test against a remote server
-npx gatling run --typescript --simulation telemetrySimulation \
-  loadProfile=mixed \
-  grpcHost=telemetry.example.com \
-  grpcPort=443
+npx gatling run --typescript --simulation MySimulation loadProfile=load
 ```
 
-## Common Configuration Patterns
+## Deploy to Gatling Enterprise Edition
 
-### Testing with TLS
+To run gRPC tests on Gatling Enterprise (for unlimited virtual users and distributed load generation):
 
-For production gRPC services using TLS, remove the `.usePlaintext()` call:
+1. **Ensure your gRPC service is publicly accessible.** For local testing, use a tool like ngrok:
+
+   ```bash
+   ngrok tcp 50051
+   ```
+
+   Note the forwarding address (e.g., `0.tcp.ngrok.io:12345`).
+
+2. **Package and deploy the simulation.**
+
+   ```bash
+   npx gatling enterprise-deploy \
+     --simulation GreetingSimulation \
+     --api-token <your_token>
+   ```
+
+3. **Configure the target server** in the Gatling Enterprise UI using JavaScript parameters:
+   - `grpcHost`: Your ngrok or production hostname
+   - `grpcPort`: The exposed port
+
+4. **Run and monitor** the test through the Enterprise dashboard to view real-time metrics, concurrent connections, and throughput.
+
+Refer to the [JavaScript CLI guide]({{< ref "/integrations/build-tools/js-cli/#deploying-on-gatling-enterprise" >}}) for advanced deployment options.
+
+## Best practices
+
+### 1. Never reuse stream objects
+
+Always create new stream objects for each request:
 
 ```typescript
-const telemetryServer = grpc
-  .serverConfiguration("telemetry")
-  .forAddress("telemetry.example.com", 443);
-  // TLS is enabled by default when .usePlaintext() is omitted
-```
-
-If you need custom certificates:
-
-```typescript
-const telemetryServer = grpc
-  .serverConfiguration("telemetry")
-  .forAddress("telemetry.example.com", 443)
-  .useTls();  // Explicitly enable TLS
-
-// Place your certificates in resources/certs/
-// Gatling will automatically use them for the connection
-```
-
-### IPv4 vs IPv6 Considerations
-
-When testing against local Docker containers or services that only bind to IPv4, use `127.0.0.1` instead of `localhost`:
-
-```typescript
-// ✅ Correct - forces IPv4
-.forAddress("127.0.0.1", 50051)
-
-// ❌ May fail - could resolve to IPv6
-.forAddress("localhost", 50051)
-```
-
-This is especially important on macOS where `localhost` often resolves to IPv6 (`::1`) by default.
-
-### Advanced Response Validation
-
-Beyond status code checks, you can validate response content:
-
-```typescript
-import { grpc, statusCode, response } from "@gatling.io/grpc";
-
-grpc("GetFleetSnapshot")
-  .unary("telemetry.v1.TelemetryService/GetFleetSnapshot")
-  .send({ vehicle_ids: [], include_metrics: true })
-  .check(
-    statusCode().is("OK"),
-    response((r: any) => r.snapshots.length > 0, "Has snapshots"),
-    response((r: any) => r.metrics !== undefined, "Has metrics")
-  );
-```
-
-## Deploying Tests to Gatling Enterprise Edition
-
-To run your tests on Enterprise Edition, you need a publicly accessible gRPC endpoint.
-
-### Option 1: Using Railway or similar PaaS
-
-Railway provides a simple way to deploy your gRPC service with a persistent endpoint:
-
-1. **Prepare your service** with a `Dockerfile` or let Railway auto-detect your runtime
-2. **Deploy to Railway** via their GitHub integration
-3. **Configure environment variables** for your gRPC settings
-4. **Use the Railway endpoint** in your Gatling simulation
-
-```bash
-# Run against your Railway deployment
-npx gatling run --typescript --simulation telemetrySimulation \
-  grpcHost=your-app.up.railway.app \
-  grpcPort=50051 \
-  loadProfile=mixed
-```
-
-### Option 2: Using ngrok for Quick Testing
-
-For temporary testing without deployment:
-
-```bash
-# Start your local service
-npm run start-grpc-service
-
-# In another terminal, expose it via ngrok
-ngrok tcp 50051
-
-# Use the ngrok address (e.g., 0.tcp.ngrok.io:12345)
-npx gatling run --typescript --simulation telemetrySimulation \
-  grpcHost=0.tcp.ngrok.io \
-  grpcPort=12345 \
-  loadProfile=smoke
-```
-
-Note that ngrok's free tier provides ephemeral URLs that change each session, making Railway a better choice for repeated or scheduled tests.
-
-## Best Practices
-
-### 1. Separate Stream Objects
-
-Always create new stream objects for each request. Never reuse a stream:
-
-```typescript
-// ✅ Correct - separate streams
+// ✅ Correct
 const stream1 = grpc("Query1").serverStream(...);
 const stream2 = grpc("Query2").serverStream(...);
 
 .exec(stream1.send(...), stream1.awaitStreamEnd())
 .exec(stream2.send(...), stream2.awaitStreamEnd())
 
-// ❌ Wrong - reusing stream causes errors
+// ❌ Wrong - causes errors
 const stream = grpc("Query").serverStream(...);
 
 .exec(stream.send(...), stream.awaitStreamEnd())
 .exec(stream.send(...), stream.awaitStreamEnd())  // Will fail!
 ```
 
-### 2. Use Session Variables for Dynamic Data
+### 2. Start with smoke tests
 
-For dynamic request data, use session variables:
+Validate your simulation with minimal load before running high-intensity tests:
+
+```bash
+npx gatling run --typescript --simulation MySimulation loadProfile=smoke
+```
+
+This catches configuration errors without overwhelming your service.
+
+### 3. Use session variables for dynamic data
+
+For dynamic request data, use Gatling's session:
 
 ```typescript
+import { Session } from "@gatling.io/core";
+
 .exec((session: Session) => {
   const timestamp = Date.now();
   return session.set("requestTime", timestamp);
@@ -555,72 +429,68 @@ For dynamic request data, use session variables:
 )
 ```
 
-### 3. Configure Reasonable Timeouts
+### 4. Prefer IPv4 for local testing
 
-For streaming RPCs that may run long, configure appropriate timeouts in your Gatling configuration:
+When testing against local Docker containers, use `127.0.0.1` instead of `localhost`:
 
-```hocon
-gatling {
-  http {
-    requestTimeout = 120000  // 2 minutes for long streams
-  }
-}
+```typescript
+// ✅ Correct - forces IPv4
+.forAddress("127.0.0.1", 50051)
+
+// ❌ May fail - could resolve to IPv6
+.forAddress("localhost", 50051)
 ```
 
-### 4. Start with Smoke Tests
-
-Always validate your simulation with a smoke test (1 user per scenario) before running high-load tests:
-
-```bash
-npx gatling run --typescript --simulation telemetrySimulation \
-  loadProfile=smoke
-```
-
-This quickly identifies configuration issues without generating excessive load.
+This is especially important on macOS where `localhost` often resolves to IPv6 (`::1`) by default, which may not match your Docker container's network binding.
 
 ## Troubleshooting
 
-### "UNAVAILABLE" Status Errors
+### "UNAVAILABLE" status errors
 
-**Symptom**: All requests return `UNAVAILABLE` status.
+**Symptom:** All requests return `UNAVAILABLE` status.
 
-**Common causes**:
+**Common causes:**
 1. **Missing `.usePlaintext()`** - Add this for non-TLS services
-2. **Wrong service path** - Verify the format: `package.ServiceName/MethodName`
+2. **Wrong service path** - Verify format: `package.ServiceName/MethodName`
 3. **IPv4/IPv6 mismatch** - Use `127.0.0.1` instead of `localhost`
-4. **Service not running** - Verify your gRPC service is listening
+4. **Service not running** - Verify with `docker ps` or check server logs
 
-### Proto Import Errors
+### Proto import errors
 
-**Symptom**: Build fails with "cannot find import" errors.
+**Symptom:** Build fails with "cannot find import" errors.
 
-**Solution**: Download the required proto files (like `google/protobuf/timestamp.proto`) from the [official repository](https://github.com/protocolbuffers/protobuf/tree/main/src/google/protobuf) and place them in your `protobuf/` directory matching the import path.
+**Solution:** Download required proto files (like `google/protobuf/timestamp.proto`) from the [official repository](https://github.com/protocolbuffers/protobuf/tree/main/src/google/protobuf) and place them in your `protobuf/` directory matching the import path structure.
 
-### Stream State Errors
+### Stream state errors
 
-**Symptom**: `IllegalStateException: Cannot send message on gRPC stream; current state is ClosedStream`
+**Symptom:** `IllegalStateException: Cannot send message on gRPC stream; current state is ClosedStream`
 
-**Solution**: Create a new stream object for each request instead of reusing the same one.
+**Solution:** Create a new stream object for each request instead of reusing the same one. Each stream can only be used once.
 
-## Next Steps
+### Proto code generation fails
 
-You now have a complete gRPC load testing setup with Gatling. From here, you can:
+**Symptom:** Build errors about missing proto files or syntax errors.
 
+**Solution:**
+1. Verify all proto files are in the `protobuf/` directory
+2. Check that directory structure matches import paths
+3. Ensure proto files have valid `syntax = "proto3";` declarations
+4. Delete `target/` directory and rebuild: `rm -rf target && npx gatling run ...`
+
+## Next steps
+
+You now have a working gRPC load testing setup with Gatling's JavaScript/TypeScript SDK. From here, you can:
+
+- Adapt the demo simulations to test your own gRPC services
 - Add custom checks to validate response content
-- Create sophisticated load patterns with Gatling's injection profiles
+- Create sophisticated load patterns with multiple scenarios
 - Integrate tests into CI/CD pipelines
-- Scale testing with Gatling Enterprise
+- Scale testing with Gatling Enterprise Edition
 
-For more advanced scenarios and configuration options, see the [Gatling gRPC documentation](https://docs.gatling.io/reference/script/protocols/grpc/).
+For more advanced scenarios and configuration options, see the [Gatling gRPC documentation]({{< ref "/reference/script/grpc/" >}}).
 
-## Example Repository
+## Reference
 
-A complete working example implementing all patterns from this guide is available at:
-https://github.com/brownshaun/mqtt-js/tree/main/gatling
-
-The repository includes:
-- Full TypeScript simulations for unary and streaming RPCs
-- Protocol buffer definitions with proper imports
-- Multiple load profiles
-- Deployment configurations for Railway and ngrok
-- A complete vehicle telemetry backend for testing
+- [Official Gatling gRPC demo repository](https://github.com/gatling/gatling-grpc-demo)
+- [Gatling gRPC protocol reference]({{< ref "/reference/script/grpc/" >}})
+- [JavaScript/TypeScript SDK documentation]({{< ref "/concepts/simulation/" >}})
