@@ -14,4 +14,5 @@ ordering:
   - sse-js
   - websocket-js
   - mqtt-js
+  - grpc-js
 ---
