@@ -303,45 +303,68 @@ For production-like testing, combine multiple scenarios with different injection
 
 ```typescript
 import {
+  simulation,
+  scenario,
   atOnceUsers,
   rampUsers,
   constantUsersPerSec,
   getParameter
 } from "@gatling.io/core";
+import { grpc, statusCode } from "@gatling.io/grpc";
 
-const loadProfile = getParameter("loadProfile") || "smoke";
+export default simulation((setUp) => {
+  // Configure gRPC protocol
+  const grpcProtocol = grpc
+    .serverConfiguration("service")
+    .forAddress("127.0.0.1", 50051)
+    .usePlaintext();
 
-// Define multiple scenarios
-const quickUsers = scenario("Quick Checks")
-  .exec(/* quick unary calls */);
+  const protocol = grpc.serverConfigurations(grpcProtocol);
 
-const streamingUsers = scenario("Long Streams")
-  .exec(/* streaming calls */);
+  const loadProfile = getParameter("loadProfile") || "smoke";
 
-// Shape different load profiles
-const loadProfiles = {
-  smoke: () => {
-    setUp(
-      quickUsers.injectOpen(atOnceUsers(1)),
-      streamingUsers.injectOpen(atOnceUsers(1))
-    ).protocols(protocol);
-  },
+  // Define multiple scenarios
+  const quickUsers = scenario("Quick Checks")
+    .exec(
+      grpc("Quick RPC")
+        .unary("service.Service/Method")
+        .send({ /* request */ })
+        .check(statusCode().is("OK"))
+    );
 
-  load: () => {
-    setUp(
-      quickUsers.injectOpen(
-        rampUsers(50).during(60),
-        constantUsersPerSec(5).during(300)
-      ),
-      streamingUsers.injectOpen(
-        rampUsers(10).during(120)
-      )
-    ).protocols(protocol);
-  }
-};
+  const streamingUsers = scenario("Long Streams")
+    .exec(
+      grpc("Long Stream")
+        .serverStream("service.Service/StreamMethod")
+        .send({ /* request */ })
+        .check(statusCode().is("OK"))
+    );
 
-// Execute selected profile
-loadProfiles[loadProfile]();
+  // Shape different load profiles
+  const loadProfiles = {
+    smoke: () => {
+      setUp(
+        quickUsers.injectOpen(atOnceUsers(1)),
+        streamingUsers.injectOpen(atOnceUsers(1))
+      ).protocols(protocol);
+    },
+
+    load: () => {
+      setUp(
+        quickUsers.injectOpen(
+          rampUsers(50).during(60),
+          constantUsersPerSec(5).during(300)
+        ),
+        streamingUsers.injectOpen(
+          rampUsers(10).during(120)
+        )
+      ).protocols(protocol);
+    }
+  };
+
+  // Execute selected profile
+  loadProfiles[loadProfile]();
+});
 ```
 
 Run with:
