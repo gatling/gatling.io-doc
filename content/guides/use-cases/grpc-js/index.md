@@ -267,10 +267,14 @@ import { getParameter } from "@gatling.io/core";
 const grpcHost = getParameter("grpcHost") || "127.0.0.1";
 const grpcPort = parseInt(getParameter("grpcPort") || "50051");
 
-const grpcProtocol = grpc
+let grpcProtocol = grpc
   .serverConfiguration("service")
-  .forAddress(grpcHost, grpcPort)
-  .usePlaintext();
+  .forAddress(grpcHost, grpcPort);
+
+// Use plaintext only for local, non-TLS demo servers.
+if (grpcHost === "127.0.0.1" || grpcHost === "localhost") {
+  grpcProtocol = grpcProtocol.usePlaintext();
+}
 ```
 
 Run with custom parameters:
@@ -308,7 +312,8 @@ import {
   atOnceUsers,
   rampUsers,
   constantUsersPerSec,
-  getParameter
+  getParameter,
+  scenario
 } from "@gatling.io/core";
 import { grpc, statusCode } from "@gatling.io/grpc";
 
