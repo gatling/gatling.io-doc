@@ -5,4 +5,5 @@ ordering:
   - dynatrace
   - influxdb
   - newrelic
+  - otel
 ---
