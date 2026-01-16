@@ -44,7 +44,7 @@ The Datadog integration requires installation steps in your Datadog account and 
         system-properties {
           "gatling.enterprise.dd.api.key" = "<your Datadog API key>"
           "gatling.enterprise.dd.application.key" = "<your Datadog application key>"
-          "gatling.enterprise.dd.site" = "datadoghq.com"
+          "gatling.enterprise.dd.site" = "<your Datadog site, depends on where you are hosted, see https://docs.datadoghq.com/getting_started/site/#access-the-datadog-site>"
         }
       }
     ]
