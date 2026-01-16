@@ -100,8 +100,8 @@ control-plane {
         # SSH connection timeout (optional, default 15 seconds)
         # connection-timeout = 15 seconds
       }
-      # Working directory on hosts, must be executable (optional, default: /tmp)
-      # working-directory = "/tmp
+      # Absolute path of the directory where executable binaries will be stored
+      # executable-dir = "/tmp"
       
       # Hosts accessible with the SSH private key, on configured port (hostnames or IP addresses)
       hosts = [
