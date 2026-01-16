@@ -56,4 +56,4 @@ jobs:
         run: ./bin/entrypoint.sh --noprepare generate
 
       - name: Generate llms.txt files
-        run: npm run generate-llms-txt
+        run: node bin/generate-llms-txt.js

@@ -71,7 +71,6 @@
   },
   "name": "gatling.io-doc",
   "scripts": {
-    "generate-llms-txt": "node bin/generate-llms-txt.js",
     "test-ts-samples": "tsc --project tsconfig-code-samples.json"
   },
   "version": "0.0.0"
