@@ -11,4 +11,5 @@ ordering:
   - test-as-code
   - git-repository
   - optional-config
+  - limits
 ---
