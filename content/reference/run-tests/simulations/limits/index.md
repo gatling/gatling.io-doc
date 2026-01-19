@@ -7,13 +7,22 @@ lead: Various test limits applied when running tests on Gatling Enterprise Editi
 
 ---
 
+## Package limits
+
+Uploading a package will fail if the following limits are violated.
+
+| Description                   | Limit   |
+|-------------------------------|---------|
+| Maximum size                  | 5 GB    |
+| Maximum number of zip entries | 100,000 |
+
 ## Metrics limits
 
 The number of different metrics is limited:
 * to not saturate our platform
 * because metrics only make sense if they aggregate lots of events. Unique events are useless in a load test.
 
-| Metric type                  | Limit | Overflow consequence |
+| Description                  | Limit | Overflow consequence |
 |------------------------------|-------|----------------------|
 | Unique scenario names        | 100   | Test crash           |
 | Unique group names           | 500   | Test crash           |
@@ -27,7 +36,7 @@ The number of different metrics is limited:
 
 Please be aware that some timeouts are applied the different phases of your tests.
 
-| Description                                   | Duration   | Possible cause                                                                                                                                                                                                                       |
+| Description                                   | Limit      | Overflow possible cause                                                                                                                                                                                                              |
 |-----------------------------------------------|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Time to build a package from source           | 5 minutes  | Cloning the git repository takes too long.<br>Compiling the sources takes too long.<br>The Control Plane can't connect to the private package storage because of network rules.<br>Cleaning up the working directory takes too long. |
 | Time to spawn the load generators             | 5 minutes  | Spawning the load generators takes too long, in particular when having to spawn new nodes on a Kubernetes cluster.                                                                                                                   |
