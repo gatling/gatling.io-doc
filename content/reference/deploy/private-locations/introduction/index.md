@@ -14,7 +14,7 @@ This feature is only available on Gatling Enterprise. To learn more, [explore ou
 
 A location describes where to start load generators:
 
-- Public locations are available by default, and listed by regions.
+- Managed locations are available by default, and listed by regions.
 - Private locations must be configured, and allow you to deploy load generators on your own infrastructure.
 
 {{< alert info >}}
@@ -198,6 +198,3 @@ When configuring a simulation, on the locations step, click on private.
 At the moment, it is not possible to use private locations along with public ones.
 {{< /alert >}}
 
-## Credit consumption
-
-Private locations consume credits like public locations: one credit, per load generator, per minute.
