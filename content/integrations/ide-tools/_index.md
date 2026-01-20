@@ -5,4 +5,6 @@ lead: Enhance your Gatling experience with powerful IDE integrations.
 ordering:
   - vscode
   - cursor
+  - windsurf
+  - antigravity
 ---
