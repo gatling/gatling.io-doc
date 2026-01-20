@@ -9,6 +9,9 @@
     "@gatling.io/grpc": "3.14.903",
     "@gatling.io/http": "3.14.903",
     "@gatling.io/mqtt": "3.14.903",
-    "@gatling.io/postman": "3.14.903"
+    "@gatling.io/postman": "3.14.903",
+    "glob": "13.0.0",
+    "gray-matter": "4.0.3",
+    "yaml": "2.8.2"
   }
 }

@@ -16,9 +16,14 @@ rssLimit: 10
 outputs:
   home:
     - HTML
+    - MARKDOWN
+  page:
+    - HTML
+    - MARKDOWN
   section:
     - HTML
     - SITEMAP
+    - MARKDOWN
 
 outputFormats:
   SITEMAP:
@@ -28,6 +33,13 @@ outputFormats:
     isPlainText: true
     noUgly: true
     rel: sitemap
+  
+  MARKDOWN:
+    mediaType: text/markdown
+    baseName: index
+    isPlainText: true
+    permalinkable: true
+    notAlternative: false
 
 markup:
   goldmark:

@@ -54,3 +54,6 @@ jobs:
 
       - name: Generate documentation
         run: ./bin/entrypoint.sh --noprepare generate
+
+      - name: Generate llms.txt files
+        run: node bin/generate-llms-txt.js
