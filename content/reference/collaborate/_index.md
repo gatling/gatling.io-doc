@@ -1,5 +1,6 @@
 ---
 title: User & team management
+description: Learn how to manage users and teams in Gatling Enterprise Edition.
 aliases:
   - /reference/execute
 ordering:

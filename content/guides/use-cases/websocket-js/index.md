@@ -2,6 +2,7 @@
 menutitle: Testing WebSocket with JS/TS
 title: How to test the WebSocket protocol with JavaScript/TypeScript SDK
 seotitle: Master WebSocket load testing with Gatling JavaScript/TypeScript SDK a step-by-step guide
+description: Learn how to load test WebSocket with Gatling and the JavaScript/TypeScript SDK
 lead: Learn how to load test WebSocket with Gatling and the JavaScript/TypeScript SDK
 date: 2025-09-10T13:35:00+02:00
 ---
