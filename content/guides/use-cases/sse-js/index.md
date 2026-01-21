@@ -2,6 +2,7 @@
 menutitle: Testing SSE with JS/TS
 title: How to test the SSE protocol with JavaScript/TypeScript SDK
 seotitle: Learn how to load test SSE with Gatling and the JavaScript/TypeScript SDK
+description: Learn how to load test SSE with Gatling and the JavaScript/TypeScript SDK
 lead: Learn how to load test SSE with Gatling and the JavaScript/TypeScript SDK
 date: 2025-09-10T13:35:00+02:00
 ---
