@@ -8,6 +8,11 @@ aliases:
   - /reference/script/protocols/http/recorder/
 ---
 
+{{< alert enterprise>}}
+**Try Gatling Studio** – our low-code scripting application with an integrated HTTP recorder. Capture, create, and export load tests in a few clicks. [Download the lastest version.](https://gatling.io/product/studio/)
+{{< /alert >}}
+
+
 The Gatling Recorder helps you to quickly generate scenarios, by either acting as a HTTP proxy between the browser and the HTTP server or converting HAR (Http ARchive) files.
 Either way, the Recorder generates a simple simulation that mimics your recorded navigation.
 
