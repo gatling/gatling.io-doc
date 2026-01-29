@@ -7,6 +7,10 @@ lead: Create simulations from git repositories in Gatling Enterprise Edition.
 date: 2025-07-30T10:29:36+00:00
 ---
 
+## Requirements
+
+A control-plane that supports [Private Locations - Build From Git]({{< ref "reference/deploy/private-locations/introduction" >}}) is required.
+
 ## Create simulations from a git repository
 
 Use the **Create a simulation** button either coming from the Simulations page or the Getting started guide to open the simulation creation modal.
@@ -45,6 +49,20 @@ You need to configure the general parameters:
   - JVM projects: Enter the fully qualified name (example: `io.gatling.DemoSimulation`)
   - JavaScript projects: Use the simulation name (example: `demoSimulation` for `demoSimulation.gatling.js`)
 
+
+#### Custom Build Command
+
+Custom build commands must be enabled by a global administrator from [organization settings]({{< ref "reference/collaborate/user/organization#custom-build-command" >}}).
+
+{{< alert warning >}}
+Custom build commands require a minimum control-plane version [2026.4.1-builder](https://hub.docker.com/layers/gatlingcorp/control-plane/2026.4.1-builder),
+though we recommend using the [latest-builder](https://hub.docker.com/layers/gatlingcorp/control-plane/latest-builder) version.
+{{< /alert >}}
+
+You need to configure:
+- **Command**: the command used to package your simulations for Gatling Enterprise Edition. 
+(see packaging section of your [build tool]({{< ref "integrations/build-tools">}}))
+- **Package format**: the format of the package, either `JVM` (for Maven, Gradle and sbt) or `JS` (for JavaScript).
 
 ### Configure the load generator locations
 
