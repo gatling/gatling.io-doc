@@ -42,13 +42,14 @@ This section is only available to organizations using [private locations]({{< re
 
 Managed packages are **enabled** by default.
 
-This setting allows you to control whether your organization's users can create and use managed packages. By disabling this feature, you enforce the exclusive use of [private packages]({{< ref "../../deploy/private-locations/private-packages" >}}) for all load tests.
+This setting allows you to control whether your organization's users can create and use managed packages. 
+By disabling this feature and [no-code simulations]({{< ref "#no-code-simulations" >}}), you enforce the exclusive use of [private packages]({{< ref "../../deploy/private-locations/private-packages" >}}) for all load tests.
 
 When disabled, users in your organization are prevented from:
 
-* Creating, uploading or updating packages from the **Sources** view.
-* Creating new simulations with a managed package.
-* Launching any pre-existing simulation that is configured with a managed package.
+* creating, uploading or updating packages from the **Sources** view,
+* creating new simulations with a managed package,
+* launching any pre-existing simulation that is configured with a managed package.
 
 Note: Any managed packages that were created before this feature was disabled remain visible in the **Sources** view. Users can delete these if necessary.
 
@@ -56,12 +57,46 @@ Note: Any managed packages that were created before this feature was disabled re
 
 Managed locations are **enabled** by default.
 
-This setting allows you to control whether your users can deploy load tests to Gatling-managed locations, including locations using a dedicated IP. By disabling this feature, you enforce the exclusive use of [private locations]({{< ref "../../deploy/private-locations/introduction" >}}) for all load tests.
+This setting allows you to control whether your users can deploy load tests to Gatling-managed locations, including locations using a dedicated IP. 
+By disabling this feature, you enforce the exclusive use of [private locations]({{< ref "../../deploy/private-locations/introduction" >}}) for all load tests.
 
 When disabled, users in your organization are prevented from:
 
-* Creating new simulations with a managed location, or a location with a dedicated IP.
-* Launching any pre-existing simulation configured with at least one managed/dedicated IP location.
+* creating new simulations with a managed location, or a location with a dedicated IP,
+* launching any pre-existing simulation configured with at least one managed/dedicated IP location.
+
+#### No-code simulations
+
+Managed locations are **enabled** by default.
+
+This setting allows you to control whether your users can deploy load tests using [no-code simulations]({{< ref "reference/run-tests/simulations/no-code" >}}).
+By disabling this feature and [managed packages]({{< ref "#managed-packages" >}}), you enforce the exclusive use of [private packages]({{< ref "../../deploy/private-locations/private-packages" >}}) for all load tests.
+
+When disabled, users in your organization are prevented from:
+
+* creating new simulations with a no-code configuration,
+* launching any pre-existing simulation configured no-code.
+
+#### Public links
+
+Public links are **enabled** by default.
+
+This setting allows you to control whether your users can create [public links]({{< ref "reference/stats/reports/cloud#shareable-links" >}}).
+
+When disabled, users in your organization are prevented from:
+
+* sharing public links to run reports,
+* and existing public links are invalidated.
+
+#### Custom build command
+
+Custom build commands are **disabled** by default.
+
+This setting allows you to control whether your users can create a [simulation from a git repository]({{< ref "reference/stats/reports/cloud#shareable-links" >}}) using a [custom build command]({{< ref "reference/run-tests/simulations/git-repository#custom-build-command" >}}).
+
+When enabled, users in your organization are allowed to:
+
+* configure a custom build command on simulations that clone a git repository
 
 ## Users
 
