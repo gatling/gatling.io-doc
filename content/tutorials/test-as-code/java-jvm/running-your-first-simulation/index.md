@@ -135,7 +135,7 @@ Upload your script manually or drive automated deployments.
 3. Create a simulation, choose the uploaded package, select a managed location, and launch.
 
 ### Automated deployment (configuration as code)
-1. Generate an [API token]({{< ref "/reference/collaborate/admin/api-tokens" >}}) with the `Configure` permission.
+1. Generate an [API token]({{< ref "/reference/administration/api-tokens" >}}) with the `Configure` permission.
 2. Export it in your terminal session:
 
    {{< platform-toggle >}}

@@ -16,9 +16,9 @@ project configuration through a simple command of your Gatling build tool plugin
 
 On Gatling Enterprise:
 
-- [Create an account]({{< ref "reference/collaborate/user/login/#create-your-own-account" >}})
-- [Create or join an organization]({{< ref "reference/collaborate/user/login/#login" >}})
-- Create an [API Token]({{< ref "reference/collaborate/admin/api-tokens" >}}) with **Configure** permission
+- [Create an account]({{< ref "reference/user-guide/login/#create-your-own-account" >}})
+- [Create or join an organization]({{< ref "reference/user-guide/login/#login" >}})
+- Create an [API Token]({{< ref "reference/administration/api-tokens" >}}) with **Configure** permission
 
 For a better understanding, see references for underlying concepts:
 - [Package Generation]({{< ref "reference/run-tests/sources/package-gen" >}})
@@ -29,7 +29,7 @@ For a better understanding, see references for underlying concepts:
 
 To deploy your Gatling project on Gatling Enterprise, follow these steps:
 
-1. Configure the Gatling Enterprise [API Token]({{< ref "reference/collaborate/admin/api-tokens" >}}) within your Gatling Build Plugin:
+1. Configure the Gatling Enterprise [API Token]({{< ref "reference/administration/api-tokens" >}}) within your Gatling Build Plugin:
    - [Gatling Plugin with Maven]({{< ref "/integrations/build-tools/maven-plugin/#prerequisites" >}})
    - [Gatling Plugin with Gradle]({{< ref "/integrations/build-tools/gradle-plugin/#prerequisites" >}})
    - [Gatling Plugin with sbt]({{< ref "/integrations/build-tools/sbt-plugin/#prerequisites" >}})
@@ -100,9 +100,9 @@ See [Consistent deployment]({{< ref "#consistent-deployment-with-id" >}}) to cha
 
 ### Assign the package to a team
 
-As described in [Default Behavior]({{< ref "#default-behavior" >}}), the team is inferred from the [API Token]({{< ref "reference/collaborate/admin/api-tokens" >}}) when not specified.
+As described in [Default Behavior]({{< ref "#default-behavior" >}}), the team is inferred from the [API Token]({{< ref "reference/administration/api-tokens" >}}) when not specified.
 
-You can configure the [Team]({{< ref "reference/collaborate/admin/teams" >}}), however, the [API Token]({{< ref "reference/collaborate/admin/api-tokens" >}}) must have the Configure permission for the specified team.
+You can configure the [Team]({{< ref "reference/administration/teams" >}}), however, the [API Token]({{< ref "reference/administration/api-tokens" >}}) must have the Configure permission for the specified team.
 
 ```hocon
 gatling.enterprise.package {

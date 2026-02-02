@@ -6,6 +6,7 @@ description: Learn how to administrate API tokens to authenticate your requests 
 lead: Create API Tokens to authenticate your requests to the Gatling Enterprise Edition public API.
 date: 2021-03-10T13:47:16+00:00
 aliases:
+  - /reference/collaborate/admin/api-tokens/
   - /reference/execute/cloud/admin/api-tokens/
 ---
 

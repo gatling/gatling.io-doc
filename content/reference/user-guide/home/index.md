@@ -5,6 +5,7 @@ description: Checkout your teams last runs and credits left.
 lead: Checkout your teams last runs and credits left.
 date: 2024-06-04T14:29:04+00:00
 aliases:
+  - /reference/collaborate/user/home/
   - /reference/execute/cloud/user/home/
 ---
 
@@ -27,15 +28,15 @@ If your run has assertions, results, or logs, you can view them by clicking on t
 ## Available credits
 
 {{< alert warning >}}
-This section is only available to [Contributors and Team Contributors]({{< ref "../admin/users#permissions" >}})
+This section is only available to [Contributors and Team Contributors]({{< ref "/reference/administration/users#permissions" >}})
 {{< /alert >}}
 
-The top right section of the page shows the remaining credits in your organization. See the [usage page]({{< ref "organization#usage" >}}) for a more detailed view of your credit consumption.
+The top right section of the page shows the remaining credits in your organization. See the [usage page]({{< ref "/reference/user-guide/organization#usage" >}}) for a more detailed view of your credit consumption.
 
 {{< img src="credits.png" alt="Credits left" >}}
 
 ## Documentation
 
-Depending on [your role]({{< ref "../admin/users#permissions" >}}) in the organization, the documentation section displays various links to key concepts of Gatling Enterprise.
+Depending on [your role]({{< ref "/reference/administration/users#permissions" >}}) in the organization, the documentation section displays various links to key concepts of Gatling Enterprise.
 
 {{< img src="documentation.png" alt="Documentation" >}}

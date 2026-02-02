@@ -41,7 +41,7 @@ Add new variables:
 - `gatling.enterprise.address` corresponds to the address of Gatling Enterprise Edition (`https://cloud.gatling.io`).
 - `gatling.enterprise.apiAddress` corresponds to the public API (`https://api.gatling.io`).
 - `gatling.enterprise.apiTokenPassword` corresponds to the API token needed to authenticate to Gatling Enterprise Edition:
-  - the [API token]({{< ref "reference/collaborate/admin/api-tokens" >}}) needs the **Start** permission.
+  - the [API token]({{< ref "reference/administration/api-tokens" >}}) needs the **Start** permission.
 
 {{< alert info >}}
 If you specify `https://cloud.gatling.io` for ``gatling.enterprise.address``, you can leave out `gatling.enterprise.apiAddress` as it will default to `https://api.gatling.io`. If you use an internal gateway to allow your Jenkins instance to call the Gatling Enterprise Edition public API, you may need to specify your gateway address for `gatling.enterprise.apiAddress`.

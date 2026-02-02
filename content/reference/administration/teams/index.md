@@ -6,6 +6,7 @@ description: Learn how to administrate teams in Gatling Enterprise Edition.
 lead: Administrate your organization's teams in Gatling Enterprise Edition.
 date: 2021-03-10T13:47:03+00:00
 aliases:
+  - /reference/collaborate/admin/teams/
   - /reference/execute/cloud/admin/teams/
 ---
 

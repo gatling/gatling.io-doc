@@ -248,7 +248,7 @@ Windows: gradlew.bat gatlingRecorder
 
 #### Prerequisites
 
-You need to configure an [an API token]({{< ref "reference/collaborate/admin/api-tokens" >}}) for most
+You need to configure an [an API token]({{< ref "reference/administration/api-tokens" >}}) for most
 of the actions between the CLI and Gatling Enterprise Edition.
 
 {{< alert warning >}}

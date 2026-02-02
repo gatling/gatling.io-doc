@@ -29,7 +29,7 @@ You will need:
 - A git repository: we will be using GitHub in our example
 - A working simulation on [Gatling Enterprise Edition](https://cloud.gatling.io): you
   will need its ID later on, which you can copy with **Copy Simulation ID to clipboard** in the Simulations page
-- An [API token]({{< ref "reference/collaborate/admin/api-tokens" >}}) which needs the **Start** permission.
+- An [API token]({{< ref "reference/administration/api-tokens" >}}) which needs the **Start** permission.
 
 On Azure DevOps, your will need:
 

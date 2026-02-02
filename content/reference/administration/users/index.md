@@ -6,6 +6,7 @@ description: Learn how to manage users and their permissions in Gatling Enterpri
 lead: Manage your organization's users and their permissions in Gatling Enterprise Edition.
 date: 2021-03-10T13:47:07+00:00
 aliases:
+  - /reference/collaborate/admin/users/
   - /reference/execute/cloud/admin/users/
 ---
 

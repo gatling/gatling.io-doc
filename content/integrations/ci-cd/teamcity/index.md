@@ -41,7 +41,7 @@ The plugin needs a global configuration. Go to **Administration**, then **gatlin
 - the **Gatling Enterprise Edition Address** is the address of Gatling Enterprise Edition (`https://cloud.gatling.io`).
 - the **Gatling Enterprise Edition API Address** is for the public API (`https://api.gatling.io`).
 - the **Gatling Enterprise Edition API Token** is needed to authenticate to Gatling Enterprise Edition:
-  - the [API token]({{< ref "reference/collaborate/admin/api-tokens" >}}) needs the **Start** permission.
+  - the [API token]({{< ref "reference/administration/api-tokens" >}}) needs the **Start** permission.
 
 {{< alert info >}}
 If you specify the **Address** `https://cloud.gatling.io`, you can leave the **API Address** field blank as it will default to `https://api.gatling.io`. If you use an internal gateway to allow your Jenkins instance to call the Gatling Enterprise public API, you may need to specify your gateway address as the **API Address**.

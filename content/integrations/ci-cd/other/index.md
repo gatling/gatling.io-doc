@@ -22,7 +22,7 @@ This will not create a new Gatling Enterprise Edition simulation, you have to cr
 
 ## Pre-requisites
 
-You must first [create an API token]({{< ref "reference/collaborate/admin/api-tokens" >}}). It will be used to authenticate with Gatling Enterprise Edition. Most CI tools should offer a way to store this token securely, and expose it to build scripts as an environment variable.
+You must first [create an API token]({{< ref "reference/administration/api-tokens" >}}). It will be used to authenticate with Gatling Enterprise Edition. Most CI tools should offer a way to store this token securely, and expose it to build scripts as an environment variable.
 
 In the following examples, we assume the API Token is available in an environment variable named `GATLING_ENTERPRISE_API_TOKEN`, which our tools, including the example shell script, will detect automatically.
 
