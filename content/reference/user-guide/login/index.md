@@ -4,6 +4,7 @@ seotitle: Logging in to Gatling Enterprise Edition
 description: Learn how to connect to Gatling Enterprise Edition with a login/password, or with Google, GitHub, etc.
 date: 2021-03-10T14:29:04+00:00
 aliases:
+  - /reference/collaborate/user/login/
   - /reference/execute/cloud/user/login/
 ---
 

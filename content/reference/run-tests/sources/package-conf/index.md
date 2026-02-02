@@ -56,7 +56,7 @@ Upon successful file upload, you should see your file:
 You can also upload packages programmatically with our REST API.
 
 You'll need:
-* an [API token]({{< ref "/reference/collaborate/admin/api-tokens" >}}) with at least the `Packages` permission
+* an [API token]({{< ref "/reference/administration/api-tokens" >}}) with at least the `Packages` permission
 * the Package's ID, which can be copied from the WebUI.
 
 You can then upload your package, eg with `curl`:

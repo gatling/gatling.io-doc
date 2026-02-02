@@ -7,7 +7,8 @@ ordering:
   - deploy
   - script
   - run-tests
-  - collaborate
+  - user-guide
+  - administration
   - stats
   - api
   - glossary

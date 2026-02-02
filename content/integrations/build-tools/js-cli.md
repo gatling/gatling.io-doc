@@ -188,7 +188,7 @@ You can check out other options with `npx gatling recorder --help`.
 
 #### Prerequisites
 
-You need to configure [an API token]({{< ref "/reference/collaborate/admin/api-tokens/" >}}) for most of the actions
+You need to configure [an API token]({{< ref "/reference/administration/api-tokens/" >}}) for most of the actions
 between the CLI and Gatling Enterprise Edition.
 
 {{< alert warning >}}

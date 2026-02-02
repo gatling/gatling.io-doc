@@ -6,6 +6,7 @@ description: Learn how to set up a custom Single Sign-On (SSO) system for your o
 lead: A custom Single Sign-On (SSO) configuration allows your users to sign into Gatling Enterprise Edition using your organization's authentication system.
 date: 2022-03-01T14:00:00+00:00
 aliases:
+  - /reference/collaborate/custom-sso/
   - /reference/install/cloud/custom-sso
 ---
 
@@ -13,13 +14,13 @@ Configuring a custom Single Sign-On (SSO) solution is only available on the [ent
 
 At the moment, we only support integration with SSO systems which are accessible on the Internet.
 
-If you already have an organization on Gatling Enterprise Edition, after configuring a custom SSO, you need to re-invite your users and configure their roles. All other existing data, such as your [teams]({{< ref "/reference/run-tests/simulations" >}}), [simulations]({{< ref "/reference/collaborate/admin/teams" >}}), [reports]({{< ref "/reference/stats/reports/cloud" >}}), and [API tokens]({{< ref "/reference/collaborate/admin/api-tokens" >}}) remain.
+If you already have an organization on Gatling Enterprise Edition, after configuring a custom SSO, you need to re-invite your users and configure their roles. All other existing data, such as your [teams]({{< ref "/reference/administration/teams" >}}), [simulations]({{< ref "/reference/run-tests/simulations" >}}), [reports]({{< ref "/reference/stats/reports/cloud" >}}), and [API tokens]({{< ref "/reference/administration/api-tokens" >}}) remain.
 
 ## Required information
 
 To handle your support request, we need to know:
 
-- the name and slug for your organization, visible on the [organization settings page]({{< ref "/reference/collaborate/user/organization" >}}),
+- the name and slug for your organization, visible on the [organization settings page]({{< ref "/reference/administration/organization-settings" >}}),
 - relevant information depending on the type of SSO system used (see below),
 - a way to configure one of your users as a global admin, so that they can invite back your other users - in most cases, we ask them to sign in once, after we have configured the SSO, to link their account.
 
@@ -173,7 +174,7 @@ You can combine global and team roles in a single mapping:
 
 ### Available roles
 
-Consult the [available roles]({{< ref "/reference/collaborate/admin/users/#permissions" >}}) for available endpoints.
+Consult the [available roles]({{< ref "/reference/administration/users/#permissions" >}}) for available roles.
 
 {{< alert info >}}
 When a user belongs to multiple SSO groups, they will be granted the highest level of access from all applicable group mappings.

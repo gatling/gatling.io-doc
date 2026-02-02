@@ -6,6 +6,7 @@ description: Learn how to access your Gatling Enterprise Edition user profile an
 lead: Manage your user-level account settings
 date: 2021-03-10T14:29:23+00:00
 aliases:
+  - /reference/collaborate/user/profile/
   - /reference/execute/cloud/user/profile/
 ---
 
@@ -28,7 +29,7 @@ From this menu, you can view and modify your account settings and leave an organ
 ### View and modify your account settings
 
 {{< alert info >}}
-User roles are modified using the Organization menu. See [Manage users and permissions]({{< ref "../admin/users#managing-users" >}}) for more information. You can [find your Administrators]({{< ref "organization#users" >}}) on the Organization page, accessible
+User roles are modified using the Organization menu. See [Manage users and permissions]({{< ref "/reference/administration/users#managing-users" >}}) for more information. You can [find your Administrators]({{< ref "/reference/user-guide/organization#users" >}}) on the Organization page, accessible
 from the left-side menu.
 {{< /alert >}}
 

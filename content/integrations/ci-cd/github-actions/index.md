@@ -41,7 +41,7 @@ You must first create an API token. It will be used to authenticate with Gatling
 We recommend storing the API Token [in a GitHub encrypted secret](https://docs.github.com/en/actions/security-guides/encrypted-secrets#using-encrypted-secrets-in-a-workflow).
 In the following examples, we assume the **API Token** is stored in a secret called `GATLING_ENTERPRISE_API_TOKEN`.
 
-For Gatling Enterprise Edition, the [API token]({{< ref "reference/collaborate/admin/api-tokens" >}}) needs the **Start** permission.
+For Gatling Enterprise Edition, the [API token]({{< ref "reference/administration/api-tokens" >}}) needs the **Start** permission.
 
 We also assume that you have already configured a simulation on Gatling Enterprise Edition. You can copy the simulation ID from the simulations list view. In the following examples, we will show the simulation ID as `test_00000000000000000000000000`.
 

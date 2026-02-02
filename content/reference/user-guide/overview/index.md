@@ -5,6 +5,7 @@ description: Learn how to navigate in Gatling Enterprise Edition.
 lead: Learn how to navigate in Gatling Enterprise Edition.
 date: 2021-03-10T14:29:04+00:00
 aliases:
+  - /reference/collaborate/user/overview/
   - /reference/execute/cloud/user/overview/
 ---
 
@@ -19,7 +20,7 @@ The navigation bar is composed of:
 - [**Home**]({{< ref "home" >}}): see your teams last runs, credits left and useful links to documentation
 - [**Simulations**]({{< ref "simulations" >}}): manage simulations, runs and reports
 - [**Organization**]({{< ref "organization" >}}): view organization details, credits usage and admin users
-- [**API Tokens**]({{< ref "../admin/api-tokens" >}}): manage token to access the API - *accessible to system admins only*
+- [**API Tokens**]({{< ref "/reference/administration/api-tokens" >}}): manage token to access the API - *accessible to system admins only*
 - [**Packages**]({{< ref "package-conf" >}}): manage simulations packages - *accessible to test admins and system admins*
 - [**Dedicated IP Addresses**]({{< ref "dedicated-ips" >}}): a table of the dedicated IP's- *accessible to test admins and system admins* 
 - [**Private Locations**]({{< ref "/reference/deploy/private-locations/introduction" >}}): a table of your private locations - *accessible if you purchased some* 

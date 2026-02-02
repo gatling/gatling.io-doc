@@ -52,7 +52,7 @@ You need to configure the general parameters:
 
 #### Custom Build Command
 
-Custom build commands must be enabled by a global administrator from [organization settings]({{< ref "reference/collaborate/user/organization#custom-build-command" >}}).
+Custom build commands must be enabled by a global administrator from [organization settings]({{< ref "reference/administration/organization-settings#custom-build-command" >}}).
 
 {{< alert warning >}}
 Custom build commands require a minimum control-plane version [2026.4.1-builder](https://hub.docker.com/layers/gatlingcorp/control-plane/2026.4.1-builder),

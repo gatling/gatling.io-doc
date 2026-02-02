@@ -87,7 +87,7 @@ To run simulations from Gitlab CI/CD, you first need to configure a secure API t
 7. Enter `GATLING_ENTERPRISE_API_TOKEN` as the `Key`
 8. Paste your API token as the `Value`
 
-If you need to generate a new API token, follow our guide [here]({{< ref "/reference/collaborate/admin/api-tokens" >}}).
+If you need to generate a new API token, follow our guide [here]({{< ref "/reference/administration/api-tokens" >}}).
 
 ### Configure the Pipeline
 

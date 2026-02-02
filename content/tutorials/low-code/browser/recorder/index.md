@@ -183,7 +183,7 @@ From Gatling 3.11 packaging and running simulations on Gatling Enterprise is sim
 
 To deploy and run your simulation on Gatling Enterprise, use the following procedure:
 
-1. Generate an [API token]({{< ref "/reference/collaborate/admin/api-tokens" >}}) with the `Configure` permission in your Gatling Enterprise account.
+1. Generate an [API token]({{< ref "/reference/administration/api-tokens" >}}) with the `Configure` permission in your Gatling Enterprise account.
 2. Add the API token to your current terminal session by replacing `<your-API-token>` with the API token generated in step 1 and running the following command:
 
    {{< platform-toggle >}}

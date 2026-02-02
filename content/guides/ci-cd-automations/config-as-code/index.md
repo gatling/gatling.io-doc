@@ -20,7 +20,7 @@ we recommend trying the [Intro to scripting]({{< ref "/tutorials/test-as-code/ja
 
 - A Gatling Project _(Demo projects: [Maven](https://github.com/gatling/gatling-maven-plugin-demo-java), [Gradle](https://github.com/gatling/gatling-gradle-plugin-demo-java), [sbt](https://github.com/gatling/gatling-sbt-plugin-demo), [JavaScript](https://github.com/gatling/gatling-js-demo))_
 - A Gatling Enterprise Edition account [sign up for a free trial](https://cloud.gatling.io/)
-- An [API token]({{< ref "/reference/collaborate/admin/api-tokens" >}}) with the **`Configure`** permission
+- An [API token]({{< ref "/reference/administration/api-tokens" >}}) with the **`Configure`** permission
 
 ## Configure the package descriptor
 
@@ -103,7 +103,7 @@ At this point, making your initial package deployment is a good idea.
 This allows you to work with the package and simulation IDs for keeping track of tests and avoid duplicate packages and
 simulations on Gatling Enterprise Edition. Use the following procedure to make your initial deployment:
 
-1. Add the [API Token]({{< ref "reference/collaborate/admin/api-tokens" >}}) to your Gatling project.
+1. Add the [API Token]({{< ref "reference/administration/api-tokens" >}}) to your Gatling project.
   - [Gatling Plugin with Maven]({{< ref "/integrations/build-tools/maven-plugin/#prerequisites" >}})
   - [Gatling Plugin with Gradle]({{< ref "/integrations/build-tools/gradle-plugin/#prerequisites" >}})
   - [Gatling Plugin with sbt]({{< ref "/integrations/build-tools/sbt-plugin/#prerequisites" >}})
