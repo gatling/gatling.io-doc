@@ -263,7 +263,7 @@ Simple means cyclic graphs are not currently supported. One common use case is t
 {{< include-code "randomSwitch" >}}
 
 The sum of percentages can't exceed 100%.
-If the sum is less than 100%, users who won't fall into one of the chains will exit the switch and continue.
+If the sum is less than 100%, users who don't fall into one of the chains will exit the switch and continue.
 Once users have completed the switch, they continue with the rest of the scenario.
 
 {{< alert tip >}}
@@ -303,7 +303,7 @@ It takes 2 parameters:
 
 #### `exitBlockOnFail`
 
-Similar to tryMax, but without retrying on failure.
+Similar to `tryMax`, but without retrying on failure.
 
 {{< include-code "exitBlockOnFail" >}}
 
@@ -364,7 +364,7 @@ Beware that group names mustn't contain commas.
 
 ### Dummy
 
-Create a dummy action that simulation a call to a remote system, with response time, status outcome and session updates.
+Create a dummy action that simulates a call to a remote system, with response time, status outcome and session updates.
 Typically used when you can't call the actual remote system as part of your load tests while still measuring business processes metrics with groups.
 
 {{< include-code "dummy" >}}
