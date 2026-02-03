@@ -25,6 +25,11 @@ If you don't, the JVM will use a max heap size of 1/4th of the physical memory.
 Accelerate deployment and simplify configuration with Gatling's pre-built [<span style="text-decoration: underline;">infrastructure-as-code configurations</span>]({{< ref "infrastructure-as-code/#gcp" >}}).
 {{</alert>}}
 
+{{<alert tip >}}
+We recommend against using Spot VMs for your load generators.
+They can be reclaimed while the test is ongoing, which would break it with no further indication that the load generator has stopped sending stats.
+{{</alert>}}
+
 ## Permissions
 
 GCP private locations require the control plane to have GCP access rights configured in order to instantiate virtual machines.
