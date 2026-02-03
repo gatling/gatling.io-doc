@@ -22,6 +22,11 @@ The follow recommendations help you to select the best instances and tune them f
 Accelerate deployment and simplify configuration with Gatling's pre-built [<span style="text-decoration: underline;">infrastructure-as-code configurations</span>]({{< ref "infrastructure-as-code/#aws" >}}).
 {{</alert>}}
 
+{{<alert tip >}}
+We recommend against using Spot Instances for your load generators.
+They can be reclaimed while the test is ongoing, which would break it with no further indication that the load generator has stopped sending stats.
+{{</alert>}}
+
 ## Permissions
 
 AWS private locations requires the control plane to have access to AWS credentials from the default credential provider chain.
