@@ -69,6 +69,8 @@ control-plane {
     type = "aws"
     bucket = "bucket-name"
     path = "folder/to/upload" # (optional, default: root)
+    # server-side-encryption = "AES256" # (optional, default: none, values: AES256, aws:fsx, aws:kms, aws:kms:dsse)
+    # endpoint-override = "https://s3.example.com" # (optional, default: none)
   }
 }
 ```
