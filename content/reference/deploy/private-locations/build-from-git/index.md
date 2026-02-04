@@ -62,19 +62,6 @@ We require the following minimum versions:
 |    **sbt** | `gatling-sbt`          | `4.13.3`        |
 |    **npm** | `@gatling.io/cli`      | `3.13.501`      |
 
-#### Local caches
-
-{{< alert warning >}}
-We strongly recommend that you mount **all** the following directories on a persisted volume so you don't have to re-download all the dependencies on each container reboot:
-
-* `/app/.m2`
-* `/app/.gradle`
-* `/app/.sbt`
-* `/app/.cache/coursier`
-* `/app/.ivy2`
-* `/app/.npm`
-{{< /alert >}}
-
 #### Configuration
 
 If your infrastructure blocks access to online dependency repositories such as [Maven Central](https://central.sonatype.com/), [Gradle Portal](https://plugins.gradle.org/) or [NPM Registry](https://www.npmjs.com/) and instead requires dependencies to be downloaded from a corporate repository, please make sure to configure your build tool accordingly.
@@ -198,3 +185,29 @@ Security Best Practices:
 * Limit token permissions to read-only access.
 * Never include credentials in repository URLs within Gatling Enterprise Edition.
 {{< /alert >}}
+
+## Caching
+
+### Local caches
+
+{{< alert warning >}}
+We strongly recommend that you mount **all** the following directories on a persisted volume so you don't have to re-download all the dependencies on each container reboot:
+
+* `/app/.m2`
+* `/app/.gradle`
+* `/app/.sbt`
+* `/app/.cache/coursier`
+* `/app/.ivy2`
+* `/app/.npm`
+  {{< /alert >}}
+
+### Private storage build cache
+
+If your Gatling project takes a long time to build and doesn't change on every run, you may want to
+configure caching on your [private storage location]({{< ref "reference/deploy/private-locations/private-packages" >}}). Refer to the Build Caching section for your storage provider.
+
+Once configured, a cached build is reused when the following conditions are met:
+* The Git repository URL has not changed
+* The target branch HEAD commit has not changed
+* The build command has not changed
+* The configured time-to-live has not expired
