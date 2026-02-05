@@ -77,6 +77,6 @@ jobs:
           HUGO_DEPLOYMENT_BUCKET: ${{ secrets.HUGO_DEPLOYMENT_BUCKET }}
           HUGO_DEPLOYMENT_CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.HUGO_DEPLOYMENT_CLOUDFRONT_DISTRIBUTION_ID }}
         run: |
-          sed -i 's/HUGO_DEPLOYMENT_BUCKET/$HUGO_DEPLOYMENT_BUCKET/' config/production/config.yaml
-          sed -i 's/HUGO_DEPLOYMENT_CLOUDFRONT_DISTRIBUTION_ID/$HUGO_DEPLOYMENT_CLOUDFRONT_DISTRIBUTION_ID/' config/production/config.yaml
+          sed -i "s/HUGO_DEPLOYMENT_BUCKET/$HUGO_DEPLOYMENT_BUCKET/" config/production/config.yaml
+          sed -i "s/HUGO_DEPLOYMENT_CLOUDFRONT_DISTRIBUTION_ID/$HUGO_DEPLOYMENT_CLOUDFRONT_DISTRIBUTION_ID/" config/production/config.yaml
           hugo deploy --maxDeletes -1 --invalidateCDN
