@@ -10,7 +10,7 @@ aliases:
 
 ## IPv4 vs IPv6
 
-IPv6 (enabled by default on Java) was found to sometimes cause some performance issues, so the launch scripts disable it with the following options
+IPv6 (enabled by default on Java) was found to sometimes cause some performance issues, so the launch scripts disable it with the following options:
 
 ```shell
 -Djava.net.preferIPv4Stack=true
@@ -21,73 +21,99 @@ If you really need to prefer IPv6, please edit the launch scripts.
 
 ## OS tuning
 
-{{< alert tip >}}
-Those instructions below are excerpts from the great Riak documentation.
-Please refer to the [Open Files Limit](https://github.com/basho/basho_docs/blob/master/content/riak/kv/2.2.3/using/performance/open-files-limit.md/)
-and [Kernel and Network Tuning](https://github.com/basho/basho_docs/blob/master/content/riak/kv/2.2.3/using/performance.md#kernel-and-network-tuning)
-sections for more details or for instructions for macOS.
-{{< /alert >}}
-
 Gatling can consume a very large number of open file handles during normal operation.
 Typically, operating systems limit this number, so you may have to tweak a few options in your chosen OS so that you can open *many* new sockets and achieve heavy load.
 
+### Kernel and network tuning
+
+Consider tuning kernel and network by adding settings such as the following in `/etc/sysctl.d/99-gatling.conf`:
+
+```ini
+fs.nr_open = 1073741816
+
+net.ipv4.ip_local_port_range = 1024 65535
+net.ipv4.tcp_fin_timeout = 15
+net.ipv4.tcp_max_tw_buckets = 8192
+net.ipv4.tcp_tw_reuse = 1
+
+net.ipv4.tcp_slow_start_after_idle = 0
+
+net.core.optmem_max = 131072
+net.ipv4.tcp_rmem = 4096 131072 33554432
+net.ipv4.tcp_wmem = 4096 16384 4194304
+```
+
+In newer kernel (6.1+), as `fs.file-max` defaults to the largest signed 64 bits integer, it doesn't need to be changed.
+If it is not the case, you can add it to the previous configuration.
+This can be checked with:
+
+```console
+$ cat /proc/sys/fs/file-max
+9223372036854775807
+```
+
+Apply the configuration by using:
+
+```console
+sudo sysctl -p /etc/sysctl.d/99-gatling.conf
+```
+
+
 ### Open files limit
+
+{{< alert warning >}}
+Make sure to increase these limits after applying the previous sysctl parameters.
+{{< /alert >}}
 
 Most operating systems can change the open-files limit using the `ulimit -n` command. Example:
 
 ```console
-ulimit -n 65536
+ulimit -n 1048576
 ```
 
 However, this only changes the limit for the current shell session. Changing the limit on a system-wide, permanent basis varies more between systems.
 
-To permanently set the soft and hard values *for all users of the system* to allow for up to 65536 open files ; edit `/etc/security/limits.conf` and append the following two lines:
+To permanently set the soft and hard values *for all users of the system* to allow for up to 1048576 open files; create or edit `/etc/security/limits.d/99-gatling.conf` and add the following two lines:
 
 ```
-*       soft    nofile  65535
-*       hard    nofile  65535
+*         soft   nofile 1048576
+*         hard   nofile 1048576
 ```
 
-Save the file. Start a new session so that the limits take effect. You can now verify with `ulimit -a` that the limits are correctly set.
+Save the file. Start a new session so that the limits take effect. You can now verify with `ulimit -n` that the limits are correctly set.
 
-For Debian and Ubuntu, you should enable PAM user limits. To do so, add `session required pam_limits.so` in:
+Also, if accessing the machine via SSH, be sure to have `UsePAM yes` in `/etc/ssh/sshd_config`.
 
-* `/etc/pam.d/common-session`
-* `/etc/pam.d/common-session-noninteractive` if the file exists
-* `/etc/pam.d/sshd` if you access the machine via SSH
+### Systemd limits
 
-Also, if accessing the machine via SSH, be sure to have `UseLogin yes` in `/etc/ssh/sshd_config`
-
-For more tuning, you may want to do the following:
+The SSH daemon can also be limited by Systemd, which can be checked with:
 
 ```console
-# more ports for testing
-sudo sysctl -w net.ipv4.ip_local_port_range="1025 65535"
-
-# increase the maximum number of possible open file descriptors:
-echo 300000 | sudo tee /proc/sys/fs/nr_open
-echo 300000 | sudo tee /proc/sys/fs/file-max
+$ systemctl show sshd -p LimitNOFILE
+LimitNOFILE=65535
 ```
 
-### Kernel and network tuning
+If you see this number is below our settings, you can either edit the `sshd` service file and add
+`LimitNOFILE=1048576` in the `Service` section or create a file called `/etc/systemd/system.conf.d/99-gatling.conf` with
+the following content:
 
-Consider tuning kernel and network and add settings such as the following in `/etc/sysctl.conf`.
+```
+[Manager]
+DefaultLimitNOFILE=1048576:1048576
+```
 
-```ini
-net.ipv4.tcp_max_syn_backlog = 40000
-net.core.somaxconn = 40000
-net.core.wmem_default = 8388608
-net.core.rmem_default = 8388608
-net.ipv4.tcp_sack = 1
-net.ipv4.tcp_window_scaling = 1
-net.ipv4.tcp_fin_timeout = 15
-net.ipv4.tcp_keepalive_intvl = 30
-net.ipv4.tcp_tw_reuse = 1
-net.ipv4.tcp_moderate_rcvbuf = 1
-net.core.rmem_max = 134217728
-net.core.wmem_max = 134217728
-net.ipv4.tcp_mem  = 134217728 134217728 134217728
-net.ipv4.tcp_rmem = 4096 277750 134217728
-net.ipv4.tcp_wmem = 4096 277750 134217728
-net.core.netdev_max_backlog = 300000
+The `/etc/systemd/system.conf.d` may not exist yet and can be created with:
+
+```
+sudo mkdir /etc/systemd/system.conf.d
+```
+
+In Amazon Linux 2023, there is an existing file with default limits you can edit: `/etc/systemd/system.conf.d/50-limits.conf`.
+
+Don't forget to reload the Systemd daemon after any modification, then check the limit again:
+
+```console
+$ sudo systemctl daemon-reload
+$ systemctl show sshd -p LimitNOFILE
+LimitNOFILE=1048576
 ```
