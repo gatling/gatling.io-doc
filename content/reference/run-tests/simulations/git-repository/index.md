@@ -9,7 +9,7 @@ date: 2025-07-30T10:29:36+00:00
 
 ## Requirements
 
-A control-plane that supports [Private Locations - Build From Git]({{< ref "reference/deploy/private-locations/introduction" >}}) is required.
+A control-plane that supports [Private Locations - Build From Git]({{< ref "reference/deploy/private-locations/build-from-git" >}}) is required.
 
 ## Create simulations from a git repository
 
