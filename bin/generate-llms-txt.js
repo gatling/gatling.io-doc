@@ -156,7 +156,7 @@ function expandCodeShortcodes(content, filePath) {
       }).join('\n\n') + '\n';
       
     } catch (error) {
-      console.warn(`Warning: Could not process code for ${codeName}:`, error.message);
+      console.warn(`Warning: Could not process code for ${codeName}: ${error.message}`);
       return match;
     }
   });
@@ -200,7 +200,7 @@ function parseFrontmatter(filePath) {
       content: expandedContent
     };
   } catch (error) {
-    console.warn(`Warning: Could not parse ${filePath}:`, error.message);
+    console.warn(`Warning: Could not parse ${filePath}: ${error.message}`);
     return { frontmatter: {}, content: '' };
   }
 }
@@ -416,7 +416,7 @@ function writeOutputFile(filePath, content) {
     fs.writeFileSync(filePath, content, 'utf8');
     return true;
   } catch (error) {
-    console.error(`Error writing ${filePath}:`, error.message);
+    console.error(`Error writing ${filePath}: ${error.message}`);
     return false;
   }
 }
