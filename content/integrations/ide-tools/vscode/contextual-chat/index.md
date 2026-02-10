@@ -6,6 +6,15 @@ lead: Get instant answers about Gatling performance testing
 
 Use the Gatling AI Assistant chat to ask questions about your simulations, Gatling concepts, best practices, and implementation patterns. The assistant understands your project context and provides relevant, practical advice.
 
+## Persistent chat history
+
+Conversations are automatically saved and restored when you reopen VS Code. You can:
+
+- **Resume previous conversations**: Pick up where you left off after closing and reopening the extension
+- **Browse chat history**: Scroll through previous conversations to find past answers and context
+
+Chat history is stored locally per workspace and is never sent to Gatling servers.
+
 ## How to use contextual chat
 
 ### 1. Open the Gatling panel
