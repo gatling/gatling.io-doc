@@ -61,19 +61,16 @@ function extractCodeSection(fileContent, sectionName, fileExt) {
   
   // Create regex to match //#sectionName ... //#sectionName
   const startMarker = `${comment}#${sectionName}`;
-  const pattern = new RegExp(
-    `${escapeRegex(startMarker)}\\s*\\n([\\s\\S]*?)\\n\\s*${escapeRegex(startMarker)}`,
-    'g'
-  );
-  
+
+  // Global regexes might return multiple results with common prefixes: e.g: binaryHeader/binaryHeaders, etc.
+  const pattern = `${escapeRegex(startMarker)}\\n((.|\\n)+?)${escapeRegex(startMarker)}`;
   const matches = [...fileContent.matchAll(pattern)];
-  
-  if (matches.length === 0) {
+
+  if (matches.length === 0 || matches[0].length < 2) {
     return null;
   }
   
-  // Return all matching sections (there might be multiple)
-  return matches.map(match => match[1].trim()).join('\n\n');
+  return matches[0][1].trim();
 }
 
 /**
