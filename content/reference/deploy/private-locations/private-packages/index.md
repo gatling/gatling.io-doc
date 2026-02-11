@@ -79,6 +79,32 @@ This configuration includes the following parameters:
 - **bucket**: The name of the bucket where packages are uploaded to on AWS S3.
 - **path:** The path of a folder in AWS S3 bucket. (optional)
 
+##### Build caching
+
+If you are using [build from a Git repository]({{< ref "reference/deploy/private-locations/build-from-git" >}}) and want to enable
+[private storage build cache]({{< ref "reference/deploy/private-locations/build-from-git#private-storage-build-cache" >}}),
+you need to enable caching in the configuration:
+
+```bash
+control-plane {
+  repository {
+    # S3 Bucket configuration
+    type = "aws"
+    bucket = "bucket-name"
+    path = "folder/to/upload" # (optional, default: root)
+    # ...
+    cache {
+      enabled = true
+    }
+  }
+}
+```
+
+Cached builds are stored under the path `<bucket>/<path>/cache/builds/*`.
+
+Automatically clean up expired cache entries by configuring an  [S3 Lifecycle rule](https://docs.aws.amazon.com/AmazonS3/latest/userguide/lifecycle-expire-general-considerations.html) to delete objects after a specified number of days.
+Set the rule's prefix to `<path>/cache` to limit the scope to cached builds only.
+
 #### Azure Blob Storage
 
 {{<alert tip >}}
@@ -103,6 +129,37 @@ control-plane {
   }
 }
 ```
+
+##### Build caching
+
+If you are using [build from a Git repository]({{< ref "reference/deploy/private-locations/build-from-git" >}}) and want to enable
+[private storage build cache]({{< ref "reference/deploy/private-locations/build-from-git#private-storage-build-cache" >}}),
+you need to enable caching in the configuration:
+
+```bash
+control-plane {
+  repository {
+    # Azure Blob Storage configuration
+    type = "azure"
+    storage-account = "storage-account-name"
+    container = "container-name"
+    path = "folder/to/upload" # (optional, default: root)
+    # ...
+    cache {
+      enabled = true
+    }
+  }
+}
+```
+
+Cached builds are stored under the path `<storage-account>/<container>/<path>/cache/builds/*`.
+
+Automatically clean up expired cache entries by configuring a [Storage Task](https://learn.microsoft.com/en-us/azure/storage-actions/storage-tasks/storage-task-create) with the following conditions:
+* Creation time is older than your desired cache time-to-live
+* Container name matches your configured container
+* Blob name starts with `<path>/cache`
+
+Set the task operation to `Delete blob`.
 
 #### GCP Cloud Storage
 {{<alert tip >}}
@@ -133,6 +190,35 @@ control-plane {
 This configuration includes the following parameters:
 - **bucket**: The name of the bucket where packages are uploaded to on GCP Cloud Storage.
 - **path:** The path of a folder in Cloud Storage bucket. (optional)
+
+##### Build caching
+
+If you are using [build from a Git repository]({{< ref "reference/deploy/private-locations/build-from-git" >}}) and want to enable
+[private storage build cache]({{< ref "reference/deploy/private-locations/build-from-git#private-storage-build-cache" >}}),
+you need to enable caching in the configuration:
+
+```bash
+control-plane {
+  repository {
+    # Cloud Storage Bucket configuration
+    type = "gcp"
+    bucket = "bucket-name"
+    path = "folder/to/upload" # (optional, default: root)
+    project = "project-name"
+    # ...
+    cache {
+      enabled = true
+    }
+  }
+}
+```
+
+Cached builds are stored under the path `<project>/<bucket>/<path>/cache/builds/*`.
+
+Automatically clean up expired cache entries by configuring an  [Object Lifecycle Management](https://docs.cloud.google.com/storage/docs/lifecycle) rule with the following settings:
+* Action: Delete object
+* Object name matches prefix `<path>/cache`
+* Age is older than your desired cache time-to-live
 
 #### Filesystem Storage
 
@@ -170,6 +256,34 @@ Once the upload is complete, the file will be stored in your configured director
 This configuration includes the following parameters:
 - **directory**: The directory where the simulations will be stored.
 - **location.download-base-url**: The access URL for the control-plane. This URL will be provided to the load-generators so that they can download your simulations. 
+
+##### Build caching
+
+If you are using [build from a Git repository]({{< ref "reference/deploy/private-locations/build-from-git" >}}) and want to enable
+[private storage build cache]({{< ref "reference/deploy/private-locations/build-from-git#private-storage-build-cache" >}}),
+you need to enable caching in the configuration:
+
+```bash
+control-plane {
+  repository {
+    # Filesystem configuration
+    type = "filesystem"
+    # Directory to store your private packages
+    directory = "/data/gatling-repository"
+    # ...
+    cache {
+      enabled = true
+      ttl = 7 days # (optional, default 7 days)
+      cleanup-interval = 1 day # (optional, default: 1 day)
+    }
+  }
+}
+```
+
+Cached builds are stored under the path `<directory>/cache/builds/*`.
+
+When enabled, the cache is automatically cleaned up at the interval specified by `cache.cleanup-interval` (default: 1 day). 
+Cache entries older than `cache.ttl` (default: 7 days) are deleted.
 
 ### Configure Private Packages with Infrastructure-as-code
 
