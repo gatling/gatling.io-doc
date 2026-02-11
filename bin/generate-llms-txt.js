@@ -63,7 +63,7 @@ function extractCodeSection(fileContent, sectionName, fileExt) {
   const startMarker = `${comment}#${sectionName}`;
 
   // Global regexes might return multiple results with common prefixes: e.g: binaryHeader/binaryHeaders, etc.
-  const pattern = `${escapeRegex(startMarker)}\\n((.|\\n)+?)${escapeRegex(startMarker)}`;
+  const pattern = `${escapeRegex(startMarker)}\\n([\\s\\S]+?)${escapeRegex(startMarker)}`;
   const matches = [...fileContent.matchAll(pattern)];
 
   if (matches.length === 0 || matches[0].length < 2) {
