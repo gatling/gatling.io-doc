@@ -12,7 +12,7 @@ This is an experimental feature. Review the generated simulations carefully befo
 
 ## When to use the migration tool
 
-- **Migrating from LoadRunner**: Convert your entire LoadRunner test suite to Gatling
+- **Migrating from LoadRunner**: Migrate your entire LoadRunner test suite to Gatling
 - **Consolidating tools**: Unify performance testing across teams
 - **Cost optimization**: Reduce licensing costs while maintaining test coverage
 - **Enhanced CI/CD**: Integrate with Gatling Cloud or on-premises deployments
@@ -34,7 +34,7 @@ A progress UI displays each step as the agent works, giving you full visibility 
 
 #### 1. Right-click the LoadRunner script
 
-In the VS Code Explorer, right-click any `.c` file and select **"Convert LoadRunner Script to Gatling"**.
+In the VS Code Explorer, right-click any `.c` file and select **"Migrate LoadRunner Script to Gatling"**.
 
 #### 2. Provide the base URL
 
@@ -68,19 +68,19 @@ Copy the generated Java simulation file to your Gatling project and test it loca
 Migrate multiple LoadRunner scripts at once:
 
 1. Open the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`)
-2. Run **"Convert LoadRunner Scripts to Gatling"**
+2. Run **"Migrate LoadRunner Scripts to Gatling"**
 3. Provide the base URL
 4. The agent processes all `.c` files in your workspace
 
-## What gets converted
+## What gets migrated
 
 ### Automatically mapped
 
 | LoadRunner | Gatling Java | Notes |
 |-----------|-------------|-------|
-| `web_url()` | `http(...).get()` | Converted to GET request |
+| `web_url()` | `http(...).get()` | Migrated to GET request |
 | `web_submit_form()` | `http(...).post()` | Form data preserved as body |
-| `web_submit_data()` | `http(...).post()` | Request body converted to form-encoded or JSON |
+| `web_submit_data()` | `http(...).post()` | Request body migrated to form-encoded or JSON |
 | `web_custom_request()` | `http(...).method()` | Preserves custom method and headers |
 | `web_add_header()` | `.header()` | Per-request headers applied to the appropriate request |
 | `web_add_auto_header()` | `httpProtocol.header()` | Global headers added to the HTTP protocol configuration |
@@ -94,16 +94,16 @@ Migrate multiple LoadRunner scripts at once:
 |-----------|-------------|-------|
 | `web_reg_save_param()` | `check(regex()).saveAs()` | Extracts values using left/right boundary regex |
 | `web_reg_save_param()` (JSON responses) | `check(jmesPath()).saveAs()` | Automatically inferred for JSON response bodies |
-| `web_reg_find()` | `check(bodyString().is())` | Converts to body validation check |
-| Form parameters with `{PARAM}` | `"#{PARAM}"` in Gatling EL | Parameter references converted to Gatling expression language |
+| `web_reg_find()` | `check(bodyString().is())` | Migrates to body validation check |
+| Form parameters with `{PARAM}` | `"#{PARAM}"` in Gatling EL | Parameter references migrated to Gatling expression language |
 
 ### Requires manual review
 
 | LoadRunner | Reason | Action |
 |-----------|--------|--------|
-| `lr_load_dll()` | External C libraries | Not converted - implement in Java |
-| `lr_save_string()` | String manipulation | Not converted - use feeders or session vars |
-| `lr_eval_string()` | String evaluation | Not converted - use Gatling EL instead |
+| `lr_load_dll()` | External C libraries | Not migrated - implement in Java |
+| `lr_save_string()` | String manipulation | Not migrated - use feeders or session vars |
+| `lr_eval_string()` | String evaluation | Not migrated - use Gatling EL instead |
 | `web_submit_form()` with `Ordinal` | Implicit form detection | TODO comment added - specify form fields manually |
 | Complex C logic | Custom functions/conditionals | Review and reimplement in Java |
 
@@ -151,7 +151,7 @@ import io.gatling.javaapi.http.*;
 import static io.gatling.javaapi.core.CoreDsl.*;
 import static io.gatling.javaapi.http.HttpDsl.*;
 
-public class ConvertedSimulation extends Simulation {
+public class MigratedSimulation extends Simulation {
 
     HttpProtocolBuilder httpProtocol = http
         .baseUrl("https://api.example.com")
@@ -341,7 +341,7 @@ Group related requests for better reporting:
 
 ### External C libraries
 
-LoadRunner scripts sometimes call external C DLLs. These don't convert automatically.
+LoadRunner scripts sometimes call external C DLLs. These don't migrate automatically.
 
 **Solution**: Implement equivalent logic in Java.
 
@@ -353,7 +353,7 @@ LoadRunner's C language allows arbitrary string manipulation.
 
 ### Advanced correlation
 
-Complex LoadRunner correlation rules may not convert directly.
+Complex LoadRunner correlation rules may not migrate directly.
 
 **Solution**: Review and manually adjust `jmesPath()` or `regex()` checks.
 
