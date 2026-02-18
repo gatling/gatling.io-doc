@@ -213,11 +213,11 @@ Rules are:
 
 #### `header`
 
-Gatling lets you define some [HTTP headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers) to be set one all requests.
+Gatling lets you define some [HTTP headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers) to be set once for all requests.
 
 {{< include-code "headers" >}}
 
-You have also the following built-ins for the more commons headers.
+You have also the following built-ins for the more common headers.
 
 {{< include-code "headers-built-ins" >}}
 
