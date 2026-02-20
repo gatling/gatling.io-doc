@@ -15,16 +15,11 @@
  */
 
 import io.gatling.core.Predef._
+import io.gatling.core.feeder._
 
 class FeederSampleScala {
   {
-//#random-mail-generator
-import scala.util.Random
-val feeder = Iterator.continually {
-  Map("email" -> s"${Random.alphanumeric.take(20).mkString}@foo.com")
-}
-//#random-mail-generator
-
+val feeder: FeederBuilder = null
 //#feed-keyword
 // called directly
 feed(feeder)
@@ -112,10 +107,12 @@ jsonUrl("http://me.com/foo.json")
   }
 
   {
-//#jdbc-feeder
+//#jdbc-imports
 // beware: you need to import the jdbc module
 import io.gatling.jdbc.Predef._
+//#jdbc-imports
 
+//#jdbc-feeder
 jdbcFeeder("databaseUrl", "username", "password", "SELECT * FROM users")
 //#jdbc-feeder
   }
@@ -133,56 +130,36 @@ sitemap("/path/to/sitemap/file")
   }
 
   {
-//#redis-LPOP
+//#redis-imports
 // beware: you need to import the redis module
 import io.gatling.redis.Predef._
 import com.redis._
-val redisPool = new RedisClientPool("localhost", 6379)
+//#redis-imports
+//#redis-LPOP
+val redisPool =
+  new RedisClientPool("localhost", 6379)
 
 // use a list, so there's one single value per record, which is here named "foo"
-// same as redisFeeder(redisPool, "foo").LPOP
 redisFeeder(redisPool, "foo")
+// identical to above, LPOP is the default
+redisFeeder(redisPool, "foo").LPOP
 //#redis-LPOP
-  }
-
-  {
-import io.gatling.redis.Predef._
-
-import com.redis._
-
-val redisPool = new RedisClientPool("localhost", 6379)
 
 //#redis-SPOP
 // read data using SPOP command from a set named "foo"
 redisFeeder(redisPool, "foo").SPOP
 //#redis-SPOP
-  }
-
-  {
-import io.gatling.redis.Predef._
-
-import com.redis._
-
-val redisPool = new RedisClientPool("localhost", 6379)
 
 //#redis-SRANDMEMBER
 // read data using SRANDMEMBER command from a set named "foo"
 redisFeeder(redisPool, "foo").SRANDMEMBER
 //#redis-SRANDMEMBER
-  }
-
-  {
-import io.gatling.redis.Predef._
-
-import com.redis._
-
-val redisPool = new RedisClientPool("localhost", 6379)
 
 //#redis-RPOPLPUSH
 // read data using RPOPLPUSH command from a list named "foo" and atomically store in list named "bar"
 redisFeeder(redisPool, "foo", "bar").RPOPLPUSH
 // identical to above but we create a circular list by using the same keys
-redisFeeder(redisPool, "foo", "foo").RPOPLPUSH();
+redisFeeder(redisPool, "foo", "foo").RPOPLPUSH
 //#redis-RPOPLPUSH
   }
 
@@ -204,5 +181,16 @@ val records: Seq[Map[String, Any]] = csv("myFile.csv").readRecords
 //#recordsCount
 val recordsCount = csv("myFile.csv").recordsCount
 //#recordsCount
+  }
+
+  {
+//#random-imports
+import scala.util.Random
+//#random-imports
+//#random-mail-generator
+val feeder = Iterator.continually {
+  Map("email" -> s"${Random.alphanumeric.take(20).mkString}@foo.com")
+}
+//#random-mail-generator
   }
 }

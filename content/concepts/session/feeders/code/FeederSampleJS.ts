@@ -29,12 +29,6 @@ import {
 
 const feeder = null as unknown as FeederBuilder<string>;
 
-/*
-//#random-mail-generator
-The `feeder(Iterator)` method is currently not supported by Gatling JS.
-//#random-mail-generator
-*/
-
 //#feed-keyword
 // called directly
 feed(feeder);
@@ -104,6 +98,8 @@ jsonUrl("http://me.com/foo.json");
 //#json-feeders
 
 /*
+//#jdbc-imports
+//#jdbc-imports
 //#jdbc-feeder
 NOT SUPPORTED
 //#jdbc-feeder
@@ -119,6 +115,8 @@ sitemap("/path/to/sitemap/file");
 //#sitemap-feeder
 
 /*
+//#redis-imports
+//#redis-imports
 //#redis-LPOP
 NOT SUPPORTED
 //#redis-LPOP
@@ -157,3 +155,11 @@ NOT SUPPORTED
 //#recordsCount
 const recordsCount = csv("myFile.csv").recordsCount();
 //#recordsCount
+
+/*
+//#random-imports
+//#random-imports
+//#random-mail-generator
+The `feeder(Iterator)` method is currently not supported by Gatling JS.
+//#random-mail-generator
+*/

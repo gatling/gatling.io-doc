@@ -14,32 +14,24 @@
  * limitations under the License.
  */
 
-import org.apache.commons.lang3.RandomStringUtils;
-
 import java.util.*;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
+import io.gatling.javaapi.redis.*;
+
+import org.apache.commons.lang3.RandomStringUtils;
+
 import static io.gatling.javaapi.core.CoreDsl.*;
 import static io.gatling.javaapi.http.HttpDsl.*;
 import static io.gatling.javaapi.jdbc.JdbcDsl.*;
-import io.gatling.javaapi.redis.*;
 import static io.gatling.javaapi.redis.RedisDsl.*;
 
 @SuppressWarnings("unchecked")
 class FeederSampleJava {
 
   {
-//#random-mail-generator
-// import org.apache.commons.lang3.RandomStringUtils
-Iterator<Map<String, Object>> feeder =
-  Stream.generate((Supplier<Map<String, Object>>) () -> {
-      String email = RandomStringUtils.insecure().nextAlphanumeric(20) + "@foo.com";
-      return Map.of("email", email);
-    }
-  ).iterator();
-//#random-mail-generator
-
+var feeder = csv("foo");
 //#feed-keyword
 // called directly
 feed(feeder);
@@ -127,10 +119,13 @@ jsonUrl("http://me.com/foo.json");
   }
 
   {
-//#jdbc-feeder
+/*
+//#jdbc-imports
 // beware: you need to import the jdbc module
-// import static io.gatling.javaapi.jdbc.JdbcDsl.*;
-
+import static io.gatling.javaapi.jdbc.JdbcDsl.*;
+//#jdbc-imports
+*/
+//#jdbc-feeder
 jdbcFeeder("databaseUrl", "username", "password", "SELECT * FROM users");
 //#jdbc-feeder
   }
@@ -149,73 +144,33 @@ sitemap("/path/to/sitemap/file");
   }
 
   {
-//#redis-LPOP
+/*
+//#redis-imports
 // beware: you need to import the redis module
-// import io.gatling.javaapi.redis.*;
-// import static io.gatling.javaapi.redis.RedisDsl.*;
+import io.gatling.javaapi.redis.*;
+import static io.gatling.javaapi.redis.RedisDsl.*;
+//#redis-imports
+*/
+
+//#redis-LPOP
 RedisClientPool redisPool =
-  new RedisClientPool("localhost", 6379)
-    .withMaxIdle(8)
-    .withDatabase(0)
-    .withSecret(null)
-    .withTimeout(0)
-    .withMaxConnections(-1)
-    .withPoolWaitTimeout(3000)
-    .withSSLContext(null)
-    .withBatchMode(false);
+  new RedisClientPool("localhost", 6379);
 
 // use a list, so there's one single value per record, which is here named "foo"
 redisFeeder(redisPool, "foo");
 // identical to above, LPOP is the default
 redisFeeder(redisPool, "foo").LPOP();
 //#redis-LPOP
-  }
 
-  {
-    RedisClientPool redisPool =
-      new RedisClientPool("localhost", 6379)
-        .withMaxIdle(8)
-        .withDatabase(0)
-        .withSecret(null)
-        .withTimeout(0)
-        .withMaxConnections(-1)
-        .withPoolWaitTimeout(3000)
-        .withSSLContext(null)
-        .withBatchMode(false);
 //#redis-SPOP
 // read data using SPOP command from a set named "foo"
 redisFeeder(redisPool, "foo").SPOP();
 //#redis-SPOP
-  }
 
-  {
-    RedisClientPool redisPool =
-      new RedisClientPool("localhost", 6379)
-        .withMaxIdle(8)
-        .withDatabase(0)
-        .withSecret(null)
-        .withTimeout(0)
-        .withMaxConnections(-1)
-        .withPoolWaitTimeout(3000)
-        .withSSLContext(null)
-        .withBatchMode(false);
 //#redis-SRANDMEMBER
 // read data using SRANDMEMBER command from a set named "foo"
 redisFeeder(redisPool, "foo").SRANDMEMBER();
 //#redis-SRANDMEMBER
-  }
-
-  {
-    RedisClientPool redisPool =
-      new RedisClientPool("localhost", 6379)
-        .withMaxIdle(8)
-        .withDatabase(0)
-        .withSecret(null)
-        .withTimeout(0)
-        .withMaxConnections(-1)
-        .withPoolWaitTimeout(3000)
-        .withSSLContext(null)
-        .withBatchMode(false);
 
 //#redis-RPOPLPUSH
 // read data using RPOPLPUSH command from a list named "foo" and atomically store in list named "bar"
@@ -243,5 +198,22 @@ List<Map<String, Object>> records = csv("myFile.csv").readRecords();
 //#recordsCount
 int recordsCount = csv("myFile.csv").recordsCount();
 //#recordsCount
+  }
+
+  {
+/*
+//#random-imports
+import org.apache.commons.lang3.RandomStringUtils
+//#random-imports
+*/
+
+//#random-mail-generator
+Iterator<Map<String, Object>> feeder =
+  Stream.generate((Supplier<Map<String, Object>>) () -> {
+      String email = RandomStringUtils.insecure().nextAlphanumeric(20) + "@foo.com";
+      return Map.of("email", email);
+    }
+  ).iterator();
+//#random-mail-generator
   }
 }

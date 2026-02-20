@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import io.gatling.javaapi.core.*
 import io.gatling.javaapi.core.CoreDsl.*
 import io.gatling.javaapi.http.HttpDsl.*
 import io.gatling.javaapi.jdbc.JdbcDsl.*
@@ -24,14 +25,7 @@ import org.apache.commons.lang3.RandomStringUtils
 class FeederSampleKotlin {
 
   init {
-//#random-mail-generator
-// import org.apache.commons.lang3.RandomStringUtils
-val feeder = generateSequence {
-  val email = RandomStringUtils.insecure().nextAlphanumeric(20) + "@foo.com"
-  mapOf("email" to email)
-}.iterator()
-//#random-mail-generator
-
+val feeder = csv("foo")
 //#feed-keyword
 // called directly
 feed(feeder)
@@ -66,7 +60,9 @@ csv("foo").random()
 //#circular
 csv("foo").circular()
 //#circular
+  }
 
+  init {
 //#feeder-in-memory
 // using an array
 arrayFeeder(arrayOf(
@@ -82,7 +78,9 @@ listFeeder(listOf(
   mapOf("foo" to "foo3")
 ))
 //#feeder-in-memory
+  }
 
+  init {
 //#sep-values-feeders
 // use a comma separator
 csv("foo.csv")
@@ -93,27 +91,41 @@ ssv("foo.ssv")
 // use a custom separator
 separatedValues("foo.txt", '#')
 //#sep-values-feeders
+  }
 
+  init {
 //#unzip
 csv("foo.csv.zip").unzip()
 //#unzip
+  }
 
+  init {
 //#shard
 csv("foo.csv").shard()
 //#shard
+  }
 
+  init {
 //#json-feeders
 jsonFile("foo.json")
 jsonUrl("http://me.com/foo.json")
 //#json-feeders
+  }
+
+  init {
+/*
+//#jdbc-imports
+// beware: you need to import the jdbc module
+import static io.gatling.javaapi.jdbc.JdbcDsl.*;
+//#jdbc-imports
+*/
 
 //#jdbc-feeder
-// beware: you need to import the jdbc module
-// import static io.gatling.javaapi.jdbc.JdbcDsl.*;
-
 jdbcFeeder("databaseUrl", "username", "password", "SELECT * FROM users")
 //#jdbc-feeder
+  }
 
+  init {
 /*
 //#sitemap-imports
 // beware: you need to import the http module
@@ -124,28 +136,26 @@ import static io.gatling.javaapi.http.HttpDsl.*;
 //#sitemap-feeder
 sitemap("/path/to/sitemap/file")
 //#sitemap-feeder
+  }
+
+  init {
+/*
+//#redis-imports
+// beware: you need to import the redis module
+import io.gatling.javaapi.redis.*
+import io.gatling.javaapi.redis.RedisDsl.*
+//#redis-imports
+*/
 
 //#redis-LPOP
-// beware: you need to import the redis module
-// import io.gatling.javaapi.redis.*
-// import io.gatling.javaapi.redis.RedisDsl.*
 val redisPool =
   RedisClientPool("localhost", 6379)
-    .withMaxIdle(8)
-      .withDatabase(0)
-      .withSecret(null)
-      .withTimeout(0)
-      .withMaxConnections(-1)
-      .withPoolWaitTimeout(3000)
-      .withSSLContext(null)
-      .withBatchMode(false)
 
 // use a list, so there's one single value per record, which is here named "foo"
 redisFeeder(redisPool, "foo")
 // identical to above, LPOP is the default
 redisFeeder(redisPool, "foo").LPOP()
 //#redis-LPOP
-
 
 //#redis-SPOP
 // read data using SPOP command from a set named "foo"
@@ -159,24 +169,44 @@ redisFeeder(redisPool, "foo").SRANDMEMBER()
 
 //#redis-RPOPLPUSH
 // read data using RPOPLPUSH command from a list named "foo" and atomically store in list named "bar"
-redisFeeder(redisPool, "foo", "bar").RPOPLPUSH();
+redisFeeder(redisPool, "foo", "bar").RPOPLPUSH()
 // identical to above but we create a circular list by using the same keys
-redisFeeder(redisPool, "foo", "foo").RPOPLPUSH();
+redisFeeder(redisPool, "foo", "foo").RPOPLPUSH()
 //#redis-RPOPLPUSH
+}
 
+  init {
 //#transform
 csv("myFile.csv").transform { key, value ->
   if (key.equals("attributeThatShouldBeAnInt")) Integer.valueOf(value) else value
 }
 //#transform
+  }
 
+  init {
 //#records
 val records = csv("myFile.csv").readRecords()
 //#records
+  }
 
+  init {
 //#recordsCount
 val recordsCount = csv("myFile.csv").recordsCount()
 //#recordsCount
   }
-}
 
+  init {
+/*
+//#random-imports
+import org.apache.commons.lang3.RandomStringUtils
+//#random-imports
+*/
+
+//#random-mail-generator
+val feeder = generateSequence {
+  val email = RandomStringUtils.insecure().nextAlphanumeric(20) + "@foo.com"
+  mapOf("email" to email)
+}.iterator()
+//#random-mail-generator
+  }
+}
