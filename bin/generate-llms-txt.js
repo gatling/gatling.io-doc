@@ -116,10 +116,24 @@ function expandCodeShortcodes(content, filePath) {
         const ext = path.extname(file).slice(1);
         const fullPath = path.join(codeDir, file);
         const fileContent = fs.readFileSync(fullPath, 'utf8');
-        
-        const codeSection = extractCodeSection(fileContent, codeName, ext);
-        
-        if (codeSection) {
+
+        const codeNames = [];
+        if (codeName.includes(",")) {
+          codeNames.push(...codeName.split(","));
+        } else {
+          codeNames.push(codeName);
+        }
+
+        const codeSections = [];
+        codeNames.forEach(codeName => {
+          const codeSection = extractCodeSection(fileContent, codeName, ext);
+          if (codeSection !== null) {
+            codeSections.push(codeSection);
+          }
+        })
+
+        if (codeSections.length > 0) {
+          const codeSection = codeSections.join("\n\n");
           // Determine language for syntax highlighting
           const langMap = {
             'java': 'java',
