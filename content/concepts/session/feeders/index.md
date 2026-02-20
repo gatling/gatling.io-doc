@@ -166,7 +166,7 @@ For example, if you have a file with 30,000 records deployed on 3 load generator
 
 Gatling also provides a built-in that reads from a JDBC connection.
 
-{{< include-code "jdbc-feeder" >}}
+{{< include-code "jdbc-imports,jdbc-feeder" >}}
 
 Just like File parser built-ins, this returns a `RecordSeqFeederBuilder` instance.
 
@@ -193,7 +193,7 @@ Gatling can read data from Redis using one of the following Redis commands.
 
 By default, RedisFeeder uses LPOP command:
 
-{{< include-code "redis-LPOP" >}}
+{{< include-code "redis-imports,redis-LPOP" >}}
 
 You can then override the desired Redis command:
 
@@ -353,4 +353,4 @@ Feeder is a type alias for `Iterator<Map<String, T>>`, meaning that the componen
 
 It's very simple to build a custom one. For example, here's how one could build a random email generator:
 
-{{< include-code "random-mail-generator" >}}
+{{< include-code "random-imports,random-mail-generator" >}}
