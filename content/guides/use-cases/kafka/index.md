@@ -222,7 +222,7 @@ The next step is to use Gatling Enterprise Edition to take advantage of key feat
 
 To do this, use your Gatling Enterprise Edition account and follow the documentation for packaging and uploading your simulation. Then, follow either the Maven or Gradle plugin documentation to run your first simulation on Gatling Enterprise Edition.
 
-{{< img src="kafka-gatling.webp" >}}
+{{< img src="kafka-gatling.webp" alt="Gatling Enterprise Edition simulation run page for a Kafka load test" >}}
 
 {{< alert info >}}
 If your Kafka broker cannot be accessed from the Internet, you have two options:

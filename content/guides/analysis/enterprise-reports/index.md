@@ -27,7 +27,7 @@ When you upload a script to Gatling Enterprise Edition and set up a simulation i
 
 Once you enter your Run History for a simulation you’ll be able to see and access each report for each run.
 
-{{< img src="run-table-trends.png" >}}
+{{< img src="run-table-trends.png" alt="Run history table showing past simulation runs with trend graphs" >}}
 
 On the Run History page for a simulation, you also get access to 3 Trends graphs that give you a quick snapshot of the Requests and Responses, Response Time Percentiles, and Throughput over the history of a test you’ve run.
 
@@ -35,7 +35,7 @@ This allows you a simple way to see the results of your changes, especially if y
 
 If you’d like to make a comparison between runs click the “Compare” button, which launches the multiple run, interactive comparison mode. 
 
-{{< img src="run-compare.png" >}}
+{{< img src="run-compare.png" alt="Interactive side-by-side comparison of two simulation runs" >}}
 
 #### How is this helpful?
 
@@ -51,7 +51,7 @@ As mentioned before Gatling Community Edition reports are static html files that
 
 To start with you have your run bar:
 
-{{< img src="run-bar-gatling.webp" >}}
+{{< img src="run-bar-gatling.webp" alt="Gatling Enterprise Edition run bar for filtering and sharing simulation results" >}}
 
 You can use the run bar to focus on specific sections of your simulation results. You can also collaborate with teammates by creating and sharing a public link, exporting to a PDF, or having Gatling Users in your organization leave comments on specific sections of a report.
 
@@ -67,7 +67,7 @@ We’re now going to dive into the tabs of a report and give you a little more i
 
 The requests tab in Gatling Enterprise Edition allows you to see the response times and error ratios for each individual request. In the default view you also can get global overviews of your errors per second, responses per second (with status), response time distributions, and response time percentile distributions:
 
-{{< img src="requests-tab-gatling.webp" >}}
+{{< img src="requests-tab-gatling.webp" alt="Requests tab showing response times and error ratios for each individual request" >}}
 
 If you’d like a closer look at individual requests you can switch from the chart view to the summary view to get a look at the response times and error ratios for individual requests.
 
@@ -87,7 +87,7 @@ group("foo").on(
 
 So, if you’ve created any groups in your scenario the Groups tab will give you the same information as the Requests tab but the results will be based on the groups of requests you’ve designated rather than individual requests.
 
-{{< img src="groups-tab-gatling.webp" >}}
+{{< img src="groups-tab-gatling.webp" alt="Groups tab showing response times and error ratios for request groups" >}}
 
 As with the requests tab you can switch to a summary view as well to view response times and error ratios based on the group.
 
@@ -98,7 +98,7 @@ The groups tab helps you organize your requests and lets you see if specific pro
 
 Load testing is all about seeing how your application reacts to traffic or simulated users. The “Users” tab lets you see how many users you have arriving, leaving (terminating), and at a given time (concurrently) in your simulation.
 
-{{< img src="users-tab-gatling.webp" >}}
+{{< img src="users-tab-gatling.webp" alt="Users tab showing arriving, concurrent, and terminating users over time" >}}
 
 ### How is this helpful?
 
@@ -111,7 +111,7 @@ Here, you can find information about the transport layer of your simulation. Thi
 - 0 TCP Connections: used as the transport layer of the HTTP/1.1 and HTTP/2 protocols, this metric represents the time it takes for a server to acknowledge new clients so they can start sending data.
 - TLS Handshake: if using HTTPS, we also measure the time it takes for the server and client to perform a verification handshake after opening the connection.
 
-{{< img src="connections-tab-gatling.webp" >}}
+{{< img src="connections-tab-gatling.webp" alt="Connections tab showing TCP connection rates and TLS handshake data" >}}
 
 ### How is this helpful?
 
@@ -121,7 +121,7 @@ Looking at the connections and their open and closing rates allows you to see if
 
 The DNS tab is incredibly helpful in determining, you guessed it, everything you need to know about the DNS for your website or application. Gatling Enterprise Edition gives you the option of examining the DNS resolutions per second, DNS percentiles, DNS duration distribution, and percentiles for each hostname your website or application is using.
 
-{{< img src="dns-tab-gatling.webp" >}}
+{{< img src="dns-tab-gatling.webp" alt="DNS tab showing resolution rates, percentiles, and duration distributions per hostname" >}}
 
 ### How is this helpful?
 
@@ -140,13 +140,13 @@ In the load generators tab, you can see how much of each load generator you use.
 
 When creating or editing your simulation on Gatling Enterprise Edition you can go to the “Time Window” screen and set a ramp-up and ramp-down time to make your simulation cleaner and more accurate as both your application and Gatling’s load generators may need some warm-up time.
 
-{{< img src="time-window-gatling.webp" >}}
+{{< img src="time-window-gatling.webp" alt="Time window configuration screen for setting ramp-up and ramp-down periods in a simulation" >}}
 
 Once you’ve done this you can get a good idea of how many virtual users you can have in your simulation using the load generators you’ve selected and reconfigure your script to add more if you choose to.
 
 When discussing Gatling Enterprise Edition the most common question we’re asked is “How many virtual users can I generate with one load generator?” The answer from our end is “It depends on the scenario you’re trying to test. The theoretical limit is 35,000 - 40,000 users can be generated with one load generator or 300,000 requests per second. But, it depends on your scenario and the requests and API calls it contains. By using the load generators tab you can determine how much you’re stressing the load generator and get a real expectation of the load you’ll be able to generate for your specific scenario.
 
-{{< img src="load-generator-tab-gatling.webp" >}}
+{{< img src="load-generator-tab-gatling.webp" alt="Load generators tab showing CPU and resource usage per load generator" >}}
 
 ### How is this helpful?
 
