@@ -189,15 +189,15 @@ export GATLING_ENTERPRISE_API_TOKEN=<your_token>
 
 Now on Gatling Enterprise Edition → Sources, you will see a new package:
 
-{{< img src="package-demo.png" >}}
+{{< img src="package-demo.png" alt="Gatling Enterprise Edition Sources page showing the uploaded gRPC demo package" >}}
 
 Next, create a simulation by navigating to the "Simulations" tab and clicking "Create New." Select your package from the dropdown list, then click "Create" and configure your simulation settings. (You can set the gRPC.scenario environment variable in the load generator parameters if you want to run the scenario with deadlines)
 
-{{< img src="simulation-runs.png" >}} <!--update for new UI-->
+{{< img src="simulation-runs.png" alt="Gatling Enterprise Edition Simulations tab with a gRPC simulation configured" >}} <!--update for new UI-->
 
 Now click on the #1 to get the data of our scenario
 
-{{< img src="scenario-demo.png" >}} <!--update for new UI? -->
+{{< img src="scenario-demo.png" alt="Gatling Enterprise Edition scenario summary showing 5 users and simulation results" >}} <!--update for new UI? -->
 
 Now we see a small summary of the report with 5 users. If you want to view the whole report, you can click on the report tab. Also, we offer integrations with many different tools if you want to streamline your load testing process.
 

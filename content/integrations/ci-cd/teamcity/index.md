@@ -47,7 +47,7 @@ The plugin needs a global configuration. Go to **Administration**, then **gatlin
 If you specify the **Address** `https://cloud.gatling.io`, you can leave the **API Address** field blank as it will default to `https://api.gatling.io`. If you use an internal gateway to allow your Jenkins instance to call the Gatling Enterprise public API, you may need to specify your gateway address as the **API Address**.
 {{< /alert >}}
 
-{{< img src="administration.png" alt="" >}}
+{{< img src="administration.png" alt="TeamCity administration settings for the Gatling Enterprise Edition plugin" >}}
 
 ## Plan set-up
 
