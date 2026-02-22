@@ -40,13 +40,13 @@ For detailed information about user roles and permissions, see [User management]
 
 ## Teams
 
-See the existing teams in your organization and their users using the **See members** button.
+See and manage the teams you belong to in your organization. Display their details including **members**, **credit consumption** and **quotas**.
+
+For more details on viewing teams and setting quotas, see the [Teams]({{< ref "/reference/user-guide/teams" >}}) page.
 
 {{< alert info >}}
-Creating, editing, or deleting teams requires administrator access. See [Teams administration]({{< ref "/reference/administration/teams" >}}) for details.
+Creating, editing, deleting teams and setting quota requires Organization level administrator access. See [Teams administration]({{< ref "/reference/administration/teams" >}}) for details.
 {{< /alert >}}
-
-For more details on viewing teams, see the [Teams]({{< ref "/reference/user-guide/teams" >}}) page.
 
 ## Usage
 
@@ -54,23 +54,6 @@ For more details on viewing teams, see the [Teams]({{< ref "/reference/user-guid
 This section is available to all [global roles]({{< ref "/reference/administration/users#permissions" >}}) except Viewers.
 {{< /alert >}}
 
-The usage dashboard allows you to monitor and manage credit consumption during your current billing period. The primary functions are:
+The usage dashboard allows you to monitor credit consumption daily, monthly, and by team.
 
-- monitor global consumption
-- monitor usage by team
-- set credit quotas by team
-- monitor usage by simulation
-
-### Set a team usage quota
-
-Usage quotas allow you to control credit consumption on a team by team basis. Set quotas are automatically carried over to your next billing period. To set a team usage quota:
-
-1. Click the {{< icon edit >}} icon located on the right side of the **Credit consumption by team** table.
-2. Enter a value less than your total billing period allotment.
-3. Click **Save**.
-
-{{< img src="usage.png" alt="Organization usage" >}}
-
-{{< alert info >}}
-Billing, plans, and offers are managed by administrators. See [Billing]({{< ref "/reference/administration/billing" >}}) for details.
-{{< /alert >}}
+Data displayed are downloadable as CSV file.
