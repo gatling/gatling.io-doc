@@ -11,19 +11,13 @@ allowed-tools: Read
 # Review Doc
 
 ## How to use this skill
-
 Read the file at the path provided by the user. If no path is given, ask for one before proceeding.
 
-Then read the full style guide:
-
-```
-references/style-guide.md
-```
+Then read the full [style guide](references/style-guide.md).
 
 Apply every rule in the style guide to the file. Produce a structured review using the output format below. For each issue found, quote the **exact problematic text**, explain why it's an issue, and provide a corrected version.
 
 ## Output format
-
 Structure your review with these sections. Use "✅ No issues found" for any section that's clean — don't skip sections.
 
 ### Front Matter
@@ -37,7 +31,6 @@ Structure your review with these sections. Use "✅ No issues found" for any sec
 ### Google Style Guide
 
 ### Summary
-
 End with a priority-ordered table of the most impactful changes, with a rough effort estimate (quick / medium / involved) for each:
 
 | Priority | Issue | Effort |
