@@ -11,7 +11,6 @@ allowed-tools: Read Edit
 # Update Doc
 
 ## Step 1: Understand the request
-
 You need two things from the user before proceeding:
 
 1. **File path** — the page to edit (e.g., `content/guides/use-cases/kafka/index.md`)
@@ -22,7 +21,6 @@ If either is missing, ask for it.
 ---
 
 ## Step 2: Read the file
-
 Read the full file before making any edits. Identify:
 
 - The section(s) affected by the change
@@ -34,7 +32,6 @@ Do **not** audit the entire file. Only touch content you are directly modifying.
 ---
 
 ## Step 3: Apply the change
-
 Make the requested edit. Apply these rules to any content you write or rewrite.
 
 ### Front matter
@@ -83,7 +80,6 @@ Make the requested edit. Apply these rules to any content you write or rewrite.
 ---
 
 ## Step 4: Output the result
-
 Show only the changed sections, not the entire file — unless the change is small enough that the full file is cleaner.
 
 Use this structure:
