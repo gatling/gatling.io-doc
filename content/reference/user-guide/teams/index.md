@@ -15,15 +15,15 @@ Displayed data are limited to the teams you belong to.
 Creating, editing, or deleting teams requires administrator access. See [Teams administration]({{< ref "/reference/administration/teams" >}}) for details.
 {{< /alert >}}
 
-On this page you can see the teams you belong to in your organization and their details.
+This page shows the teams you belong to and their details.
 
 {{< img src="teams-page.png" alt="Organization teams" >}}
 
-The teams table display for each team:
-- The team name,
-- The number of members. You can access the detailed list of team member using the clickable link,
-- The number of credits consumed for the period displayed below the title "Teams and Quota settings",
-- The credit quota limit,
-- The associated API tokens, tests, packages, repositories. You can the details using the clickable badges.
+The teams table displays for each team:
+- team name,
+- number of members (click the link to see the member list),
+- number of credits consumed for the current period,
+- credit quota limit,
+- associated API tokens, tests, packages, and repositories (click the badges to see details).
 
-By using the menu at the end of each line you can copy the team id
+Using the menu at the end of each row, you can copy the team ID.

@@ -22,7 +22,7 @@ If you need changes, contact your organization's administrator.
 
 ## Users
 
-Depending on your role, shows all users or administrators in your organization.
+Depending on your role, this section shows all users or only administrators in your organization.
 
 {{< img src="users.png" alt="Organization users" >}}
 
@@ -40,12 +40,12 @@ For detailed information about user roles and permissions, see [User management]
 
 ## Teams
 
-See and manage the teams you belong to in your organization. Display their details including **members**, **credit consumption** and **quotas**.
+See and manage the teams you belong to, including details on **members**, **credit consumption**, and **quotas**.
 
 For more details on viewing teams and setting quotas, see the [Teams]({{< ref "/reference/user-guide/teams" >}}) page.
 
 {{< alert info >}}
-Creating, editing, deleting teams and setting quota requires Organization level administrator access. See [Teams administration]({{< ref "/reference/administration/teams" >}}) for details.
+Creating, editing, or deleting teams and setting quotas requires Organization level administrator access. See [Teams administration]({{< ref "/reference/administration/teams" >}}) for details.
 {{< /alert >}}
 
 ## Usage
@@ -56,4 +56,4 @@ This section is available to all [global roles]({{< ref "/reference/administrati
 
 The usage dashboard allows you to monitor credit consumption daily, monthly, and by team.
 
-Data displayed are downloadable as CSV file.
+Displayed data can be downloaded as a CSV file.
