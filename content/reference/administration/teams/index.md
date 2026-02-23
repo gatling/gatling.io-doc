@@ -2,15 +2,15 @@
 menutitle: Teams
 title: Teams administration
 seotitle: Teams administration in Gatling Enterprise Edition
-description: Learn how to administrate teams in Gatling Enterprise Edition.
-lead: Administrate your organization's teams in Gatling Enterprise Edition.
+description: Learn how to administer teams in Gatling Enterprise Edition.
+lead: Administer your organization's teams in Gatling Enterprise Edition.
 date: 2021-03-10T13:47:03+00:00
 aliases:
   - /reference/collaborate/admin/teams/
   - /reference/execute/cloud/admin/teams/
 ---
 
-## Managing Teams
+## Managing teams
 
 To access the Teams page, click on the "Teams" tab in the Organization page.
 
@@ -23,17 +23,17 @@ Displayed data are limited to the teams you belong to.
 Creating, editing, or deleting teams requires administrator access. See [Teams administration]({{< ref "/reference/administration/teams" >}}) for details.
 {{< /alert >}}
 
-In the teams table, you can visualize for each team:
-- The team name,
-- The number of members (you can click on the link to see the list of members),
-- The number of credits consumed for the period displayed below the title "Teams and Quota settings",
-- The credit quota limit and it's edition (Administrator only),
-- The associated API tokens, tests, packages, repositories (you can click on the pills to see the linked elements).
+In the teams table, you can see for each team:
+- team name,
+- number of members (click the link to see the member list),
+- number of credits consumed for the current period,
+- credit quota limit and its edition (Administrator only),
+- associated API tokens, tests, packages, and repositories (click the pills to see linked elements).
 
-By using the menu at the end of each line you can:
-- Copy the team id
-- Edit the team name (Administrator only)
-- Delete a team (Administrator only)
+Using the menu at the end of each row, you can:
+- copy the team ID,
+- edit the team name (Administrator only),
+- delete a team (Administrator only).
 
 ### Team creation
 
@@ -60,7 +60,7 @@ Usage quotas allow you to control credit consumption on a team by team basis. Se
 2. Enter a value less than your total billing period allotment.
 3. Click **Save**.
 
-You can edit the team quotas for the seleted period (annual or monthly).
+You can edit the team quotas for the selected period (annual or monthly).
 Leave the input empty to set an unlimited credit consumption to a team.
 
 {{< alert info >}}
