@@ -41,10 +41,8 @@ Deploys the Control Plane container on Elastic Container Service (ECS) using Far
 
 ### Terraform
 
-The configuration consists of three modules: one for deploying the control plane, another for specifying the location, and a third for defining an optional private package.
-
-- [Private Locations sample configuration](https://github.com/gatling/gatling-enterprise-control-plane-deployment/tree/main/terraform/examples/AWS-private-location)
-- [Private Locations & Packages sample configuration](https://github.com/gatling/gatling-enterprise-control-plane-deployment/tree/main/terraform/examples/AWS-private-package)
+[AWS Terraform Control Plane Module](https://github.com/gatling/terraform-aws-control-plane): `gatling/control-plane/aws`
+- See [Sample Configuration](https://github.com/gatling/terraform-aws-control-plane/blob/main/example/main.tf)
 
 ## Azure {#azure}
 
@@ -52,10 +50,8 @@ Deploys the Control Plane container on a Container App using a Container App Env
 
 ### Terraform
 
-The configuration consists of three modules: one for deploying the control plane, another for specifying the location, and a third for defining an optional private package.
-
-- [Private Locations sample configuration](https://github.com/gatling/gatling-enterprise-control-plane-deployment/tree/main/terraform/examples/AZURE-private-location)
-- [Private Locations & Packages sample configuration](https://github.com/gatling/gatling-enterprise-control-plane-deployment/tree/main/terraform/examples/AZURE-private-package)
+[Azure Terraform Control Plane Module](https://github.com/gatling/terraform-azure-control-plane): `gatling/control-plane/azure`
+- See [Sample Configuration](https://github.com/gatling/terraform-azure-control-plane/blob/main/example/main.tf)
 
 ## GCP {#gcp}
 
@@ -63,7 +59,5 @@ Deploys the Control Plane container on a Container App using a Container App Env
 
 ### Terraform  
 
-The configuration consists of three modules: one for deploying the control plane, another for specifying the location, and a third for defining an optional private package.
-
-- [Private Locations sample configuration](https://github.com/gatling/gatling-enterprise-control-plane-deployment/tree/main/terraform/examples/GCP-private-location)
-- [Private Locations & Packages sample configuration](https://github.com/gatling/gatling-enterprise-control-plane-deployment/tree/main/terraform/examples/GCP-private-package)
+[GCP Terraform Control Plane Module](https://github.com/gatling/terraform-gcp-control-plane): `gatling/control-plane/gcp`
+- See [Sample Configuration](https://github.com/gatling/terraform-gcp-control-plane/blob/main/example/main.tf)
