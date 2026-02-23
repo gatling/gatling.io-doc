@@ -14,22 +14,31 @@ With gRPC, [four types of methods can be defined](https://grpc.io/docs/what-is-g
 unary, server streaming, client streaming and bidirectional streaming. Different Gatling SDK methods can be used
 depending on the type of the gRPC method.
 
+Instantiate each stream types with either [`unary`]({{< ref "#instantiate-unary" >}}),
+[`serverStream`]({{< ref "#instantiate-server-stream" >}}),
+[`clientStream`]({{< ref "#instantiate-client-stream" >}}),
+or [`bidiStream`]({{< ref "#instantiate-bidi-stream" >}}).
+
+The following methods are available for all stream types:
+
+- [Server configuration]({{< ref "#server-configuration" >}}): `serverConfiguration`
+- [Add request headers]({{< ref "#method-headers" >}}): `asciiHeader(s)`, `binaryHeader(s)`, and `header`
+- [Add call credentials]({{< ref "#method-call-credentials" >}}): `callCredentials`
+- [Add deadline]({{< ref "#method-deadline" >}}): `deadlineAfter`
+- [Add checks]({{< ref "#method-checks" >}}): `check`
+- [Send a message]({{< ref "#method-send" >}}): `send`
+
+These methods are only available for specific stream types:
+
 {{< table >}}
-|                                                                       | Unary                                             | Server Stream                                                                             | Client Stream                                              | Bidirectional Stream                                                                      |
-|-----------------------------------------------------------------------|---------------------------------------------------|-------------------------------------------------------------------------------------------|------------------------------------------------------------|-------------------------------------------------------------------------------------------|
-| Instantiate                                                           | [`unary`]({{< ref "#instantiate-unary" >}})       | [`serverStream`]({{< ref "#instantiate-server-stream" >}})                                | [`clientStream`]({{< ref "#instantiate-client-stream" >}}) | [`bidiStream`]({{< ref "#instantiate-bidi-stream" >}})                                    |
-| [Server configuration]({{< ref "#server-configuration" >}})           | `serverConfiguration`                             | `serverConfiguration`                                                                     | `serverConfiguration`                                      | `serverConfiguration`                                                                     |
-| [Add request headers]({{< ref "#method-headers" >}})                  | `asciiHeader(s)`<br>`binaryHeader(s)`<br>`header` | `asciiHeader(s)`<br>`binaryHeader(s)`<br>`header`                                         | `asciiHeader(s)`<br>`binaryHeader(s)`<br>`header`          | `asciiHeader(s)`<br>`binaryHeader(s)`<br>`header`                                         |
-| [Add call credentials]({{< ref "#method-call-credentials" >}})        | `callCredentials`                                 | `callCredentials`                                                                         | `callCredentials`                                          | `callCredentials`                                                                         |
-| [Add deadline]({{< ref "#method-deadline" >}})                        | `deadlineAfter`                                   | `deadlineAfter`                                                                           | `deadlineAfter`                                            | `deadlineAfter`                                                                           |
-| [Add checks]({{< ref "#method-checks" >}})                            | `check`                                           | `check`                                                                                   | `check`                                                    | `check`                                                                                   |
-| [Response time policy]({{< ref "#method-response-time" >}})           | :x:                                               | `messageResponseTimePolicy`                                                               | `messageResponseTimePolicy`                                | `messageResponseTimePolicy`                                                               |
-| [Open stream]({{< ref "#method-start" >}})                            | :x:                                               | *implied by* `send`                                                                       | `start`                                                    | `start`                                                                                   |
-| [Send a message]({{< ref "#method-send" >}})                          | `send`                                            | `send`                                                                                    | `send`                                                     | `send`                                                                                    |
-| [Half-close stream]({{< ref "#method-half-close" >}})                 | :x:                                               | *implied by* `send`                                                                       | `halfClose`                                                | `halfClose`                                                                               |
-| [Wait for stream end]({{< ref "#method-wait-end" >}})                 | :x:                                               | `awaitStreamEnd`                                                                          | `awaitStreamEnd`                                           | `awaitStreamEnd`                                                                          |
-| [Process unmatched messages]({{< ref "#method-process-unmatched" >}}) | :x:                                               | `processUnmatchedMessages`<br>`awaitStreamEndAndProcess`<br>&nbsp;  ⤷ `UnmatchedMessages` | :x:                                                        | `processUnmatchedMessages`<br>`awaitStreamEndAndProcess`<br>&nbsp;  ⤷ `UnmatchedMessages` |
-| [Cancel stream]({{< ref "#method-cancel" >}})                         | :x:                                               | `cancel`                                                                                  | `cancel`                                                   | `cancel`                                                                                  |
+|                                                                       | Server Stream                                              | Client Stream                                              | Bidi Stream                                              |
+|-----------------------------------------------------------------------|------------------------------------------------------------|------------------------------------------------------------|----------------------------------------------------------|
+| [Response time policy]({{< ref "#method-response-time" >}})           | `messageResponseTimePolicy`                                | `messageResponseTimePolicy`                                | `messageResponseTimePolicy`                              |
+| [Open stream]({{< ref "#method-start" >}})                            | *implied by* `send`                                        | `start`                                                    | `start`                                                  |
+| [Half-close stream]({{< ref "#method-half-close" >}})                 | *implied by* `send`                                        | `halfClose`                                                | `halfClose`                                              |
+| [Wait for stream end]({{< ref "#method-wait-end" >}})                 | `awaitStreamEnd`                                           | `awaitStreamEnd`                                           | `awaitStreamEnd`                                         |
+| [Process unmatched messages]({{< ref "#method-process-unmatched" >}}) | `processUnmatchedMessages`<br>`awaitStreamEndAndProcess`<br>&nbsp;  ⤷ `UnmatchedMessages` | :x: | `processUnmatchedMessages`<br>`awaitStreamEndAndProcess`<br>&nbsp;  ⤷ `UnmatchedMessages` |
+| [Cancel stream]({{< ref "#method-cancel" >}})                         | `cancel`                                                   | `cancel`                                                   | `cancel`                                                 |
 {{< /table >}}
 
 ## gRPC method descriptor {#method-descriptor}
