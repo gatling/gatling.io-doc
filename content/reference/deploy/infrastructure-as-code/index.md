@@ -32,8 +32,8 @@ Deploys the Control Plane container as a Kubernetes deployment, along with the r
 
 Helm charts versions are available on the Gatling Helm subdomain [https://helm.gatling.io](https://helm.gatling.io).
 
-- Follow installation steps available [here](https://github.com/gatling/gatling-enterprise-control-plane-deployment/blob/main/helm-chart/README.md).
-- [Values file](https://github.com/gatling/gatling-enterprise-control-plane-deployment/blob/main/helm-chart/values.yaml) provides 3 sets of values—controlPlane, privateLocations, and an optional privatePackage—with fully configurable parameters for customizing the deployment. Optionally supports storing Private Packages in an existing S3 bucket, Azure Blob Storage, GCP Cloud Storage, or Control Plane's volume.
+- Follow installation steps available [here](https://github.com/gatling/helm-control-plane).
+- [Values file](https://github.com/gatling/helm-control-plane/blob/main/values.yaml) provides 3 sets of values—controlPlane, privateLocations, and an optional privatePackage—with fully configurable parameters for customizing the deployment. Optionally supports storing Private Packages in an existing S3 bucket, Azure Blob Storage, GCP Cloud Storage, or Control Plane's volume.
 
 ## AWS {#aws}
 
