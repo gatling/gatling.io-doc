@@ -2,8 +2,8 @@
 title: Kubernetes locations installation
 menutitle: Installation
 seotitle: Install Kubernetes locations in Gatling Enterprise Edition
-description: How to install a Gatling Control Plane on Kubernetes, to set up your Private Locations and run load generators in your own Kubernetes cluster.
-lead: Run a Control Plane on Kubernetes, to set up your Private Locations and run load generators in your own Kubernetes network.
+description: How to install a Gatling Control Plane on Kubernetes or OpenShift, to set up your Private Locations and run load generators in your own Kubernetes cluster.
+lead: Run a Control Plane on Kubernetes or OpenShift, to set up your Private Locations and run load generators in your own Kubernetes network.
 aliases:
   - /reference/install/cloud/private-locations/kubernetes/installation/
 ---
@@ -14,7 +14,11 @@ Accelerate deployment and simplify configuration with Gatling's pre-built [<span
 
 ## Introduction
 
-A control plane, installed on a kubernetes cluster with the needed roles will be able to deploy kubernetes private locations.
+{{<alert tip >}}
+This page also applies for deploying on an OpenShift cluster.
+{{</alert>}}
+
+A control plane, installed on a Kubernetes or OpenShift cluster with the needed roles will be able to deploy Kubernetes private locations.
 
 To better understand what roles are needed, here's a quick overview of the mechanisms involved when deploying a private location on Kubernetes.
 
