@@ -142,7 +142,7 @@ After generating the scaffold, tell the user:
 
 - **Code files** live in a `code/` subdirectory next to `index.md`
 - **Include code** with: `{{< include-code "sectionName" >}}`
-- **Section markers** in code files: `//# sectionName` to open, `//#` to close
+- **Section markers** in code files: `//#sectionName` to open, `//#` to close
 - **Internal links** must use `{{< ref "/path/to/page" >}}`, not raw relative URLs
 - If the parent section's `_index.md` needs updating, show the line to add to its `ordering:` list
 
