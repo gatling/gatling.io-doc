@@ -17,6 +17,7 @@
 import {
   ByteArrayBody,
   ElFileBody,
+  exec,
   PebbleFileBody,
   PebbleStringBody,
   RawFileBody,
@@ -404,6 +405,10 @@ http("name").post("/")
     http("ga.js").get("/ga.js")
   );
 //#resources
+
+//#httpConcurrentRequests
+// COMING SOON
+//#httpConcurrentRequests
 
 //#requestTimeout
 http("name").get("/")

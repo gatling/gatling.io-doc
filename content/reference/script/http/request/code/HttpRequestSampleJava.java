@@ -401,6 +401,15 @@ http("name").post("/")
   );
 //#resources
 
+//#httpConcurrentRequests
+exec(
+  httpConcurrentRequests(
+    http("Request 1").get("/api?param=value1"),
+    http("Request 2").get("/api?param=value2")
+  )
+);
+//#httpConcurrentRequests
+
 //#requestTimeout
 http("name").get("/")
   .requestTimeout(Duration.ofMinutes(3));

@@ -387,10 +387,19 @@ http("name").post("/")
 //#resources
 http("name").post("/")
   .resources(
-    http("api.js")["/assets/api.js"],
-    http("ga.js")["/ga.js"]
+    http("api.js").get("/assets/api.js"),
+    http("ga.js").get("/ga.js")
   )
 //#resources
+
+//#httpConcurrentRequests
+exec(
+  httpConcurrentRequests(
+    http("Request 1").get("/api?param=value1"),
+    http("Request 2").get("/api?param=value2")
+  )
+)
+//#httpConcurrentRequests
 
 //#requestTimeout
 http("name").get("/")
