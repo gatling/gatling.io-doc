@@ -374,6 +374,14 @@ http("").get("")
 )
 //#name
 
+//#logActualValueInError
+.check(
+  jmesPath("foo")
+    .shouldBe("bar")
+    .logActualValueInError(false)
+)
+//#logActualValueInError
+
 //#saveAs
 .check(
   jmesPath("foo").saveAs("key")

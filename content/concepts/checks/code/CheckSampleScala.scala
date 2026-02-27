@@ -385,6 +385,14 @@ request
 )
 //#name
 
+//#logActualValueInError
+.check(
+  jmesPath("foo")
+    .is("bar")
+    .logActualValueInError(false)
+)
+//#logActualValueInError
+
 //#saveAs
 .check(
   jmesPath("foo").saveAs("key")

@@ -410,6 +410,15 @@ It takes one single parameter:
 
 {{< include-code "name" >}}
 
+## Logging actual value in error messages {#logActualValueInError}
+
+By default, most checks that apply a condition on an expected value log the actual value when they fail.
+This can result in a very high cardinality on error metrics.
+
+In order to keep the number of error metrics reasonable, you can disable logging the actual value:
+
+{{< include-code "logActualValueInError" >}}
+
 ## Saving
 
 #### `saveAs`
