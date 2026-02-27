@@ -32,7 +32,7 @@ public class DualJourneySimulation extends Simulation {
       .acceptHeader("application/json, text/html;q=0.9,*/*;q=0.8")
       .userAgentHeader("Gatling/Java DualJourney");
 
-  FeederBuilder.Batchable<String> searchFeeder = csv("data/search_terms.csv").random();
+  FeederBuilder<String> searchFeeder = csv("data/search_terms.csv").random();
 
   ScenarioBuilder browse =
     scenario("01 Browse")
