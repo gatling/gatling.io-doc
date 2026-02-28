@@ -6,6 +6,7 @@ aliases:
   - /release-notes/whats-new/
   - /release-notes/oss/whats-new/
 ordering:
+  - 3.15.md
   - 3.14.md
   - 3.13.md
   - 3.12.md
