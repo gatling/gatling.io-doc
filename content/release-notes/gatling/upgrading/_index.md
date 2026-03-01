@@ -6,6 +6,7 @@ aliases:
   - /release-notes/upgrading/
   - /release-notes/oss/upgrading/
 ordering:
+  - 3.14-to-3.15
   - 3.13-to-3.14
   - 3.12-to-3.13
   - 3.11-to-3.12
