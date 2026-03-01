@@ -307,7 +307,7 @@ Gatling currently only provides one single pre-processor: `gzipBody`.
 
 {{< include-code "processRequestBody" >}}
 
-## Resources {{#resources}}
+## Resources {#resources}
 
 Gatling provides a way to simulate a web browser fetching static.
 
@@ -321,7 +321,7 @@ The next step in the scenario will only be executed once all the resources have 
 
 {{< include-code "resources" >}}
 
-## Concurrent requests {{#httpConcurrentRequests}}
+## Concurrent requests {#httpConcurrentRequests}
 
 Gatling provides a way to execute a list of requests concurrently.
 The concurrency level works the same way as for `#resources`.
