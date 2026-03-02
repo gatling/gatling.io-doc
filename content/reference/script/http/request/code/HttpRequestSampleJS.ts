@@ -21,11 +21,15 @@ import {
   PebbleFileBody,
   PebbleStringBody,
   RawFileBody,
-  Session,
   StringBody,
   scenario
 } from "@gatling.io/core";
-import { StringBodyPart, http, status } from "@gatling.io/http";
+import {
+  StringBodyPart,
+  http,
+  httpConcurrentRequests,
+  status
+} from "@gatling.io/http";
 
 //#requestName
 // with a static value
@@ -407,7 +411,12 @@ http("name").post("/")
 //#resources
 
 //#httpConcurrentRequests
-// COMING SOON
+exec(
+  httpConcurrentRequests(
+    http("Request 1").get("/api?param=value1"),
+    http("Request 2").get("/api?param=value2")
+  )
+)
 //#httpConcurrentRequests
 
 //#requestTimeout
