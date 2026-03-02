@@ -38,9 +38,7 @@
       "yaml": "project"
     }
   },
-  "dependencies": {
-    "latest-version": "^9.0.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@babel/cli": "7.16",
     "@babel/core": "7.16",
@@ -50,11 +48,11 @@
     "@docsearch/js": "beta",
     "@fortawesome/fontawesome-free": "6.5.1",
     "@fullhuman/postcss-purgecss": "4.0",
-    "@gatling.io/core": "3.15.0",
-    "@gatling.io/grpc": "3.15.0",
-    "@gatling.io/http": "3.15.0",
-    "@gatling.io/mqtt": "3.15.0",
-    "@gatling.io/postman": "3.15.0",
+    "@gatling.io/core": "3.15.1",
+    "@gatling.io/grpc": "3.15.1",
+    "@gatling.io/http": "3.15.1",
+    "@gatling.io/mqtt": "3.15.1",
+    "@gatling.io/postman": "3.15.1",
     "autoprefixer": "10.4",
     "bootstrap": "5.1.3",
     "clipboard": "2.0",

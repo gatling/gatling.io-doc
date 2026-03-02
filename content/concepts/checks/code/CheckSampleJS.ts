@@ -386,7 +386,11 @@ http("").get("")
 //#name
 
 //#logActualValueInError
-// COMING SOON
+.check(
+  jmesPath("foo")
+    .is("bar")
+    .logActualValueInError(false)
+)
 //#logActualValueInError
 
 //#saveAs
