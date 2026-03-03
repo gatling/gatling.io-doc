@@ -233,7 +233,15 @@ See the [checks section]({{< ref "checks" >}}) for more details on gRPC checks.
 If you define response checks for server or bidirectional streaming methods, they will be applied to every message
 received from the server. Other checks are only applied once, at the end of the stream.
 
-### Response time policy {#method-response-time}
+### Message request name {#message-request-name}
+
+For streaming methods only, you can specify the name used when logging the response time for each response message
+received (as opposed to the response time for the entire stream). If not specified, this will default to appending
+` [message]` after the base request name.
+
+{{< include-code "bidiMessageRequestName" >}}
+
+### Message response time policy {#method-response-time}
 
 {{< badge info >}}serverStream{{< /badge >}}
 {{< badge info >}}clientStream{{< /badge >}}
@@ -248,6 +256,33 @@ For streaming methods only, you can specify how to calculate the response time l
   previously, falls back to `FromStreamStartPolicy`.
 - `FromLastMessageReceivedPolicy`: measure the time since the previous response message was received. If this is the
   first response message received, falls back to `FromStreamStartPolicy`.
+- Or provide a custom function. The time returned by the function will be used as the start time for the transaction. If
+  you return `null` (or `None` in Scala), the response time for this message will be ignored.
+
+```mermaid
+sequenceDiagram
+    participant Client
+    participant Server
+
+    Client->>Server: stream start
+    activate Server
+    Client->>Server: send message₁
+    Note right of Server: FromStreamStartPolicy
+    Server-->>Client: receive message₂
+    Server-->>Client: receive message₃
+    activate Server
+    Note right of Server: FromLastMessageReceivedPolicy
+    Client->>Server: send send message₄
+    Client->>Server: send send message₅
+    activate Server
+    Client->>Server: stream half close
+    Note right of Server: FromLastMessageSentPolicy
+    Server-->>Client: receive message₆
+    deactivate Server
+    deactivate Server
+    deactivate Server
+    Server-->>Client: stream end
+```
 
 {{< include-code "bidiMessageResponseTimePolicy" >}}
 

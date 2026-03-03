@@ -63,4 +63,6 @@ docSearch:
     apiKey: "e53c31a608bc353fc4c4a3694438886f"
     appId: "6PCIB797P6"
     assistantId: "zLWUmlik715i"
-  
+
+mermaid:
+  moduleUrl: https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs

@@ -320,6 +320,23 @@ const unaryChecks = () => {
   //#unaryChecks
 };
 
+const bidiMessageRequestName = () => {
+  //#bidiMessageRequestName
+  // with a static value
+  grpc("stream request name")
+    .bidiStream("example.ExampleService/Example")
+    .messageRequestName("message request name");
+  // with a Gatling EL string
+  grpc("stream request name")
+    .bidiStream("example.ExampleService/Example")
+    .messageRequestName("#{messageRequestName}");
+  // with a function
+  grpc("stream request name")
+    .bidiStream("example.ExampleService/Example")
+    .messageRequestName((session) => session.get("messageRequestName"));
+  //#bidiMessageRequestName
+}
+
 const bidiMessageResponseTimePolicy = () => {
   //#bidiMessageResponseTimePolicy
   grpc("name")
