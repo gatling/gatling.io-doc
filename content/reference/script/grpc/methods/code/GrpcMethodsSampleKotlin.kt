@@ -363,6 +363,21 @@ class GrpcMethodsSampleKotlin {
       )
     //#unaryChecks
 
+    //#bidiMessageRequestName
+    // with a static value
+    grpc("stream request name")
+      .bidiStream(ExampleServiceGrpc.getExampleMethod())
+      .messageRequestName("message request name")
+    // with a Gatling EL string
+    grpc("stream request name")
+      .bidiStream(ExampleServiceGrpc.getExampleMethod())
+      .messageRequestName("#{messageRequestName}")
+    // with a function
+    grpc("stream request name")
+      .bidiStream(ExampleServiceGrpc.getExampleMethod())
+      .messageRequestName { session -> session.getString("messageRequestName") }
+    //#bidiMessageRequestName
+
     //#bidiMessageResponseTimePolicy
     grpc("name")
       .bidiStream(ExampleServiceGrpc.getExampleMethod())
@@ -372,6 +387,16 @@ class GrpcMethodsSampleKotlin {
       .messageResponseTimePolicy(MessageResponseTimePolicy.FromLastMessageSent)
       // From the time the previous response message was received
       .messageResponseTimePolicy(MessageResponseTimePolicy.FromLastMessageReceived)
+      // Custom policy, in this example identical to FromStreamStart.
+      // Can also choose to return null to ignore this message's response time.
+      .messageResponseTimePolicy {
+          message,
+          nowTimestamp,
+          streamStartTimestamp,
+          lastMessageSentTimestamp,
+          lastMessageReceivedTimestamp ->
+        streamStartTimestamp
+      }
     //#bidiMessageResponseTimePolicy
   }
 

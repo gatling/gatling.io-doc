@@ -357,6 +357,21 @@ class GrpcMethodsSampleScala {
     )
   //#unaryChecks
 
+  //#bidiMessageRequestName
+  // with a static value
+  grpc("stream request name")
+    .bidiStream(ExampleServiceGrpc.METHOD_EXAMPLE)
+    .messageRequestName("message request name")
+  // with a Gatling EL string
+  grpc("stream request name")
+    .bidiStream(ExampleServiceGrpc.METHOD_EXAMPLE)
+    .messageRequestName("#{messageRequestName}")
+  // with a function
+  grpc("stream request name")
+    .bidiStream(ExampleServiceGrpc.METHOD_EXAMPLE)
+    .messageRequestName(session => session("messageRequestName").as[String])
+  //#bidiMessageRequestName
+
   //#bidiMessageResponseTimePolicy
   grpc("name")
     .bidiStream(ExampleServiceGrpc.METHOD_EXAMPLE)
@@ -366,6 +381,15 @@ class GrpcMethodsSampleScala {
     .messageResponseTimePolicy(FromLastMessageSentPolicy)
     // From the time the previous response message was received
     .messageResponseTimePolicy(FromLastMessageReceivedPolicy)
+    // Custom policy, in this example identical to FromStreamStart.
+    // Can also choose to return None to ignore this message's response time.
+    .messageResponseTimePolicy {
+      (message,
+       nowTimestamp,
+       streamStartTimestamp,
+       lastMessageSentTimestamp,
+       lastMessageReceivedTimestamp) => Some(streamStartTimestamp)
+    }
   //#bidiMessageResponseTimePolicy
 
   {
