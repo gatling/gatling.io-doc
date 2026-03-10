@@ -11,7 +11,7 @@ date: 2023-01-18T09:00:00+02:00
 **PLEASE READ THIS AGREEMENT CAREFULLY AS IT GOVERNS YOUR USE OF THE Component (AS DEFINED BELOW), UNLESS WE HAVE EXECUTED A SEPARATE WRITTEN AGREEMENT WITH YOU FOR THAT PURPOSE.**
 
 
-**Thank you for using the Component developed by GATLING a French société par actions simplifiée, whose registered office is at 152-160, avenue Aristide Briand 92220 Bagneux, France, with a capital of 100 943, 60 Euros, incorporated and registered in Nanterre (France), with company number 812 810 216.  (“GATLING CORP”, “we” or “us”).**
+**Thank you for using the Component developed by GATLING a French société par actions simplifiée, whose registered office is at 99 Avenue Achille Peretti, 92200 Neuilly-sur-Seine, France, with a capital of 100 943, 60 Euros, incorporated and registered in Nanterre (France), with company number 812 810 216.  (“GATLING CORP”, “we” or “us”).**
 
 **By downloading the Component, you agree to all the terms and conditions of this Component License (“Agreement”).**
 
