@@ -60,23 +60,23 @@ API keys are stored securely in VS Code's secrets storage and never sent to Gatl
 1. **Open the Gatling panel**: Click the Gatling icon in the Activity Bar (left sidebar)
 2. **Start chatting**: Ask questions about Gatling or request help with your project
 3. **Explain code**: Select code and choose "Explain Code" from the context menu
-4. **Create a simulation**: See [Create a Simulation]({{< ref "/integrations/ide-tools/vscode/create-simulation" >}}) for step-by-step guidance
+4. **Create a simulation**: See [Create a Simulation]({{< ref "./create-simulation" >}}) for step-by-step guidance
 
 ## Features
 
-### [Create a Simulation]({{< ref "/integrations/ide-tools/vscode/create-simulation" >}})
+### [Create a Simulation]({{< ref "./create-simulation" >}})
 Generate new Gatling test scenarios with AI guidance. The assistant helps structure simulations effectively, choose appropriate protocols, and set up realistic user behavior patterns.
 
-### [Explain Code]({{< ref "/integrations/ide-tools/vscode/explain-code" >}})
+### [Explain Code]({{< ref "./explain-code" >}})
 Select any portion of your Gatling code and receive contextual explanations. Understand complex patterns, configuration options, and performance implications.
 
-### [Refine Selection]({{< ref "/integrations/ide-tools/vscode/refine-selection" >}})
+### [Refine Selection]({{< ref "./refine-selection" >}})
 Improve existing code with AI-powered refinements. Select code and specify your goal—optimize performance, add error handling, improve clarity, or apply best practices. Review changes with side-by-side diff before accepting.
 
-### [Contextual Chat]({{< ref "/integrations/ide-tools/vscode/contextual-chat" >}})
+### [Contextual Chat]({{< ref "./contextual-chat" >}})
 Ask the AI assistant questions about Gatling concepts, best practices, and implementation details. Get help with optimization and troubleshooting.
 
-### [LoadRunner Script Migration]({{< ref "/integrations/ide-tools/vscode/loadrunner-converter" >}})
+### [LoadRunner Script Migration]({{< ref "./loadrunner-converter" >}})
 Migrate existing LoadRunner C scripts into Gatling Java simulations using an AI agent workflow. The agent parses, analyzes, transforms, and generates code with step-by-step progress visibility and diff-based output for review. Right-click `.c` files in the Explorer to migrate single scripts, or use the Command Palette for batch migration.
 
 ## Configuration

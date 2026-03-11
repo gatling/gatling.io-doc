@@ -201,7 +201,7 @@ When refining code, the AI Assistant sends:
 - Current file context (language, filename)
 - Workspace context (when relevant)
 
-See [Privacy and Security]({{< ref "/integrations/ide-tools/vscode/overview#privacy-and-security" >}}) for full details.
+See [Privacy and Security]({{< ref "./overview#privacy-and-security" >}}) for full details.
 
 ## Limitations
 
