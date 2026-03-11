@@ -6,4 +6,5 @@ description: Explore Gatling AI integrations, including a MCP server, skills to 
 lead: Gatling AI integrations bring AI-powered tooling to your load testing workflow, with extensions that connect your IDE directly to Gatling Enterprise.
 ordering:
   - extensions
+  - assistant
 ---

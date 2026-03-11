@@ -1,14 +1,14 @@
-
-
 ---
-title: Gatling AI Assistant for Cursor
-seotitle: Gatling AI Assistant Cursor Extension
-menutitle: AI Assistant for Cursor
-description: AI-powered assistant for Gatling performance testing in Cursor. Get intelligent help with creating, optimizing, and understanding Gatling simulations.
-lead: AI-powered assistant for Gatling performance testing. Get intelligent help with creating, optimizing, and understanding Gatling simulations directly in Cursor.
+title: Gatling AI Assistant for Windsurf
+seotitle: Gatling AI Assistant Windsurf Extension
+menutitle: AI Assistant for Windsurf
+description: AI-powered assistant for Gatling performance testing in Windsurf. Get intelligent help with creating, optimizing, and understanding Gatling simulations.
+lead: AI-powered assistant for Gatling performance testing. Get intelligent help with creating, optimizing, and understanding Gatling simulations directly in Windsurf.
 ---
+
 ## Overview
-The Gatling AI Assistant for Cursor integrates AI-powered development tools directly into your editor. Write, optimize, and understand Gatling simulations in JavaScript, TypeScript, Java, Scala, and Kotlin with intelligent assistance.
+
+The Gatling AI Assistant for Windsurf integrates AI-powered development tools directly into your editor. Write, optimize, and understand Gatling simulations in JavaScript, TypeScript, Java, Scala, and Kotlin with intelligent assistance.
 
 ## What it does
 
@@ -26,8 +26,8 @@ The Gatling AI Assistant for Cursor integrates AI-powered development tools dire
 
 ### Install the extension
 
-**From Cursor Marketplace:**
-1. Open Cursor
+**From Windsurf Marketplace:**
+1. Open Windsurf
 2. Go to Extensions
 3. Search for "Gatling AI Assistant"
 4. Click Install
@@ -45,8 +45,8 @@ The extension requires an API key from one of these providers:
    - **Azure OpenAI**: [portal.azure.com](https://portal.azure.com)
 4. Paste your API key when prompted
 
-API keys are stored securely in Cursor's secrets storage and never sent to Gatling servers.
+API keys are stored securely in Windsurf's secrets storage and never sent to Gatling servers.
 
 ## Features and Usage
 
-The Gatling AI Assistant for Cursor has an identical scope as the VS Code extension. Please refer to the [Gatling AI Assistant for VS Code](/integrations/ide-tools/vscode/) documentation for detailed information on features and usage instructions.
+The Gatling AI Assistant for Windsurf has an identical scope as the VS Code extension. Please refer to the [Gatling AI Assistant for VS Code](/integrations/ide-tools/vscode/) documentation for detailed information on features and usage instructions.

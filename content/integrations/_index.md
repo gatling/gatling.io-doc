@@ -13,5 +13,4 @@ ordering:
   - postman
   - notifications
   - ai
-  - ide-tools
 ---
