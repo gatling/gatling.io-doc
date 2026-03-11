@@ -12,5 +12,6 @@ ordering:
   - apm-tools
   - postman
   - notifications
+  - ai
   - ide-tools
 ---
