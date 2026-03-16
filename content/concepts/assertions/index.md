@@ -111,3 +111,7 @@ To help you understand how to use assertions, here is a list of examples:
 {{< alert tip >}}
 Gatling Enterprise Edition includes ramp up and ramp down [time window options]({{< ref "/reference/run-tests/simulations/optional-config#time-window" >}}), which allows you to exclude warmup times from the assertions calculation.
 {{< /alert >}}
+
+{{< alert warning >}}
+In Gatling Enterprise Edition, [Service Level Objectives (SLOs)]({{< ref "/reference/run-tests/simulations/optional-config#slos" >}}) take precedence over assertions. When SLOs are configured on a test, assertions defined in the simulation code are not evaluated.
+{{< /alert >}}
