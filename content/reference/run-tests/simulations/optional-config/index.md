@@ -35,9 +35,33 @@ System properties can be retrieved in your Gatling simulation with `System.getPr
 Environment variables can be retrieved in your Gatling simulation with `System.getEnv("YOUR_ENV_VAR_KEY")`.
 {{< /alert >}}
 
+### Configure Service Level Objectives (SLOs) {#slos}
+
+A Service Level Objective (SLO) defines a target performance threshold for your test. Gatling Enterprise Edition evaluates each SLO over the duration of the run and reports the percentage of time the condition was met.
+
+You can add multiple SLOs to a test. Each SLO is defined by:
+
+- **Metric**: the global statistic to measure:
+  - **Error ratio**: the percentage of failed requests across all scenarios.
+  - **Response time percentile**: the Nth percentile of response times, in milliseconds. Available percentiles: p50, p95, p99, p99.9, p99.99, p99.999, p99.9999.
+- **Operator**: the comparison to apply — **less than** (`<`) or **less than or equal** (`≤`).
+- **Threshold**: the target value — in milliseconds for response time, or as a percentage for error ratio.
+
+The SLO result is expressed as a percentage: the proportion of seconds during the run where the condition was met. Ramp-up and ramp-down periods are excluded from this calculation (see [Time window](#time-window)).
+
+{{< alert warning >}}
+Adding SLOs to your test overwrites any assertions defined in the simulation code. When SLOs are configured on a test in Gatling Enterprise Edition, assertions are not evaluated.
+{{< /alert >}}
+
+SLO results appear in the run summary as circular gauges, color-coded by compliance:
+
+- **Green**: the condition was met 99% of the time or more.
+- **Orange**: the condition was met between 90% and 99% of the time.
+- **Red**: the condition was met less than 90% of the time.
+
 ### Time window {#time-window}
 
-You can configure ramp-up and ramp-down time windows to be excluded from computed assertions. This is typically useful when you know that at the beginning of your test run you expect higher response times than when your system is warm (JIT compiler has kicked in, autoscaling has done its work, caches are filled, etc.) and don’t want them the warm-up time to cause your assertions to fail.
+You can configure ramp-up and ramp-down time windows to be excluded from SLOs and assertions computation. This is typically useful when you know that at the beginning of your test run you expect higher response times than when your system is warm (JIT compiler has kicked in, autoscaling has done its work, caches are filled, etc.) and don’t want the warm-up time to cause your SLOs or assertions to fail.
 
 - **Ramp Up**: the number of seconds you want to exclude at the beginning of the run.
 - **Ramp Down**: the number of seconds you want to exclude at the end of the run.
