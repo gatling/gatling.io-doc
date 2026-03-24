@@ -242,7 +242,7 @@ You can set the authentication methods at protocol level to be applied to all re
 
 #### `disableFollowRedirect`
 
-By default, Gatling automatically follow redirects in case of 301, 302, 303, 307 or 308 response status code.
+By default, Gatling automatically follows redirects in case of 301, 302, 303, 307 or 308 response status code.
 You can disable this behavior.
 
 {{< include-code "disableFollowRedirect" >}}
