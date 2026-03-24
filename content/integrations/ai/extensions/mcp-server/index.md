@@ -9,11 +9,13 @@ The Gatling MCP Server bridges AI applications with [Gatling Enterprise](https:/
 enabling AI agents to interact with your load testing infrastructure through natural language.
 Query teams, packages, simulations, and load generator locations directly from your AI assistant.
 
-{{< alert info >}}
-It currently only runs as a local MCP server using `stdio` communication.
-{{< /alert >}}
+{{< arcade id="L0b4TuxIh06ZObAqJ37x" title="Introducing MCP Server" >}}
 
 ## Installation
+
+{{< alert info >}}
+The Gatling MCP Server currently only runs locally using `stdio` communication.
+{{< /alert >}}
 
 ### Prerequisites
 
