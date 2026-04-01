@@ -1,0 +1,34 @@
+{
+  "sum": "b351a9bc264f7fd9",
+  "dependencySources": {
+    "dependencies": {},
+    "devDependencies": {
+      "@babel/cli": "github.com/gatling/gatling.io-doc-theme",
+      "@babel/core": "github.com/gatling/gatling.io-doc-theme",
+      "@babel/preset-env": "github.com/gatling/gatling.io-doc-theme",
+      "@babel/preset-typescript": "github.com/gatling/gatling.io-doc-theme",
+      "@docsearch/css": "github.com/gatling/gatling.io-doc-theme",
+      "@docsearch/js": "github.com/gatling/gatling.io-doc-theme",
+      "@fortawesome/fontawesome-free": "github.com/gatling/gatling.io-doc-theme",
+      "@fullhuman/postcss-purgecss": "github.com/gatling/gatling.io-doc-theme",
+      "autoprefixer": "github.com/gatling/gatling.io-doc-theme",
+      "bootstrap": "github.com/gatling/gatling.io-doc-theme",
+      "clipboard": "github.com/gatling/gatling.io-doc-theme",
+      "eslint": "github.com/gatling/gatling.io-doc-theme",
+      "instant.page": "github.com/gatling/gatling.io-doc-theme",
+      "jquery": "github.com/gatling/gatling.io-doc-theme",
+      "js-cookie": "github.com/gatling/gatling.io-doc-theme",
+      "lazysizes": "github.com/gatling/gatling.io-doc-theme",
+      "markdownlint-cli": "github.com/gatling/gatling.io-doc-theme",
+      "postcss": "github.com/gatling/gatling.io-doc-theme",
+      "postcss-cli": "github.com/gatling/gatling.io-doc-theme",
+      "purgecss-whitelister": "github.com/gatling/gatling.io-doc-theme",
+      "rimraf": "github.com/gatling/gatling.io-doc-theme",
+      "standard-version": "github.com/gatling/gatling.io-doc-theme",
+      "stylelint": "github.com/gatling/gatling.io-doc-theme",
+      "stylelint-config-standard": "github.com/gatling/gatling.io-doc-theme",
+      "swagger-ui-dist": "github.com/gatling/gatling.io-doc-theme",
+      "typescript": "github.com/gatling/gatling.io-doc-theme"
+    }
+  }
+}
