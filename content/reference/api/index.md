@@ -21,5 +21,4 @@ This API requires an `Authorization` HTTP header populated with an [API token]({
 - Fetch the total run time window from the `/runs` endpoint (`injectStart`, `injectEnd`).
 - The `/summaries/requests` API returns the following percentiles: `min`, `p25`, `p50`, `p75`, `p80`, `p85`, `p90`, `p95`, `p99`, `p999`, `p9999` and `max`.
 
-
 {{< swagger-ui src="https://gatling.github.io/gatling-enterprise-api/openapi/openapi.json" >}}

@@ -25,8 +25,8 @@
     "standard-version": "9.3",
     "stylelint": "14.1",
     "stylelint-config-standard": "24.0",
-    "swagger-ui-dist": "5.10.0",
-    "typescript": " 5.7.3"
+    "swagger-ui-dist": "5.32.1",
+    "typescript": "5.7.3"
   },
   "name": "gatling.io-doc",
   "version": "0.1.0"
