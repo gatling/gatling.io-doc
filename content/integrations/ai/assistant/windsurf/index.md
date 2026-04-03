@@ -49,4 +49,4 @@ API keys are stored securely in Windsurf's secrets storage and never sent to Gat
 
 ## Features and Usage
 
-The Gatling AI Assistant for Windsurf has an identical scope as the VS Code extension. Please refer to the [Gatling AI Assistant for VS Code](/integrations/ide-tools/vscode/) documentation for detailed information on features and usage instructions.
+The Gatling AI Assistant for Windsurf has an identical scope as the VS Code extension. Please refer to the [Gatling AI Assistant for VS Code]({{< ref "./vscode" >}}) documentation for detailed information on features and usage instructions.
