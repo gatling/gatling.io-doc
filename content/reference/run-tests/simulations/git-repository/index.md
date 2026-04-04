@@ -60,8 +60,13 @@ though we recommend using the [latest-builder](https://hub.docker.com/layers/gat
 {{< /alert >}}
 
 You need to configure:
-- **Command**: the command used to package your simulations for Gatling Enterprise Edition. 
+
+- **Command**: the command used to **package** your simulations for Gatling Enterprise Edition. One way or another, your custom build command must trigger the packaging task for your build tool:
 (see packaging section of your [build tool]({{< ref "integrations/build-tools">}}))
+  - `maven`: `gatling:enterprisePackage`, see [here]({{< ref "integrations/build-tools/maven-plugin/#packaging">}})
+  - `gradle`: `gatlingEnterprisePackage`, see [here]({{< ref "integrations/build-tools/gradle-plugin/#packaging">}})
+  - `sbt`: `Gatling/enterprisePackage`, see [here]({{< ref "integrations/build-tools/sbt-plugin/#packaging">}})
+  - `npm`: `gatling enterprise-package`, see [here]({{< ref "integrations/build-tools/js-cli/#packaging-your-simulations-for-gatling-enterprise-edition">}})
 - **Package format**: the format of the package, either `JVM` (for Maven, Gradle and sbt) or `JS` (for JavaScript).
 
 ### Configure the load generator locations
