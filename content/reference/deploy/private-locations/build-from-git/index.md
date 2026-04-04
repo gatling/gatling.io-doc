@@ -200,6 +200,10 @@ We strongly recommend that you mount **all** the following directories on a pers
 * `/app/.ivy2`
 * `/app/.npm`
   {{< /alert >}}
+  
+{{< alert warning >}}
+Build tools install and load native libraries in these directories. As a result, `read` and `write` filesystem permissions don't suffice. The `exec` permission is **required** and the volumes **must not** be mounted with `noexec`.
+{{< /alert >}}
 
 ### Private storage build cache
 
