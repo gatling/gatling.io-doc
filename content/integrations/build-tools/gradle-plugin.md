@@ -282,10 +282,10 @@ With `gatlingEnterpriseDeploy` command, you can:
 
 This command automatically checks your simulation project and performs the deployment according to your configuration.
 
-By default, `GatlingEnterpriseDeploy` searches for the package descriptor in `.gatling/package.conf`.
+By default, `gatlingEnterpriseDeploy` searches for the package descriptor in `.gatling/package.conf`.
 However, you can target a different filename in `.gatling` by using the following command:
 ```shell
-gradle GatlingEnterpriseDeploy -Dgatling.enterprise.packageDescriptorFilename="<file name>"
+gradle gatlingEnterpriseDeploy -Dgatling.enterprise.packageDescriptorFilename="<file name>"
 ```
 
 {{< alert info >}}
