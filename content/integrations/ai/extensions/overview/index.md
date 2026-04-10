@@ -39,7 +39,7 @@ in any LLM client that supports skills or local MCP servers.
 
 #### Bootstrap a Gatling project
 
-Skill: [`gatling-bootstrap-project`](https://github.com/gatling/gatling-ai-extensions/tree/main/plugins/gatling/skills/gatling-bootstrap-project)
+Skill: [`gatling-bootstrap-project`](https://github.com/gatling/gatling-ai-extensions/tree/main/plugins/gatling/skills/gatling-bootstrap-project/SKILL.md)
 
 Create a new Gatling project from scratch by either the prompt or by using the following command inside Claude Code:
 
@@ -49,7 +49,7 @@ Create a new Gatling project from scratch by either the prompt or by using the f
 
 #### Build tools
 
-Skill: [`gatling-build-tools`](https://github.com/gatling/gatling-ai-extensions/tree/main/plugins/gatling/skills/gatling-build-tools)
+Skill: [`gatling-build-tools`](https://github.com/gatling/gatling-ai-extensions/tree/main/plugins/gatling/skills/gatling-build-tools/SKILL.md)
 
 Deploy and start Gatling tests on Gatling Enterprise using your project's build tool (Maven, Gradle, sbt, or the
 JavaScript CLI). Detects the build tool, verifies prerequisites, runs the deploy command, and optionally starts a test
@@ -57,7 +57,7 @@ run.
 
 #### Configuration as Code
 
-Skill: [`gatling-configuration-as-code`](https://github.com/gatling/gatling-ai-extensions/tree/main/plugins/gatling/skills/gatling-configuration-as-code)
+Skill: [`gatling-configuration-as-code`](https://github.com/gatling/gatling-ai-extensions/tree/main/plugins/gatling/skills/gatling-configuration-as-code/SKILL.md)
 
 Generate or update the `.gatling/package.conf` package descriptor file for Gatling Enterprise deployments.
 Collects simulation class names, queries your account for teams, packages, tests, and locations, then writes or updates
@@ -65,18 +65,39 @@ the configuration file following Configuration as Code rules.
 
 #### Convert a JMeter Test Plan to Gatling
 
-Skill: [`gatling-convert-from-jmeter`](https://github.com/gatling/gatling-ai-extensions/tree/main/plugins/gatling/skills/gatling-convert-from-jmeter)
+Skill: [`gatling-convert-from-jmeter`](https://github.com/gatling/gatling-ai-extensions/tree/main/plugins/gatling/skills/gatling-convert-from-jmeter/SKILL.md)
 
-For example, inside an empty directory with only an [Apache JMeter™](https://jmeter.apache.org/) Test Plan you want to
-convert to Gatling, you can run the following command inside Claude Code or the equivalent in your favorite tool:
-
-Usage:
+The skill will generally be loaded automatically by the LLM when needed, based on your natural language queries, when trying to convert an [Apache JMeter™](https://jmeter.apache.org/) test.
+In Claude Code, you can also explicitly invoke it, for instance:
 
 ```console
-/Gatling:gatling-convert-from-jmeter Test Plan.jmx
+/Gatling:gatling-convert-from-jmeter
 ```
 
-You can also use natural language and ask your LLM to convert a Test Plan if you prefer.
+Using this skill, the LLM will look for JMeter files to convert, and for an existing Gatling project as a destination. It will also help you set up a new Gatling project if necessary.
+
+Do not hesitate to give more context from the start if you want less back and forth with the LLM; for instance, if you want to convert the `Test Plan.jmx` file to a new Java/Maven Gatling project:
+
+```console
+/Gatling:gatling-convert-from-jmeter Test Plan.jmx java maven
+```
+
+#### Convert a LoadRunner Script to Gatling
+
+Skill: [`gatling-convert-from-loadrunner`](https://github.com/gatling/gatling-ai-extensions/tree/main/plugins/gatling/skills/gatling-convert-from-loadrunner/SKILL.md)
+
+The skill will generally be loaded automatically by the LLM when needed, based on your natural language queries, when trying to convert a [LoadRunner](https://www.opentext.com/products/professional-performance-engineering) script.
+In Claude Code, you can also explicitly invoke it, for instance:
+
+```console
+/Gatling:gatling-convert-from-loadrunner
+```
+
+Do not hesitate to give more context from the start if you want less back and forth with the LLM; for instance, if you want to convert a LoadRunner project to a new Java/Maven Gatling project:
+
+```console
+/Gatling:gatling-convert-from-loadrunner WebHttpHtml1.zip java maven
+```
 
 ### MCP Server
 
