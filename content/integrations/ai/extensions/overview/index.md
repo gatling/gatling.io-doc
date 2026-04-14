@@ -96,7 +96,7 @@ In Claude Code, you can also explicitly invoke it, for instance:
 Do not hesitate to give more context from the start if you want less back and forth with the LLM; for instance, if you want to convert a LoadRunner project to a new Java/Maven Gatling project:
 
 ```console
-/Gatling:gatling-convert-from-loadrunner WebHttpHtml1.zip java maven
+/Gatling:gatling-convert-from-loadrunner EcommApp.zip java maven
 ```
 
 You can download a [sample LoadRunner project](https://github.com/gatling/gatling-ai-extensions/raw/refs/heads/main/plugins/gatling/skills/gatling-convert-from-loadrunner/samples/EcommApp.zip) to try out the skill.
