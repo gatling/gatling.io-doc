@@ -7,6 +7,7 @@ cascade:
 ordering:
   - evaluate-enterprise
   - tutorials
+  - ai
   - guides
   - integrations
   - concepts

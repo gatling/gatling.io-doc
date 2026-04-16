@@ -2,6 +2,8 @@
 title: Explain Code
 description: Get contextual explanations of Gatling code directly in VS Code
 lead: Understand Gatling simulations and patterns with AI analysis
+aliases:
+  - /integrations/ai/assistant/vscode/explain-code/
 ---
 
 Select any portion of your Gatling code and ask the AI Assistant to explain it. This is useful for understanding existing simulations, learning Gatling patterns, and getting clarity on specific configuration options.

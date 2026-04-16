@@ -2,6 +2,8 @@
 title: Refine Selection
 description: AI-powered code refinement for Gatling simulations in VS Code
 lead: Improve and optimize your Gatling code with intelligent AI assistance
+aliases:
+  - /integrations/ai/assistant/vscode/refine-selection/
 ---
 
 Select any portion of your Gatling code and ask the AI Assistant to refine it. This feature helps you optimize performance, add error handling, improve clarity, or make any other improvements to your simulation code.

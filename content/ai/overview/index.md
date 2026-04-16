@@ -3,6 +3,8 @@ title: Overview
 description: Overview of the Gatling AI extensions including installation, requirements, and available skills.
 lead: The Gatling AI extensions provides skills and an MCP server to help you deploy and run load tests on Gatling Enterprise directly from your IDE.
 date: 2026-03-09T10:23:29+00:00
+aliases:
+  - /integrations/ai/extensions/overview/
 ---
 
 ## Installation

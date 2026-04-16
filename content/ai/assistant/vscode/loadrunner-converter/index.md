@@ -2,6 +2,8 @@
 title: LoadRunner Script Migration
 description: Migrate LoadRunner C scripts to Gatling Java simulations using an AI agent workflow
 lead: Migrate from LoadRunner to Gatling with an AI-powered agentic workflow
+aliases:
+  - /integrations/ai/assistant/vscode/loadrunner-converter/
 ---
 
 Migrate existing LoadRunner C scripts into Gatling Java simulations directly from VS Code. The AI agent automatically parses, analyzes, transforms, and generates Gatling code through a multi-step workflow with full visibility into each stage.

@@ -3,6 +3,8 @@ title: Gatling MCP Server
 description: Connect AI assistants to Gatling Enterprise using the Model Context Protocol (MCP) server to query and manage your load testing infrastructure through natural language.
 lead: The Gatling MCP Server exposes your Gatling Enterprise resources to AI assistants via the Model Context Protocol, enabling natural language interaction with your load testing infrastructure.
 date: 2026-03-09T10:23:29+00:00
+aliases:
+  - /integrations/ai/extensions/mcp-server/
 ---
 
 The Gatling MCP Server bridges AI applications with [Gatling Enterprise](https://gatling.io/platform),
