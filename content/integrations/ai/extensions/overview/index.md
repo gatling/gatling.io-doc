@@ -82,6 +82,12 @@ Do not hesitate to give more context from the start if you want less back and fo
 /Gatling:gatling-convert-from-jmeter Test Plan.jmx java maven
 ```
 
+You can download a [sample JMeter project](https://github.com/gatling/gatling-ai-extensions/raw/refs/heads/main/plugins/gatling/skills/gatling-convert-from-jmeter/samples/EcommApp.zip) to try out the skill:
+
+```console
+/Gatling:gatling-convert-from-jmeter EcommApp.zip java maven
+```
+
 #### Convert a LoadRunner Script to Gatling
 
 Skill: [`gatling-convert-from-loadrunner`](https://github.com/gatling/gatling-ai-extensions/tree/main/plugins/gatling/skills/gatling-convert-from-loadrunner/SKILL.md)
