@@ -2,6 +2,8 @@
 title: Contextual Chat
 description: Ask questions about Gatling concepts, best practices, and implementation details
 lead: Get instant answers about Gatling performance testing
+aliases:
+  - /integrations/ai/assistant/vscode/contextual-chat/
 ---
 
 Use the Gatling AI Assistant chat to ask questions about your simulations, Gatling concepts, best practices, and implementation patterns. The assistant understands your project context and provides relevant, practical advice.

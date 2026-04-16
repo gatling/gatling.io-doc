@@ -4,6 +4,8 @@ seotitle: Gatling AI Assistant Visual Studio Code Extension
 menutitle: Get Started
 description: AI-powered assistant for Gatling performance testing. Get intelligent help with creating, optimizing, and understanding Gatling simulations.
 lead: AI-powered assistant for Gatling performance testing in your VS Code IDE
+aliases:
+  - /integrations/ai/assistant/vscode/overview/
 ---
 
 The Gatling AI Assistant for VS Code integrates AI-powered development tools directly into your editor. Write, optimize, and understand Gatling simulations in JavaScript, TypeScript, Java, Scala, and Kotlin with intelligent assistance.

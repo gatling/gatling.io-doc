@@ -12,5 +12,4 @@ ordering:
   - apm-tools
   - postman
   - notifications
-  - ai
 ---
