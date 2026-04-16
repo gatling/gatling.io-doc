@@ -30,9 +30,9 @@ Don't forget to check out [GitHub's official documentation](https://docs.github.
 
 ## Action coordinates
 
-The Action is published with the following coordinates: `gatling/enterprise-action@v1`.
+The Action is published with the following coordinates: `gatling/enterprise-action@{{< var gatlingEnterpriseActionVersion >}}`.
 
-You can check out the latest releases available [from the GitHub project](https://github.com/gatling/enterprise-action/releases). You generally only need to specify the major version you want to use, currently `v1`.
+You can check out the latest releases available [from the GitHub project](https://github.com/gatling/enterprise-action/releases). You generally only need to specify the major version you want to use, currently `{{< var gatlingEnterpriseActionVersion >}}`.
 
 ## Pre-requisites
 
@@ -66,7 +66,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Gatling Enterprise Action
-        uses: gatling/enterprise-action@v1
+        uses: gatling/enterprise-action@{{< var gatlingEnterpriseActionVersion >}}
         with:
           api_token: ${{ secrets.GATLING_ENTERPRISE_API_TOKEN }}
           simulation_id: ${{ inputs.simulation_id }}
@@ -86,7 +86,7 @@ Example:
 
 ```yaml
 steps:
-  - uses: gatling/enterprise-action@v1
+  - uses: gatling/enterprise-action@{{< var gatlingEnterpriseActionVersion >}}
     with:
       api_token: ${{ secrets.GATLING_ENTERPRISE_API_TOKEN }}
       simulation_id: 'test_00000000000000000000000000'
@@ -144,7 +144,7 @@ Example:
 ```yaml
 steps:
   - id: gatling-enterprise-action
-    uses: gatling/enterprise-action@v1
+    uses: gatling/enterprise-action@{{< var gatlingEnterpriseActionVersion >}}
     with:
       api_token: ${{ secrets.GATLING_ENTERPRISE_API_TOKEN }}
       simulation_id: 'test_00000000000000000000000000'
@@ -227,7 +227,7 @@ jobs:
   run:
       # Run the simulation on Gatling Enterprise
       - name: Gatling Enterprise Action
-        uses: gatling/enterprise-action@v1
+        uses: gatling/enterprise-action@{{< var gatlingEnterpriseActionVersion >}}
         with:
           api_token: ${{ secrets.GATLING_ENTERPRISE_API_TOKEN }}
           simulation_id: 'test_00000000000000000000000000'

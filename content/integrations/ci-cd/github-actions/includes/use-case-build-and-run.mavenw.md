@@ -27,14 +27,14 @@ jobs:
     steps:
       # Check out your GitHub repository.
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@{{< var githubActionsCheckoutVersion >}}
 
       # Set up Java.
       # You can configure other versions of the JDK, as long as they are
       # supported by your version of Gatling and by your build tool.
       # See https://github.com/actions/setup-java/blob/main/README.md for options.
       - name: Setup JDK
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@{{< var githubActionsSetupJavaVersion >}}
         with:
           distribution: 'zulu'
           java-version: '21'
@@ -47,7 +47,7 @@ jobs:
 
       # Run the simulation on Gatling Enterprise Edition
       - name: Gatling Enterprise Action
-        uses: gatling/enterprise-action@v1
+        uses: gatling/enterprise-action@{{< var gatlingEnterpriseActionVersion >}}
         with:
           simulation_id: ${{ env.SIMULATION_ID }}
 ```
