@@ -88,7 +88,7 @@ The `gatling:test` goal runs in interactive mode and suggests the simulation cla
 
 ### Running the Gatling Recorder
 
-You can launch the [Gatling Recorder](https://docs.gatling.io/reference/script/protocols/http/recorder/):
+You can launch the [Gatling Recorder](https://docs.gatling.io/reference/script/http/recorder/):
 
 {{< code-toggle console >}}
 Linux/MacOS: ./mvnw gatling:recorder

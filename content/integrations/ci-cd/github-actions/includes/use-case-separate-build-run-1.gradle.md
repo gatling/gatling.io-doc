@@ -41,7 +41,7 @@ jobs:
           cache: 'gradle'
 
       # Build and deploy your Gatling project
-      # See https://docs.gatling.io/reference/integrations/build-tools/gradle-plugin/#deploying-on-gatling-enterprise for options.
+      # See {{< ref "/integrations/build-tools/gradle-plugin#deploying-on-gatling-enterprise" >}} for options.
       - name: Build Gatling simulation
         run: gradle gatlingEnterpriseDeploy -Dgatling.enterprise.validateSimulationId=${{ env.SIMULATION_ID }}
 ```

@@ -30,7 +30,7 @@ With this integration in place, you can:
 
 The InfluxDB integration requires installation steps on your private locations control plane.
 
-In your [control-plane configuration](https://docs.gatling.io/reference/install/cloud/private-locations/introduction/), in the section `system-properties`, add:
+In your [control-plane configuration]({{< ref "/reference/deploy/private-locations/introduction" >}}), in the section `system-properties`, add:
 
 ```bash
 control-plane {

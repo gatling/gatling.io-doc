@@ -211,7 +211,7 @@ an option is not set the value from the `gatling` global config is taken.
 
 ### Running the Gatling Recorder
 
-You can launch the [Gatling Recorder](https://docs.gatling.io/reference/script/protocols/http/recorder/):
+You can launch the [Gatling Recorder](https://docs.gatling.io/reference/script/http/recorder/):
 
 {{< code-toggle console >}}
 Linux/MacOS: ./gradlew gatlingRecorder

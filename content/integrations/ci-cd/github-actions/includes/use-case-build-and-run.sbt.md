@@ -41,7 +41,7 @@ jobs:
           cache: 'sbt'
 
       # Build and deploy your Gatling project
-      # See https://docs.gatling.io/reference/integrations/build-tools/maven-plugin/#deploying-on-gatling-enterprise for options.
+      # See {{< ref "/integrations/build-tools/maven-plugin#deploying-on-gatling-enterprise" >}} for options.
       - name: Build Gatling simulation
         run: sbt Gatling/enterpriseDeploy -Dgatling.enterprise.validateSimulationId=${{ env.SIMULATION_ID }}
 

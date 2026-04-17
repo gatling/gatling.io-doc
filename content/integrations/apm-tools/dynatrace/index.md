@@ -40,20 +40,20 @@ The Dynatrace integration requires installation steps in your Dynatrace account 
 
 2. Identify your Dynatrace site identifier from your Dynatrace URL. For example, if your Dynatrace environment URL is `https://abc12345.apps.dynatrace.com`, your environment ID is `abc12345`.
 
-3. In your [control-plane configuration](https://docs.gatling.io/reference/install/cloud/private-locations/introduction/), in the section `system-properties`, add:
+3. In your [control-plane configuration]({{< ref "/reference/deploy/private-locations/introduction" >}}), in the section `system-properties`, add:
 
-  ```bash
-  control-plane {
-    locations = [
-      {
-        system-properties {
-          "gatling.enterprise.dt.api.key" = "<your Dynatrace api key>"
-          "gatling.enterprise.dt.site" = "<your Dynatrace site identifier>"
-        }
-      }
-    ]
-  }
-  ```
+   ```hocon
+   control-plane {
+     locations = [
+       {
+         system-properties {
+           "gatling.enterprise.dt.api.key" = "<your Dynatrace api key>"
+           "gatling.enterprise.dt.site" = "<your Dynatrace site identifier>"
+         }
+       }
+     ]
+   }
+   ```
 
 ### Uninstall the Dynatrace integration
 

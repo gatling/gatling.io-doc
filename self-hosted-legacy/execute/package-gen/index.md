@@ -19,9 +19,9 @@ a binary package yourself and let Gatling Enterprise retrieve it.
 Either way, you will need to configure a project using one of the supported build tools, with the corresponding Gatling
 plugin. To set up you project, please refer to the documentation pages of the respective plugins:
 
-- [Gatling plugin for Maven](https://docs.gatling.io/reference/integrations/build-tools/maven-plugin/) (for Java, Kotlin and Scala)
-- [Gatling plugin for Gradle](https://docs.gatling.io/reference/integrations/build-tools/gradle-plugin/) (for Java, Kotlin and Scala)
-- [Gatling plugin for sbt](https://docs.gatling.io/reference/integrations/build-tools/sbt-plugin/) (for Scala)
+- [Gatling plugin for Maven](https://docs.gatling.io/integrations/build-tools/maven-plugin/) (for Java, Kotlin and Scala)
+- [Gatling plugin for Gradle](https://docs.gatling.io/integrations/build-tools/gradle-plugin/) (for Java, Kotlin and Scala)
+- [Gatling plugin for sbt](https://docs.gatling.io/integrations/build-tools/sbt-plugin/) (for Scala)
 
 Once your project is ready, you can then [configure a repository]({{< ref "repositories" >}}) and
 [a simulation]({{< ref "simulations" >}}).

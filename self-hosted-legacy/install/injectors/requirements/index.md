@@ -27,7 +27,7 @@ The hosts running the Gatling injectors must:
 * `/tmp` not mounted with `noexec`
 
 We recommend that you tune your OS for maximum performance.
-Please check the [Gatling documentation](https://docs.gatling.io/reference/script/core/operations/#os-tuning).
+Please check the [Gatling documentation](https://docs.gatling.io/concepts/operations/#os-tuning).
 
 We also recommend that you disable automatic updates and automatic package repositories listing updates.
 This could eventually lead to upgrading the JDK while running, which could break your simulation run.
