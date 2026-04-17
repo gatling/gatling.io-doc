@@ -16,7 +16,6 @@ The Gatling AI Assistant for VS Code integrates AI-powered development tools dir
 - **Explain code**: Select any Gatling code to get contextual explanations
 - **Refine selection**: Improve existing code with AI-powered suggestions
 - **Ask questions**: Get instant answers about Gatling concepts, patterns, and best practices
-- **Migrate LoadRunner scripts**: Migrate LoadRunner C scripts to Gatling Java simulations using an AI agent workflow
 - **Persistent chat history**: Conversations are automatically saved and restored across sessions
 
 {{< alert warning >}}
@@ -77,9 +76,6 @@ Improve existing code with AI-powered refinements. Select code and specify your 
 
 ### [Contextual Chat]({{< ref "./contextual-chat" >}})
 Ask the AI assistant questions about Gatling concepts, best practices, and implementation details. Get help with optimization and troubleshooting.
-
-### [LoadRunner Script Migration]({{< ref "./loadrunner-converter" >}})
-Migrate existing LoadRunner C scripts into Gatling Java simulations using an AI agent workflow. The agent parses, analyzes, transforms, and generates code with step-by-step progress visibility and diff-based output for review. Right-click `.c` files in the Explorer to migrate single scripts, or use the Command Palette for batch migration.
 
 ## Configuration
 

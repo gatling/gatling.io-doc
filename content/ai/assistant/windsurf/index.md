@@ -18,7 +18,6 @@ The Gatling AI Assistant for Windsurf integrates AI-powered development tools di
 - **Explain code**: Select any Gatling code to get contextual explanations
 - **Refine selection**: Improve existing code with AI-powered suggestions
 - **Ask questions**: Get instant answers about Gatling concepts, patterns, and best practices
-- **Convert LoadRunner scripts**: Automatically migrate LoadRunner C scripts to Gatling
 
 {{< alert warning >}}
 **AI-Generated Code Notice**: This extension uses AI language models to generate code. AI models can make mistakes or produce incomplete solutions. Always verify generated code through testing, peer review, and performance validation before using in production.
