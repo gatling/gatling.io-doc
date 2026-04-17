@@ -16,7 +16,7 @@ build-gatling-simulation:
   stage: build
   # JDK 17 from Azul; see https://hub.docker.com/r/azul/zulu-openjdk for other tags available, or use another image configured with a JDK
   # See also https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Gradle.gitlab-ci.yml for other useful options for Gradle builds.
-  # See https://docs.gatling.io/reference/integrations/build-tools/gradle-plugin/#deploying-on-gatling-enterprise for options.
+  # See {{< ref "/integrations/build-tools/gradle-plugin#deploying-on-gatling-enterprise" >}} for options.
   image: azul/zulu-openjdk:17-latest
   script:
     - ./gradlew gatlingEnterpriseDeploy -Dgatling.enterprise.validateSimulationId=$SIMULATION_ID

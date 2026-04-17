@@ -74,7 +74,7 @@ The `processUnmatchedMessages` method allows us to process the inbound messages.
 
 As the audience arrives and fills their seats, the theater comes alive. In Gatling, this is the injection profile. It permits you to choose how and when users enter your test, whether gradually, all at once, or in waves.
 
-In our guide, we will simulate a low number of users (i.e. 10 users) arriving at once on our website. Do you want to use different user arrival profiles? Check out our various [injection profiles](/reference/script/core/injection/#open-model).
+In our guide, we will simulate a low number of users (i.e. 10 users) arriving at once on our website. Do you want to use different user arrival profiles? Check out our various [injection profiles]({{< ref "concepts/injection#open-model" >}}).
 
 ```java
 {

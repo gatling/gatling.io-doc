@@ -183,7 +183,7 @@ Note: `Sec-*` headers are not relevant in the context of load testing and are fi
 {{< /alert >}}
 
 {{< alert tip >}}
-For more information on how to run a test, refer to the [Installation Guide](https://docs.gatling.io/tutorials/test-as-code/java-jvm/installation-guide/) part of this documentation.
+For more information on how to run a test, refer to the [Installation Guide]({{< ref "/tutorials/test-as-code/java-jvm/installation-guide" >}}) part of this documentation.
 {{< /alert >}}
 
 ## Settings

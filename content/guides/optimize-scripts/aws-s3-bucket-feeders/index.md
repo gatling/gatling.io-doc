@@ -16,8 +16,8 @@ When working with large feeder files or files containing sensitive data, storing
 
 This guide requires load generators using:
 
-- [Private locations on Gatling Enterprise Edition](https://docs.gatling.io/reference/install/cloud/private-locations/introduction/)
-- [Local test execution](https://docs.gatling.io/tutorials/scripting-intro/#run-the-simulation-locally-for-debugging)
+- [Private locations on Gatling Enterprise Edition]({{< ref "/reference/deploy/private-locations/introduction" >}})
+- [Local test execution]({{< ref "/tutorials/test-as-code/java-jvm/running-your-first-simulation/#run-the-simulation-locally-for-debugging" >}})
 - Gatling SDK with Java 11 through 25 (any LTS version).
 
 {{< alert info >}}
@@ -34,7 +34,7 @@ If you are running your scripts locally, make sure to have AWS credentials set u
 
 To enable secure access to AWS S3, you need to:
 
-- Assign an IAM instance profile to your load generators. This profile should grant access permissions for retrieving objects from the designated S3 bucket. For more information, see [Gatling AWS Locations Configuration](https://docs.gatling.io/reference/install/cloud/private-locations/aws/configuration/).
+- Assign an IAM instance profile to your load generators. This profile should grant access permissions for retrieving objects from the designated S3 bucket. For more information, see [Gatling AWS Locations Configuration]({{< ref "/reference/deploy/private-locations/aws/configuration" >}}).
   ```json
   {
     "Version": "2012-10-17",

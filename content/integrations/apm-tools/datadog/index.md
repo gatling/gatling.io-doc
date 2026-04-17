@@ -35,7 +35,7 @@ The Datadog integration requires installation steps in your Datadog account and 
 
 2. See the [official Datadog API/App key documentation](https://docs.datadoghq.com/fr/account_management/api-app-keys/) for creating an API key and an Application key in your Datadog account.
 
-3. In your [control-plane configuration](https://docs.gatling.io/reference/install/cloud/private-locations/introduction/), in the section `system-properties`, add:
+3. In your [control-plane configuration]({{< ref "/reference/deploy/private-locations/introduction" >}}), in the section `system-properties`, add:
 
   ```bash
   control-plane {
