@@ -10,6 +10,7 @@ ordering:
   - no-code
   - test-as-code
   - git-repository
+  - override-injection-profile
   - optional-config
   - limits
 ---
