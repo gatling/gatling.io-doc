@@ -37,7 +37,7 @@ The Datadog integration requires installation steps in your Datadog account and 
 
 3. In your [control-plane configuration]({{< ref "/reference/deploy/private-locations/introduction" >}}), in the section `system-properties`, add:
 
-  ```bash
+  ```hocon
   control-plane {
     locations = [
       {
@@ -45,6 +45,7 @@ The Datadog integration requires installation steps in your Datadog account and 
           "gatling.enterprise.dd.api.key" = "<your Datadog API key>"
           "gatling.enterprise.dd.application.key" = "<your Datadog application key>"
           "gatling.enterprise.dd.site" = "<your Datadog site, depends on where you are hosted, see https://docs.datadoghq.com/getting_started/site/#access-the-datadog-site>"
+          "gatling.enterprise.dd.useProxy" = "<true to use the same proxy as for the Gatling API>" # optional, default is false
         }
       }
     ]

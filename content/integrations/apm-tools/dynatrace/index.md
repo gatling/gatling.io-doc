@@ -49,6 +49,7 @@ The Dynatrace integration requires installation steps in your Dynatrace account 
          system-properties {
            "gatling.enterprise.dt.api.key" = "<your Dynatrace api key>"
            "gatling.enterprise.dt.site" = "<your Dynatrace site identifier>"
+           "gatling.enterprise.dt.useProxy" = "<true to use the same proxy as for the Gatling API>" # optional, default is false
          }
        }
      ]

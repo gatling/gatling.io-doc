@@ -32,7 +32,7 @@ The New Relic integration requires installation steps on your private locations 
 
 In your [control-plane configuration]({{< ref "/reference/deploy/private-locations/introduction" >}}), in the section `system-properties`, add:
 
-```bash
+```hocon
 control-plane {
   locations = [
     {
@@ -40,6 +40,7 @@ control-plane {
         "gatling.enterprise.newrelic.license.key" = "<your NewRelic license key>"
         "gatling.enterprise.newrelic.account" = "<your NewRelic account>" # for events
         "gatling.enterprise.newrelic.dc" = "US|EU" # optional, default is US
+        "gatling.enterprise.newrelic.useProxy" = "<true to use the same proxy as for the Gatling API>" # optional, default is false
       }
     }
   ]

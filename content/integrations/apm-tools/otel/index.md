@@ -31,7 +31,7 @@ The OpenTelemetry integration requires installation steps on your private locati
 
 In your [control-plane configuration]({{< ref "/reference/deploy/private-locations/introduction" >}}), in the section `system-properties`, add:
 
-```bash
+```hocon
 control-plane {
   locations = [
     {
@@ -40,6 +40,7 @@ control-plane {
         "gatling.enterprise.opentelemetry.logs.endpoint" = "<your endpoint for logs>" # optional (if undefined, run start and stop events won't be logged), eg http://my-api-endpoint/v1/log
         "gatling.enterprise.opentelemetry.http.headers" = "<extra HTTP headers, eg Authorization>" # optional, eg api-key=key,other-config-value=value (values must be percent-encoded)
         "gatling.enterprise.opentelemetry.metrics.deltaExponentialHistogramsSupported" = "true|false" # optional, default is false
+        "gatling.enterprise.opentelemetry.useProxy" = "<true to use the same proxy as for the Gatling API>" # optional, default is false
       }
     }
   ]

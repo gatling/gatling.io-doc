@@ -32,13 +32,14 @@ The InfluxDB integration requires installation steps on your private locations c
 
 In your [control-plane configuration]({{< ref "/reference/deploy/private-locations/introduction" >}}), in the section `system-properties`, add:
 
-```bash
+```hocon
 control-plane {
   locations = [
     {
       system-properties {
         "gatling.enterprise.influx.api.key" = "<your InfluxDB API key>"
         "gatling.enterprise.influx.api.url" = "<your InfluxDB API url>"
+        "gatling.enterprise.influx.useProxy" = "<true to use the same proxy as for the Gatling API>" # optional, default is false
       }
     }
   ]
