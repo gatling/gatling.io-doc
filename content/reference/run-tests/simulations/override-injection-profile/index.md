@@ -50,7 +50,7 @@ You can add up to **50 injection steps** per scenario. Click **Add another scena
 
 For the open model, five templates are available to pre-populate a set of injection steps. No templates are available for the closed model.
 
-After selecting a template, you can modify, add, or remove individual steps. Changing a step type or the number of steps detaches the profile from the template.
+After selecting a template, you can modify, add, or remove individual steps. The template is no longer applied once you change a step type or the number of steps.
 
 **Ramp + plateau**: Gradual ramp then steady state
 
