@@ -10,6 +10,12 @@ date: 2025-07-30T10:29:36+00:00
 
 In addition to the standard configuration options, Gatling Enterprise Edition provides several optional configurations for simulations. These options allow you to customize the behavior of your simulations to better suit your testing needs.
 
+### Override the injection profile
+
+You can override the injection profile defined in your simulation code to adjust the load pattern without modifying or repackaging your simulation. The override completely replaces the code-defined injection profile and is saved with the simulation. You can revert to the code-defined profile at any time.
+
+For the full reference (injection models, step types, templates, and scenario naming rules) see [Override the injection profile]({{< ref "/reference/run-tests/simulations/override-injection-profile/" >}}).
+
 ### Load generator parameters
 
 You can specify load generator parameters in your simulation configuration. This is useful for scenarios where you need to customize the behavior of the load generator, such as adjusting the number of virtual users or the ramp-up time.
