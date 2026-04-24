@@ -183,6 +183,19 @@ The table below outlines the supported Java versions for certified Gatling image
 | classic     | 25 or latest           |
 | javascript  | latest                 |
 
+{{< alert warning >}}
+Very important notes about our certified images:
+
+* we only support using them with the `type = "certified"` configuration
+* the `classic` images are only maintained for:
+  * the `latest` Java version, which can be a Short Term Support (STS) version
+  * the latest Long Term Support (LTS) version which is currently Java 25, meaning no updates will be provided on previous LTS versions, eg Java 21
+
+This alias mechanism lets us update the images transparently for our customers, including deploying OS security patches and Java version upgrades.
+
+If you decide to use our certified images with the `type = "custom"` configuration and freeze the id, you are not covered by our support and you are responsible for maintenance. In particular, we can't be hold accountable for bugs and security issues caused by you still using an old image while a new version is available.
+{{< /alert >}}
+
 {{< alert info >}}
 For the `javascript` engine, only the latest Java version is supported, which corresponds to the GraalVM version used to run Gatling with JavaScript.
 {{< /alert >}}
