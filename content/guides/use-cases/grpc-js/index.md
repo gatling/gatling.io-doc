@@ -24,7 +24,7 @@ New to Gatling scripting in JavaScript or TypeScript? Start with the [Create a s
 
 ## Prerequisites
 
-- Node.js 20 or later (npm included)
+- Node.js 24 or later (npm included)
 - Docker (required for the demo gRPC servers)
 - A local Git client
 - A [Gatling Enterprise Edition account](https://cloud.gatling.io/?utm_source=docs&utm_medium=js-guides) for distributed testing (optional)
