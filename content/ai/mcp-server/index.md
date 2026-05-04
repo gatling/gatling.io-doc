@@ -28,7 +28,7 @@ In all our examples, the API token is provided via the `GATLING_ENTERPRISE_API_T
 
 Depending on your chosen installation method, you also need:
 
-- [Node.js](https://nodejs.org/) v20 or later (includes `npx`)
+- [Node.js](https://nodejs.org/) v24 or later (includes `npx`)
 - [Docker](https://www.docker.com/) installed and running
 
 ### Usage with Claude

@@ -16,7 +16,7 @@ Build on the quick-start information from the [Installation Guide]({{< ref "tuto
 When we skip implementation details, we link to the relevant reference material so you can dive deeper on demand.
 
 ## Prerequisites
-- Node.js 20 or newer (LTS releases recommended) with npm 10+.
+- Node.js 24 or newer (LTS releases recommended) with npm 11+.
 - A TypeScript-friendly editor (VS Code, WebStorm, etc.).
 - A non-production system you are allowed to exercise with load tests.
 - Optional: a Gatling Enterprise account for distributed execution.
