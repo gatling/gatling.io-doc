@@ -1,7 +1,5 @@
 baseURL: https://docs.gatling.io
 
-theme: "github.com/gatling/gatling.io-doc-theme"
-
 disableKinds:
   - "taxonomy"
 disableHugoGeneratorInject: true
@@ -114,5 +112,6 @@ security:
       - ^babel$
       - ^git$
       - ^go$
+      - ^node$
       - ^npx$
       - ^postcss$
