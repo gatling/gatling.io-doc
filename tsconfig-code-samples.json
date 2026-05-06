@@ -1,10 +1,9 @@
 {
   "compilerOptions": {
-    "baseUrl": "./",
-    "lib": ["es2021", "dom"],
-    "target": "es2021",
-    "module": "es2020",
-    "moduleResolution": "node",
+    "lib": ["es2023", "dom"],
+    "target": "es2024",
+    "module": "nodenext",
+    "moduleResolution": "node16",
     "noEmit": true,
     "strict": true,
     "noImplicitAny": false,
