@@ -67,7 +67,7 @@ jobs:
         run: node bin/generate-llms-txt.js
 
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v6.1.0
+        uses: aws-actions/configure-aws-credentials@v6.1.1
         with:
           aws-region: eu-west-3
           role-to-assume: ${{ secrets.AWS_ROLE_PROD_DOC }}
