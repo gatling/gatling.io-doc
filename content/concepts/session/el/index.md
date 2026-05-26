@@ -128,11 +128,15 @@ You can combine different Gatling EL built-in functions, eg:
 
 ## Escaping
 
-To prevent `"#{"` from being interpreted by the EL compiler, add a `\\` before it. `"\\#{foo}"` will be turned into `"#{foo}"`.
+To prevent `"#{"` from being interpreted by the EL compiler, prepend your expression with the escape character `\`.
+`"\#{foo}"` will be turned into `"#{foo}"`.
 
-If you want a `$` before the placeholder, add another `$`.
-Assuming the session attribute `foo` holds `"FOO"`, `"$$${foo}"` will be turned into `"$FOO"`.
+Then, if you want to escape the escape character itself, you have to double it:
 
-This can go on and on. In general, if there are 2n-1 `$` characters before `${` -- an even number of `$` characters totally --
-there will be n `$` before `{` in the final string;
-if there are 2n `$` before `${` -- an odd number totally -- there will be n `$` before the placeholder.
+```
+#{foo}    => resolve foo
+\#{foo}   => write #{foo}
+\\#{foo}  => write \ + resolve foo
+\\\#{foo} => write \#{foo}
+```
+
