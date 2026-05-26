@@ -30,7 +30,8 @@ import io.gatling.javaapi.jdbc.JdbcDsl.*
 // used for specifying durations with a unit, eg Duration.ofMinutes(5)
 import java.time.Duration
 //#imports
-
+import java.io.File
+import java.util.List
 
 class SimulationSampleKotlin : Simulation() {
 
@@ -173,5 +174,10 @@ val numberOfLoadGeneratorsInRun = deploymentInfo.numberOfLoadGeneratorsInRun
 // the index of this Load Generators within the total number of Load Generators deployed in this run
 // 0 when not deploying on Gatling Enterprise Edition
 val indexOfLoadGeneratorInRun = deploymentInfo.indexOfLoadGeneratorInRun
+
+// the log files this Load Generators generated
+// multiple because of log file rotation
+// enty when not deploying on Gatling Enterprise Edition
+val logFiles = deploymentInfo.logFiles()
 //#deployment-info
 }

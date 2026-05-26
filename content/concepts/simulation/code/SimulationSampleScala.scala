@@ -27,6 +27,7 @@ import io.gatling.jdbc.Predef._
 // used for specifying durations with a unit, eg "5 minutes"
 import scala.concurrent.duration._
 //#imports
+import java.io.File
 
 class SimulationSampleScala extends Simulation {
   val httpProtocol, httpProtocol1, httpProtocol2 = http
@@ -164,4 +165,9 @@ val numberOfLoadGeneratorsInRun = deploymentInfo.numberOfLoadGeneratorsInRun
 // the index of this Load Generators within the total number of Load Generators deployed in this run
 // 0 when not deploying on Gatling Enterprise Edition
 val indexOfLoadGeneratorInRun = deploymentInfo.indexOfLoadGeneratorInRun
+
+// the log files this Load Generators generated
+// multiple because of log file rotation
+// enty when not deploying on Gatling Enterprise Edition
+val logFiles: List[File] = deploymentInfo.logFiles
 }

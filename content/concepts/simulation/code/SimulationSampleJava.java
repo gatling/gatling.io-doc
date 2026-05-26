@@ -31,8 +31,9 @@ import static io.gatling.javaapi.jdbc.JdbcDsl.*;
 import java.time.Duration;
 //#imports
 
-import java.time.Duration;
+import java.io.File;
 import java.util.UUID;
+import java.util.List;
 
 class SimulationSampleJava extends Simulation {
 
@@ -177,5 +178,10 @@ int numberOfLoadGeneratorsInRun = deploymentInfo.numberOfLoadGeneratorsInRun;
 // the index of this Load Generators within the total number of Load Generators deployed in this run
 // 0 when not deploying on Gatling Enterprise Edition 
 int indexOfLoadGeneratorInRun = deploymentInfo.indexOfLoadGeneratorInRun;
+
+// the log files this Load Generators generated
+// multiple because of log file rotation
+// enty when not deploying on Gatling Enterprise Edition
+List<File> logFiles = deploymentInfo.logFiles();
 //#deployment-info
 }
