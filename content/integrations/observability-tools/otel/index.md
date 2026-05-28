@@ -12,7 +12,15 @@ This feature is only available on Gatling Enterprise Edition. To learn more, [ex
 
 ## Introduction
 
-The OpenTelemetry integration allows Gatling Enterprise Edition to send load-test metrics - such as response times, throughput, and error rates - directly into OpenTelemetry.
+The OpenTelemetry integration allows Gatling Enterprise Edition to send load-test metrics - such as response times, throughput, and error rates - to an OpenTelemetry Collector and then to [any compatible backend](https://opentelemetry.io/ecosystem/vendors/), including:
+
+* [Prometheus](https://prometheus.io/docs/guides/opentelemetry/)
+* [Datadog](https://docs.datadoghq.com/opentelemetry/)
+* [Dynatrace](https://docs.dynatrace.com/docs/ingest-from/opentelemetry)
+* [NewRelic](https://docs.newrelic.com/docs/opentelemetry/opentelemetry-introduction/)
+* [Splunk](https://github.com/signalfx/splunk-otel-collector)
+* [Elastic](https://www.elastic.co/docs/reference/opentelemetry/motlp)
+
 Once enabled, performance data from Gatling Enterprise Edition is sent to OpenTelemetry, where it can be correlated with infrastructure and application metrics already collected in OpenTelemetry.
 
 With this integration in place, you can:

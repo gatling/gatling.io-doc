@@ -9,7 +9,7 @@ aliases:
 ordering:
   - build-tools
   - ci-cd
-  - apm-tools
+  - observability-tools
   - postman
   - notifications
 ---
