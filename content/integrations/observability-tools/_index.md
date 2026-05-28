@@ -1,5 +1,5 @@
 ---
-title: APM tools
+title: Observability tools
 ordering:
   - datadog
   - dynatrace
