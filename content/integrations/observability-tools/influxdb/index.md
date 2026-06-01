@@ -20,9 +20,13 @@ With this integration in place, you can:
 - Monitor Gatling scenarios alongside server-level KPIs (CPU, memory, network) in a single dashboard.
 - Investigate performance issues more effectively by overlaying load-test metrics on traces, logs, and resource utilization charts.
 
+## Compatibility
+
+This integration supports any backend compatible with the InfluxDB Line Protocol (ILP) over HTTP. This includes [InfluxDB](https://docs.influxdata.com/influxdb3/core/reference/line-protocol/) 1, 2 and 3, but also other products such as [QuestDB](https://questdb.com/docs/ingestion/ilp/overview/).
+
 ## Prerequisites 
 
-- A valid InfluxDB API key (for the metrics)
+- A valid `Authorization` header
 - Your InfluxDB database (we support InfluxDB 1, 2 and 3)
 - A Gatling Enterprise Edition account with private locations that can connect to the InfluxDB database. 
 
@@ -37,7 +41,7 @@ control-plane {
   locations = [
     {
       system-properties {
-        "gatling.enterprise.influx.api.key" = "<your InfluxDB API key>"
+        "gatling.enterprise.influx.api.authorization" = "<your Authorization header>"
         "gatling.enterprise.influx.api.url" = "<your InfluxDB API url>"
         "gatling.enterprise.influx.useProxy" = "<true to use the same proxy as for the Gatling API>" # optional, default is false
       }
@@ -47,7 +51,23 @@ control-plane {
 ```
 
 {{< alert warning >}}
-Your InfluxDB API url must match your InfluxDB version (1, 2 or 3) and must use **second** precision, eg:
+Your Authorization header must match your InfluxDB version, eg:
+{{< /alert >}}
+
+```
+// InfluxDB 1
+Token <YOUR_API_TOKEN>
+
+// InfluxDB 2
+Token <YOUR_API_TOKEN>
+
+// InfluxDB 3
+Bearer <YOUR_API_TOKEN>
+```
+
+
+{{< alert warning >}}
+Your InfluxDB API url must use **second** precision, eg:
 {{< /alert >}}
 
 ```
