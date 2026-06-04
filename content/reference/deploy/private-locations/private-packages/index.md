@@ -2,7 +2,7 @@
 title: Private packages
 seotitle: Private packages for Gatling Enterprise Edition
 description: How to install and use a private repository on your Control Plane.
-lead: Store your simulations' packages privately in your infrastructure, and use them with private locations.
+lead: Store your tests' packages privately in your infrastructure, and use them with private locations.
 date: 2023-08-09T12:00:00+00:00
 aliases:
   - /reference/install/cloud/private-locations/private-packages
@@ -10,8 +10,8 @@ aliases:
 
 ## Introduction
 
-Private Locations facilitate running simulations in your dedicated cloud environment. 
-Ensure secure storage of sensitive simulation packages in your private cloud. 
+Private Locations facilitate running tests in your dedicated cloud environment. 
+Ensure secure storage of sensitive test packages in your private cloud. 
 
 The control plane offers a private repository; enable it for confidential package management!
 
@@ -20,7 +20,7 @@ The control plane offers a private repository; enable it for confidential packag
 ## Private packages
 
 A private package is uploaded through the control plane into a private repository.
-_Gatling Enterprise Edition only receives the Gatling version associated with the package and the names of simulation classes, which helps in simulation configuration_
+_Gatling Enterprise Edition only receives the Gatling version associated with the package and the names of simulation classes, which helps in test configuration_
 
 When initiating a Gatling run, the control plane generates a temporary signed link to allow the download of the private package from the load generators.
 
