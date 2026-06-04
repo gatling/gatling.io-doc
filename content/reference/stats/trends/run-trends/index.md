@@ -2,7 +2,7 @@
 title: Run trends
 seotitle: Use run trends to understand your recent app performance
 description: Using trends and comparison to analyze tests with Gatling Enterprise
-lead: Get a high-level overview of your recent simulation results
+lead: Get a high-level overview of your recent test results
 ---
 
 {{< alert enterprise >}}
@@ -48,7 +48,7 @@ You can customize the display by filtering the displayed percentiles. To remove 
 
 Throughput is the average responses per second over the entire run. Filter to display only OK responses, only KO responses, or both by clicking on the legend titles **Responses OK** or **Responses KO** beneath the graph.  
 
-## Manage simulation runs
+## Manage test runs
 
 ### Access detailed reports for a specific run
 
@@ -56,7 +56,7 @@ The detailed reports for each run are accessible by clicking on the run in the l
 
 ### Delete a run 
 
-Sometimes you might want to delete a simulation run. For example, if the build or deployment step fails and there is no useful data in the run report. To delete a run from the run trends page: 
+Sometimes you might want to delete a test run. For example, if the build or deployment step fails and there is no useful data in the run report. To delete a run from the run trends page: 
 
 1. Select the run by clicking on the run title in the left-side menu. 
 2. Click the dropdown menu on the right side of the run summary page, noted by three vertical dots. 
