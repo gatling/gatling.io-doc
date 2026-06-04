@@ -24,7 +24,7 @@ Each dedicated machine host must be assigned to a single location and control pl
 ## Permissions
 
 You can configure private locations with pre-existing servers. 
-The control plane will be able to use configured dedicated machines as load generators during your simulations.
+The control plane will be able to use configured dedicated machines as load generators during your tests.
 
 The control plane must have access to your dedicated machines. Ensure that each host is reachable through SSH on a specific port.
 
