@@ -21,21 +21,21 @@ Gatling Community Edition reports while powerful and a great start are stored in
 
 ### Run trends and comparison
 
-When you upload a script to Gatling Enterprise Edition and set up a simulation it is saved for you in your simulation dashboard. Part of a great load testing strategy is to run the same set of simulations time after time as you make changes and your application evolves to make sure it’s still reacting well to the traffic you’re expecting. By using Gatling Enterprise Edition's Run History you can get a quick snapshot of how your changes have affected your application or do a more detailed dive into the difference in response times and error rates in each request in your simulation.
+When you upload a script to Gatling Enterprise Edition and set up a test it is saved for you in your test dashboard. Part of a great load testing strategy is to run the same set of tests time after time as you make changes and your application evolves to make sure it’s still reacting well to the traffic you’re expecting. By using Gatling Enterprise Edition's Run History you can get a quick snapshot of how your changes have affected your application or do a more detailed dive into the difference in response times and error rates in each request in your simulation.
 
 #### Comparing runs
 
-Once you enter your Run History for a simulation you’ll be able to see and access each report for each run.
+Once you enter your Run History for a test you’ll be able to see and access each report for each run.
 
-{{< img src="run-table-trends.png" alt="Run history table showing past simulation runs with trend graphs" >}}
+{{< img src="run-table-trends.png" alt="Run history table showing past test runs with trend graphs" >}}
 
-On the Run History page for a simulation, you also get access to 3 Trends graphs that give you a quick snapshot of the Requests and Responses, Response Time Percentiles, and Throughput over the history of a test you’ve run.
+On the Run History page for a test, you also get access to 3 Trends graphs that give you a quick snapshot of the Requests and Responses, Response Time Percentiles, and Throughput over the history of a test you’ve run.
 
 This allows you a simple way to see the results of your changes, especially if you’re using Gatling Enterprise Edition in your CI/CD process.
 
 If you’d like to make a comparison between runs click the “Compare” button, which launches the multiple run, interactive comparison mode. 
 
-{{< img src="run-compare.png" alt="Interactive side-by-side comparison of two simulation runs" >}}
+{{< img src="run-compare.png" alt="Interactive side-by-side comparison of two test runs" >}}
 
 #### How is this helpful?
 
@@ -51,13 +51,13 @@ As mentioned before Gatling Community Edition reports are static html files that
 
 To start with you have your run bar:
 
-{{< img src="run-bar-gatling.webp" alt="Gatling Enterprise Edition run bar for filtering and sharing simulation results" >}}
+{{< img src="run-bar-gatling.webp" alt="Gatling Enterprise Edition run bar for filtering and sharing test results" >}}
 
-You can use the run bar to focus on specific sections of your simulation results. You can also collaborate with teammates by creating and sharing a public link, exporting to a PDF, or having Gatling Users in your organization leave comments on specific sections of a report.
+You can use the run bar to focus on specific sections of your test results. You can also collaborate with teammates by creating and sharing a public link, exporting to a PDF, or having Gatling Users in your organization leave comments on specific sections of a report.
 
 ### How is this helpful?
 
-This allows you to work with a full set of team members collaboratively on your load testing and also to get specific about which areas of your simulation you’d like to highlight.
+This allows you to work with a full set of team members collaboratively on your load testing and also to get specific about which areas of your test you’d like to highlight.
 
 ## All about the report tabs
 
@@ -138,9 +138,9 @@ By answering these questions you can correctly configure your DNS in the best wa
 
 In the load generators tab, you can see how much of each load generator you use. You’ll generally notice a spike in the CPU usage at the start of your simulation, this is the JVM warming up. Afterward, you’ll see how much load generator power you use to run your simulation.
 
-When creating or editing your simulation on Gatling Enterprise Edition you can go to the “Time Window” screen and set a ramp-up and ramp-down time to make your simulation cleaner and more accurate as both your application and Gatling’s load generators may need some warm-up time.
+When creating or editing your test on Gatling Enterprise Edition you can go to the “Time Window” screen and set a ramp-up and ramp-down time to make your test cleaner and more accurate as both your application and Gatling’s load generators may need some warm-up time.
 
-{{< img src="time-window-gatling.webp" alt="Time window configuration screen for setting ramp-up and ramp-down periods in a simulation" >}}
+{{< img src="time-window-gatling.webp" alt="Time window configuration screen for setting ramp-up and ramp-down periods in a test" >}}
 
 Once you’ve done this you can get a good idea of how many virtual users you can have in your simulation using the load generators you’ve selected and reconfigure your script to add more if you choose to.
 
@@ -150,4 +150,4 @@ When discussing Gatling Enterprise Edition the most common question we’re aske
 
 ### How is this helpful?
 
-The load generators tab can let you know if performance issues in your simulation are a result of your application or whether you’re actually stressing the load generator too much with the load you’re trying to generate. You can also see how much load generator power you’re using and decide to add more users or load generators if necessary. This can help you choose your Gatling Enterprise Edition subscription based on how many load generators you’ll need and how many credits you’ll use in your testing as well.
+The load generators tab can let you know if performance issues in your test are a result of your application or whether you’re actually stressing the load generator too much with the load you’re trying to generate. You can also see how much load generator power you’re using and decide to add more users or load generators if necessary. This can help you choose your Gatling Enterprise Edition subscription based on how many load generators you’ll need and how many credits you’ll use in your testing as well.
