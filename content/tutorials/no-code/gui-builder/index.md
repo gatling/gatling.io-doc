@@ -1,6 +1,6 @@
 ---
-title: Create a simulation in the GUI
-menutitle: Create a simulation in the GUI
+title: Create a test in the GUI
+menutitle: Create a test in the GUI
 lead: Learn how to write your first test with the Gatling no-code test builder
 description: Learn how to set up Gatling Enterprise for the first time
 aliases:
@@ -12,7 +12,7 @@ aliases:
 This feature is only available on Gatling Enterprise Edition. To learn more, [explore our plans](https://gatling.io/pricing?utm_source=docs)
 {{< /alert >}}
 
-This tutorial describes step-by-step instructions for running your first simulation with Gatling Enterprise.
+This tutorial describes step-by-step instructions for running your first test with Gatling Enterprise.
 
 {{< alert info >}}
 **Requirements**
@@ -28,7 +28,7 @@ The Gatling no-code test builder is the fastest way to discover load testing and
 - (optional) [apply acceptance criteria]({{< ref "#apply-acceptance-criteria-optional" >}}),
 - (optional) [choose your settings]({{< ref "#choose-your-settings-optional" >}}).
 
-Once you start your simulation, the load testing data are displayed in real-time.
+Once you start your test, the load testing data are displayed in real-time.
 The following guide assists you in writing and launching your first load test.
 To keep learning about Gatling and load testing, you can join the [Gatling Community](https://community.gatling.io).
 
@@ -38,15 +38,15 @@ To access the Gatling no-code generator:
 
 1. Navigate to [https://cloud.gatling.io](https://cloud.gatling.io) in your web browser.
 2. Login or register if you don't have an account. 
-3. Click on **Create a No-code test** in the _Latest simulation runs_ pane on the landing page. 
+3. Click on **Create a No-code test** in the _Latest tests runs_ pane on the landing page. 
 
-The no-code generator is divided into 4 steps and can be exported as a Java-Maven project after you complete your simulation.
+The no-code generator is divided into 4 steps and can be exported as a Java-Maven project after you complete your test.
 
 {{< img src="no-code-overview.png" alt="An overview of the no-code interface" >}}
 
 ## Setup your scenario
 
-The first step is to name your simulation in the **Simulation name** field.
+The first step is to name your test in the **Test name** field.
 
 Next, Setting up a scenario requires defining the user request(s) and any pauses between the user request(s). For this tutorial, we use the backend APIs for the **[Gatling sample e-commerce website](https://ecomm.gatling.io)** to demonstrate load testing with the no-code generator. We encourage you to experiment with the platform and monitor the network tab to get familiar with its available actions. The base URL for our API tests is **`https://api-ecomm.gatling.io`**. Next, to set up the scenario, click the {{< icon link >}} icon to the right of the **Request URLs** field.
 
@@ -62,7 +62,7 @@ To develop more complex tests:
 
 ## Setup the injection profile
 
-The second step in creating a no-code simulation is setting up the injection profile. This is where you have the most options for describing the test. There are 3 broad categories of tests:
+The second step in creating a no-code test is setting up the injection profile. This is where you have the most options for describing the test. There are 3 broad categories of tests:
 
 - **Capacity tests** tell you how your application performs as resource demand increases.
 - **Stress tests** tell you how your application performs when there is a rapid and transient increase in resource demand.
@@ -79,17 +79,17 @@ Following the test type, inputs describe the test duration and the user injectio
 
 ## Choose your settings (optional)
 
-Next, choose the team that owns the simulation and where your traffic originates. 
+Next, choose the team that owns the test and where your traffic originates. 
 
-{{< img src="almost-done.png" alt="An example of the test location and naming step" >}}
+{{< img src="setup-locations.png" alt="An example of the test location and naming step" >}}
 
 Select a team (usually _default_). 
 
-Under the **Location** heading, click the arrow to open the dropdown menu and select a location from the list. The Gatling test web application is hosted near Paris, so this location usually gives the best performance.  
+Under the **Configure your locations** heading, click the arrow to open the dropdown menu and select a location from the list. The Gatling test web application is hosted near Paris, so this location usually gives the best performance.  
 
 ## Apply acceptance criteria (optional) 
 
-Acceptance criteria, also called Assertions, allow you to establish whether or not a simulation result meets your requirements. For example, if you expect 95% or more of your users to experience a response time of 0.25 seconds or faster, you would set the 95th percentile response time to 0.25. 
+Acceptance criteria, also called Assertions, allow you to establish whether or not a test result meets your requirements. For example, if you expect 95% or more of your users to experience a response time of 0.25 seconds or faster, you would set the 95th percentile response time to 0.25. 
 
 {{< img src="assertions.png" alt="An example of the assertions option" >}}
 
@@ -102,13 +102,13 @@ To activate acceptance criteria:
 
 ## Launch the test
 
-Click the **Save and launch** button to launch your no-code simulation. 
+Click the **Save and launch** button to launch your no-code test. 
 
-Congratulations, you have finished your first load test with Gatling Enterprise. The results are displayed in real-time. At the end of the simulation, you can explore the results. Make sure to visit the **Report** tab to see the detailed results, including:
+Congratulations, you have finished your first load test with Gatling Enterprise. The results are displayed in real-time. At the end of the test, you can explore the results. Make sure to visit the **Report** tab to see the detailed results, including:
 
 - response time percentiles,
 - connections,
 - DNS resolutions.
 
-To keep exploring the no-code generator, click the **Edit simulation** button and change your simulation. Happy testing! 
+To keep exploring the no-code generator, click the **Edit test** button and change your test. Happy testing! 
 
