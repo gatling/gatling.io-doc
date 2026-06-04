@@ -1,18 +1,18 @@
 ---
-title: Create no-code simulations
-seotitle: Create no-code simulations in Gatling Enterprise Edition
-description: Learn how to create no-code simulations in Gatling Enterprise Edition.
-lead: Create no-code simulations in Gatling Enterprise Edition.
+title: Create no-code tests
+seotitle: Create no-code tests in Gatling Enterprise Edition
+description: Learn how to create no-code tests in Gatling Enterprise Edition.
+lead: Create no-code tests in Gatling Enterprise Edition.
 date: 2025-07-30T10:29:36+00:00
 ---
 
-## Creating a no-code simulation
+## Creating a no-code test
 
-From the Simulations view, click **Create a simulation** to open the modal, then select **No-code** and click **Create**. This opens the no-code simulation creation modal, where you can configure your simulation without writing any code. The no-code test builder allows you to create HTTP requests, define user scenarios, and set up injection profiles using a user-friendly interface.
+From the Simulations view, click **Create a test** to open the modal, then select **No-code** and click **Create**. This opens the no-code test creation modal, where you can configure your test without writing any code. The no-code test builder allows you to create HTTP requests, define user scenarios, and set up injection profiles using a user-friendly interface.
 
-### Name your simulation (optional)
+### Name your test (optional)
 
-Enter a name for your simulation to help identify it later. This is optional, and if you leave it blank, a default name is generated.
+Enter a name for your test to help identify it later. This is optional, and if you leave it blank, a default name is generated.
 
 ### Create a no-code user scenario
 
@@ -41,7 +41,7 @@ Set the time parameters for the injection profile:
 - Total injected users: the total number of users that will be injected during the test (Stress test only).
 - Constant user arrival rate: the number of users that will be injected at a constant rate throughout the test (Soak test only).
 
-### Configure the no-code simulation
+### Configure the no-code test
 
 #### Select the load generator location(s)
 
@@ -77,12 +77,12 @@ When using private locations or dedicated IP addresses, ensure that your load ge
 
 #### Apply optional configurations
 
-The following configurations options can be used to customize your simulation, additional details are available in the [Optional configurations for simulations]({{< ref "/reference/run-tests/simulations/optional-config">}}) documentation.
+The following configurations options can be used to customize your test, additional details are available in the [Optional configurations for tests]({{< ref "/reference/run-tests/tests/optional-config">}}) documentation.
 
 - Set acceptance criteria
 - Specify a time window
 - Add stop criteria
 
-### Save and launch your simulation
+### Save and launch your test
 
-Once you've configured your no-code simulation, click the **Save and Launch** button to save your simulation and start the test.
+Once you've configured your no-code test, click the **Save and Launch** button to save your test and start the test.

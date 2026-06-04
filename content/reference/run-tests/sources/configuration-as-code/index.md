@@ -23,7 +23,7 @@ On Gatling Enterprise:
 For a better understanding, see references for underlying concepts:
 - [Package Generation]({{< ref "reference/run-tests/sources/package-gen" >}})
 - [Package Configuration]({{< ref "reference/run-tests/sources/package-conf" >}})
-- [Simulations]({{< ref "reference/run-tests/simulations/intro" >}})
+- [Simulations]({{< ref "reference/run-tests/tests/intro" >}})
 
 ## Usage
 
@@ -167,9 +167,9 @@ gatling.enterprise.package {
 
 ### Simulation configuration {#simulation-config}
 
-As we mention in the [Default Behavior]({{< ref "#default-behavior" >}}) section, a [Simulation]({{< ref "/reference/run-tests/simulations/test-as-code" >}}) includes more than just a simulation.
+As we mention in the [Default Behavior]({{< ref "#default-behavior" >}}) section, a [Simulation]({{< ref "/reference/run-tests/tests/test-as-code" >}}) includes more than just a simulation.
 
-Each property of a [Simulation]({{< ref "/reference/run-tests/simulations/test-as-code" >}}), can be configured individually or left to default settings, allowing for customization either through configuration or via the Web UI.
+Each property of a [Simulation]({{< ref "/reference/run-tests/tests/test-as-code" >}}), can be configured individually or left to default settings, allowing for customization either through configuration or via the Web UI.
 
 ```hocon
 gatling.enterprise.package {

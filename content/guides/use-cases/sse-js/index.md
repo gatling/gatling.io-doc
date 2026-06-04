@@ -333,8 +333,8 @@ Next, [package and upload the simulation]({{<ref "/integrations/build-tools/js-c
 
 Once your simulation is uploaded to Gatling Enterprise Edition:
 
--  [create a test]({{<ref "/reference/run-tests/simulations/intro/" >}}), and
--  (optionally) configure the runtime parameters under the [Load generator parameters]({{<ref "/reference/run-tests/simulations/optional-config/" >}}) as needed. You can adjust the user profile parameters to simulate different load scenarios without modifying the code.
+-  [create a test]({{<ref "/reference/run-tests/tests/intro/" >}}), and
+-  (optionally) configure the runtime parameters under the [Load generator parameters]({{<ref "/reference/run-tests/tests/optional-config/" >}}) as needed. You can adjust the user profile parameters to simulate different load scenarios without modifying the code.
 -  Finally, run the simulation and monitor the results in real-time through the Gatling Enterprise Edition dashboard.
 
 That is it! You have successfully created and run a load test for an SSE service using Gatling's JavaScript/TypeScript SDK. You can now analyze the results to identify performance bottlenecks and ensure your SSE implementation can handle the expected load.

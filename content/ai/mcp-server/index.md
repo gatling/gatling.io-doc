@@ -154,5 +154,5 @@ The MCP server exposes the following tools:
 
 - `list_gatling_enterprise_teams`: List all existing [teams]({{< ref "/reference/user-guide/teams" >}}) in Gatling Enterprise.
 - `list_gatling_enterprise_packages`: List all [managed]({{< ref "/reference/run-tests/sources/package-conf" >}}) and [private packages]({{< ref "/reference/deploy/private-locations/private-packages" >}}) deployed in Gatling Enterprise.
-- `list_gatling_enterprise_tests`: List all [tests (aka simulations)]({{< ref "/reference/run-tests/simulations/intro" >}}) deployed in Gatling Enterprise.
-- `list_gatling_enterprise_locations`: List all [public]({{< ref "/reference/run-tests/simulations/test-as-code#locations-configuration" >}}) and [private locations]({{< ref "/reference/deploy/private-locations/introduction" >}}) where tests can be run on Gatling Enterprise.
+- `list_gatling_enterprise_tests`: List all [tests (aka simulations)]({{< ref "/reference/run-tests/tests/intro" >}}) deployed in Gatling Enterprise.
+- `list_gatling_enterprise_locations`: List all [public]({{< ref "/reference/run-tests/tests/test-as-code#locations-configuration" >}}) and [private locations]({{< ref "/reference/deploy/private-locations/introduction" >}}) where tests can be run on Gatling Enterprise.

@@ -17,7 +17,7 @@ upstream, using one of the methods below, before you can run them with Gatling E
 Gatling Enterprise is compatible with Gatling version from 3.5 to {{< var gatlingVersion >}} included, however, these instructions are aligned with the new Maven-based bundle released in Gatling 3.11.
 
 {{< alert tip >}}
-You can download sample projects for all the options below by going to the [Simulations page]({{< ref "/reference/run-tests/simulations/intro" >}}) in the Gatling Enterprise app and clicking on "Don't know where to start?" in the Test as code tab.
+You can download sample projects for all the options below by going to the [Simulations page]({{< ref "/reference/run-tests/tests/intro" >}}) in the Gatling Enterprise app and clicking on "Don't know where to start?" in the Test as code tab.
 {{< /alert >}}
 
 

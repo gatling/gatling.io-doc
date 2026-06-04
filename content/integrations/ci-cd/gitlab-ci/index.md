@@ -44,7 +44,7 @@ For Gatling Enterprise Edition, the [API token]({{< ref "/reference/administrati
 
 We also assume that you have already configured a simulation on Gatling Enterprise Edition. You can copy the simulation ID from the simulations list view. In the following examples, we will show the simulation ID as `test_00000000000000000000000000`.
 
-See [Gatling Enterprise Edition documentation]({{< ref "reference/run-tests/simulations" >}}).
+See [Gatling Enterprise Edition documentation]({{< ref "reference/run-tests/tests" >}}).
 
 ## Quickstart (minimal job configuration)
 
