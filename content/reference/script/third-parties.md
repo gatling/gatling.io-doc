@@ -18,7 +18,7 @@ If you run into an issue, please contact their respective owners.
 
 ### Active
 
-* [AMQP plugin (Gatling 3.11)](https://github.com/galax-io/gatling-amqp-plugin) by jigarkhwar
+* [AMQP plugin (Gatling 3.13)](https://github.com/galax-io/gatling-amqp-plugin) by jigarkhwar
 * [Sftp plugin (Gatling 3.13)](https://github.com/fherbreteau/gatling-sftp) by François Herbreteau
 * [Ftp plugin (Gatling 3.13)](https://github.com/fherbreteau/gatling-ftp) by François Herbreteau
 * [JDBC plugin (Gatling 3.13)](https://github.com/galax-io/gatling-jdbc-plugin) by jigarkhwar
