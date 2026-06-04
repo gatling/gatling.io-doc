@@ -150,7 +150,7 @@ For more information, check the [Assertions reference section]({{< ref "/concept
 
 ## Reports
 
-By default, reports are automatically generated at the end of a simulation.
+By default, reports are automatically generated at the end of a test.
 They consist of HTML files. Therefore, they are portable and can be viewed on any device with a web browser.
 
 For more information, check the [Reports reference section]({{< ref "/reference/stats/reports" >}}).
