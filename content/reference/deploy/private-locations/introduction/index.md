@@ -36,9 +36,9 @@ you will provide.
 </div>
 <br>
 
-The control plane will periodically poll our API to find out if a new simulation run has been started using locations handled by this control plane.
+The control plane will periodically poll our API to find out if a new test run has been started using locations handled by this control plane.
 
-If so, it will start new instances (based on the locations configurations) and start the simulation run on them. 
+If so, it will start new instances (based on the locations configurations) and start the test run on them. 
 Those instances will send stats through the API as well.
 
 ## Control plane
@@ -181,18 +181,18 @@ Tokens can be refreshed by clicking on the {{< icon undo >}} button.
 {{< img src="control-plane-details.png" alt="Control Planes details" >}}
 
 Private locations can be seen in the **Locations** tab.
-You can see their relations to their control plane and simulations.
+You can see their relations to their control plane and tests.
 
 {{< img src="locations-table.png" alt="Locations table" >}}
 
 They can be deleted if they are neither linked to a control plane that is currently {{< badge success Up />}} nor to any
-simulation.
+test.
 
-## Simulation configuration
+## Test configuration
 
-When configuring a simulation, on the locations step, click on private.
+When configuring a test, on the locations step, click on private.
 
-{{< img src="simulation-config.png" alt="Simulation configuration of private locations" >}}
+{{< img src="test-config.png" alt="Test configuration of private locations" >}}
 
 {{< alert warning >}}
 At the moment, it is not possible to use private locations along with public ones.
