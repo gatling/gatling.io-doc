@@ -11,13 +11,13 @@ aliases:
 
 ## Introduction
 
-Build from a Git repository allows you to build Gatling simulations directly from a source repository, such as GitHub, GitLab, or BitBucket without needing to package them first. This feature is particularly useful for teams that prefer to manage their Gatling projects in a source control system and want to streamline the process of running tests. 
+Build from a Git repository allows you to build Gatling tests directly from a source repository, such as GitHub, GitLab, or BitBucket without needing to package them first. This feature is particularly useful for teams that prefer to manage their Gatling projects in a source control system and want to streamline the process of running tests. 
 
-Simulations are built and stored in your private network, using the Private Locations and Private Packages features of Gatling Enterprise Edition. This approach eliminates the need for manual packaging and uploading of simulation files, enabling a more efficient workflow for performance testing.
+Simulations are built and stored in your private network, using the Private Locations and Private Packages features of Gatling Enterprise Edition. This approach eliminates the need for manual packaging and uploading of simulation packaged files, enabling a more efficient workflow for performance testing.
 
 {{< img src="generic-diagram.png" alt="Build from Git architecture diagram" >}}
 
-The following sections detail how to configure the Control Plane for Build from a Git repository, including pre-requisites, git authentication, and build tool configurations. Once configured, you can [create simulations]({{< ref "reference/run-tests/tests/git-repository" >}}) in the Gatling Enterprise Edition UI.
+The following sections detail how to configure the Control Plane for Build from a Git repository, including pre-requisites, git authentication, and build tool configurations. Once configured, you can [create tests]({{< ref "reference/run-tests/tests/git-repository" >}}) in the Gatling Enterprise Edition UI.
 
 ## Pre-requisites
 
@@ -70,11 +70,11 @@ In particular, for maven, you might want to mount a `/app/.m2/conf/settings.xml`
 
 ## Architecture
 
-The Build from a Git repository feature operates within the Gatling Enterprise Edition architecture, leveraging the Control Plane to manage builds and simulations.
+The Build from a Git repository feature operates within the Gatling Enterprise Edition architecture, leveraging the Control Plane to manage builds and tests.
 
 The Control Plane interacts with your source repository to fetch simulation code, compiles it using the specified build tool, and stores the resulting artifacts in your private storage location.
 
-This process is triggered when you start a simulation in the Gatling Enterprise Edition UI, allowing you to run tests directly from your source code without manual packaging.
+This process is triggered when you start a test in the Gatling Enterprise Edition UI, allowing you to run tests directly from your source code without manual packaging.
 
 After run completion, the test package is deleted from the private storage location, thus each run requires a fresh build from the source repository.
 
@@ -84,7 +84,7 @@ This ensures that you always test the latest version of your simulations.
 
 By default, the **Control Plane** is configured to allow only **one build** to be performed at a time.
 
-This default setting means that if multiple simulations requiring a build from source are started simultaneously, 
+This default setting means that if multiple tests requiring a build from source are started simultaneously, 
 subsequent builds will enter a queue and must wait for the preceding build to complete before starting.
 
 A **build timeout of 10 minutes** is enforced. The build process must successfully complete within this timeframe.
