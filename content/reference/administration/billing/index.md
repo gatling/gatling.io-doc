@@ -62,7 +62,7 @@ And set new extra credit limit.
 
 {{< img src="credit_extra_used.png" alt="Extra credits used" >}}
 
-Now simulations -- you couldn't launch before -- can run consuming extra credits.
+Now tests -- you couldn't launch before -- can run consuming extra credits.
 
 
 ## Plans
