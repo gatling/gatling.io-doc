@@ -25,8 +25,8 @@ There are 5 permissions available for API Tokens:
 
 - The **None** permission, which doesn't allow any action. Typically useful to restrict global permissions on team-specific tokens.
 - The **Read** permission, allows reading all data.
-- The **Start** permission, allows starting simulations + Read permissions (typically useful in a CI plugin).
-- The **Configure** permission, allows creating / uploading packages and creating simulations + Start permissions (typically useful in our build plugins).
+- The **Start** permission, allows starting tests + Read permissions (typically useful in a CI plugin).
+- The **Configure** permission, allows creating / uploading packages and creating tests + Start permissions (typically useful in our build plugins).
 - The **Administrate** permission, allows managing all organization resources.
 
 You can set a permission globally or within a specific team only.
