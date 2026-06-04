@@ -27,7 +27,7 @@ You can request dedicated IP addresses through [technical support](https://gatli
 Please provide:
 
 - Organization slug,
-- Desired number of dedicated IP addresses per location ([available locations]({{< ref "reference/run-tests/simulations/test-as-code#locations-configuration" >}})),
+- Desired number of dedicated IP addresses per location ([available locations]({{< ref "reference/run-tests/tests/test-as-code#locations-configuration" >}})),
 - Contact Email,
 - GitHub username.
 
@@ -39,7 +39,7 @@ The Dedicated IP addresses table shows your available dedicated IP addresses. Ea
 ## Usage
 
 ### User Interface
-To enable dedicated IP addresses, activate the `Use Dedicated IPs` option while [configuring simulation locations]({{< ref "simulations#step-2-locations-configuration" >}}).
+To enable dedicated IP addresses, activate the `Use Dedicated IPs` option while [configuring simulation locations]({{< ref "tests#step-2-locations-configuration" >}}).
 
 When starting a simulation run with dedicated IP addresses:
 

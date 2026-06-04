@@ -18,7 +18,7 @@ The left-side Gatling Enterprise Edition navigation bar can be collapsed using t
 The navigation bar is composed of:
 
 - [**Home**]({{< ref "home" >}}): see your teams last runs, credits left and useful links to documentation
-- [**Simulations**]({{< ref "simulations" >}}): manage simulations, runs and reports
+- [**Simulations**]({{< ref "tests" >}}): manage simulations, runs and reports
 - [**Organization**]({{< ref "organization" >}}): view organization details, credits usage and admin users
 - [**API Tokens**]({{< ref "/reference/administration/api-tokens" >}}): manage token to access the API - *accessible to system admins only*
 - [**Packages**]({{< ref "package-conf" >}}): manage simulations packages - *accessible to test admins and system admins*

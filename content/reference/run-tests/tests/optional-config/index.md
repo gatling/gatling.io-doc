@@ -1,28 +1,28 @@
 ---
-title: Optional configurations for simulations
-seotitle: Optional configurations for simulations in Gatling Enterprise Edition
-description: Learn about the optional configurations available for simulations in Gatling Enterprise Edition.
-lead: Optional configurations for simulations in Gatling Enterprise Edition.
+title: Optional configurations for tests
+seotitle: Optional configurations for tests in Gatling Enterprise Edition
+description: Learn about the optional configurations available for tests in Gatling Enterprise Edition.
+lead: Optional configurations for tests in Gatling Enterprise Edition.
 date: 2025-07-30T10:29:36+00:00
 ---
 
-## Optional configurations for simulations
+## Optional configurations for tests
 
-In addition to the standard configuration options, Gatling Enterprise Edition provides several optional configurations for simulations. These options allow you to customize the behavior of your simulations to better suit your testing needs.
+In addition to the standard configuration options, Gatling Enterprise Edition provides several optional configurations for tests. These options allow you to customize the behavior of your tests to better suit your testing needs.
 
 ### Override the injection profile
 
-You can override the injection profile defined in your simulation code to adjust the load pattern without modifying or repackaging your simulation. The override completely replaces the code-defined injection profile and is saved with the simulation. You can revert to the code-defined profile at any time.
+You can override the injection profile defined in your test code to adjust the load pattern without modifying or repackaging your test. The override completely replaces the code-defined injection profile and is saved with the test. You can revert to the code-defined profile at any time.
 
-For the full reference (injection models, step types, templates, and scenario naming rules) see [Override the injection profile]({{< ref "/reference/run-tests/simulations/override-injection-profile/" >}}).
+For the full reference (injection models, step types, templates, and scenario naming rules) see [Override the injection profile]({{< ref "/reference/run-tests/tests/override-injection-profile/" >}}).
 
 ### Load generator parameters
 
-You can specify load generator parameters in your simulation configuration. This is useful for scenarios where you need to customize the behavior of the load generator, such as adjusting the number of virtual users or the ramp-up time.
+You can specify load generator parameters in your test configuration. This is useful for scenarios where you need to customize the behavior of the load generator, such as adjusting the number of virtual users or the ramp-up time.
 
-This step allows you to define the Java system properties or JS parameters and environment variables used when running this particular simulation. Properties/variables entered here are in addition to the default parameters, unless you ignore the defaults. 
+This step allows you to define the Java system properties or JS parameters and environment variables used when running this particular test. Properties/variables entered here are in addition to the default parameters, unless you ignore the defaults. 
 
-If have the same key in your simulation configuration and the the default load generator parameters table <!--link here--> the simulation value is used and overrides the default.
+If have the same key in your test configuration and the the default load generator parameters table <!--link here--> the test value is used and overrides the default.
 
 {{< alert tip >}}
 JVM options, Java System Properties or JS parameters and environment variables will be saved in a snapshot that will be available in the run. This information will be visible by anyone who has read access.
@@ -94,7 +94,7 @@ Each stop criterion must include:
 You can base stop criteria on the following metrics:
 
 - **Mean CPU Usage**: The average CPU usage of the load generators, measured as a percentage.
-- **Global Error Ratio**: The percentage of failed requests across all test scenarios.
+- **Global Error Ratio**: The percentage of failed requests across all simulation scenarios.
 - **Global Response Time**: The response time of all requests, measured at a specific percentile, in milliseconds.
 
 {{< alert tip >}}
@@ -102,6 +102,6 @@ If you set a stop criterion to monitor the **mean CPU** over a **timeframe of 60
 the **run will stop if the mean CPU exceeds 80% for the last 60 seconds**.
 {{< /alert >}}
 
-### Acceptance criteria (no-code simulations only)
+### Acceptance criteria (no-code tests only)
 
-Gatling Enterprise Edition allows you to define acceptance criteria for your simulations. This includes specifying thresholds for key performance indicators (KPIs) such as response time, throughput, and error rate. By setting clear acceptance criteria, you can ensure that your application meets the desired performance standards before it is deployed. For test-as-code simulations, these criteria can be defined in the simulation code itself, while for no-code simulations, they can be configured through the user interface.
+Gatling Enterprise Edition allows you to define acceptance criteria for your tests. This includes specifying thresholds for key performance indicators (KPIs) such as response time, throughput, and error rate. By setting clear acceptance criteria, you can ensure that your application meets the desired performance standards before it is deployed. For test-as-code tests, these criteria can be defined in the test code itself, while for no-code tests, they can be configured through the user interface.

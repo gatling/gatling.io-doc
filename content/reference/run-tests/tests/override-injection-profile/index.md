@@ -1,14 +1,14 @@
 ---
 title: Override the injection profile
-seotitle: Override the injection profile for a simulation in Gatling Enterprise
-description: Learn how to override the injection profile of a simulation in Gatling Enterprise to adjust the load pattern without modifying or repackaging your simulation code.
-lead: Override the injection profile of a test-as-code or build-from-source simulation to adjust your load pattern without modifying or repackaging your simulation code.
+seotitle: Override the injection profile for a test in Gatling Enterprise
+description: Learn how to override the injection profile of a test in Gatling Enterprise to adjust the load pattern without modifying or repackaging your simulation code.
+lead: Override the injection profile of a test-as-code or build-from-source test to adjust your load pattern without modifying or repackaging your simulation code.
 date: 2026-04-20T00:00:00+00:00
 ---
 
 ## Activate the override
 
-The **Override your injection profile** step appears in the simulation creation and edit form (step 3). It is optional and collapsed by default.
+The **Override your injection profile** step appears in the test creation and edit form (step 3). It is optional and collapsed by default.
 
 When no override is configured, the banner indicates that the injection profile comes from your simulation code. Click **Override injection profile** to open the configuration form.
 
@@ -19,7 +19,7 @@ The configured injection profile **completely replaces** the injection profile d
 To revert to the code-defined profile, click **Use injection profile defined in code**.
 
 {{< alert info >}}
-This feature is available for test-as-code (packaged) and build-from-source simulations only.
+This feature is available for test-as-code (packaged) and build-from-source tests only.
 {{< /alert >}}
 
 ## Select the injection model
@@ -35,13 +35,13 @@ For more information on the two models, see [Workload models]({{< ref "/testing-
 
 ### Name your scenarios
 
-You must define one injection profile per test scenario.
+You must define one injection profile per simulation scenario.
 
-- **Single-scenario simulations**: the scenario name field is disabled. The profile applies automatically to the single scenario in your simulation.
-- **Multi-scenario simulations**: you must enter a name for each scenario. Names must match the scenario names defined in your simulation code exactly, including case.
+- **Single-scenario tests**: the scenario name field is disabled. The profile applies automatically to the single scenario in your simulation.
+- **Multi-scenario tests**: you must enter a name for each scenario. Names must match the scenario names defined in your simulation code exactly, including case.
 
 {{< alert warning >}}
-Each profile must reference an existing scenario name. A mismatch in count or naming causes the run to fail with a **Broken** status. Check the run logs for the list of scenario names found in your simulation.
+Each profile must reference an existing scenario name. A mismatch in count or naming causes the run to fail with a **Broken** status. Check the run logs for the list of scenario names found in your test.
 {{< /alert >}}
 
 You can add up to **50 injection steps** per scenario. Click **Add another scenario** to define profiles for additional scenarios.
@@ -102,10 +102,10 @@ After selecting a template, you can modify, add, or remove individual steps. The
 
 ## View injection profile details
 
-The injection profile summary appears in two places in the UI once the simulation is saved.
+The injection profile summary appears in two places in the UI once the test is saved.
 
 **Simulation details**: The **Injection profile** field in the header shows:
 - `Defined in code`: no override is configured.
 - `X scenario(s), Y steps (open)` or `X scenario(s), Y steps (closed)`: an override is active, where X is the number of configured scenarios and Y is the total number of injection steps.
 
-**Run summary**: The injection profile shown in the run summary reflects the profile that was used for that specific run. It may differ from the current simulation configuration if the simulation was edited after the run.
+**Run summary**: The injection profile shown in the run summary reflects the profile that was used for that specific run. It may differ from the current test configuration if the test was edited after the run.

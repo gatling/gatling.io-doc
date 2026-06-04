@@ -70,7 +70,7 @@ When disabled, users in your organization are prevented from:
 
 No-code simulations are **enabled** by default.
 
-This setting allows you to control whether your users can deploy load tests using [no-code simulations]({{< ref "reference/run-tests/simulations/no-code" >}}).
+This setting allows you to control whether your users can deploy load tests using [no-code simulations]({{< ref "reference/run-tests/tests/no-code" >}}).
 By disabling this feature and [managed packages]({{< ref "#managed-packages" >}}), you enforce the exclusive use of [private packages]({{< ref "/reference/deploy/private-locations/private-packages" >}}) for all load tests.
 
 When disabled, users in your organization are prevented from:
@@ -93,7 +93,7 @@ When disabled, users in your organization are prevented from:
 
 Custom build commands are **disabled** by default.
 
-This setting allows you to control whether your users can create a [simulation from a git repository]({{< ref "reference/run-tests/simulations/git-repository" >}}) using a [custom build command]({{< ref "reference/run-tests/simulations/git-repository#custom-build-command" >}}).
+This setting allows you to control whether your users can create a [simulation from a git repository]({{< ref "reference/run-tests/tests/git-repository" >}}) using a [custom build command]({{< ref "reference/run-tests/tests/git-repository#custom-build-command" >}}).
 
 When enabled, users in your organization are allowed to:
 

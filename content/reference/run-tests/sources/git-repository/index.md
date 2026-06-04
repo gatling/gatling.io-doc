@@ -31,7 +31,7 @@ Click **Save** to create the repository.
 
 ## Create simulations from a Git repository
 
-From the Sources view, you can create simulations directly from a Git repository. Click the kebab menu (three dots) and select **Create simulation from repository**. This bypasses the Create simulation modal and opens the simulation creation page pre-filled with the repository information. For more information on creating simulations from a Git repository, refer to the [Create simulations from a git repository documentation]({{< ref "reference/run-tests/simulations/git-repository" >}}).
+From the Sources view, you can create simulations directly from a Git repository. Click the kebab menu (three dots) and select **Create simulation from repository**. This bypasses the Create simulation modal and opens the simulation creation page pre-filled with the repository information. For more information on creating simulations from a Git repository, refer to the [Create simulations from a git repository documentation]({{< ref "reference/run-tests/tests/git-repository" >}}).
 
 ## Copy the repository ID
 

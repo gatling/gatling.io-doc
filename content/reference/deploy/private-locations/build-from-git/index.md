@@ -17,7 +17,7 @@ Simulations are built and stored in your private network, using the Private Loca
 
 {{< img src="generic-diagram.png" alt="Build from Git architecture diagram" >}}
 
-The following sections detail how to configure the Control Plane for Build from a Git repository, including pre-requisites, git authentication, and build tool configurations. Once configured, you can [create simulations]({{< ref "reference/run-tests/simulations/git-repository" >}}) in the Gatling Enterprise Edition UI.
+The following sections detail how to configure the Control Plane for Build from a Git repository, including pre-requisites, git authentication, and build tool configurations. Once configured, you can [create simulations]({{< ref "reference/run-tests/tests/git-repository" >}}) in the Gatling Enterprise Edition UI.
 
 ## Pre-requisites
 
