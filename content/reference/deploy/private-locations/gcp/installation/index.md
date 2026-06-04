@@ -57,7 +57,7 @@ Click **CREATE SECRET**.
 We need a service account which will allow a VM to:
 
 - download the Control Plane's configuration file, stored in a secret
-- spawn new load generators on GCP when running a simulation
+- spawn new load generators on GCP when running a test
 
 ### Role creation
 
@@ -161,7 +161,7 @@ After a short time, you should see your Control Plane get the "up" status in Gat
 
 {{< img src="gcp-control-plane-status.png" alt="Checking out the Control Plane's status in Gatling Enterprise" >}}
 
-You can now configure a simulation to run on one or more of this Control Plane's locations!
+You can now configure a test to run on one or more of this Control Plane's locations!
 
 ## Update your control plane
 
