@@ -13,7 +13,7 @@ The home page lets you have a quick understanding of the activity that recently 
 
 ## Last runs
 
-The home page displays your teams' latest simulation runs.
+The home page displays your teams' latest test runs.
 
 {{< img src="last-runs.png" alt="Last runs" caption="Your teams last runs" >}}
 
