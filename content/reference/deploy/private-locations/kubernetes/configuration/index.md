@@ -170,13 +170,13 @@ For the `javascript` engine, only the latest Java version is supported, which co
 ### Example JSON Job Definition
 
 When configuring the control plane, you may include a job definition that adheres to the [Kubernetes Job API schema](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#job-v1-batch). 
-This job definition manages the deployment and execution of Gatling simulations on Kubernetes.
+This job definition manages the deployment and execution of Gatling tests on Kubernetes.
 
 Several aspects of this job schema are enforced by the control plane:
-* `spec.parallelism`: Automatically set to match the number of instances configured for the simulation at the specified location, ensuring the workload is distributed as intended.
-* `spec.backoffLimit`: Set to 0 to disable any retries, ensuring that failed simulations do not automatically restart.
+* `spec.parallelism`: Automatically set to match the number of instances configured for the test at the specified location, ensuring the workload is distributed as intended.
+* `spec.backoffLimit`: Set to 0 to disable any retries, ensuring that failed tests do not automatically restart.
 * `spec.template.spec.restartPolicy`: Enforced as Never to prevent the creation of unintended instances.
-* `spec.template.spec.containers`: The job is restricted to a single container in the pod specification, which will run the Gatling simulation.
+* `spec.template.spec.containers`: The job is restricted to a single container in the pod specification, which will run the Gatling test.
 * `spec.template.spec.containers[0].image`: The container image is determined by your configuration (certified or custom) and cannot be set within the job definition itself.
 * `spec.template.spec.containers[0].command`: Reserved for initiating the Gatling script and should not be modified within the job definition.
 
