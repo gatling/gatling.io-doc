@@ -9,7 +9,7 @@ date: 2021-03-10T14:29:43+00:00
 This feature is only available on Gatling Enterprise. To learn more, [explore our plans](https://gatling.io/pricing?utm_source=docs)
 {{< /alert >}}
 
-Click on the {{< icon chart-area >}} icon in the [simulations table]({{< ref "/reference/run-tests/tests/intro" >}}) or in the [runs table]({{< ref "../trends/run-trends" >}}) to access the reports.
+Click on the {{< icon chart-area >}} icon in the [tests table]({{< ref "/reference/run-tests/tests/intro" >}}) or in the [runs table]({{< ref "../trends/run-trends" >}}) to access the reports.
 
 This view displays all the metrics available for a specific run.
 
@@ -183,7 +183,7 @@ The load generators panel shows the following metrics related to the load genera
 
 ## Logs
 
-This tab allows you to read logs from your simulation and load generators.
+This tab allows you to read logs from your test and load generators.
 
 {{< img src="report-logs.png" alt="Report Logs" >}}
 
@@ -327,4 +327,4 @@ The highlight legend option is enabled for every "non stacked" graph.
 
 Gatling enterprise also offers the possibility to view and compare reports for each run.
 
-You can either decide to export a PDF report and select for each chart which run it relates to, or you can compare the request response times and error rates using the compare function in the [simulation details page]({{< ref "../trends/run-compare" >}}).
+You can either decide to export a PDF report and select for each chart which run it relates to, or you can compare the request response times and error rates using the compare function in the [test details page]({{< ref "../trends/run-compare" >}}).

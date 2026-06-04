@@ -12,7 +12,7 @@ Run comparison is designed to help you uncover changes in application performanc
 
 ## Select runs for comparison
 
-Start a run comparison by clicking the **Compare runs** button, available from the simulation run trends page or on the individual reports page for each run. Once you start the compare runs mode, select runs for comparison from the left-side menu. Select up to 5 runs for simultaneous comparison. To change the compared runs:
+Start a run comparison by clicking the **Compare runs** button, available from the test run trends page or on the individual reports page for each run. Once you start the compare runs mode, select runs for comparison from the left-side menu. Select up to 5 runs for simultaneous comparison. To change the compared runs:
 
 1. De-select any runs you no longer want to compare by clicking the filled checkbox next to the run title in the left-side menu or clicking the **X** next to the run number under the heading **Selected runs**.
 2. Click the empty checkbox next to the run title in the left-side menu for the runs you want to compare, up to 5 runs in total. 

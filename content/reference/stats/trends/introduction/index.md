@@ -19,7 +19,7 @@ Run trends and comparisons allow you to investigate how your application perform
 
 ## Accessing run trends and comparison
 
-Access run trends by selecting a simulation from the simulation table by clicking on the simulation name.
+Access run trends by selecting a test from the test table by clicking on the test name.
 
 Access Run comparison by clicking the **Compare runs** button, which is available from the Run trends page, highlighted by the red square in the following image, and on the reports page for each individual run. 
 
