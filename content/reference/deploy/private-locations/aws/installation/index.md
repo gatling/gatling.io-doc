@@ -52,7 +52,7 @@ You can then upload your [Control Plane configuration]({{< ref "configuration" >
 We need an IAM role which will allow an ECS task to:
 
 - download the Control Plane's configuration file stored in an S3 bucket
-- spawn new load generators on EC2 when running a simulation
+- spawn new load generators on EC2 when running a test
 - when IAM profile configured, allow the Control Plane to pass role 
 
 ### Policies
@@ -383,4 +383,4 @@ After a short time, you should see your Control Plane get the {{< badge success 
 
 {{< img src="ecs-control-plane-status.png" alt="Checking out the Control Plane's status in Gatling Enterprise Edition" >}}
 
-You can now configure a simulation to run on one or more of this Control Plane's locations!
+You can now configure a test to run on one or more of this Control Plane's locations!
