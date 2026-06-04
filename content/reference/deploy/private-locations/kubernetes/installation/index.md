@@ -27,7 +27,7 @@ First, the control plane regularly polls the Gatling Enterprise Edition API, and
 Then, it creates a config map for each namespace of each Kubernetes location requested for this run. 
 The config map includes the load generator's start script, so these scripts don't need to be embedded in the Docker images used for the load generators.
 
-Finally, the control plane initiates a batch job, with the number of instances configured for the simulation run, and mounts the appropriate config map on each pod.
+Finally, the control plane initiates a batch job, with the number of instances configured for the test run, and mounts the appropriate config map on each pod.
 
 {{< img src="kubernetes-diagram.png" alt="Infrastructure schema" >}}
 <div style="text-align: center; margin-top: -2.5em;">
