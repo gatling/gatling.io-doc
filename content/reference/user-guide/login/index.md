@@ -35,8 +35,6 @@ Authorization page opens in a new tab. If no tab opens, make sure that your brow
 
 Then, you will have to fill in your profile information (some values may be pre-filled from your identity provider's data, but you can still modify them).
 
-{{< img src="idp-signup.png" alt="Update information"  >}}
-
 ### Email validation
 
 In any case, you will be asked to confirm your account email
