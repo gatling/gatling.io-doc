@@ -100,7 +100,8 @@ control-plane {
       # Instance type
       instance-type = "c7i.xlarge"
       # Spot instances (optional, default: false)
-      # spot = true
+      # Set to true to use Spot Instances instead of On-Demand Instances, or to "preferred" to prioritize Spot Instances and provision any remaining instances as On-Demand if Spot capacity is unavailable.
+      # spot = true # Possible values: true, false or "preferred"
       # Subnets
       subnets = ["subnet-a", "subnet-b"]
       # Automatically associate a public IPv4 (optional, default true)
