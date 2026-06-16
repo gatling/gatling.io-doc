@@ -351,7 +351,7 @@ It takes 2 parameters:
 
 The `crash` flavor causes Gatling to exit with a failure code.
 
-### Groups
+### Group
 
 Create a group of requests to model processes or requests in the same page.
 Groups can be nested.

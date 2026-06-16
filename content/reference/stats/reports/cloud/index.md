@@ -117,7 +117,7 @@ When downloading a group-level summary, you receive data for both **Duration** a
 
 ### Groups
 
-If you defined [groups]({{< ref "/concepts/scenario#groups" >}}) in your simulation, you can break down your results per each one of them.
+If you defined [groups]({{< ref "/concepts/scenario#group" >}}) in your simulation, you can break down your results per each one of them.
 
 Once again like the requests panel, you can visualize your run execution using charts:
 
