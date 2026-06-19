@@ -224,8 +224,9 @@ Linux/MacOS: ./gradlew gatlingRun --all
 Windows: gradlew.bat gatlingRun --all
 {{</ platform-toggle >}}
 
-The following configuration options are available. Those options are similar to
-global `gatling` configurations. Options are used in a fallback manner, i.e. if
+The following configuration options are available.
+
+Some of these options are similar to global `gatling` configurations. Options are used in a fallback manner, i.e. if
 an option is not set the value from the `gatling` global config is taken.
 
 | Property name      | Type | Default value | Description |
@@ -234,6 +235,9 @@ an option is not set the value from the `gatling` global config is taken.
 | `jvmArgs`          | List<String>        | `null` | Additional arguments passed to JVM when executing Gatling simulations |
 | `systemProperties` | Map<String, Object> | `null` | Additional systems properties passed to JVM together with caller JVM system properties |
 | `environment`      | Map<String, Object> | `null` | Additional environment variables passed to the simulation |
+| `run-description`. | String | `null` | Add a description to be inserted in the HTML reports |
+| `all` | boolean | `false` | Run all simulations sequentially in alphabetic order |
+| `same-process` | boolean | `false` | "Run Gatling in the Gradle process for debugging|
 
 ### Running the Gatling Recorder
 
