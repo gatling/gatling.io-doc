@@ -89,12 +89,25 @@ To remove the link between Gatling Enterprise Edition and InfluxDB, remove the l
 
 Gatling Enterprise Edition creates the following schema in your InfluxDB database:
 
-**Table**| **Tags**                                              |**Fields**
-:-----|:------------------------------------------------------|:-----
-gatling_enterprise_users|runId,<br>test,<br>team,<br>load_generator,<br>scenario|start_count,<br>end_count,<br>max_concurrent
-gatling_enterprise_requests|runId,<br>test,<br>team,<br>load_generator,<br>scenario,<br>group,<br>request|count
-gatling_enterprise_responses|runId,<br>test,<br>team,<br>load_generator,<br>scenario,<br>group,<br>request,<br>status|count,<br>time_min,<br>time_p95,<br>time_p99,<br>time_p999,<br>time_max
-gatling_enterprise_responses_by_code|runId,<br>test,<br>team,<br>load_generator,<br>scenario,<br>group,<br>request,code|count
-gatling_enterprise_connections|runId,<br>test,<br>team,<br>load_generator,<br>remote|bandwidth_usage_sent,<br>bandwidth_usage_received,<br>tcp_open_count,<br>tcp_close_count
-gatling_enterprise_tcp_connects|runId,<br>test,<br>team,<br>load_generator,<br>remote,<br>status|count,<br>time_min,<br>time_p95,<br>time_p99,<br>time_p999,<br>time_max
-gatling_enterprise_tls_handshakes|runId,<br>test,<br>team,<br>load_generator,<br>remote,<br>status|count,<br>time_min,<br>time_p95,<br>time_p99,<br>time_p999,<br>time_max
+**Common Tags**|
+|:-------------|
+runId|
+test|
+team|
+load_generator|
+
+**Table**| **Specific Tags**                                     |**Fields**
+:--------|:------------------------------------------------------|:---------
+gatling_enterprise_users|scenario|start_count,<br>end_count,<br>max_concurrent
+gatling_enterprise_requests|scenario,<br>group,<br>request|count
+gatling_enterprise_responses|scenario,<br>group,<br>request,<br>status|count,<br>time_min,<br>time_p95,<br>time_p99,<br>time_p999,<br>time_max
+gatling_enterprise_responses_by_code|scenario,<br>group,<br>request,code|count
+gatling_enterprise_group_durations|scenario,<br>group,<br>status|count,<br>time_min,<br>time_p95,<br>time_p99,<br>time_p999,<br>time_max
+gatling_enterprise_group_cumulated|scenario,<br>group,<br>status|count,<br>time_min,<br>time_p95,<br>time_p99,<br>time_p999,<br>time_max
+gatling_enterprise_dns|runId,<br>test,<br>team,<br>load_generator,hostname,status|count,<br>time_min,<br>time_p95,<br>time_p99,<br>time_p999,<br>time_max
+gatling_enterprise_connections|remote|bandwidth_usage_sent,<br>bandwidth_usage_received,<br>tcp_open_count,<br>tcp_close_count
+gatling_enterprise_tcp_states|remote,<br>state|count
+gatling_enterprise_tcp_connects|remote,<br>status|count,<br>time_min,<br>time_p95,<br>time_p99,<br>time_p999,<br>time_max
+gatling_enterprise_tls_handshakes|remote,<br>status|count,<br>time_min,<br>time_p95,<br>time_p99,<br>time_p999,<br>time_max
+gatling_enterprise_cpu||user,<br>sys|
+gatling_enterprise_mem||ram_max,<br>ram_used,<br>heap_max,<br>heap_committed,<br>heap_used|

@@ -64,10 +64,13 @@ To remove the link between Gatling Enterprise Edition and OpenTelemetry, remove 
 The "Instrumentation Scope Info" is `io.gatling.enterprise`.
 
 All data use the same resource attributes:
-* `run.id`: the id of the test run
-* `service.name`: the "gatling.enterprise" string
-* `team.name`: the name of the team the test belongs to
-* `test.name`: the name of the test
+
+**Resource Attribute**|**Description**
+:-----|:----------------------------|
+`run.id`|the id of the test run
+`service.name`|the "gatling.enterprise" string
+`team.name`|the name of the team the test belongs to
+`test.name`|the name of the test
 
 ## Metrics
 
@@ -75,23 +78,32 @@ Gatling Enterprise Edition sends the following metrics in your OpenTelemetry acc
 
 **Metrics**| **Type**                    |**Attributes**
 :-----|:----------------------------|:-----
-gatling_enterprise.user.start.count<br>gatling_enterprise.user.end.count| sum                         |load.generator<br>scenario
-gatling_enterprise.user.concurrent| gauge                       |load.generator<br>scenario
-gatling_enterprise.request.count| sum                   |load.generator<br>scenario<br>group<br>request
-gatling_enterprise.response.code.count| sum                   |load.generator<br>scenario<br>group<br>request<br>code
-gatling_enterprise.response.count<br> (*)| sum                   |load.generator<br>scenario<br>group<br>request<br>status
-gatling_enterprise.response.time.min<br>gatling_enterprise.response.time.p95<br>gatling_enterprise.response.time.p99<br>gatling_enterprise.response.time.p999<br>gatling_enterprise.response.time.max<br> (*)| gauge                       |load.generator<br>scenario<br>group<br>request<br>status
-gatling_enterprise.response.time<br> (**)| exponential histogram |load.generator<br>scenario<br>group<br>request<br>status
-gatling_enterprise.bits.sent<br>gatling_enterprise.bits.received| sum                   |load.generator<br>remote
-gatling_enterprise.tcp.open.count<br>gatling_enterprise.tcp.close.count| sum                   |load.generator<br>remote
-gatling_enterprise.tcp.connect.count<br> (*)| sum                   |load.generator<br>remote<br>status
-gatling_enterprise.tcp.connect.time.min<br>gatling_enterprise.tcp.connect.time.p95<br>gatling_enterprise.tcp.connect.time.p99<br>gatling_enterprise.tcp.connect.time.p999<br>gatling_enterprise.tcp.connect.time.max<br> (*)| gauge                       |load.generator<br>remote<br>status
-gatling_enterprise.tcp.connect.time<br> (**)| exponential histogram |load.generator<br>remote<br>status
-gatling_enterprise.tls.handshake.count<br> (*)| sum                   |load.generator<br>remote<br>status
-gatling_enterprise.tls.handshake.time.min<br>gatling_enterprise.tls.handshake.time.p95<br>gatling_enterprise.tls.handshake.time.p99<br>gatling_enterprisetls.handshake.time.p999<br>gatling_enterprise.tls.handshake.time.max<br> (*)| gauge                       |load.generator<br>remote<br>status
-gatling_enterprise.tls.handshake.time<br> (**)| exponential histogram |load.generator<br>remote<br>status
+`gatling_enterprise.user.start.count`<br>`gatling_enterprise.user.end.count`|sum|load.generator<br>scenario
+`gatling_enterprise.user.concurrent`|gauge|load.generator<br>scenario
+`gatling_enterprise.request.count`|sum|load.generator<br>scenario<br>group<br>request
+`gatling_enterprise.response.code.count`|sum|load.generator<br>scenario<br>group<br>request<br>code
+`gatling_enterprise.response.count`<br> (\*)|sum|load.generator<br>scenario<br>group<br>request<br>status
+`gatling_enterprise.response.time.min`<br>`gatling_enterprise.response.time.p95`<br>`gatling_enterprise.response.time.p99`<br>`gatling_enterprise.response.time.p999`<br>`gatling_enterprise.response.time.max`<br> (\*)|gauge|load.generator<br>scenario<br>group<br>request<br>status
+`gatling_enterprise.response.time`<br> (\*\*)|exponential histogram|load.generator<br>scenario<br>group<br>request<br>status
+`gatling_enterprise.group.count`<br> (\*)|sum|load.generator<br>scenario<br>group<br>status
+`gatling_enterprise.group.duration.min`<br>`gatling_enterprise.group.duration.p95`<br>`gatling_enterprise.group.duration.p99`<br>`gatling_enterprise.group.duration.p999`<br>`gatling_enterprise.group.duration.max`<br>`gatling_enterprise.group.cumulated.min`<br>`gatling_enterprise.group.cumulated.p95`<br>`gatling_enterprise.group.cumulated.p99`<br>`gatling_enterprise.group.cumulated.p999`<br>`gatling_enterprise.group.cumulated.max` (\*)|gauge|load.generator<br>scenario<br>group<br>status
+`gatling_enterprise.group.duration`<br>`gatling_enterprise.group.cumulated`<br> (\*\*)|exponential histogram|load.generator<br>scenario<br>group<br>status
+`gatling_enterprise.dns.count`<br> (\*)|sum|load.generator<br>hostname<br>status
+`gatling_enterprise.dns.time.min`<br>`gatling_enterprise.dns.time.p95`<br>`gatling_enterprise.dns.time.p99`<br>`gatling_enterprise.dns.time.p999`<br>`gatling_enterprise.dns.time.max`<br> (\*)|gauge|load.generator<br>hostname<br>status
+`gatling_enterprise.dns.time`<br> (\*\*)|exponential histogram |load.generator<br>hostname<br>status
+`gatling_enterprise.bits.sent`<br>`gatling_enterprise.bits.received`|sum|load.generator<br>remote
+`gatling_enterprise.tcp.open.count`<br>`gatling_enterprise.tcp.close.count`|sum|load.generator<br>remote
+`gatling_enterprise.tcp.connect.count`<br> (\*)|sum|load.generator<br>remote<br>status
+`gatling_enterprise.tcp.connect.time.min`<br>`gatling_enterprise.tcp.connect.time.p95`<br>`gatling_enterprise.tcp.connect.time.p99`<br>`gatling_enterprise.tcp.connect.time.p999`<br>`gatling_enterprise.tcp.connect.time.max`<br> (\*)|gauge|load.generator<br>remote<br>status
+`gatling_enterprise.tcp.connect.time`<br> (\*\*)|exponential histogram |load.generator<br>remote<br>status
+`gatling_enterprise.tcp.state.count`|gauge|load.generator<br>state
+`gatling_enterprise.tls.handshake.count`<br> (\*)|sum|load.generator<br>remote<br>status
+`gatling_enterprise.tls.handshake.time.min`<br>`gatling_enterprise.tls.handshake.time.p95`<br>`gatling_enterprise.tls.handshake.time.p99`<br>`gatling_enterprise.tls.handshake.time.p999`<br>`gatling_enterprise.tls.handshake.time.max`<br> (\*)|gauge|load.generator<br>remote<br>status
+`gatling_enterprise.tls.handshake.time`<br> (\*\*)|exponential histogram |load.generator<br>remote<br>status
+`gatling_enterprise.cpu.user`<br>`gatling_enterprise.cpu.sys`<br>`gatling_enterprise.mem.ram.total`<br>`gatling_enterprise.mem.ram.used`<br>`gatling_enterprise.mem.heap.max`<br>`gatling_enterprise.mem.heap.committed`<br>`gatling_enterprise.mem.heap.used`|gauge|load.generator
 
-**(*) only when `deltaExponentialHistogramsSupported` is set to `false` (default)**
+**(\*) only when `deltaExponentialHistogramsSupported` is set to `false` (default)**
+
 **(\*\*)  only when `deltaExponentialHistogramsSupported` is set to `true`**
 
 {{< alert warning >}}
