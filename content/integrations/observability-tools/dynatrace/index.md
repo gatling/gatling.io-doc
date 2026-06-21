@@ -66,76 +66,57 @@ Gatling Enterprise Edition generates custom information events for load test inj
 
 All events are of type `CUSTOM_INFO` with the following properties:
 
-**Short name**|**Property name**|**Description**
-:-----|:-----|:-----
-Source|`source`|Source reference for Gatling Enterprise events
-Team|`team`|Name of the team that owns the test
-Phase|`phase`|Phase of the injection (start or end)
-Test|`test`|Test name
-Run ID|`run_id`|ID of the run
+**Property name**|**Description**
+:-----|:-----
+`source`|Source reference for Gatling Enterprise events
+`team`|Name of the team that owns the test
+`phase`|Phase of the injection (start or end)
+`test`|Test name
+`run_id`|ID of the run
 
 See the official Dynatrace documentation for [exploring events](https://docs.dynatrace.com/docs/analyze-explore-automate/logs/lma-analysis/logs-and-events#advanced-mode).
 
 ### Metrics pushed to Dynatrace
 
+#### Default dimensions
+
+All metrics Gatling Enterprise Edition pushes to Dynatrace use the following dimensions:
+
+**Dimension**|**Description**
+:-----|:-----
+`team`|Name of the team that owns the test
+`test`|Test name
+`load_generator`|Load generator reference integer starting with 0
+`run_id`|ID of the run
+
+#### Available metrics
+
 Gatling Enterprise Edition pushes the following list of load test metrics to Dynatrace:
 
-**Short name**|**Metric name**|**Description**
-:-----|:-----|:-----
-User start|`gatling_enterprise.user.start_count`|Number of injected users
-User end|`gatling_enterprise.user.end_count`|Number of stopped users
-Concurrent user|`gatling_enterprise.user.concurrent`|Number of concurrent users
-Request|`gatling_enterprise.request.count`|Number of requests
-Response|`gatling_enterprise.response.count`|Number of responses
-Response time max|`gatling_enterprise.response.response_time.max`|Maximum response time
-Response time min|`gatling_enterprise.response.response_time.min`|Minimum response time
-Response time p95|`gatling_enterprise.response.response_time.p95`|Response time for the 95th percentile (95% of the requests)
-Response time p99|`gatling_enterprise.response.response_time.p99`|Response time for the 99th percentile (99% of the requests)
-Response time p999|`gatling_enterprise.response.response_time.p999`|Response time for the 99.9th percentile (99.9% of the requests)
-Response Code|`gatling_enterprise.response.code`|Response code, in the case of HTTP, the HTTP response status code
-Request Bits|`gatling_enterprise.bandwidth_usage.sent`|Outbound bandwidth usage
-Response Bits|`gatling_enterprise.bandwidth_usage.received`|Inbound bandwidth usage
-Request TCP open|`gatling_enterprise.tcp.open_count`|Number of opened TCP requests
-Request TCP close|`gatling_enterprise.tcp.close_count`|Number of closed TCP requests
-TCP connections|`gatling_enterprise.tcp.connection_count`|Number of new TCP connections
-TCP connect time max|`gatling_enterprise.tcp.connect_time.min`|Minimum TCP connect time
-TCP connect time min|`gatling_enterprise.tcp.connect_time.max`|Maximum TCP connect time
-TCP connect time p95|`gatling_enterprise.tcp.connect_time.p95`|TCP connect time for the 95th percentile (95% of the requests)
-TCP connect time p99|`gatling_enterprise.tcp.connect_time.p99`|TCP connect time for the 99th percentile (99% of the requests)
-TCP connect time p999|`gatling_enterprise.tcp.connect_time.p999`|TCP connect time for the 99.9th percentile (99.9% of the requests)
-TLS handshakes|`gatling_enterprise.tls.handshake_count`|Number of TLS handshakes
-TLS handshake time max|`gatling_enterprise.tls.handshake_time.min`|Minimum TLS handshake time
-TLS handshake time min|`gatling_enterprise.tls.handshake_time.max`|Maximum TLS handshake time
-TLS handshake time p95|`gatling_enterprise.tls.handshake_time.p95`|TLS handshake time for the 95th percentile (95% of the requests)
-TLS handshake time p99|`gatling_enterprise.tls.handshake_time.p99`|TLS handshake time for the 99th percentile (99% of the requests)
-TLS handshake time p999|`gatling_enterprise.tls.handshake_time.p999`|TLS handshake time for the 99.9th percentile (99.9% of the requests)
+**Metric**|**Type**|**Specific Dimensions**
+:---------|:-------|:----------------
+`gatling_enterprise.user.start_count`<br>`gatling_enterprise.user.end_count`|count|scenario
+`gatling_enterprise.user.concurrent`|gauge|scenario
+`gatling_enterprise.request.count`|count|scenario<br>group<br>request
+`gatling_enterprise.response.count`|count|scenario<br>group<br>request<br>status
+`gatling_enterprise.response.response_time.min`<br>`gatling_enterprise.response.response_time.p95`<br>`gatling_enterprise.response.response_time.p99`<br>`gatling_enterprise.response.response_time.p999`<br>`gatling_enterprise.response.response_time.max`|gauge|scenario<br>group<br>request<br>status
+`gatling_enterprise.response.code`|count|scenario<br>group<br>request<br>code
+`gatling_enterprise.group.count`|count|scenario<br>group
+`gatling_enterprise.group.duration.min`<br>`gatling_enterprise.group.duration.p95`<br>`gatling_enterprise.group.duration.p99`<br>`gatling_enterprise.group.duration.p999`<br>`gatling_enterprise.group.duration.max`<br>`gatling_enterprise.group.cumulated.min`<br>`gatling_enterprise.group.cumulated.p95`<br>`gatling_enterprise.group.cumulated.p99`<br>`gatling_enterprise.group.cumulated.p999`<br>`gatling_enterprise.group.cumulated.max`|gauge|scenario<br>group<br>status
+`gatling_enterprise.dns.count`|count|hostname<br>status
+`gatling_enterprise.dns.time.min`<br>`gatling_enterprise.dns.time.p95`<br>`gatling_enterprise.dns.time.p99`<br>`gatling_enterprise.dns.time.p999`<br>`gatling_enterprise.dns.time.max`|gauge|hostname<br>status
+`gatling_enterprise.tcp.open_count`<br>`gatling_enterprise.tcp.close_count`<br>`gatling_enterprise.bandwidth_usage.sent`<br>`gatling_enterprise.bandwidth_usage.received`|count|remote
+`gatling_enterprise.tcp.connection_count`<br>`gatling_enterprise.tls.handshake_count`|count|remote<br>status
+`gatling_enterprise.tcp.connect_time.min`<br>`gatling_enterprise.tcp.connect_time.p95`<br>`gatling_enterprise.tcp.connect_time.p99`<br>`gatling_enterprise.tcp.connect_time.p999`<br>`gatling_enterprise.tcp.connect_time.max`<br>`gatling_enterprise.tls.handshake_time.min`<br>`gatling_enterprise.tls.handshake_time.p95`<br>`gatling_enterprise.tls.handshake_time.p99`<br>`gatling_enterprise.tls.handshake_time.p999`<br>`gatling_enterprise.tls.handshake_time.max`|gauge|remote<br>status
+`gatling_enterprise.tcp.state_count`|gauge|remote<br>state
+`gatling_enterprise.cpu.user`<br>`gatling_enterprise.cpu.sys`<br>`gatling_enterprise.mem.ram.max`<br>`gatling_enterprise.mem.ram.used`<br>`gatling_enterprise.mem.heap.max`<br>`gatling_enterprise.mem.heap.committed`<br>`gatling_enterprise.mem.heap.used`|gauge
 
 See the official Dynatrace documentation for [exploring metrics](https://docs.dynatrace.com/docs/analyze-explore-automate/explorer).
 
-### Use metric dimensions to enhance your Dynatrace dashboard
-
-#### Default Dimensions
-
-Gatling Enterprise Edition pushes the following dimensions to Dynatrace:
-
-**Short name**|**Dimension name**|**Description**
-:-----|:-----|:-----
-Team|`team`|Name of the team that owns the test
-Test|`test`|Test name
-Load generator|`load_generator`|Load generator reference integer starting with 0
-Scenario|`scenario`|Scenario name
-Group|`group`|Group name (only for request and response metrics)
-Request|`request`|Request name (only for request and response metrics)
-Remote|`remote`|Remote InetSocketAddress (only for bandwidth, tcp and tls metrics)
-Status|`status`|Status of the run (ok or ko)
-Run ID|`run_id`|ID of the run
-
-#### Custom Dimensions
+#### Custom dimensions
 
 You can add custom dimensions by adding system properties, either at the control-plane level or in your test configuration (except for no-code tests):
 `gatling.enterprise.dt.dimensions.<custom_dimension>` = `<your value>`
-
----
 
 ## HTTP Request Integration
 
