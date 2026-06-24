@@ -91,7 +91,7 @@ Gatling Enterprise Edition creates the following schema in your InfluxDB databas
 
 **Common Tags**|
 |:-------------|
-runId|
+run_id|
 test|
 team|
 load_generator|
