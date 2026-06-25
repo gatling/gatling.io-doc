@@ -85,7 +85,7 @@ Gatling Enterprise Edition sends the following metrics in your OpenTelemetry acc
 `gatling_enterprise.response.count`<br> (\*)|sum|load.generator<br>scenario<br>group<br>request<br>status
 `gatling_enterprise.response.time.min`<br>`gatling_enterprise.response.time.p95`<br>`gatling_enterprise.response.time.p99`<br>`gatling_enterprise.response.time.p999`<br>`gatling_enterprise.response.time.max`<br> (\*)|gauge|load.generator<br>scenario<br>group<br>request<br>status
 `gatling_enterprise.response.time`<br> (\*\*)|exponential histogram|load.generator<br>scenario<br>group<br>request<br>status
-`gatling_enterprise.group.count`<br> (\*)|sum|load.generator<br>scenario<br>group<br>status
+`gatling_enterprise.group.duration.count`<br> (\*)|sum|load.generator<br>scenario<br>group<br>status
 `gatling_enterprise.group.duration.min`<br>`gatling_enterprise.group.duration.p95`<br>`gatling_enterprise.group.duration.p99`<br>`gatling_enterprise.group.duration.p999`<br>`gatling_enterprise.group.duration.max`<br>`gatling_enterprise.group.cumulated.min`<br>`gatling_enterprise.group.cumulated.p95`<br>`gatling_enterprise.group.cumulated.p99`<br>`gatling_enterprise.group.cumulated.p999`<br>`gatling_enterprise.group.cumulated.max` (\*)|gauge|load.generator<br>scenario<br>group<br>status
 `gatling_enterprise.group.duration`<br>`gatling_enterprise.group.cumulated`<br> (\*\*)|exponential histogram|load.generator<br>scenario<br>group<br>status
 `gatling_enterprise.dns.count`<br> (\*)|sum|load.generator<br>hostname<br>status
