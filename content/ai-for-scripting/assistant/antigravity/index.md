@@ -5,7 +5,7 @@ menutitle: AI Assistant for Antigravity
 description: AI-powered assistant for Gatling performance testing in Antigravity. Get intelligent help with creating, optimizing, and understanding Gatling simulations.
 lead: AI-powered assistant for Gatling performance testing. Get intelligent help with creating, optimizing, and understanding Gatling simulations directly in Antigravity.
 aliases:
-  - /integrations/ai-for-scripting/assistant/antigravity/
+  - /integrations/ai/assistant/antigravity/
 ---
 
 ## Overview

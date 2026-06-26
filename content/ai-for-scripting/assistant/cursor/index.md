@@ -5,7 +5,7 @@ menutitle: AI Assistant for Cursor
 description: AI-powered assistant for Gatling performance testing in Cursor. Get intelligent help with creating, optimizing, and understanding Gatling simulations.
 lead: AI-powered assistant for Gatling performance testing. Get intelligent help with creating, optimizing, and understanding Gatling simulations directly in Cursor.
 aliases:
-  - /integrations/ai-for-scripting/assistant/cursor/
+  - /integrations/ai/assistant/cursor/
 ---
 
 ## Overview
