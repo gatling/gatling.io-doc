@@ -3,7 +3,7 @@ title: Create a Simulation
 description: Create new Gatling simulations using the interactive wizard
 lead: Generate new Gatling simulations with guided configuration
 aliases:
-  - /integrations/ai-for-scripting/assistant/vscode/create-simulation/
+  - /integrations/ai/assistant/vscode/create-simulation/
 ---
 
 The **Create Simulation** feature provides an interactive wizard that generates complete, ready-to-run Gatling simulations. Answer a few questions about your test scenario, and the wizard generates properly structured code in your chosen language.

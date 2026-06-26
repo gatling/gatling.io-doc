@@ -5,7 +5,7 @@ menutitle: AI Assistant for Windsurf
 description: AI-powered assistant for Gatling performance testing in Windsurf. Get intelligent help with creating, optimizing, and understanding Gatling simulations.
 lead: AI-powered assistant for Gatling performance testing. Get intelligent help with creating, optimizing, and understanding Gatling simulations directly in Windsurf.
 aliases:
-  - /integrations/ai-for-scripting/assistant/windsurf/
+  - /integrations/ai/assistant/windsurf/
 ---
 
 ## Overview
