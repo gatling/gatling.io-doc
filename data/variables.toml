@@ -12,6 +12,6 @@ gatlingEnterpriseActionVersion = "v1"
 githubActionsCheckoutVersion = "v6"
 githubActionsSetupJavaVersion = "v5"
 
-selfHostedVersion = "1.27.2"
+selfHostedVersion = "1.27.3"
 selfHostedCiPluginsVersion = "1.18.1"
 selfHostedGrafanaPluginVersion = "1.16.6"
