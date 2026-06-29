@@ -111,10 +111,10 @@ We need the application ID and secret. We also need your GitLab group ID to rest
 
 Gatling Enterprise Edition provides an API to map SSO groups to roles within your organization. This allows you to automatically assign users to teams and grant them appropriate permissions based on their SSO group memberships.
 
-### Integration
+### Configure the integration
 
 The Custom SSO Group Mapping feature is exclusively available with the OpenID Connect (OIDC) protocol.
-To enable this functionality, you must configure a custom scope named `gatling-sso` in your Identity Provider (IdP). This scope should return a `gatling-groups` claim containing the complete list of groups that will be mapped to roles within the Gatling Enterprise Edition.
+To enable it, configure a `gatling-groups` claim in your Identity Provider (IdP) that returns the complete list of groups to map to roles within Gatling Enterprise Edition. You can attach this claim to the standard `openid` scope — no custom scope is required.
 
 ### Overview
 
