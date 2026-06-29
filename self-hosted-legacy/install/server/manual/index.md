@@ -139,7 +139,7 @@ Download and install [Cassandra](http://cassandra.apache.org/download/).
 
 As of Gatling Enterprise Edition {{< var selfHostedVersion >}}, we require at least Cassandra 3.10.
 Gatling Enterprise Edition has been tested against Cassandra 3.10 to 4.1.11.
-If possible, we advise you go with the latest stable Cassandra 3.11 version.
+If possible, we advise you go with the latest stable Cassandra 4.1 version.
 
 {{< alert warning >}}
 - We do not support AWS Keyspaces as an alternative of Cassandra.
