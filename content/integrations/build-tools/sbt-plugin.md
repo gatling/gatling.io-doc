@@ -27,7 +27,7 @@ use [Maven]({{< ref "maven-plugin" >}}) or [Gradle]({{< ref "gradle-plugin" >}})
 {{< /alert >}}
 
 {{< alert warning >}}
-This plugin requires using sbt 1 (sbt 0.13 is not supported). All code examples on this page use the
+This plugin requires using sbt 1.x or 2.x (sbt 0.13 is not supported). All code examples on this page use the
 [unified slash syntax](https://www.scala-sbt.org/1.x/docs/Migrating-from-sbt-013x.html#Migrating+to+slash+syntax)
 introduced in sbt 1.1.
 {{< /alert >}}
@@ -51,34 +51,12 @@ libraryDependencies += "io.gatling.highcharts" % "gatling-charts-highcharts" % "
 libraryDependencies += "io.gatling"            % "gatling-test-framework"    % "MANUALLY_REPLACE_WITH_LATEST_VERSION" % "test"
 ```
 
-### 'Test' vs 'Integration Tests' configurations
-
-This plugin offers two different custom sbt configurations, named `Gatling` and `GatlingIt`.
-They are tied to different source directories (see next section for more details) and therefore allow to separate your simulations according to your needs, should you desire it.
-
-Ideally:
-
-* Your simulations with low injection profiles, which may serve as functional tests, should live in `src/test` (the default source directory for the `Gatling` configuration), and run along your unit tests, since they would complete quickly
-* Longer, more complex simulations with high injection profiles, should live in `src/it` (the default source directory for the `GatlingIt` configuration) and be run on an as-needed basis.
-
-Also, since they're tied to separate sbt configurations, your sbt settings can then be customized per configuration.
-You can expect a relatively short simulation to run easily with the default JVM settings, but, for example, simulations with much higher load could require an increase of the max heap memory.
-
-{{< alert tip >}}
-When using the `GatlingIt` configuration, you must use the `GatlingIt/` prefix, e.g. `Gatling/test` becomes `GatlingIt/test`, etc...
-{{< /alert >}}
-
 ### Default settings
 
-For the `Gatling` configuration:
+This plugin offers a custom sbt configurations named `Gatling`. With this configuration:
 
 * By default, Gatling simulations must be in `src/test/scala`, configurable using the `Gatling / scalaSource` setting.
 * By default, Gatling reports are written to `target/gatling`, configurable using the `Gatling / target` setting.
-
-For the `GatlingIt` configuration:
-
-* By default, Gatling simulations must be in `src/it/scala`, configurable using the `GatlingIt / scalaSource` setting.
-* By default, Gatling reports are written to `target/gatling-it`, configurable using the `GatlingIt / target` setting.
 
 If you override the default settings, you need to reset them on the project, eg:
 
@@ -98,21 +76,31 @@ Gatling subproject can, however, depend on other subprojects.
 ### Running your simulations
 
 As with any sbt testing framework, you'll be able to run Gatling simulations using sbt standard `test`, `testOnly`,
-`testQuick`, etc... tasks. However, since the sbt Plugin introduces many customizations that we don't want to interfere
+`testFull`, etc... tasks. However, since the sbt Plugin introduces many customizations that we don't want to interfere
 with unit tests, those commands are integrated into custom configurations, meaning you'll need to prefix them with
-`Gatling/` or `GatlingIt/`.
+`Gatling/`.
 
-For example, run all Gatling simulations from the `test` configuration:
-
-```bash
-sbt Gatling/test
-```
-
-Or run a single simulation, by its FQN (fully qualified class name), from the `it` configuration:
+For example, run all Gatling simulations from the `testFull` configuration:
 
 ```bash
-sbt 'GatlingIt/testOnly com.project.simu.MySimulation'
+sbt Gatling/testFull
 ```
+
+Or run a single simulation, by its FQCN (fully qualified class name):
+
+```bash
+sbt 'Gatling/testOnly com.project.simu.MySimulation'
+```
+
+{{< alert warning >}}
+The semantic of the standard test tasks has changed between sbt 1.x and sbt 2.x:
+
+| Task                                                  | sbt 1.x              | sbt 2.x              |
+|-------------------------------------------------------|----------------------|----------------------|
+| run all tests                                         | `test`               | `testFull`           |
+| run only new, modified or previously failing tests    | `testQuick`          | `test`               |
+| run test(s) matching the pattern provided as argument | `testOnly <pattern>` | `testOnly <pattern>` |
+{{< /alert >}}
 
 {{< alert tip >}}
 This behavior differs from what was previously possible, eg. calling `test` without prefixing started Gatling simulations.
@@ -120,11 +108,6 @@ However, this caused many interferences with other testing libraries and forcing
 {{< /alert >}}
 
 ### Running your simulations on Gatling Enterprise Edition { #running-your-simulations-on-gatling-enterprise }
-
-{{< alert info >}}
-To work from the `it` configuration, simply replace `Gatling/` with `GatlingIt/` in the
-configuration and commands.
-{{< /alert >}}
 
 #### Prerequisites
 
@@ -206,9 +189,6 @@ sbt Gatling/enterprisePackage
 
 This will generate the `target/gatling/<artifactId>-gatling-enterprise-<version>.jar` package which you can then
 [upload to the Cloud]({{< ref "reference/run-tests/sources/package-conf" >}}).
-
-To package simulations from the `it` configuration, `GatlingIt/enterprisePackage` will generate the
-`target/gatling-it/<artifactId>-gatling-enterprise-<version>.jar` package.
 
 #### Private packages
 
