@@ -151,9 +151,82 @@ Using **Docker**:
 
 ## Tools
 
-The MCP server exposes the following tools:
+The MCP server exposes the following tools, grouped by resource:
 
-- `list_gatling_enterprise_teams`: List all existing [teams]({{< ref "/reference/user-guide/teams" >}}) in Gatling Enterprise.
-- `list_gatling_enterprise_packages`: List all [managed]({{< ref "/reference/run-tests/sources/package-conf" >}}) and [private packages]({{< ref "/reference/deploy/private-locations/private-packages" >}}) deployed in Gatling Enterprise.
-- `list_gatling_enterprise_tests`: List all [tests (aka simulations)]({{< ref "/reference/run-tests/tests/intro" >}}) deployed in Gatling Enterprise.
-- `list_gatling_enterprise_locations`: List all [public]({{< ref "/reference/run-tests/tests/test-as-code#locations-configuration" >}}) and [private locations]({{< ref "/reference/deploy/private-locations/introduction" >}}) where tests can be run on Gatling Enterprise.
+### Teams
+
+- `teams.read_all`: List all [teams]({{< ref "/reference/user-guide/teams" >}}) visible to the API token.
+
+### Packages
+
+- `packages.read_all`: List all [managed]({{< ref "/reference/run-tests/sources/package-conf" >}}) and [private]({{< ref "/reference/deploy/private-locations/private-packages" >}}) packages visible to the API token.
+
+### Source repositories
+
+- `source_repositories.read_all` / `source_repositories.read_one`: List or get the details of registered [git repositories]({{< ref "/reference/deploy/private-locations/build-from-git" >}}) a test can build from.
+- `source_repositories.create_one`: Register a new source repository.
+- `source_repositories.delete_one`: Delete a source repository.
+
+### Locations
+
+- `locations.read_all`: List all [managed]({{< ref "/reference/run-tests/tests/test-as-code#locations-configuration" >}}) and [private locations]({{< ref "/reference/deploy/private-locations/introduction" >}}) where tests can be run.
+
+### Tests
+
+- `tests.read_all` / `tests.read_one`: List or get the details of [tests]({{< ref "/reference/run-tests/tests/intro" >}}).
+- `tests.create_one`: Create a new test from a package or source repository.
+- `tests.patch_one`: Update a test's configuration.
+- `tests.delete_one`: Delete a test.
+- `tests.start_one`: Start a run for a test.
+
+### Runs
+
+- `runs.read_all` / `runs.read_one`: List or get the details of runs.
+- `runs.read_status`: Get a run's current status.
+- `runs.read_run_logs`: Get a run's execution logs.
+- `runs.read_report_requests` / `runs.read_report_groups`: Get a run's per-request or per-group performance statistics.
+- `runs.create_public_link`: Create a public, unauthenticated link to a run's dashboard.
+- `runs.patch_one`: Update a run's details.
+- `runs.stop_one`: Stop a running run.
+
+Each tool's own description states its required role (Read, Configure, or Start) and any other constraints. [See the `gatling-mcp` skill below]({{< ref "#skill" >}}) for the concepts and workflows that tie them together.
+
+## Skill
+
+When installed via the [Gatling AI extensions plugin for Claude](https://github.com/gatling/gatling-ai-extensions), the MCP server is paired with the `gatling-mcp` skill, which documents these tools' terminology (tests, runs, sources, packages, locations, teams), required roles, and recommended workflows so the AI assistant uses them correctly.
+
+## Example use cases
+
+Once connected, you can drive Gatling Enterprise entirely through natural language. A few things to try:
+
+### Clean up tests
+
+```
+Rename all my tests that still use the old naming convention.
+```
+
+Lists your existing tests, then updates the ones that match.
+
+### Register a new test
+
+```
+Create a test for this repo, build it with Maven, and run it from the Paris location.
+```
+
+Registers the source repository if needed, then creates a build-from-sources test. If the project isn't git-buildable, pair this with the [`gatling-build-tools`]({{< ref "./skills#build-tools" >}}) skill to package and upload the artifact first, then create a test pointing at the resulting package instead.
+
+### Diagnose a failed run
+
+```
+My last run failed, what happened?
+```
+
+Pulls the run's logs and cross-references its performance report to tell you whether it was a build error, an injection crash, or a stop criteria breach.
+
+### Analyze results
+
+```
+What's the p95 response time for the login request in the last run?
+```
+
+Reads the run's per-request report and pulls out the matching request.
