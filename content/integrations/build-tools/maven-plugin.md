@@ -244,10 +244,6 @@ By default:
 - `test` will be bound to the `integration-test` phase, e.g. it will be triggered by `mvn integration-test` or `mvn verify`
 - `enterprisePackage` will be bound to the `package` phase, e.g. it will be triggered by `mvn package`
 
-## Overriding the logback.xml file
-
-You can either have a `logback-test.xml` that has precedence over the embedded `logback.xml` file, or add a JVM option `-Dlogback.configurationFile=myFilePath`.
-
 ## Sources
 
 If you're interested in contributing, you can find the [gatling-maven-plugin sources](https://github.com/gatling/gatling-maven-plugin) on GitHub.
