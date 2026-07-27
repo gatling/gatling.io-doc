@@ -193,7 +193,7 @@ Each tool's own description states its required role (Read, Configure, or Start)
 
 ## Skill
 
-When installed via the [Gatling AI extensions plugin for Claude](https://github.com/gatling/gatling-ai-extensions), the MCP server is paired with the `gatling-mcp` skill, which documents these tools' terminology (tests, runs, sources, packages, locations, teams), required roles, and recommended workflows so the AI assistant uses them correctly.
+When installed via the [Gatling AI extensions plugin](https://github.com/gatling/gatling-ai-extensions), the MCP server is paired with the `gatling-mcp` skill, which documents these tools' terminology (tests, runs, sources, packages, locations, teams), required roles, and recommended workflows so the AI assistant uses them correctly.
 
 ## Example use cases
 
