@@ -1,5 +1,5 @@
 ---
-title: Claude Skills
+title: Gatling Skills
 description: Overview of the available Claude skills for Gatling.
 lead: The Gatling AI extensions provides skills to help you deploy and run load tests on Gatling Enterprise directly from your IDE.
 date: 2026-04-17T14:16:00+00:00

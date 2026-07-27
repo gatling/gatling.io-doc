@@ -7,7 +7,7 @@ cascade:
 ordering:
   - evaluate-enterprise
   - tutorials
-  - ai-for-scripting
+  - ai-plugins
   - ai-for-analysis
   - guides
   - integrations
