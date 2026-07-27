@@ -14,7 +14,7 @@ Skill: [`gatling-bootstrap-project`](https://github.com/gatling/gatling-ai-exten
 Create a new Gatling project from scratch by either the prompt or by using the following command inside Claude Code:
 
 ```console
-/Gatling:gatling-bootstrap-project java maven
+/gatling:gatling-bootstrap-project java maven
 ```
 
 ## Build tools {#build-tools}
@@ -43,7 +43,7 @@ The skill will generally be loaded automatically by the LLM when needed, based o
 In Claude Code, you can also explicitly invoke it, for instance:
 
 ```console
-/Gatling:gatling-convert-from-jmeter
+/gatling:gatling-convert-from-jmeter
 ```
 
 Using this skill, the LLM will look for JMeter files to convert, and for an existing Gatling project as a destination. It will also help you set up a new Gatling project if necessary.
@@ -51,13 +51,13 @@ Using this skill, the LLM will look for JMeter files to convert, and for an exis
 Do not hesitate to give more context from the start if you want less back and forth with the LLM; for instance, if you want to convert the `Test Plan.jmx` file to a new Java/Maven Gatling project:
 
 ```console
-/Gatling:gatling-convert-from-jmeter Test Plan.jmx java maven
+/gatling:gatling-convert-from-jmeter Test Plan.jmx java maven
 ```
 
 You can download a [sample JMeter project](https://github.com/gatling/gatling-ai-extensions/raw/refs/heads/main/samples/jmeter/EcommApp.zip) to try out the skill:
 
 ```console
-/Gatling:gatling-convert-from-jmeter EcommApp.zip java maven
+/gatling:gatling-convert-from-jmeter EcommApp.zip java maven
 ```
 
 ## Convert a LoadRunner Script to Gatling {#convert-from-loadrunner}
@@ -70,13 +70,13 @@ The skill will generally be loaded automatically by the LLM when needed, based o
 In Claude Code, you can also explicitly invoke it, for instance:
 
 ```console
-/Gatling:gatling-convert-from-loadrunner
+/gatling:gatling-convert-from-loadrunner
 ```
 
 Do not hesitate to give more context from the start if you want less back and forth with the LLM; for instance, if you want to convert a LoadRunner project to a new Java/Maven Gatling project:
 
 ```console
-/Gatling:gatling-convert-from-loadrunner EcommApp.zip java maven
+/gatling:gatling-convert-from-loadrunner EcommApp.zip java maven
 ```
 
 You can download a [sample LoadRunner project](https://github.com/gatling/gatling-ai-extensions/raw/refs/heads/main/samples/loadrunner/EcommApp.zip) to try out the skill.
