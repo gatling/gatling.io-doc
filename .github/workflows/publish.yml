@@ -38,7 +38,7 @@ jobs:
           # no cache
 
       - name: Setup sbt
-        uses: sbt/setup-sbt@v1.5.2
+        uses: sbt/setup-sbt@v1.5.6
 
       - name: Build JVM code samples
         run: sbt "all headerCheckAll scalafmtSbtCheck" "test"
