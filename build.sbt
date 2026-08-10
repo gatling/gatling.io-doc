@@ -48,5 +48,5 @@ libraryDependencies ++= Seq(
   "commons-codec"          % "commons-codec"   % "1.22.1",
   "software.amazon.awssdk" % "secretsmanager"  % awsSdkVersion,
   "software.amazon.awssdk" % "s3"              % awsSdkVersion,
-  "org.apache.activemq"    % "activemq-broker" % "6.2.8"
+  "org.apache.activemq"    % "activemq-broker" % "6.3.0"
 )
