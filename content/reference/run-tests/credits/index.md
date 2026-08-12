@@ -7,13 +7,18 @@ lead: Learn how tests consume credits in Gatling Enterprise Edition.
 date: 2026-01-20T09:00:00+00:00
 ---
 
-Please note the following rules regarding credit consumption.
+A test run consumes **1 credit per load generator per minute**.
 
-* A test consumes one credit, per load generator, per minute.
-* We charge the time when load traffic is generated but also the time taken by any custom code, typically during simulation initialization.
-* We still charge a minimum of one credit per load generator if the test fails to start because of a crash or a timeout on your end, eg:
-  * when cloning the git repository containing your test sources;
-  * when compiling your cloned test sources;
-  * when spawning your private location load generators;
-  * when executing some custom code during simulation initialization.
-* Credits are consumed the same way for private locations (hosted on your end) and managed locations (hosted on our end).
+{{< alert info >}}
+Credit consumption includes simulation initialization time.
+{{< /alert >}}
+
+**Once all load generators are deployed, credits are consumed every minute until the execution ends.** 
+
+_The first minute is not charged again, as it has already been accounted for._
+
+{{< alert warning >}}
+[Private Deployment]({{< ref "/reference/deploy/private-locations/introduction" >}}) and [Building From Sources]({{< ref "/reference/deploy/private-locations/build-from-git" >}}) are not charged.
+
+If either fails, however, the equivalent of one minute of execution time is charged.
+{{< /alert >}}
