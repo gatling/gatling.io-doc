@@ -111,3 +111,14 @@ Gatling Enterprise Edition pushes the following list of load test metrics to Dat
 
 You can add custom tags by adding system properties, either at the control-plane level or in your test configuration (except for no-code tests):
 `gatling.enterprise.dd.tags.<custom_tag>` = `<your value>`
+
+## Distributed tracing
+
+Beyond metrics and events, Gatling Enterprise Edition can export its requests as OpenTelemetry
+spans and correlate them with the traces your own application produces. See
+[Distributed tracing]({{< ref "/integrations/observability-tools/distributed-tracing" >}}).
+
+Point `gatling.enterprise.tracing.endpoint` at Datadog's
+[OTLP traces intake endpoint](https://docs.datadoghq.com/opentelemetry/setup/otlp_ingest/traces/),
+which is site-dependent, and pass your API key through
+`gatling.enterprise.tracing.http.headers`.
