@@ -6,4 +6,5 @@ ordering:
   - influxdb
   - newrelic
   - otel
+  - distributed-tracing
 ---

@@ -103,3 +103,14 @@ Gatling Enterprise Edition sends events to notify of the start and the end of a 
 `test`| <the name of your test>
 `team`| <the ID of the team your test belongs to>
 `source`|`gatling-enterprise`
+
+## Distributed tracing
+
+Beyond metrics and events, Gatling Enterprise Edition can export its requests as OpenTelemetry
+spans and correlate them with the traces your own application produces. See
+[Distributed tracing]({{< ref "/integrations/observability-tools/distributed-tracing" >}}).
+
+Point `gatling.enterprise.tracing.endpoint` at the
+[New Relic OTLP endpoint](https://docs.newrelic.com/docs/opentelemetry/best-practices/opentelemetry-otlp/)
+for your region with the `/v1/traces` path, and pass your license key through
+`gatling.enterprise.tracing.http.headers`.
