@@ -120,3 +120,12 @@ Gatling Enterprise Edition can log test start and end events.
 
 * event name: `gatling.run.start` or `gatling.run.end`
 * body: `start` or `end`
+
+## Distributed tracing
+
+Beyond metrics and logs, Gatling Enterprise Edition can export its requests as OpenTelemetry spans
+and correlate them with the traces your own application produces. See
+[Distributed tracing]({{< ref "/integrations/observability-tools/distributed-tracing" >}}).
+
+Spans go to their own endpoint, configured separately from the metrics and logs endpoints above, so
+they can be routed to a different collector or a different backend entirely.
