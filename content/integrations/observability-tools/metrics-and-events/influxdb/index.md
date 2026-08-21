@@ -4,6 +4,8 @@ menutitle: InfluxDB
 seotitle: Integrate Gatling with InfluxDB
 description: Send load test metrics to InfluxDB.
 lead: Send load test metrics to InfluxDB.
+aliases:
+  - /integrations/observability-tools/influxdb/
 ---
 
 {{< alert enterprise >}}

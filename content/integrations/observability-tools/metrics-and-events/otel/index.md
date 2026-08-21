@@ -4,6 +4,8 @@ menutitle: OpenTelemetry
 seotitle: Integrate Gatling with OpenTelemetry
 description: Send load test metrics to OpenTelemetry.
 lead: Send load test metrics to OpenTelemetry.
+aliases:
+  - /integrations/observability-tools/otel/
 ---
 
 {{< alert enterprise >}}

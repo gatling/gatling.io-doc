@@ -7,6 +7,7 @@ lead: Send load test metrics to Dynatrace and set custom test headers on all gen
 aliases:
   - /guides/dynatrace
   - /guides/analysis/dynatrace/
+  - /integrations/observability-tools/dynatrace/
 ---
 
 ## Gatling Enterprise Edition Integration

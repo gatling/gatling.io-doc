@@ -4,6 +4,8 @@ menutitle: Datadog
 seotitle: Integrate Gatling with Datadog
 description: Send load test metrics to Datadog.
 lead: Send load test metrics to Datadog.
+aliases:
+  - /integrations/observability-tools/datadog/
 ---
 
 {{< alert enterprise >}}

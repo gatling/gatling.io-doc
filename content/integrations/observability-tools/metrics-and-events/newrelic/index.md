@@ -4,6 +4,8 @@ menutitle: New Relic
 seotitle: Integrate Gatling with New Relic
 description: Send load test metrics to New Relic.
 lead: Send load test metrics to New Relic.
+aliases:
+  - /integrations/observability-tools/newrelic/
 ---
 
 {{< alert enterprise >}}
