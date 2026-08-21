@@ -7,6 +7,7 @@ lead: Send load test metrics to Dynatrace and set custom test headers on all gen
 aliases:
   - /guides/dynatrace
   - /guides/analysis/dynatrace/
+  - /integrations/observability-tools/dynatrace/
 ---
 
 ## Gatling Enterprise Edition Integration
@@ -154,3 +155,13 @@ The header `x-dynatrace-test` is used in the following example with the followin
 The idea here is to use [`sign`]({{< ref "/reference/script/http/protocol#sign" >}}) on the HttpProtocol to define a global signing function to be applied on all generated requests.
 
 {{< include-code "dynatrace-sample" >}}
+
+## Distributed tracing
+
+Gatling Enterprise Edition can export its requests as OpenTelemetry spans and correlate them with
+the traces your own application produces. See [Distributed tracing]({{< ref "/integrations/observability-tools/distributed-tracing" >}}).
+
+Point `gatling.enterprise.tracing.endpoint` at your environment's
+[OTLP API endpoint](https://docs.dynatrace.com/docs/ingest-from/opentelemetry/getting-started/otlp-export)
+with the `/v1/traces` path, and pass your access token through
+`gatling.enterprise.tracing.http.headers`.
