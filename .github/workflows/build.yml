@@ -17,23 +17,23 @@ jobs:
     timeout-minutes: 10
     steps:
       - name: Checkout current project
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Setup JDK
-        uses: actions/setup-java@v5.6.0
+        uses: actions/setup-java@03ad4de0992f5dab5e18fcb136590ce7c4a0ac95 # v5.6.0
         with:
           distribution: 'zulu'
           java-version: '21'
           cache: 'sbt'
 
       - name: Setup sbt
-        uses: sbt/setup-sbt@v1.5.6
+        uses: sbt/setup-sbt@bfea3c5f48abd221b04a6df4798aa5eb8b6a2baf # v1.5.6
 
       - name: Build JVM code samples
         run: sbt "all headerCheckAll scalafmtSbtCheck" "test"
 
       - name: Setup Node
-        uses: actions/setup-node@v7
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: '24'
           cache: 'npm'
