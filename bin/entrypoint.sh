@@ -43,7 +43,6 @@ fi
 clean() {
   echo "=====> cleaning phase"
   rm -Rf \
-    ./package-lock.json \
     ./go.sum \
     ./node_modules \
     ./public \
