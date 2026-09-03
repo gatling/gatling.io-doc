@@ -70,11 +70,11 @@ jobs:
         uses: aws-actions/configure-aws-credentials@e6de054238d6b7531b4efff3b6587d9aade6a06c # v6.2.3
         with:
           aws-region: eu-west-3
-          role-to-assume: ${{ secrets.AWS_ROLE_PROD_DOC }}
+          role-to-assume: ${{ vars.AWS_ROLE_PROD_DOC }}
 
       - name: Deploy
         env:
-          HUGO_DEPLOYMENT_BUCKET: ${{ secrets.HUGO_DEPLOYMENT_BUCKET }}
+          HUGO_DEPLOYMENT_BUCKET: ${{ vars.HUGO_DEPLOYMENT_BUCKET }}
           HUGO_DEPLOYMENT_CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.HUGO_DEPLOYMENT_CLOUDFRONT_DISTRIBUTION_ID }}
         run: |
           sed -i "s/HUGO_DEPLOYMENT_BUCKET/$HUGO_DEPLOYMENT_BUCKET/" config/production/config.yaml
