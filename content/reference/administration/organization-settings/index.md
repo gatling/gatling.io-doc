@@ -13,9 +13,8 @@ aliases:
 This section is only available to [Administrators]({{< ref "/reference/administration/users/#permissions" >}}).
 {{< /alert >}}
 
-To access your organization settings, click on the **Organization settings** button or on the **Organization** menu item.
+To access your organization settings, click on the **Organization** menu item.
 
-{{< img src="menu.png" alt="Organization settings button" caption="The organization settings button" >}}
 {{< img src="menu-nav.png" alt="Organization menu" caption="The organization menu item" >}}
 
 ## Settings
