@@ -113,6 +113,11 @@ control-plane {
       # profile-name = ""
       # IAM Instance profile (optional)
       # iam-instance-profile = ""
+      # IAM Instance profile per team (optional), falls back to iam-instance-profile
+      # when the run's team has no entry
+      # iam-instance-profiles-by-team-id {
+      #   "team_00000000000000000000000000" = ""
+      # }
       # Custom tags (optional)
       tags {
        # ExampleKey = "ExampleValue"
@@ -184,4 +189,54 @@ If you decide to use our certified images with the `type = "custom"` configurati
 
 {{< alert info >}}
 For the `javascript` engine, only the latest Java version is supported, which corresponds to the GraalVM version used to run Gatling with JavaScript.
+{{< /alert >}}
+
+### Assign an IAM instance profile per team
+
+Use `iam-instance-profile` to attach a single IAM instance profile to every load generator started by this location.
+
+To assign a different IAM instance profile to each team instead of sharing one profile across the whole organization, use `iam-instance-profiles-by-team-id`. Find a team's ID on the [Teams page]({{< ref "reference/administration/teams" >}}):
+
+```hocon
+control-plane {
+  locations = [
+    {
+      # ...
+      iam-instance-profile = "<default-profile>" # (optional)
+      iam-instance-profiles-by-team-id {
+        "team_00000000000000000000000000" = "<team-specific-profile>"
+      }
+    }
+  ]
+}
+```
+
+For a given run, the Control Plane resolves the IAM instance profile in this order:
+
+1. the profile mapped to the run's team ID in `iam-instance-profiles-by-team-id`, if any
+2. otherwise, the `iam-instance-profile` default, if set
+3. otherwise, no IAM instance profile is attached to the instance
+
+{{< alert info >}}
+Available since Control Plane 2026.38.1.
+{{< /alert >}}
+
+### Review the tags Gatling applies automatically
+
+In addition to `tags` and `tags-for`, the Control Plane always applies a set of reserved tags, prefixed with `Gatling:`, to the AWS resources it provisions. You can't override these tags.
+
+| Tag                            | Description                                                   |
+|---------------------------------|-----------------------------------------------------------------|
+| `Gatling:RunId`                | ID of the run                                                   |
+| `Gatling:LocationId`           | ID of the private location                                      |
+| `Gatling:ControlPlaneVersion`  | Version of the Control Plane that provisioned the resource      |
+| `Gatling:TestName`             | Name of the test                                                 |
+| `Gatling:TeamId`               | ID of the team that triggered the run                            |
+| `Gatling:TeamName`             | Name of the team that triggered the run                          |
+| `Gatling:TestId`               | ID of the test                                                   |
+
+The same reserved tags are applied to instances provisioned by Gatling Enterprise Cloud's Managed AWS locations.
+
+{{< alert info >}}
+`Gatling:TeamId`, `Gatling:TeamName` and `Gatling:TestId` are available since Control Plane 2026.38.1, so you can attribute AWS cost and usage to the team and test that triggered a run with your own cost-allocation tooling.
 {{< /alert >}}
