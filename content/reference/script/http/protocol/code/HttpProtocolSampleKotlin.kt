@@ -18,6 +18,7 @@ import io.gatling.javaapi.core.CoreDsl.*
 import io.gatling.javaapi.core.Simulation
 import io.gatling.javaapi.http.HttpDsl.*
 import org.apache.commons.codec.digest.DigestUtils
+import java.security.KeyStore;
 import java.util.*
 import javax.net.ssl.KeyManagerFactory
 
@@ -124,7 +125,17 @@ http.useAllLocalAddressesMatching("pattern1", "pattern2")
 //#localAddress
 
 //#perUserKeyManagerFactory
-http.perUserKeyManagerFactory { userId -> null as KeyManagerFactory? }
+// userId is the 0-based incremental id of the virtual user
+http.perUserKeyManagerFactory { userId ->
+  val keyStore = KeyStore.getInstance("PKCS12")
+  // P12 files stored under src/test/resources/keys
+  javaClass.classLoader.getResourceAsStream("keys/pk-$userId.p12")!!.use {
+    keyStore.load(it, null)
+  }
+  KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm()).apply {
+    init(keyStore, null)
+  }
+}
 //#perUserKeyManagerFactory
 
 //#disableAutoReferer

@@ -20,6 +20,7 @@ import io.gatling.javaapi.core.CoreDsl.*
 //#imports
 import io.gatling.javaapi.mqtt.MqttDsl.*
 //#imports
+import java.security.KeyStore;
 import java.time.Duration
 import javax.net.ssl.KeyManagerFactory
 
@@ -38,7 +39,16 @@ class MqttProtocolSampleKotlin {
     // if TLS should be enabled (default: false)
     .useTls(true)
     // Used to specify KeyManagerFactory for each individual virtual user. Input is the 0-based incremental id of the virtual user.
-    .perUserKeyManagerFactory { userId -> null as KeyManagerFactory? }
+    .perUserKeyManagerFactory { userId ->
+      val keyStore = KeyStore.getInstance("PKCS12")
+      // P12 files stored under src/test/resources/keys
+      javaClass.classLoader.getResourceAsStream("keys/pk-$userId.p12")!!.use {
+        keyStore.load(it, null)
+      }
+      KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm()).apply {
+        init(keyStore, null)
+      }
+    }
     // clientIdentifier sent in the connect payload (of not set, Gatling will generate a random one)
     .clientId("#{id}")
     // if session should be cleaned during connect (default: true)

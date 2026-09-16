@@ -16,6 +16,9 @@
 
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
+import scala.util.Using
+import java.security.KeyStore
+import javax.net.ssl.KeyManagerFactory
 import org.apache.commons.codec.digest.DigestUtils
 
 class HttpProtocolSampleScala extends Simulation {
@@ -119,7 +122,17 @@ http.useAllLocalAddressesMatching("pattern1", "pattern2")
 //#localAddress
 
 //#perUserKeyManagerFactory
-http.perUserKeyManagerFactory(userId => null.asInstanceOf[javax.net.ssl.KeyManagerFactory])
+// userId is the 0-based incremental id of the virtual user
+http.perUserKeyManagerFactory { userId =>
+  val keyStore = KeyStore.getInstance("PKCS12")
+  // P12 files stored under src/test/resources/keys
+  Using(getClass.getClassLoader.getResourceAsStream("keys/pk-" + userId + ".p12")) {
+    keyStore.load(_, null)
+  }
+  val kmf = KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm)
+  kmf.init(keyStore, null)
+  kmf
+}
 //#perUserKeyManagerFactory
 
 //#disableAutoReferer

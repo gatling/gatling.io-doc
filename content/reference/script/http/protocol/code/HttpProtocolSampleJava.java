@@ -19,9 +19,12 @@ import io.gatling.javaapi.core.Simulation;
 import io.gatling.javaapi.http.HttpProtocolBuilder;
 import org.apache.commons.codec.digest.DigestUtils;
 
+import java.io.InputStream;
+import java.security.KeyStore;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.net.ssl.KeyManagerFactory;
 
 import static io.gatling.javaapi.core.CoreDsl.*;
 import static io.gatling.javaapi.http.HttpDsl.Proxy;
@@ -57,7 +60,7 @@ setUp(scn.injectOpen(atOnceUsers(1)).protocols(httpProtocol));
 //#baseUrl
   }
 
-  static {
+  {
 //#baseUrls
 http.baseUrls(
   "https://gatling.io",
@@ -129,7 +132,26 @@ http.useAllLocalAddressesMatching("pattern1", "pattern2");
 //#localAddress
 
 //#perUserKeyManagerFactory
-http.perUserKeyManagerFactory(userId -> (javax.net.ssl.KeyManagerFactory) null);
+// userId is the 0-based incremental id of the virtual user
+http.perUserKeyManagerFactory(
+  userId -> {
+    try {
+      KeyStore keyStore = KeyStore.getInstance("PKCS12");
+      // P12 files stored under src/test/resources/keys
+      try (InputStream is =
+        getClass()
+        .getClassLoader()
+        .getResourceAsStream("keys/pk-" + userId + ".p12")) {
+        keyStore.load(is, null);
+      }
+      KeyManagerFactory kmf =
+        KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm());
+      kmf.init(keyStore, null);
+      return kmf;
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
+});
 //#perUserKeyManagerFactory
 
 //#disableAutoReferer

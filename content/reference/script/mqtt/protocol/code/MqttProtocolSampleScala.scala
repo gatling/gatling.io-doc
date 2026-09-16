@@ -19,6 +19,9 @@ import scala.concurrent.duration._
 //#imports
 import io.gatling.mqtt.Predef._
 //#imports
+import java.security.KeyStore
+import javax.net.ssl.KeyManagerFactory
+import scala.util.Using
 import io.gatling.mqtt.check.MessageCorrelator
 
 class MqttProtocolSampleScala {
@@ -36,7 +39,16 @@ val mqttProtocol = mqtt
   // if TLS should be enabled (default: false)
   .useTls(true)
   // Used to specify KeyManagerFactory for each individual virtual user. Input is the 0-based incremental id of the virtual user.
-  .perUserKeyManagerFactory(userId => null.asInstanceOf[javax.net.ssl.KeyManagerFactory])
+  .perUserKeyManagerFactory { userId =>
+    val keyStore = KeyStore.getInstance("PKCS12")
+    // P12 files stored under src/test/resources/keys
+    Using(getClass.getClassLoader.getResourceAsStream("keys/pk-" + userId + ".p12")) {
+      keyStore.load(_, null)
+    }
+    val kmf = KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm)
+    kmf.init(keyStore, null)
+    kmf
+  }
   // clientIdentifier sent in the connect payload (of not set, Gatling will generate a random one)
   .clientId("#{id}")
   // if session should be cleaned during connect (default: true)

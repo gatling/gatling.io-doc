@@ -22,6 +22,9 @@ import static io.gatling.javaapi.mqtt.MqttDsl.*;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.io.InputStream;
+import java.security.KeyStore;
+import javax.net.ssl.KeyManagerFactory;
 
 import io.gatling.javaapi.core.*;
 import static io.gatling.javaapi.core.CoreDsl.*;
@@ -43,7 +46,25 @@ MqttProtocolBuilder mqttProtocol = mqtt
   // if TLS should be enabled (default: false)
   .useTls(true)
   // Used to specify KeyManagerFactory for each individual virtual user. Input is the 0-based incremental id of the virtual user.
-  .perUserKeyManagerFactory(userId -> (javax.net.ssl.KeyManagerFactory) null)
+  .perUserKeyManagerFactory(
+    userId -> {
+      try {
+        KeyStore keyStore = KeyStore.getInstance("PKCS12");
+        // P12 files stored under src/test/resources/keys
+        try (InputStream is =
+          getClass()
+            .getClassLoader()
+            .getResourceAsStream("keys/pk-" + userId + ".p12")) {
+          keyStore.load(is, null);
+        }
+        KeyManagerFactory kmf =
+          KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm());
+        kmf.init(keyStore, null);
+        return kmf;
+      } catch (Exception e) {
+        throw new RuntimeException(e);
+      }
+  })
   // clientIdentifier sent in the connect payload (of not set, Gatling will generate a random one)
   .clientId("#{id}")
   // if session should be cleaned during connect (default: true)
