@@ -40,36 +40,12 @@ Never commit signing keys to version control. The examples in this guide read th
 
 Add the `com.nimbusds:nimbus-jose-jwt` dependency to your Gatling project. Check [Maven Central](https://central.sonatype.com/artifact/com.nimbusds/nimbus-jose-jwt) for the latest version.
 
-#### Maven
+{{< include-file >}}
+Maven: includes/add-dependency.maven.md
+Gradle: includes/add-dependency.gradle.md
+sbt: includes/add-dependency.sbt.md
+{{< /include-file  >}}
 
-Add the following dependency to your `pom.xml`:
-
-```xml
-<dependency>
-  <groupId>com.nimbusds</groupId>
-  <artifactId>nimbus-jose-jwt</artifactId>
-  <version>10.10</version>
-  <scope>test</scope>
-</dependency>
-```
-
-#### Gradle
-
-Add the following dependency to your `build.gradle`:
-
-```gradle
-dependencies {
-  gatlingImplementation "com.nimbusds:nimbus-jose-jwt:10.10"
-}
-```
-
-#### sbt
-
-Add the following dependency to your `build.sbt`:
-
-```scala
-libraryDependencies += "com.nimbusds" % "nimbus-jose-jwt" % "10.10" % Test
-```
 
 The examples in this guide use the following imports:
 
