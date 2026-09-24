@@ -5,6 +5,7 @@ description: Detailed guides to help you test specific protocols, authentication
 lead:  Detailed guides to help you test specific protocols, authentication schemes, and application types.
 ordering:
   - basic-auth
+  - jwt
   - grpc
   - mqtt
   - websocket
