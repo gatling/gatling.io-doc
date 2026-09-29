@@ -375,6 +375,13 @@ They will be applied on all the requests, however you can disable them for given
 For more details see the dedicated section [here]({{< ref "checks" >}}).
 {{< /alert >}}
 
+#### `postCheck`
+
+You can define a function that will be applied on all the requests, on the Session resulting from the checks, after they've been applied.
+Throw an exception to make the request fail with the exception's message (in Scala, the function returns a `Validation`: a `Success` wrapping the new Session, or a `Failure`).
+
+{{< include-code "postCheck" >}}
+
 #### `inferHtmlResources`
 
 Gatling can fetch resources in parallel in order to emulate the behavior of a real web browser.

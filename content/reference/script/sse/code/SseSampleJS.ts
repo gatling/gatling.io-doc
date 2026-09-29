@@ -43,6 +43,17 @@ sse.checkMessage("checkName")
   );
 //#create-multiple-checks
 
+//#post-check
+sse.checkMessage("checkName")
+  .check(regex("event: event1(.*)").saveAs("event1"))
+  .postCheck((session) => {
+    if (!session.contains("foo")) {
+      throw new Error("foo is missing");
+    }
+    return session.set("bar", 1);
+  });
+//#post-check
+
 //#check-from-connect
 exec(sse("Connect").get("/stocks/prices")
   .await(5).on(sseCheck));

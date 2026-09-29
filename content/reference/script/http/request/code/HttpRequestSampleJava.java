@@ -189,6 +189,16 @@ http("name").get("/")
   .ignoreProtocolChecks();
 //#ignoreProtocolChecks
 
+//#postCheck
+http("name").get("/")
+  .postCheck(session -> {
+    if (!session.contains("foo")) {
+      throw new IllegalStateException("foo is missing");
+    }
+    return session.set("bar", 1);
+  });
+//#postCheck
+
 //#StringBody
 // with a static payload
 http("name").post("/")

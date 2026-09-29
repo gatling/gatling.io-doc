@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import io.gatling.commons.validation.{Failure, Success}
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 import io.gatling.http.check.ws.WsFrameCheck
@@ -111,6 +112,18 @@ ws.checkTextMessage("checkName")
   .check(regex("hello (.*)").saveAs("name"))
   .silent
 //#silent-check
+
+//#post-check
+ws.checkTextMessage("checkName")
+  .check(jsonPath("$.code").ofType[Int].is(1))
+  .postCheck(session => {
+    if (!session.contains("foo")) {
+      Failure("foo is missing")
+    } else {
+      Success(session.set("bar", 1))
+    }
+  })
+//#post-check
 
 //#matching
 ws.checkTextMessage("checkName")

@@ -15,6 +15,7 @@
  */
 
 import scala.concurrent.duration._
+import io.gatling.commons.validation.{Failure, Success}
 import io.gatling.core.Predef._
 import io.gatling.core.session.Expression
 import io.gatling.http.Predef._
@@ -176,6 +177,17 @@ http("name").get("/")
 http("name").get("/")
   .ignoreProtocolChecks
 //#ignoreProtocolChecks
+
+//#postCheck
+http("name").get("/")
+  .postCheck(session => {
+    if (!session.contains("foo")) {
+      Failure("foo is missing")
+    } else {
+      Success(session.set("bar", 1))
+    }
+  })
+//#postCheck
 
 //#StringBody
 // with a static payload

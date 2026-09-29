@@ -245,6 +245,16 @@ NOT SUPPORTED
 //#transformResponse
 NOT SUPPORTED
 //#transformResponse
+
+//#postCheck
+http
+  .postCheck((session) => {
+    if (!session.contains("foo")) {
+      throw new Error("foo is missing");
+    }
+    return session.set("bar", 1);
+  });
+//#postCheck
 */
 
 //#inferHtmlResources

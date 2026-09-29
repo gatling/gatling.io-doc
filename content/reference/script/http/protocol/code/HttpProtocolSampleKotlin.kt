@@ -259,6 +259,16 @@ http.redirectNamingStrategy {
 http.transformResponse { response, session -> response }
 //#transformResponse
 
+//#postCheck
+http
+  .postCheck({ session ->
+    if (!session.contains("foo")) {
+      throw IllegalStateException("foo is missing")
+    }
+    session.set("bar", 1)
+  })
+//#postCheck
+
 //#inferHtmlResources
 // fetch only resources matching one of the patterns in the allow list
 http.inferHtmlResources(AllowList("pattern1", "pattern2"))

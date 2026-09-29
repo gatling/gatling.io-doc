@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import io.gatling.commons.validation.{Failure, Success}
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 
@@ -43,6 +44,18 @@ sse.checkMessage("checkName")
     regex("event: event2(.*)")
   )
 //#create-multiple-checks
+
+//#post-check
+sse.checkMessage("checkName")
+  .check(regex("event: event1(.*)").saveAs("event1"))
+  .postCheck(session => {
+    if (!session.contains("foo")) {
+      Failure("foo is missing")
+    } else {
+      Success(session.set("bar", 1))
+    }
+  })
+//#post-check
 
 //#check-from-connect
 exec(sse("Connect").get("/stocks/prices")

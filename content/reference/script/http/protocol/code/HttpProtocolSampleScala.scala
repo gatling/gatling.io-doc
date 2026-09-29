@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import io.gatling.commons.validation.{Failure, Success}
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 import scala.util.Using
@@ -245,6 +246,17 @@ http.redirectNamingStrategy(
 //#transformResponse
 http.transformResponse((response, session) => response)
 //#transformResponse
+
+//#postCheck
+http
+  .postCheck(session => {
+    if (!session.contains("foo")) {
+      Failure("foo is missing")
+    } else {
+      Success(session.set("bar", 1))
+    }
+  })
+//#postCheck
 
 //#inferHtmlResources
 // fetch only resources matching one of the patterns in the allow list

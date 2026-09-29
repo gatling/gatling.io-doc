@@ -122,6 +122,17 @@ ws.checkTextMessage("checkName")
   .silent();
 //#silent-check
 
+//#post-check
+ws.checkTextMessage("checkName")
+  .check(jsonPath("$.code").ofInt().is(1))
+  .postCheck((session) => {
+    if (!session.contains("foo")) {
+      throw new Error("foo is missing");
+    }
+    return session.set("bar", 1);
+  });
+//#post-check
+
 //#matching
 ws.checkTextMessage("checkName")
   .matching(jsonPath("$.uuid").is("#{correlation}"))

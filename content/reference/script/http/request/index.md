@@ -113,6 +113,14 @@ For a given request, you can also disable common checks that were defined on the
 
 {{< include-code "ignoreProtocolChecks" >}}
 
+### Post checks
+
+You can also apply a function on the Session resulting from the checks, after they've been applied, typically to perform extra validation that involves several saved attributes.
+The function must return the new Session.
+Throw an exception to make the request fail with the exception's message (in Scala, the function returns a `Validation`: a `Success` wrapping the new Session, or a `Failure`).
+
+{{< include-code "postCheck" >}}
+
 ## Request body
 
 ### Full body

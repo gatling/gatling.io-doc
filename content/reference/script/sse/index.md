@@ -99,6 +99,11 @@ You can have multiple criteria for a given message:
 
 {{< include-code "create-multiple-checks" >}}
 
+You can also apply a function on the Session resulting from the check, after it's been applied, with `postCheck`.
+Throw an exception to make the check fail with the exception's message (in Scala, the function returns a `Validation`: a `Success` wrapping the new Session, or a `Failure`).
+
+{{< include-code "post-check" >}}
+
 ### Matching messages
 
 You can define `matching` criteria to filter messages you want to check.

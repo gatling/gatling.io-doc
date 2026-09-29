@@ -114,6 +114,17 @@ ws.checkTextMessage("checkName")
   .silent()
 //#silent-check
 
+//#post-check
+ws.checkTextMessage("checkName")
+  .check(jsonPath("$.code").ofInt().shouldBe(1))
+  .postCheck({ session ->
+    if (!session.contains("foo")) {
+      throw IllegalStateException("foo is missing")
+    }
+    session.set("bar", 1)
+  })
+//#post-check
+
 //#matching
 ws.checkTextMessage("checkName")
   .matching(jsonPath("$.uuid").shouldBe("#{correlation}"))
