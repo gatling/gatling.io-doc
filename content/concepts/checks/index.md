@@ -103,6 +103,10 @@ If your pattern contains more than one capture group, you must specify it with a
 
 {{< include-code "regex-ofType" >}}
 
+If you don't want to hardcode the number of capture groups, you can capture all of them at once:
+
+{{< include-code "regex-allCaptureGroups" >}}
+
 #### `xpath`
 
 This check applies an [XPath](https://en.wikipedia.org/wiki/XPath) query on an XML response body.

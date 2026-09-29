@@ -107,6 +107,13 @@ request
 )
 //#regex-ofType
 
+//#regex-allCaptureGroups
+// In Scala, use ofType[Seq[String]] to capture all groups without specifying their number
+.check(
+  regex("foo(.*)bar(.*)baz").ofType[Seq[String]]
+)
+//#regex-allCaptureGroups
+
 //#xpath
 .check(
   // simple expression for a document that doesn't use namespaces

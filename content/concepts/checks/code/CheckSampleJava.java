@@ -109,6 +109,13 @@ http("").get("")
 )
 //#regex-ofType
 
+//#regex-allCaptureGroups
+// In Java, use allCaptureGroups() to capture all groups as a List<String> without specifying their number
+.check(
+  regex("foo(.*)bar(.*)baz").allCaptureGroups()
+)
+//#regex-allCaptureGroups
+
 //#xpath
 .check(
   // simple expression for a document that doesn't use namespaces

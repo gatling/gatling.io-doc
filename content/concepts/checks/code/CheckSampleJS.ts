@@ -110,6 +110,13 @@ NOT SUPPORTED
 )
 //#regex-ofType
 
+//#regex-allCaptureGroups
+// In JavaScript/TypeScript, use allCaptureGroups() to capture all groups as a string[] without specifying their number
+.check(
+  regex("foo(.*)bar(.*)baz").allCaptureGroups()
+)
+//#regex-allCaptureGroups
+
 //#xpath
 .check(
   // simple expression for a document that doesn't use namespaces
