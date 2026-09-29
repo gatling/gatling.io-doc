@@ -115,7 +115,23 @@ Gatling EL provides the following built-in functions:
 
 // generate a random alphanumeric with length
 "#{randomAlphanumeric(10)}"
+
+// generate a random String of length 10, made of characters from the Basic Multilingual Plane (BMP)
+"#{randomString(10)}"
+
+// generate a random String of length 10, made of characters picked from the given charset
+"#{randomString(10,abcdef0123456789)}"
+
+// pick a random value among the ones passed as arguments
+"#{randomOneOf(GET,POST,PUT)}"
+
+// the unique id of the virtual user, same as Session#userId
+"#{userId()}"
 ```
+
+For `randomString` and `randomOneOf`, arguments are literal values: they can't contain Gatling EL placeholders, and the charset or values can't contain `#`, `{` or `}`.
+`randomOneOf` values are separated with commas, so they can't contain commas or parentheses.
+Use `#{foo.random()}` instead if you want to pick a random element from a collection stored in the Session.
 
 You can combine different Gatling EL built-in functions, eg:
 
