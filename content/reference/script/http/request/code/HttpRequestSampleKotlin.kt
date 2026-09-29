@@ -65,6 +65,7 @@ http("name").delete("https://gatling.io")
 http("name").head("https://gatling.io")
 http("name").patch("https://gatling.io")
 http("name").options("https://gatling.io")
+http("name").query("https://gatling.io")
 http("name").httpRequest("PURGE", "http://myNginx.com")
 //#methods
 
