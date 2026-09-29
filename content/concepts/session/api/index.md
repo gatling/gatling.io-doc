@@ -42,6 +42,7 @@ There's 3 ways of doing that:
 * using [Feeders]({{< ref "feeders" >}})
 * extracting data from responses and saving them, e.g. with [Check's saveAs]({{< ref "/concepts/checks#saving" >}})
 * programmatically with the Session API
+* evaluating a Gatling EL expression or a function and storing the result with [`setInSession`](#setinsession)
 
 ### Fetching data
 
@@ -71,6 +72,13 @@ If Gatling complains that an attribute could not be found, check that:
 {{< /alert >}}
 
 {{< include-code "sessions-are-immutable" >}}
+
+### `setInSession`
+
+You can also store a value into the Session with a dedicated scenario step, without writing a full function that calls `Session#set`.
+This is typically useful when you want to use Gatling EL but its result is random, and the value must be used in multiple places, so the expression can't be inlined.
+
+{{< include-code "setInSession" >}}
 
 ### Getting attributes
 

@@ -14,9 +14,16 @@
  * limitations under the License.
  */
 
-import { Session, exec } from "@gatling.io/core";
+import { Session, exec, setInSession } from "@gatling.io/core";
 
 const session = null as unknown as Session;
+
+//#setInSession
+// store the result of a Gatling EL expression
+setInSession("#{someList.random()}", "randomElement");
+// store the result of a function
+setInSession((session) => `${session.get<string>("firstName")} ${session.get<string>("lastName")}`, "fullName");
+//#setInSession
 
 //#sessions-are-immutable
 // wrong usage: result from Session#set is discarded

@@ -24,6 +24,13 @@ class SessionSampleKotlin {
   val session: Session = TODO()
 
   init {
+//#setInSession
+// store the result of a Gatling EL expression
+setInSession("#{someList.random()}", "randomElement")
+// store the result of a function
+setInSession({ session -> session.getString("firstName") + " " + session.getString("lastName") }, "fullName")
+//#setInSession
+
 //#sessions-are-immutable
 // wrong usage: result from Session#set is discarded
 exec { session ->

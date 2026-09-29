@@ -23,6 +23,13 @@ class SessionSampleScala {
 val session: Session = ???
 
   {
+//#setInSession
+// store the result of a Gatling EL expression
+setInSession("#{someList.random()}", "randomElement")
+// store the result of a function
+setInSession(session => session("firstName").as[String] + " " + session("lastName").as[String], "fullName")
+//#setInSession
+
 //#sessions-are-immutable
 // wrong usage: result from Session#set is discarded
 exec { session =>
