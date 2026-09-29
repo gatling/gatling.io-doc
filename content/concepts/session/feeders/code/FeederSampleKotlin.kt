@@ -94,6 +94,12 @@ separatedValues("foo.txt", '#')
   }
 
   init {
+//#headers
+csv("foo.csv").headers("foo", "bar")
+//#headers
+  }
+
+  init {
 //#unzip
 csv("foo.csv.zip").unzip()
 //#unzip

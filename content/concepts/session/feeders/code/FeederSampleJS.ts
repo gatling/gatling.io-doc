@@ -84,6 +84,10 @@ ssv("foo.ssv");
 separatedValues("foo.txt", '#');
 //#sep-values-feeders
 
+//#headers
+csv("foo.csv").headers("foo", "bar");
+//#headers
+
 //#unzip
 csv("foo.csv.zip").unzip();
 //#unzip

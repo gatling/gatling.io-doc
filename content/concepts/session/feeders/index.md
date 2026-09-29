@@ -56,6 +56,11 @@ The only difference is that header fields get trimmed of wrapping whitespaces.
 
 {{< include-code "sep-values-feeders" >}}
 
+By default, the first line of the file is expected to contain the header fields.
+If your file doesn't have such a header line, you can explicitly pass the column names with `headers`:
+
+{{< include-code "headers" >}}
+
 ### JSON feeders
 
 Some users might want to use data in JSON format instead of CSV:
