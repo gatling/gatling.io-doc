@@ -154,6 +154,14 @@ http.perUserKeyManagerFactory(
 });
 //#perUserKeyManagerFactory
 
+//#perUserKeyManagerFactory-keystore
+// keys/multi-alias.p12 is a PKCS#12 file with one key entry per virtual user
+http.perUserKeyManagerFactory("keys/multi-alias.p12", "password");
+
+// no password
+http.perUserKeyManagerFactory("keys/multi-alias.p12");
+//#perUserKeyManagerFactory-keystore
+
 //#disableAutoReferer
 http.disableAutoReferer();
 //#disableAutoReferer

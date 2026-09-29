@@ -139,6 +139,97 @@ Then, it's possible to have per virtual user KeyManagerFactories, typically if y
 
 This function's input is the virtual user's id (if you need it to generate some file's name) and returns a [javax.net.ssl.KeyManagerFactory](https://docs.oracle.com/javase/8/docs/api/javax/net/ssl/KeyManagerFactory.html).
 
+If you'd rather not manage one file per virtual user, you can store all your keys in a single PKCS#12 file, with one key entry (alias) per virtual user, and let Gatling do the work.
+You can generate such a file with the JDK's `keytool`.
+The password is optional.
+
+{{< include-code "perUserKeyManagerFactory-keystore" >}}
+
+Note that:
+
+* The file is located either on the classpath or as an absolute path on the filesystem.
+* Key entries are assigned to virtual users in the alphabetical order of their aliases: the virtual user with id 1 gets the first alias, and so on.
+* Each key entry is used by one single virtual user. If the file contains fewer key entries than virtual users, the run is stopped.
+* On Gatling Enterprise with multiple load generators, aliases are split so that each load generator gets its own distinct subset, hence a key entry is never used by 2 different load generators.
+
+Here is a sample script that uses `openssl` and `keytool` to generate such a keystore:
+a self-signed root CA, and a PKCS#12 file with 20 client key entries signed by this CA, with aliases `mykey0001`, `mykey0002`, etc.
+Aliases are zero-padded so that their alphabetical order matches their numerical order.
+
+```bash
+#!/usr/bin/env bash
+# Generates a self-signed root CA, then NB_CERTS client key/certificate pairs signed by this CA,
+# and merges the latter into a single PKCS#12 keystore, one alias per client: mykey0001, mykey0002, ...
+#
+# openssl alone cannot merge several independent key+cert pairs into one PKCS#12
+# (it only keeps the last private key found), so each client is first exported
+# to its own single-entry file with openssl, then merged into the final keystore
+# with `keytool -importkeystore`.
+#
+# Output (in OUT_DIR):
+#   ca-key.pem, ca-cert.pem - the CA, needed to sign client certificates
+#                             and to be trusted by the server
+#   clients-keystore.p12    - the keystore to pass to perUserKeyManagerFactory
+#
+# Env overrides: OUT_DIR (default keys), PASSWORD (default changeit),
+#                CA_DAYS (default 3650), CLIENT_DAYS (default 730), NB_CERTS (default 20)
+set -euo pipefail
+
+OUT_DIR="${OUT_DIR:-keys}"
+PASSWORD="${PASSWORD:-changeit}"
+CA_DAYS="${CA_DAYS:-3650}"
+CLIENT_DAYS="${CLIENT_DAYS:-730}"
+NB_CERTS="${NB_CERTS:-20}"
+
+if (( NB_CERTS > 9999 )); then
+  echo "NB_CERTS=$NB_CERTS exceeds the mykeyNNNN 4-digit alias format (max 9999)" >&2
+  exit 1
+fi
+
+mkdir -p "$OUT_DIR"
+WORK_DIR="$(mktemp -d)"
+trap 'rm -rf "$WORK_DIR"' EXIT
+
+echo "Generating root CA (RSA 2048, $CA_DAYS days) in $OUT_DIR"
+openssl genrsa -out "$OUT_DIR/ca-key.pem" 2048
+openssl req -x509 -new -nodes -key "$OUT_DIR/ca-key.pem" -sha256 -days "$CA_DAYS" \
+  -subj "/O=Gatling Demo/CN=Gatling Demo Root CA" \
+  -out "$OUT_DIR/ca-cert.pem"
+
+rm -f "$OUT_DIR/clients-keystore.p12"
+
+echo "Generating $NB_CERTS client certificates (RSA 2048, $CLIENT_DAYS days)"
+for i in $(seq 1 "$NB_CERTS"); do
+  alias=$(printf "mykey%04d" "$i")
+
+  openssl genrsa -out "$WORK_DIR/${alias}-key.pem" 2048 2>/dev/null
+  openssl req -new -key "$WORK_DIR/${alias}-key.pem" \
+    -subj "/O=Gatling Demo/CN=${alias}" \
+    -out "$WORK_DIR/${alias}.csr"
+  openssl x509 -req -in "$WORK_DIR/${alias}.csr" \
+    -CA "$OUT_DIR/ca-cert.pem" -CAkey "$OUT_DIR/ca-key.pem" -CAcreateserial \
+    -days "$CLIENT_DAYS" -sha256 \
+    -out "$WORK_DIR/${alias}-cert.pem"
+
+  openssl pkcs12 -export \
+    -inkey "$WORK_DIR/${alias}-key.pem" \
+    -in "$WORK_DIR/${alias}-cert.pem" \
+    -certfile "$OUT_DIR/ca-cert.pem" \
+    -name "$alias" \
+    -out "$WORK_DIR/${alias}.p12" \
+    -passout "pass:$PASSWORD"
+
+  keytool -importkeystore -noprompt \
+    -srckeystore "$WORK_DIR/${alias}.p12" -srcstoretype PKCS12 -srcstorepass "$PASSWORD" \
+    -destkeystore "$OUT_DIR/clients-keystore.p12" -deststoretype PKCS12 -deststorepass "$PASSWORD" \
+    >/dev/null
+
+  echo "Added $alias ($i/$NB_CERTS)"
+done
+
+echo "Done: $OUT_DIR/clients-keystore.p12 ($NB_CERTS entries)"
+```
+
 ## Request Generation
 
 #### `baseUrl`
