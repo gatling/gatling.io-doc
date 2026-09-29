@@ -6,6 +6,7 @@ lead: Use Sessions to store and retrieve data for each virtual user
 ordering:
   - feeders
   - counters
+  - shared-queues
   - el
   - api
   - functions
