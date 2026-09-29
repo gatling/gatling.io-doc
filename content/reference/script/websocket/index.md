@@ -79,6 +79,10 @@ Or you can set a check right after sending a message to the server:
 
 {{< include-code "check-from-message" >}}
 
+Or you can set a check on its own, without sending anything, for example to wait for a message the server pushes at its own pace:
+
+{{< include-code "check-set" >}}
+
 You can set multiple checks sequentially. Each one will expect one single frame.
 
 You can configure multiple checks in a single sequence:

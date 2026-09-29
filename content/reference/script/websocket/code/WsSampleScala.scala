@@ -130,6 +130,10 @@ exec(ws("Connect").connect("/foo").await(30)(wsCheck))
 exec(ws("Send").sendText("hello").await(30)(wsCheck))
 //#check-from-message
 
+//#check-set
+exec(ws("Wait for a message").setCheck.await(30)(wsCheck))
+//#check-set
+
 //#check-single-sequence
 // expecting 2 messages
 // 1st message will be validated against wsCheck1
