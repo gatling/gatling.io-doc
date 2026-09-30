@@ -45,3 +45,7 @@ For Scala:
 {{< /include-file >}}
 
 JavaScript and TypeScript are not supported yet.
+
+## Getting started with the demo project {#demo-project}
+
+A [demo project](https://github.com/gatling/gatling-graphql-demo) is available to help you get started with the Gatling GraphQL protocol.
