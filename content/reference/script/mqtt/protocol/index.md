@@ -26,6 +26,22 @@ Use the `mqtt` object in order to create a MQTT protocol.
 
 {{< include-code "protocol-sample" >}}
 
+### Use per virtual user client certificates
+
+With `useTls(true)`, you can provide a client certificate for each virtual user with `perUserKeyManagerFactory`, either with a function that returns a [javax.net.ssl.KeyManagerFactory](https://docs.oracle.com/javase/8/docs/api/javax/net/ssl/KeyManagerFactory.html) (see the sample above) or, more simply, by storing all your keys in a single PKCS#12 file with one key entry (alias) per virtual user.
+The password is optional.
+
+{{< include-code "perUserKeyManagerFactory-keystore" >}}
+
+Note that:
+
+* The file is located either on the classpath or as an absolute path on the filesystem.
+* Key entries are assigned to virtual users in the alphabetical order of their aliases: the virtual user with id 1 gets the first alias, and so on.
+* Each key entry is used by one single virtual user. If the file contains fewer key entries than virtual users, the run is stopped.
+* On Gatling Enterprise with multiple load generators, aliases are split so that each load generator gets its own distinct subset, hence a key entry is never used by 2 different load generators.
+
+See [HTTP protocol]({{< ref "/reference/script/http/protocol#peruserkeymanagerfactory" >}}) for a sample script that generates such a keystore.
+
 ## Request
 
 Use the `mqtt("requestName")` method in order to create a MQTT request.

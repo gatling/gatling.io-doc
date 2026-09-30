@@ -107,6 +107,14 @@ MqttProtocolBuilder mqttProtocol = mqtt
 //#protocol-sample
 
   {
+//#perUserKeyManagerFactory-keystore
+// keys/multi-alias.p12 is a PKCS#12 file with one key entry per virtual user
+mqtt.perUserKeyManagerFactory("keys/multi-alias.p12", "password");
+
+// no password
+mqtt.perUserKeyManagerFactory("keys/multi-alias.p12");
+//#perUserKeyManagerFactory-keystore
+
 //#connect
 mqtt("Connecting").connect();
 //#connect
