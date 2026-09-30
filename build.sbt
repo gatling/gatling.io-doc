@@ -31,6 +31,7 @@ Test / unmanagedSourceDirectories ++= (baseDirectory.value / "content" ** "code"
 val gatlingVersion = "3.16.0"
 val gatlingGrpcVersion = "3.16.0"
 val gatlingMqttVersion = "3.16.0"
+val gatlingGraphqlVersion = "3.16.0"
 val awsSdkVersion = "2.55.6"
 
 libraryDependencies ++= Seq(
@@ -41,8 +42,9 @@ libraryDependencies ++= Seq(
   "io.gatling" % "gatling-jdbc-java"  % gatlingVersion,
   "io.gatling" % "gatling-redis-java" % gatlingVersion,
   // External Gatling modules
-  "io.gatling" % "gatling-grpc-java" % gatlingGrpcVersion,
-  "io.gatling" % "gatling-mqtt-java" % gatlingMqttVersion,
+  "io.gatling" % "gatling-grpc-java"    % gatlingGrpcVersion,
+  "io.gatling" % "gatling-mqtt-java"    % gatlingMqttVersion,
+  "io.gatling" % "gatling-graphql-java" % gatlingGraphqlVersion,
   // Other
   "org.apache.commons"     % "commons-lang3"   % "3.20.0",
   "commons-codec"          % "commons-codec"   % "1.22.1",
