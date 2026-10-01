@@ -32,7 +32,7 @@ val gatlingVersion = "3.16.0"
 val gatlingGrpcVersion = "3.16.0"
 val gatlingMqttVersion = "3.16.0"
 val gatlingGraphqlVersion = "3.16.0.1"
-val awsSdkVersion = "2.55.6"
+val awsSdkVersion = "2.55.10"
 
 libraryDependencies ++= Seq(
   // Gatling modules
