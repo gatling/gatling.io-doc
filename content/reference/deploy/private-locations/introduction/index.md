@@ -83,6 +83,10 @@ control-plane {
   token = ${?CONTROL_PLANE_TOKEN}
   # Control plane description (optional)
   description = "Control plane optional description"
+  # Reload locations from this file without restarting (optional, default: false)
+  # configuration {
+    # scan = true
+  # }
   # Default block to set common system properties (optional)
   # default {
     # locations {
@@ -145,6 +149,26 @@ If other properties are defined locally in a location, the properties set in the
 
 {{< alert warning >}}
 The default block can only be used to set system properties.
+{{< /alert >}}
+
+#### Configuration hot-reload {#configuration-hot-reload}
+
+By default, the configuration file is only read at startup.
+To apply location changes without restarting the control plane (and interrupting builds in progress), enable scanning:
+
+```bash
+configuration {
+  scan = true
+}
+```
+
+When enabled, the control plane checks the configuration file every few seconds:
+- Only `locations`, `default` and `description` can change while running. Changes apply to subsequent runs.
+- Any other change (token, server, repository, builder, proxy...), or an invalid file, is rejected and logged once; the control plane keeps running with its current configuration.
+- `configuration.scan` itself is only read at startup: changing it requires a restart.
+
+{{< alert info >}}
+Scanning is disabled by default, so the configuration of a running control plane can't change unless you opt in.
 {{< /alert >}}
 
 ### Control plane server {#control-plane-server}
