@@ -46,7 +46,7 @@ libraryDependencies ++= Seq(
   "io.gatling" % "gatling-mqtt-java"    % gatlingMqttVersion,
   "io.gatling" % "gatling-graphql-java" % gatlingGraphqlVersion,
   // Other
-  "org.apache.commons"     % "commons-lang3"   % "3.20.0",
+  "org.apache.commons"     % "commons-lang3"   % "3.21.0",
   "commons-codec"          % "commons-codec"   % "1.22.1",
   "software.amazon.awssdk" % "secretsmanager"  % awsSdkVersion,
   "software.amazon.awssdk" % "s3"              % awsSdkVersion,
