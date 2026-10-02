@@ -14,6 +14,10 @@ Gatling Enterprise Edition offers [3 plan tiers](https://gatling.io/pricing): Ba
 
 When you create an account on Gatling Enterprise Edition to start a product trial, you can benefit from the same plan limits as the Basic plan (except for minutes of testing).
 
+{{< home-cta eyebrow="Gatling Enterprise Edition" title="Load test at scale, from code to production." pills="Millions of virtual users | CI/CD ready | AI-assisted insights | Team collaboration" primary_label="Start free trial" primary_url="https://gatling.io/sign-up?utm_source=docs&utm_medium=trial-page&utm_campaign=enterprise-band" secondary_label="Register for the live demo" secondary_url="https://gatling.io/gatling-enterprise-load-testing-live-demo?utm_source=docs&utm_medium=trial-page&utm_campaign=live-demo" note="14 days free. No credit card required." image="https://cdn.prod.website-files.com/685a8fe4ddca049f26333871/6abe81cb5a9c0aa03004244f_Enterprise_Platform.png" image_alt="Gatling Enterprise Edition run dashboard with real-time charts" >}}
+Generate millions of virtual users on managed or private infrastructure, plug your tests into your CI/CD pipeline, and spot regressions before your users do, with real-time results and AI-assisted analysis.
+{{< /home-cta >}}
+
 ## Product evaluation options
 
 You have 2 options to evaluate the capabilities of Gatling Enterprise Edition:
