@@ -18,7 +18,6 @@ import io.gatling.javaapi.core.*;
 import io.gatling.javaapi.http.*;
 import io.gatling.javaapi.graphql.GraphQlProtocolBuilder;
 
-import java.util.Optional;
 
 import static io.gatling.javaapi.core.CoreDsl.*;
 import static io.gatling.javaapi.http.HttpDsl.*;
@@ -66,7 +65,7 @@ graphQlProtocol.inferOperationNameFromRootFields();
 graphQlProtocol.inferOperationNameFromHash();
 // name anonymous operations with a custom strategy
 graphQlProtocol.inferOperationName(
-  document -> Optional.of(document.operationType().keyword() + document.sha256())
+  document -> document.operationType().keyword() + document.sha256()
 );
 //#naming
 
