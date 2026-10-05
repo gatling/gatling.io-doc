@@ -106,11 +106,11 @@ graphql.query("query GetUser($id: ID!) { user(id: $id) { name } }")
 //#checks
 graphql.file("graphql/getUser.graphql")
   .check(
-    graphqlData.jsonPath("$.user.name").is("Stephane"),
-    graphqlData.jsonPath("$.user.id").saveAs("userId"),
-    graphqlData.jmesPath("user.name").exists(),
-    graphqlErrors.jsonPath("$[0].extensions.code").optional().saveAs("errorCode"),
-    graphqlExtensions.jsonPath("$.tracing.duration").optional(),
+    graphql.data.jsonPath("$.user.name").is("Stephane"),
+    graphql.data.jsonPath("$.user.id").saveAs("userId"),
+    graphql.data.jmesPath("user.name").exists(),
+    graphql.errors.jsonPath("$[0].extensions.code").optional().saveAs("errorCode"),
+    graphql.extensions.jsonPath("$.tracing.duration").optional(),
     // usual HTTP checks
     status().is(200)
   );
@@ -118,7 +118,7 @@ graphql.file("graphql/getUser.graphql")
 
 //#post-check
 graphql.file("graphql/getUser.graphql")
-  .check(graphqlData.jsonPath("$.user.name").saveAs("userName"))
+  .check(graphql.data.jsonPath("$.user.name").saveAs("userName"))
   .postCheck(session -> {
     if (!session.contains("userName")) {
       throw new IllegalStateException("userName is missing");
