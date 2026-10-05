@@ -114,9 +114,9 @@ By default, Gatling checks the HTTP status and the [errors]({{< ref "/reference/
 
 In addition to the [usual HTTP checks]({{< ref "/reference/script/http/checks" >}}), Gatling provides `jsonPath` and `jmesPath` checks rooted at a top level member of the GraphQL response:
 
-* `graphqlData` for the `data` member
-* `graphqlErrors` for the `errors` member
-* `graphqlExtensions` for the `extensions` member
+* `graphql.data` for the `data` member
+* `graphql.errors` for the `errors` member
+* `graphql.extensions` for the `extensions` member
 
 For example, you can write `$.user.name` instead of `$.data.user.name`.
 These are regular `jsonPath` and `jmesPath` checks otherwise, so you can use the same criteria and `saveAs`.

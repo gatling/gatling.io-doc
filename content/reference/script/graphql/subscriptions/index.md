@@ -62,7 +62,7 @@ It's the inter message latency rather than the time since the subscription start
 {{< include-code "await" java kt scala >}}
 
 * `checkNext` accepts a name to report the message under.
-* `check` accepts the same criteria as [GraphQL requests]({{< ref "/reference/script/graphql/requests#checks" >}}), except that you use `graphqlWs.data` and `graphqlWs.errors` in place of `graphqlData` and `graphqlErrors`.
+* `check` accepts the same criteria as [GraphQL requests]({{< ref "/reference/script/graphql/requests#checks" >}}), except that you use `graphqlWs.data`, `graphqlWs.errors` and `graphqlWs.extensions` in place of `graphql.data`, `graphql.errors` and `graphql.extensions`.
 * `postCheck` applies a function on the Session resulting from the checks.
 * `silent` doesn't report the message in the statistics.
 
