@@ -55,7 +55,8 @@ exec(graphqlWs
     graphqlWs.checkNext()
       .check(
         graphqlWs.data.jsonPath("$.orderCreated.id").saveAs("orderId"),
-        graphqlWs.errors.jsonPath("$[0].message").optional()
+        graphqlWs.errors.jsonPath("$[0].message").optional(),
+        graphqlWs.extensions.jsonPath("$.tracing.duration").optional()
       )
   ));
 //#await
