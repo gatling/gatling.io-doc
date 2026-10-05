@@ -50,6 +50,8 @@ Use `document` to define an operation with an inline document, whatever operatio
 
 Use `dynamicDocument` when the document is only known at runtime, for example to replay a corpus of captured operations from a feeder.
 As Gatling can't parse the document when the Simulation is built, you must provide the request name.
+This name is only used in the reports: Gatling doesn't send an `operationName` with a dynamic document.
+Use `operationName`, with an Expression Language String or a function, to send one, for example when the document declares several operations.
 Dynamic documents don't support operation type assertion, persisted queries, or `overGet`.
 
 {{< include-code "dynamic-document" java kt scala >}}

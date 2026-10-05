@@ -51,6 +51,13 @@ exec(graphql.document("{ me { id } }"));
 exec(graphql.dynamicDocument("#{operationName}", "#{document}"));
 // request name as a String, document as a function
 exec(graphql.dynamicDocument("dynamic", session -> session.getString("document")));
+// operation name sent in the payload, as an Expression Language String
+exec(graphql.dynamicDocument("#{operationName}", "#{document}").operationName("#{operationName}"));
+// operation name sent in the payload, as a function
+exec(
+  graphql.dynamicDocument("dynamic", "#{document}")
+    .operationName(session -> session.getString("operationName"))
+);
 //#dynamic-document
 
 //#request-name
