@@ -12,7 +12,7 @@ The Gatling GraphQL SDK is not imported by default.
 
 You have to manually add the following imports:
 
-{{< include-code "imports" java kt scala >}}
+{{< include-code "imports" >}}
 
 ## Configure the protocol
 
@@ -21,7 +21,7 @@ You must register both the HTTP protocol and the GraphQL protocol.
 
 Use the `graphql` object to create a GraphQL protocol.
 
-{{< include-code "protocol-sample" java kt scala >}}
+{{< include-code "protocol-sample" >}}
 
 ## Endpoints
 
@@ -39,7 +39,7 @@ You can also override the endpoint on each [request]({{< ref "/reference/script/
 GraphQL servers usually answer with a `200` status, even when the operation failed.
 Gatling therefore inspects the `errors` member of the response.
 
-{{< include-code "error-policy" java kt scala >}}
+{{< include-code "error-policy" >}}
 
 * `failOnErrors` (default): fail the request as soon as the response contains at least one error, even if `data` is partially populated.
 * `failOnDataNull`: only fail the request when the response contains errors and no data at all, that is to say tolerate partial results.
@@ -57,7 +57,7 @@ If it can't infer any name, Simulation fails on start.
 
 You can pick another strategy, or make sure you never rely on inference:
 
-{{< include-code "naming" java kt scala >}}
+{{< include-code "naming" >}}
 
 * `requireNamedOperations`: fail on anonymous operations when the Simulation is built.
 * File name: `queries/getUser.graphql` gives `getUser`.
@@ -74,7 +74,7 @@ By default, Gatling sends operations with a `POST` request and a JSON body.
 `queriesOverGet` makes Gatling send queries with a `GET` request instead, with the `query`, `operationName` and `variables` as query string parameters.
 This makes responses cacheable by a CDN.
 
-{{< include-code "queries-over-get" java kt scala >}}
+{{< include-code "queries-over-get" >}}
 
 This only applies to queries whose document is known when the Simulation is built.
 Mutations and requests with a [dynamic document]({{< ref "/reference/script/graphql/requests#dynamic-document" >}}) are still sent with a `POST` request.
@@ -83,7 +83,7 @@ Mutations and requests with a [dynamic document]({{< ref "/reference/script/grap
 
 With [Automatic Persisted Queries](https://www.apollographql.com/docs/apollo-server/performance/apq) (APQ), a client identifies a document with its SHA-256 hash instead of sending it over and over.
 
-{{< include-code "apq" java kt scala >}}
+{{< include-code "apq" >}}
 
 With `automaticPersistedQueries`, Gatling sends the hash alone as a `POST` request once the server is known to have registered it, and the full document otherwise.
 If the server answers that it doesn't know the hash (`PersistedQueryNotFound`), Gatling sends the document.

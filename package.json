@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "devDependencies": {
     "@gatling.io/core": "3.16.1",
+    "@gatling.io/graphql": "3.16.1",
     "@gatling.io/grpc": "3.16.1",
     "@gatling.io/http": "3.16.1",
     "@gatling.io/mqtt": "3.16.1",
