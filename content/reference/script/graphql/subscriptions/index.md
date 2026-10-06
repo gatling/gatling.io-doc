@@ -17,7 +17,7 @@ Gatling GraphQL SDK is not imported by default.
 
 You have to manually add the following imports:
 
-{{< include-code "imports" java kt scala >}}
+{{< include-code "imports" >}}
 
 You must register the [GraphQL protocol]({{< ref "/reference/script/graphql/protocol" >}}) and configure `wsBaseUrl` on the HTTP protocol.
 The WebSocket path is the protocol `wsEndpoint`.
@@ -27,7 +27,7 @@ The WebSocket path is the protocol `wsEndpoint`.
 Use `graphqlWs.connect` to open the WebSocket and perform the `connection_init` / `connection_ack` handshake.
 You must connect before you subscribe.
 
-{{< include-code "connect" java kt scala >}}
+{{< include-code "connect" >}}
 
 * `requestName`: override the request name.
 * `endpoint`: override the protocol `wsEndpoint`.
@@ -45,7 +45,7 @@ The document must declare a subscription and be known when the Simulation is bui
 
 Like [requests]({{< ref "/reference/script/graphql/requests" >}}), a subscription supports `requestName`, `operationName`, `variable`, `variables` and `variablesJson`.
 
-{{< include-code "subscribe" java kt scala >}}
+{{< include-code "subscribe" >}}
 
 Use `subscriptionName` to set the id the subscription is registered under, which `unsubscribe` needs.
 It defaults to the operation name.
@@ -59,7 +59,7 @@ Each `checkNext` expects one single `next` message, and messages are reported on
 Gatling measures the response time of each message from the message that came before it.
 It's the inter message latency rather than the time since the subscription started.
 
-{{< include-code "await" java kt scala >}}
+{{< include-code "await" >}}
 
 * `checkNext` accepts a name to report the message under.
 * `check` accepts the same criteria as [GraphQL requests]({{< ref "/reference/script/graphql/requests#checks" >}}), except that you use `graphqlWs.data`, `graphqlWs.errors` and `graphqlWs.extensions` in place of `graphql.data`, `graphql.errors` and `graphql.extensions`.
@@ -70,7 +70,7 @@ The [error policy]({{< ref "/reference/script/graphql/protocol#error-handling" >
 
 Use `awaitNext` to wait for some more messages, with a timeout for each of them.
 
-{{< include-code "await-next" java kt scala >}}
+{{< include-code "await-next" >}}
 
 {{< alert tip >}}
 If the server ends the subscription with a `complete` or an `error` message that goes through a check, Gatling considers the subscription is no longer active.
@@ -81,13 +81,13 @@ If the server ends the subscription with a `complete` or an `error` message that
 Use `unsubscribe` with the subscription name to tell the server to stop the subscription.
 By default, Gatling reports it under the name `subscription <subscription name> complete`.
 
-{{< include-code "unsubscribe" java kt scala >}}
+{{< include-code "unsubscribe" >}}
 
 ## Close
 
 Use `close` to close the WebSocket. Gatling reports it under the name `graphql-ws close`.
 
-{{< include-code "close" java kt scala >}}
+{{< include-code "close" >}}
 
 ## Reconnection
 
@@ -95,4 +95,4 @@ When Gatling reconnects the WebSocket, it performs the handshake again and subsc
 
 ## Example
 
-{{< include-code "example" java kt scala >}}
+{{< include-code "example" >}}

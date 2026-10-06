@@ -36,6 +36,12 @@ For Java or Kotlin:
 2-Gradle: includes/dependency.gradle.java.md
 {{< /include-file >}}
 
+For JavaScript/TypeScript:
+
+```console
+npm install @gatling.io/graphql@{{< var gatlingJsVersion >}}
+```
+
 For Scala:
 
 {{< include-file >}}
@@ -43,8 +49,6 @@ For Scala:
 2-Gradle: includes/dependency.gradle.scala.md
 3-sbt: includes/dependency.sbt.scala.md
 {{< /include-file >}}
-
-JavaScript and TypeScript are not supported yet.
 
 ## Getting started with the demo project {#demo-project}
 

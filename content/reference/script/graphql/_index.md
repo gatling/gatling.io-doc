@@ -18,7 +18,3 @@ Enhanced usage of this feature is available with Gatling Enterprise. [Explore ou
 
 * queries and mutations, sent over HTTP
 * subscriptions, sent over WebSocket with the `graphql-transport-ws` protocol
-
-{{< alert info >}}
-The GraphQL SDK is available for Java, Kotlin and Scala. JavaScript and TypeScript are not supported yet.
-{{< /alert >}}

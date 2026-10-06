@@ -12,7 +12,7 @@ Gatling GraphQL SDK is not imported by default.
 
 You have to manually add the following imports:
 
-{{< include-code "imports" java kt scala >}}
+{{< include-code "imports" >}}
 
 ## Define an operation
 
@@ -27,24 +27,24 @@ It fails fast if the document is invalid or can't be found.
 Use `query` and `mutation` to define an operation with an inline document.
 Gatling checks that the document declares the expected operation type.
 
-{{< include-code "inline" java kt scala >}}
+{{< include-code "inline" >}}
 
 ### Files
 
 Use `file` to load a document from a classpath resource, typically a `.graphql` file.
 The operation type is whatever the document declares.
 
-{{< include-code "file" java kt scala >}}
+{{< include-code "file" >}}
 
 If the document declares several operations, use `operationName` to pick the one to execute.
 
-{{< include-code "operation-name" java kt scala >}}
+{{< include-code "operation-name" >}}
 
 ### Any document
 
 Use `document` to define an operation with an inline document, whatever operation type it declares.
 
-{{< include-code "document" java kt scala >}}
+{{< include-code "document" >}}
 
 ### Dynamic documents {#dynamic-document}
 
@@ -54,7 +54,7 @@ This name is only used in the reports: Gatling doesn't send an `operationName` w
 Use `operationName`, with an Expression Language String or a function, to send one, for example when the document declares several operations.
 Dynamic documents don't support operation type assertion, persisted queries, or `overGet`.
 
-{{< include-code "dynamic-document" java kt scala >}}
+{{< include-code "dynamic-document" >}}
 
 ## Request name
 
@@ -63,31 +63,31 @@ See [operation naming]({{< ref "/reference/script/graphql/protocol#operation-nam
 
 Use `requestName` to set the name explicitly.
 
-{{< include-code "request-name" java kt scala >}}
+{{< include-code "request-name" >}}
 
 ## Variables
 
 Use `variable` to set a variable.
 The value can be a static value, a Gatling Expression Language String, or a function.
 
-{{< include-code "variable" java kt scala >}}
+{{< include-code "variable" >}}
 
 Use `variables` to set several variables at once, with a `Map` or a function that returns a `Map`.
 Top level String values of a `Map` can contain Gatling Expression Language placeholders.
 
-{{< include-code "variables" java kt scala >}}
+{{< include-code "variables" >}}
 
 Use `variablesJson` to set all the variables at once, as a JSON object that can contain Gatling Expression Language placeholders.
 The JSON is sent as is, so use `jsonStringify()` for a value that must be JSON escaped.
 `variablesJson` can't be combined with `variable` or `variables`.
 
-{{< include-code "variables-json" java kt scala >}}
+{{< include-code "variables-json" >}}
 
 ## HTTP request options
 
 A GraphQL request supports the following HTTP options:
 
-{{< include-code "options" java kt scala >}}
+{{< include-code "options" >}}
 
 * `endpoint`: override the protocol endpoint for this request only.
 * `header` and `headers`: set headers.
@@ -105,7 +105,7 @@ Unlike the protocol `queriesOverGet`, `overGet` is strict:
 * the document must be known when the Simulation is built, so use `query` or `file`, not `document`
 * it can't be combined with `dynamicDocument` or persisted queries
 
-{{< include-code "over-get" java kt scala >}}
+{{< include-code "over-get" >}}
 
 ## Checks
 
@@ -121,9 +121,9 @@ In addition to the [usual HTTP checks]({{< ref "/reference/script/http/checks" >
 For example, you can write `$.user.name` instead of `$.data.user.name`.
 These are regular `jsonPath` and `jmesPath` checks otherwise, so you can use the same criteria and `saveAs`.
 
-{{< include-code "checks" java kt scala >}}
+{{< include-code "checks" >}}
 
 You can also apply a function on the Session resulting from the checks, after they've been applied, with `postCheck`.
 Throw an exception to make the request fail with the exception's message (in Scala, the function returns a `Validation`: a `Success` wrapping the new Session, or a `Failure`).
 
-{{< include-code "post-check" java kt scala >}}
+{{< include-code "post-check" >}}
