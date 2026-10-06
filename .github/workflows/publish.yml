@@ -41,7 +41,7 @@ jobs:
         uses: sbt/setup-sbt@82da71df4e122282484a99a8d70096bc2369dbd8 # v1.5.9
 
       - name: Build JVM code samples
-        run: sbt "all headerCheckAll scalafmtSbtCheck" "test"
+        run: sbt "all headerCheckAll scalafmtSbtCheck;" "test;"
 
       - name: Setup Node
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
