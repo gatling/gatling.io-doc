@@ -2,11 +2,11 @@
   "name": "gatling.io-doc",
   "version": "0.0.0",
   "devDependencies": {
-    "@gatling.io/core": "3.16.0",
-    "@gatling.io/grpc": "3.16.0",
-    "@gatling.io/http": "3.16.0",
-    "@gatling.io/mqtt": "3.16.0",
-    "@gatling.io/postman": "3.16.0",
+    "@gatling.io/core": "3.16.1",
+    "@gatling.io/grpc": "3.16.1",
+    "@gatling.io/http": "3.16.1",
+    "@gatling.io/mqtt": "3.16.1",
+    "@gatling.io/postman": "3.16.1",
     "glob": "13.0.6",
     "gray-matter": "4.0.3",
     "yaml": "2.8.4"
