@@ -3,8 +3,12 @@ import sbt.io.ExtensionFilter
 import sbt.Keys._
 import sbtheader.FileType
 import _root_.io.gatling.build.license.ApacheV2License
+import org.jetbrains.sbt.kotlin.Keys._
+
+enablePlugins(KotlinPlugin)
 
 kotlinVersion := "2.4.20"
+kotlincJvmTarget := "11"
 scalaVersion := "2.13.18"
 
 enablePlugins(GatlingAutomatedScalafmtPlugin)
