@@ -140,7 +140,7 @@ Replace `{BucketName}` with the bucket where you uploaded the [Control Plane con
 ```
 
 {{< alert info >}}
-The Control Plane deploys load generators with EC2 Fleet, which can spread a run's load generators across all your configured subnets when one runs out of capacity.
+We recommend keeping the EC2 Fleet permissions: the Control Plane deploys load generators with EC2 Fleet, which can spread a run's load generators across all your configured subnets when one runs out of capacity.
 Without the `ec2:CreateLaunchTemplate`, `ec2:DeleteLaunchTemplate`, `ec2:CreateFleet` and `ec2:DeleteFleets` permissions, it falls back to `ec2:RunInstances`, and `spot = "preferred"` is not supported.
 {{< /alert >}}
 
