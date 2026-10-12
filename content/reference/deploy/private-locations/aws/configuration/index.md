@@ -99,9 +99,10 @@ control-plane {
       security-groups = ["sg-mysecuritygroup"]
       # Instance type
       instance-type = "c7i.xlarge"
-      # Spot instances (optional, default: false)
-      # Set to true to use Spot Instances instead of On-Demand Instances, or to "preferred" to prioritize Spot Instances and provision any remaining instances as On-Demand if Spot capacity is unavailable.
-      # spot = true # Possible values: true, false or "preferred" ("preferred" requires the EC2 Fleet permissions, see installation)
+      # Spot instances (optional, default: false, recommended)
+      # Keep On-Demand Instances for reliable runs: AWS can reclaim Spot Instances during a test.
+      # If you use Spot anyway, set "preferred" rather than true: missing Spot capacity is filled with On-Demand Instances (requires the EC2 Fleet permissions, see installation).
+      # spot = false # Possible values: false, "preferred" or true
       # Subnets
       subnets = ["subnet-a", "subnet-b"]
       # Automatically associate a public IPv4 (optional, default true)
