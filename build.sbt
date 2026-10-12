@@ -50,7 +50,7 @@ lazy val root = rootProject
       "io.gatling" % "gatling-graphql-java" % gatlingGraphqlVersion,
       // Other
       "org.apache.commons"     % "commons-lang3"   % "3.21.0",
-      "commons-codec"          % "commons-codec"   % "1.22.1",
+      "commons-codec"          % "commons-codec"   % "1.23.0",
       "software.amazon.awssdk" % "secretsmanager"  % awsSdkVersion,
       "software.amazon.awssdk" % "s3"              % awsSdkVersion,
       "org.apache.activemq"    % "activemq-broker" % "6.3.2",
