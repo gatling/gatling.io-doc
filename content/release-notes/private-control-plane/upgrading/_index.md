@@ -3,6 +3,7 @@ title: Control Plane upgrade guides
 description: What changes between Control Plane versions.
 lead: How to upgrade from previous Control Plane versions.
 ordering:
+  - to-2026.42.2.md
   - to-2026.25.3.md
   - to-2026.4.0.md
   - to-2025.37.0.md
