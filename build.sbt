@@ -27,7 +27,7 @@ lazy val root = rootProject
     Compile / javacOptions ++= Seq("-encoding", "utf8", "--release", "17"),
     Test / javacOptions ++= Seq("-encoding", "utf8", "-Xlint:unchecked"),
     // Kotlin
-    kotlinVersion := "2.4.20",
+    kotlinVersion := "2.4.21",
     kotlincJvmTarget := "11",
     // Headers
     headerLicense := ApacheV2License,
