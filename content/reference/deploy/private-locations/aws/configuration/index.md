@@ -101,7 +101,7 @@ control-plane {
       instance-type = "c7i.xlarge"
       # Spot instances (optional, default: false)
       # Set to true to use Spot Instances instead of On-Demand Instances, or to "preferred" to prioritize Spot Instances and provision any remaining instances as On-Demand if Spot capacity is unavailable.
-      # spot = true # Possible values: true, false or "preferred"
+      # spot = true # Possible values: true, false or "preferred" ("preferred" requires the EC2 Fleet permissions, see installation)
       # Subnets
       subnets = ["subnet-a", "subnet-b"]
       # Automatically associate a public IPv4 (optional, default true)

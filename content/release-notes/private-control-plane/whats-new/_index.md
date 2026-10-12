@@ -4,6 +4,7 @@ description: Find out about latest private Control Plane versions and the new fe
 lead: What's new in the latest releases.
 ordering:
   - 2026.38.1.md
+  - 2026.25.3.md
   - 2026.11.5.md
   - 2026.7.2.md
   - 2026.4.0.md
