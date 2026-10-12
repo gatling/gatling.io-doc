@@ -101,7 +101,9 @@ Replace `{BucketName}` with the bucket where you uploaded the [Control Plane con
                 "arn:aws:ec2:*:*:security-group/*",
                 "arn:aws:ec2:*:*:subnet/*",
                 "arn:aws:ec2:*:*:volume/*",
-                "arn:aws:ec2:*::image/*"
+                "arn:aws:ec2:*::image/*",
+                "arn:aws:ec2:*:*:launch-template/*",
+                "arn:aws:ec2:*:*:fleet/*"
             ]
         },
         {
@@ -136,6 +138,11 @@ Replace `{BucketName}` with the bucket where you uploaded the [Control Plane con
     ]
 }
 ```
+
+{{< alert info >}}
+The Control Plane deploys load generators with EC2 Fleet, which can spread a run's load generators across all your configured subnets when one runs out of capacity.
+Without the `ec2:CreateLaunchTemplate`, `ec2:DeleteLaunchTemplate`, `ec2:CreateFleet` and `ec2:DeleteFleets` permissions, it falls back to `ec2:RunInstances`, and `spot = "preferred"` is not supported.
+{{< /alert >}}
 
 {{< alert tip >}}
 The following policy is required only if you have configured some **elastic-ips** in the AWS private location in [Control Plane configuration]({{< ref "configuration" >}}).
