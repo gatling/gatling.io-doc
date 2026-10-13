@@ -249,3 +249,7 @@ The same reserved tags are applied to instances provisioned by Gatling Enterpris
 {{< /alert >}}
 
 The Control Plane applies `tags` and the reserved tags to the instances, volumes and network interfaces it launches, and to the EC2 launch template and EC2 Fleet it creates to launch them. This satisfies policies that require tags on `ec2:CreateLaunchTemplate` or `ec2:CreateFleet`, such as an `aws:RequestTag` condition in a Service Control Policy. Tagging the launch template and the fleet requires `ec2:CreateTags` on `launch-template/*` and `fleet/*`, as granted in the [EC2 policy]({{< ref "/reference/deploy/private-locations/aws/installation/#policies" >}}).
+
+{{< alert info >}}
+Tagging the launch template and the fleet, and the `launch-template` and `fleet` keys of `tags-for`, are available since Control Plane 2026.42.3.
+{{< /alert >}}
