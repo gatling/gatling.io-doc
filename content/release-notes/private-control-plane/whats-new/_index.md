@@ -5,6 +5,7 @@ lead: What's new in the latest releases.
 ordering:
   - 2026.42.3.md
   - 2026.42.2.md
+  - 2026.40.2.md
   - 2026.38.1.md
   - 2026.25.3.md
   - 2026.11.5.md
