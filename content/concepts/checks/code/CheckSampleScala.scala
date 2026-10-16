@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-import io.gatling.commons.validation.{ Failure, Success }
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 
@@ -365,26 +364,23 @@ request
 )
 //#in
 
-//#validator
+//#verify
 .check(
   jmesPath("foo")
     .ofType[Double]
-    .validate(
-    "is +/- 1.0",
-    (actual, session) => {
-      val expected = session("expected").as[Double]
-      actual match {
-        case Some(value) if math.abs(value - expected) <= 0.1 =>
-          Failure("Value is not within 0.1 margin")
-        case None =>
-          Failure("Value is missing")
-        case _ =>
-          Success(actual)
+    .verify(
+      "is +/- 0.1",
+      (actual, session) => {
+        val expected = session("expected").as[Double]
+        actual match {
+          case None                                            => Some("Value is missing")
+          case Some(value) if math.abs(value - expected) > 0.1 => Some("Value is not within 0.1 margin")
+          case _                                               => None
+        }
       }
-    }
-  )
+    )
 )
-//#validator
+//#verify
 
 //#name
 .check(
