@@ -7,5 +7,6 @@ ordering:
   - test-as-code
   - low-code
   - no-code
+  - create-with-ai
   - faq
 ---
