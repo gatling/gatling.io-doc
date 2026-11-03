@@ -53,7 +53,7 @@ lazy val root = rootProject
       "commons-codec"          % "commons-codec"   % "1.23.0",
       "software.amazon.awssdk" % "secretsmanager"  % awsSdkVersion,
       "software.amazon.awssdk" % "s3"              % awsSdkVersion,
-      "org.apache.activemq"    % "activemq-broker" % "6.3.3",
+      "org.apache.activemq"    % "activemq-broker" % "6.4.0",
       "com.nimbusds"           % "nimbus-jose-jwt" % "10.10"
     )
   )
