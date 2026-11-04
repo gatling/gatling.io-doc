@@ -77,6 +77,31 @@ You can add other library dependencies from npm, as long as:
 You can also use dev dependencies normally for other tools you might want to run on your code; e.g. our demo projects
 include a [Prettier](https://prettier.io) configuration for automatic code formatting.
 
+### Add JVM dependencies {#jvm-dependencies}
+
+Some features need Java libraries that the Gatling runtime bundle doesn't include, typically the JDBC driver of your
+database for the [JDBC protocol]({{< ref "/reference/script/jdbc" >}}).
+Declare them with their Maven coordinates, as `groupId:artifactId:version`, in the `gatling` section of your `package.json`:
+
+```json
+{
+  "gatling": {
+    "jvmDependencies": ["org.postgresql:postgresql:42.7.14"],
+    "jvmRepositories": ["https://repo.example.com/maven"]
+  }
+}
+```
+
+- `jvmDependencies`: the libraries, Gatling resolves their own dependencies too.
+- `jvmRepositories`: optional, Maven repositories to download them from, in addition to Maven Central.
+
+The `gatling` CLI tool resolves them with [Coursier](https://get-coursier.io) when running or packaging your simulations:
+
+- When running locally, it adds them to the classpath.
+- When packaging for Gatling Enterprise Edition, it merges their content into the package.
+
+Libraries already provided by the Gatling runtime bundle are ignored, so Gatling always uses its own versions.
+
 ### Upgrade the JavaScript SDK version
 
 Gatling periodically releases new versions of the JavaScript SDK to maintain compatibility with Gatling Enterprise Edition,
@@ -102,6 +127,9 @@ The `gatling` CLI tool requires Internet access to:
   `https://github.com/gatling/gatling-js/releases/`).
   - By default, it is installed in the folder `~/.gatling` (Linux/macOS) or `%USERPROFILE%\.gatling` (Windows). You
     can override this with the `--gatling-home` option.
+- Download the [JVM dependencies](#jvm-dependencies) your project declares, if any, from Maven Central or your own
+  repositories, along with [Coursier](https://get-coursier.io) to resolve them (from
+  `https://github.com/coursier/coursier/releases/`).
 - Access the Gatling Enterprise Edition API (`https://api.gatling.io`) when executing commands such as
   `npx gatling enterprise-deploy` or `npx gatling enterprise-start`.
 - Access your Control Plane when using the [Private Packages](#private-packages) feature with the same commands.

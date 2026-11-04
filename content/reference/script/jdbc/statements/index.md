@@ -38,7 +38,7 @@ Other values are bound as is.
 
 {{< include-code "prepared-statement" >}}
 
-Use `param` to compute a value from the Session:
+To compute a value from the Session, pass a function: in Java and Kotlin, wrap it with `param`, in JavaScript, TypeScript, and Scala, pass it as is.
 
 {{< include-code "param-function" >}}
 
@@ -48,6 +48,7 @@ By default, Gatling binds values with `setObject`, and the driver infers the SQL
 Some databases, such as PostgreSQL, reject a String for a numeric or date column.
 
 `param(value, jdbcType)` binds a value with the given `java.sql.JDBCType`, like JMeter's typed parameters.
+In JavaScript and TypeScript, the JDBC type is its name, such as `"DECIMAL"`.
 Gatling converts String values to the Java type matching the JDBC type, then binds them with the matching setter:
 
 | **JDBC type** | **String converted with** | **Bound with** |
@@ -106,7 +107,7 @@ Pass the column names when you need the actual values, see [database specifics](
 `callableStatement` calls a stored procedure or a function, with the JDBC escape syntax such as `{call procedure(?, ?)}` or `{? = call function(?)}`, or a database-specific syntax.
 Its `params` accept, in addition to the values of a prepared statement:
 
-- `outParam(jdbcType)`: an OUT parameter, registered with `registerOutParameter`
+- `outParam(jdbcType)`: an OUT parameter, registered with `registerOutParameter`, with the JDBC type as a name in JavaScript and TypeScript, such as `"INTEGER"`
 - `inOutParam(value, jdbcType)`: an INOUT parameter, bound like `param(value, jdbcType)`, then registered
 
 {{< include-code "callable-statement" >}}

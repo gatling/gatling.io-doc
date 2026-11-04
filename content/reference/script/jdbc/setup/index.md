@@ -29,8 +29,7 @@ These limits only apply to the JDBC protocol: the [JDBC feeder]({{< ref "/refere
 The Gatling JDBC plugin isn't included with Gatling by default. Add the Gatling JDBC dependency, in addition to the
 usual Gatling dependencies.
 
-The Gatling JDBC plugin requires Gatling {{< var gatlingVersion >}} or later, and is available for Java, Kotlin, and Scala.
-It isn't available for JavaScript and TypeScript.
+The Gatling JDBC plugin requires Gatling {{< var gatlingVersion >}} or later.
 
 For Java or Kotlin:
 
@@ -38,6 +37,12 @@ For Java or Kotlin:
 1-Maven: includes/dependency.maven.java.md
 2-Gradle: includes/dependency.gradle.java.md
 {{< /include-file >}}
+
+For JavaScript/TypeScript:
+
+```console
+npm install @gatling.io/jdbc@{{< var gatlingJsVersion >}}
+```
 
 For Scala:
 
@@ -49,7 +54,20 @@ For Scala:
 
 ## Add the JDBC driver of your database {#driver}
 
-Gatling doesn't ship any JDBC driver. Add the driver of your database as a dependency, in the same scope as the Gatling dependencies, for example:
+Gatling doesn't ship any JDBC driver. Add the driver of your database as a dependency:
+
+- For Java, Kotlin, and Scala, in the same scope as the Gatling dependencies.
+- For JavaScript and TypeScript, as a [JVM dependency]({{< ref "/integrations/build-tools/js-cli#jvm-dependencies" >}}) in the `gatling` section of your `package.json`:
+
+```json
+{
+  "gatling": {
+    "jvmDependencies": ["org.postgresql:postgresql:42.7.14"]
+  }
+}
+```
+
+The drivers of the main databases are:
 
 | **Database** | **Driver dependency** |
 | --- | --- |

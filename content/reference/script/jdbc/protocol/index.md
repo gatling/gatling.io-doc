@@ -46,6 +46,8 @@ When you set `credentials`, Gatling calls `getConnection(username, password)`, o
 
 {{< include-code "data-source" >}}
 
+In JavaScript and TypeScript, `dataSource` takes a Java `DataSource` object, created with [`Java.type`](https://www.graalvm.org/latest/reference-manual/js/JavaInteroperability/) from a class provided by a [JVM dependency]({{< ref "/integrations/build-tools/js-cli#jvm-dependencies" >}}).
+
 {{< alert warning >}}
 Pass a plain `DataSource`, not a pooling one such as HikariCP: Gatling already pools the connections, as described below.
 {{< /alert >}}

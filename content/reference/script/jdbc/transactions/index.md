@@ -46,7 +46,7 @@ To measure the whole transaction, put it in a group:
 
 | **Option** | **JDBC equivalent** | **Description** |
 | --- | --- | --- |
-| `transactionIsolation(level)` | `Connection.setTransactionIsolation` | One of the `java.sql.Connection.TRANSACTION_*` constants. |
+| `transactionIsolation(level)` | `Connection.setTransactionIsolation` | One of the `java.sql.Connection.TRANSACTION_*` constants, or in JavaScript and TypeScript, the name of the level, such as `"SERIALIZABLE"`. |
 | `readOnly` | `Connection.setReadOnly` | A hint that the transaction doesn't write. Some drivers enforce it, others ignore it. |
 
 {{< include-code "options" >}}
