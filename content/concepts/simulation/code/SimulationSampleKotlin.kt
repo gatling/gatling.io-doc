@@ -23,10 +23,6 @@ import io.gatling.javaapi.core.CoreDsl.*
 import io.gatling.javaapi.http.*
 import io.gatling.javaapi.http.HttpDsl.*
 
-// can be omitted if you don't use jdbcFeeder
-import io.gatling.javaapi.jdbc.*
-import io.gatling.javaapi.jdbc.JdbcDsl.*
-
 // used for specifying durations with a unit, eg Duration.ofMinutes(5)
 import java.time.Duration
 //#imports

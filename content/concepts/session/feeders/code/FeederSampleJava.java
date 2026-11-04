@@ -24,7 +24,6 @@ import org.apache.commons.lang3.RandomStringUtils;
 
 import static io.gatling.javaapi.core.CoreDsl.*;
 import static io.gatling.javaapi.http.HttpDsl.*;
-import static io.gatling.javaapi.jdbc.JdbcDsl.*;
 import static io.gatling.javaapi.redis.RedisDsl.*;
 
 @SuppressWarnings("unchecked")
@@ -122,18 +121,6 @@ csv("foo.csv").shard();
 jsonFile("foo.json");
 jsonUrl("http://me.com/foo.json");
 //#json-feeders
-  }
-
-  {
-/*
-//#jdbc-imports
-// beware: you need to import the jdbc module
-import static io.gatling.javaapi.jdbc.JdbcDsl.*;
-//#jdbc-imports
-*/
-//#jdbc-feeder
-jdbcFeeder("databaseUrl", "username", "password", "SELECT * FROM users");
-//#jdbc-feeder
   }
 
   {

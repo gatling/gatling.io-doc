@@ -9,6 +9,7 @@ private val gatlingVersion = "3.16.0"
 private val gatlingGrpcVersion = "3.16.0"
 private val gatlingMqttVersion = "3.16.0"
 private val gatlingGraphqlVersion = "3.16.0.4"
+private val gatlingJdbcVersion = "3.16.1"
 private val awsSdkVersion = "2.55.14"
 
 lazy val root = rootProject
@@ -42,12 +43,12 @@ lazy val root = rootProject
       "io.gatling" % "gatling-core-java"  % gatlingVersion,
       "io.gatling" % "gatling-http-java"  % gatlingVersion,
       "io.gatling" % "gatling-jms-java"   % gatlingVersion,
-      "io.gatling" % "gatling-jdbc-java"  % gatlingVersion,
       "io.gatling" % "gatling-redis-java" % gatlingVersion,
       // External Gatling modules
       "io.gatling" % "gatling-grpc-java"    % gatlingGrpcVersion,
       "io.gatling" % "gatling-mqtt-java"    % gatlingMqttVersion,
       "io.gatling" % "gatling-graphql-java" % gatlingGraphqlVersion,
+      "io.gatling" % "gatling-jdbc-java"    % gatlingJdbcVersion,
       // Other
       "org.apache.commons"     % "commons-lang3"   % "3.21.0",
       "commons-codec"          % "commons-codec"   % "1.23.0",

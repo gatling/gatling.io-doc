@@ -323,7 +323,7 @@ content:
             description: Declares a feeder from database records
             syntax:
               - signature: (dbURL,user,pass,sql)
-                description: The feeder will load its values thanks to the <i>sql</i> request made on the database located at the JDBC URL <i>dbURL</i> as <i>user</i>/<i>pass</i>.<br>Note that you need to include the right JDBC4 driver in the classpath (lib folder if using the bundle)
+                description: The feeder will load its values thanks to the <i>sql</i> request made on the database located at the JDBC URL <i>dbURL</i> as <i>user</i>/<i>pass</i>.<br>Requires the Gatling JDBC plugin and the JDBC driver of the database.
 
           - keyword: redisFeeder
             syntax:

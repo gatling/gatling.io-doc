@@ -113,17 +113,6 @@ jsonUrl("http://me.com/foo.json")
   }
 
   {
-//#jdbc-imports
-// beware: you need to import the jdbc module
-import io.gatling.jdbc.Predef._
-//#jdbc-imports
-
-//#jdbc-feeder
-jdbcFeeder("databaseUrl", "username", "password", "SELECT * FROM users")
-//#jdbc-feeder
-  }
-
-  {
 //#sitemap-imports
 // beware: you need to import the http module
 import io.gatling.http.Predef._

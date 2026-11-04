@@ -21,9 +21,6 @@ import io.gatling.core.Predef._
 // required for Gatling HTTP DSL
 import io.gatling.http.Predef._
 
-// can be omitted if you don't use jdbcFeeder
-import io.gatling.jdbc.Predef._
-
 // used for specifying durations with a unit, eg "5 minutes"
 import scala.concurrent.duration._
 //#imports
