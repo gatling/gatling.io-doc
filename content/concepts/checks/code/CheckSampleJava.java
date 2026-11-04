@@ -367,22 +367,22 @@ http("").get("")
 )
 //#in
 
-//#validator
+//#verify
 .check(
   jmesPath("foo")
     .ofDouble()
-    .validate(
-    "is +/- 1.0",
-    (actual, session) -> {
-      double expected = session.getDouble("expected");
-      if (Math.abs(actual - expected) > 0.1) {
-        throw new RuntimeException("Value is not within 0.1 margin");
+    .verify(
+      "is +/- 0.1",
+      (actual, session) -> {
+        if (actual == null) {
+          return "Value is missing";
+        }
+        double expected = session.getDouble("expected");
+        return Math.abs(actual - expected) > 0.1 ? "Value is not within 0.1 margin" : null;
       }
-      return actual;
-    }
-  )
+    )
 )
-//#validator
+//#verify
 
 //#name
 .check(
