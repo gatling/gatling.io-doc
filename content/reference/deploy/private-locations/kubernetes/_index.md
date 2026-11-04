@@ -6,4 +6,5 @@ description: Load Generators on your Kubernetes cluster.
 ordering:
   - installation
   - configuration
+  - custom-ca
 ---
