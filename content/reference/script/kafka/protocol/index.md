@@ -105,11 +105,6 @@ MSK only serves IAM authentication over TLS, so the plugin always uses TLS with 
 
 {{< include-code "aws-msk-iam" java kt scala >}}
 
-{{< alert info >}}
-On Gatling Enterprise managed locations, the default credentials provider chain finds the credentials of the load generator itself, not of your AWS account.
-To reach a cluster in your account, use `saslAwsMskIamRole` with a role that trusts the load generators, or pass credentials as environment variables or Java system properties, which the default credentials provider chain reads.
-{{< /alert >}}
-
 It needs the [Amazon MSK Library for AWS IAM](https://github.com/aws/aws-msk-iam-auth), `software.amazon.msk:aws-msk-iam-auth`, which the plugin doesn't bring:
 add it in the same scope as the Gatling dependencies. Without it, the simulation fails at startup.
 

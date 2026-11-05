@@ -27,7 +27,7 @@ Limits after which the test will stop. This means that all locally executed test
 The Gatling Kafka plugin isn't included with Gatling by default. Add the Gatling Kafka dependency, in addition to the
 usual Gatling dependencies.
 
-The Gatling Kafka plugin requires Gatling {{< var gatlingVersion >}} or later, and is available for Java, Kotlin, and Scala.
+The Gatling Kafka plugin requires Gatling 3.16.1 or later, and is available for Java, Kotlin, and Scala.
 It isn't available for JavaScript and TypeScript.
 
 For Java or Kotlin:
