@@ -31,7 +31,7 @@ For example, for Avro:
 3-sbt: includes/serializer.sbt.md
 {{< /include-file >}}
 
-Confluent's serializers depend on Confluent's own build of the Kafka clients (`org.apache.kafka:kafka-clients` with a `-ccs` version), which can replace the Apache Kafka clients the plugin depends on: Gradle and sbt pick the highest version, Maven the first declared. Exclude it, as in the snippets above.
+Confluent's serializers bring Confluent's own build of the Kafka clients (`org.apache.kafka:kafka-clients` with a `-ccs` version), which can replace the Apache Kafka clients the plugin depends on. The plugin is tested with both.
 
 The plugin is tested with Confluent's serializers 8.4.0.
 Gatling works with Protobuf 3.x and 4.x, whichever version the Protobuf serializer brings.
