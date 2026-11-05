@@ -42,7 +42,7 @@ kafka("Check order")
 
 //#key-header
 kafka("Order enriched")
-  .expect("enriched-orders")
+  .consume("enriched-orders")
   .correlationId("#{orderId}")
   .check(
     // the key, decoded as UTF-8

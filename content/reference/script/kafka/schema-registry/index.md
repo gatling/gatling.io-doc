@@ -11,7 +11,7 @@ date: 2026-11-05T00:00:00+00:00
 Gatling produces Avro, Protobuf, and JSON Schema keys and values with a schema registry, with [Confluent's serializers](https://docs.confluent.io/platform/current/schema-registry/fundamentals/serdes-develop/index.html), so that the system under test reads them as it reads the records of its own producers.
 
 You write the key or the value as JSON, with any Gatling body, and Gatling converts it with its schema, then serializes it with Confluent's serializer for its format.
-Serialization happens on the [sender threads]({{< ref "/reference/script/kafka/protocol#senders" >}}), within the response time of the request.
+Serialization is part of the response time of the request, see [where serialization happens](#serialization).
 
 ## Add Confluent's serializers {#serializers}
 
@@ -105,6 +105,15 @@ And `matchByValue` can't correlate values serialized with a schema registry: use
 In both cases, the simulation fails at startup.
 {{< /alert >}}
 
+## Understand where serialization happens {#serialization}
+
+Confluent's serializers may call the schema registry, to register or look up a schema, so Gatling serializes the first key or value of a schema, topic, and format on a [sender thread]({{< ref "/reference/script/kafka/protocol#senders" >}}), never on the threads of the virtual users.
+Once the serializer has cached the schema, the virtual users serialize the next ones themselves, which spreads serialization over their threads.
+
+When you set `use.latest.version` to `true`, or set `latest.cache.ttl.sec`, with `schemaRegistryProperty`, the serializer looks the schema up again after a while, so Gatling keeps serializing on the sender threads.
+
+In both cases, serialization is part of the response time of the request.
+
 ## Decode replies {#decode}
 
 When the system under test replies with Avro, Protobuf, or JSON Schema, decode the reply of a request-reply with `decodeAvroReply`, `decodeProtobufReply`, or `decodeJsonSchemaReply`, with the deserializer of Confluent's serializer dependency:
@@ -117,4 +126,4 @@ The decoded reply is JSON, in the Protobuf JSON mapping for Protobuf, with the f
 - `bodyBytes`, `bodyLength`, and `bodyStream` still read the record's bytes
 
 Decoding happens outside of the response time. A reply that can't be decoded fails the request.
-`expect` doesn't decode: its checks read the record's value as is.
+`consume` and subscriptions don't decode: their checks read the record's value as is.

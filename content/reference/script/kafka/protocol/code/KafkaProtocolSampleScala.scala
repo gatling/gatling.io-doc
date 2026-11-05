@@ -77,8 +77,19 @@ kafka.bootstrapServers("broker1:9093")
 //#oauth
 
 //#aws-msk-iam
+// the AWS default credentials provider chain
 kafka.bootstrapServers("b-1.mycluster.abc123.c2.kafka.eu-west-1.amazonaws.com:9098")
   .saslAwsMskIam
+// a named profile of the AWS credentials files
+kafka.bootstrapServers("b-1.mycluster.abc123.c2.kafka.eu-west-1.amazonaws.com:9098")
+  .saslAwsMskIamProfile("load-tests")
+// a role assumed with the default credentials provider chain
+kafka.bootstrapServers("b-1.mycluster.abc123.c2.kafka.eu-west-1.amazonaws.com:9098")
+  .saslAwsMskIamRole("arn:aws:iam::123456789012:role/gatling-msk")
+// with a session name, an external id, and the STS endpoint's region
+kafka.bootstrapServers("b-1.mycluster.abc123.c2.kafka.eu-west-1.amazonaws.com:9098")
+  .saslAwsMskIamRole(
+    "arn:aws:iam::123456789012:role/gatling-msk", "gatling", "my-external-id", "eu-west-1")
 //#aws-msk-iam
 
 //#gssapi
@@ -125,6 +136,12 @@ kafka.bootstrapServers("broker1:9092")
 kafka.bootstrapServers("broker1:9092")
   .replyTimeout(10.seconds)
 //#reply-timeout
+
+//#consume-buffer
+kafka.bootstrapServers("broker1:9092")
+  // at most 50,000 records, each kept up to 30 seconds
+  .consumeBuffer(50000, 30.seconds)
+//#consume-buffer
 
 //#linger
 kafka.bootstrapServers("broker1:9092")

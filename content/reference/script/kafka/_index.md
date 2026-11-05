@@ -22,7 +22,7 @@ Gatling supports:
 
 - producing records, with a key, headers, and a partition, and a value from any Gatling body
 - request-reply, measuring the time until the reply to a request is read
-- waiting for a record that another system produces, measuring the end-to-end latency of a pipeline
+- waiting for a record that another system produces, measuring the end-to-end latency of a pipeline, by blocking the virtual user or with subscriptions that let it continue
 - checks on the value, the key, and the headers of the records read
 - Avro, Protobuf, and JSON Schema keys and values, with a schema registry
 - SASL authentication (PLAIN, SCRAM, OAUTHBEARER, AWS MSK IAM, and GSSAPI) and TLS

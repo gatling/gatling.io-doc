@@ -26,10 +26,11 @@ The protocol accepts the following options:
 | `property`, `properties` | none | Kafka client properties for the producers and the reply consumer. |
 | `producerProperty`, `producerProperties` | none | Kafka producer properties, overriding the shared ones. |
 | `consumerProperty`, `consumerProperties` | none | Kafka consumer properties for the reply consumer, overriding the shared ones. |
-| `saslPlain`, `saslScramSha256`, `saslScramSha512`, `saslOauthBearer`, `saslAwsMskIam`, `saslGssapi` | none | The [SASL authentication](#sasl). |
+| `saslPlain`, `saslScramSha256`, `saslScramSha512`, `saslOauthBearer`, `saslAwsMskIam`, `saslAwsMskIamProfile`, `saslAwsMskIamRole`, `saslGssapi` | none | The [SASL authentication](#sasl). |
 | `useTls`, `trustStore`, `keyStore` | no TLS | The [TLS configuration](#tls). |
 | `matchByKey`, `matchByHeader`, `matchByValue` | `matchByKey` | How [a reply is matched to its request](#matching). |
-| `replyTimeout` | 60 seconds | How long a request waits for its reply, and an `expect` for its record, unless they override it. |
+| `replyTimeout` | 60 seconds | How long a request waits for its reply, and a `consume` or a subscription for its record, unless they override it. |
+| `consumeBuffer` | 10,000 records, 60 seconds | The [records kept](#consume-buffer) for a `consume` or a subscription that starts after its record is read. |
 | `schemaRegistry`, `schemaRegistryBasicAuth`, `schemaRegistryProperty`, `schemaRegistryProperties` | none | The [schema registry]({{< ref "/reference/script/kafka/schema-registry" >}}) of the Avro, Protobuf, and JSON Schema keys and values. |
 
 ## Set Kafka client properties {#properties}
@@ -57,7 +58,7 @@ The plugin picks `security.protocol` from the options you set:
 | --- | --- |
 | A SASL mechanism, without TLS | `SASL_PLAINTEXT` |
 | A SASL mechanism, with TLS | `SASL_SSL` |
-| `saslAwsMskIam` | `SASL_SSL`, always |
+| `saslAwsMskIam`, `saslAwsMskIamProfile`, `saslAwsMskIamRole` | `SASL_SSL`, always |
 | TLS only | `SSL` |
 
 The protocol uses a single SASL mechanism, a single trust store, and a single key store: setting a second one fails right away.
@@ -94,10 +95,20 @@ As it's a system property, it applies to the whole JVM.
 
 ### Authenticate to Amazon MSK with IAM {#aws-msk-iam}
 
-`saslAwsMskIam` authenticates to Amazon MSK with IAM, with the credentials of the AWS default credentials provider chain.
+The plugin authenticates to Amazon MSK with IAM with one of these options:
+
+- `saslAwsMskIam`: with the credentials of the AWS default credentials provider chain
+- `saslAwsMskIamProfile(profileName)`: with the credentials of a named profile of the AWS credentials files
+- `saslAwsMskIamRole(roleArn)`: by assuming a role through AWS STS, with the credentials of the default credentials provider chain, typically for a cluster in another AWS account. It optionally takes the role session's name, the external id that the role's trust policy requires, and the region of the STS endpoint, in this order.
+
 MSK only serves IAM authentication over TLS, so the plugin always uses TLS with it, trusting the JVM's default certificates unless you set a trust store.
 
 {{< include-code "aws-msk-iam" java kt scala >}}
+
+{{< alert info >}}
+On Gatling Enterprise managed locations, the default credentials provider chain finds the credentials of the load generator itself, not of your AWS account.
+To reach a cluster in your account, use `saslAwsMskIamRole` with a role that trusts the load generators, or pass credentials as environment variables or Java system properties, which the default credentials provider chain reads.
+{{< /alert >}}
 
 It needs the [Amazon MSK Library for AWS IAM](https://github.com/aws/aws-msk-iam-auth), `software.amazon.msk:aws-msk-iam-auth`, which the plugin doesn't bring:
 add it in the same scope as the Gatling dependencies. Without it, the simulation fails at startup.
@@ -134,26 +145,41 @@ The protocol defines where this id is:
 
 The system under test must copy the correlation id from the request to its reply.
 
-The same matching applies to the records an [`expect`]({{< ref "/reference/script/kafka/actions#expect" >}}) waits for, with the correlation id it provides.
+The same matching applies to the records that a [`consume`]({{< ref "/reference/script/kafka/actions#consume" >}}) or a [subscription]({{< ref "/reference/script/kafka/actions#subscribe" >}}) waits for, with the correlation id it provides.
 
 {{< alert warning >}}
 The `matchByValue` check runs without the virtual user's session, so it can't use the virtual user's attributes, such as `#{orderId}`.
 It can't correlate values serialized with a schema registry either: the simulation fails at startup if you combine them.
 {{< /alert >}}
 
-Two requests waiting at the same time on the same reply topic must have different correlation ids: the second one fails.
+Two requests, consumes, or subscriptions waiting at the same time on the same topic must have different correlation ids: the second one fails.
 
 ### Understand how replies are read {#reply-consumer}
 
-Gatling reads the reply topics with a consumer shared by all the virtual users of the protocol.
+Gatling reads the reply topics, and the topics of the consumes and subscriptions, with a consumer shared by all the virtual users of the protocol.
 This consumer doesn't join a consumer group: it reads every partition of a reply topic, starting from its end, from before the first request on this topic is sent.
 It ignores the replies no virtual user waits for.
 
 As a result, when you run a test on several load generators, each one reads every reply, including the replies to the requests of the other load generators, which it ignores.
 
+### Keep the records nobody waits for yet {#consume-buffer}
+
+On the topics of the consumes and subscriptions, a record may be read before a virtual user waits for it, for example when a `consume` comes after other actions.
+Gatling keeps these records, at most 10,000, for at most 60 seconds, the oldest being dropped first, so that a `consume` or a subscription that starts later still finds its record.
+
+On a busy topic, 10,000 records may cover a short time, and a `consume` that starts later than that after its record was read times out although the record came.
+Gatling then logs a warning naming `consumeBuffer`, which sets the number of records kept and how long they're kept:
+
+{{< include-code "consume-buffer" java kt scala >}}
+
+Raise the number of records as the memory of the load generator allows.
+
+The kept records only matter for a `consume`, and for a [subscription]({{< ref "/reference/script/kafka/actions#subscribe" >}}) placed after the action that makes its record.
+A subscription placed before this action, or attached to a `send` or a `requestReply`, waits before its record can come.
+
 ## Configure timeouts {#timeouts}
 
-`replyTimeout` limits how long a request-reply waits for its reply, and an `expect` for its record, 60 seconds by default.
+`replyTimeout` limits how long a request-reply waits for its reply, and a `consume` or a subscription for its record, 60 seconds by default.
 Each action can override it.
 
 {{< include-code "reply-timeout" java kt scala >}}
@@ -177,8 +203,14 @@ Set the producer properties that drive latency, such as `linger.ms`, `batch.size
 ### Understand how records are sent {#senders}
 
 A Kafka producer may block while it waits for the metadata of a topic, or for room in its buffer.
-So that virtual users never block, Gatling hands the records to a few dedicated sender threads, which serialize and send them.
+So that virtual users never block, Gatling hands the records to 8 dedicated sender threads per producer, which send them.
 The records of a topic without an explicit partition are sent from the same thread, in order.
+
+Each of the first 8 topics of a producer gets a sender thread of its own, so a topic waiting for its metadata doesn't delay the records of another topic.
+The records with an explicit partition are sent from another thread than their topic's.
+Past these, topics share the sender threads.
+
+The virtual users serialize the records themselves, so that serialization spreads over their threads, except the keys and values of a [schema registry]({{< ref "/reference/script/kafka/schema-registry#serialization" >}}) until their schema is cached.
 
 Each sender thread holds a bounded number of records waiting to be sent.
 When it's full, because the brokers or the producer can't keep up with the load, the send fails right away with a `Kafka producer saturated` error, instead of piling up records without bound.

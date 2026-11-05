@@ -1,7 +1,7 @@
 ---
 title: Checks
 seotitle: Gatling Kafka protocol reference - checks on record values, keys, and headers
-description: How to check the replies and the expected records of Kafka actions with Gatling, including their value, key, and headers.
+description: How to check the replies and the consumed records of Kafka actions with Gatling, including their value, key, and headers.
 lead: Learn how to check the records Gatling reads, and save values for the next requests.
 date: 2026-11-05T00:00:00+00:00
 ---
@@ -9,10 +9,12 @@ date: 2026-11-05T00:00:00+00:00
 ## Understand Kafka checks
 
 Kafka checks are regular Gatling [checks]({{< ref "/concepts/checks" >}}): they support `find`, `findAll`, `count`, `saveAs`, `transform`, and the usual validators such as `is` and `gt`.
-They run on the record that Gatling reads: the reply of a [request-reply]({{< ref "/reference/script/kafka/actions#request-reply" >}}), or the record of an [expect]({{< ref "/reference/script/kafka/actions#expect" >}}).
+They run on the record that Gatling reads: the reply of a [request-reply]({{< ref "/reference/script/kafka/actions#request-reply" >}}), the record of a [consume]({{< ref "/reference/script/kafka/actions#consume" >}}), or the record of a [subscription]({{< ref "/reference/script/kafka/actions#subscribe" >}}).
 `send` reads no record, so it has no checks.
 
 Checks run once the record is read, outside of the response time. A failing check makes the request fail.
+
+The checks of a subscription run on the session as it was when the subscription started. What they save, and their failures, apply to the session when the virtual user calls `kafka.poll`, see [subscriptions]({{< ref "/reference/script/kafka/actions#subscribe-response-time" >}}).
 
 ## Check the value {#value}
 

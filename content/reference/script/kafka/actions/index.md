@@ -1,7 +1,7 @@
 ---
 title: Actions
-seotitle: Gatling Kafka protocol reference - send, request-reply, and expect actions
-description: How to produce Kafka records with Gatling, measure request-reply latency, and wait for the records another system produces to measure end-to-end latency.
+seotitle: Gatling Kafka protocol reference - send, request-reply, consume, and subscribe actions
+description: How to produce Kafka records with Gatling, measure request-reply latency, and wait for the records another system produces, blocking or not, to measure end-to-end latency.
 lead: Learn how to produce records, wait for their replies, and measure the end-to-end latency of a pipeline.
 date: 2026-11-05T00:00:00+00:00
 ---
@@ -15,7 +15,8 @@ Then pick what the action does:
 | --- | --- | --- |
 | [`send(topic)`](#send) | Produces a record. | Until the broker acknowledges the record. |
 | [`requestReply(requestTopic, replyTopic)`](#request-reply) | Produces a record, then waits for its reply. | Until the reply is read. |
-| [`expect(topic)`](#expect) | Waits for a record that another system produces. | From when the action starts, or from a timestamp you provide, until the record is read. |
+| [`consume(topic)`](#consume) | Waits for a record that another system produces. | From when the action starts, or from a timestamp you provide, until the record is read. |
+| [`subscribe(topic)`](#subscribe) | Starts waiting for a record that another system produces, without blocking the virtual user, which collects it later with `kafka.poll`. | From when the subscription starts, or from a timestamp you provide, until the record is read. |
 
 Topics are Gatling Expression Language Strings or functions.
 
@@ -32,6 +33,7 @@ The record also accepts:
 | `key` | The record's key: a Gatling Expression Language String or a function, encoded as UTF-8, a Gatling body, or a [schema registry body]({{< ref "/reference/script/kafka/schema-registry" >}}). |
 | `header(name, value)` | A header. The name and the value are Gatling Expression Language Strings, the value can also be a function. The value is encoded as UTF-8. Call it once per header. |
 | `partition` | The record's partition: an integer, a Gatling Expression Language String, or a function. Without it, the producer's partitioner picks the partition, typically from the key. |
+| `subscribe` | A subscription to a record that another system produces because of this one, tracked before the record is sent, see [attach subscriptions](#subscribe-attached). Call it once per subscription. |
 
 {{< include-code "send-options" java kt scala >}}
 
@@ -76,6 +78,7 @@ The request-reply also accepts:
 | `check` | [Checks]({{< ref "/reference/script/kafka/checks" >}}) on the reply. |
 | `replyTimeout` | How long to wait for the reply, overriding the protocol's. The Java and Kotlin `replyTimeout` also takes a number of seconds. |
 | `decodeAvroReply`, `decodeProtobufReply`, `decodeJsonSchemaReply` | Decode the reply with the [schema registry]({{< ref "/reference/script/kafka/schema-registry#decode" >}}) before the checks. |
+| `subscribe` | A subscription to another record that the system produces because of this request, besides its reply, tracked before the request is sent, see [attach subscriptions](#subscribe-attached). |
 
 Gatling matches the reply to its request with the correlation id that the protocol defines: by default, the reply has the request's key.
 See [how to match replies to their requests]({{< ref "/reference/script/kafka/protocol#matching" >}}).
@@ -87,14 +90,14 @@ A reply that doesn't come within the reply timeout fails the request.
 Before sending the first request on a reply topic, Gatling waits for its consumer to be ready to read the replies on this topic.
 This wait isn't part of the response time.
 
-## Wait for a record from another system {#expect}
+## Wait for a record from another system {#consume}
 
-`expect` doesn't produce anything: it waits for a record that another system produces on a topic, typically a pipeline that processes a record sent earlier, and measures the end-to-end latency.
+`consume` doesn't produce anything: it blocks the virtual user until a record that another system produces on a topic is read, typically a pipeline that processes a record sent earlier, and measures the end-to-end latency.
 `correlationId` provides the correlation id of the record to wait for, a Gatling Expression Language String or a function, matched as the protocol defines, like [a reply]({{< ref "/reference/script/kafka/protocol#matching" >}}).
 
-{{< include-code "expect" java kt scala >}}
+{{< include-code "consume" java kt scala >}}
 
-The expect also accepts:
+The consume also accepts:
 
 | **Option** | **Description** |
 | --- | --- |
@@ -109,6 +112,52 @@ A record read before this timestamp is ignored, as it's an older record with the
 The timeout counts from when the virtual user starts waiting.
 A record that doesn't come within the timeout fails the request.
 
-The record may be read before the virtual user starts waiting for it, while it runs other actions: Gatling keeps the records that no virtual user waits for yet, for up to 60 seconds and up to 10,000 records, the oldest being dropped first.
+The record may be read before the virtual user starts waiting for it, while it runs other actions: Gatling keeps the records that no virtual user waits for yet, by default for up to 60 seconds and up to 10,000 records, the oldest being dropped first.
+On a busy topic, 10,000 records may cover less time than the virtual user takes to start waiting, and the record it waits for is dropped before: the consume times out although the record came.
+Gatling then logs a warning naming the protocol's [`consumeBuffer`]({{< ref "/reference/script/kafka/protocol#consume-buffer" >}}) option, which raises these limits.
+
 When the topic is a static String, Gatling reads it from when the simulation starts.
 When it's a Gatling Expression Language String or a function, Gatling reads it from when a virtual user first waits on it.
+
+For a record that comes from a record or a request that Gatling sends, prefer a [subscription attached to the send](#subscribe-attached): it doesn't depend on the kept records, and it doesn't need `startTimestampFrom`.
+
+## Subscribe to records without blocking {#subscribe}
+
+`subscribe` starts waiting for a record that another system produces on a topic, and lets the virtual user continue right away, for example with the HTTP request that makes the system produce the record.
+Later, `kafka.poll` (`kafka.poll()` in Java and Kotlin) waits for the virtual user's subscriptions to complete.
+`correlationId` provides the correlation id of the record, a Gatling Expression Language String or a function, matched as the protocol defines, like [a reply]({{< ref "/reference/script/kafka/protocol#matching" >}}).
+
+{{< include-code "subscribe" java kt scala >}}
+
+The subscription accepts the same options as [`consume`](#consume): `check`, `timeout`, and `startTimestampFrom`.
+
+### Place a subscription before what makes its record {#subscribe-order}
+
+A subscription is tracked before the virtual user continues, once Gatling's consumer reads the topic, so the record can't come before the subscription.
+Place it before the action that makes the system produce the record, such as an HTTP request.
+
+A subscription placed after this action may miss its record, as for a `consume`: it only finds the record among the records Gatling keeps, see [`consumeBuffer`]({{< ref "/reference/script/kafka/protocol#consume-buffer" >}}).
+
+### Attach subscriptions to a send or a request-reply {#subscribe-attached}
+
+`send` and `requestReply` also accept `subscribe`, with a request name, a topic, and a correlation id, or with a subscription built with `kafka(requestName).subscribe(topic)`, to set checks and a timeout.
+Gatling tracks the attached subscriptions before sending anything, so the record can't come first.
+Call `subscribe` once per subscription.
+
+{{< include-code "subscribe-attached" java kt scala >}}
+
+The response time of an attached subscription lasts from when it starts, right before the record or the request is sent, until the subscription's record is read: the end-to-end latency of the pipeline, without `startTimestampFrom`.
+Waiting for Gatling's consumer to read the subscription's topic isn't part of the response time of the `send` or the `requestReply`.
+Prefer this form to measure Kafka-to-Kafka pipelines.
+
+### Understand what Gatling measures and when the session changes {#subscribe-response-time}
+
+The response time of a subscription lasts from when it starts, or from the timestamp of `startTimestampFrom`, until its record is read.
+Gatling logs it then, or when the subscription times out, whether or not the virtual user polls: polling doesn't change the response time.
+The timeout counts from when the subscription starts waiting.
+
+A subscription's checks run when its record is read, on the session as it was when the subscription started.
+What they save, and their failures, only apply to the virtual user's session at `kafka.poll`, which waits for every pending subscription to complete, by its record or by its timeout.
+A virtual user that doesn't poll keeps its session as is, but its subscriptions are still logged.
+
+A virtual user that ends with pending subscriptions logs them as failed, with `Virtual user ended before its record`.

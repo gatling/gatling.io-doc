@@ -9,7 +9,7 @@ private val gatlingVersion = "3.16.0"
 private val gatlingGrpcVersion = "3.16.0"
 private val gatlingMqttVersion = "3.16.0"
 private val gatlingGraphqlVersion = "3.16.0.4"
-private val gatlingKafkaVersion = "3.16.1.FL-M1"
+private val gatlingKafkaVersion = "3.16.1-M2"
 private val awsSdkVersion = "2.57.8"
 
 lazy val root = rootProject

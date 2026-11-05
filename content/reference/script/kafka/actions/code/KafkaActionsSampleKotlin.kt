@@ -16,6 +16,7 @@
 
 import io.gatling.javaapi.core.CoreDsl.*
 import io.gatling.javaapi.core.Simulation
+import io.gatling.javaapi.http.HttpDsl.*
 import io.gatling.javaapi.kafka.KafkaDsl.*
 import java.time.Duration
 
@@ -75,7 +76,7 @@ kafka("Check order")
   .replyTimeout(Duration.ofSeconds(5))
 //#request-reply
 
-//#expect
+//#consume
 val placeOrder =
   // the start of the end-to-end latency, in epoch milliseconds
   exec { session -> session.set("sentAt", System.currentTimeMillis()) }
@@ -87,7 +88,7 @@ val placeOrder =
     )
     .exec(
       kafka("Order enriched")
-        .expect("enriched-orders")
+        .consume("enriched-orders")
         // matched with the protocol's matcher, here the record's key
         .correlationId("#{orderId}")
         .check(jsonPath("$.status").shouldBe("ENRICHED"))
@@ -95,6 +96,51 @@ val placeOrder =
         .timeout(Duration.ofSeconds(30))
         .startTimestampFrom("sentAt")
     )
-//#expect
+//#consume
+
+//#subscribe
+val checkout =
+  exec(
+    // before the HTTP request that makes the system produce the record
+    kafka("Order shipped")
+      .subscribe("order-events")
+      // matched with the protocol's matcher, here the record's key
+      .correlationId("#{orderId}")
+      .check(jsonPath("$.trackingNumber").saveAs("trackingNumber"))
+      // overrides the protocol's replyTimeout
+      .timeout(Duration.ofSeconds(30)),
+    http("Checkout").post("/orders/#{orderId}/checkout"),
+    http("Browse").get("/products"),
+    // waits for the subscriptions, then applies what their checks saved
+    kafka.poll(),
+    http("Track").get("/tracking/#{trackingNumber}")
+  )
+//#subscribe
+
+//#subscribe-attached
+val pipeline =
+  exec(
+    kafka("Place order")
+      .send("orders")
+      .value(StringBody("""{"id": "#{orderId}"}"""))
+      .key("#{orderId}")
+      // the request name, the topic, and the correlation id
+      .subscribe("Order enriched", "enriched-orders", "#{orderId}")
+      // or a subscription with checks and a timeout
+      .subscribe(
+        kafka("Order billed")
+          .subscribe("billing-events")
+          .correlationId("#{orderId}")
+          .check(jsonPath("$.status").shouldBe("BILLED"))
+          .timeout(Duration.ofSeconds(30))
+      ),
+    kafka("Check order")
+      .requestReply("order-requests", "order-replies")
+      .value(StringBody("""{"id": "#{orderId}"}"""))
+      .key("#{orderId}")
+      .subscribe("Order shipped", "order-events", "#{orderId}"),
+    kafka.poll()
+  )
+//#subscribe-attached
   }
 }
