@@ -15,6 +15,7 @@ Configuring a custom Single Sign-On (SSO) solution is only available on the [ent
 At the moment, we only support integration with SSO systems which are accessible on the Internet.
 
 If you already have an organization on Gatling Enterprise Edition, after configuring a custom SSO, you need to re-invite your users and configure their roles. All other existing data, such as your [teams]({{< ref "/reference/administration/teams" >}}), [tests]({{< ref "/reference/run-tests/tests" >}}), [reports]({{< ref "/reference/stats/reports/cloud" >}}), and [API tokens]({{< ref "/reference/administration/api-tokens" >}}) remain.
+If you use [custom SSO group mapping](#custom-sso-group-mapping), user roles come from your SSO groups instead: roles assigned to users individually are ignored.
 
 ## Required information
 
@@ -125,33 +126,41 @@ When a user authenticates through your SSO system, their group memberships are f
 
 ### API endpoints
 
-Consult the [OpenAPI specification]({{< ref "/reference/api" >}}) for available endpoints.
+Consult the [OpenAPI specification]({{< ref "/reference/api" >}}) for available endpoints. SSO group mappings are managed with the `/api/public/v2/sso-groups` endpoints.
 
 ### Usage examples
 
-#### Example 1: mapping an SSO group to a global ole
+The following examples are request bodies for creating (`POST /api/public/v2/sso-groups`) or updating (`PUT /api/public/v2/sso-groups/{ssoGroupId}`) an SSO group mapping:
 
-To grant all members of the "Administrators" SSO group the Admin role in your Gatling Enterprise Edition organization:
+- `name` is the SSO group name, as returned in the `gatling-groups` claim,
+- `roles.global` contains at most one global role,
+- `roles.teams` contains at most one role per team.
+
+#### Example 1: mapping an SSO group to a global role
+
+To grant all members of the "Administrators" SSO group the Administrator role in your Gatling Enterprise Edition organization:
 
 ```json
 {
-  "group": "Administrators",
-  "type": "sso-group-mapping",
-  "globalRole": "Administrator"
+  "name": "Administrators",
+  "roles": {
+    "global": ["administrator"]
+  }
 }
 ```
 
 #### Example 2: mapping an SSO group to team roles
 
-To grant all members of the "QA" SSO group the Admin role on the "Performance Testing" team and the Viewer role on the "Production Monitoring" team:
+To grant all members of the "QA" SSO group the Administrator role on the "Performance Testing" team and the Viewer role on the "Production Monitoring" team:
 
 ```json
 {
-  "group": "QA",
-  "type": "sso-group-mapping",
-  "teamRoles": {
-    "<Performance Testing Team ID>": "Team Administrator",
-    "<Production Monitoring Team ID>": "Team Viewer"
+  "name": "QA",
+  "roles": {
+    "teams": [
+      { "id": "<Performance Testing Team ID>", "role": "administrator" },
+      { "id": "<Production Monitoring Team ID>", "role": "viewer" }
+    ]
   }
 }
 ```
@@ -162,19 +171,20 @@ You can combine global and team roles in a single mapping:
 
 ```json
 {
-  "group": "DevOps",
-  "type": "sso-group-mapping",
-  "globalRole": "Contributor",
-  "teamRoles": {
-    "<Infrastructure Team ID>": "Team Administrator",
-    "<Development Team ID>": "Team Viewer"
+  "name": "DevOps",
+  "roles": {
+    "global": ["contributor"],
+    "teams": [
+      { "id": "<Infrastructure Team ID>", "role": "administrator" },
+      { "id": "<Development Team ID>", "role": "viewer" }
+    ]
   }
 }
 ```
 
 ### Available roles
 
-Consult the [available roles]({{< ref "/reference/administration/users/#permissions" >}}) for available roles.
+Consult the [available roles]({{< ref "/reference/administration/users/#permissions" >}}) for available roles. In the API, roles are written in lowercase: `administrator`, `leader`, `tester`, `contributor`, `viewer`.
 
 {{< alert info >}}
 When a user belongs to multiple SSO groups, they will be granted the highest level of access from all applicable group mappings.
