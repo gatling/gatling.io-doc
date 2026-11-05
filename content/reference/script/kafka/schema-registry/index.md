@@ -32,6 +32,7 @@ For example, for Avro:
 {{< /include-file >}}
 
 Confluent's serializers bring Confluent's own build of the Kafka clients (`org.apache.kafka:kafka-clients` with a `-ccs` version), which can replace the Apache Kafka clients the plugin depends on. The plugin is tested with both.
+Gatling Enterprise runs your simulations with the Apache Kafka clients the plugin depends on, whatever version your project resolves locally.
 
 The plugin is tested with Confluent's serializers 8.4.0.
 Gatling works with Protobuf 3.x and 4.x, whichever version the Protobuf serializer brings.
