@@ -12,19 +12,20 @@ aliases:
 
 ## Accessing your profile
 
-To access your profile at any time click on your oraganization's initials in the top right of the screen and then click the **My profile** button.
+To access your profile at any time click your name in the top right of the screen, then click the **My profile** button.
 
 {{< img src="profile-menu.png" alt="My profile button" caption="Profile menu">}}
 
 
 ## Managing your profile
 
-The profile page is divided into 2 sections:
+The profile page contains the sections below. Some depend on your role:
 
-- Information: your personal information
+- Identity: shows your first name, last name, username, and email, with a link to edit them in your account settings.
+- Email Notifications (**This section is available to Team admins only.**): your email preferences, including the **Daily Alerts** toggle
 - Organization roles: your organization and team-level roles for your organization(s)
 
-From this menu, you can view and modify your account settings and leave an organization. 
+From this page, you can view and modify your account settings, manage your email notifications, and leave an organization.
 
 ### View and modify your account settings
 
@@ -33,7 +34,8 @@ User roles are modified using the Organization menu. See [Manage users and permi
 from the left-side menu.
 {{< /alert >}}
 
-To modify your account settings, click **Account settings** in the Information panel. 
+To modify your account settings, click the account settings link in the Identity section.
+
 
 #### Update your personal information
 
@@ -58,8 +60,16 @@ In the Account security screen, you can:
 
 {{< img src="signing-in.png" alt="Signing In" caption="Signing In" >}}
 
+### Manage your email notifications
+
+In the Email Notifications card, use the **Daily Alerts** toggle to subscribe to or unsubscribe from the [Daily Alerts email]({{< ref "/integrations/notifications/daily-alerts" >}}).
+
+This section is available to Team admins only.
+
+{{< img src="email-notifications.png" alt="Email Notifications card with the Daily Alerts toggle enabled and a description saying the email lists unsuccessful tests from the teams you administer" caption="Email Notifications" >}}
+
 ### Permanently leave an organization
 
-You can permanently leave an organization by clicking the **Leave organization** button.
+You can permanently leave an organization by clicking the **Leave** button in the header of the organization's card in the Organization roles section.
 
-{{< img src="profile.png" alt="Profile view" caption="Profile" >}}
+{{< img src="profile.png" alt="Organization roles section with one card per organization, each with its organization role, your team roles, and a Leave button in the card header" caption="Organization roles" >}}

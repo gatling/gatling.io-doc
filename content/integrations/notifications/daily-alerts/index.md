@@ -41,9 +41,9 @@ The email shows the total number of tests that need your attention in the teams 
 
 ## Unsubscribe from Daily Alerts
 
-To stop receiving Daily Alerts:
+You can stop receiving Daily Alerts in two ways:
 
-1. Click your name in the top right of the screen, then click **My profile**.
-2. In the **Email Notifications** card, turn off the **Daily Alerts** toggle.
+- **From your profile:** Click your name in the top right of the screen, then click **My profile**. In the **Email Notifications** card, turn off the **Daily Alerts** toggle. Turn it back on to subscribe again.
+- **From the email:** Click the unsubscribe link at the bottom of any Daily Alerts email.
 
-Turn the toggle back on to subscribe again. To learn more about the page, see [User profile and settings]({{< ref "/reference/user-guide/profile" >}}).
+To learn more about the page, see [User profile and settings]({{< ref "/reference/user-guide/profile" >}}).
