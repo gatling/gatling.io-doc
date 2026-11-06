@@ -19,7 +19,9 @@ If no test needs attention, Gatling doesn't send an email.
 
 ## Check who receives Daily Alerts
 
-You receive Daily Alerts if you have the **Administrator** role on at least **one team**. Organization administrators who don't administer a team don't receive Daily Alerts. The email lists the tests of the teams you administer. To learn more about roles, see [Manage users and permissions]({{< ref "/reference/administration/users#managing-users" >}}).
+You receive Daily Alerts if you have the **Administrator** role on at least **one team** and you haven't unsubscribed. Organization administrators who don't administer a team don't receive Daily Alerts. The email lists the tests of the teams you administer. To learn more about roles, see [Manage users and permissions]({{< ref "/reference/administration/users#managing-users" >}}).
+
+You can unsubscribe at any time. See [Unsubscribe from Daily Alerts](#unsubscribe-from-daily-alerts).
 
 {{< alert info >}}
 Gatling doesn't support SSO group mapping for Daily Alerts yet.
@@ -36,3 +38,12 @@ The email lists a test only if its **last run** ended the previous day without s
 The email shows the total number of tests that need your attention in the teams you administer, and lists up to five of the most recent tests with issues. Select **Open test** to go to the run, or **See all tests with issues** to open the Tests page filtered on the **Unsuccessful** status.
 
 {{< img src="notifications-daily-alerts-example.png" alt="Daily Alerts email with the day covered, a counter of tests that need your attention, the five most recent tests with issues with their run status, team, run label and trigger, and a See all tests with issues button" >}}
+
+## Unsubscribe from Daily Alerts
+
+To stop receiving Daily Alerts:
+
+1. Click your name in the top right of the screen, then click **My profile**.
+2. In the **Email Notifications** card, turn off the **Daily Alerts** toggle.
+
+Turn the toggle back on to subscribe again. To learn more about the page, see [User profile and settings]({{< ref "/reference/user-guide/profile" >}}).
