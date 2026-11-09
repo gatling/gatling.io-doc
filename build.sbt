@@ -9,7 +9,7 @@ private val gatlingVersion = "3.16.0"
 private val gatlingGrpcVersion = "3.16.0"
 private val gatlingMqttVersion = "3.16.0"
 private val gatlingGraphqlVersion = "3.16.0.4"
-private val awsSdkVersion = "2.57.8"
+private val awsSdkVersion = "2.57.11"
 
 lazy val root = rootProject
   .enablePlugins(
