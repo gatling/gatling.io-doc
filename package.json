@@ -8,7 +8,7 @@
     "@gatling.io/http": "3.16.4",
     "@gatling.io/mqtt": "3.16.4",
     "@gatling.io/postman": "3.16.4",
-    "glob": "13.0.6",
+    "glob": "14.0.3",
     "gray-matter": "4.0.3",
     "yaml": "2.8.4"
   },
