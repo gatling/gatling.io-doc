@@ -114,6 +114,19 @@ Throw an exception to make the check fail with the exception's message (in Scala
 
 {{< include-code "post-check" >}}
 
+### Apply checks conditionally
+
+Use `checkIf` to apply checks only when a condition holds.
+The condition is a Gatling Expression Language String that resolves a Boolean, or a function of the Session and, optionally, of the inbound message (a String for a text frame, a byte array for a binary frame).
+
+{{< include-code "check-if" >}}
+
+{{< alert warning >}}
+The argument order of the message-aware function differs between SDKs.
+In JavaScript and TypeScript, the Session comes first, so you can pass either `(session) => …` or `(session, message) => …`.
+In Java, Kotlin, and Scala, the message comes first: `(message, session)`.
+{{< /alert >}}
+
 ### Matching messages
 
 You can define `matching` criteria to filter messages you want to check.

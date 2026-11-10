@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { StringBody, exec, jmesPath, pause, regex, scenario } from "@gatling.io/core";
+import { StringBody, exec, jmesPath, jsonPath, pause, regex, scenario } from "@gatling.io/core";
 import { http, sse } from "@gatling.io/http";
 
 //#sseName
@@ -53,6 +53,21 @@ sse.checkMessage("checkName")
     return session.set("bar", 1);
   });
 //#post-check
+
+//#check-if
+// with a Gatling EL String condition that resolves a Boolean
+sse.checkMessage("checkName")
+  .checkIf("#{bool}")
+  .then(jsonPath("$.data").saveAs("snapshot"));
+// with a function aware of the Session
+sse.checkMessage("checkName")
+  .checkIf((session) => session.get("key") === "executeCheck")
+  .then(jsonPath("$.data").saveAs("snapshot"));
+// with a function aware of the Session and of the message: the Session comes first
+sse.checkMessage("checkName")
+  .checkIf((session, message) => message.includes(session.get("symbol")))
+  .then(jsonPath("$.data").saveAs("snapshot"));
+//#check-if
 
 //#check-from-connect
 exec(sse("Connect").get("/stocks/prices")

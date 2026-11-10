@@ -133,6 +133,21 @@ ws.checkTextMessage("checkName")
   });
 //#post-check
 
+//#check-if
+// with a Gatling EL String condition that resolves a Boolean
+ws.checkTextMessage("checkName")
+  .checkIf("#{bool}")
+  .then(regex("hello (.*)").saveAs("name"));
+// with a function aware of the Session
+ws.checkTextMessage("checkName")
+  .checkIf((session) => session.get("key") === "executeCheck")
+  .then(regex("hello (.*)").saveAs("name"));
+// with a function aware of the Session and of the message: the Session comes first
+ws.checkTextMessage("checkName")
+  .checkIf((session, message) => message.startsWith(session.get("prefix")))
+  .then(regex("hello (.*)").saveAs("name"));
+//#check-if
+
 //#matching
 ws.checkTextMessage("checkName")
   .matching(jsonPath("$.uuid").is("#{correlation}"))
