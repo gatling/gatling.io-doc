@@ -57,6 +57,18 @@ sse.checkMessage("checkName")
   })
 //#post-check
 
+//#check-if
+// with a Gatling EL String condition that resolves a Boolean
+sse.checkMessage("checkName")
+  .checkIf("#{bool}")(jsonPath("$.data").saveAs("snapshot"))
+// with a function aware of the Session
+sse.checkMessage("checkName")
+  .checkIf(session => session("key").as[String] == "executeCheck")(jsonPath("$.data").saveAs("snapshot"))
+// with a function aware of the message and of the Session
+sse.checkMessage("checkName")
+  .checkIf((message, session) => message.contains(session("symbol").as[String]))(jsonPath("$.data").saveAs("snapshot"))
+//#check-if
+
 //#check-from-connect
 exec(sse("Connect").get("/stocks/prices")
   .await(5)(sseCheck))
