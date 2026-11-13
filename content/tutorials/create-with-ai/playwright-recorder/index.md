@@ -35,7 +35,7 @@ Watch Heather Thacker, Developer Advocate at Gatling, drive a Playwright browser
   The second command installs the skill for Claude Code. For other coding agents, use `--skills agents`.
 
 - A coding agent installed on your machine. This guide uses [Claude Code](https://docs.claude.com/en/docs/claude-code/overview).
-- The Gatling AI extensions plugin. See the [installation instructions]({{< ref "/ai-plugins/overview#installation-for-claude-code" >}}).
+- The Gatling AI extensions plugin. See the [installation instructions]({{< ref "/ai/plugins/overview#installation-for-claude-code" >}}).
 
 During the run, the agent runs playwright-cli and build commands. Depending on your agent settings, it asks for your approval before each command.
 
@@ -249,4 +249,4 @@ The `discovery/` directory holds the requests and responses of your session, inc
 ## Next steps
 
 - Scale the smoke test into a load test by changing the [injection profile]({{< ref "/concepts/injection" >}}).
-- Deploy and run the test on Gatling Enterprise Edition from your coding agent with the [Gatling skills]({{< ref "/ai-plugins/skills" >}}) and the [MCP server]({{< ref "/ai-plugins/mcp-server" >}}).
+- Deploy and run the test on Gatling Enterprise Edition from your coding agent with the [Gatling skills]({{< ref "/ai/plugins/skills" >}}) and the [MCP server]({{< ref "/ai/plugins/mcp-server" >}}).

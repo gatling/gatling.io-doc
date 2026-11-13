@@ -1,0 +1,13 @@
+---
+title: AI Assistant
+description: Integrate Gatling with your favorite IDE for a smoother development experience.
+lead: Enhance your Gatling experience with powerful IDE integrations.
+aliases:
+  - /integrations/ai/assistant/
+  - /ai-plugins/assistant/
+ordering:
+  - vscode
+  - cursor
+  - windsurf
+  - antigravity
+---
