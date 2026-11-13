@@ -51,25 +51,7 @@ Gatling AI Server sits between your users' AI assistants and two services it cal
 
 The following diagram shows how the components connect:
 
-```mermaid
-flowchart LR
-    subgraph users["Your users"]
-        assistant["AI assistant<br/>(Claude Code)"]
-    end
-    subgraph infra["Your infrastructure"]
-        proxy["TLS reverse proxy<br/>or load balancer"]
-        server["Gatling AI Server<br/>(Docker container)"]
-        data[("Data volume<br/>/deployments/data")]
-        proxy -->|"HTTP, port 8080"| server
-        server --- data
-    end
-    auth["Gatling sign-in<br/>auth.gatling.io"]
-    model["Your model endpoint<br/>(OpenAI-compatible)"]
-    assistant -->|"MCP over HTTPS"| proxy
-    assistant -.->|"sign in, in the browser"| auth
-    server -->|"token validation (JWKS)"| auth
-    server -->|"code snippets to port"| model
-```
+{{< img src="architecture.png" alt="Your users’ AI assistant reaches Gatling AI Server through your TLS reverse proxy; the server keeps its SQLite file on a data volume, sends code snippets to your model endpoint and validates tokens against Gatling’s sign-in service, where users sign in from their browser" >}}
 
 ## Check what this release converts
 
