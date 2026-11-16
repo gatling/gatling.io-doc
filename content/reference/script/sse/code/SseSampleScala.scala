@@ -18,6 +18,8 @@ import io.gatling.commons.validation.{Failure, Success}
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 
+import scala.concurrent.duration._
+
 class SseSampleScala {
 //#sseName
 sse("Sse").sseName("myCustomName")
@@ -129,6 +131,20 @@ http
   // with a max buffer size of 5
   .sseUnmatchedInboundMessageBufferSize(5)
 //#protocol
+
+//#setCheckBuffer
+http
+  // buffer up to 100 inbound events that no check matched,
+  // for up to 10 seconds
+  .sseSetCheckBuffer(100, 10.seconds)
+
+exec(
+  // trigger an event on the stream
+  http("Place order").post("/orders"),
+  // the event might have already arrived: setCheck matches it from the buffer
+  sse("Wait for the event").setCheck.await(30)(sseCheck)
+)
+//#setCheckBuffer
 
 //#stock-market-sample
 val scn = scenario("ServerSentEvents")

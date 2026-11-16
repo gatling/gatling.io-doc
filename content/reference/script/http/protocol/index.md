@@ -91,6 +91,44 @@ If you configure a remote in prior knowledge and set it to true, but that the AL
 Use this option only if you are sure about your remote configuration.
 {{< /alert >}}
 
+When you send HTTPS requests through a [proxy]({{< ref "#proxy" >}}), Gatling tunnels the connection through the proxy and negotiates HTTP/2 with the remote through ALPN, like with a direct connection.
+The proxy only relays the bytes, and the `CONNECT` request to the proxy itself still uses HTTP/1.1.
+
+By default, Gatling only uses HTTP/2 over TLS.
+To load test a server that speaks HTTP/2 without TLS (h2c), such as a gRPC server or an internal API behind a TLS-terminating load balancer, set its `http://` remote to `true` in `http2PriorKnowledge`.
+Gatling then sends the HTTP/2 connection preface right away, as defined by [RFC 9113 prior knowledge](https://www.rfc-editor.org/rfc/rfc9113.html#section-3.3).
+Without prior knowledge, `http://` requests keep using HTTP/1.1.
+
+Remotes in `http2PriorKnowledge` are hostnames or `hostname:port` pairs, where the port defaults to 443.
+Specify the port for `http://` remotes, for example `localhost:8080`:
+
+{{< include-code "http2PriorKnowledge-h2c" java kt scala >}}
+
+If the server closes the connection before confirming it speaks HTTP/2, the requests fail with an explicit error.
+Gatling doesn't use h2c for requests sent through a proxy.
+
+{{< alert info >}}
+HTTP/2 through proxies and h2c are available since Gatling 3.16.1. The JavaScript and TypeScript SDK doesn't support them yet.
+{{< /alert >}}
+
+#### `http2StreamWindowSize` and `http2ConnectionWindowSize`
+
+HTTP/2 flow control caps how many bytes the server can send before the client acknowledges them.
+Gatling advertises the same flow-control windows as Chrome:
+
+| Option | Applies to | Default | Constraint |
+| --- | --- | --- | --- |
+| `http2StreamWindowSize(bytes)` | Each stream | 6MB | Must be strictly positive |
+| `http2ConnectionWindowSize(bytes)` | All the streams of a connection | 15MB | Can't be lower than 65,535 bytes, the window every HTTP/2 connection starts with |
+
+Tune these windows, for example, to mimic a client with smaller buffers:
+
+{{< include-code "http2WindowSize" java kt scala >}}
+
+{{< alert info >}}
+These options are available since Gatling 3.16.1. The JavaScript and TypeScript SDK doesn't support them yet.
+{{< /alert >}}
+
 #### `JDK Blocking Resolver (default)`
 
 By default, Gatling uses Java's DNS name resolution. This cache has a TTL of 30s by default on OpenJDK and doesn't honor the DNS records' own TTL.
@@ -329,6 +367,8 @@ You can set the authentication methods at protocol level to be applied to all re
 
 {{< include-code "authorization" >}}
 
+To send a given request without these credentials, for example a health check or a request that expects a `401`, use [`ignoreProtocolAuth`]({{< ref "request#ignoreprotocolauth" >}}) on that request.
+
 ## Response Handling
 
 #### `disableFollowRedirect`
@@ -337,6 +377,8 @@ By default, Gatling automatically follows redirects in case of 301, 302, 303, 30
 You can disable this behavior.
 
 {{< include-code "disableFollowRedirect" >}}
+
+To follow redirects on some requests only, for example in a login flow, use [`enableFollowRedirect`]({{< ref "request#enablefollowredirect" >}}) on these requests.
 
 To avoid infinite redirection loops, Gatling sets a limit on the number of redirects.
 The default value is 20. You can tune this limit with: `.maxRedirects(int)`

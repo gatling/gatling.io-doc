@@ -218,6 +218,7 @@ By default, it extracts Strings. In particular, if you haven't defined the `attr
 This check uses a CSS Selector to capture all the defined or selected input parameters in a form tag into a Map.
 Map values can be multivalued depending on if the input is multivalued or not
 (input with `multiple` attribute set, or multiple occurrences of the same input name, except for radio).
+Multivalued entries are a `java.util.List` in Java and Kotlin (since Gatling 3.16.1), and a `Seq` in Scala.
 
 It takes one single parameter:
 * `selector` can be a plain `String`, a Gatling Expression Language `String` or a function.

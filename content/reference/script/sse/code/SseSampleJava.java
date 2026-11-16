@@ -18,6 +18,7 @@ import io.gatling.javaapi.core.ScenarioBuilder;
 import io.gatling.javaapi.http.HttpProtocolBuilder;
 import io.gatling.javaapi.http.SseMessageCheck;
 
+import java.time.Duration;
 import java.util.Collections;
 
 import static io.gatling.javaapi.core.CoreDsl.*;
@@ -139,6 +140,20 @@ http
   // with a max buffer size of 5
   .sseUnmatchedInboundMessageBufferSize(5);
 //#protocol
+
+//#setCheckBuffer
+http
+  // buffer up to 100 inbound events that no check matched,
+  // for up to 10 seconds
+  .sseSetCheckBuffer(100, Duration.ofSeconds(10));
+
+exec(
+  // trigger an event on the stream
+  http("Place order").post("/orders"),
+  // the event might have already arrived: setCheck matches it from the buffer
+  sse("Wait for the event").setCheck().await(30).on(sseCheck)
+);
+//#setCheckBuffer
 
 //#stock-market-sample
 ScenarioBuilder scn = scenario("ServerSentEvents")

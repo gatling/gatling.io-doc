@@ -426,6 +426,17 @@ http("name").get("/")
   .requestTimeout(Duration.ofMinutes(3));
 //#requestTimeout
 
+//#ignoreProtocolAuth
+// send the request without the protocol's credentials
+http("name").get("/health")
+  .ignoreProtocolAuth();
+//#ignoreProtocolAuth
+
+//#enableFollowRedirect
+http("name").get("/login")
+  .enableFollowRedirect();
+//#enableFollowRedirect
+
 //#silent
 http("name").get("/")
   .silent();

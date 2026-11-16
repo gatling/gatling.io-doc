@@ -90,6 +90,23 @@ http
   )
 //#http2PriorKnowledge
 
+//#http2PriorKnowledge-h2c
+http
+  .baseUrl("http://localhost:8080")
+  .enableHttp2()
+  // clear http:// remote: the port is mandatory
+  .http2PriorKnowledge(mapOf("localhost:8080" to true))
+//#http2PriorKnowledge-h2c
+
+//#http2WindowSize
+http
+  .enableHttp2()
+  // flow-control window of each stream, 6MB by default
+  .http2StreamWindowSize(1024 * 1024)
+  // flow-control window of each connection, 15MB by default
+  .http2ConnectionWindowSize(10 * 1024 * 1024)
+//#http2WindowSize
+
 //#dns-async
 // use hosts' configured DNS servers on Linux and MacOS
 // use Google's DNS servers on Windows

@@ -93,6 +93,34 @@ You can also configure multiple check sequences with different timeouts:
 
 {{< include-code "check-multiple-sequence" >}}
 
+### Match messages received before setting a check
+
+By default, a `setCheck` only matches the messages received after it's set.
+If the expected message arrives earlier, for example as the reply to a `sendText` without checks, the `setCheck` times out.
+
+To prevent this, enable the setCheck buffer on the HttpProtocol with `wsSetCheckBuffer(maxSize, maxAge)`:
+
+| Parameter | Description |
+| --- | --- |
+| `maxSize` | The maximum number of buffered messages. When the buffer is full, Gatling drops the oldest message. Must be strictly positive. |
+| `maxAge` | The maximum age of buffered messages. Gatling drops older messages. Must be strictly positive. |
+
+{{< include-code "setCheckBuffer" java kt scala >}}
+
+With the buffer enabled:
+
+- Gatling buffers the inbound messages that no check matched: the messages received while no check is pending, except the ones auto-replied with `wsAutoReplyTextFrame` or `wsAutoReplySocketIo4`, and the messages that don't match the pending check.
+- When you call `setCheck`, Gatling first replays the buffered messages against the new checks, oldest first, as if they were received when the check was set. Matched messages leave the buffer, and the other ones stay for the next `setCheck`.
+- When a check of a sequence passes, Gatling retries the buffered messages that didn't match it against the next checks of the sequence.
+- When the WebSocket reconnects, Gatling clears the buffer, as messages received on the previous connection are stale.
+
+Only `setCheck` replays buffered messages: checks set on `connect`, `sendText` or `sendBytes` only match messages received after the message is sent.
+This buffer is independent from the one used by [`processUnmatchedMessages`]({{< ref "#processing-unmatched-messages" >}}).
+
+{{< alert info >}}
+`wsSetCheckBuffer` is available since Gatling 3.16.1. The JavaScript and TypeScript SDK doesn't support it yet.
+{{< /alert >}}
+
 ### Create a check
 
 You can create checks for text and binary frames with `checkTextMessage` and `checkBinaryMessage`.
@@ -138,7 +166,7 @@ Non-matching messages will be ignored.
 ## Processing unmatched messages
 
 You can use `processUnmatchedMessages` to process inbound messages that haven't been matched with a check and have been buffered.
-By default, unmatched inbound messages are not buffered, you must enable this feature by setting the size of the buffer on the protocol with `.wsUnmatchedInboundMessageQueueSize(maxSize)`.
+By default, unmatched inbound messages are not buffered, you must enable this feature by setting the size of the buffer on the protocol with `.wsUnmatchedInboundMessageBufferSize(maxSize)`.
 The buffer is reset when:
 * sending an outbound message 
 * calling `processUnmatchedMessages` so we don't present the same message twice

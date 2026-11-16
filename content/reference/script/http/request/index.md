@@ -101,6 +101,16 @@ For a given request, you can also disable shared `HttpProtocol` headers with `ig
 
 {{< include-code "ignoreProtocolHeaders" >}}
 
+#### `Expect: 100-continue`
+
+If a request sets the `Expect: 100-continue` header and the server replies with `417 Expectation Failed`, Gatling sends the request again without the `Expect` header, as recommended by [RFC 9110](https://www.rfc-editor.org/rfc/rfc9110.html#section-10.1.1).
+Gatling reports the `417` response under the request's name, and the second request under the request's name followed by ` Retry Without Expect`, like it does for [redirects]({{< ref "protocol#redirectnamingstrategy" >}}).
+The checks apply to the final response.
+
+{{< alert info >}}
+Gatling sends requests again on `417` since version 3.16.1. The JavaScript and TypeScript SDK doesn't support it yet.
+{{< /alert >}}
+
 ## Checks
 
 You can add checks on a request.
@@ -238,11 +248,19 @@ You can use `formParamSeq` and `formParamMap` to set multiple form parameters at
 
 {{< include-code "formParam-multiple" >}}
 
+When a value passed to `formParamSeq` or `formParamMap` is a list (a `java.util.List` in Java and Kotlin, a `Seq` in Scala), Gatling sends one parameter per element, for example `key=value1&key=value2`.
+The same applies to `queryParamSeq` and `queryParamMap`.
+
+{{< alert info >}}
+Gatling expands list values since version 3.16.1. The JavaScript and TypeScript SDK doesn't support it yet.
+{{< /alert >}}
+
 #### `form`
 
 You might want to repost all the inputs or a form previously captured with a [`form` check]({{< ref "/concepts/checks#form" >}}).
+Gatling sends multivalued fields, such as a `select` with the `multiple` attribute, as one parameter per value.
 
-Note you can override the form field values with the `formParam` and the likes.
+Override the captured field values with `formParam` and the likes.
 
 {{< include-code "formFull" >}}
 
@@ -351,6 +369,18 @@ to override the global value for a specific request, typically a long file uploa
 
 Just like you can [define a global `basicAuth`  or `digestAuth` on the HttpProtocol configuration]({{< ref "protocol#authorization" >}}), you can define one on individual requests.
 
+#### `ignoreProtocolAuth`
+
+Use `ignoreProtocolAuth` to send a request without the `basicAuth` or `digestAuth` credentials defined on the HttpProtocol, for example for a public endpoint, a health check, or a request that expects a `401`.
+A `basicAuth` or `digestAuth` defined on the request itself still applies.
+`ignoreProtocolAuth` also works on [WebSocket]({{< ref "/reference/script/websocket#connect" >}}) and [SSE]({{< ref "/reference/script/sse#connecting" >}}) `connect`.
+
+{{< include-code "ignoreProtocolAuth" java kt scala >}}
+
+{{< alert info >}}
+`ignoreProtocolAuth` is available since Gatling 3.16.1. The JavaScript and TypeScript SDK doesn't support it yet.
+{{< /alert >}}
+
 #### `proxy`
 
 Just like you can [globally define a `proxy` on the HttpProtocol configuration]({{< ref "protocol#proxy" >}}), you can define one on individual requests.
@@ -358,6 +388,17 @@ Just like you can [globally define a `proxy` on the HttpProtocol configuration](
 #### `disableFollowRedirect`
 
 Just like you can [globally disable following redirect on the HttpProtocol configuration]({{< ref "protocol#disablefollowredirect" >}}), you can define one on individual requests.
+
+#### `enableFollowRedirect`
+
+When you disable following redirects on the HttpProtocol, use `enableFollowRedirect` to follow them on specific requests, for example in a login flow.
+The setting on the request always wins over the one on the HttpProtocol.
+
+{{< include-code "enableFollowRedirect" java kt scala >}}
+
+{{< alert info >}}
+`enableFollowRedirect` is available since Gatling 3.16.1. The JavaScript and TypeScript SDK doesn't support it yet.
+{{< /alert >}}
 
 #### `disableUrlEncoding`
 

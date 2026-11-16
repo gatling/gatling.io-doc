@@ -21,6 +21,8 @@ import io.gatling.http.check.ws.WsFrameCheck
 
 import java.nio.charset.StandardCharsets
 
+import scala.concurrent.duration._
+
 class WsSampleScala {
 //#wsName
 ws("WS Operation").wsName("myCustomName")
@@ -236,6 +238,20 @@ http
   // with a max buffer size of 5
   .wsUnmatchedInboundMessageBufferSize(5)
 //#protocol
+
+//#setCheckBuffer
+http
+  // buffer up to 100 inbound messages that no check matched,
+  // for up to 10 seconds
+  .wsSetCheckBuffer(100, 10.seconds)
+
+exec(
+  // send a message without waiting for the reply
+  ws("Send").sendText("hello"),
+  // the reply might have already arrived: setCheck matches it from the buffer
+  ws("Wait for the reply").setCheck.await(30)(wsCheck)
+)
+//#setCheckBuffer
 
 //#chatroom-example
 val httpProtocol = http

@@ -19,6 +19,7 @@ import io.gatling.javaapi.http.HttpProtocolBuilder;
 import io.gatling.javaapi.http.WsFrameCheck;
 
 import java.nio.charset.StandardCharsets;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -252,6 +253,20 @@ http
   // with a max buffer size of 5
   .wsUnmatchedInboundMessageBufferSize(5);
 //#protocol
+
+//#setCheckBuffer
+http
+  // buffer up to 100 inbound messages that no check matched,
+  // for up to 10 seconds
+  .wsSetCheckBuffer(100, Duration.ofSeconds(10));
+
+exec(
+  // send a message without waiting for the reply
+  ws("Send").sendText("hello"),
+  // the reply might have already arrived: setCheck matches it from the buffer
+  ws("Wait for the reply").setCheck().await(30).on(wsCheck)
+);
+//#setCheckBuffer
 
 //#chatroom-example
 HttpProtocolBuilder httpProtocol = http

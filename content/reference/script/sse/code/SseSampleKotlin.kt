@@ -16,6 +16,7 @@
 
 import io.gatling.javaapi.core.CoreDsl.*
 import io.gatling.javaapi.http.HttpDsl.*
+import java.time.Duration
 
 class SseSampleKotlin {
 
@@ -130,6 +131,20 @@ http
   // with a max buffer size of 5
   .sseUnmatchedInboundMessageBufferSize(5)
 //#protocol
+
+//#setCheckBuffer
+http
+  // buffer up to 100 inbound events that no check matched,
+  // for up to 10 seconds
+  .sseSetCheckBuffer(100, Duration.ofSeconds(10))
+
+exec(
+  // trigger an event on the stream
+  http("Place order").post("/orders"),
+  // the event might have already arrived: setCheck matches it from the buffer
+  sse("Wait for the event").setCheck().await(30).on(sseCheck)
+)
+//#setCheckBuffer
 
 //#stock-market-sample
 val scn = scenario("ServerSentEvents")

@@ -754,6 +754,12 @@ content:
               - signature: (Realm)
                 description: Takes a <i>Realm</i> instance
 
+          - keyword: ignoreProtocolAuth
+            description: Ignore the BASIC or DIGEST authentication defined on the HttpProtocol
+
+          - keyword: enableFollowRedirect
+            description: Follow redirects for this request even if they're disabled on the HttpProtocol
+
           - keyword: resources
             description: Allows to fetch resources in parallel in order to emulate the behaviour of a real web browser
             syntax:
@@ -1314,6 +1320,18 @@ content:
               - signature: (Map[String, Boolean])
                 description: If virtual users already know if some hosts support HTTP/2 or not
 
+          - keyword: http2StreamWindowSize
+            description: Sets the HTTP/2 flow-control window of each stream, 6MB by default
+            syntax:
+              - signature: (bytes)
+                description: The window size in bytes
+
+          - keyword: http2ConnectionWindowSize
+            description: Sets the HTTP/2 flow-control window of each connection, 15MB by default
+            syntax:
+              - signature: (bytes)
+                description: The window size in bytes, at least 65,535
+
           - keyword: asyncNameResolution
             description: Use async name resolver instead Java's blocking one.
 
@@ -1504,6 +1522,12 @@ content:
           - keyword: wsAutoReplySocketIo4
             description: Enable partial support for Engine.IO v4 - Gatling will automatically respond to server ping messages (<i>2</i>) with pong (<i>3</i>).
 
+          - keyword: wsSetCheckBuffer
+            description: Buffer the inbound messages that no check matched, so that a later setCheck can match them
+            syntax:
+              - signature: (maxSize, maxAge)
+                description: The maximum number and age of buffered messages
+
   - title: SSE (Server Sent Events)
     description: Define the SSE requests sent in your scenario
     sections:
@@ -1534,6 +1558,15 @@ content:
 
           - keyword: close
             description: Close a SSE stream
+
+      - title: Configuration
+        functions:
+
+          - keyword: sseSetCheckBuffer
+            description: Buffer the inbound messages that no check matched, so that a later setCheck can match them
+            syntax:
+              - signature: (maxSize, maxAge)
+                description: The maximum number and age of buffered messages
 
   - title: JMS
     description: Define the JMS requests sent in your scenario
