@@ -169,21 +169,8 @@ For example, if you have a file with 30,000 records deployed on 3 load generator
 
 ## JDBC feeder {#jdbc}
 
-Gatling also provides a built-in that reads from a JDBC connection.
-
-{{< include-code "jdbc-imports,jdbc-feeder" >}}
-
-Just like File parser built-ins, this returns a `RecordSeqFeederBuilder` instance.
-
-* The databaseUrl must be a JDBC URL (e.g. `jdbc:postgresql:gatling`),
-* the username and password are the credentials to access the database,
-* sql is the query that gets the needed values.
-
-Only JDBC4 drivers are supported, so that they automatically register to the DriverManager.
-
-{{< alert tip >}}
-Do not forget to add the required JDBC driver jar in the classpath (`lib` folder in the bundle)
-{{< /alert >}}
+The JDBC feeder loads its records from a database with a SQL query.
+It's part of the Gatling JDBC plugin, see the [JDBC feeder reference]({{< ref "/reference/script/jdbc/feeder" >}}).
 
 ## Redis feeder {#redis}
 
