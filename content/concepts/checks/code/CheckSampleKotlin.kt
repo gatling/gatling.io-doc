@@ -361,19 +361,20 @@ http("").get("")
 )
 //#in
 
-//#validator
+//#verify
 .check(
   jmesPath("foo")
     .ofDouble()
-    .validate("is +/- 1.0") { actual, session ->
+    .verify("is +/- 0.1") { actual, session ->
       val expected = session.getDouble("expected")
-      if (abs(actual - expected) > 0.1) {
-        throw RuntimeException("Value is not within 0.1 margin")
+      when {
+        actual == null -> "Value is missing"
+        abs(actual - expected) > 0.1 -> "Value is not within 0.1 margin"
+        else -> null
       }
-      actual
     }
-  )
-//#validator
+)
+//#verify
 
 //#name
 .check(

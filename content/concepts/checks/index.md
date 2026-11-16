@@ -393,15 +393,26 @@ You can either protect it with backticks `` `in` `` or use the `within` alias in
 Allows for the target to be missing. In this case, the check won't fail, the following
 steps won't trigger, including saveAs, meaning possibly existing value won't be replaced nor removed.
 
-#### `validate`
+#### `verify`
 
-You can supply your own validator.
+You can supply your own validation logic.
 
 It takes two parameters:
-* `name` is the String that would be used to describe this part in case of a failure in the final error message.
-* `validator` is the validation logic function.
 
-{{< include-code "validator" >}}
+- `name` is the String that describes this step in the error message when the check fails.
+- `f` is the validation function. It receives the extracted value and the Session, and returns an error message to make the check fail, or nothing when the check passes:
+  - in Java and Kotlin, it receives `null` when nothing was extracted, and returns a `String` error message, or `null` on success
+  - in JavaScript and TypeScript, it receives `null` when nothing was extracted, and returns a `string` error message, or `null` or nothing on success
+  - in Scala, it receives an `Option`, and returns `Some(errorMessage)`, or `None` on success
+
+If the function throws an exception, the check fails.
+
+{{< include-code "verify" >}}
+
+{{< alert warning >}}
+`verify` is available since Gatling 3.16.1 and supersedes `validate`, which is deprecated.
+`validate` required returning the extracted value and throwing an exception (Java, Kotlin, JavaScript) or building a `Validation` (Scala) to make the check fail.
+{{< /alert >}}
 
 ## Naming
 

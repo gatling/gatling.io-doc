@@ -368,22 +368,9 @@ NOT SUPPORTED
 )
 //#in
 
-//#validator
-.check(
-  jmesPath("foo")
-    .ofDouble()
-    .validate(
-      "is +/- 1.0",
-      (actual, session) => {
-      const expected: number = session.get("expected");
-      if (Math.abs(actual - expected) > 0.1) {
-        throw Error("Value is not within 0.1 margin");
-      }
-      return actual;
-    }
-  )
-)
-//#validator
+//#verify
+// Support coming soon
+//#verify
 
 http("").get("")
 //#name
