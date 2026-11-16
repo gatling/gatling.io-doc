@@ -283,7 +283,7 @@ You can provide your own path to a custom pidfile this way:
 You can also set the `-f` option to launch in the foreground, eg for creating a `systemd` service.
 In this case, this mode will cancel the handling of a pidfile.
 
-### Configuration
+### Configuration {#configure-gatling-enterprise}
 
 Check the `conf/frontline.conf` file for parameters you might want to edit.
 
@@ -315,7 +315,7 @@ http {
 * <4> Path to the certificate (or full chain) file. Must be an X.509 certificate chain file in PEM format.
 * <5> Path to the private key file. Must be a PKCS#1 or PKCS#8 private key file in PEM format.
 * <6> For testing purpose, you can make Gatling Enterprise Edition produces a self-signed certificate
-* <7> Optional HTTP proxy, enabled when both host and port are filled. This proxy will be used for every HTTP request to Cloud providers APIs and on-demand injectors.
+* <7> Optional HTTP proxy, enabled when both host and port are filled. This proxy will be used for every HTTP request to Cloud providers APIs and on-demand injectors, and for the binary repositories with **Use proxy** checked.
 
 ```hocon
 injector {

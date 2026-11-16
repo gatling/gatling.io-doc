@@ -46,14 +46,15 @@ Choose **Download from a binary repository** if you already compiled your projec
 
 {{< img src="create-repository-binary.png" alt="Binary Repository creation" >}}
 
-We currently support 4 different providers: JFrog Artifactory, Sonatype Nexus 2 & 3, AWS S3.
+We currently support 5 different providers: JFrog Artifactory, Sonatype Nexus 2 & 3, GitLab Package Registry, AWS S3.
 
-If you're using an Artifactory or Nexus repository, you'll need to fill in the following fields:
+If you're using an Artifactory, Nexus or GitLab repository, you'll need to fill in the following fields:
 
 - **Repository URL**: the URL of the targeted repository
 - **Authentication settings**: the key for the jar you want to download
 - **Username**: the username of the user with sufficient permissions
-- **API Key**: [API key for the current user](https://www.jfrog.com/confluence/display/RTF/Updating+Your+Profile#UpdatingYourProfile-APIKey)
+- **API Key** (Artifactory), **Password** (Nexus) or **Access Token** (GitLab): the secret of this user, for example an [API key for the current user](https://www.jfrog.com/confluence/display/RTF/Updating+Your+Profile#UpdatingYourProfile-APIKey) on Artifactory
+- **Use proxy**: connect to the repository through the HTTP proxy defined in the `http.proxy` section of the [Gatling Enterprise configuration]({{< ref "/install/server/manual#configure-gatling-enterprise" >}}). If the configuration defines no proxy, Gatling Enterprise connects directly.
 
 {{< alert warning >}}
 Make sure to follow the Repository URL pattern as follow:
@@ -61,6 +62,8 @@ Make sure to follow the Repository URL pattern as follow:
 - JFrog Artifactory: `http[s]://<host>/<repository>`
 - Sonatype Nexus 2: `http[s]://<host>/nexus/content/repositories/<repository>`
 - Sonatype Nexus 3: `http[s]://<host>/repository/<repository>`
+- GitLab Package Registry, project level: `http[s]://<host>/api/v4/projects/<project ID or URL-encoded path>/packages/maven`
+- GitLab Package Registry, group level: `http[s]://<host>/api/v4/groups/<group ID or URL-encoded path>/-/packages/maven`
 {{< /alert >}}
 
 ### Finding your repository URL
@@ -82,6 +85,12 @@ Same for Sonatype Nexus 3:
 {{< img src="nexus3-repository-url.png" alt="Finding the URL of your Nexus 3 repository" >}}
 
 By default, it will be the **maven-releases** repository you are looking for.
+
+#### GitLab Package Registry
+
+Use the Maven endpoint of the project or group where you publish your package. GitLab displays the project or group ID on its main page. You can also use its URL-encoded path, for example `my-group%2Fmy-project` for `my-group/my-project`.
+
+Authenticate with a token that can read the package registry, such as a personal access token with your GitLab username, or a deploy token with its username. See the [GitLab documentation](https://docs.gitlab.com/user/packages/maven_repository/#authenticate-to-the-package-registry) for the supported tokens and their required scopes.
 
 #### AWS S3
 
