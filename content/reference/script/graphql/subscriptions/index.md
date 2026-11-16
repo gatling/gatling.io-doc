@@ -29,8 +29,8 @@ You must connect before you subscribe.
 
 {{< include-code "connect" >}}
 
-* `requestName`: override the request name.
-* `endpoint`: override the protocol `wsEndpoint`.
+* `requestName`: override the request name, with a Gatling Expression Language String or a function.
+* `endpoint`: override the protocol `wsEndpoint`, with a Gatling Expression Language String or a function.
 * `connectionInitPayload`: set entries of the `connection_init` message payload, typically where the server expects credentials.
 * `connectionInitPayloadJson`: set the whole payload at once as a JSON object that can contain Gatling Expression Language placeholders.
   It can't be combined with `connectionInitPayload`.

@@ -123,6 +123,15 @@ These are regular `jsonPath` and `jmesPath` checks otherwise, so you can use the
 
 {{< include-code "checks" >}}
 
+### Check conditionally {#check-if}
+
+Use `checkIf` to perform checks only when a condition holds, then pass the checks to `then` (as a second parameter list in Scala).
+The condition is a Gatling Expression Language String that resolves to a Boolean, a function of the Session, or a function of the response and the Session.
+
+{{< include-code "check-if" java kt scala >}}
+
+`checkIf` isn't available in JavaScript and TypeScript yet.
+
 You can also apply a function on the Session resulting from the checks, after they've been applied, with `postCheck`.
 Throw an exception to make the request fail with the exception's message (in Scala, the function returns a `Validation`: a `Success` wrapping the new Session, or a `Failure`).
 

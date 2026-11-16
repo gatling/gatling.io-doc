@@ -21,6 +21,7 @@ Its usage is unlimited when running tests on [Gatling Enterprise](https://gatlin
 - 5 minute duration tests
 
 Limits after which the test will stop. This means that all locally executed tests using the GraphQL protocol are limited by these values.
+When the test stops, Gatling logs which limit it exceeded.
 
 ## Adding the Gatling GraphQL dependency {#gatling-graphql-dependency}
 

@@ -112,6 +112,22 @@ graphql.file("graphql/getUser.graphql")
   )
 //#checks
 
+//#check-if
+graphql.file("graphql/getUser.graphql")
+  // with a Gatling Expression Language String that resolves to a Boolean
+  .checkIf("#{checkUser}").then(
+    graphql.data.jsonPath("$.user.name").saveAs("userName")
+  )
+  // with a function of the Session
+  .checkIf { session -> session.contains("userId") }.then(
+    graphql.data.jsonPath("$.user.id").shouldBe("#{userId}")
+  )
+  // with a function of the response and the Session
+  .checkIf { response, _ -> response.status().code() == 200 }.then(
+    graphql.data.jsonPath("$.user").exists()
+  )
+//#check-if
+
 //#post-check
 graphql.file("graphql/getUser.graphql")
   .check(graphql.data.jsonPath("$.user.name").saveAs("userName"))
