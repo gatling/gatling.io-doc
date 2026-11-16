@@ -103,7 +103,12 @@ jms("name").send().queue("queueName")
 jms("name").send().queue("queueName")
   .textMessage("message")
   .jmsType("type")
-  .property("foo", "bar");
+  .property("foo", "bar")
+  // from 0 (lowest) to 9 (highest)
+  .priority(9)
+  // in seconds, or a Duration
+  .timeToLive(30)
+  .correlationId("#{orderId}");
 //#extra
 
 //#jmsPropertyCheck

@@ -93,8 +93,19 @@ See below for a few examples:
 
 * `jmsType`
 * `property`
+* `priority`: the JMS priority of the message, from 0 (lowest) to 9 (highest). A priority outside this range fails the request. Defaults to the JMS default priority, 4.
+* `timeToLive`: how long the JMS provider keeps the message before it expires it. Defaults to the JMS default, no expiration.
+* `correlationId`: the `JMSCorrelationID` header of the message, for example a business key from a feeder.
+
+`priority` and `timeToLive` are passed to the JMS producer when it sends the message: setting `JMSPriority` or `JMSExpiration` with `property` has no effect, as the JMS provider overwrites them.
+Likewise, `property("JMSCorrelationID", ...)` sets a regular property, not the header: use `correlationId` instead.
+
+With `matchByCorrelationId`, Gatling matches the reply with the correlation id you set, and only generates a random one when you don't.
+Two requests in flight with the same correlation id can't be told apart: the second one fails.
 
 {{< include-code "extra" java kt scala >}}
+
+These options are available since Gatling 3.16.1.
 
 ## JMS check {#check}
 

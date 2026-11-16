@@ -108,12 +108,31 @@ It takes a single parameter:
 
 {{< include-code "rendezVous" >}}
 
+Once a batch of `users` virtual users is released, the rendez-vous point re-arms: the next virtual users wait again until another batch is complete.
+This makes it usable inside a loop, or when virtual users keep arriving over time.
+
+You can also pass a `timeout`, an Int for a duration in seconds or a duration.
+It starts when the first virtual user of a batch arrives: when it expires, Gatling releases the virtual users waiting so far, even if the batch is incomplete.
+
+{{< include-code "rendezVous-timeout" java kt scala >}}
+
+The timeout isn't available in JavaScript and TypeScript yet.
+
+{{< alert warning >}}
+Without a timeout, the virtual users arriving after the last complete batch wait indefinitely.
+Before Gatling 3.16.1, the rendez-vous point let every virtual user through once the first batch was released.
+{{< /alert >}}
+
 ### Loop statements
 
 {{< alert warning >}}
 When using the `counterName` parameter to force the loop index attribute name, be careful to use it in a read-only way.
 Otherwise, you might break the Gatling underlying component's internal logic.
 {{< /alert >}}
+
+Gatling evaluates the bounds of a loop only once per virtual user, when it enters the loop: the `times` of `repeat` and `tryMax`, the `seq` of `foreach`, and the `duration` of `during`, `asLongAsDuring`, and `doWhileDuring`.
+Changing the Session attributes they're computed from inside the loop doesn't change them.
+Conditions, such as the one of `asLongAs`, are still evaluated on each iteration.
 
 #### `repeat`
 
@@ -296,7 +315,7 @@ Any error (a technical exception such as a timeout, or a failed check) in the wr
 All requests performed in failing iterations will be logged, including the failing one.
 
 It takes 2 parameters:
-* `times`: the maximum number of attempts, an int
+* `times`: the maximum number of attempts, can be an int, a Gatling EL String or a function, evaluated once when the virtual user enters the block
 * `counterName` (optional): the key to store the loop counter in the `Session`, starting at 0
 
 {{< include-code "tryMax" >}}

@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import scala.concurrent.duration._
+
 import io.gatling.core.Predef._
 //#imprts
 import jakarta.jms._
@@ -100,6 +102,10 @@ jms("name").send.queue("queueName")
   .textMessage("message")
   .jmsType("type")
   .property("foo", "bar")
+  // from 0 (lowest) to 9 (highest)
+  .priority(9)
+  .timeToLive(30.seconds)
+  .correlationId("#{orderId}")
 //#extra
   }
 

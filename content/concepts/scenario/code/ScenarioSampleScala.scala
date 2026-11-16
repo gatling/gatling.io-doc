@@ -126,6 +126,11 @@ pace(session => 100.millis, session => 200.millis)
 rendezVous(100)
 //#rendezVous
 
+//#rendezVous-timeout
+// release the waiting users after 10 seconds, even if fewer than 100 arrived
+rendezVous(100, 10.seconds)
+//#rendezVous-timeout
+
 //#repeat
 // with an Int times
 repeat(5)(
