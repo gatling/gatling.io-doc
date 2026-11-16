@@ -30,6 +30,19 @@ jobs:
       - name: Checkout current project
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
+      - name: Configure AWS Credentials (for CodeArtifact)
+        uses: aws-actions/configure-aws-credentials@e1253824e5c10ff9df46874f81ed3ec929e19cfd # v6.3.0
+        with:
+          role-to-assume: ${{ vars.GATLING_BOT_GITHUB_CI }}
+          aws-region: us-east-1
+
+      - name: Prepare SBT environment
+        env:
+          PRIVATE_REPOSITORY_SBT: ${{ vars.PRIVATE_REPOSITORY_SBT_2 }}
+        run: |
+          mkdir --parents ~/.config/sbt/2 || true
+          echo "$PRIVATE_REPOSITORY_SBT" > ~/.config/sbt/2/privateRepository.sbt
+
       - name: Setup JDK
         uses: actions/setup-java@77dd5b2ce225ea11469928ac317850245a74ae78 # v6.2.0
         with:
