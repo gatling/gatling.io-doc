@@ -12,10 +12,11 @@ asking for it in plain language.
 
 ## Ask for a conversion
 
-Ask your assistant to convert a `.jmx` file, for example:
+Ask your assistant to convert a `.jmx` file, or a zip of a plan and the files it reads. For example, with the sample
+of the [demo project](https://github.com/gatling/gatling-ai-server-demo):
 
 ```text
-Convert examples/computer-database.jmx to a Gatling simulation.
+Convert examples/EcommApp.zip to a Gatling simulation.
 ```
 
 The assistant uploads the plan to the server, starts the conversion, and returns a summary with a link to download
