@@ -10,7 +10,7 @@
     "@gatling.io/jms": "3.16.101",
     "@gatling.io/kafka": "3.16.101",
     "@gatling.io/mqtt": "3.16.101",
-    "@gatling.io/postman": "3.16.4",
+    "@gatling.io/postman": "3.16.101",
     "glob": "14.0.3",
     "gray-matter": "4.0.3",
     "yaml": "2.8.4"
@@ -20,11 +20,5 @@
   },
   "workspaces": [
     "packages/hugoautogen"
-  ],
-  "overrides": {
-    "@gatling.io/postman": {
-      "@gatling.io/core": "$@gatling.io/core",
-      "@gatling.io/http": "$@gatling.io/http"
-    }
-  }
+  ]
 }
