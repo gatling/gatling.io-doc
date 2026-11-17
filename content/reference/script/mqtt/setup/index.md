@@ -2,13 +2,13 @@
 title: Project Setup
 seotitle: Gatling MQTT protocol reference - project setup
 description: How to set up your project to use the Gatling MQTT protocol.
-lead: Learn about how to set up your project to use the Gatling MQTT protocol.
+lead: Learn how to set up your project to use the Gatling MQTT protocol.
 date: 2024-02-07T14:18:28+00:00
 aliases:
   - /reference/script/protocols/mqtt/setup/
 ---
 
-## License and limitations {#license}
+## Understand the license and limitations {#license}
 
 **The Gatling MQTT component is distributed under the
 [Gatling Enterprise Component License]({{< ref "/project/licenses/enterprise-component" >}}).**
@@ -23,24 +23,26 @@ Its usage is unlimited when running tests on [Gatling Enterprise](https://gatlin
 - 5 minute duration tests
 
 Limits after which the test will stop. This means that all locally executed tests using the MQTT protocol are limited by these values.
+When the test stops, Gatling logs which limit it exceeded.
 
-## Getting started with the demo project {#demo-project}
+## Get started with the demo project {#demo-project}
 
-A [demo project](https://github.com/gatling/gatling-mqtt-demo) is available with most combinations of currently
-supported languages and build tools:
+A [demo project](https://github.com/gatling/gatling-mqtt-demo) is available for each supported language and build tool:
 
 - [Java with Gradle](https://github.com/gatling/gatling-mqtt-demo/tree/main/java/gradle)
 - [Java with Maven](https://github.com/gatling/gatling-mqtt-demo/tree/main/java/maven)
-- [JavaScript](https://github.com/gatling/gatling-mqtt-demo/tree/main/javascript)
 - [Kotlin with Gradle](https://github.com/gatling/gatling-mqtt-demo/tree/main/kotlin/gradle)
 - [Kotlin with Maven](https://github.com/gatling/gatling-mqtt-demo/tree/main/kotlin/maven)
-- [Scala with SBT](https://github.com/gatling/gatling-mqtt-demo/tree/main/scala/sbt)
+- [Scala with sbt](https://github.com/gatling/gatling-mqtt-demo/tree/main/scala/sbt)
+- [JavaScript](https://github.com/gatling/gatling-mqtt-demo/tree/main/javascript)
 - [TypeScript](https://github.com/gatling/gatling-mqtt-demo/tree/main/typescript)
 
-## Adding the Gatling MQTT dependency {#gatling-mqtt-dependency}
+## Add the Gatling MQTT dependency {#gatling-mqtt-dependency}
 
-The Gatling MQTT plugin is not included with Gatling by default. Add the Gatling MQTT dependency, in addition to the
+The Gatling MQTT plugin isn't included with Gatling by default. Add the Gatling MQTT dependency, in addition to the
 usual Gatling dependencies.
+
+The Gatling MQTT plugin was introduced in Gatling 3.10 and isn't compatible with older versions.
 
 For Java or Kotlin:
 

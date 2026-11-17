@@ -40,7 +40,7 @@ A [demo project](https://github.com/gatling/gatling-kafka-demo) is available for
 The Gatling Kafka plugin isn't included with Gatling by default. Add the Gatling Kafka dependency, in addition to the
 usual Gatling dependencies.
 
-The Gatling Kafka plugin requires Gatling 3.16.1 or later.
+The Gatling Kafka plugin was introduced in Gatling 3.16 and isn't compatible with older versions.
 
 For Java or Kotlin:
 

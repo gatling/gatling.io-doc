@@ -42,7 +42,7 @@ A [demo project](https://github.com/gatling/gatling-jdbc-demo) is available for 
 The Gatling JDBC plugin isn't included with Gatling by default. Add the Gatling JDBC dependency, in addition to the
 usual Gatling dependencies.
 
-The Gatling JDBC plugin requires Gatling 3.16.1 or later.
+The Gatling JDBC plugin was introduced in Gatling 3.16 and isn't compatible with older versions.
 
 For Java or Kotlin:
 

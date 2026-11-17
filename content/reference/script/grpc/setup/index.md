@@ -2,7 +2,7 @@
 title: Project Setup
 seotitle: Gatling gRPC protocol reference - project setup
 description: How to set up your project to use the Gatling gRPC protocol
-lead: Learn about how to set up your project to use the Gatling gRPC protocol
+lead: Learn how to set up your project to use the Gatling gRPC protocol
 date: 2023-08-24T11:27:53+0200
 aliases:
   - /reference/script/protocols/grpc/setup/
@@ -10,42 +10,44 @@ aliases:
 
 Under the hood, Gatling uses [gRPC-Java](https://grpc.io/docs/languages/java/) to implement its protocol support.
 
-## License and limitations {#license}
+## Understand the license and limitations {#license}
 
 **The Gatling gRPC component is distributed under the
 [Gatling Enterprise Component License]({{< ref "/project/licenses/enterprise-component" >}}).**
 
-The Gatling gRPC protocol can be used with both the [Community Edition](https://gatling.io/products/) and
-[Enterprise](https://gatling.io/products/) versions of Gatling.
+The Gatling gRPC protocol can be used with both the [Community Edition](https://gatling.io/products) and
+[Enterprise](https://gatling.io/products) versions of Gatling.
 
-Its usage is unlimited when running tests on [Gatling Enterprise](https://gatling.io/products/).
-When used with [Gatling Community Edition](https://gatling.io/products/), usage is limited to:
+Its usage is unlimited when running tests on [Gatling Enterprise](https://gatling.io/products).
+When used with [Gatling Community Edition](https://gatling.io/products), usage is limited to:
 
 - 5 users maximum
 - 5 minute duration tests
 
 Limits after which the test will stop. This means that all locally executed tests using the gRPC protocol are limited by these values.
+When the test stops, Gatling logs which limit it exceeded.
 
-## Getting started with the demo project {#demo-project}
+## Get started with the demo project {#demo-project}
 
-A [demo project](https://github.com/gatling/gatling-grpc-demo) is available with most combinations of currently
-supported languages and build tools:
+A [demo project](https://github.com/gatling/gatling-grpc-demo) is available for each supported language and build tool:
 
 - [Java with Gradle](https://github.com/gatling/gatling-grpc-demo/tree/main/java/gradle)
 - [Java with Maven](https://github.com/gatling/gatling-grpc-demo/tree/main/java/maven)
-- [JavaScript](https://github.com/gatling/gatling-grpc-demo/tree/main/javascript)
 - [Kotlin with Gradle](https://github.com/gatling/gatling-grpc-demo/tree/main/kotlin/gradle)
 - [Kotlin with Maven](https://github.com/gatling/gatling-grpc-demo/tree/main/kotlin/maven)
 - [Scala with sbt](https://github.com/gatling/gatling-grpc-demo/tree/main/scala/sbt)
+- [JavaScript](https://github.com/gatling/gatling-grpc-demo/tree/main/javascript)
 - [TypeScript](https://github.com/gatling/gatling-grpc-demo/tree/main/typescript)
 
 It also contains a [demo server](https://github.com/gatling/gatling-grpc-demo/tree/main/server) that you can use if
 you want to run the example scenarios over a working server.
 
-## Adding the Gatling gRPC dependency {#gatling-grpc-dependency}
+## Add the Gatling gRPC dependency {#gatling-grpc-dependency}
 
-The Gatling gRPC plugin is not included with Gatling by default. Add the Gatling gRPC dependency, in addition to the
+The Gatling gRPC plugin isn't included with Gatling by default. Add the Gatling gRPC dependency, in addition to the
 usual Gatling dependencies.
+
+The Gatling gRPC plugin was introduced in Gatling 3.10 and isn't compatible with older versions.
 
 For Java or Kotlin:
 
@@ -59,6 +61,7 @@ For JavaScript/TypeScript:
 ```console
 npm install @gatling.io/grpc@{{< var gatlingJsVersion >}}
 ```
+
 For Scala:
 
 {{< include-file >}}
@@ -67,12 +70,11 @@ For Scala:
 3-sbt: includes/dependency.sbt.scala.md
 {{< /include-file >}}
 
-## Configuring Protobuf code generation {#protobuf-codegen}
+## Configure Protobuf code generation {#protobuf-codegen}
 
 By default, gRPC uses [Protocol Buffers (protobuf)](https://grpc.io/docs/what-is-grpc/introduction/#working-with-protocol-buffers)
-to serialize messages, so we also show typical configurations to generate your gRPC method descriptors and data access
-classes from proto files. Note that if your gRPC service uses something else (e.g. JSON messages), you will need to use
-appropriate configurations for your use case instead.
+to serialize messages. The following sections show typical configurations to generate your gRPC method descriptors and data access
+classes from proto files. If your gRPC service uses something else, for example JSON messages, adapt the configuration to your use case.
 
 ### Protobuf for Java
 
@@ -90,7 +92,7 @@ Add your proto files in the `protobuf` directory.
 Check the demo project for full examples:
 
 - [Gatling gRPC JavaScript](https://github.com/gatling/gatling-grpc-demo/tree/main/javascript)
-- [Gatling gRPC TypeScript](https://github.com/gatling/gatling-grpc-demo/tree/main/javascript)
+- [Gatling gRPC TypeScript](https://github.com/gatling/gatling-grpc-demo/tree/main/typescript)
 
 ### Protobuf for Kotlin
 

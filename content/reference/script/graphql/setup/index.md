@@ -2,11 +2,11 @@
 title: Project Setup
 seotitle: Gatling GraphQL protocol reference - project setup
 description: How to set up your project to use the Gatling GraphQL protocol.
-lead: Learn about how to set up your project to use the Gatling GraphQL protocol.
+lead: Learn how to set up your project to use the Gatling GraphQL protocol.
 date: 2026-09-30T00:00:00+00:00
 ---
 
-## License and limitations {#license}
+## Understand the license and limitations {#license}
 
 **The Gatling GraphQL component is distributed under the
 [Gatling Enterprise Component License]({{< ref "/project/licenses/enterprise-component" >}}).**
@@ -23,12 +23,24 @@ Its usage is unlimited when running tests on [Gatling Enterprise](https://gatlin
 Limits after which the test will stop. This means that all locally executed tests using the GraphQL protocol are limited by these values.
 When the test stops, Gatling logs which limit it exceeded.
 
-## Adding the Gatling GraphQL dependency {#gatling-graphql-dependency}
+## Get started with the demo project {#demo-project}
 
-The Gatling GraphQL plugin is not included with Gatling by default. Add the Gatling GraphQL dependency, in addition to the
+A [demo project](https://github.com/gatling/gatling-graphql-demo) is available for each supported language and build tool:
+
+- [Java with Gradle](https://github.com/gatling/gatling-graphql-demo/tree/main/java/gradle)
+- [Java with Maven](https://github.com/gatling/gatling-graphql-demo/tree/main/java/maven)
+- [Kotlin with Gradle](https://github.com/gatling/gatling-graphql-demo/tree/main/kotlin/gradle)
+- [Kotlin with Maven](https://github.com/gatling/gatling-graphql-demo/tree/main/kotlin/maven)
+- [Scala with sbt](https://github.com/gatling/gatling-graphql-demo/tree/main/scala/sbt)
+- [JavaScript](https://github.com/gatling/gatling-graphql-demo/tree/main/javascript)
+- [TypeScript](https://github.com/gatling/gatling-graphql-demo/tree/main/typescript)
+
+## Add the Gatling GraphQL dependency {#gatling-graphql-dependency}
+
+The Gatling GraphQL plugin isn't included with Gatling by default. Add the Gatling GraphQL dependency, in addition to the
 usual Gatling dependencies.
 
-GraphQL requires Gatling {{< var gatlingVersion >}} or later.
+The Gatling GraphQL plugin was introduced in Gatling 3.16 and isn't compatible with older versions.
 
 For Java or Kotlin:
 
@@ -50,7 +62,3 @@ For Scala:
 2-Gradle: includes/dependency.gradle.scala.md
 3-sbt: includes/dependency.sbt.scala.md
 {{< /include-file >}}
-
-## Getting started with the demo project {#demo-project}
-
-A [demo project](https://github.com/gatling/gatling-graphql-demo) is available to help you get started with the Gatling GraphQL protocol.
