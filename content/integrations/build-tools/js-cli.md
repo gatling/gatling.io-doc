@@ -81,26 +81,54 @@ include a [Prettier](https://prettier.io) configuration for automatic code forma
 
 Some features need Java libraries that the Gatling runtime bundle doesn't include, typically the JDBC driver of your
 database for the [JDBC protocol]({{< ref "/reference/script/jdbc" >}}).
-Declare them with their Maven coordinates, as `groupId:artifactId:version`, in the `gatling` section of your `package.json`:
+JVM dependencies require the JavaScript SDK 3.16.101 or later. You can add them in two ways, and use both in the same
+project.
+
+#### Declare Maven dependencies
+
+Declare the libraries with their Maven coordinates, as `groupId:artifactId:version`, in the `gatling.jvmDependencies`
+section of your `package.json`:
 
 ```json
 {
   "gatling": {
-    "jvmDependencies": ["org.postgresql:postgresql:42.7.14"],
-    "jvmRepositories": ["https://repo.example.com/maven"]
+    "jvmDependencies": {
+      "artifacts": ["org.postgresql:postgresql:42.7.14"],
+      "repositories": ["https://repo.example.com/maven"],
+      "credentials": ["repo.example.com user:password"],
+      "credentialFiles": ["credentials.properties"]
+    }
   }
 }
 ```
 
-- `jvmDependencies`: the libraries, Gatling resolves their own dependencies too.
-- `jvmRepositories`: optional, Maven repositories to download them from, in addition to Maven Central.
+- `artifacts`: the libraries. Gatling resolves their transitive dependencies too.
+- `repositories`: optional, Maven repositories to download them from, in addition to Maven Central.
+- `credentials`: optional, the credentials of your repositories, as `host user:password` or `host(realm) user:password`.
+- `credentialFiles`: optional, paths to credentials properties files, relative to `package.json`.
 
-The `gatling` CLI tool resolves them with [Coursier](https://get-coursier.io) when running or packaging your simulations:
+The `gatling` CLI tool resolves them with [Coursier](https://get-coursier.io), which supports
+[these credentials formats](https://get-coursier.io/docs/other-credentials). To keep secrets out of `package.json`,
+use the `COURSIER_CREDENTIALS` environment variable or Coursier's default credentials files instead.
 
-- When running locally, it adds them to the classpath.
+#### Add JAR files
+
+When a library isn't available from a Maven repository, put its JAR files in the `jvm_libs` folder at the root of your
+project, or in another folder that you pass with the `--jvm-libs-folder` option.
+
+The same JAR file name can't come from both the folder and `jvmDependencies`: the `gatling` CLI tool fails and names the
+conflicting files.
+
+#### How Gatling uses them
+
+- When running locally, the `gatling` CLI tool adds them to the classpath.
 - When packaging for Gatling Enterprise Edition, it merges their content into the package.
 
-Libraries already provided by the Gatling runtime bundle are ignored, so Gatling always uses its own versions.
+The Gatling runtime bundle takes precedence: Gatling skips the declared dependencies it already provides, and always uses
+its own versions.
+
+From your simulations, access the Java classes of these libraries with
+[`Java.type`](https://www.graalvm.org/latest/reference-manual/js/JavaInteroperability/).
 
 ### Upgrade the JavaScript SDK version
 
@@ -116,6 +144,7 @@ Use the following procedure to upgrade your SDK version:
     * `@gatling.io/core`
     * `@gatling.io/http`
     * `@gatling.io/cli`
+    * any other `@gatling.io/*` package your project uses, such as `@gatling.io/jdbc`
 
 2. Run `npm install`
 
@@ -128,8 +157,7 @@ The `gatling` CLI tool requires Internet access to:
   - By default, it is installed in the folder `~/.gatling` (Linux/macOS) or `%USERPROFILE%\.gatling` (Windows). You
     can override this with the `--gatling-home` option.
 - Download the [JVM dependencies](#jvm-dependencies) your project declares, if any, from Maven Central or your own
-  repositories, along with [Coursier](https://get-coursier.io) to resolve them (from
-  `https://github.com/coursier/coursier/releases/`).
+  repositories.
 - Access the Gatling Enterprise Edition API (`https://api.gatling.io`) when executing commands such as
   `npx gatling enterprise-deploy` or `npx gatling enterprise-start`.
 - Access your Control Plane when using the [Private Packages](#private-packages) feature with the same commands.

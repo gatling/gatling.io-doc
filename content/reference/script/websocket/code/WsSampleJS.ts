@@ -170,6 +170,20 @@ exec(ws("Send").sendText("hello").await(30).on(wsCheck));
 exec(ws("Wait for a message").setCheck().await(30).on(wsCheck));
 //#check-set
 
+//#setCheckBuffer
+http
+  // buffer up to 100 inbound messages that no check matched,
+  // for up to 10 seconds
+  .wsSetCheckBuffer(100, 10);
+
+exec(
+  // send a message without waiting for the reply
+  ws("Send").sendText("hello"),
+  // the reply might have already arrived: setCheck matches it from the buffer
+  ws("Wait for the reply").setCheck().await(30).on(wsCheck)
+);
+//#setCheckBuffer
+
 //#check-single-sequence
 // expecting 2 messages
 // 1st message will be validated against wsCheck1

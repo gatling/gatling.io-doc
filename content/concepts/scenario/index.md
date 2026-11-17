@@ -114,9 +114,7 @@ This makes it usable inside a loop, or when virtual users keep arriving over tim
 You can also pass a `timeout`, an Int for a duration in seconds or a duration.
 It starts when the first virtual user of a batch arrives: when it expires, Gatling releases the virtual users waiting so far, even if the batch is incomplete.
 
-{{< include-code "rendezVous-timeout" java kt scala >}}
-
-The timeout isn't available in JavaScript and TypeScript yet.
+{{< include-code "rendezVous-timeout" >}}
 
 {{< alert warning >}}
 Without a timeout, the virtual users arriving after the last complete batch wait indefinitely.

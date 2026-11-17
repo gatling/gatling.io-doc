@@ -10,13 +10,13 @@ date: 2026-11-05T00:00:00+00:00
 
 The Gatling Kafka SDK isn't imported by default. Add the following imports:
 
-{{< include-code "imports" java kt scala >}}
+{{< include-code "imports" >}}
 
 ## Configure the protocol
 
 Use the `kafka` object to create a Kafka protocol, then register it like any other protocol:
 
-{{< include-code "protocol-sample" java kt scala >}}
+{{< include-code "protocol-sample" >}}
 
 The protocol accepts the following options:
 
@@ -38,7 +38,7 @@ The protocol accepts the following options:
 The protocol passes Kafka client properties to the producers and to the reply consumer.
 Refer to the [producer](https://kafka.apache.org/documentation/#producerconfigs) and [consumer](https://kafka.apache.org/documentation/#consumerconfigs) configurations of Kafka for the available properties.
 
-{{< include-code "properties" java kt scala >}}
+{{< include-code "properties" >}}
 
 The plugin sets some properties itself, and refuses them right away:
 
@@ -71,20 +71,20 @@ Use either the typed option or the raw properties for a given key.
 
 Raw properties for keys the typed options don't generate complete them:
 
-{{< include-code "security-properties" java kt scala >}}
+{{< include-code "security-properties" >}}
 
 ### Authenticate with SASL {#sasl}
 
 `saslPlain`, `saslScramSha256`, and `saslScramSha512` authenticate with a username and a password, with the PLAIN, SCRAM-SHA-256, and SCRAM-SHA-512 mechanisms:
 
-{{< include-code "sasl" java kt scala >}}
+{{< include-code "sasl" >}}
 
 ### Authenticate with OAuth {#oauth}
 
 `saslOauthBearer` authenticates with the OAUTHBEARER mechanism.
 The Kafka client gets its tokens from the OAuth token endpoint with the client credentials grant, with an optional scope.
 
-{{< include-code "oauth" java kt scala >}}
+{{< include-code "oauth" >}}
 
 {{< alert info >}}
 Since Kafka 4, a Kafka client only calls the token endpoints listed in the JVM system property `org.apache.kafka.sasl.oauthbearer.allowed.urls`.
@@ -102,24 +102,24 @@ The plugin authenticates to Amazon MSK with IAM with one of these options:
 
 MSK only serves IAM authentication over TLS, so the plugin always uses TLS with it, trusting the JVM's default certificates unless you set a trust store.
 
-{{< include-code "aws-msk-iam" java kt scala >}}
+{{< include-code "aws-msk-iam" >}}
 
 It needs the [Amazon MSK Library for AWS IAM](https://github.com/aws/aws-msk-iam-auth), `software.amazon.msk:aws-msk-iam-auth`, which the plugin doesn't bring:
-add it in the same scope as the Gatling dependencies. Without it, the simulation fails at startup.
+add it in the same scope as the Gatling dependencies, or as a [JVM dependency]({{< ref "/reference/script/kafka/setup#optional-libraries" >}}) in JavaScript and TypeScript. Without it, the simulation fails at startup.
 
 ### Authenticate with Kerberos {#gssapi}
 
 `saslGssapi` authenticates with the GSSAPI mechanism, logging in to Kerberos from a keytab.
 It takes the Kerberos principal name the brokers run as, the path of the client's keytab, and the client's principal.
 
-{{< include-code "gssapi" java kt scala >}}
+{{< include-code "gssapi" >}}
 
 ### Use TLS {#tls}
 
 `useTls` connects to the brokers over TLS, trusting the JVM's default certificates.
 `trustStore` trusts the certificates of a store instead, and `keyStore` authenticates the client with the certificate and key of a store, for mutual TLS. Both imply TLS.
 
-{{< include-code "tls" java kt scala >}}
+{{< include-code "tls" >}}
 
 Stores take a path, a password, empty for a store without one such as PEM, and an optional type: `JKS`, `PKCS12`, or `PEM`.
 Without a type, Kafka uses its default type, `JKS`.
@@ -131,7 +131,7 @@ A [request-reply]({{< ref "/reference/script/kafka/actions#request-reply" >}}) s
 The request and its reply carry the same correlation id, so that Gatling can tell which request a reply answers.
 The protocol defines where this id is:
 
-{{< include-code "matching" java kt scala >}}
+{{< include-code "matching" >}}
 
 - `matchByKey`, the default: the reply has the request's key. A request without a key fails.
 - `matchByHeader(name)`: the reply has the request's header with this name. When the request doesn't set this header, Gatling sets it to a random UUID.
@@ -174,7 +174,7 @@ Gatling keeps these records, at most 10,000, for at most 60 seconds, the oldest 
 On a busy topic, 10,000 records may cover a short time, and a `consume` that starts later than that after its record was read times out although the record came.
 Gatling then logs a warning naming `consumeBuffer`, which sets the number of records kept and how long they're kept:
 
-{{< include-code "consume-buffer" java kt scala >}}
+{{< include-code "consume-buffer" >}}
 
 Raise the number of records as the memory of the load generator allows.
 
@@ -186,9 +186,9 @@ A subscription placed before this action, or attached to a `send` or a `requestR
 `replyTimeout` limits how long a request-reply waits for its reply, and a `consume` or a subscription for its record, 60 seconds by default.
 Each action can override it.
 
-{{< include-code "reply-timeout" java kt scala >}}
+{{< include-code "reply-timeout" >}}
 
-The Java and Kotlin `replyTimeout` also takes a number of seconds.
+In Java, Kotlin, JavaScript, and TypeScript, `replyTimeout` also takes a number of seconds.
 
 ## Understand producer performance {#performance}
 
@@ -202,7 +202,7 @@ With few virtual users, there are few records to batch, so this wait drives the 
 
 Set the producer properties that drive latency, such as `linger.ms`, `batch.size`, `acks`, and `compression.type`, to the same values as the producers of the system under test, so that Gatling measures what the system's own producers would experience:
 
-{{< include-code "linger" java kt scala >}}
+{{< include-code "linger" >}}
 
 ### Understand how records are sent {#senders}
 

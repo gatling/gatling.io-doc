@@ -14,30 +14,73 @@
  * limitations under the License.
  */
 
+import { exec } from "@gatling.io/core";
+import { column, generatedKey, jdbc, outParam, outValue, rowCount, rows, updateCount } from "@gatling.io/jdbc";
+
 //#update-count
-// Support coming soon
+jdbc("Close orders")
+  .statement("UPDATE orders SET status = 'CLOSED' WHERE placed_on < CURRENT_DATE")
+  .check(updateCount().gt(0));
+jdbc("Insert orders")
+  .preparedStatement("INSERT INTO orders (label) VALUES (?)")
+  .batch("#{rows}")
+  // one update count per row
+  .check(updateCount().findAll().saveAs("counts"));
 //#update-count
 
 //#row-count
-// Support coming soon
+jdbc("Find users")
+  .statement("SELECT * FROM users")
+  .check(rowCount().gt(0));
 //#row-count
 
 //#column
-// Support coming soon
+jdbc("Find users")
+  .statement("SELECT id, email FROM users")
+  .check(
+    // the value in the first row
+    column("email").find().saveAs("email"),
+    // the values of all the rows
+    column("id").findAll().saveAs("userIds"),
+    // by index, starting at 1 like JDBC
+    column(1).count().gt(0),
+    // SQL NULLs are extracted as null
+    column("email").find(1).notNull()
+  );
 //#column
 
 //#rows
-// Support coming soon
+const chain = exec(
+  jdbc("Find users")
+    .statement("SELECT id, email FROM users")
+    .check(rows().saveAs("users"))
+).foreach("#{users}", "user").on(
+  exec(
+    jdbc("Find orders")
+      .preparedStatement("SELECT * FROM orders WHERE user_id = ?")
+      .params("#{user.id}")
+  )
+);
 //#rows
 
 //#generated-key
-// Support coming soon
+jdbc("Insert order")
+  .preparedStatement("INSERT INTO orders (label) VALUES (?)")
+  .params("#{label}")
+  .returnGeneratedKeys("id")
+  .check(generatedKey("id").saveAs("orderId"));
 //#generated-key
 
 //#out-value
-// Support coming soon
+jdbc("Count orders")
+  .callableStatement("{call count_orders(?, ?)}")
+  .params("#{userId}", outParam("INTEGER"))
+  .check(outValue(2).saveAs("orderCount"));
 //#out-value
 
 //#check-if
-// Support coming soon
+jdbc("Find user")
+  .preparedStatement("SELECT * FROM users WHERE id = ?")
+  .params("#{userId}")
+  .checkIf("#{mustExist}").then(rowCount().is(1));
 //#check-if

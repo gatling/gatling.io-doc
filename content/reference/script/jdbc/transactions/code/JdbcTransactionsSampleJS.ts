@@ -14,18 +14,35 @@
  * limitations under the License.
  */
 
+import { exec, group } from "@gatling.io/core";
+import { jdbc } from "@gatling.io/jdbc";
+
 //#transaction
-// Support coming soon
+const transfer = exec(
+  jdbc("Begin").begin(),
+  jdbc("Debit")
+    .preparedStatement("UPDATE accounts SET balance = balance - ? WHERE id = ?")
+    .params("#{amount}", "#{from}"),
+  jdbc("Credit")
+    .preparedStatement("UPDATE accounts SET balance = balance + ? WHERE id = ?")
+    .params("#{amount}", "#{to}"),
+  jdbc("Commit").commit()
+);
 //#transaction
 
 //#rollback
-// Support coming soon
+jdbc("Rollback").rollback();
 //#rollback
 
 //#options
-// Support coming soon
+jdbc("Begin")
+  .begin()
+  // see Connection.setTransactionIsolation
+  .transactionIsolation("SERIALIZABLE")
+  // see Connection.setReadOnly
+  .readOnly();
 //#options
 
 //#group
-// Support coming soon
+const timedTransfer = group("Transfer").on(transfer);
 //#group

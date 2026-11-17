@@ -32,14 +32,15 @@ A [demo project](https://github.com/gatling/gatling-kafka-demo) is available for
 - [Kotlin with Gradle](https://github.com/gatling/gatling-kafka-demo/tree/main/kotlin/gradle)
 - [Kotlin with Maven](https://github.com/gatling/gatling-kafka-demo/tree/main/kotlin/maven)
 - [Scala with sbt](https://github.com/gatling/gatling-kafka-demo/tree/main/scala/sbt)
+- [JavaScript](https://github.com/gatling/gatling-kafka-demo/tree/main/javascript)
+- [TypeScript](https://github.com/gatling/gatling-kafka-demo/tree/main/typescript)
 
 ## Add the Gatling Kafka dependency {#gatling-kafka-dependency}
 
 The Gatling Kafka plugin isn't included with Gatling by default. Add the Gatling Kafka dependency, in addition to the
 usual Gatling dependencies.
 
-The Gatling Kafka plugin requires Gatling 3.16.1 or later, and is available for Java, Kotlin, and Scala.
-It isn't available for JavaScript and TypeScript.
+The Gatling Kafka plugin requires Gatling 3.16.1 or later.
 
 For Java or Kotlin:
 
@@ -47,6 +48,12 @@ For Java or Kotlin:
 1-Maven: includes/dependency.maven.java.md
 2-Gradle: includes/dependency.gradle.java.md
 {{< /include-file >}}
+
+For JavaScript/TypeScript:
+
+```console
+npm install @gatling.io/kafka@{{< var gatlingJsVersion >}}
+```
 
 For Scala:
 
@@ -60,7 +67,23 @@ The plugin brings the Apache Kafka client, `org.apache.kafka:kafka-clients`.
 
 ## Add the optional libraries {#optional-libraries}
 
-Some features need a library that the plugin doesn't bring. Add it in the same scope as the Gatling dependencies when you use the feature:
+Some features need a library that the plugin doesn't bring. Add it when you use the feature:
+
+- For Java, Kotlin, and Scala, in the same scope as the Gatling dependencies.
+- For JavaScript and TypeScript, as a [JVM dependency]({{< ref "/integrations/build-tools/js-cli#jvm-dependencies" >}}) in the `gatling` section of your `package.json`, with the Maven repository it comes from, if it's not Maven Central. For example, for Avro:
+
+```json
+{
+  "gatling": {
+    "jvmDependencies": {
+      "artifacts": ["io.confluent:kafka-avro-serializer:8.4.0"],
+      "repositories": ["https://packages.confluent.io/maven/"]
+    }
+  }
+}
+```
+
+The libraries are:
 
 | **Feature** | **Library** |
 | --- | --- |

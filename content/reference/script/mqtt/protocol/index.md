@@ -13,11 +13,6 @@ Gatling supports MQTT 3.1, 3.1.1 and 5. Enable MQTT 5 with `mqttVersion_5` on th
 Gatling doesn't support MQTT 5 topic aliases and enhanced authentication.
 {{< /alert >}}
 
-{{< alert warning >}}
-The JavaScript and TypeScript SDK doesn't support the MQTT 5 options, `unsubscribe`, `retain` on `publish`, `asyncNameResolution`, `perUserNameResolution`,
-`subscribeTimeout` and `resendAttemptsMax` yet. The samples for these features only cover Java, Kotlin and Scala.
-{{< /alert >}}
-
 ## Prerequisites
 
 Gatling Enterprise MQTT SDK is not imported by default.
@@ -57,7 +52,7 @@ By default, Gatling uses Java's blocking DNS resolver, like the HTTP protocol.
 Use `asyncNameResolution` to switch to Gatling's non-blocking DNS resolver, and `perUserNameResolution` to give each virtual user its own DNS cache.
 These options work like their [HTTP protocol counterparts]({{< ref "/reference/script/http/protocol#asyncnameresolution" >}}).
 
-{{< include-code "dns" java kt scala >}}
+{{< include-code "dns" >}}
 
 ### Configure acknowledgement timeouts and resends
 
@@ -68,7 +63,7 @@ Set `resendAttemptsMax` to 0 to disable resends and turn `resendDelay` into an a
 Use `subscribeTimeout` to define how long the broker can take to acknowledge a subscribe, 3 seconds by default.
 When the timeout expires, the subscribe fails, but the connection stays open.
 
-{{< include-code "timeouts-resends" java kt scala >}}
+{{< include-code "timeouts-resends" >}}
 
 ### Configure MQTT 5 connection options
 
@@ -83,7 +78,7 @@ With MQTT 5, you can configure:
 You can call `connectUserProperty` and `publishUserProperty` several times, also with the same name.
 Define names and values as Gatling Expression Language Strings or functions.
 
-{{< include-code "mqtt5-protocol" java kt scala >}}
+{{< include-code "mqtt5-protocol" >}}
 
 Gatling also respects the limits the broker sends in its CONNACK packet:
 
@@ -94,7 +89,7 @@ Gatling also respects the limits the broker sends in its CONNACK packet:
 
 With MQTT 5, the last will supports the same properties as [publish](#set-mqtt-5-publish-properties), plus `delayInterval`, the time the broker waits after the connection is lost before publishing the last will.
 
-{{< include-code "mqtt5-last-will" java kt scala >}}
+{{< include-code "mqtt5-last-will" >}}
 
 ## Request
 
@@ -116,7 +111,7 @@ Use the `subscribe` method to subscribe to an MQTT topic:
 
 With MQTT 5, set subscription options on `subscribe`. Gatling keeps them when it restores the subscriptions after a reconnect.
 
-{{< include-code "subscribe-mqtt5" java kt scala >}}
+{{< include-code "subscribe-mqtt5" >}}
 
 #### Tell subscriptions apart with Subscription Identifiers
 
@@ -126,7 +121,7 @@ The broker adds it to the messages it forwards for this subscription.
 When a subscribe with a Subscription Identifier has an `await` or `expect`, only the messages carrying this identifier match, which tells apart overlapping subscriptions.
 Inbound messages expose their Subscription Identifiers, see [Processing unmatched messages](#processing-unmatched-messages).
 
-{{< include-code "subscription-identifier" java kt scala >}}
+{{< include-code "subscription-identifier" >}}
 
 #### Use shared subscriptions
 
@@ -134,13 +129,13 @@ With MQTT 5, subscribe to a `$share/<group>/<topic filter>` topic to join a shar
 `await` and `expect` match the messages received on the topic filter, without the `$share/<group>/` prefix.
 A subscribe with `noLocal` on a shared subscription fails, instead of getting the connection closed by the broker.
 
-{{< include-code "shared-subscription" java kt scala >}}
+{{< include-code "shared-subscription" >}}
 
 ### `unsubscribe`
 
 Use the `unsubscribe` method to unsubscribe from an MQTT topic. Gatling logs the response once the broker acknowledges the UNSUBSCRIBE packet.
 
-{{< include-code "unsubscribe" java kt scala >}}
+{{< include-code "unsubscribe" >}}
 
 ### `publish`
 
@@ -150,7 +145,7 @@ Use the `publish` method to publish a message. You can use the same `Body` API a
 
 Use `retain` to override the protocol's retain flag for one publish:
 
-{{< include-code "publish-retain" java kt scala >}}
+{{< include-code "publish-retain" >}}
 
 #### Set MQTT 5 publish properties
 
@@ -166,7 +161,7 @@ With MQTT 5, set the following properties on `publish`:
 | `correlationData` | The Correlation Data, as a String encoded in UTF-8. |
 | `correlationDataBytes` | The Correlation Data, as bytes. |
 
-{{< include-code "publish-mqtt5" java kt scala >}}
+{{< include-code "publish-mqtt5" >}}
 
 ### Understand how Gatling handles broker refusals
 
@@ -196,14 +191,14 @@ The topic of `subscribe`, and the expected topic of `publish`, can be a topic fi
 `await` and `expect` then match the messages received on any topic matching the filter.
 When a message matches several pending checks, Gatling picks the ones on the exact topic first, then the topic filters in the order the checks were registered.
 
-{{< include-code "check-wildcards" java kt scala >}}
+{{< include-code "check-wildcards" >}}
 
 ### Correlate responses on the MQTT 5 Correlation Data
 
 With MQTT 5, use `correlateByCorrelationData` instead of `correlateBy` to match responses with the publish expecting them on the Correlation Data property, which responders send back unchanged.
 Every publish with `await` or `expect` must then set `correlationData` or `correlationDataBytes`, otherwise Gatling fails when building the simulation.
 
-{{< include-code "correlate-correlation-data" java kt scala >}}
+{{< include-code "correlate-correlation-data" >}}
 
 ## Processing unmatched messages
 
@@ -222,7 +217,7 @@ It contains instances of type `io.gatling.mqtt.action.MqttInboundMessage`.
 The topic can be a topic filter with wildcards: Gatling then merges the messages of all the matching topics, in the order it received them.
 With MQTT 5, `subscriptionIdentifiers` returns the Subscription Identifiers of the virtual user's subscriptions the message matched, or an empty list if none of them has one.
 
-{{< include-code "process-subscription-identifiers" java kt scala >}}
+{{< include-code "process-subscription-identifiers" >}}
 
 ## MQTT configuration
 

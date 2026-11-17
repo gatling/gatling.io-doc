@@ -101,14 +101,6 @@ jsonFile("foo.json");
 jsonUrl("http://me.com/foo.json");
 //#json-feeders
 
-/*
-//#jdbc-imports
-//#jdbc-imports
-//#jdbc-feeder
-NOT SUPPORTED
-//#jdbc-feeder
-*/
-
 //#sitemap-imports
 // beware: you need to import the http module
 import { sitemap } from "@gatling.io/http";

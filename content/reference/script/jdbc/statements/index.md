@@ -88,6 +88,7 @@ A batch produces one update count per row.
 `batch` and `params` can't be combined on the same statement.
 The request crashes, without sending anything, when the batch is empty.
 Rows contain plain values, so they can't contain `param(...)`: use the Java types matching the columns, such as `BigDecimal` or `java.sql.Timestamp`.
+In JavaScript and TypeScript, rows can only contain strings, numbers, booleans, and nulls.
 
 ## Return generated keys {#generated-keys}
 

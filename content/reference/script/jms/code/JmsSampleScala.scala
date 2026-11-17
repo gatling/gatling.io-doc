@@ -53,7 +53,6 @@ jms
   .credentials("username", "password")
   // optional, default to non persistent
   .useNonPersistentDeliveryMode
-  .useNonPersistentDeliveryMode
 
   // optional, default to 1
   // listener thread count

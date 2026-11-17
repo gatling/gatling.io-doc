@@ -102,13 +102,13 @@ Without prior knowledge, `http://` requests keep using HTTP/1.1.
 Remotes in `http2PriorKnowledge` are hostnames or `hostname:port` pairs, where the port defaults to 443.
 Specify the port for `http://` remotes, for example `localhost:8080`:
 
-{{< include-code "http2PriorKnowledge-h2c" java kt scala >}}
+{{< include-code "http2PriorKnowledge-h2c" >}}
 
 If the server closes the connection before confirming it speaks HTTP/2, the requests fail with an explicit error.
 Gatling doesn't use h2c for requests sent through a proxy.
 
 {{< alert info >}}
-HTTP/2 through proxies and h2c are available since Gatling 3.16.1. The JavaScript and TypeScript SDK doesn't support them yet.
+HTTP/2 through proxies and h2c are available since Gatling 3.16.1 and the JavaScript and TypeScript SDK 3.16.101.
 {{< /alert >}}
 
 #### `http2StreamWindowSize` and `http2ConnectionWindowSize`
@@ -123,10 +123,10 @@ Gatling advertises the same flow-control windows as Chrome:
 
 Tune these windows, for example, to mimic a client with smaller buffers:
 
-{{< include-code "http2WindowSize" java kt scala >}}
+{{< include-code "http2WindowSize" >}}
 
 {{< alert info >}}
-These options are available since Gatling 3.16.1. The JavaScript and TypeScript SDK doesn't support them yet.
+These options are available since Gatling 3.16.1 and the JavaScript and TypeScript SDK 3.16.101.
 {{< /alert >}}
 
 #### `JDK Blocking Resolver (default)`

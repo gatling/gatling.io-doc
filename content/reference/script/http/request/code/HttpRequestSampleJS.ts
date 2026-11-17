@@ -18,6 +18,7 @@ import {
   ByteArrayBody,
   ElFileBody,
   exec,
+  gzipBody,
   PebbleFileBody,
   PebbleStringBody,
   RawFileBody,
@@ -407,11 +408,22 @@ http("name").post("/")
   );
 //#bodyPart-options
 
-/*
 //#processRequestBody
-NOT SUPPORTED
+http("name").post("/")
+  .body(RawFileBody("file"))
+  .processRequestBody(gzipBody);
 //#processRequestBody
-*/
+
+//#ignoreProtocolAuth
+// send the request without the protocol's credentials
+http("name").get("/health")
+  .ignoreProtocolAuth();
+//#ignoreProtocolAuth
+
+//#enableFollowRedirect
+http("name").get("/login")
+  .enableFollowRedirect();
+//#enableFollowRedirect
 
 //#resources
 http("name").post("/")

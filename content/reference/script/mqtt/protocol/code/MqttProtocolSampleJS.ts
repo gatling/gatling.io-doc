@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { CheckBuilder, StringBody, csv, jsonPath, rampUsersPerSec, scenario, simulation } from "@gatling.io/core";
+import { CheckBuilder, StringBody, csv, exec, jsonPath, rampUsersPerSec, scenario, simulation } from "@gatling.io/core";
 
 //#imports
 import { mqtt } from "@gatling.io/mqtt";
@@ -85,6 +85,54 @@ mqtt.perUserKeyManagerFactory("keys/multi-alias.p12", "password");
 mqtt.perUserKeyManagerFactory("keys/multi-alias.p12");
 //#perUserKeyManagerFactory-keystore
 
+//#dns
+// resolve the broker hostname with Gatling's non-blocking DNS resolver,
+// using the system's DNS servers
+mqtt.asyncNameResolution();
+
+// force DNS servers, as "host" or "host:port"
+mqtt.asyncNameResolution("8.8.8.8", "8.8.4.4:53");
+
+// give each virtual user its own DNS cache, like real devices
+// only effective with asyncNameResolution
+mqtt
+  .asyncNameResolution()
+  .perUserNameResolution();
+//#dns
+
+//#timeouts-resends
+mqtt
+  // timeout for the broker to acknowledge a subscribe (default: 3 seconds)
+  .subscribeTimeout({ amount: 5, unit: "seconds" })
+  // max number of resends of an unacknowledged packet (default: 3)
+  .resendAttemptsMax(5);
+//#timeouts-resends
+
+//#mqtt5-protocol
+mqtt
+  .mqttVersion_5()
+  // how long the broker keeps the session after the connection closes
+  .sessionExpiryInterval({ amount: 10, unit: "minutes" })
+  // user property sent in the CONNECT packet
+  .connectUserProperty("deviceType", "#{deviceType}")
+  // user property sent with every PUBLISH packet
+  .publishUserProperty("tenant", "#{tenant}");
+//#mqtt5-protocol
+
+//#mqtt5-last-will
+mqtt
+  .mqttVersion_5()
+  .lastWill(
+    LastWill("#{willTopic}", StringBody("#{willMessage}"))
+      // wait 30 seconds after the connection is lost before publishing the last will
+      .delayInterval({ amount: 30, unit: "seconds" })
+      // same properties as for publish
+      .contentType("text/plain")
+      .messageExpiryInterval({ amount: 5, unit: "minutes" })
+      .userProperty("reason", "connection-lost")
+  );
+//#mqtt5-last-will
+
 //#connect
 mqtt("Connecting").connect();
 //#connect
@@ -95,10 +143,74 @@ mqtt("Subscribing").subscribe("#{myTopic}")
   .qosAtMostOnce();
 //#subscribe
 
+//#subscribe-mqtt5
+mqtt("Subscribing").subscribe("#{myTopic}")
+  // don't receive the messages this virtual user publishes
+  .noLocal()
+  // keep the retain flag of the forwarded messages
+  .retainAsPublished()
+  // receive the retained messages when subscribing (default)
+  .retainHandlingSendAtSubscribe()
+  // receive the retained messages only if the subscription doesn't exist yet
+  .retainHandlingSendAtNewSubscribe()
+  // don't receive the retained messages when subscribing
+  .retainHandlingDontSend();
+//#subscribe-mqtt5
+
+//#subscription-identifier
+// await only matches the messages the broker forwards for this subscription
+mqtt("Subscribing to all sensors").subscribe("sensors/#")
+  .subscriptionIdentifier(1)
+  .await({ amount: 1, unit: "seconds" });
+
+// the identifier can also be a Gatling Expression Language String or a function
+mqtt("Subscribing to my sensor").subscribe("sensors/#{sensorId}")
+  .subscriptionIdentifier("#{subscriptionId}");
+//#subscription-identifier
+
+//#shared-subscription
+// the broker spreads the messages of sensors/# among the members of the group
+mqtt("Subscribing").subscribe("$share/my-group/sensors/#")
+  .expect({ amount: 1, unit: "seconds" });
+//#shared-subscription
+
+//#unsubscribe
+mqtt("Unsubscribing").unsubscribe("#{myTopic}");
+//#unsubscribe
+
 //#publish
 mqtt("Publishing").publish("#{myTopic}")
   .message(StringBody("#{myTextPayload}"));
 //#publish
+
+//#publish-retain
+mqtt("Publishing").publish("#{myTopic}")
+  .message(StringBody("#{myTextPayload}"))
+  // override the protocol's retain flag
+  .retain(true);
+//#publish-retain
+
+//#publish-mqtt5
+mqtt("Publishing").publish("#{myTopic}")
+  .message(StringBody('{"temperature": #{temperature}}'))
+  // add user properties, possibly several with the same name
+  .userProperty("sensorId", "#{sensorId}")
+  .userProperty("unit", "celsius")
+  .contentType("application/json")
+  // flag the payload as UTF-8 encoded text
+  .payloadFormatUtf8()
+  // how long the broker keeps the message for subscribers that haven't received it yet
+  .messageExpiryInterval({ amount: 1, unit: "minutes" })
+  // where responders publish their response
+  .responseTopic("responses/#{id}")
+  // set the Correlation Data as a UTF-8 String
+  .correlationData("#{requestId}");
+
+// set the Correlation Data as bytes
+mqtt("Publishing").publish("#{myTopic}")
+  .message(StringBody("#{myTextPayload}"))
+  .correlationDataBytes((session) => session.get<number[]>("requestIdBytes"));
+//#publish-mqtt5
 
 //#check
 // subscribe and expect to receive a message within 100ms, without blocking flow
@@ -122,6 +234,33 @@ mqtt("Publishing").publish("#{myTopic}")
   .check(jsonPath("$.error").notExists());
 //#check
 
+//#check-wildcards
+// match the messages received on any topic under sensors/
+mqtt("Subscribing").subscribe("sensors/#")
+  .await({ amount: 1, unit: "seconds" });
+
+// match the response on any topic matching the topic filter
+mqtt("Publishing").publish("requests/#{deviceId}")
+  .message(StringBody("#{myPayload}"))
+  .await({ amount: 1, unit: "seconds" }, "responses/+/#{deviceId}");
+//#check-wildcards
+
+//#correlate-correlation-data
+const protocol = mqtt
+  .mqttVersion_5()
+  .correlateByCorrelationData();
+
+const requestResponse = exec(
+  mqtt("Subscribing to responses").subscribe("responses/#{id}"),
+  mqtt("Requesting").publish("requests")
+    .message(StringBody("#{myPayload}"))
+    .responseTopic("responses/#{id}")
+    // mandatory with await or expect
+    .correlationData("#{requestId}")
+    .await({ amount: 1, unit: "seconds" }, "responses/#{id}")
+);
+//#correlate-correlation-data
+
 //#waitForMessages
 mqtt.waitForMessages().timeout({ amount: 100, unit: "milliseconds" });
 //#waitForMessages
@@ -139,6 +278,21 @@ mqtt.processUnmatchedMessages(
       : session
 );
 //#process
+
+//#process-subscription-identifiers
+// process the unmatched messages of all the topics matching a topic filter,
+// and keep only the ones forwarded for the subscription with identifier 1
+mqtt.processUnmatchedMessages(
+  "sensors/#",
+  (messages, session) =>
+    session.set(
+      "sensorMessages",
+      messages
+        .filter((m) => m.subscriptionIdentifiers().includes(1))
+        .map((m) => m.payloadUtf8String())
+    )
+);
+//#process-subscription-identifiers
 
 //#example
 export default simulation((setUp) => {

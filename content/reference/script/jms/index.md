@@ -10,24 +10,43 @@ aliases:
 
 JMS support was initially contributed by [Jason Koch](https://github.com/jasonk000).
 
-{{< alert warning >}}
-The JMS protocol is not supported by the JavaScript SDK. If this functionality is important to you, add a comment to our [public roadmap](https://portal.productboard.com/gatling/1-gatling-roadmap/c/113-javascript-sdk-expansion?&utm_medium=docs&utm_source=callout).
-{{< /alert >}}
-
 ## Prerequisites
+
+### Dependency {#dependency}
+
+For Java, Kotlin, and Scala, the Gatling JMS SDK is included in the `io.gatling.highcharts:gatling-charts-highcharts` dependency: there's nothing to add.
+
+For JavaScript and TypeScript, add the `@gatling.io/jms` package, available since Gatling JavaScript SDK 3.16.101:
+
+```console
+npm install @gatling.io/jms@{{< var gatlingJsVersion >}}
+```
 
 ### Imports
 
-Gatling JMS SDK is not imported by default.
+The Gatling JMS SDK isn't imported by default. Add the following imports:
 
-You have to manually add the following imports:
-
-{{< include-code "imprts" java kt scala >}}
+{{< include-code "imprts" >}}
 
 ### JMS client implementation {#broker}
 
 *Java Message Service* (JMS), now known as *Jakarta Messaging*, is an API.
-In order to use it, you must provide your client vendor-specific implementation, eg `org.apache.activemq:activemq-broker` if you are using ActiveMQ.
+In order to use it, you must provide your client vendor-specific implementation, for example `org.apache.activemq:activemq-broker` if you are using ActiveMQ.
+
+For Java, Kotlin, and Scala, add it as a dependency in the same scope as the Gatling dependencies.
+
+For JavaScript and TypeScript, declare it as a [JVM dependency]({{< ref "/integrations/build-tools/js-cli#jvm-dependencies" >}}) in the `gatling` section of your `package.json`.
+Gatling downloads it when running or packaging your simulations:
+
+```json
+{
+  "gatling": {
+    "jvmDependencies": {
+      "artifacts": ["org.apache.activemq:activemq-client:6.4.0"]
+    }
+  }
+}
+```
 
 ### Using legacy javax.jms package {#legacy}
 
@@ -35,7 +54,9 @@ Since 3.14.0, Gatling targets the new `jakarta.jms` package.
 
 If you're still using a JMS client that requires the legacy `javax.jms` package and can't upgrade to a modern version, you have to use a wrapper library such as [com.github.marschall:jakarta-jms-adapter](https://github.com/marschall/jakarta-jms-adapter).
 
-Usage is very simple, you just have to wrap your `java.jms.ConnectionFactory` with a `com.github.marschall.jakartajmsadapter.JakartaConnectionFactory`.
+Wrap your `javax.jms.ConnectionFactory` with a `com.github.marschall.jakartajmsadapter.JakartaConnectionFactory`.
+
+This isn't available in JavaScript and TypeScript, where the JMS client must implement the `jakarta.jms` package.
 
 ## JMS protocol {#protocol}
 
@@ -47,15 +68,19 @@ The first mandatory step is to configure the `ConnectionFactory`.
 
 You can either configure one to be retrieved with a JNDI lookup:
 
-{{< include-code "jndi" java kt scala >}}
+{{< include-code "jndi" >}}
 
-or directly instantiate one with your JMS broker's Java client library, eg:
+or directly instantiate one with your JMS broker's Java client library, for example:
 
 {{< include-code "prog" java kt scala >}}
 
+Instantiating a `ConnectionFactory` isn't available in JavaScript and TypeScript: use a JNDI lookup.
+
 #### Other options
 
-{{< include-code "options" java kt scala >}}
+The following example shows the other protocol options:
+
+{{< include-code "options" >}}
 
 ## JMS request
 
@@ -85,9 +110,13 @@ you can additionally define a `trackerDestination(JmsDestination)`.
 * `mapMessage`
 * `objectMessage` for `java.io.Serializable` payloads
 
+In JavaScript and TypeScript, `objectMessage` sends strings, numbers, and booleans as is, arrays as `java.util.ArrayList`, and objects as `java.util.HashMap`.
+A string is a Gatling Expression Language string: a lone `"#{attribute}"` sends the value of the Session attribute as is, which must be serializable.
+To always send a string, pass a function.
+
 See below for a few examples:
 
-{{< include-code "message" java kt scala >}}
+{{< include-code "message" >}}
 
 ### Extra options
 
@@ -103,7 +132,7 @@ Likewise, `property("JMSCorrelationID", ...)` sets a regular property, not the h
 With `matchByCorrelationId`, Gatling matches the reply with the correlation id you set, and only generates a random one when you don't.
 Two requests in flight with the same correlation id can't be told apart: the second one fails.
 
-{{< include-code "extra" java kt scala >}}
+{{< include-code "extra" >}}
 
 These options are available since Gatling 3.16.1.
 
@@ -120,14 +149,14 @@ Gatling JMS's support only current supports the following checks:
 
 It also supports `jmsProperty` for checking JMS properties on reply messages.
 
-{{< include-code "jmsPropertyCheck" java kt scala >}}
+{{< include-code "jmsPropertyCheck" >}}
 
-In addition, there's `simpleCheck`:
+In addition, there's `simpleCheck`. In JavaScript and TypeScript, its function receives a read-only view of the reply, whose `text()` returns the body of a text message:
 
-{{< include-code "simple" java kt scala >}}
+{{< include-code "simple" >}}
 
 ## Example
 
 Short example, assuming ActiveMQ on localhost, using a `reqReply` query, to the queue named "jmstestq":
 
-{{< include-code "example-simulation" java kt scala >}}
+{{< include-code "example-simulation" >}}

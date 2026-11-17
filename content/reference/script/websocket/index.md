@@ -105,7 +105,7 @@ To prevent this, enable the setCheck buffer on the HttpProtocol with `wsSetCheck
 | `maxSize` | The maximum number of buffered messages. When the buffer is full, Gatling drops the oldest message. Must be strictly positive. |
 | `maxAge` | The maximum age of buffered messages. Gatling drops older messages. Must be strictly positive. |
 
-{{< include-code "setCheckBuffer" java kt scala >}}
+{{< include-code "setCheckBuffer" >}}
 
 With the buffer enabled:
 
@@ -118,7 +118,7 @@ Only `setCheck` replays buffered messages: checks set on `connect`, `sendText` o
 This buffer is independent from the one used by [`processUnmatchedMessages`]({{< ref "#processing-unmatched-messages" >}}).
 
 {{< alert info >}}
-`wsSetCheckBuffer` is available since Gatling 3.16.1. The JavaScript and TypeScript SDK doesn't support it yet.
+`wsSetCheckBuffer` is available since Gatling 3.16.1 and the JavaScript and TypeScript SDK 3.16.101.
 {{< /alert >}}
 
 ### Create a check

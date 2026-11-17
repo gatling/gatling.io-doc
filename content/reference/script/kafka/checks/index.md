@@ -26,7 +26,9 @@ The [generic checks]({{< ref "/concepts/checks#check-type" >}}) on the body read
 | `jsonPath`, `jmesPath` | JSON |
 | `bodyBytes`, `bodyLength`, `bodyStream` | Bytes |
 
-{{< include-code "value" java kt scala >}}
+`bodyStream` isn't available in JavaScript and TypeScript.
+
+{{< include-code "value" >}}
 
 A record without a value, such as a tombstone, fails these checks.
 
@@ -37,4 +39,4 @@ See [decode replies]({{< ref "/reference/script/kafka/schema-registry#decode" >}
 
 `kafkaKey` extracts the record's key, and `kafkaHeader(name)` the value of the record's last header with this name, both decoded as UTF-8:
 
-{{< include-code "key-header" java kt scala >}}
+{{< include-code "key-header" >}}

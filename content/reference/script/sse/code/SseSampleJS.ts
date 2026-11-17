@@ -79,6 +79,20 @@ exec(sse("SetCheck").setCheck()
   .await(30).on(sseCheck));
 //#check-from-flow
 
+//#setCheckBuffer
+http
+  // buffer up to 100 inbound events that no check matched,
+  // for up to 10 seconds
+  .sseSetCheckBuffer(100, 10);
+
+exec(
+  // trigger an event on the stream
+  http("Place order").post("/orders"),
+  // the event might have already arrived: setCheck matches it from the buffer
+  sse("Wait for the event").setCheck().await(30).on(sseCheck)
+);
+//#setCheckBuffer
+
 const sseCheck1 = sseCheck;
 const sseCheck2 = sseCheck;
 

@@ -369,7 +369,20 @@ NOT SUPPORTED
 //#in
 
 //#verify
-// Support coming soon
+.check(
+  jmesPath("foo")
+    .ofDouble()
+    .verify(
+      "is +/- 0.1",
+      (actual, session) => {
+        if (actual === null) {
+          return "Value is missing";
+        }
+        const expected = session.get<number>("expected");
+        return Math.abs(actual - expected) > 0.1 ? "Value is not within 0.1 margin" : null;
+      }
+    )
+)
 //#verify
 
 http("").get("")

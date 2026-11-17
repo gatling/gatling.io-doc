@@ -161,6 +161,11 @@ pace((session) => ({ amount: 100, unit: "milliseconds" }), (session) => ({ amoun
 rendezVous(100);
 //#rendezVous
 
+//#rendezVous-timeout
+// release the waiting users after 10 seconds, even if fewer than 100 arrived
+rendezVous(100, 10);
+//#rendezVous-timeout
+
 //#repeat
 // with an Int times
 repeat(5).on(

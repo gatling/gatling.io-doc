@@ -27,13 +27,15 @@ These limits only apply to the JDBC protocol: the [JDBC feeder]({{< ref "/refere
 
 ## Get started with the demo project {#demo-project}
 
-A [demo project](https://github.com/gatling/gatling-jdbc-demo) is available for each supported JVM language and build tool:
+A [demo project](https://github.com/gatling/gatling-jdbc-demo) is available for each supported language and build tool:
 
 - [Java with Gradle](https://github.com/gatling/gatling-jdbc-demo/tree/main/java/gradle)
 - [Java with Maven](https://github.com/gatling/gatling-jdbc-demo/tree/main/java/maven)
 - [Kotlin with Gradle](https://github.com/gatling/gatling-jdbc-demo/tree/main/kotlin/gradle)
 - [Kotlin with Maven](https://github.com/gatling/gatling-jdbc-demo/tree/main/kotlin/maven)
 - [Scala with sbt](https://github.com/gatling/gatling-jdbc-demo/tree/main/scala/sbt)
+- [JavaScript](https://github.com/gatling/gatling-jdbc-demo/tree/main/javascript)
+- [TypeScript](https://github.com/gatling/gatling-jdbc-demo/tree/main/typescript)
 
 ## Add the Gatling JDBC dependency {#gatling-jdbc-dependency}
 
@@ -68,17 +70,22 @@ For Scala:
 Gatling doesn't ship any JDBC driver. Add the driver of your database as a dependency:
 
 - For Java, Kotlin, and Scala, in the same scope as the Gatling dependencies.
-- For JavaScript and TypeScript, as a [JVM dependency]({{< ref "/integrations/build-tools/js-cli#jvm-dependencies" >}}) in the `gatling` section of your `package.json`:
+- For JavaScript and TypeScript, as a [JVM dependency]({{< ref "/integrations/build-tools/js-cli#jvm-dependencies" >}}) in the `artifacts` of the `gatling.jvmDependencies` section of your `package.json`, as `groupId:artifactId:version`:
 
 ```json
 {
   "gatling": {
-    "jvmDependencies": ["org.postgresql:postgresql:42.7.14"]
+    "jvmDependencies": {
+      "artifacts": ["org.postgresql:postgresql:42.7.14"]
+    }
   }
 }
 ```
 
-The drivers of the main databases are:
+In JavaScript and TypeScript, you can also put the JAR file of the driver in the `jvm_libs` folder of your project.
+
+The drivers of the main databases are listed below as `groupId:artifactId`.
+In JavaScript and TypeScript, append the driver version in `artifacts`, such as `org.postgresql:postgresql:42.7.14`:
 
 | **Database** | **Driver dependency** |
 | --- | --- |

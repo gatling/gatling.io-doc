@@ -15,9 +15,9 @@
  */
 
 //#imports
-// Support coming soon
+import { jdbcFeeder } from "@gatling.io/jdbc";
 //#imports
 
 //#jdbc-feeder
-// Support coming soon
+jdbcFeeder("jdbc:postgresql://localhost:5432/shop", "username", "password", "SELECT * FROM users");
 //#jdbc-feeder

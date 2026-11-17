@@ -31,6 +31,19 @@ For example, for Avro:
 3-sbt: includes/serializer.sbt.md
 {{< /include-file >}}
 
+For JavaScript and TypeScript, declare the serializer and Confluent's repository as [JVM dependencies]({{< ref "/integrations/build-tools/js-cli#jvm-dependencies" >}}) in the `gatling` section of your `package.json`:
+
+```json
+{
+  "gatling": {
+    "jvmDependencies": {
+      "artifacts": ["io.confluent:kafka-avro-serializer:8.4.0"],
+      "repositories": ["https://packages.confluent.io/maven/"]
+    }
+  }
+}
+```
+
 Confluent's serializers bring Confluent's own build of the Kafka clients (`org.apache.kafka:kafka-clients` with a `-ccs` version), which can replace the Apache Kafka clients the plugin depends on. The plugin is tested with both.
 Gatling Enterprise runs your simulations with the Apache Kafka clients the plugin depends on, whatever version your project resolves locally.
 
@@ -49,7 +62,7 @@ When a simulation uses a format whose serializer is missing, it fails at startup
 
 Configure the schema registry on the protocol:
 
-{{< include-code "registry" java kt scala >}}
+{{< include-code "registry" >}}
 
 | **Option** | **Description** |
 | --- | --- |
@@ -68,19 +81,19 @@ Pass a schema registry body to `value`, with the schema and the payload, a Gatli
 
 `avro` takes an Avro schema, and a payload in Avro's JSON encoding, where the non-null value of a union is wrapped in an object keyed by its type:
 
-{{< include-code "avro" java kt scala >}}
+{{< include-code "avro" >}}
 
 ### Protobuf {#protobuf}
 
 `protobuf` takes a `.proto` schema, whose first message is the value's, and a payload in the [Protobuf JSON mapping](https://protobuf.dev/programming-guides/json/):
 
-{{< include-code "protobuf" java kt scala >}}
+{{< include-code "protobuf" >}}
 
 ### JSON Schema {#json-schema}
 
 `jsonSchema` takes a JSON schema, and a JSON payload:
 
-{{< include-code "json-schema" java kt scala >}}
+{{< include-code "json-schema" >}}
 
 The serializer only validates the payload against the schema with the schema registry property `json.fail.invalid.schema` set to `true`.
 
@@ -89,7 +102,7 @@ The serializer only validates the payload against the schema with the schema reg
 `avroSubject`, `protobufSubject`, and `jsonSchemaSubject` use the latest schema of a subject in the registry, instead of a schema in the simulation.
 Gatling reads it once per run, when the first request uses it.
 
-{{< include-code "subject" java kt scala >}}
+{{< include-code "subject" >}}
 
 The format of the subject's schema must be the format of the body, and Gatling doesn't resolve schema references: a schema referencing other schemas fails.
 
@@ -97,7 +110,7 @@ The format of the subject's schema must be the format of the body, and Gatling d
 
 Keys accept the same schema registry bodies as values:
 
-{{< include-code "key" java kt scala >}}
+{{< include-code "key" >}}
 
 {{< alert warning >}}
 A request-reply whose key uses a schema registry can't match its reply by key, as its bytes are only known once serialized: use [`matchByHeader`]({{< ref "/reference/script/kafka/protocol#matching" >}}).
@@ -118,7 +131,7 @@ In both cases, serialization is part of the response time of the request.
 
 When the system under test replies with Avro, Protobuf, or JSON Schema, decode the reply of a request-reply with `decodeAvroReply`, `decodeProtobufReply`, or `decodeJsonSchemaReply`, with the deserializer of Confluent's serializer dependency:
 
-{{< include-code "decode" java kt scala >}}
+{{< include-code "decode" >}}
 
 The decoded reply is JSON, in the Protobuf JSON mapping for Protobuf, with the fields at their default value included:
 

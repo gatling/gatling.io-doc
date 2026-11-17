@@ -108,7 +108,7 @@ Gatling reports the `417` response under the request's name, and the second requ
 The checks apply to the final response.
 
 {{< alert info >}}
-Gatling sends requests again on `417` since version 3.16.1. The JavaScript and TypeScript SDK doesn't support it yet.
+Gatling sends requests again on `417` since Gatling 3.16.1 and the JavaScript and TypeScript SDK 3.16.101.
 {{< /alert >}}
 
 ## Checks
@@ -248,11 +248,11 @@ You can use `formParamSeq` and `formParamMap` to set multiple form parameters at
 
 {{< include-code "formParam-multiple" >}}
 
-When a value passed to `formParamSeq` or `formParamMap` is a list (a `java.util.List` in Java and Kotlin, a `Seq` in Scala), Gatling sends one parameter per element, for example `key=value1&key=value2`.
+When a value passed to `formParamSeq` or `formParamMap` is a list (a `java.util.List` in Java and Kotlin, a `Seq` in Scala, an array in JavaScript and TypeScript), Gatling sends one parameter per element, for example `key=value1&key=value2`.
 The same applies to `queryParamSeq` and `queryParamMap`.
 
 {{< alert info >}}
-Gatling expands list values since version 3.16.1. The JavaScript and TypeScript SDK doesn't support it yet.
+Gatling expands list values since Gatling 3.16.1 and the JavaScript and TypeScript SDK 3.16.101.
 {{< /alert >}}
 
 #### `form`
@@ -375,10 +375,10 @@ Use `ignoreProtocolAuth` to send a request without the `basicAuth` or `digestAut
 A `basicAuth` or `digestAuth` defined on the request itself still applies.
 `ignoreProtocolAuth` also works on [WebSocket]({{< ref "/reference/script/websocket#connect" >}}) and [SSE]({{< ref "/reference/script/sse#connecting" >}}) `connect`.
 
-{{< include-code "ignoreProtocolAuth" java kt scala >}}
+{{< include-code "ignoreProtocolAuth" >}}
 
 {{< alert info >}}
-`ignoreProtocolAuth` is available since Gatling 3.16.1. The JavaScript and TypeScript SDK doesn't support it yet.
+`ignoreProtocolAuth` is available since Gatling 3.16.1 and the JavaScript and TypeScript SDK 3.16.101.
 {{< /alert >}}
 
 #### `proxy`
@@ -394,10 +394,10 @@ Just like you can [globally disable following redirect on the HttpProtocol confi
 When you disable following redirects on the HttpProtocol, use `enableFollowRedirect` to follow them on specific requests, for example in a login flow.
 The setting on the request always wins over the one on the HttpProtocol.
 
-{{< include-code "enableFollowRedirect" java kt scala >}}
+{{< include-code "enableFollowRedirect" >}}
 
 {{< alert info >}}
-`enableFollowRedirect` is available since Gatling 3.16.1. The JavaScript and TypeScript SDK doesn't support it yet.
+`enableFollowRedirect` is available since Gatling 3.16.1 and the JavaScript and TypeScript SDK 3.16.101.
 {{< /alert >}}
 
 #### `disableUrlEncoding`

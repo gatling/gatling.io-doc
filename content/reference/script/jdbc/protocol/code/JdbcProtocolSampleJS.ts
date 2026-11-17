@@ -14,30 +14,70 @@
  * limitations under the License.
  */
 
+import { atOnceUsers, scenario, simulation } from "@gatling.io/core";
 //#imports
-// Support coming soon
+import { jdbc } from "@gatling.io/jdbc";
 //#imports
 
+const protocolSample = simulation((setUp) => {
 //#protocol-sample
-// Support coming soon
+const jdbcProtocol = jdbc
+  .url("jdbc:postgresql://localhost:5432/shop")
+  .credentials("gatling", "secret");
+
+setUp(
+  scenario("JDBC").exec(jdbc("Count orders").statement("SELECT COUNT(*) FROM orders")).injectOpen(atOnceUsers(1))
+).protocols(jdbcProtocol);
 //#protocol-sample
+});
 
 //#properties
-// Support coming soon
+jdbc
+  .url("jdbc:postgresql://localhost:5432/shop")
+  .credentials("gatling", "secret")
+  // passed to the driver when opening connections
+  .property("ssl", "true")
+  .property("sslmode", "verify-full");
 //#properties
 
 //#data-source
-// Support coming soon
+// the class name of a DataSource, not a pooling one,
+// and its properties, set with its setters
+jdbc
+  .dataSource("org.postgresql.ds.PGSimpleDataSource", {
+    serverNames: ["localhost"],
+    portNumbers: [5432],
+    databaseName: "shop"
+  })
+  // optional, passed to dataSource.getConnection(username, password)
+  .credentials("gatling", "secret");
+
+// or a DataSource instance, created with Java.type
+const PGSimpleDataSource = Java.type<any>("org.postgresql.ds.PGSimpleDataSource");
+const dataSource = new PGSimpleDataSource();
+dataSource.setURL("jdbc:postgresql://localhost:5432/shop");
+jdbc.dataSource(dataSource);
 //#data-source
 
 //#pool
-// Support coming soon
+jdbc
+  .url("jdbc:postgresql://localhost:5432/shop")
+  // the number of connections, and the maximum number of statements running concurrently (default: 10)
+  .maxConnections(50);
 //#pool
 
 //#timeouts
-// Support coming soon
+jdbc
+  .url("jdbc:postgresql://localhost:5432/shop")
+  // how long opening a connection may take, in seconds, see DriverManager.setLoginTimeout
+  .loginTimeout(5)
+  // how long a statement may run, in seconds, see Statement.setQueryTimeout
+  .queryTimeout({ amount: 10, unit: "seconds" });
 //#timeouts
 
 //#fetch-size
-// Support coming soon
+jdbc
+  .url("jdbc:postgresql://localhost:5432/shop")
+  // see Statement.setFetchSize
+  .fetchSize(1000);
 //#fetch-size

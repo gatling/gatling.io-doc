@@ -397,7 +397,7 @@ const bidiStreamProcessUnmatchedMessages = () => {
     session.set("messages", messages)));
   // Combine with awaitStreamEnd(), including reconciling the forked session
   exec(stream.awaitStreamEndAndProcessUnmatchedMessages((messages, main, forked) =>
-    main.set("messages", messages).set("key", forked.getString("key"))));
+    main.set("messages", messages).set("key", forked.get("key"))));
   //#bidiStreamProcessUnmatchedMessages
 };
 
