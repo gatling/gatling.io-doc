@@ -18,5 +18,5 @@ Gatling offers three AI products: each one covers a different step of load testi
 | **Product** | **What it does** | **Where it runs** | **What it needs** |
 | --- | --- | --- | --- |
 | [Gatling AI Server]({{< ref "/ai/server" >}}) | Converts JMeter test plans into Gatling projects. | On your own infrastructure, connected to your AI assistant. | A Gatling Enterprise account and a model API key. |
-| [AI Plugin]({{< ref "/ai/plugins" >}}) | Adds Gatling skills and the Gatling MCP Server to your AI assistant or IDE, to create, deploy and run load tests on Gatling Enterprise. | In your IDE or AI client. | A Gatling Enterprise API token. |
 | [AI for analysis]({{< ref "/ai/analysis" >}}) | Generates AI summaries, comparisons and trend analyses of your runs. | In Gatling Enterprise. | The AI features enabled for your Gatling Enterprise organization. |
+| [AI Plugin]({{< ref "/ai/plugins" >}}) | Adds Gatling skills and the Gatling MCP Server to your AI assistant or IDE, to create, deploy and run load tests on Gatling Enterprise. | In your IDE or AI client. | A Gatling Enterprise API token. |

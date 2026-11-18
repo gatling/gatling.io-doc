@@ -36,8 +36,8 @@ Create a folder for the server, and save the following file in it as `compose.ya
 #   docker compose logs -f gatling-ai-server
 #   docker compose down      # stop; add -v to also forget the token counts
 #
-# Users sign in with their Gatling Enterprise account: the server trusts Gatling's sign-in service
-# (https://auth.gatling.io/auth, realm gatling) by default, so you set no identity setting.
+# Users sign in with their Gatling Enterprise account, through Gatling's sign-in service
+# (https://auth.gatling.io/auth): there is no identity setting to set.
 # https://docs.gatling.io/ai/server/installation/ explains each step.
 
 name: gatling-ai-server
@@ -56,8 +56,6 @@ services:
       GATLING_MODEL_ENDPOINT_API_KEY: ${GATLING_MODEL_ENDPOINT_API_KEY:?set GATLING_MODEL_ENDPOINT_API_KEY in .env}
       # Signs the state of the questions a conversion asks a stateless MCP client: 32 random bytes in base64.
       GATLING_MCP_REQUEST_STATE_KEY: ${GATLING_MCP_REQUEST_STATE_KEY:?set GATLING_MCP_REQUEST_STATE_KEY in .env}
-      # Gatling's sign-in service. Leave it at its default.
-      GATLING_IDENTITY_AUTH_SERVER_URL: ${GATLING_IDENTITY_AUTH_SERVER_URL:-https://auth.gatling.io/auth}
       # One JSON object per log line, for a log collector.
       QUARKUS_LOG_CONSOLE_JSON_ENABLED: ${QUARKUS_LOG_CONSOLE_JSON_ENABLED:-false}
     # Further settings (timeouts for a slow model, upload size, limits), when the file exists: see

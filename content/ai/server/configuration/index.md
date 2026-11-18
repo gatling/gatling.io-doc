@@ -104,26 +104,6 @@ The server refuses to start without these settings:
 The Docker Compose file also requires `GATLING_MCP_REQUEST_STATE_KEY`, described under
 [MCP server and HTTP](#configure-the-mcp-server-and-http).
 
-## Configure the identity
-
-Users sign in through Gatling's sign-in service, where Gatling Enterprise accounts belong: a valid token proves its
-holder is a Gatling Enterprise user. A request without a valid token gets a `401`. The server needs no Gatling
-Enterprise API token, and you don't need to change these settings:
-
-- `GATLING_IDENTITY_AUTH_SERVER_URL`
-
-  The base URL of Gatling's sign-in service, with no trailing slash. HTTPS, or HTTP to the loopback only.
-
-  Default: `https://auth.gatling.io/auth`\
-  Key: `gatling.identity.auth-server-url`
-
-- `GATLING_IDENTITY_REALM`
-
-  The realm users sign in through.
-
-  Default: `gatling`\
-  Key: `gatling.identity.realm`
-
 ## Configure the model endpoint
 
 These settings tune the calls to the model endpoint:
