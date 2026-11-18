@@ -53,13 +53,24 @@ The server keeps most of its state in memory, and forgets it on a restart:
 
 The server writes one SQLite file on its data volume, `/deployments/data`: the model token counts of the current quota
 window, and an audit trail of the tool calls, kept for seven days by default. An audit record names the caller, the
-tool, and the outcome, with sizes and counts, never a token, the call's full arguments, a prompt, or the plan. The
-server keeps neither the plans nor the generated code on disk once a conversion is done.
+tool, and the outcome, with sizes and counts, never a token, the call's full arguments, a prompt, or the plan. Unless
+your operator turns on the conversion history, the server keeps neither the plans nor the generated code on disk once a
+conversion is done.
 
-The server can also write a trace folder per conversion, with the uploaded plan and the generated code, for
-troubleshooting. Traces are off by default, and written in clear: the
-[configuration reference]({{< ref "/ai/server/configuration#keep-traces-of-the-conversions" >}}) describes how to turn
-them on.
+### Understand the conversion history
+
+The conversion history is off by default. When your operator turns it on, the server keeps a folder per conversion on
+its data volume, in `/deployments/data/conversions`:
+
+- The folder holds the uploaded plan, the conversion's report, and the generated code, written to disk in clear. It
+  never holds the model's prompts or answers.
+- The server deletes a folder 30 days after its conversion started, by default, unless the conversion is still running.
+- Each user lists, reads, downloads again, and deletes only the conversions they started. The server answers about
+  another user's conversion as if it didn't exist, and records every delete in the audit trail.
+
+Turning the history on is the operator's acknowledgement that plans and code are written in clear, and the server logs
+a warning saying so at every startup. The
+[configuration reference]({{< ref "/ai/server/configuration#keep-a-conversion-history" >}}) describes how to turn it on.
 
 ## Understand the guardian
 

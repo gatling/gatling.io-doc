@@ -114,7 +114,7 @@ volumes:
 ```
 
 The named volume `gatling-data` on `/deployments/data` keeps the model token counts and the audit trail across a
-restart. Without it, they go with the container.
+restart, and the conversion history when you turn it on. Without it, they go with the container.
 
 ## Set the settings
 
@@ -218,7 +218,7 @@ Stop the server with:
 docker compose down
 ```
 
-Add `-v` to also remove the data volume, with the token counts and the audit trail.
+Add `-v` to also remove the data volume, with the token counts, the audit trail, and the conversion history.
 
 ## Next steps
 

@@ -39,7 +39,8 @@ A conversion goes through these steps:
    it in the project. A snippet counts as ported only when its Java body compiles. A body that doesn't compile goes
    back to the model for a bounded number of repairs, after which the stub stays in the project.
 6. **The assistant downloads the project.** The server returns a summary of the conversion and a one-time download
-   link to a Maven or Gradle project, with a `README.md` that says what the conversion did.
+   link to a zip: a Maven or Gradle project by default, or the simulation file alone when the user asks for it. Either
+   zip holds a `README.md` that says what the conversion did.
 
 ## Understand the architecture
 
@@ -58,6 +59,11 @@ The following diagram shows how the components connect:
 This release converts JMeter test plans only, from a `.jmx` file or a zip that holds one or more plans. It serves two
 MCP tools: `storage.prepare_upload`, which prepares the upload of a plan, and `converters.from_jmeter`, which converts
 it. Your AI assistant calls them for you.
+
+When the operator turns the
+[conversion history]({{< ref "/ai/server/configuration#keep-a-conversion-history" >}}) on, the server serves four more
+tools, to list, show, download again, and delete the conversions a user started: `conversions.read_all`,
+`conversions.read_one`, `conversions.create_download_link`, and `conversions.delete_one`.
 
 ## Next steps
 
