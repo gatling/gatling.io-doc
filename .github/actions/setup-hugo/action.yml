@@ -5,6 +5,9 @@ inputs:
   hugo-version:
     description: 'Version of Hugo to install'
     required: true
+  dart-sass-version:
+    description: 'Version of Dart Sass to install'
+    required: true
 
 runs:
   using: 'composite'
@@ -16,7 +19,7 @@ runs:
       run: |
         base_url="https://github.com/gohugoio/hugo/releases/download"
 
-        archive_url="${base_url}/v${version}/hugo_extended_withdeploy_${version}_linux-amd64.tar.gz"
+        archive_url="${base_url}/v${version}/hugo_withdeploy_${version}_linux-amd64.tar.gz"
 
         workdir="$HOME/hugo"
         bindir="$workdir/bin"
@@ -29,3 +32,24 @@ runs:
         rm -r "$tmpdir"
 
         echo "$bindir" >> $GITHUB_PATH
+
+    - name: Install and setup Dart Sass
+      shell: bash
+      env:
+        version: ${{ inputs.dart-sass-version }}
+      run: |
+        base_url="https://github.com/sass/dart-sass/releases/download"
+
+        archive_url="${base_url}/${version}/dart-sass-${version}-linux-x64.tar.gz"
+
+        workdir="$HOME/dart-sass"
+        tmpdir="$workdir/tmp"
+
+        mkdir -p "$tmpdir"
+
+        curl --fail --location --show-error --silent --output "$tmpdir/dart-sass.tar.gz" "$archive_url"
+        tar xvzf "$tmpdir/dart-sass.tar.gz" -C "$workdir"
+        rm -r "$tmpdir"
+
+        # The archive contains a dart-sass directory with the sass executable
+        echo "$workdir/dart-sass" >> $GITHUB_PATH

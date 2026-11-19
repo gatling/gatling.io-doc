@@ -54,7 +54,10 @@ jobs:
         uses: sbt/setup-sbt@67d461eba2c4753196c230e02da850757ba4775e # v1.5.14
 
       - name: Build JVM code samples
-        run: sbt "all headerCheckAll scalafmtSbtCheck;" "test;"
+        run: |
+          sbt "all headerCheckAll scalafmtSbtCheck;" "test;"
+          # sbt 2 links its outputs into its cache, outside the paths Hugo lets Node.js read
+          rm -rf target project/target
 
       - name: Setup Node
         uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
@@ -65,7 +68,8 @@ jobs:
       - name: Setup Hugo
         uses: ./.github/actions/setup-hugo
         with:
-          hugo-version: '0.161.1'
+          hugo-version: '0.170.1'
+          dart-sass-version: '1.108.2'
 
       - name: Prepare project
         run: ./bin/entrypoint.sh prepare

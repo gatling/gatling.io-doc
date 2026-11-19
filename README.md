@@ -2,9 +2,16 @@
 
 ## Prerequisites
 
-You need [Go](https://golang.org/doc/install) and [Hugo](https://gohugo.io/getting-started/installing/) installed.
+You need [Go](https://golang.org/doc/install), [Hugo](https://gohugo.io/getting-started/installing/), and [DartSass](https://sass-lang.com) installed.
 
-Make sure to install the **extended** version of Hugo.
+E.g. on a Mac with Homebrew:
+
+```console
+brew install go
+brew install hugo
+brew trust dart-lang/dart
+brew install sass/sass/sass
+```
 
 ## Installation
 
