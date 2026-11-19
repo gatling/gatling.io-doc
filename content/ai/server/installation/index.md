@@ -29,7 +29,7 @@ Create a folder for the server, and save the following file in it as `compose.ya
 
 ```yaml
 # Gatling AI Server with Docker Compose: one server for your teams, which converts JMeter plans to Gatling
-# simulations for the MCP clients your users already work in (Claude Code).
+# simulations for the AI assistants your users already work in (Claude Code, VS Code, Cursor, and others).
 #
 #   cp .env.example .env     # set the server's URL and your model endpoint
 #   docker compose up -d --wait
