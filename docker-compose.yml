@@ -1,6 +1,6 @@
 services:
   hugo:
-    image: floryn90/hugo:0.161.1-ext-alpine
+    build: .
     ports:
      - "1313:1313"
     user: root:root
