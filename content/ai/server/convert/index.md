@@ -74,10 +74,12 @@ which modes the server allows: a conversion that asks for a mode the server does
 ## Answer the assistant's questions
 
 Some snippets port only partially: their Java body compiles but keeps a `// FIXME` line, for an API Gatling has no
-equivalent for, or a `// TODO` line, for what the scenario has to do. When your assistant supports MCP forms, the
-server may ask you, through a form, whether to keep each partial port or to skip it and keep its stub instead. It may
-also ask whether to keep the plan's JDBC and TCP requests as plain Java or to leave them out.
+equivalent for, or a `// TODO` line, for what the scenario has to do. By default, the server asks no question: it keeps
+the partial ports, and the plan's JDBC and TCP requests as plain Java.
 
+To be asked instead, tell your assistant to convert with questions on (the tool's `elicitation` argument set to
+`ask`). When your assistant supports MCP forms, the server then asks you, through a form, whether to keep each partial
+port or to skip it and keep its stub, and whether to keep the JDBC and TCP requests as plain Java or to leave them out.
 If you don't answer, the server keeps the partial ports and the plain Java requests. Your operator can turn the
 questions off.
 

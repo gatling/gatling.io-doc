@@ -187,7 +187,8 @@ describes.
 - `GATLING_CONVERSION_ELICITATION_MODES`
 
   Whether a conversion may ask the user questions through an MCP form (`ask`), about its partially ported snippets and
-  its JDBC and TCP requests, or not (`never`).
+  its JDBC and TCP requests, or not (`never`). A conversion asks only when the assistant calls it with `ask`; one that
+  names neither runs as `never`.
 
   Default: `ask,never`\
   Key: `gatling.conversion.elicitation-modes`
