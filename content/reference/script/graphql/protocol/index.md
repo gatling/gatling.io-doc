@@ -47,6 +47,11 @@ Gatling therefore inspects the `errors` member of the response.
 
 The error policy also applies to the messages of [subscriptions]({{< ref "/reference/script/graphql/subscriptions" >}}).
 
+Some servers answer some errors with a failing status instead.
+For example, Apollo Server answers a document that doesn't validate against the schema with a `400` status.
+Unless you check the status yourself, on the request or on the HTTP protocol, Gatling then reports the GraphQL error along with the status, for example `status 400, GraphQL error [GRAPHQL_VALIDATION_FAILED]: Cannot query field "nope" on type "Query".`.
+Such a request fails whatever the error policy, `ignoreErrors` included.
+
 ## Operation naming
 
 Gatling reports a request under the name `<operation type> <operation name>`, for example `query GetUser`.
@@ -76,6 +81,9 @@ This makes responses cacheable by a CDN.
 
 {{< include-code "queries-over-get" >}}
 
+Like Apollo Client, Gatling sends these `GET` requests with a `Content-Type: application/json` header, so that servers that prevent Cross-Site Request Forgery (CSRF), such as Apollo Server by default, don't block them.
+A `Content-Type` header you set yourself takes precedence.
+
 This only applies to queries whose document is known when the Simulation is built.
 Mutations and requests with a [dynamic document]({{< ref "/reference/script/graphql/requests#dynamic-document" >}}) are still sent with a `POST` request.
 
@@ -89,7 +97,7 @@ With `automaticPersistedQueries`, Gatling sends the hash alone as a `POST` reque
 If the server answers that it doesn't know the hash (`PersistedQueryNotFound`), Gatling sends the document.
 If the server answers that it doesn't support persisted queries at all (`PersistedQueryNotSupported`), Gatling sends the document and stops sending hashes.
 
-With `automaticPersistedQueriesOverGet`, Gatling sends the hash alone as a `GET` request, and falls back to a `POST` request with the document if the server doesn't know the hash yet.
+With `automaticPersistedQueriesOverGet`, Gatling sends the hash alone as a `GET` request, with a `Content-Type: application/json` header [like other queries over GET](#queries-over-get), and falls back to a `POST` request with the document if the server doesn't know the hash yet.
 This makes responses cacheable by a CDN.
 
 {{< alert warning >}}

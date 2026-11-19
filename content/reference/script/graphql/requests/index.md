@@ -107,10 +107,13 @@ Unlike the protocol `queriesOverGet`, `overGet` is strict:
 
 {{< include-code "over-get" >}}
 
+As with the protocol `queriesOverGet`, the request carries a `Content-Type: application/json` header, so that servers that prevent CSRF, such as Apollo Server, don't block it.
+
 ## Checks
 
 Use `check` to perform checks on the response.
 By default, Gatling checks the HTTP status and the [errors]({{< ref "/reference/script/graphql/protocol#error-handling" >}}) of the response.
+When the status fails and the response contains GraphQL errors, the failure reports the first GraphQL error along with the status, unless you check the status yourself.
 
 In addition to the [usual HTTP checks]({{< ref "/reference/script/http/checks" >}}), Gatling provides `jsonPath` and `jmesPath` checks rooted at a top level member of the GraphQL response:
 
