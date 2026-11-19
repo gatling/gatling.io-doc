@@ -108,7 +108,7 @@ Gatling Enterprise Edition pushes the following list of load test metrics to Dyn
 `gatling_enterprise.tcp.open_count`<br>`gatling_enterprise.tcp.close_count`<br>`gatling_enterprise.bandwidth_usage.sent`<br>`gatling_enterprise.bandwidth_usage.received`|count|remote
 `gatling_enterprise.tcp.connection_count`<br>`gatling_enterprise.tls.handshake_count`|count|remote<br>status
 `gatling_enterprise.tcp.connect_time.mean`<br>`gatling_enterprise.tcp.connect_time.min`<br>`gatling_enterprise.tcp.connect_time.p50`<br>`gatling_enterprise.tcp.connect_time.p95`<br>`gatling_enterprise.tcp.connect_time.p99`<br>`gatling_enterprise.tcp.connect_time.p999`<br>`gatling_enterprise.tcp.connect_time.max`<br>`gatling_enterprise.tls.handshake_time.mean`<br>`gatling_enterprise.tls.handshake_time.min`<br>`gatling_enterprise.tls.handshake_time.p50`<br>`gatling_enterprise.tls.handshake_time.p95`<br>`gatling_enterprise.tls.handshake_time.p99`<br>`gatling_enterprise.tls.handshake_time.p999`<br>`gatling_enterprise.tls.handshake_time.max`|gauge|remote<br>status
-`gatling_enterprise.tcp.state_count`|gauge|remote<br>state
+`gatling_enterprise.tcp.state_count`|count|remote<br>state
 `gatling_enterprise.cpu.user`<br>`gatling_enterprise.cpu.sys`<br>`gatling_enterprise.mem.ram.max`<br>`gatling_enterprise.mem.ram.used`<br>`gatling_enterprise.mem.heap.max`<br>`gatling_enterprise.mem.heap.committed`<br>`gatling_enterprise.mem.heap.used`|gauge
 
 See the official Dynatrace documentation for [exploring metrics](https://docs.dynatrace.com/docs/analyze-explore-automate/explorer).
