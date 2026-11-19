@@ -1,9 +1,9 @@
 ---
 title: Connect your AI assistant to Gatling AI Server
 menutitle: Connect
-seotitle: Connect Claude Code to Gatling AI Server and sign in with Gatling Enterprise
-description: Add Gatling AI Server to Claude Code, for yourself or for your whole team, and sign in with your Gatling Enterprise account.
-lead: Add your team's Gatling AI Server to Claude Code and sign in with your Gatling Enterprise account.
+seotitle: Connect your AI assistant to Gatling AI Server and sign in with Gatling Enterprise
+description: Add Gatling AI Server to your AI assistant, such as Claude Code, VS Code, or Cursor, and sign in with your Gatling Enterprise account.
+lead: Add your team's Gatling AI Server to your AI assistant and sign in with your Gatling Enterprise account.
 date: 2026-11-13T00:00:00+00:00
 ---
 
@@ -11,7 +11,34 @@ Gatling AI Server is an MCP server that your AI assistant reaches over HTTPS. To
 from your operator, followed by `/mcp`, for example `https://gatling-ai.example.internal/mcp`, and a Gatling Enterprise
 account.
 
-## Add the server to Claude Code
+Your AI assistant needs to support remote MCP servers over the Streamable HTTP transport, with OAuth sign-in. The
+first time it calls the server, your browser opens Gatling's sign-in page: sign in with your Gatling Enterprise account.
+
+The examples below register the server as `gatling-ai`. This name keeps it apart from the
+[Gatling MCP Server]({{< ref "/ai/plugins/mcp-server" >}}), which its documentation registers as `gatling`, so you can
+register both in the same assistant.
+
+## Check the supported AI assistants
+
+Gatling's sign-in service admits only the AI assistants Gatling allows:
+
+- Claude Code
+- VS Code, with GitHub Copilot
+- Cursor
+- ChatGPT and Codex
+- GitHub Copilot CLI
+- Postman
+- Zed
+- Kiro
+- Google Antigravity
+- opencode
+- Amp
+- goose
+
+Another assistant is refused at sign-in. To use one that isn't listed,
+[open a support ticket](https://gatlingcorp.atlassian.net/servicedesk/customer/portal/8).
+
+## Connect Claude Code
 
 Run the following command, with your server's URL:
 
@@ -19,19 +46,8 @@ Run the following command, with your server's URL:
 claude mcp add --transport http --scope user gatling-ai https://<your-server>/mcp
 ```
 
-The `--scope user` option makes the server available in every project you open with Claude Code.
-
-{{< alert info >}}
-The name `gatling-ai` keeps this server apart from the [Gatling MCP Server]({{< ref "/ai/plugins/mcp-server" >}}),
-which its documentation registers as `gatling`. You can register both in the same Claude Code.
-{{< /alert >}}
-
-## Sign in
-
-In Claude Code, run `/mcp` and choose `gatling-ai`. Your browser opens Gatling's sign-in page: sign in with your
-Gatling Enterprise account. Claude Code then lists the server's tools.
-
-## Share the server with your team
+The `--scope user` option makes the server available in every project you open. Then run `/mcp` in Claude Code,
+choose `gatling-ai`, and sign in.
 
 To give everyone who works on a repository the same server, commit a `.mcp.json` file at the repository's root:
 
@@ -48,19 +64,48 @@ To give everyone who works on a repository the same server, commit a `.mcp.json`
 ```
 
 The `timeout` of 600,000 milliseconds, 10 minutes, keeps Claude Code waiting longer than one conversion can take on
-the server, 9 minutes 30 seconds by default. Each team member signs in once with `/mcp`, as above.
+the server, 9 minutes 30 seconds by default. Each team member signs in once with `/mcp`.
 
-{{< alert tip >}}
-To set the same timeout for the user-scoped server, register it with
-`claude mcp add-json --scope user gatling-ai '{"type":"http","url":"https://<your-server>/mcp","timeout":600000}'`
-instead.
-{{< /alert >}}
+## Connect VS Code
 
-## Use another MCP client
+Add the server to a `.vscode/mcp.json` file at the root of your workspace, or to your user configuration with the
+**MCP: Open User Configuration** command:
 
-This release supports Claude Code. Gatling's sign-in service admits only the MCP clients Gatling allows, so another
-client may be refused at sign-in, even when it supports the Streamable HTTP transport and OAuth with Client ID Metadata
-Documents.
+```json
+{
+  "servers": {
+    "gatling-ai": {
+      "type": "http",
+      "url": "https://<your-server>/mcp"
+    }
+  }
+}
+```
+
+Start the server from the file, or with the **MCP: List Servers** command, and sign in when VS Code asks. GitHub
+Copilot Chat then lists the server's tools in agent mode.
+
+## Connect Cursor
+
+Add the server to `~/.cursor/mcp.json` for every project, or to `.cursor/mcp.json` at a project's root:
+
+```json
+{
+  "mcpServers": {
+    "gatling-ai": {
+      "url": "https://<your-server>/mcp"
+    }
+  }
+}
+```
+
+Cursor then lists `gatling-ai` in its MCP settings, where you sign in.
+
+## Connect another AI assistant
+
+For any other supported assistant, add a remote MCP server named `gatling-ai` with the URL
+`https://<your-server>/mcp`, as its documentation describes, and sign in when it asks. If the assistant lets you set a
+tool call timeout, set it above 10 minutes.
 
 ## Next steps
 

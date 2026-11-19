@@ -12,7 +12,7 @@ asking for it in plain language.
 
 ## Ask for a conversion
 
-Ask your assistant to convert a `.jmx` file, or a zip of a plan and the files it reads. For example, with the sample
+Ask your assistant to convert a `.jmx` file, a folder, or a zip. For example, with the sample
 of the [demo project](https://github.com/gatling/gatling-ai-server-demo):
 
 ```text
@@ -22,9 +22,15 @@ Convert examples/EcommApp.zip to a Gatling simulation.
 The assistant uploads the plan to the server, starts the conversion, and returns a summary with a link to download
 the Gatling project.
 
-To convert a plan that reads other files, such as CSV data files or scripts, or several plans of one folder, ask the
-assistant to convert the folder. It zips the folder once, keeping its relative paths, and converts each plan from the
-same upload. By default, a zip holds at most 256 entries and an upload is at most 10 MiB.
+You don't have to zip anything yourself. To convert several plans at once, or a plan with the files it reads, such as
+CSV data files or scripts, point the assistant at the files or at their folder:
+
+```text
+Convert every .jmx file in tests/ to Gatling simulations.
+```
+
+The assistant zips the files, keeping their relative paths, uploads the zip once, and converts each plan from it, with
+one project per plan. By default, a zip holds at most 256 entries and an upload is at most 10 MiB.
 
 {{< alert info >}}
 When the server refuses a plan, it tells the assistant to show you the refusal, and not to change the plan or convert

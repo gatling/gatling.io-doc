@@ -37,8 +37,8 @@ GATLING_SERVER_SYNC_TIMEOUT=PT4M30S
 # list, download again, and delete their own conversions.
 GATLING_CONVERSIONS_HISTORY_ENABLED=true
 
-# Delete a conversion of the history 14 days after it started.
-GATLING_TRACE_RETENTION=P14D
+# Delete a conversion from the history 14 days after it started.
+GATLING_CONVERSIONS_HISTORY_RETENTION=P14D
 
 # Write one JSON object per log line, for your log collector.
 QUARKUS_LOG_CONSOLE_JSON_ENABLED=true
@@ -59,13 +59,6 @@ The server reads a setting from these sources, from the highest priority to the 
 5. The defaults packaged in the image.
 
 Durations use the ISO 8601 format: `PT15M` is 15 minutes, `PT9M30S` is 9 minutes 30 seconds, and `P1D` is one day.
-
-{{< alert info >}}
-Some keys are fixed in the image, and setting them changes nothing: the tenant source, the stores, the telemetry
-providers, which guardian runs, and the snippet languages. The tenant and the token
-audience are fixed too: the server refuses to start if you change
-`gatling.server.served-tenants` or `quarkus.oidc.gatling.token.audience`.
-{{< /alert >}}
 
 ## Set the required settings
 
@@ -476,13 +469,13 @@ without a mounted volume, the history is lost with the container.
   Default: `false`\
   Key: `gatling.conversions.history.enabled`
 
-- `GATLING_TRACE_RETENTION`
+- `GATLING_CONVERSIONS_HISTORY_RETENTION`
 
   How long a conversion's folder is kept, from the conversion's start. The server deletes older folders at startup and
   every hour, except a conversion's that's still running.
 
   Default: `P30D`\
-  Key: `gatling.trace.retention`
+  Key: `gatling.conversions.history.retention`
 
 ## Configure telemetry and logs
 
