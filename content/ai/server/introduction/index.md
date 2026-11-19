@@ -12,8 +12,9 @@ Gatling AI Server converts JMeter test plans into Gatling simulations written in
 they already use, such as Claude Code or Cursor, hand it a `.jmx` plan, and download a Gatling project the server checked by
 compiling it.
 
-You run the server on your own infrastructure, as a Docker image. Your users sign in with their Gatling Enterprise
-account, and the server ports the plan's code snippets with the model you choose.
+You run the server on your own infrastructure: on Kubernetes with the Gatling Helm chart, or on AWS, Azure, or Google
+Cloud with a Gatling Terraform module. Your users sign in with their Gatling Enterprise account, and the server ports
+the plan's code snippets with the model you choose.
 
 The server translates the plan itself, without a model. Only the code snippets it can't translate, such as JSR223 or
 BeanShell scripts, go to a model, which keeps the rest of your plan away from it and saves tokens. Your users download
@@ -51,5 +52,5 @@ tools, to list, show, download again, and delete the conversions a user started:
 ## Next steps
 
 - [Check the network requirements]({{< ref "/ai/server/network" >}}).
-- [Install the server with Docker Compose]({{< ref "/ai/server/installation" >}}).
+- [Install the server with Helm or Terraform]({{< ref "/ai/server/installation/overview" >}}).
 - [Connect your AI assistant]({{< ref "/ai/server/connect" >}}).

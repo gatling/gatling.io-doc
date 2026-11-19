@@ -15,7 +15,9 @@ Gatling project.
 ## Run it on your own infrastructure
 
 You run Gatling AI Server as a Docker image, `gatlingcorp/gatling-ai-server`, on your own infrastructure. The plan's code snippets
-are ported by the OpenAI-compatible model endpoint you configure.
+are ported by the OpenAI-compatible model endpoint you configure. Install it on Kubernetes with the Gatling Helm chart,
+or on AWS, Azure, or Google Cloud with a Gatling Terraform module, as
+[Install Gatling AI Server]({{< ref "/ai/server/installation/overview" >}}) describes.
 
 ## Sign in with your Gatling Enterprise account
 

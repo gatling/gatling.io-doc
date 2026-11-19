@@ -7,42 +7,87 @@ lead: The settings you can change in Gatling AI Server, grouped by what they con
 date: 2026-11-13T00:00:00+00:00
 ---
 
-Gatling AI Server reads its settings from the environment. With the
-[Docker Compose installation]({{< ref "/ai/server/installation" >}}), the required ones go in `.env`, and the others
-in an optional `server.env` file next to `compose.yaml`, one `NAME=value` per line.
+Gatling AI Server reads its settings from environment variables. Where you set them depends on how you
+[installed it]({{< ref "/ai/server/installation/overview" >}}):
+
+- With the [Helm chart]({{< ref "/ai/server/installation/helm" >}}), the required settings are `server.*` values, the
+  two secrets are keys of the Secret you created, and every other setting goes in `env` or `envFrom`.
+- With a [Terraform module]({{< ref "/ai/server/installation/terraform" >}}), the required settings are inputs of the
+  module, the two secrets are references to your cloud's secret store, and every other setting goes in the module's
+  environment map.
+
+## Find where each setting goes
+
+The following table gives, for each installation, the value or the input that sets each setting:
+
+| **Setting** | **Helm chart** | **AWS module** | **Azure module** | **Google Cloud module** |
+| --- | --- | --- | --- | --- |
+| `GATLING_SERVER_PUBLIC_BASE_URL` | `server.publicBaseUrl` | `server.public-base-url` | Set by the module, to the container app's address | Set by the module, to the service's `run.app` URL |
+| `GATLING_MODEL_ENDPOINT_BASE_URL` | `server.model.baseUrl` | `server.model.base-url` | `server.model.base-url` | `server.model.base-url` |
+| `GATLING_MODEL_ENDPOINT_MODEL` | `server.model.name` | `server.model.name` | `server.model.name` | `server.model.name` |
+| `GATLING_MODEL_ENDPOINT_API_KEY` | The Secret's key `model-api-key` | `server.model.api-key-secret-arn`, a Secrets Manager secret | `server.model.api-key-secret-id`, a Key Vault secret | `server.model.api-key-secret`, a Secret Manager secret |
+| `GATLING_MCP_REQUEST_STATE_KEY` | The Secret's key `request-state-key` | `server.request-state-key-secret-arn` | `server.request-state-key-secret-id` | `server.request-state-key-secret` |
+| Any other setting | `env`, `envFrom` | `task.environment` | `container.environment` | `container.environment` |
+
+Each module refuses an environment map that sets a variable the module sets itself. The Azure module also sets
+`GATLING_SERVER_SYNC_TIMEOUT` and `GATLING_MCP_CONTINUE_ON_RETRY`, as its
+[limits]({{< ref "/ai/server/installation/terraform#azure-limits" >}}) explain. A module's environment map is stored in
+plain text in the Terraform state: put no secret there.
 
 ## Start from an example
 
-The following `server.env` sets what you most likely change beyond the required settings. It's a starting point: keep
-the lines you need, and find every setting in the reference below.
+The following settings are what you most likely change beyond the required ones. It's a starting point: keep the lines
+you need, and find every setting in the reference below.
 
-```bash
-# Ask the model for up to 16384 output tokens per call. Set it to
-# your model's own limit when that's lower.
-GATLING_COMPLETION_MODEL_MAX_OUTPUT_TOKENS=16384
+With the Helm chart, they go in `env`, in your values file:
 
-# Port at most 4 snippets of one file at once, to stay under your
-# model provider's rate limits.
-GATLING_COMPLETION_MODEL_MAX_CONCURRENCY=4
-
-# Accept uploads of up to 25 MiB, for large plans and their data
-# files.
-GATLING_UPLOAD_MAX_BYTES=26214400
-
-# Wait at most 4 minutes 30 seconds per tool call. Keep it under your
-# MCP client's tool timeout.
-GATLING_SERVER_SYNC_TIMEOUT=PT4M30S
-
-# Keep a history of the conversions on the data volume, so users can
-# list, download again, and delete their own conversions.
-GATLING_CONVERSIONS_HISTORY_ENABLED=true
-
-# Delete a conversion from the history 14 days after it started.
-GATLING_CONVERSIONS_HISTORY_RETENTION=P14D
-
-# Write one JSON object per log line, for your log collector.
-QUARKUS_LOG_CONSOLE_JSON_ENABLED=true
+```yaml
+env:
+  # Ask the model for up to 16384 output tokens per call. Set it to
+  # your model's own limit when that's lower.
+  - name: GATLING_COMPLETION_MODEL_MAX_OUTPUT_TOKENS
+    value: "16384"
+  # Port at most 4 snippets of one file at once, to stay under your
+  # model provider's rate limits.
+  - name: GATLING_COMPLETION_MODEL_MAX_CONCURRENCY
+    value: "4"
+  # Accept uploads of up to 25 MiB, for large plans and their data
+  # files.
+  - name: GATLING_UPLOAD_MAX_BYTES
+    value: "26214400"
+  # Wait at most 4 minutes 30 seconds per tool call. Keep it under your
+  # MCP client's tool timeout.
+  - name: GATLING_SERVER_SYNC_TIMEOUT
+    value: PT4M30S
+  # Keep a history of the conversions on the data volume, so users can
+  # list, download again, and delete their own conversions.
+  - name: GATLING_CONVERSIONS_HISTORY_ENABLED
+    value: "true"
+  # Delete a conversion from the history 14 days after it started.
+  - name: GATLING_CONVERSIONS_HISTORY_RETENTION
+    value: P14D
+  # Write one JSON object per log line, for your log collector.
+  - name: QUARKUS_LOG_CONSOLE_JSON_ENABLED
+    value: "true"
 ```
+
+With a Terraform module, they go in the environment map, `task.environment` on AWS and `container.environment` on
+Azure and Google Cloud:
+
+```hcl
+environment = {
+  GATLING_COMPLETION_MODEL_MAX_OUTPUT_TOKENS = "16384"
+  GATLING_COMPLETION_MODEL_MAX_CONCURRENCY   = "4"
+  GATLING_UPLOAD_MAX_BYTES                   = "26214400"
+  GATLING_SERVER_SYNC_TIMEOUT                = "PT4M30S"
+  GATLING_CONVERSIONS_HISTORY_ENABLED        = "true"
+  GATLING_CONVERSIONS_HISTORY_RETENTION      = "P14D"
+  QUARKUS_LOG_CONSOLE_JSON_ENABLED           = "true"
+}
+```
+
+On Azure, leave `GATLING_SERVER_SYNC_TIMEOUT` out: the module sets it, and refuses it in the map. With the Terraform
+modules, the conversion history resets at each restart.
 
 ## Understand how settings are read
 
@@ -54,9 +99,8 @@ The server reads a setting from these sources, from the highest priority to the 
 1. A system property, `-D<key>=<value>`, in `JDK_JAVA_OPTIONS`. Setting `JDK_JAVA_OPTIONS` replaces the image's own
    value, `-XX:MaxRAMPercentage=75 -XX:+ExitOnOutOfMemoryError`: keep these two options.
 2. An environment variable.
-3. A `.env` file in the server's working directory, `/deployments/.env`, of `NAME=value` lines.
-4. A properties file mounted at `/deployments/config/application.properties`, of `key=value` lines.
-5. The defaults packaged in the image.
+3. A properties file mounted at `/deployments/config/application.properties`, of `key=value` lines.
+4. The defaults packaged in the image.
 
 Durations use the ISO 8601 format: `PT15M` is 15 minutes, `PT9M30S` is 9 minutes 30 seconds, and `P1D` is one day.
 
@@ -94,8 +138,9 @@ The server refuses to start without these settings:
   Required\
   Key: `gatling.model.endpoint.api-key`
 
-The Docker Compose file also requires `GATLING_MCP_REQUEST_STATE_KEY`, described under
-[MCP server and HTTP](#configure-the-mcp-server-and-http).
+The Helm chart and the Terraform modules also take `GATLING_MCP_REQUEST_STATE_KEY` from your secret store, described
+under [MCP server and HTTP](#configure-the-mcp-server-and-http). It's optional, but without it, stateless MCP clients
+are asked no question.
 
 ## Configure the model endpoint
 
@@ -278,8 +323,8 @@ These settings control the MCP endpoint, uploads, and browser access:
 - `GATLING_SERVER_SYNC_TIMEOUT`
 
   The longest one tool call waits for its conversion. The model's time limits inside a call are shares of it. Keep it
-  under the MCP client's tool timeout, and set your proxy's idle timeout as
-  [Network]({{< ref "/ai/server/network" >}}) describes.
+  under the MCP client's tool timeout, and set your load balancer's idle timeout as
+  [Network]({{< ref "/ai/server/network" >}}) describes. The Azure module sets it to `PT3M30S`.
 
   Default: `PT9M30S`\
   Key: `gatling.server.sync-timeout`
@@ -296,7 +341,7 @@ These settings control the MCP endpoint, uploads, and browser access:
 - `GATLING_MCP_CONTINUE_ON_RETRY`
 
   Hands a conversion still running at the end of the wait back to a stateless client, which follows it by retrying,
-  instead of cancelling it. Needs the request state key.
+  instead of cancelling it. Needs the request state key. The Azure module sets it to `true`.
 
   Default: `false`\
   Key: `gatling.mcp.continue-on-retry`
@@ -311,7 +356,8 @@ These settings control the MCP endpoint, uploads, and browser access:
 - `GATLING_UPLOAD_MAX_BYTES`
 
   The largest upload, in bytes. The HTTP body limit and each converter's largest input follow it. The server
-  refuses to start above `134217728` (128 MiB), the most memory its uploaded and generated files may take at once.
+  refuses to start above `134217728` (128 MiB), the most memory its uploaded and generated files may take at once. On
+  Cloud Run, keep it under 32 MiB, the largest HTTP/1 request Cloud Run accepts.
 
   Default: `10485760` (10 MiB)\
   Key: `gatling.upload.max-bytes`
@@ -406,9 +452,10 @@ These settings bound the work the server takes on, and the memory it uses:
 
 ## Configure the SQLite file
 
-The server keeps the model token counts and the audit trail in one SQLite file, on its data volume,
-`/deployments/data`. Mount a persistent volume there to keep the token counts, the audit trail, and the conversion
-history across a restart.
+The server keeps the model token counts and the audit trail in one SQLite file, in its data folder,
+`/deployments/data`. The Helm chart keeps that folder on a persistent volume claim, so the token counts, the audit
+trail, and the conversion history stay across a restart. The Terraform modules mount no volume there: the folder
+resets at each restart.
 
 - `GATLING_STORE_SQLITE_PATH`
 
@@ -457,8 +504,9 @@ serves no page and no review tool.
 {{< alert warning >}}
 Each conversion's folder holds the uploaded plan, the report, and the generated code, written to disk in clear. It
 never holds the model's prompts or answers. Turning the history on is your acknowledgement of this, and the server
-logs a warning at every startup that says so. The folders are in `/deployments/data/conversions`, on the data volume:
-without a mounted volume, the history is lost with the container.
+logs a warning at every startup that says so. The folders are in `/deployments/data/conversions`, in the data folder:
+with the Terraform modules, which mount no volume there, the history is lost at each restart. On Cloud Run, the
+folders also count against the memory limit.
 {{< /alert >}}
 
 - `GATLING_CONVERSIONS_HISTORY_ENABLED`

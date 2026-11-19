@@ -12,12 +12,16 @@ asking for it in plain language.
 
 ## Ask for a conversion
 
-Ask your assistant to convert a `.jmx` file, a folder, or a zip. For example, with the sample
-of the [demo project](https://github.com/gatling/gatling-ai-server-demo):
+Ask your assistant to convert a `.jmx` file, a folder, or a zip. For example, the repository of the
+[Helm chart](https://github.com/gatling/helm-gatling-ai-server) and of each
+[Terraform module]({{< ref "/ai/server/installation/terraform" >}}) holds a sample plan, `samples/EcommApp.zip`. From
+a clone of the one your operator installed from, ask:
 
 ```text
-Convert examples/EcommApp.zip to a Gatling simulation.
+Convert samples/EcommApp.zip to a Gatling simulation.
 ```
+
+The sample holds the JMeter plan of an e-commerce site and the two CSV files it reads.
 
 The assistant uploads the plan to the server, starts the conversion, and returns a summary with a link to download
 the Gatling project.
