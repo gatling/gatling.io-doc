@@ -96,7 +96,7 @@ Gatling Enterprise Edition sends the following metrics in your OpenTelemetry acc
 `gatling_enterprise.tcp.connect.count`<br> (\*)|sum|load.generator<br>remote<br>status
 `gatling_enterprise.tcp.connect.time.mean`<br>`gatling_enterprise.tcp.connect.time.min`<br>`gatling_enterprise.tcp.connect.time.p50`<br>`gatling_enterprise.tcp.connect.time.p95`<br>`gatling_enterprise.tcp.connect.time.p99`<br>`gatling_enterprise.tcp.connect.time.p999`<br>`gatling_enterprise.tcp.connect.time.max`<br> (\*)|gauge|load.generator<br>remote<br>status
 `gatling_enterprise.tcp.connect.time`<br> (\*\*)|exponential histogram |load.generator<br>remote<br>status
-`gatling_enterprise.tcp.state.count`|gauge|load.generator<br>state
+`gatling_enterprise.tcp.state.count`|count|load.generator<br>state
 `gatling_enterprise.tls.handshake.count`<br> (\*)|sum|load.generator<br>remote<br>status
 `gatling_enterprise.tls.handshake.time.mean`<br>`gatling_enterprise.tls.handshake.time.min`<br>`gatling_enterprise.tls.handshake.time.p50`<br>`gatling_enterprise.tls.handshake.time.p95`<br>`gatling_enterprise.tls.handshake.time.p99`<br>`gatling_enterprise.tls.handshake.time.p999`<br>`gatling_enterprise.tls.handshake.time.max`<br> (\*)|gauge|load.generator<br>remote<br>status
 `gatling_enterprise.tls.handshake.time`<br> (\*\*)|exponential histogram |load.generator<br>remote<br>status
