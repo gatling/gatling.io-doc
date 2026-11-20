@@ -124,7 +124,7 @@ The module has three outputs:
 With Route 53, add an alias record:
 
 ```hcl
-resource "aws_route53_record" "ai-server" {
+resource "aws_route53_record" "ai_server" {
   zone_id = "<HostedZoneId>"
   name    = "gatling-ai.example.com"
   type    = "A"
