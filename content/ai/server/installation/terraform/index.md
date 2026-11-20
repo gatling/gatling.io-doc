@@ -276,11 +276,11 @@ az containerapp logs show --name gatling-ai-server --resource-group <ResourceGro
 
 ### Know the limits {#azure-limits}
 
-- **Conversions longer than 3 minutes 30 seconds**: Azure Container Apps ends every HTTP request at 240 seconds. The
-  module therefore sets `GATLING_SERVER_SYNC_TIMEOUT` to `PT3M30S` and `GATLING_MCP_CONTINUE_ON_RETRY` to `true`: a tool
-  call waits 3 minutes 30 seconds for its conversion, then hands a conversion still running back to a client on a
-  stateless MCP session, which follows it by retrying. This needs the request state key. For a client that can't
-  retry, a conversion that runs past 3 minutes 30 seconds is canceled. If you need longer conversions, use the
+- **Conversions longer than 3 minutes**: Azure Container Apps ends every HTTP request at 240 seconds. The module
+  therefore sets `GATLING_SERVER_SYNC_TIMEOUT` to `PT3M` and `GATLING_MCP_CONTINUE_ON_RETRY` to `true`: a tool call
+  waits 3 minutes for its conversion, 60 seconds under that limit, then hands a conversion still running back to a
+  client on a stateless MCP session, which follows it by retrying. This needs the request state key. For a client that
+  can't retry, a conversion that runs past 3 minutes is canceled. If you need longer conversions, use the
   [Helm chart]({{< ref "/ai/server/installation/helm" >}}) on AKS.
 - **Data**: the server's data resets at each restart. A restart, a new revision, or a secret rotation starts the token
   counts, the audit trail, and the conversion history over.

@@ -48,7 +48,7 @@ setting goes with each installation, and lists every other setting.
 
 The request state key signs the state of the questions a conversion asks a stateless MCP client. It's optional, but
 without it, such a client is asked no question, and the server logs a warning at startup. On Azure Container Apps, it
-also lets a client follow a conversion that runs past 3 minutes 30 seconds.
+also lets a client follow a conversion that runs past 3 minutes.
 
 Generate 32 random bytes in base64:
 
@@ -73,7 +73,7 @@ Each installation runs a single instance of the server:
 
 Choose the Helm chart when you run Kubernetes, or when the token counts, the audit trail, and the conversion history
 must survive a restart. Choose a Terraform module to run the server on a managed container service, with no cluster to
-operate. On Azure Container Apps, a tool call waits at most 3 minutes 30 seconds: read
+operate. On Azure Container Apps, a tool call waits at most 3 minutes: read
 [its limits]({{< ref "/ai/server/installation/terraform#azure-limits" >}}) before you choose it.
 
 On any other container platform, run the image `gatlingcorp/gatling-ai-server:<version>` with these environment

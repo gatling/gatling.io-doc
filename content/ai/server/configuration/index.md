@@ -324,7 +324,7 @@ These settings control the MCP endpoint, uploads, and browser access:
 
   The longest one tool call waits for its conversion. The model's time limits inside a call are shares of it. Keep it
   under the MCP client's tool timeout, and set your load balancer's idle timeout as
-  [Network]({{< ref "/ai/server/network" >}}) describes. The Azure module sets it to `PT3M30S`.
+  [Network]({{< ref "/ai/server/network" >}}) describes. The Azure module sets it to `PT3M`.
 
   Default: `PT9M30S`\
   Key: `gatling.server.sync-timeout`

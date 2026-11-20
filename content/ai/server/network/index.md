@@ -55,9 +55,9 @@ The AWS and Google Cloud modules configure the platform in front of the server f
   accepts HTTP/1 requests of up to 32 MiB.
 
 Azure is the exception. Azure Container Apps ends every HTTP request at 240 seconds, so the Azure module makes a tool
-call wait 3 minutes 30 seconds (`GATLING_SERVER_SYNC_TIMEOUT=PT3M30S`), then hands a conversion still running back to
-a client on a stateless MCP session, which follows it by retrying (`GATLING_MCP_CONTINUE_ON_RETRY=true`). For a client
-that can't retry, a conversion that runs past 3 minutes 30 seconds is canceled. For longer conversions, use the Helm
+call wait 3 minutes (`GATLING_SERVER_SYNC_TIMEOUT=PT3M`), 60 seconds under that limit, then hands a conversion still
+running back to a client on a stateless MCP session, which follows it by retrying (`GATLING_MCP_CONTINUE_ON_RETRY=true`).
+For a client that can't retry, a conversion that runs past 3 minutes is canceled. For longer conversions, use the Helm
 chart on AKS. [The Azure limits]({{< ref "/ai/server/installation/terraform#azure-limits" >}}) say more.
 
 ## Understand who connects to what
