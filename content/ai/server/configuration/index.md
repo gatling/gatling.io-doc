@@ -376,6 +376,46 @@ These settings control the MCP endpoint, uploads, and browser access:
   Default: none, only the server's own origin\
   Key: `quarkus.http.cors.origins`
 
+## Serve HTTPS from the server
+
+By default, the server serves plain HTTP, and your ingress controller or load balancer terminates TLS, as
+[Network]({{< ref "/ai/server/network" >}}) describes. The Helm chart and the Terraform modules work that way. Keep
+that setup for anything beyond one certificate, such as PEM files, mutual TLS, or a certificate renewed without a
+restart.
+
+The server can also serve HTTPS itself, from a PKCS#12 key store (`.p12` or `.pfx`) that you mount read-only in the
+container. The server's user, UID `1001` or any user in group `0`, must be able to read it. Mount it outside the data
+folder, `/deployments/data`, for example at `/deployments/tls/server.p12`.
+
+With the key store set, the server:
+
+- Serves HTTPS on port 8080, and no plain HTTP at all. Port mappings stay as they are, and health checks change their
+  scheme only: `https://<host>:8080/q/health/ready`.
+- Speaks HTTP/1.1, over TLS 1.3 or 1.2, with the JDK's default cipher suites.
+- Reads the key store once, at startup: a new certificate takes a restart.
+- Logs `Listening on: https://0.0.0.0:8080` once it serves.
+
+The server refuses to start when it can't read the key store, when the password doesn't open it, when it holds no
+private key, when you set a password without a path, or when `GATLING_SERVER_PUBLIC_BASE_URL` isn't an `https` URL. It
+also refuses to start when you set, beside the key store, one of the settings it derives from it:
+`QUARKUS_HTTP_INSECURE_REQUESTS`, `QUARKUS_HTTP_SSL_PORT`, `QUARKUS_HTTP_HTTP2`, or `QUARKUS_HTTP_SSL_PROTOCOLS`.
+
+- `GATLING_SERVER_CERTIFICATE_PATH`
+
+  The PKCS#12 key store holding the server's private key and its certificate chain, for the host of
+  `GATLING_SERVER_PUBLIC_BASE_URL`.
+
+  Default: none, the server serves plain HTTP\
+  Key: `gatling.server.certificate.path`
+
+- `GATLING_SERVER_CERTIFICATE_PASSWORD`
+
+  The key store's password, which also opens its private key. A secret. Without it, the server opens the key store
+  with an empty password.
+
+  Default: none\
+  Key: `gatling.server.certificate.password`
+
 ## Configure the limits
 
 These settings bound the work the server takes on, and the memory it uses:
