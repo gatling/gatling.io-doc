@@ -22,11 +22,11 @@ The following table gives, for each installation, the value or the input that se
 
 | **Setting** | **Helm chart** | **AWS module** | **Azure module** | **Google Cloud module** |
 | --- | --- | --- | --- | --- |
-| `GATLING_SERVER_PUBLIC_BASE_URL` | `server.publicBaseUrl` | `server.public-base-url` | Set by the module, to the container app's address | Set by the module, to the service's `run.app` URL |
-| `GATLING_MODEL_ENDPOINT_BASE_URL` | `server.model.baseUrl` | `server.model.base-url` | `server.model.base-url` | `server.model.base-url` |
+| `GATLING_SERVER_PUBLIC_BASE_URL` | `server.publicBaseUrl` | `server.public_base_url` | Set by the module, to the container app's address | Set by the module, to the service's `run.app` URL |
+| `GATLING_MODEL_ENDPOINT_BASE_URL` | `server.model.baseUrl` | `server.model.base_url` | `server.model.base_url` | `server.model.base_url` |
 | `GATLING_MODEL_ENDPOINT_MODEL` | `server.model.name` | `server.model.name` | `server.model.name` | `server.model.name` |
-| `GATLING_MODEL_ENDPOINT_API_KEY` | The Secret's key `model-api-key` | `server.model.api-key-secret-arn`, a Secrets Manager secret | `server.model.api-key-secret-id`, a Key Vault secret | `server.model.api-key-secret`, a Secret Manager secret |
-| `GATLING_MCP_REQUEST_STATE_KEY` | The Secret's key `request-state-key` | `server.request-state-key-secret-arn` | `server.request-state-key-secret-id` | `server.request-state-key-secret` |
+| `GATLING_MODEL_ENDPOINT_API_KEY` | The Secret's key `model-api-key` | `server.model.api_key_secret_arn`, a Secrets Manager secret | `server.model.api_key_secret_id`, a Key Vault secret | `server.model.api_key_secret`, a Secret Manager secret |
+| `GATLING_MCP_REQUEST_STATE_KEY` | The Secret's key `request-state-key` | `server.request_state_key_secret_arn` | `server.request_state_key_secret_id` | `server.request_state_key_secret` |
 | Any other setting | `env`, `envFrom` | `task.environment` | `container.environment` | `container.environment` |
 
 Each module refuses an environment map that sets a variable the module sets itself. The Azure module also sets

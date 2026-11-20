@@ -39,7 +39,7 @@ The module creates the following resources, each named after the `name` input, `
 - An ECS cluster, and a Fargate service that runs one task, never two at once.
 - An internet-facing Application Load Balancer, which serves HTTPS on port 443 with your ACM certificate, keeps a
   connection open for 630 seconds of silence, and checks the server's health on `/q/health/ready`.
-- The security groups of the load balancer, open on port 443 to `load-balancer.ingress-cidrs`, `0.0.0.0/0` by
+- The security groups of the load balancer, open on port 443 to `load_balancer.ingress_cidrs`, `0.0.0.0/0` by
   default, and of the task, open on port 8080 to the load balancer only.
 - The task's IAM roles. The execution role can read the secrets you name, and no other secret.
 - A CloudWatch log group, `/ecs/<name>-service`, which keeps the server's log 30 days by default.
@@ -51,7 +51,7 @@ The module creates no network, certificate, or DNS record. Before you apply it, 
 - A VPC with at least two public subnets in different Availability Zones for the load balancer, each a `/27` or larger
   with at least eight free IP addresses.
 - Subnets for the task, in Availability Zones of the load balancer's subnets: public subnets, where the task gets a
-  public IP address, the default, or private subnets with a NAT gateway (`task.assign-public-ip = false`). The task
+  public IP address, the default, or private subnets with a NAT gateway (`task.assign_public_ip = false`). The task
   connects out over HTTPS to Docker Hub, which serves its image, to `auth.gatling.io`, and to your model endpoint.
 - A hostname for the server, such as `gatling-ai.example.com`, in a DNS zone you manage, and an ACM certificate for it
   in the region you deploy to.
@@ -76,15 +76,15 @@ provider "aws" {
   region = "<Region>"
 }
 
-module "ai-server" {
+module "ai_server" {
   source  = "gatling/ai-server/aws"
   version = "~> 0.1"
 
-  vpc-id = "<VpcId>"
+  vpc_id = "<VpcId>"
 
-  load-balancer = {
+  load_balancer = {
     subnets         = ["<PublicSubnetId1>", "<PublicSubnetId2>"]
-    certificate-arn = "<CertificateARN>"
+    certificate_arn = "<CertificateARN>"
   }
 
   task = {
@@ -93,18 +93,18 @@ module "ai-server" {
   }
 
   server = {
-    public-base-url = "https://gatling-ai.example.com"
+    public_base_url = "https://gatling-ai.example.com"
     model = {
-      base-url           = "https://api.anthropic.com/v1/"
+      base_url           = "https://api.anthropic.com/v1/"
       name               = "<ModelName>"
-      api-key-secret-arn = "<ModelApiKeySecretARN>"
+      api_key_secret_arn = "<ModelApiKeySecretARN>"
     }
-    request-state-key-secret-arn = "<RequestStateKeySecretARN>"
+    request_state_key_secret_arn = "<RequestStateKeySecretARN>"
   }
 }
 ```
 
-`server.public-base-url` is the `https://` URL of your hostname, with no path. Then apply it:
+`server.public_base_url` is the `https://` URL of your hostname, with no path. Then apply it:
 
 ```console
 terraform init
@@ -117,8 +117,8 @@ The module has three outputs:
 
 | **Output** | **Value** |
 | --- | --- |
-| `load-balancer-dns-name` | The DNS name of the load balancer, which your hostname points to. |
-| `load-balancer-zone-id` | The Route 53 hosted zone ID of the load balancer, for an alias record. |
+| `load_balancer_dns_name` | The DNS name of the load balancer, which your hostname points to. |
+| `load_balancer_zone_id` | The Route 53 hosted zone ID of the load balancer, for an alias record. |
 | `url` | The server's public base URL, with no trailing slash. MCP clients connect to it followed by `/mcp`. |
 
 With Route 53, add an alias record:
@@ -130,14 +130,14 @@ resource "aws_route53_record" "ai-server" {
   type    = "A"
 
   alias {
-    name                   = module.ai-server.load-balancer-dns-name
-    zone_id                = module.ai-server.load-balancer-zone-id
+    name                   = module.ai_server.load_balancer_dns_name
+    zone_id                = module.ai_server.load_balancer_zone_id
     evaluate_target_health = false
   }
 }
 ```
 
-With another DNS provider, create a `CNAME` record from your hostname to the `load-balancer-dns-name` output.
+With another DNS provider, create a `CNAME` record from your hostname to the `load_balancer_dns_name` output.
 
 ### Check the server on AWS
 
@@ -149,7 +149,7 @@ curl -i https://gatling-ai.example.com/mcp
 ```
 
 The MCP endpoint answers `401 Unauthorized`, with a `WWW-Authenticate` header whose `resource_metadata` URL starts with
-`server.public-base-url`: if it doesn't, fix that input. To follow the server's log, run:
+`server.public_base_url`: if it doesn't, fix that input. To follow the server's log, run:
 
 ```console
 aws logs tail /ecs/gatling-ai-server-service --follow
@@ -182,7 +182,7 @@ The module creates the following resources, each named after the `name` input, `
 - A container app, `<name>`, with one replica in single revision mode, and an external ingress to port 8080 on its own
   HTTPS address. The module sets the server's public URL to that address.
 - A user-assigned identity, `<name>-identity`, that reads the secrets from your Key Vault. With
-  `key-vault-authorization = "rbac"`, the default, the module grants it the role Key Vault Secrets User on the vault.
+  `key_vault_authorization = "rbac"`, the default, the module grants it the role Key Vault Secrets User on the vault.
   With `"access-policy"`, it adds an access policy that lets it get secrets.
 
 ### Gather what you supply
@@ -202,7 +202,7 @@ az keyvault secret set --vault-name <Vault> --name gatling-ai-model-api-key --va
 az keyvault secret set --vault-name <Vault> --name gatling-ai-request-state-key --value "$(openssl rand -base64 32)"
 ```
 
-`key-vault-authorization` must match the vault's permission model:
+`key_vault_authorization` must match the vault's permission model:
 `az keyvault show --name <Vault> --query properties.enableRbacAuthorization` prints `true` for `rbac`.
 
 ### Add the module
@@ -215,21 +215,21 @@ provider "azurerm" {
   subscription_id = "<SubscriptionId>"
 }
 
-module "ai-server" {
+module "ai_server" {
   source  = "gatling/ai-server/azure"
   version = "~> 0.1"
 
-  resource-group-name = "<ResourceGroup>"
+  resource_group_name = "<ResourceGroup>"
   location            = "<Region>"
-  key-vault-id        = "/subscriptions/<SubscriptionId>/resourceGroups/<ResourceGroup>/providers/Microsoft.KeyVault/vaults/<Vault>"
+  key_vault_id        = "/subscriptions/<SubscriptionId>/resourceGroups/<ResourceGroup>/providers/Microsoft.KeyVault/vaults/<Vault>"
 
   server = {
     model = {
-      base-url          = "https://api.anthropic.com/v1/"
+      base_url          = "https://api.anthropic.com/v1/"
       name              = "<ModelName>"
-      api-key-secret-id = "https://<Vault>.vault.azure.net/secrets/gatling-ai-model-api-key"
+      api_key_secret_id = "https://<Vault>.vault.azure.net/secrets/gatling-ai-model-api-key"
     }
-    request-state-key-secret-id = "https://<Vault>.vault.azure.net/secrets/gatling-ai-request-state-key"
+    request_state_key_secret_id = "https://<Vault>.vault.azure.net/secrets/gatling-ai-request-state-key"
   }
 
   container = {
@@ -238,7 +238,7 @@ module "ai-server" {
 }
 
 output "url" {
-  value = module.ai-server.url
+  value = module.ai_server.url
 }
 ```
 
@@ -259,7 +259,7 @@ The module has two outputs:
 | **Output** | **Value** |
 | --- | --- |
 | `url` | The server's HTTPS URL, its `GATLING_SERVER_PUBLIC_BASE_URL`. MCP clients connect to it followed by `/mcp`. |
-| `container-app-id` | The resource ID of the container app. |
+| `container_app_id` | The resource ID of the container app. |
 
 Check that the server is ready, and that the MCP endpoint answers `401 Unauthorized`:
 
@@ -337,20 +337,20 @@ provider "google" {
   region  = "europe-west1"
 }
 
-module "ai-server" {
+module "ai_server" {
   source  = "gatling/ai-server/gcp"
   version = "~> 0.1"
 
-  project-id = "<ProjectId>"
+  project_id = "<ProjectId>"
   region     = "europe-west1"
 
   server = {
     model = {
-      base-url       = "https://api.anthropic.com/v1/"
+      base_url       = "https://api.anthropic.com/v1/"
       name           = "<ModelName>"
-      api-key-secret = "gatling-ai-model-api-key"
+      api_key_secret = "gatling-ai-model-api-key"
     }
-    request-state-key-secret = "gatling-ai-request-state-key"
+    request_state_key_secret = "gatling-ai-request-state-key"
   }
 
   container = {
@@ -359,7 +359,7 @@ module "ai-server" {
 }
 
 output "url" {
-  value = module.ai-server.url
+  value = module.ai_server.url
 }
 ```
 
@@ -377,7 +377,7 @@ The module has two outputs:
 | **Output** | **Value** |
 | --- | --- |
 | `url` | The server's `run.app` URL, `https://<name>-<project number>.<region>.run.app`, which the module gives the server as `GATLING_SERVER_PUBLIC_BASE_URL`. MCP clients connect to it followed by `/mcp`. |
-| `service-account-email` | The email of the service account the server runs as. |
+| `service_account_email` | The email of the service account the server runs as. |
 
 Check that the server is ready, and that the MCP endpoint answers `401 Unauthorized`:
 
@@ -441,7 +441,7 @@ terraform destroy
 ```
 
 The secrets stay in your secret store: delete them when you no longer need them. On AWS, also delete the DNS record.
-On Google Cloud, with `deletion-protection = true`, set it to `false` and apply before you destroy.
+On Google Cloud, with `deletion_protection = true`, set it to `false` and apply before you destroy.
 
 ## Next steps
 
