@@ -11,7 +11,7 @@ private val gatlingMqttVersion = "3.16.1"
 private val gatlingGraphqlVersion = "3.16.1.1"
 private val gatlingJdbcVersion = "3.16.1.1"
 private val gatlingKafkaVersion = "3.16.1.1"
-private val awsSdkVersion = "2.57.13"
+private val awsSdkVersion = "2.59.7"
 
 lazy val root = rootProject
   .enablePlugins(
