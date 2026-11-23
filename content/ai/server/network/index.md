@@ -7,8 +7,10 @@ lead: Plan the instance, what serves it, and the outbound connections Gatling AI
 date: 2026-11-13T00:00:00+00:00
 ---
 
-Gatling AI Server is one container that listens on port 8080 over plain HTTP. Your users' AI assistants reach it
-through an ingress controller or a load balancer that terminates TLS, and it calls two services over HTTPS.
+Gatling AI Server is one container that listens on port 8080, over plain HTTP by default. Your users' AI assistants
+reach it through an ingress controller or a load balancer that terminates TLS, or over HTTPS from the server itself
+when you [give it a certificate]({{< ref "/ai/server/configuration#serve-https-from-the-server" >}}). It calls two
+services over HTTPS.
 
 ## Meet the requirements
 
@@ -21,8 +23,8 @@ Make sure your infrastructure meets the following requirements:
 | Set the idle (read) timeout of your load balancer or ingress controller to at least 630 seconds. | One tool call waits up to 9 minutes 30 seconds for its conversion (`GATLING_SERVER_SYNC_TIMEOUT`), and the response comes at the end. A shorter timeout cuts long conversions. If you raise `GATLING_SERVER_SYNC_TIMEOUT`, keep that timeout at least 60 seconds above it. Azure Container Apps is the exception, as [the Azure module](#with-a-terraform-module) describes. |
 | Allow outbound HTTPS to `auth.gatling.io`. | The server reads the discovery document and the public keys (JWKS) of Gatling's sign-in service to validate each request's token. |
 | Allow outbound HTTPS to your model endpoint. | The server sends the code snippets to port to it, for example `api.anthropic.com`. |
-| Terminate TLS in front of the server. | The server serves plain HTTP. Put an ingress controller or a load balancer in front of it, with a certificate for the hostname your users reach. |
-| Set `GATLING_SERVER_PUBLIC_BASE_URL` to the URL users reach. | The server builds the upload and download URLs and its OAuth protected resource metadata from it. It must be the HTTPS URL your ingress or load balancer serves, not the container's address. |
+| Terminate TLS in front of the server, or give the server a certificate. | By default, the server serves plain HTTP: put an ingress controller or a load balancer in front of it, with a certificate for the hostname your users reach. Or [give the server a PKCS#12 key store]({{< ref "/ai/server/configuration#serve-https-from-the-server" >}}), and it serves HTTPS itself on port 8080. |
+| Set `GATLING_SERVER_PUBLIC_BASE_URL` to the URL users reach. | The server builds the upload and download URLs and its OAuth protected resource metadata from it. It must be the HTTPS URL your users reach, served by your ingress or load balancer or by the server itself, not the container's address. |
 
 ## Configure what serves the server
 

@@ -78,8 +78,9 @@ operate. On Azure Container Apps, a tool call waits at most 3 minutes: read
 
 On any other container platform, run the image `gatlingcorp/gatling-ai-server:<version>` with these environment
 variables, one replica, port 8080 behind TLS with a read timeout of at least 630 seconds, and a writable
-`/deployments/data`. Check its health on `/q/health/ready` only, as the
-[network requirements]({{< ref "/ai/server/network" >}}) describe.
+`/deployments/data`. Instead of TLS in front of it, the server can serve HTTPS itself on port 8080 from a key store you
+mount, as [Serve HTTPS from the server]({{< ref "/ai/server/configuration#serve-https-from-the-server" >}}) describes.
+Check its health on `/q/health/ready` only, as the [network requirements]({{< ref "/ai/server/network" >}}) describe.
 
 {{< alert warning >}}
 Pin the image to a release version in production, and upgrade on purpose. The `latest` tag, the default of the chart
