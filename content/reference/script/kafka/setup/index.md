@@ -21,6 +21,7 @@ Its usage is unlimited when running tests on [Gatling Enterprise](https://gatlin
 - 5 minute duration tests
 
 Limits after which the test will stop. This means that all locally executed tests using the Kafka protocol are limited by these values.
+The user limit counts every virtual user the test starts, not only the ones running at the same time: the test stops when it starts a 6th virtual user.
 When the test stops, Gatling logs which limit it exceeded.
 
 ## Get started with the demo project {#demo-project}
